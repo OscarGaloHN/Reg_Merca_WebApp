@@ -3,5 +3,5 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
     <p>Prueba de registro de mercaderia.</p>
-    <p>hola</p>
+    <p>hola_5</p>
 </asp:Content>
