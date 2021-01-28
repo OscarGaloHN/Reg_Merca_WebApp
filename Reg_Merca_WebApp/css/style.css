@@ -5003,21 +5003,22 @@ section.content {
     border-bottom: 1px solid #ddd;
     position: relative; }
     .input-group .form-line:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      width: 100%;
-      bottom: -2px;
-      -moz-transform: scaleX(0);
-      -ms-transform: scaleX(0);
-      -o-transform: scaleX(0);
-      -webkit-transform: scaleX(0);
-      transform: scaleX(0);
-      -moz-transition: 0.25s ease-in;
-      -o-transition: 0.25s ease-in;
-      -webkit-transition: 0.25s ease-in;
-      transition: 0.25s ease-in;
-      border-bottom: 2px solid #1f91f3; }
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        bottom: -2px;
+        -moz-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        -o-transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -moz-transition: 0.25s ease-in;
+        -o-transition: 0.25s ease-in;
+        -webkit-transition: 0.25s ease-in;
+        transition: 0.25s ease-in;
+        border-bottom: 2px solid #009688;
+    }
     .input-group .form-line + .input-group-addon {
       padding-right: 0;
       padding-left: 10px; }
@@ -5115,22 +5116,23 @@ section.content {
     position: relative;
     border-bottom: 1px solid #ddd; }
     .form-group .form-line:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 0;
-      bottom: -1px;
-      -moz-transform: scaleX(0);
-      -ms-transform: scaleX(0);
-      -o-transform: scaleX(0);
-      -webkit-transform: scaleX(0);
-      transform: scaleX(0);
-      -moz-transition: 0.25s ease-in;
-      -o-transition: 0.25s ease-in;
-      -webkit-transition: 0.25s ease-in;
-      transition: 0.25s ease-in;
-      border-bottom: 2px solid #1f91f3; }
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 0;
+        bottom: -1px;
+        -moz-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        -o-transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -moz-transition: 0.25s ease-in;
+        -o-transition: 0.25s ease-in;
+        -webkit-transition: 0.25s ease-in;
+        transition: 0.25s ease-in;
+        border-bottom: 2px solid #009688;
+    }
     .form-group .form-line .form-label {
       font-weight: normal;
       color: #aaa;
@@ -7765,19 +7767,21 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-  background-color: #00BCD4;
-  padding-left: 0;
-  max-width: 360px;
-  margin: 5% auto;
-  overflow-x: hidden; }
+    background-color: #009688;
+    padding-left: 0;
+    max-width: 360px;
+    margin: 5% auto;
+    overflow-x: hidden;
+}
   .login-page .login-box .msg {
     color: #555;
     margin-bottom: 30px;
     text-align: center; }
-  .login-page .login-box a {
-    font-size: 14px;
-    text-decoration: none;
-    color: #00BCD4; }
+    .login-page .login-box a {
+        font-size: 14px;
+        text-decoration: none;
+        color: #009688;
+    }
   .login-page .login-box .logo {
     margin-bottom: 20px; }
     .login-page .login-box .logo a {
@@ -7795,11 +7799,12 @@ fieldset[disabled] .form-control {
 
 /* Sign Up Page ================================ */
 .signup-page {
-  background-color: #00BCD4;
-  padding-left: 0;
-  max-width: 360px;
-  margin: 5% auto;
-  overflow-x: hidden; }
+    background-color: #009688;
+    padding-left: 0;
+    max-width: 360px;
+    margin: 5% auto;
+    overflow-x: hidden;
+}
   .signup-page .signup-box .msg {
     color: #555;
     margin-bottom: 30px;
@@ -7825,11 +7830,12 @@ fieldset[disabled] .form-control {
 
 /* Forgot Password Page ======================== */
 .fp-page {
-  background-color: #00BCD4;
-  padding-left: 0;
-  max-width: 360px;
-  margin: 5% auto;
-  overflow-x: hidden; }
+    background-color: #009688;
+    padding-left: 0;
+    max-width: 360px;
+    margin: 5% auto;
+    overflow-x: hidden;
+}
   .fp-page .fp-box .msg {
     color: #555;
     margin-bottom: 30px;
@@ -8126,7 +8132,8 @@ fieldset[disabled] .form-control {
     font-size: 12px;
     border-bottom: 1px solid #ddd; }
     .dataTables_wrapper input[type="search"]:focus, .dataTables_wrapper input[type="search"]:active {
-      border-bottom: 2px solid #1f91f3; }
+        border-bottom: 2px solid #009688;
+    }
   .dataTables_wrapper .dt-buttons {
     float: left; }
     .dataTables_wrapper .dt-buttons a.dt-button {
