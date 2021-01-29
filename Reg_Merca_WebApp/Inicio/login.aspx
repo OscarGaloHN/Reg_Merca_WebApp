@@ -7,6 +7,28 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Iniciar Sesión | RegMERCA</title>
+    <!--   contraseña-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#show_password').hover(function show() {
+                //Cambiar el atributo a texto
+                $('#txtContra').attr('type', 'text');
+                //$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                document.getElementById("show_password").innerHTML = "visibility";
+            },
+                function () {
+                    //Cambiar el atributo a contraseña
+                    $('#txtContra').attr('type', 'password');
+                    document.getElementById("show_password").innerHTML = "visibility_off";
+                    //$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                });
+        });
+    </script>
+    <!-- fin contraseña-->
+
     <!-- Favicon-->
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 
@@ -44,30 +66,48 @@
                         </span>
                         <div class="form-line">
                             <asp:TextBox ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario" autofocus="true"></asp:TextBox>
-                            <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtUsuario"
-                                ErrorMessage="Ingrese Su Usuario"
-                                Display="Dynamic"
-                                ForeColor="OrangeRed" Font-Size="X-Small" />
-
                         </div>
+                        <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtUsuario"
+                            ErrorMessage="Ingrese Su Usuario"
+                            Display="Dynamic"
+                            ForeColor="OrangeRed" Font-Size="X-Small" />
                     </div>
                     <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <asp:TextBox ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
-                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
-                                ErrorMessage="Ingrese su contraseña"
-                                Display="Dynamic"
-                                ForeColor="OrangeRed" Font-Size="X-Small" />
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">lock</i>
+                                </span>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="form-line">
+                                    <asp:TextBox ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
+                                    ErrorMessage="Ingrese su contraseña."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                                 <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator3"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small" 
+                                    ControlToValidate="txtContra"
+                                    ValidationExpression="^[\s\S]{5,10}$"
+                                    ErrorMessage="El regando de caracteres debe de ser entre (5 - 10)." />
+                            </div>
+                            <div class="col-xs-1">
+                                <i id="show_password" class="material-icons">visibility_off</i>
 
+                                <%-- <div class="input-group-append">
+                                    <button id="show_password" class="btn btn-default waves-effect" type="button">
+                                     <span class="fa fa-eye-slash icon"></span>
+                                    </button>
+                                </div>--%>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
-                           
-                             <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
+
+                            <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
                             <label for="chkRecordar">Recordarme</label>
 
                         </div>
@@ -84,7 +124,7 @@
                         </div>
                     </div>
                 </form>
-            </div> 
+            </div>
         </div>
     </div>
 

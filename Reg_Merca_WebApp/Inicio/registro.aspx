@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="registro.aspx.vb" Inherits="Reg_Merca_WebApp.registro" %>
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -29,27 +29,27 @@
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
-              <a href="javascript:void(0);">Reg<b>MERCA</b></a>
+            <a href="javascript:void(0);">Reg<b>MERCA</b></a>
             <small>Sistema De Registro De Nacionalización De Mercancias</small>
         </div>
         <div class="card">
             <div class="body">
                 <form id="sign_up" method="POST" runat="server">
                     <div class="msg">Registrar Nuevo Usuario</div>
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" required autofocus>
-                        </div>
-                    </div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="namesurname" placeholder="Usuario" required autofocus>
+                            <asp:TextBox ID="txtnombre" runat="server" class="form-control" placeholder="Nombre" autofocus="true"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">assignment_ind</i>
+                        </span>
+                        <div class="form-line">
+                            <asp:TextBox ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario"></asp:TextBox>
                         </div>
                     </div>
                     <div class="input-group">
@@ -57,7 +57,7 @@
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="Correo Electronico" required>
+                            <asp:TextBox ID="txtemail" runat="server" class="form-control" TextMode="Email" placeholder="Correo Electronico"></asp:TextBox>
                         </div>
                     </div>
                     <div class="input-group">
@@ -65,15 +65,15 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" minlength="6" placeholder="Contraseña" required>
+                            <asp:TextBox placeholder="Contraseña" ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                         </div>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
+                            <i class="material-icons">check</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirmar Contraseña" required>
+                            <asp:TextBox placeholder="Confirmar Contraseña" ID="txtContraConfirmar" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                         </div>
                     </div>
                     <!--<div class="form-group">
@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
- 
+
     <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>
 
@@ -109,6 +109,6 @@
 </body>
 
 </html>
-    
-        
+
+
 
