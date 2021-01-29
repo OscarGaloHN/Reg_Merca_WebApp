@@ -2,6 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <p>Prueba de registro de mercancia.</p>
+    <p>Prueba de registro de merca.</p>
     <p>hola_5 Franciny</p>
 </asp:Content>
