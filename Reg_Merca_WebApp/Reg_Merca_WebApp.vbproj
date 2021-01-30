@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="00_Pruebas\Jonathan\prueba_jona.aspx" />
+    <Content Include="00_Pruebas\Miguel\Pruebas-Miguel.aspx" />
     <Content Include="00_Pruebas\Oscar\Prueba_Contra.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -947,6 +948,13 @@
     </Compile>
     <Compile Include="00_Pruebas\Jonathan\prueba_jona.aspx.vb">
       <DependentUpon>prueba_jona.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="00_Pruebas\Miguel\Pruebas-Miguel.aspx.designer.vb">
+      <DependentUpon>Pruebas-Miguel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="00_Pruebas\Miguel\Pruebas-Miguel.aspx.vb">
+      <DependentUpon>Pruebas-Miguel.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="00_Pruebas\Oscar\Prueba_Contra.aspx.designer.vb">
