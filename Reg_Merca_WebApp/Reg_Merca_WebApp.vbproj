@@ -1147,6 +1147,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="00_Pruebas\Franciny\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
