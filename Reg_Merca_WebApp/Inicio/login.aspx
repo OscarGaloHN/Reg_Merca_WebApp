@@ -91,7 +91,7 @@
                                     Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small" 
                                     ControlToValidate="txtContra"
                                     ValidationExpression="^[\s\S]{5,10}$"
-                                    ErrorMessage="El regando de caracteres debe de ser entre (5 - 10)." />
+                                    ErrorMessage="El rango de caracteres debe de ser entre (5 - 10)." />
                             </div>
                             <div class="col-xs-1">
                                 <i id="show_password" class="material-icons">visibility_off</i>
