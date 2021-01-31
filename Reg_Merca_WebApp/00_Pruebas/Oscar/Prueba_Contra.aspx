@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Prueba_Contra.aspx.vb" Inherits="Reg_Merca_WebApp.Prueba_Contra" %>
 
 <!DOCTYPE html>
-
+ 
 <html>
 <head runat="server">
     <title>Mostrar u ocultar contraseña</title>
