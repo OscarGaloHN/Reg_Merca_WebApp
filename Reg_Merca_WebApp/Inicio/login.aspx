@@ -51,7 +51,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <asp:TextBox ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario" autofocus="true"></asp:TextBox>
+                            <asp:TextBox ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario" autofocus="true"  Style="text-transform: uppercase"></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtUsuario"
                             ErrorMessage="Ingrese Su Usuario"
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-xs-9">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="10" ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox MaxLength="10" ID="txtContra" runat="server" class="form-control" placeholder="CONTRASEÑA" TextMode="Password"></asp:TextBox>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
                                     ErrorMessage="Ingrese su contraseña."
