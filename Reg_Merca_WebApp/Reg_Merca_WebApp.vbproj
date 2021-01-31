@@ -197,6 +197,7 @@
     <Content Include="bower.json" />
     <Content Include="compilerconfig.json" />
     <Content Include="compilerconfig.json.defaults" />
+    <Content Include="Inicio\jsLogin.js" />
     <Content Include="Inicio\login.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
