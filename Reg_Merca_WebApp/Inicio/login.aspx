@@ -11,22 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#show_password').hover(function show() {
-                //Cambiar el atributo a texto
-                $('#txtContra').attr('type', 'text');
-                //$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-                document.getElementById("show_password").innerHTML = "visibility";
-            },
-                function () {
-                    //Cambiar el atributo a contraseña
-                    $('#txtContra').attr('type', 'password');
-                    document.getElementById("show_password").innerHTML = "visibility_off";
-                    //$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-                });
-        });
-    </script>
+    <script src="jsLogin.js"></script>
+
     <!-- fin contraseña-->
 
     <!-- Favicon-->
@@ -81,7 +67,7 @@
                             </div>
                             <div class="col-xs-9">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox MaxLength="10" ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
                                     ErrorMessage="Ingrese su contraseña."
