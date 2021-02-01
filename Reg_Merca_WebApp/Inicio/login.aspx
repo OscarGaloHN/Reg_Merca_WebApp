@@ -33,6 +33,10 @@
 
     <!-- Custom Css -->
     <link href="../css/style.css" rel="stylesheet">
+
+    <script src="../plugins/sweetalert/sweetalert-dev.js"></script>
+    <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="../plugins/sweetalert/sweetalert.min.js"></script>
 </head>
 
 
