@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="jsLogin.js"></script>
-
+     
     <!-- fin contraseña-->
 
     <!-- Favicon-->
@@ -33,6 +33,10 @@
 
     <!-- Custom Css -->
     <link href="../css/style.css" rel="stylesheet">
+
+    <script src="../plugins/sweetalert/sweetalert-dev.js"></script>
+    <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="../plugins/sweetalert/sweetalert.min.js"></script>
 </head>
 
 
@@ -51,7 +55,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <asp:TextBox ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario" autofocus="true"></asp:TextBox>
+                            <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario"  onkeypress="return isNumberOrLetter(event)" autofocus="true" onkeyup="mayus(this);"></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtUsuario"
                             ErrorMessage="Ingrese Su Usuario"
@@ -98,7 +102,8 @@
 
                         </div>
                         <div class="col-xs-4">
-                            <asp:Button ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
+                            <asp:LinkButton  ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
+                           
                         </div>
                     </div>
                     <div class="row m-t-15 m-b--20">

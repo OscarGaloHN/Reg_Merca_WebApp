@@ -1,6 +1,6 @@
-﻿'Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 
-Imports MySqlConnector
+
 
 Public Class ControlDB
     Implements IDisposable
