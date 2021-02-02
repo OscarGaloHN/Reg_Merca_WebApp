@@ -1,4 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
+
+
 
 Public Class ControlDB
     Implements IDisposable
@@ -43,5 +45,5 @@ Public Class ControlDB
         End Using
         Return ds
     End Function
-    '*****************
+
 End Class
