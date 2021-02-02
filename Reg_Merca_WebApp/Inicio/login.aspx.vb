@@ -26,6 +26,7 @@
             registro = DataSetX.Tables(0).Rows(0)
             Select Case CInt(registro("estado"))
                 Case 0 'Formulario de registro
+
                 Case 1 'activo
                     Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
                     Using con As New ControlDB
