@@ -102,7 +102,8 @@
 
                         </div>
                         <div class="col-xs-4">
-                            <asp:Button ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
+                            <asp:LinkButton  ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
+                           
                         </div>
                     </div>
                     <div class="row m-t-15 m-b--20">
