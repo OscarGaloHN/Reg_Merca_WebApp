@@ -10,7 +10,28 @@
     End Property
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        If IsPostBack = False Then
+            'parametros de configuracion de sistema
+            Dim Ssql As String = String.Empty
+            Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_21_parametros order by 1;"
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            Dim registro As DataRow
+            If Session("NumReg") > 0 Then
+                Dim arrayParametros(CInt(Session("NumReg")) - 1) As String
+                For i = 0 To arrayParametros.Length - 1
+                    registro = DataSetX.Tables(0).Rows(i)
+                    arrayParametros(i) = registro("valor")
+                Next
+                'parametros de contraseña
+                Application("Parametros") = arrayParametros
+                reContraLogin.ErrorMessage = "El rango de caracteres debe de ser entre (5 -" & Application("Parametros")(0) & ")."
+                reContraLogin.ValidationExpression = "^[\s\S]{5," & Application("Parametros")(0) & "}$"
+                txtContra.MaxLength = Application("Parametros")(0)
+            End If
+        End If
     End Sub
 
     Private Sub bttEntrar_Click(sender As Object, e As EventArgs) Handles bttEntrar.Click

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="jsLogin.js"></script>
-     
+
     <!-- fin contraseña-->
 
     <!-- Favicon-->
@@ -55,10 +55,10 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario"  onkeypress="return isNumberOrLetter(event)" autofocus="true" onkeyup="mayus(this);"></asp:TextBox>
+                            <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario" onkeypress="return isNumberOrLetter(event)" autofocus="true" onkeyup="mayus(this);"></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtUsuario"
-                            ErrorMessage="Ingrese Su Usuario"
+                            ErrorMessage="Ingrese su usuario."
                             Display="Dynamic"
                             ForeColor="OrangeRed" Font-Size="X-Small" />
                     </div>
@@ -66,25 +66,23 @@
                         <div class="row">
                             <div class="col-xs-1">
                                 <span class="input-group-addon">
-                                    <i class="material-icons">lock</i>
+                                    <i id="Candado" class="material-icons">lock</i>
                                 </span>
                             </div>
                             <div class="col-xs-9">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="10" ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox    ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
                                     ErrorMessage="Ingrese su contraseña."
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
-                                 <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator3"
-                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small" 
-                                    ControlToValidate="txtContra"
-                                    ValidationExpression="^[\s\S]{5,10}$"
-                                    ErrorMessage="El rango de caracteres debe de ser entre (5 - 10)." />
+                                <asp:RegularExpressionValidator runat="server" ID="reContraLogin"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtContra" />
                             </div>
                             <div class="col-xs-1">
-                                <i id="show_password" class="material-icons">visibility_off</i>
+                                  <span id="show_password" style="cursor: default" class="material-icons">visibility_off</span> 
 
                                 <%-- <div class="input-group-append">
                                     <button id="show_password" class="btn btn-default waves-effect" type="button">
@@ -102,13 +100,15 @@
 
                         </div>
                         <div class="col-xs-4">
-                            <asp:LinkButton  ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
-                           
+                            <asp:LinkButton ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" ToolTip="Clic para entrar al sistema." />
+
                         </div>
                     </div>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-5">
+                            <%If CBool(Application("Parametros")(1)) = True Then  %>
                             <a href="registro.aspx">Registrarse!</a>
+                            <%End If %>
                         </div>
                         <div class="col-xs-7 align-right">
                             <a href="recuperar.aspx">¿Olvidó Su Contraseña?</a>

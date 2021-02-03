@@ -308,6 +308,8 @@
     <Content Include="plugins\morrisjs\spec\viz\run.sh" />
     <Content Include="plugins\node-waves\waves.min.js.map" />
     <Content Include="modulos\Principal.Master" />
+    <None Include="My Project\PublishProfiles\CarpetaLocal.pubxml" />
+    <None Include="My Project\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="images\animation-bg.jpg" />
     <Content Include="images\image-gallery\1.jpg" />
