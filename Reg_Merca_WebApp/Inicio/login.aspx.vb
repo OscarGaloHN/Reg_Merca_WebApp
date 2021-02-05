@@ -49,6 +49,17 @@
                 Case 0 'Formulario de registro
 
                 Case 1 'activo
+                    'CARGAR DATOS DE USUARIO
+                    If Session("NumReg") > 0 Then
+                        Dim arrayDatosUSER(3) As String
+                        registro = DataSetX.Tables(0).Rows(0)
+                        arrayDatosUSER(0) = registro("usuario")
+                        arrayDatosUSER(1) = registro("nombre")
+                        arrayDatosUSER(2) = registro("correo")
+                        'CARGAR DATOS DE USUARIO
+                        Application("DatosUsuario") = arrayDatosUSER
+                    End If
+
                     Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)

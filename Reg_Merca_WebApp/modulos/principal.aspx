@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="principal.aspx.vb" Inherits="Reg_Merca_WebApp.principal1" %>
+﻿<%@ Page   Title="Inicio" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="principal.aspx.vb" Inherits="Reg_Merca_WebApp.principal1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu"  runat="server">
          <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header">MENU PRINCIPAL</li>
                     <li>
                         <a href="../../index.html">
                             <i class="material-icons">home</i>

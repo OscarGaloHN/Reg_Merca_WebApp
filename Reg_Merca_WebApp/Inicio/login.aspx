@@ -14,7 +14,7 @@
     <script src="jsLogin.js"></script>
 
     <!-- fin contraseña-->
-  
+
     <!-- Favicon-->
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 
@@ -62,48 +62,42 @@
                             Display="Dynamic"
                             ForeColor="OrangeRed" Font-Size="X-Small" />
                     </div>
-                    <div class="input-group">
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <span class="input-group-addon">
-                                    <i id="Candado" class="material-icons">lock</i>
-                                </span>
-                            </div>
-                            <div class="col-xs-9">
-                                <div class="form-line">
-                                    <asp:TextBox    ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEntrar">
+                        <div class="input-group">
+                            <div class="row">
+                                <div class="col-xs-1">
+                                    <span class="input-group-addon">
+                                        <i id="Candado" class="material-icons">lock</i>
+                                    </span>
                                 </div>
-                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
-                                    ErrorMessage="Ingrese su contraseña."
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" />
-                                <asp:RegularExpressionValidator runat="server" ID="reContraLogin"
-                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ControlToValidate="txtContra" />
+
+                                <div class="col-xs-9">
+                                    <div class="form-line">
+                                        <asp:TextBox ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
+                                        ErrorMessage="Ingrese su contraseña."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                    <asp:RegularExpressionValidator runat="server" ID="reContraLogin"
+                                        Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                        ControlToValidate="txtContra" />
+                                </div>
+                                <div class="col-xs-1">
+                                    <span id="show_password" style="cursor: default" class="material-icons">visibility_off</span>
+                                </div>
                             </div>
-                            <div class="col-xs-1">
-                                  <span id="show_password" style="cursor: default" class="material-icons">visibility_off</span> 
-
-                                <%-- <div class="input-group-append">
-                                    <button id="show_password" class="btn btn-default waves-effect" type="button">
-                                     <span class="fa fa-eye-slash icon"></span>
-                                    </button>
-                                </div>--%>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 p-t-5">
+                                <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
+                                <label for="chkRecordar">Recordarme</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <asp:LinkButton ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" ToolTip="Clic para entrar al sistema." />
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-8 p-t-5">
-
-                            <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
-                            <label for="chkRecordar">Recordarme</label>
-
-                        </div>
-                        <div class="col-xs-4">
-                            <asp:LinkButton ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" ToolTip="Clic para entrar al sistema." />
-
-                        </div>
-                    </div>
+                    </asp:Panel>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-5">
                             <%If CBool(Application("Parametros")(1)) = True Then  %>
