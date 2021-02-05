@@ -53,7 +53,10 @@
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Bienvenido.', 'success');</script>")
+                    Session("nombreUsuario") = txtUsuario.Text
+                    Response.Redirect("~/modulos/principal.aspx")
+                    'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Bienvenido.', 'success');</script>")
+
                 Case 2 'bloqueado o inactivo
                 Case 3 'bloqueo por intentos
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'error');</script>")
