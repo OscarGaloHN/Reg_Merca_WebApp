@@ -29,6 +29,7 @@
     <link href="../../css/themes/all-themes.css" rel="stylesheet" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -76,16 +77,14 @@
                         <img src="../../images/user.png" width="48" height="48" alt="User" />
                     </div>
                     <div class="info-container">
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%: Application("DatosUsuario")(1) %></div>
-                        <div class="email"><%: Application("DatosUsuario")(2) %></div>
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%: Session("user_nombre") %></div>
+                        <div class="email"><%: Session("user_correo") %></div>
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
                                 <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
                                 <li role="separator" class="divider"></li>
-                                 <li><a id="lblcerrar" runat="server" onserverclick="Salir_ServerClick" href="javascript:void(0);"><i class="material-icons">input</i>Cerrar Sesión</a></li>
-                             
-
+                                <li><a id="lblcerrar" runat="server" onserverclick="Salir_ServerClick" href="javascript:void(0);"><i class="material-icons">input</i>Cerrar Sesión</a></li>
                             </ul>
                         </div>
                     </div>
@@ -95,7 +94,6 @@
                 <div class="menu">
                     <asp:ContentPlaceHolder ID="ContentMenu" runat="server">
                     </asp:ContentPlaceHolder>
-
                 </div>
                 <!-- #Menu -->
                 <!-- Footer -->

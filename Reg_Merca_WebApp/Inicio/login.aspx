@@ -7,17 +7,10 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Iniciar Sesión | RegMERCA</title>
-    <!--   contraseña-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="jsLogin.js"></script>
 
-    <!-- fin contraseña-->
-
-    <!-- Favicon-->
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -96,11 +89,12 @@
                             <div class="col-xs-4">
                                 <asp:LinkButton ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" ToolTip="Clic para entrar al sistema." />
                             </div>
+                          
                         </div>
                     </asp:Panel>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-5">
-                            <%If CBool(Application("Parametros")(1)) = True Then  %>
+                            <%If CBool(Application("ParametrosADMIN")(0)) = True Then  %>
                             <a href="registro.aspx">Registrarse!</a>
                             <%End If %>
                         </div>

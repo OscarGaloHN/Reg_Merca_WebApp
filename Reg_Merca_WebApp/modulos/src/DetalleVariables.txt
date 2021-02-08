@@ -1,0 +1,28 @@
+﻿Session("NumReg") = Numero de registros que trae las consultas sql
+
+  Datos del Usuario
+Session("user_usuario") = registro("usuario")
+Session("user_nombre") = registro("nombre")
+Session("user_correo") = registro("correo")
+Session("user_rol") = registro("id_rol")
+
+Application("ParametrosSYS") = arreglo que almacena los paramteros de la aplicacion
+Application("ParametrosSYS")(0) = SYS_Carateres_Contraseña
+Application("ParametrosSYS")(1) = SYS_Nombre_Proyecto
+Application("ParametrosSYS")(2) = SYS_Version
+Application("ParametrosSYS")(3) = SYS_Estado_Configuracion
+
+
+Application("ParametrosADMIN") = arreglo que almacena los paramteros del usuario
+Application("ParametrosADMIN")(0) = ADMIN_Habilitar_Frm_Reg
+Application("ParametrosADMIN")(1) = ADMIN_Nombre_Empresa
+Application("ParametrosADMIN")(2) = ADMIN_Alias_Empresa
+Application("ParametrosADMIN")(3) = ADMIN_Email_Empresa
+Application("ParametrosADMIN")(4) = ADMIN_Telefono_Empresa
+Application("ParametrosADMIN")(5) = ADMIN_RTN_Empresa
+Application("ParametrosADMIN")(6) = ADMIN_Intentos
+Application("ParametrosADMIN")(7) = ADMIN_Preguntas
+Application("ParametrosADMIN")(8) = ADMIN_Correo_Alertas
+Application("ParametrosADMIN")(9) = ADMIN_Puerto
+Application("ParametrosADMIN")(10) = ADMIN_Pass
+Application("ParametrosADMIN")(11) = ADMIN_Vigencia

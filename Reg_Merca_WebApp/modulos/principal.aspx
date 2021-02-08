@@ -1,5 +1,6 @@
 ﻿<%@ Page   Title="Inicio" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="principal.aspx.vb" Inherits="Reg_Merca_WebApp.principal1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+  
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu"  runat="server">
@@ -344,6 +345,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPrincipal"  runat="server">
-
+      <span>HOLA</span>
 </asp:Content>
 
