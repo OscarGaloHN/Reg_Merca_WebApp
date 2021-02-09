@@ -23,6 +23,15 @@ Partial Public Class Principal
     Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
+    '''Control encabezado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents encabezado As Global.System.Web.UI.WebControls.ContentPlaceHolder
+
+    '''<summary>
     '''Control form1.
     '''</summary>
     '''<remarks>
