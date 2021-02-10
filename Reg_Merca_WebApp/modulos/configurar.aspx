@@ -184,9 +184,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row clearfix">
-                        <div class="col-sm-4 align-right">
-                        </div>
+                    <div class="row justify-content-start">
+                       
                         <div class="col-sm-4 align-right">
                             <asp:LinkButton Width="100%" runat="server" ID="BttLimpiar" type="button" class="btn bg-orange waves-effect">
                             <i class="material-icons">refresh</i>
@@ -201,6 +200,7 @@
                         </div>
                     </div>
 
+                    
                 </div>
             </div>
         </div>
