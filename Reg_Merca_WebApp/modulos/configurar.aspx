@@ -85,6 +85,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox ID="txtDireccion" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Dirección</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
                     <div class="row clearfix">
                         <div class="col-sm-4">
@@ -114,12 +124,11 @@
                     </div>
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Inicio de sesión y constraseña</h2>
                     <div class="row clearfix">
-
                         <div class="col-sm-2">
-                                    <small>Intentos</small>
+                            <small>Vigencia de usuarios</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input readonly="" runat="server"  id="txtIntentos" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="10">
+                                    <input readonly="" runat="server" id="txtCaracteresContra" type="text" class="form-control text-center" value="5" data-rule="quantity" data-max="1095" data-min="60">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -128,10 +137,22 @@
                             </div>
                         </div>
                         <div class="col-sm-2">
-                                    <small>Preguntas</small>
+                            <small>Intentos</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input  readonly=""    runat="server"  id="txtPreguntas" type="text" class="form-control text-center" value="3" data-rule="quantity" data-max="10"  data-min="3" >
+                                    <input readonly="" runat="server" id="txtIntentos" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="10">
+                                </div>
+                                <span class="input-group-addon">
+                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <small>Preguntas</small>
+                            <div class="input-group spinner" data-trigger="spinner">
+                                <div class="form-line">
+                                    <input readonly="" runat="server" id="txtPreguntas" type="text" class="form-control text-center" value="3" data-rule="quantity" data-max="10" data-min="3">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -140,19 +161,18 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-4">
-                             <small>Caracteres contraseña</small>
-                            <div class="input-group spinner" data-trigger="spinner">
-                                <div class="form-line">
-                                    <input  readonly=""    runat="server"  id="txtCaracteresContra" type="text" class="form-control text-center" value="5" data-rule="quantity" data-max="15"  data-min="5" >
-                                </div>
-                                <span class="input-group-addon">
-                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
-                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                                </span>
+                        <div class="col-sm-2">
+                            <div class="demo-switch-title">Recoradar Usuario</div>
+                            <div class="switch">
+                                <label>
+                                    NO
+                                    <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
+                                    <span class="lever switch-col-teal"></span>
+                                    SI
+                                </label>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="demo-switch-title">Formulario de registro</div>
                             <div class="switch">
                                 <label>
@@ -164,6 +184,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-4 align-right">
+                        </div>
+                        <div class="col-sm-4 align-right">
+                            <asp:LinkButton Width="100%" runat="server" ID="BttLimpiar" type="button" class="btn bg-orange waves-effect">
+                            <i class="material-icons">refresh</i>
+                            <span>Limpiar</span>
+                            </asp:LinkButton>
+                        </div>
+                        <div class="col-sm-4 align-right">
+                            <asp:LinkButton Width="100%" runat="server" ID="bttGuardar" type="button" class="btn bg-teal waves-effect">
+                            <i class="material-icons">save</i>
+                            <span>Guardar</span>
+                            </asp:LinkButton>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

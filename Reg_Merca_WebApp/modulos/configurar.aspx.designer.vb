@@ -59,6 +59,15 @@ Partial Public Class configurar
     Protected WithEvents txtTel As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Control txtDireccion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtDireccion As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''Control txtEmailEnvio.
     '''</summary>
     '''<remarks>
@@ -86,6 +95,15 @@ Partial Public Class configurar
     Protected WithEvents txtPuerto As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Control txtCaracteresContra.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtCaracteresContra As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
     '''Control txtIntentos.
     '''</summary>
     '''<remarks>
@@ -104,13 +122,13 @@ Partial Public Class configurar
     Protected WithEvents txtPreguntas As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control txtCaracteresContra.
+    '''Control chkRecordar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtCaracteresContra As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents chkRecordar As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
 
     '''<summary>
     '''Control chkRegistro.
@@ -120,4 +138,22 @@ Partial Public Class configurar
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents chkRegistro As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+
+    '''<summary>
+    '''Control BttLimpiar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents BttLimpiar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control bttGuardar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttGuardar As Global.System.Web.UI.WebControls.LinkButton
 End Class
