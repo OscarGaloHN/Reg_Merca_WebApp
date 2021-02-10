@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="Configuración" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="configurar.aspx.vb" Inherits="Reg_Merca_WebApp.configurar" %>
 
-
-
 <asp:Content ID="Content4" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">Configuración</a>
 </asp:Content>
@@ -11,6 +9,29 @@
     <link href="../plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentMenu" runat="server">
+    <ul class="list">
+        <li class="header">MENU PRINCIPAL</li>
+        <li>
+            <a href="../../index.html">
+                <i class="material-icons">home</i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="active">
+             <a href="../../index.html">
+                <i class="material-icons">home</i>
+                <span>Configuraciones</span>
+            </a>
+        </li>
+
+        <li>
+
+            <a href="../../index.html">
+                <i class="material-icons">home</i>
+                <span>Gestion de usuarios</span>
+            </a>
+        </li>
+    </ul>
     <% If Session("user_usuario") <> "" Then %>
     <% If CBool(Application("ParametrosSYS")(3)) = True Then   %>
 
@@ -57,6 +78,7 @@
                                     <label class="form-label">Alias</label>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="row clearfix">
@@ -94,7 +116,9 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
                     <div class="row clearfix">
                         <div class="col-sm-4">
@@ -184,15 +208,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-start">
-                       
-                        <div class="col-sm-4 align-right">
-                            <asp:LinkButton Width="100%" runat="server" ID="BttLimpiar" type="button" class="btn bg-orange waves-effect">
+                    <div class="row">
+
+                        <div class="col-sm-3 col-sm-offset-6 col-md-offset-6">
+                            <asp:LinkButton Width="100%" runat="server" ID="BttLimpiar" type="button" class="btn bg-pink waves-effect">
                             <i class="material-icons">refresh</i>
                             <span>Limpiar</span>
                             </asp:LinkButton>
                         </div>
-                        <div class="col-sm-4 align-right">
+                        <div class="col-sm-3">
                             <asp:LinkButton Width="100%" runat="server" ID="bttGuardar" type="button" class="btn bg-teal waves-effect">
                             <i class="material-icons">save</i>
                             <span>Guardar</span>
@@ -200,7 +224,7 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="recuperar.aspx.vb" Inherits="Reg_Merca_WebApp.recuperar" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -34,21 +35,37 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="forgot_password" method="POST" runat="server">
+                <form id="forgot_password" runat="server">
                     <div class="msg">
                         Ingrese la dirección de correo electrónico que utilizó para registrarse. 
                         Le enviaremos un correo electrónico con su nombre de usuario y una contraseña temporal. 
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">email</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="Correo Electronico" required autofocus>
+                    <div class="row">
+                        <div style="padding-top:10px; padding-left:20px;" class="col-sm-2">
+                            <div class="input-group form-float">
+                                <span  >
+                                    <i class="material-icons">email</i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox runat="server" type="email" class="form-control" id="txtEmail"  ></asp:TextBox>
+                                    <label class="form-label">Correo Electronico</label>
+                                </div>
+                                  <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtEmail"
+                            ErrorMessage="Ingrese su correo electronico."
+                            Display="Dynamic"
+                            ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
                         </div>
                     </div>
 
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">RESTABLECER MI CONTRASEÑA</button>
+
+
+
+                    <asp:LinkButton runat="server" class="btn btn-block btn-lg bg-pink waves-effect" Text="RESTABLECER MI CONTRASEÑA"></asp:LinkButton>
 
                     <div class="row m-t-20 m-b--5 align-center">
                         <a href="login.aspx">Iniciar Sesión!</a>

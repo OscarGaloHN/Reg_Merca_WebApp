@@ -1,4 +1,7 @@
 ﻿<%@ Page   Title="Inicio" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="principal.aspx.vb" Inherits="Reg_Merca_WebApp.principal1" %>
+<asp:Content ID="Content4" ContentPlaceHolderID="encabezado" runat="server">
+    <a class="navbar-brand" href="#">Configuración</a>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
   
 </asp:Content>
