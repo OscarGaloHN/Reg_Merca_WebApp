@@ -51,9 +51,7 @@
                     End If
                 Next
                 Application("ParametrosADMIN") = arrayParametrosADMIN
-
             End If
-
         End If
     End Sub
 

@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Iniciar Sesión | RegMERCA</title>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>RegMERCA | Iniciar Sesión</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="jsLogin.js"></script>
 
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
@@ -63,7 +63,6 @@
                                         <i id="Candado" class="material-icons">lock</i>
                                     </span>
                                 </div>
-
                                 <div class="col-xs-9">
                                     <div class="form-line">
                                         <asp:TextBox ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
@@ -76,8 +75,12 @@
                                         Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                         ControlToValidate="txtContra" />
                                 </div>
-                                <div class="col-xs-1">
-                                    <span id="show_password" style="cursor: default" class="material-icons">visibility_off</span>
+                               <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                                    <div class="input-group">
+                                        <span>
+                                            <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +92,7 @@
                             <div class="col-xs-4">
                                 <asp:LinkButton ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" ToolTip="Clic para entrar al sistema." />
                             </div>
-                          
+
                         </div>
                     </asp:Panel>
                     <div class="row m-t-15 m-b--20">
