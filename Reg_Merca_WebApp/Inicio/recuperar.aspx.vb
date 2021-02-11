@@ -22,7 +22,7 @@
         'Dim registro As DataRow
         If Session("NumReg") > 0 Then
             Session("usuarioPreguntas") = txtUsuarioPreguntas.Text
-
+            Response.Redirect("~/Inicio/preguntas_seguridad.aspx")
             'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('EXITO','Usuario  encontrado', 'success');</script>")
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Usuario no encontrado', 'warning');</script>")

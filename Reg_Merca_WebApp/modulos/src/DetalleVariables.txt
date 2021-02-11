@@ -2,6 +2,8 @@
 
 Session("usuarioPreguntas") = nombre de usuario para cargar las preguntas
 
+Session("preguntasDeUsuario") = 
+
   Datos del Usuario
 Session("user_usuario") = registro("usuario")
 Session("user_nombre") = registro("nombre")
