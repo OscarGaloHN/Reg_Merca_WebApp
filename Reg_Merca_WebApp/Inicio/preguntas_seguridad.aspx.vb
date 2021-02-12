@@ -8,30 +8,51 @@
             Session("DataSetX") = value
         End Set
     End Property
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If IsPostBack = False Then
-            'parametros de configuracion de sistema
-            Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_21_parametros WHERE parametro like '%SYS%' order by 1;"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            Dim registro As DataRow
-            If Session("NumReg") > 0 Then
-                Dim arrayParametros(CInt(Session("NumReg")) - 1) As String
-                For i = 0 To arrayParametros.Length - 1
-                    registro = DataSetX.Tables(0).Rows(i)
-                    'arrayParametros(i) = registro("valor")
-                    If IsDBNull(registro("valor")) = False Then
-                        arrayParametros(i) = registro("valor")
-                    End If
-                Next
-                'parametros de contraseña
-                Application("ParametrosSYS") = arrayParametros
-            End If
 
+    Private Sub ColocarControles()
+        For i = 0 To Session("preguntasDeUsuario").Length - 1
+            Dim nuevoTxt As TextBox = New TextBox()
+            nuevoTxt.ID = "txtRespuesta" & i.ToString()
+            nuevoTxt.CssClass = "form-control"
+            nuevoTxt.MaxLength = "15"
+            nuevoTxt.Attributes.Add("autocomplete", "off")
+
+            pnlMain.Controls.Add(New LiteralControl("   
+                    <div Class='row'>
+                           <div Class='col-xs-12'>
+                             <p Class='font-bold col-teal'>" & UCase(Session("preguntasDeUsuario")(i)) & " </p>
+                              <div Class='form-group form-float'>
+                                  <div Class='form-line'>"))
+            pnlMain.Controls.Add(nuevoTxt)
+            pnlMain.Controls.Add(New LiteralControl("<Label Class='form-label'>Respuesta</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>"))
+
+        Next
+
+
+
+        '                <div Class="row">
+        '                    <div Class="col-xs-12">
+        '                        <p Class="font-bold col-teal"><%: UCase(Session("preguntasDeUsuario")(i))  %></p>
+        '                        <div Class="form-group form-float">
+        '                            <div Class="form-line">
+        '                                <asp:TextBox EnableViewState = "false"  runat="server" >
+        '                                </asp:TextBox>
+
+        '            txtRespuesta.Text = "" 
+        '             txtRespuesta.ID = "txtRespuesta" & i + 1 
+        '               Next
+        'End Sub
+    End Sub
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        If IsPostBack = False Then
             'PARAMETROS DE ADMINISTRADOR
+            Dim Ssql As String = String.Empty
+            Dim registro As DataRow
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_21_parametros WHERE parametro like '%ADMIN%' order by 1;"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -66,7 +87,24 @@
                 Next
                 Session("preguntasDeUsuario") = arrayPREGUNTAS
             End If
+            ColocarControles()
         End If
     End Sub
 
+    Private Sub bttverificar_Click(sender As Object, e As EventArgs) Handles bttverificar.Click
+
+        Dim xWere, cajatexto As String
+        cajatexto = ""
+        xWere = ""
+        'xWere = "Pregunta ='" & Session("preguntasDeUsuario")(0) & "' and respuesta='" & tb.Text & "'"
+        For i = 0 To Session("preguntasDeUsuario").Length - 1
+            cajatexto = "txtRespuesta" & i
+
+            xWere = xWere & " Pregunta ='" & Session("preguntasDeUsuario")(i) & "' and respuesta='" & Request.Form(cajatexto).ToString() & "'"
+        Next
+        MsgBox(xWere)
+        ColocarControles()
+        'txtRespuesta.Text = ""
+
+    End Sub
 End Class

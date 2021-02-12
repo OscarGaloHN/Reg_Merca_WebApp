@@ -45,28 +45,24 @@
         <div class="card">
             <div class="body">
                 <form runat="server">
-                    <div class="msg">
-                        Ingrese la dirección de correo electrónico que utilizó para registrarse. 
-                        Le enviaremos un correo electrónico con su nombre de usuario y una contraseña temporal. 
+                    <div class="msg font-bold">
+                        Responda las siguientes preguntas para desbloquear su usuario o cambiar su contraseña. 
                     </div>
-                    <%      For i = 0 To Session("preguntasDeUsuario").Length - 1 %>
+                    <asp:Panel ID="pnlMain" runat="server">
+                       
+                    </asp:Panel>
                     <div class="row">
                         <div class="col-xs-12">
-                          
-                            
-                            <%:    Session("preguntasDeUsuario")(i)  %>
-
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <asp:TextBox runat="server" class="form-control" ID="txtRespuesta">
-
-                                    </asp:TextBox>
-                                    <% txtRespuesta.ID = "txtRespuesta" & i %>
-                                </div>
-                            </div>
+                            <asp:LinkButton ID="bttverificar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
+                                <i class="material-icons">check</i> <span>VERIFICAR RESPUESTAS</span>  
+                            </asp:LinkButton>
                         </div>
                     </div>
-                    <%     Next  %>
+                    <div class="row">
+                        <div class="col-xs-12 align-center">
+                            <a href="login.aspx">Iniciar Sesión!</a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

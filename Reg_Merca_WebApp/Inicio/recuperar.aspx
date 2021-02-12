@@ -115,7 +115,7 @@
                                         <div class="col-xs-12">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <asp:TextBox ValidationGroup="UsuarioValidar" runat="server" placeholder="Nombre de usuario" class="form-control" ID="txtUsuarioPreguntas" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                                    <asp:TextBox ValidationGroup="UsuarioValidar"  AutoComplete="off"  runat="server" placeholder="Nombre de usuario" class="form-control" ID="txtUsuarioPreguntas" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
                                                 </div>
                                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtUsuarioPreguntas"
                                                     ErrorMessage="Ingrese su nombre de usuario."
