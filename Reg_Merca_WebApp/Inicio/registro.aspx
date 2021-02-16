@@ -6,6 +6,17 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Registrarse | RegMERCA</title>
+
+    <!--   contraseña-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="jsLogin.js"></script>
+
+
+    <!-- fin contraseña-->
+
+
     <!-- Favicon-->
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 
@@ -37,75 +48,143 @@
                 <form id="sign_up" method="POST" runat="server">
                     <div class="msg">Registrar Nuevo Usuario</div>
                     <div class="row">
-                        <div class="col-sm-1">
-                            <div class="input-group ">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <div class="input-group form-float">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">person</i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="150"  AutoComplete="off" ID="txtnombre" runat="server" onkeypress="return txNombres(event)" onkeyup="mayus(this);" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Ingrese su nombre completo:</label>
+                                </div>
+                                <asp:RequiredFieldValidator runat="server" ID="Reqnombre" ControlToValidate="txtnombre"
+                                    ErrorMessage="Ingrese nombre completo:"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <div class="input-group form-float">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">assignment_ind</i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" onkeypress="return isNumberOrLetter(evt)" onkeyup="mayus(this);" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Ingrese su usuario:</label>
+                                </div>
+                                <asp:RequiredFieldValidator runat="server" ID="Requsuario" ControlToValidate="txtusuario"
+                                    ErrorMessage="Ingrese nombre de usuario:"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <div class="input-group form-float">
                                 <span class="input-group-addon">
                                     <i class="material-icons">email</i>
                                 </span>
                             </div>
                         </div>
-                        <div class="col-sm-10">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ValidationGroup="CorreoValidar" runat="server" type="email" class="form-control" ID="TextBox1"></asp:TextBox>
-                                    <label class="form-label">Correo Electronico</label>
+                                    <asp:TextBox MaxLength="50" AutoComplete="off" ID="txtemail" runat="server" TextMode="Email" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Ingrese un correo electrónico:</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="Rfemail" ControlToValidate="txtemail"
+                                    ErrorMessage="Ingrese un correo electronico:"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RegularExpressionValidator ID="Regemail" runat="server" ControlToValidate="txtemail"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ErrorMessage="Su correo electronico es incorrecto"
+                                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+                                </asp:RegularExpressionValidator>
                             </div>
                         </div>
                     </div>
 
-
-
-                    <div class="input-group form-float">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <asp:TextBox ID="txtnombre" runat="server" class="form-control" autofocus="true">
-
-                            </asp:TextBox>
-                            <label class="form-label">Nombre</label>
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <div class="input-group form-float">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">lock</i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox AutoComplete="off" ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                    <label class="form-label">Ingrese una contraseña:</label>
+                                </div>
+                                <asp:RequiredFieldValidator runat="server" ID="Requcontra" ControlToValidate="txtContra"
+                                    ErrorMessage="Ingrese una contraseña:"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RegularExpressionValidator runat="server" ID="Regulcontra"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtContra"
+                                    ValidationExpression="^[a-zA-Z0-9'@&#.\s]{5,10}$"
+                                    ErrorMessage="El rango de caracteres debe de ser entre (5 - 10)." />
+                                </div>
+                            </div>
+                                <div class="col-xs-1" style="padding-top: 8px;">
+                                    <i id="show_password" class="material-icons">visibility_off</i>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">assignment_ind</i>
-                        </span>
-                        <div class="form-line">
-                            <asp:TextBox ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">email</i>
-                        </span>
-                        <div class="form-line">
-                            <asp:TextBox ID="txtemail" runat="server" class="form-control" TextMode="Email" placeholder="Correo Electronico"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <asp:TextBox placeholder="Contraseña" ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">check</i>
-                        </span>
-                        <div class="form-line">
-                            <asp:TextBox placeholder="Confirmar Contraseña" ID="txtContraConfirmar" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
-                        </div>
-                    </div>
-                    <!--<div class="form-group">
-                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
-                        <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
-                    </div> -->
 
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">REGISTRARSE</button>
 
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <div class="input-group form-float">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">check</i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox AutoComplete="off" ID="txtContraConfirmar" runat="server" TextMode="Password" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Ingrese de nuevo la contraseña:</label>
+                                </div>
+                                <asp:RequiredFieldValidator runat="server" ID="Requcontraconf" ControlToValidate="txtContra"
+                                    ErrorMessage="Ingrese de nuevo la Contraseña:"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:CompareValidator ID="Comparecontra" runat="server" ControlToCompare="txtContra" ControlToValidate="txtContraConfirmar"
+                                    ErrorMessage="Su contraseña no coincide"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                        </div>
+                        <div class="col-xs-1" style="padding-top: 8px;">
+                            <i id="show_password2" class="material-icons">visibility_off</i>
+                        </div>
+                    </div>
+
+
+
+                    <asp:LinkButton onfocus="myFunctionfoco('txtnombre')" class="btn btn-block btn-lg bg-pink waves-effect" ID="btt_registrar" runat="server">REGISTRARSE</asp:LinkButton>
                     <div class="m-t-25 m-b--5 align-center">
                         <a href="login.aspx">¿Ya Cuenta Con Un Usuario?</a>
                     </div>
@@ -113,6 +192,8 @@
             </div>
         </div>
     </div>
+
+
 
     <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>
@@ -129,9 +210,9 @@
     <!-- Custom Js -->
     <script src="../js/admin.js"></script>
     <script src="../js/pages/examples/sign-up.js"></script>
+
 </body>
 
 </html>
-
 
 
