@@ -14,7 +14,7 @@ $(document).ready(function () {
             //$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
         });
 });
-
+ 
 //SOLO NUMERO Y LETRAS
 function isNumberOrLetter(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
