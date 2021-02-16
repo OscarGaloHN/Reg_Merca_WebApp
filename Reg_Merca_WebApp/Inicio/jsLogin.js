@@ -15,6 +15,23 @@ $(document).ready(function () {
         });
 });
 
+//mostrar contraseña
+$(document).ready(function () {
+    $('#show_password2').hover(function show() {
+        //Cambiar el atributo a texto
+        $('#txtContraConfirmar').attr('type', 'text');
+        //$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        document.getElementById("show_password2").innerHTML = "visibility";
+    },
+        function () {
+            //Cambiar el atributo a contraseña
+            $('#txtContraConfirmar').attr('type', 'password');
+            document.getElementById("show_password2").innerHTML = "visibility_off";
+            //$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+        });
+});
+
+
 //SOLO NUMERO Y LETRAS
 function isNumberOrLetter(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
@@ -47,3 +64,6 @@ function myFunctionfoco(txtfoco) {
         xFoco = true;
     }
 }
+
+
+
