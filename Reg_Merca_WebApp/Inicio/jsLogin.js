@@ -82,6 +82,3 @@ function mayusculapalabras(e) {
     nombre = cadena.join(' ');
     e.value = nombre
 }
-
-
-
