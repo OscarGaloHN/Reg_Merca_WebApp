@@ -18,7 +18,7 @@ $(document).ready(function () {
 //SOLO NUMERO Y LETRAS
 function isNumberOrLetter(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode;
-    if ((charCode >= 65 && charCode < 91) || (charCode >= 97 && charCode < 123) || (charCode > 47 && charCode < 58) ||  (charCode == 241) || (charCode == 209))
+    if ((charCode >= 65 && charCode < 91) || (charCode >= 97 && charCode < 123) || (charCode > 47 && charCode < 58) || (charCode == 241) || (charCode == 209))
         return true;
     return false;
 }
@@ -28,11 +28,17 @@ function mayus(e) {
     e.value = e.value.toUpperCase();
 }
 
+////SOLO letras
+function txNombres(event) {
+    if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))
+        event.returnValue = false;
+}
 
 
 function clearTextBox() {
     document.getElementById('txtUsuarioPreguntas').value = '';
 }
+
 
 var xFoco = false;
 function myFunctionfoco(txtfoco) {
@@ -41,6 +47,3 @@ function myFunctionfoco(txtfoco) {
         xFoco = true;
     }
 }
-
-
-
