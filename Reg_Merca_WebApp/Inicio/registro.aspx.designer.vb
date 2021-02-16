@@ -68,22 +68,22 @@ Partial Public Class registro
     Protected WithEvents txtemail As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control Rfemail.
+    '''Control reqemailvacio.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Rfemail As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents reqemailvacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control Regemail.
+    '''Control reEmailRegistro.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Regemail As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents reEmailRegistro As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''Control txtContra.

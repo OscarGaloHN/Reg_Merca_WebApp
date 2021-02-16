@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Registrarse | RegMERCA</title>
+    <title>RegMERCA | Registrarse</title>
 
     <!--   contraseña-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -59,11 +59,11 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="150"  AutoComplete="off" ID="txtnombre" runat="server" onkeypress="return txNombres(event)" onkeyup="mayus(this);" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Ingrese su nombre completo:</label>
+                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="return txNombres(event)" onkeyup="mayus(this);" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Ingrese su nombre completo</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Reqnombre" ControlToValidate="txtnombre"
-                                    ErrorMessage="Ingrese nombre completo:"
+                                    ErrorMessage="Ingrese su nombre completo"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
@@ -83,10 +83,10 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" onkeypress="return isNumberOrLetter(evt)" onkeyup="mayus(this);" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Ingrese su usuario:</label>
+                                    <label class="form-label">Ingrese su usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Requsuario" ControlToValidate="txtusuario"
-                                    ErrorMessage="Ingrese nombre de usuario:"
+                                    ErrorMessage="Ingrese un nombre de usuario"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
@@ -103,20 +103,20 @@
                         </div>
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
+
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="50" AutoComplete="off" ID="txtemail" runat="server" TextMode="Email" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Ingrese un correo electrónico:</label>
+                                    <asp:TextBox AutoComplete="off" MaxLength="50" runat="server"   class="form-control" ID="txtemail"></asp:TextBox>
+                                    <label class="form-label">Ingrese un correo electrónico</label>
                                 </div>
-                                <asp:RequiredFieldValidator runat="server" ID="Rfemail" ControlToValidate="txtemail"
-                                    ErrorMessage="Ingrese un correo electronico:"
+                                <asp:RequiredFieldValidator runat="server" ID="reqemailvacio" ControlToValidate="txtEmail"
+                                    ErrorMessage="Ingrese su correo electronico."
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
-                                <asp:RegularExpressionValidator ID="Regemail" runat="server" ControlToValidate="txtemail"
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ErrorMessage="Su correo electronico es incorrecto"
-                                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
-                                </asp:RegularExpressionValidator>
+                                <asp:RegularExpressionValidator runat="server" ID="reEmailRegistro"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtEmail"
+                                    ErrorMessage="El correo electronico no es valido."
+                                    ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
                             </div>
                         </div>
                     </div>
@@ -133,10 +133,10 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
-                                    <label class="form-label">Ingrese una contraseña:</label>
+                                    <label class="form-label">Ingrese una contraseña</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Requcontra" ControlToValidate="txtContra"
-                                    ErrorMessage="Ingrese una contraseña:"
+                                    ErrorMessage="Ingrese una contraseña"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                                 <asp:RegularExpressionValidator runat="server" ID="Regulcontra"
@@ -144,10 +144,10 @@
                                     ControlToValidate="txtContra"
                                     ValidationExpression="^[a-zA-Z0-9'@&#.\s]{5,10}$"
                                     ErrorMessage="El rango de caracteres debe de ser entre (5 - 10)." />
-                                </div>
                             </div>
-                                <div class="col-xs-1" style="padding-top: 8px;">
-                                    <i id="show_password" class="material-icons">visibility_off</i>
+                        </div>
+                        <div class="col-xs-1" style="padding-top: 8px;">
+                            <i id="show_password" class="material-icons">visibility_off</i>
                         </div>
                     </div>
 
@@ -165,10 +165,10 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtContraConfirmar" runat="server" TextMode="Password" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Ingrese de nuevo la contraseña:</label>
+                                    <label class="form-label">Ingrese de nuevo la contraseña</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Requcontraconf" ControlToValidate="txtContra"
-                                    ErrorMessage="Ingrese de nuevo la Contraseña:"
+                                    ErrorMessage="Ingrese de nuevo la Contraseña"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                                 <asp:CompareValidator ID="Comparecontra" runat="server" ControlToCompare="txtContra" ControlToValidate="txtContraConfirmar"
@@ -214,5 +214,3 @@
 </body>
 
 </html>
-
-
