@@ -59,7 +59,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="return txNombres(event)" onkeyup="mayus(this);" class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="return txNombres(event)" onkeyup="mayusculapalabras(this); borrarespacios(this);" class="form-control"></asp:TextBox>
                                     <label class="form-label">Ingrese su nombre completo</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Reqnombre" ControlToValidate="txtnombre"
@@ -82,7 +82,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" onkeypress="return isNumberOrLetter(evt)" onkeyup="mayus(this);" class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
                                     <label class="form-label">Ingrese su usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Requsuario" ControlToValidate="txtusuario"

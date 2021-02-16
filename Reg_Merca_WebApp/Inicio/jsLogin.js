@@ -65,5 +65,23 @@ function myFunctionfoco(txtfoco) {
     }
 }
 
+//borrarespacios
+function borrarespacios(e) {
+    e.value = e.value.replace("  ", " ");
+    e.value = e.value.trimLeft();
+}
+
+//mayusculas cada palabra
+function mayusculapalabras(e) {
+    //e.value = e.value[0].toUpperCase() + e.value.slice(1);
+    var nombre = e.value 
+    var cadena = nombre.toLowerCase().split(' ');
+    for (var i = 0; i < cadena.length; i++) {
+        cadena[i] = cadena[i].charAt(0).toUpperCase() + cadena[i].substring(1);
+    }
+    nombre = cadena.join(' ');
+    e.value = nombre
+}
+
 
 
