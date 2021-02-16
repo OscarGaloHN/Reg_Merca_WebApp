@@ -50,17 +50,17 @@
                         Le enviaremos un correo electrónico con su nombre de usuario y una contraseña temporal. 
                     </div>
                     <div class="row">
-                        <div style="padding-top: 10px; padding-left: 20px;" class="col-sm-2">
+                          <div style="padding-top: 8px;"  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                             <div class="input-group form-float">
-                                <span>
+                                <span class="input-group-addon">
                                     <i class="material-icons">email</i>
                                 </span>
                             </div>
                         </div>
-                        <div class="col-sm-10">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ValidationGroup="CorreoValidar" runat="server" type="email" class="form-control" ID="txtEmail"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ValidationGroup="CorreoValidar" runat="server" type="email" class="form-control" ID="txtEmail"></asp:TextBox>
                                     <label class="form-label">Correo Electronico</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="reqemailvacio" ControlToValidate="txtEmail"
@@ -78,7 +78,7 @@
                     <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEnviar">
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:LinkButton ValidationGroup="CorreoValidar" ID="bttEnviar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
+                                <asp:LinkButton  autofocus="true" onfocus="myFunctionfoco('txtEmail')"  ValidationGroup="CorreoValidar" ID="bttEnviar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
                                 <i class="material-icons">send</i> <span>SOLICITAR CONTRASEÑA</span>  
                                 </asp:LinkButton>
                             </div>
@@ -88,7 +88,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="button-demo js-modal-buttons">
-                                <asp:LinkButton ID="bttPreguntas" ValidationGroup="UsuarioValidarNADA" runat="server" class="btn btn-block btn-lg bg-teal waves-effect" data-color="teal">
+                                <asp:LinkButton OnClientClick="clearTextBox()" ID="bttPreguntas" ValidationGroup="UsuarioValidarNADA" runat="server" class="btn btn-block btn-lg bg-teal waves-effect" data-color="teal" data-txtfoco="txtUsuarioPreguntas">
                                 <i class="material-icons">help_outline</i> <span>RESPONDER PREGUNTAS DE SEGURIDAD</span>  
                                 </asp:LinkButton>
                             </div>
@@ -102,12 +102,13 @@
 
                     <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="defaultModalLabel">RECUPERAR CONTRASEÑA</h4>
-                                </div>
-                                <div class="modal-body">
-                                    Ingrese su nombre de usuario para continuar el proceso de recuperacion de contraseña por medio de las preguntas 
+                            <asp:Panel ID="Panel2" runat="server" DefaultButton="bttContinuar">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="defaultModalLabel">RECUPERAR USUARIO O CONTRASEÑA</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Ingrese su nombre de usuario para continuar el proceso de recuperacion de usuario o contraseña por medio de las preguntas 
                                   de seguridad.
                                     <div class="row">
                                         <br />
@@ -115,7 +116,7 @@
                                         <div class="col-xs-12">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <asp:TextBox ValidationGroup="UsuarioValidar"  AutoComplete="off"  runat="server" placeholder="Nombre de usuario" class="form-control" ID="txtUsuarioPreguntas" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                                    <asp:TextBox MaxLength="15" ValidationGroup="UsuarioValidar" AutoComplete="off" runat="server" placeholder="Nombre de usuario" class="form-control" ID="txtUsuarioPreguntas" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
                                                 </div>
                                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtUsuarioPreguntas"
                                                     ErrorMessage="Ingrese su nombre de usuario."
@@ -124,12 +125,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <asp:LinkButton runat="server" ID="bttContinuar" ValidationGroup="UsuarioValidar" class="btn  btn-link  waves-effect">CONTINUAR</asp:LinkButton>
+                                        <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <asp:LinkButton runat="server" ID="bttContinuar" ValidationGroup="UsuarioValidar" class="btn  btn-link  waves-effect">CONTINUAR</asp:LinkButton>
-                                    <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
-                                </div>
-                            </div>
+                            </asp:Panel>
                         </div>
                     </div>
                 </form>

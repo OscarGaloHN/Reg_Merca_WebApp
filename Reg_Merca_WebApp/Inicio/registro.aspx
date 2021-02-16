@@ -36,12 +36,35 @@
             <div class="body">
                 <form id="sign_up" method="POST" runat="server">
                     <div class="msg">Registrar Nuevo Usuario</div>
-                    <div class="input-group">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <div class="input-group ">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">email</i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox ValidationGroup="CorreoValidar" runat="server" type="email" class="form-control" ID="TextBox1"></asp:TextBox>
+                                    <label class="form-label">Correo Electronico</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="input-group form-float">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <asp:TextBox ID="txtnombre" runat="server" class="form-control" placeholder="Nombre" autofocus="true"></asp:TextBox>
+                            <asp:TextBox ID="txtnombre" runat="server" class="form-control" autofocus="true">
+
+                            </asp:TextBox>
+                            <label class="form-label">Nombre</label>
                         </div>
                     </div>
                     <div class="input-group">

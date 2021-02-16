@@ -43,29 +43,39 @@
             <div class="body">
                 <form runat="server">
                     <div class="msg">Iniciar Sesión</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" placeholder="Usuario" onkeypress="return isNumberOrLetter(event)" autofocus="true" onkeyup="mayus(this);"></asp:TextBox>
+                    <div class="row">
+                        <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="material-icons">person</i></span>
+                            </div>
                         </div>
-                        <asp:RequiredFieldValidator runat="server" ID="reqName" ControlToValidate="txtUsuario"
-                            ErrorMessage="Ingrese su usuario."
-                            Display="Dynamic"
-                            ForeColor="OrangeRed" Font-Size="X-Small" />
-                    </div>
-                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEntrar">
-                        <div class="input-group">
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <span class="input-group-addon">
-                                        <i id="Candado" class="material-icons">lock</i>
-                                    </span>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                    <label class="form-label">Usuario</label>
                                 </div>
-                                <div class="col-xs-9">
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtUsuario"
+                                    ErrorMessage="Ingrese su usuario."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEntrar">
+                        <div class="row">
+                            <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="material-icons">lock</i></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                <div class="form-group form-float">
                                     <div class="form-line">
-                                        <asp:TextBox ID="txtContra" runat="server" class="form-control" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                        <label class="form-label">Contraseña</label>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
                                         ErrorMessage="Ingrese su contraseña."
@@ -75,12 +85,13 @@
                                         Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                         ControlToValidate="txtContra" />
                                 </div>
-                               <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
-                                    <div class="input-group">
-                                        <span>
-                                            <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
-                                        </span>
-                                    </div>
+
+                            </div>
+                            <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                                <div class="input-group">
+                                    <span>
+                                        <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +101,7 @@
                                 <label for="chkRecordar">Recordarme</label>
                             </div>
                             <div class="col-xs-4">
-                                <asp:LinkButton ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" ToolTip="Clic para entrar al sistema." />
+                                <asp:LinkButton   autofocus="true" onfocus="myFunctionfoco('txtUsuario')" ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
                             </div>
 
                         </div>

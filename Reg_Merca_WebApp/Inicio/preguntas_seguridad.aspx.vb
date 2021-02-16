@@ -31,21 +31,6 @@
                         </div>"))
 
         Next
-
-
-
-        '                <div Class="row">
-        '                    <div Class="col-xs-12">
-        '                        <p Class="font-bold col-teal"><%: UCase(Session("preguntasDeUsuario")(i))  %></p>
-        '                        <div Class="form-group form-float">
-        '                            <div Class="form-line">
-        '                                <asp:TextBox EnableViewState = "false"  runat="server" >
-        '                                </asp:TextBox>
-
-        '            txtRespuesta.Text = "" 
-        '             txtRespuesta.ID = "txtRespuesta" & i + 1 
-        '               Next
-        'End Sub
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
