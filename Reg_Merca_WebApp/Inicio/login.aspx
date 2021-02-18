@@ -8,7 +8,6 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>RegMERCA | Iniciar Sesión</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="jsLogin.js"></script>
 
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <!-- Google Fonts -->
@@ -30,6 +29,8 @@
     <script src="../plugins/sweetalert/sweetalert-dev.js"></script>
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="jsLogin.js"></script>
+
 </head>
 
 

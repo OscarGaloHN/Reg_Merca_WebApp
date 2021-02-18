@@ -135,19 +135,19 @@ Public Class login
         'End If
 
 
-        'Dim SmtpServer As New SmtpClient()
-        'Dim mail As New MailMessage()
-        'SmtpServer.Credentials = New Net.NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")
-        'SmtpServer.Port = 25
-        'SmtpServer.Host = "smtp.gmail.com"
-        'SmtpServer.EnableSsl = True
-        'mail = New MailMessage()
-        'mail.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")
-        'mail.To.Add("oscaramador7@gmail.com")
-        'mail.Subject = "Prueba del titulo"
-        'mail.IsBodyHtml = True
-        'mail.Body = ""
-        'SmtpServer.Send(mail)
+        Dim SmtpServer As New SmtpClient()
+        Dim mail As New MailMessage()
+        SmtpServer.Credentials = New Net.NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")
+        SmtpServer.Port = 25
+        SmtpServer.Host = "smtp.gmail.com"
+        SmtpServer.EnableSsl = True
+        mail = New MailMessage()
+        mail.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")
+        mail.To.Add("oscaramador7@gmail.com")
+        mail.Subject = "Prueba del titulo"
+        mail.IsBodyHtml = True
+        mail.Body = "hola hoy es 16/2/2021"
+        SmtpServer.Send(mail)
     End Sub
 
 

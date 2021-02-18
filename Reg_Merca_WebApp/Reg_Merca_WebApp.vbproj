@@ -208,6 +208,7 @@
     <Content Include="Inicio\registro.aspx" />
     <Content Include="modulos\configurar.aspx" />
     <Content Include="modulos\principal.aspx" />
+    <Content Include="modulos\pruebas.aspx" />
     <Content Include="modulos\src\DetalleVariables.txt" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
@@ -1023,6 +1024,13 @@
     <Compile Include="modulos\Principal.Master.vb">
       <DependentUpon>Principal.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\pruebas.aspx.designer.vb">
+      <DependentUpon>pruebas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\pruebas.aspx.vb">
+      <DependentUpon>pruebas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\src\ControlDB.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
