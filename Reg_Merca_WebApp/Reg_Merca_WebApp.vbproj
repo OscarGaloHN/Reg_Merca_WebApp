@@ -203,6 +203,7 @@
     <Content Include="compilerconfig.json.defaults" />
     <Content Include="Inicio\jsLogin.js" />
     <Content Include="Inicio\login.aspx" />
+    <Content Include="Inicio\preguntas.aspx" />
     <Content Include="Inicio\preguntas_seguridad.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
@@ -982,6 +983,13 @@
     <Compile Include="Inicio\login.aspx.vb">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\preguntas.aspx.designer.vb">
+      <DependentUpon>preguntas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\preguntas.aspx.vb">
+      <DependentUpon>preguntas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Inicio\preguntas_seguridad.aspx.designer.vb">
       <DependentUpon>preguntas_seguridad.aspx</DependentUpon>
