@@ -7,9 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>RegMERCA | Recuperar Contraseña</title>
+    <title>RegMERCA | Iniciar Sesión</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="jsLogin.js"></script>
 
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <!-- Google Fonts -->
@@ -31,12 +30,8 @@
     <script src="../plugins/sweetalert/sweetalert-dev.js"></script>
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
-
-    <!-- Bootstrap Select Css -->
-    <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-
-
     <script src="jsLogin.js"></script>
+
 </head>
 
 
@@ -49,32 +44,53 @@
         <div class="card">
             <div class="body">
                 <form runat="server">
-                    <div class="msg font-bold">
-                        Responda su pregunta de seguridad para desbloquear su usuario. 
-                    </div>
-                    <asp:Panel ID="pnlMain" runat="server">
-                       
-                        <div class="row clearfix">
-                            <div class="col-md-12">
-                                <asp:DropDownList class="form-control show-tick" ID="DropDownList1" runat="server">
-                                    <asp:ListItem>Hola</asp:ListItem>
-                                    <asp:ListItem>Adios</asp:ListItem>
-                                </asp:DropDownList>
+                    <div class="msg">Iniciar Sesión</div>
+                    <div class="row">
+                        <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="material-icons">person</i></span>
                             </div>
                         </div>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                    <label class="form-label">Usuario</label>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+
+                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEntrar">
+                        <div class="row">
+                            <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="material-icons">lock</i></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <asp:TextBox ID="txtcorreo" runat="server" class="form-control"  ></asp:TextBox>
+                                        <label class="form-label">Contraseña</label>
+                                    </div>
+                                     
+                                </div>
+
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-xs-4">
+                                <asp:LinkButton   autofocus="true" onfocus="myFunctionfoco('txtUsuario')" ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
+                            </div>
+
+                        </div>
                     </asp:Panel>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <asp:LinkButton ID="bttverificar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
-                                <i class="material-icons">check</i> <span>VERIFICAR RESPUESTA</span>  
-                            </asp:LinkButton>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 align-center">
-                            <a href="login.aspx">Iniciar Sesión!</a>
-                        </div>
-                    </div>
+                     
                 </form>
             </div>
         </div>
@@ -85,8 +101,6 @@
 
     <!-- Bootstrap Core Js -->
     <script src="../plugins/bootstrap/js/bootstrap.js"></script>
-    <!-- Select Plugin Js -->
-    <script src="../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- Waves Effect Plugin Js -->
     <script src="../plugins/node-waves/waves.js"></script>
@@ -97,7 +111,6 @@
     <!-- Custom Js -->
     <script src="../js/admin.js"></script>
     <script src="../js/pages/examples/sign-in.js"></script>
-    <script src="../js/pages/ui/modals.js"></script>
 </body>
 
 </html>

@@ -152,7 +152,7 @@
   <ItemGroup>
     <Content Include="00_Pruebas\Jonathan\prueba_jona.aspx" />
     <Content Include="00_Pruebas\Miguel\Pruebas-Miguel.aspx" />
-    <Content Include="00_Pruebas\Oscar\Prueba_Contra.aspx" />
+    <Content Include="Inicio\Prueba_Contra.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="css\materialize.css" />
     <Content Include="css\style.css" />
@@ -965,10 +965,10 @@
       <DependentUpon>Pruebas-Miguel.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="00_Pruebas\Oscar\Prueba_Contra.aspx.designer.vb">
+    <Compile Include="Inicio\Prueba_Contra.aspx.designer.vb">
       <DependentUpon>Prueba_Contra.aspx</DependentUpon>
     </Compile>
-    <Compile Include="00_Pruebas\Oscar\Prueba_Contra.aspx.vb">
+    <Compile Include="Inicio\Prueba_Contra.aspx.vb">
       <DependentUpon>Prueba_Contra.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -1196,6 +1196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="00_Pruebas\Franciny\" />
+    <Folder Include="00_Pruebas\Oscar\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

@@ -11,22 +11,38 @@ Session("user_correo") = registro("correo")
 Session("user_rol") = registro("id_rol")
 
 Application("ParametrosSYS") = arreglo que almacena los paramteros de la aplicacion
-Application("ParametrosSYS")(0) = SYS_Carateres_Contraseña
-Application("ParametrosSYS")(1) = SYS_Nombre_Proyecto
-Application("ParametrosSYS")(2) = SYS_Version
-Application("ParametrosSYS")(3) = SYS_Estado_Configuracion
+Application("ParametrosSYS")(0) = SYS_Nombre_Proyecto
+Application("ParametrosSYS")(1) = SYS_Version
+Application("ParametrosSYS")(2) = SYS_Estado_Configuracion
+Application("ParametrosSYS")(3) = SYS_Historico_Contra
+Application("ParametrosSYS")(4) = SYS_MERCA
+Application("ParametrosSYS")(5) = SYS_Revision
+Application("ParametrosSYS")(6) = SYS_CLAVE_PRODUCTO
+
+ 
+
+
+
 
 
 Application("ParametrosADMIN") = arreglo que almacena los paramteros del usuario
-Application("ParametrosADMIN")(0) = ADMIN_Habilitar_Frm_Reg
-Application("ParametrosADMIN")(1) = ADMIN_Nombre_Empresa
-Application("ParametrosADMIN")(2) = ADMIN_Alias_Empresa
-Application("ParametrosADMIN")(3) = ADMIN_Email_Empresa
-Application("ParametrosADMIN")(4) = ADMIN_Telefono_Empresa
-Application("ParametrosADMIN")(5) = ADMIN_RTN_Empresa
-Application("ParametrosADMIN")(6) = ADMIN_Intentos
-Application("ParametrosADMIN")(7) = ADMIN_Preguntas
-Application("ParametrosADMIN")(8) = ADMIN_Correo_Alertas
-Application("ParametrosADMIN")(9) = ADMIN_Puerto_Correo
-Application("ParametrosADMIN")(10) = ADMIN_Pass_Correo
-Application("ParametrosADMIN")(11) = ADMIN_Dias_Vigencia_Usuario
+Application("ParametrosADMIN")(0) = ADMIN_Carateres_Contraseña
+Application("ParametrosADMIN")(1) = ADMIN_Habilitar_Frm_Reg
+Application("ParametrosADMIN")(2) = ADMIN_Nombre_Empresa
+Application("ParametrosADMIN")(3) = ADMIN_Alias_Empresa
+Application("ParametrosADMIN")(4) = ADMIN_Email_Empresa
+Application("ParametrosADMIN")(5) = ADMIN_Telefono_Empresa
+Application("ParametrosADMIN")(6) = ADMIN_RTN_Empresa
+Application("ParametrosADMIN")(7) = ADMIN_Intentos
+Application("ParametrosADMIN")(8) = ADMIN_Preguntas
+Application("ParametrosADMIN")(9) = ADMIN_Correo_Alertas
+Application("ParametrosADMIN")(10) = ADMIN_Puerto_Correo
+Application("ParametrosADMIN")(11) = ADMIN_Pass_Correo
+Application("ParametrosADMIN")(12) = ADMIN_Dias_Vigencia_Usuario
+Application("ParametrosADMIN")(13) = ADMIN_Recordar_Usuario
+Application("ParametrosADMIN")(14) = ADMIN_Direccion
+Application("ParametrosADMIN")(15) = ADMIN_SMTP
+Application("ParametrosADMIN")(16) = ADMIN_MIN_Usuario
+Application("ParametrosADMIN")(17) = ADMIN_MAX_Usuario
+Application("ParametrosADMIN")(18) = ADMIN_MIN_Carateres_Contraseña
+Application("ParametrosADMIN")(19) = ADMIN_URL_WEB

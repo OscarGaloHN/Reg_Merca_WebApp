@@ -53,13 +53,16 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
                                     <label class="form-label">Usuario</label>
                                 </div>
-                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtUsuario"
-                                    ErrorMessage="Ingrese su usuario."
+                                <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtUsuario"
+                                    ErrorMessage="Debe de ingresar  su usuario."
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
+                                    <asp:RegularExpressionValidator runat="server" ID="valiUserLargo"
+                                        Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                        ControlToValidate="txtUsuario" />
                             </div>
                         </div>
                     </div>
