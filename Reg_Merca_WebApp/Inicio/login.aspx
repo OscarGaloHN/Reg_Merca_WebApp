@@ -57,7 +57,7 @@
                                     <label class="form-label">Usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtUsuario"
-                                    ErrorMessage="Debe de ingresar  su usuario."
+                                    ErrorMessage="Debe de ingresar su usuario."
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                                     <asp:RegularExpressionValidator runat="server" ID="valiUserLargo"

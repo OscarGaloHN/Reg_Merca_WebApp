@@ -14,38 +14,56 @@ Option Explicit On
 Partial Public Class preguntas
 
     '''<summary>
-    '''Control txtUsuario.
+    '''Control pnlMain.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtUsuario As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents pnlMain As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control Panel1.
+    '''Control SqlPreguntas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents SqlPreguntas As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control txtcorreo.
+    '''Control cmbPreguntas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtcorreo As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents cmbPreguntas As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control bttEntrar.
+    '''Control txtrespuesta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEntrar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents txtrespuesta As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control ValiUser.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ValiUser As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''Control bttverificar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttverificar As Global.System.Web.UI.WebControls.LinkButton
 End Class

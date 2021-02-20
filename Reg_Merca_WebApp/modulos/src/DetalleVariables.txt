@@ -1,6 +1,6 @@
 ﻿Session("NumReg") = Numero de registros que trae las consultas sql
 
-Session("usuarioPreguntas") = nombre de usuario para cargar las preguntas
+Session("usuarioPreguntas") = id de usuario para cargar las preguntas
 
 Session("preguntasDeUsuario") = 
 
