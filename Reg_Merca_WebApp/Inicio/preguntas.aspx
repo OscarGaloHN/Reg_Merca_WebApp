@@ -63,7 +63,8 @@
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <asp:DropDownList onchange="document.getElementById('txtrespuesta').focus();
-                                    document.getElementById('txtrespuesta').value = '';" ID="cmbPreguntas" runat="server" DataSourceID="SqlPreguntas" class="form-control show-tick"
+                                    document.getElementById('txtrespuesta').value = '';"
+                                    ID="cmbPreguntas" runat="server" DataSourceID="SqlPreguntas" class="form-control show-tick"
                                     DataTextField="pregunta" DataValueField="id_pregunta" AppendDataBoundItems="true">
                                 </asp:DropDownList>
                             </div>
@@ -75,10 +76,10 @@
                                         <asp:TextBox AutoComplete="off" ID="txtrespuesta" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
                                         <label class="form-label">Respuesta</label>
                                     </div>
-                                     <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtrespuesta"
-                                    ErrorMessage="Debe de ingresar su respuesta."
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                                    <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtrespuesta"
+                                        ErrorMessage="Debe de ingresar su respuesta."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                                 </div>
                             </div>
                         </div>
@@ -87,14 +88,14 @@
                     </asp:Panel>
                     <div class="row">
                         <div class="col-xs-12">
-                            <asp:LinkButton ID="bttverificar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
+                            <asp:LinkButton onfocus="myFunctionfoco('txtrespuesta')" ID="bttverificar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
                                 <i class="material-icons">check</i> <span>VERIFICAR RESPUESTA</span>  
                             </asp:LinkButton>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 align-center">
-                            <a href="login.aspx">Iniciar Sesión!</a>
+                            <asp:LinkButton runat="server" ID="lblcancelar" Text="Iniciar Sesión!" CausesValidation="false"></asp:LinkButton>
                         </div>
                     </div>
                 </form>

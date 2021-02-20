@@ -47,7 +47,7 @@
                 <form runat="server">
                     <div class="msg">
                         Ingrese la dirección de correo electrónico que utilizó para registrarse. 
-                        Le enviaremos un correo electrónico con su nombre de usuario y una contraseña temporal. 
+                        Le enviaremos un correo electrónico con los pasos para recuerar su cuenta. 
                     </div>
                     <div class="row">
                           <div style="padding-top: 8px;"  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">

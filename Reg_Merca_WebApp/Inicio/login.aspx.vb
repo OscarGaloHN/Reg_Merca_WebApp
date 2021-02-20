@@ -51,22 +51,19 @@ Public Class login
                 Next
                 Application("ParametrosADMIN") = arrayParametrosADMIN
             End If
+
+            'parametros de USUARIO
+            valiUserLargo.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(16) & " -" & Application("ParametrosADMIN")(17) & ")."
+            valiUserLargo.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(16) & "," & Application("ParametrosADMIN")(17) & "}$"
+            txtUsuario.MaxLength = Application("ParametrosADMIN")(17)
+
+            'parametros de contraseña
+            reContraLogin.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(18) & " -" & Application("ParametrosADMIN")(0) & ")."
+            reContraLogin.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
+            txtContra.MaxLength = Application("ParametrosADMIN")(0)
+
+            bttEntrar.Focus()
         End If
-
-
-
-        'parametros de USUARIO
-        valiUserLargo.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(16) & " -" & Application("ParametrosADMIN")(17) & ")."
-        valiUserLargo.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(16) & "," & Application("ParametrosADMIN")(17) & "}$"
-        txtUsuario.MaxLength = Application("ParametrosADMIN")(17)
-
-        'parametros de contraseña
-        reContraLogin.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(18) & " -" & Application("ParametrosADMIN")(0) & ")."
-        reContraLogin.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
-        txtContra.MaxLength = Application("ParametrosADMIN")(0)
-
-        bttEntrar.Focus()
-
     End Sub
 
     Private Sub bttEntrar_Click(sender As Object, e As EventArgs) Handles bttEntrar.Click
@@ -126,11 +123,12 @@ Public Class login
             End Using
             If Session("NumReg") > 0 Then
                 registro = DataSetX.Tables(0).Rows(0)
+
                 Select Case CInt(registro("intentos"))
                     Case 3
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'error');</script>")
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
                     Case Else
-                        If CInt(registro("intentos")) + 1 = CInt(Application("ParametrosADMIN")(6)) Then 'PARAMETRO INTENTOS DE CONTRASEÑA
+                        If CInt(registro("intentos")) + 1 = CInt(Application("ParametrosADMIN")(7)) Then 'PARAMETRO INTENTOS DE CONTRASEÑA
                             Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & ", estado=3 where usuario = BINARY  '" & txtUsuario.Text & "';"
                         Else
                             Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & " where usuario = BINARY  '" & txtUsuario.Text & "';"
@@ -140,6 +138,7 @@ Public Class login
                         End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
                 End Select
+
             Else
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
             End If

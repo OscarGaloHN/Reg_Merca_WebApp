@@ -105,7 +105,7 @@
                                 <label for="chkRecordar">Recordarme</label>
                             </div>
                             <div class="col-xs-4">
-                                <asp:LinkButton   autofocus="true" onfocus="myFunctionfoco('txtUsuario')" ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
+                                <asp:LinkButton onfocus="myFunctionfoco('txtUsuario')" ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
                             </div>
 
                         </div>

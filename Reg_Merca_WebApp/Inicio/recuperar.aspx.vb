@@ -10,6 +10,7 @@
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         bttPreguntas.Attributes.Add("onClick", "return false;")
+        bttEnviar.Focus()
     End Sub
 
     Private Sub bttContinuar_Click(sender As Object, e As EventArgs) Handles bttContinuar.Click
@@ -19,8 +20,9 @@
             DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             Session("NumReg") = DataSetX.Tables(0).Rows.Count
         End Using
-        Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
         If Session("NumReg") > 0 Then
+            Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
+
             Session("usuarioPreguntas") = registro("id_usuario")
             Response.Redirect("~/Inicio/preguntas.aspx")
             'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('EXITO','Usuario  encontrado', 'success');</script>")
