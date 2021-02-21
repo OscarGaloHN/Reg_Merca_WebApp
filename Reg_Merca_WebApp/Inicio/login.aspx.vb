@@ -83,11 +83,11 @@ Public Class login
             'Si coloco las credenciales correctas
             registro = DataSetX.Tables(0).Rows(0)
             Select Case CInt(registro("estado"))
-                Case -1 'USUARIO CREADO
+                Case 0 'USUARIO CREADO
 
-                Case 0 'CONFIGURAR USUARIO
+                Case 1 'CONFIGURAR USUARIO / nuevo
 
-                Case 1 'activo
+                Case 2 'activo
                     'CARGAR DATOS DE USUARIO
                     If Session("NumReg") > 0 Then
                         registro = DataSetX.Tables(0).Rows(0)
@@ -115,12 +115,14 @@ Public Class login
 
                         End Select
                     End If
-                Case 2 'bloqueado o inactivo
-                Case 3 'bloqueo por intentos
+                Case 3 'bloqueado o inactivo
+                Case 4 'bloqueo por intentos
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
-                Case 4 'usuario caducado
+                Case 5 'usuario caducado
+                Case 6 'cambio clave
             End Select
         Else
+            ''''comporbar si el usuario existe para saber si escribio mal la contrasñea
             Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where usuario = BINARY  '" & txtUsuario.Text & "';"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -128,22 +130,25 @@ Public Class login
             End Using
             If Session("NumReg") > 0 Then
                 registro = DataSetX.Tables(0).Rows(0)
-
-                Select Case CInt(registro("intentos"))
-                    Case 3
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
-                    Case Else
-                        If CInt(registro("intentos")) + 1 = CInt(Application("ParametrosADMIN")(7)) Then 'PARAMETRO INTENTOS DE CONTRASEÑA
-                            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & ", estado=3 where usuario = BINARY  '" & txtUsuario.Text & "';"
-                        Else
-                            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & " where usuario = BINARY  '" & txtUsuario.Text & "';"
-                        End If
-                        Using con As New ControlDB
-                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        End Using
+                Select Case CInt(registro("estado"))
+                    Case 0 'intento ingresar con el usuario recien creado
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
+                    Case Else
+                        Select Case CInt(registro("intentos"))
+                            Case 3
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
+                            Case Else
+                                If CInt(registro("intentos")) + 1 = CInt(Application("ParametrosADMIN")(7)) Then 'PARAMETRO INTENTOS DE CONTRASEÑA
+                                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & ", estado=4 where usuario = BINARY  '" & txtUsuario.Text & "';"
+                                Else
+                                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & " where usuario = BINARY  '" & txtUsuario.Text & "';"
+                                End If
+                                Using con As New ControlDB
+                                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                                End Using
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
+                        End Select
                 End Select
-
             Else
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
             End If

@@ -22,9 +22,12 @@
         End Using
         If Session("NumReg") > 0 Then
             Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
-
-            Session("usuarioPreguntas") = registro("id_usuario")
-            Response.Redirect("~/Inicio/preguntas.aspx")
+            If CInt(registro("estado")) = 0 Or CInt(registro("estado")) = 3 Or CInt(registro("estado")) = 5 Then
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Este usuario puede estar inactivo, caducado o sin completar el registro.', 'warning');</script>")
+            Else
+                Session("usuarioPreguntas") = registro("id_usuario")
+                Response.Redirect("~/Inicio/preguntas.aspx")
+            End If
             'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('EXITO','Usuario  encontrado', 'success');</script>")
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Usuario no encontrado', 'warning');</script>")
