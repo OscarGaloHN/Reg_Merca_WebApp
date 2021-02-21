@@ -37,4 +37,23 @@
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Desbloqueo','El usuario no se encuentra bloqueado.', 'warning');</script>")
         End If
     End Sub
+
+    Private Sub bttCambiar_Click(sender As Object, e As EventArgs) Handles bttCambiar.Click
+        If IsValid Then
+            Dim Ssql As String = "CALL contrasenas(" & Session("usuarioPreguntas") & ", SHA('" & txtContraConfirmar.Text & "'))"
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+                Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
+                Select Case registro("repetida")
+                    Case 1
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
+                    Case 2
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','Cambio de contraseña completo.', 'success');</script>")
+                End Select
+            End If
+        End If
+    End Sub
 End Class

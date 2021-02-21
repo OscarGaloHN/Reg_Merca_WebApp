@@ -16,6 +16,7 @@
             Session("usuarioCambioPW") = False
         End If
         bttverificar.Focus()
+
     End Sub
 
     Private Sub bttverificar_Click(sender As Object, e As EventArgs) Handles bttverificar.Click

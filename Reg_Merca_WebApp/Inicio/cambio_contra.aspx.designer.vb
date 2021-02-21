@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class cambio_contra
 
     '''<summary>
-    '''Control forgot_password.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents forgot_password As Global.System.Web.UI.HtmlControls.HtmlForm
-
-    '''<summary>
     '''Control bttDesbloquear.
     '''</summary>
     '''<remarks>
@@ -41,22 +32,22 @@ Partial Public Class cambio_contra
     Protected WithEvents txtContra As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control RequiredFieldValidator1.
+    '''Control ValiContra.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents ValiContra As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control reContraLogin.
+    '''Control Panel1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reContraLogin As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''Control txtContraConfirmar.
@@ -68,22 +59,13 @@ Partial Public Class cambio_contra
     Protected WithEvents txtContraConfirmar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control RequiredFieldValidator2.
+    '''Control ValidaConfirmar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Control reContraLogin2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents reContraLogin2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents ValidaConfirmar As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control bttCambiar.

@@ -18,7 +18,7 @@
             </a>
         </li>
         <li class="active">
-             <a href="../../index.html">
+            <a href="../../index.html">
                 <i class="material-icons">home</i>
                 <span>Configuraciones</span>
             </a>
@@ -66,9 +66,14 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ValidationGroup="configuraciones" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Nombre</label>
                                 </div>
+                             <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtEmpresa"
+                                    ErrorMessage="Debe de ingresar su usuario."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" ValidationGroup="configuraciones"/>
+                              
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -217,7 +222,7 @@
                             </asp:LinkButton>
                         </div>
                         <div class="col-sm-3">
-                            <asp:LinkButton Width="100%" runat="server" ID="bttGuardar" type="button" class="btn bg-teal waves-effect">
+                            <asp:LinkButton  ValidationGroup="configuraciones" Width="100%" runat="server" ID="bttGuardar" type="button" class="btn bg-teal waves-effect">
                             <i class="material-icons">save</i>
                             <span>Guardar</span>
                             </asp:LinkButton>

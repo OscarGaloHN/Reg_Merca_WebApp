@@ -59,7 +59,7 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT id_pregunta, UPPER(pregunta) pregunta FROM DB_Nac_Merca.tbl_22_preguntas"></asp:SqlDataSource>
+                            SelectCommand="SELECT id_pregunta, UPPER(pregunta) pregunta FROM DB_Nac_Merca.tbl_22_preguntas order by rand() "></asp:SqlDataSource>
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <asp:DropDownList onchange="document.getElementById('txtrespuesta').focus();

@@ -5,4 +5,8 @@
 
     End Sub
 
+    Private Sub bttEntrar_Click(sender As Object, e As EventArgs) Handles bttEntrar.Click
+        MsgBox("Hola")
+
+    End Sub
 End Class

@@ -23,6 +23,15 @@ Partial Public Class configurar
     Protected WithEvents txtEmpresa As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Control ValiUser.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ValiUser As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txtAlias.
     '''</summary>
     '''<remarks>

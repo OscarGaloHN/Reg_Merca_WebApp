@@ -46,4 +46,18 @@ Public Class ControlDB
         Return ds
     End Function
 
+    Function SP_contra(ByVal xUsuario As Integer, ByVal xClave As String, ByVal Tipo As TipoConexion)
+        Dim ds As DataSet = New DataSet()
+        Using cnn As MySqlConnection = New MySqlConnection(GetCadenaConexion(Tipo))
+            Dim cmd As MySqlCommand = New MySqlCommand("contrasenas", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.AddWithValue("@idUsuario", xUsuario)
+            cmd.Parameters.AddWithValue("@claveUsuario", "SHA(" & xClave & ")")
+            cmd.ExecuteNonQuery()
+            Dim sda As MySqlDataAdapter = New MySqlDataAdapter(cmd)
+            sda.Fill(ds)
+            cmd.Dispose()
+        End Using
+        Return 0
+    End Function
 End Class
