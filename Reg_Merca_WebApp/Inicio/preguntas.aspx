@@ -50,9 +50,9 @@
             <div class="body">
                 <form runat="server">
                     <div class="msg font-bold">
-                        Seleccione y responda una pregunta de seguridad para desbloquear su usuario. 
+                        Seleccione y responda una de sus preguntas de seguridad para para confirmar que el usuario le pertenece. 
                     </div>
-                    <asp:Panel ID="pnlMain" runat="server">
+                    <asp:Panel ID="pnlMain" runat="server" DefaultButton="bttverificar">
                         <asp:SqlDataSource
                             ID="SqlPreguntas"
                             runat="server"
@@ -83,16 +83,15 @@
                                 </div>
                             </div>
                         </div>
-
-
-                    </asp:Panel>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <asp:LinkButton onfocus="myFunctionfoco('txtrespuesta')" ID="bttverificar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <asp:LinkButton onfocus="myFunctionfoco('txtrespuesta')" ID="bttverificar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
                                 <i class="material-icons">check</i> <span>VERIFICAR RESPUESTA</span>  
-                            </asp:LinkButton>
+                                </asp:LinkButton>
+                            </div>
                         </div>
-                    </div>
+                    </asp:Panel>
+
                     <div class="row">
                         <div class="col-xs-12 align-center">
                             <asp:LinkButton runat="server" ID="lblcancelar" Text="Iniciar Sesión!" CausesValidation="false"></asp:LinkButton>

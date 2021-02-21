@@ -23,6 +23,15 @@ Partial Public Class cambio_contra
     Protected WithEvents bttDesbloquear As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''Control Panel1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''Control txtContra.
     '''</summary>
     '''<remarks>
@@ -41,15 +50,6 @@ Partial Public Class cambio_contra
     Protected WithEvents ValiContra As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control Panel1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''Control txtContraConfirmar.
     '''</summary>
     '''<remarks>
@@ -66,6 +66,15 @@ Partial Public Class cambio_contra
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ValidaConfirmar As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''Control Comparecontra.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Comparecontra As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''Control bttCambiar.

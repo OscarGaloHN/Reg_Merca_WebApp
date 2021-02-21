@@ -50,84 +50,90 @@
                             <asp:Button CausesValidation="false" runat="server" ID="bttDesbloquear" class="btn btn-block btn-lg bg-teal waves-effect" Text="DESBLOQUEAR USUARIO"></asp:Button>
                         </div>
                     </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <a onclick="  document.getElementById('txtContraConfirmar').value = ''; 
+                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttCambiar">
+
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <a onclick="  document.getElementById('txtContraConfirmar').value = ''; 
                                 document.getElementById('txtContra').value = '';"
-                                class="btn btn-block btn-lg bg-pink waves-effect" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
-                                aria-controls="collapseExample">CAMBIAR CONTRASEÑA
-                            </a>
+                                    class="btn btn-block btn-lg bg-pink waves-effect" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+                                    aria-controls="collapseExample">CAMBIAR CONTRASEÑA
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="collapse" id="collapseExample">
-                                <div class="wellh">
-                                     <div class="row">
-                                        <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="material-icons">lock</i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <asp:TextBox ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
-                                                    <label class="form-label">Contraseña</label>
-                                                </div>
-                                                  <asp:RequiredFieldValidator runat="server" ID="ValiContra" ControlToValidate="txtContra"
-                                                    ErrorMessage="Debe de ingresar su usuario."
-                                                    Display="Dynamic"
-                                                    ForeColor="OrangeRed" Font-Size="X-Small" />
-                                            </div>
-                                        </div>
-                                        <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
-                                            <div class="input-group">
-                                                <span>
-                                                    <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttCambiar">
-                                          <div class="row">
-                                        <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="material-icons">check</i></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <div class="form-group form-float">
-                                                <div class="form-line">
-                                                    <asp:TextBox ID="txtContraConfirmar" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
-                                                    <label class="form-label">Contraseña</label>
-                                                </div>
-                                                <asp:RequiredFieldValidator runat="server" ID="ValidaConfirmar" ControlToValidate="txtContraConfirmar"
-                                                    ErrorMessage="Debe de ingresar su usuario."
-                                                    Display="Dynamic"
-                                                    ForeColor="OrangeRed" Font-Size="X-Small" />
-                                            </div>
-                                        </div>
-                                        <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
-                                            <div class="input-group">
-                                                <span>
-                                                    <i id="show_password2" style="cursor: default" class="material-icons">visibility_off</i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="collapse" id="collapseExample">
+                                    <div class="wellh">
                                         <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <asp:LinkButton  class="btn btn-block btn-lg bg-pink waves-effect" ID="bttCambiar" runat="server" Text="ENTRAR" />
+                                            <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="material-icons">lock</i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <asp:TextBox ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                                        <label class="form-label">Contraseña</label>
+                                                    </div>
+                                                    <asp:RequiredFieldValidator runat="server" ID="ValiContra" ControlToValidate="txtContra"
+                                                        ErrorMessage="Debe de ingresar su nueva contraseña."
+                                                        Display="Dynamic"
+                                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                                </div>
+                                            </div>
+                                            <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                                                <div class="input-group">
+                                                    <span>
+                                                        <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </asp:Panel>
+
+
+                                        <div class="row">
+                                            <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="material-icons">check</i></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <asp:TextBox ID="txtContraConfirmar" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                                        <label class="form-label">Confrimar contraseña</label>
+                                                    </div>
+                                                    <asp:RequiredFieldValidator runat="server" ID="ValidaConfirmar" ControlToValidate="txtContraConfirmar"
+                                                        ErrorMessage="Debe de confirmar la nueva contraseña."
+                                                        Display="Dynamic"
+                                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                                    <asp:CompareValidator ID="Comparecontra" runat="server" ControlToCompare="txtContra" ControlToValidate="txtContraConfirmar"
+                                                        ErrorMessage="Las contraseñas no coincide."
+                                                        Display="Dynamic"
+                                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                                </div>
+                                            </div>
+                                            <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                                                <div class="input-group">
+                                                    <span>
+                                                        <i id="show_password2" style="cursor: default" class="material-icons">visibility_off</i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <asp:LinkButton class="btn btn-block btn-lg bg-pink waves-effect" ID="bttCambiar" runat="server" Text="CAMBIAR" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:Panel>
+
                     <div class="row m-t-20 m-b--5 align-center">
                         <asp:LinkButton runat="server" ID="lblcancelar" Text="Iniciar Sesión!" CausesValidation="false"></asp:LinkButton>
                     </div>

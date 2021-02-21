@@ -35,6 +35,10 @@
 
     <!-- Custom Css -->
     <link href="../css/style.css" rel="stylesheet">
+
+     <script src="../plugins/sweetalert/sweetalert-dev.js"></script>
+    <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="../plugins/sweetalert/sweetalert.min.js"></script>
 </head>
 
 <body class="signup-page">
@@ -121,7 +125,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                <%--    <div class="row">
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                             <div class="input-group form-float">
                                 <span class="input-group-addon">
@@ -149,10 +153,10 @@
                         <div class="col-xs-1" style="padding-top: 8px;">
                             <i id="show_password" class="material-icons">visibility_off</i>
                         </div>
-                    </div>
+                    </div>--%>
 
 
-                    <div class="row">
+                 <%--   <div class="row">
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                             <div class="input-group form-float">
                                 <span class="input-group-addon">
@@ -180,7 +184,7 @@
                         <div class="col-xs-1" style="padding-top: 8px;">
                             <i id="show_password2" class="material-icons">visibility_off</i>
                         </div>
-                    </div>
+                    </div>--%>
 
 
 

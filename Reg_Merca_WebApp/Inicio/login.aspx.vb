@@ -63,6 +63,11 @@ Public Class login
             txtContra.MaxLength = Application("ParametrosADMIN")(0)
 
             bttEntrar.Focus()
+            Select Case Request.QueryString("acction")
+                Case "changepasswordout"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','Cambio de contraseña completo.', 'success');</script>")
+
+            End Select
         End If
     End Sub
 

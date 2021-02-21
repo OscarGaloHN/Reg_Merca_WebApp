@@ -86,60 +86,6 @@ Partial Public Class registro
     Protected WithEvents reEmailRegistro As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
-    '''Control txtContra.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtContra As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control Requcontra.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Requcontra As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Control Regulcontra.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Regulcontra As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
-    '''Control txtContraConfirmar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtContraConfirmar As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control Requcontraconf.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Requcontraconf As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Control Comparecontra.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Comparecontra As Global.System.Web.UI.WebControls.CompareValidator
-
-    '''<summary>
     '''Control btt_registrar.
     '''</summary>
     '''<remarks>
