@@ -43,7 +43,7 @@
                 <form runat="server">
                     <asp:Panel ID="PanelCaducada" runat="server" Visible="false">
                         <div class="msg font-bold col-red">
-                            <asp:Label ID="lblerror" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblcaduca" runat="server" Text=""></asp:Label>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -51,11 +51,13 @@
                             </div>
                         </div>
                     </asp:Panel>
+
                     <asp:Panel ID="PanelError" runat="server" Visible="false">
                         <div class="msg font-bold col-red">
-                            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblerror" runat="server" Text=""></asp:Label>
                         </div>
                     </asp:Panel>
+
                     <asp:Panel ID="PanelConfirmar" runat="server" DefaultButton="bttContra" Visible="false">
                         <div class="msg font-bold col-teal">
                             <asp:Label ID="lblSaludo" runat="server" Text=""></asp:Label>

@@ -1,7 +1,4 @@
 Imports MySql.Data.MySqlClient
-
-
-
 Public Class ControlDB
     Implements IDisposable
     Public Enum TipoConexion

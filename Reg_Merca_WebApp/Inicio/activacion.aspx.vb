@@ -40,11 +40,11 @@ Public Class activacion
                     End Select
                 Else
                     PanelCaducada.Visible = True
-                    lblerror.Text = "Su solicitud a cadacudao, debe de realizar una nueva solicitud de configuración."
+                    lblcaduca.Text = "Su solicitud a cadacudao, debe de realizar una nueva solicitud de configuración."
                     Page.Title = "Solicitud Caducada"
                 End If
             Else
-                PanelCaducada.Visible = True
+                PanelError.Visible = True
                 lblerror.Text = "Este intento de validación no es valido."
                 Page.Title = "Solicitud Invalida"
 
@@ -102,6 +102,7 @@ Public Class activacion
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
+
             Using mm As New MailMessage("registrodemercanciahn@gmail.com", registro("correo"))
                 mm.Subject = "Activación de Cuenta(Nueva Solicitud)"
                 mm.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")

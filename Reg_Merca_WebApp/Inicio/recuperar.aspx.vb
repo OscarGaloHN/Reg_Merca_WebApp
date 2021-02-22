@@ -11,6 +11,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         bttPreguntas.Attributes.Add("onClick", "return false;")
         bttEnviar.Focus()
+
     End Sub
 
     Private Sub bttContinuar_Click(sender As Object, e As EventArgs) Handles bttContinuar.Click

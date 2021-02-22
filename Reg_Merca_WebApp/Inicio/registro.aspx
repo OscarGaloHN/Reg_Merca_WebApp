@@ -154,9 +154,7 @@
                             <i id="show_password" class="material-icons">visibility_off</i>
                         </div>
                     </div>--%>
-
-
-                 <%--   <div class="row">
+                <%--   <div class="row">
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                             <div class="input-group form-float">
                                 <span class="input-group-addon">
@@ -185,12 +183,9 @@
                             <i id="show_password2" class="material-icons">visibility_off</i>
                         </div>
                     </div>--%>
-
-
-
                     <asp:LinkButton onfocus="myFunctionfoco('txtnombre')" class="btn btn-block btn-lg bg-pink waves-effect" ID="btt_registrar" runat="server">REGISTRARSE</asp:LinkButton>
                     <div class="m-t-25 m-b--5 align-center">
-                        <a href="login.aspx">¿Ya Cuenta Con Un Usuario?</a>
+                        <a class="col-teal" href="login.aspx">¿Ya Cuenta Con Un Usuario?</a>
                     </div>
                 </form>
             </div>

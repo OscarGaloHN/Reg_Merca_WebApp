@@ -23,13 +23,13 @@ Partial Public Class activacion
     Protected WithEvents PanelCaducada As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control lblerror.
+    '''Control lblcaduca.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblerror As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblcaduca As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control bttNuevaSolicitud.
@@ -50,13 +50,13 @@ Partial Public Class activacion
     Protected WithEvents PanelError As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control Label1.
+    '''Control lblerror.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblerror As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control PanelConfirmar.
