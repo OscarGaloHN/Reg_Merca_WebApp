@@ -37,6 +37,7 @@ Public Class registro
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
                     SendActivationEmail()
+                    Response.Redirect("~/Inicio/login.aspx?acction=registro")
             End Select
         End If
     End Sub
@@ -72,7 +73,6 @@ Public Class registro
                 smtp.Credentials = NetworkCred
                 smtp.Port = 587
                 smtp.Send(mm)
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Registro','Exitoso.', 'success');</script>")
             End Using
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El registro no fue completado. Intentelo de nuevo.', 'error');</script>")

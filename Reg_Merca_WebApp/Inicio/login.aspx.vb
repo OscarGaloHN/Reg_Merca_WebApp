@@ -66,7 +66,12 @@ Public Class login
             Select Case Request.QueryString("acction")
                 Case "changepasswordout"
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','Cambio de contraseña completo.', 'success');</script>")
-
+                Case "registro"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Registro','La solicite de registro se ha completado, hemos enviado detalles a su correo electronico para completar su solicitud.', 'success');</script>")
+                Case "activateuser"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Activación','Su ususario esta activado, inicie sesión para configurar su cuenta.', 'success');</script>")
+                Case "newsolicitud"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nueva Solicitud','Hemos enviado detalles a su correo electronico para completar su solicitud', 'success');</script>")
             End Select
         End If
     End Sub
@@ -86,6 +91,7 @@ Public Class login
                 Case 0 'USUARIO CREADO
 
                 Case 1 'CONFIGURAR USUARIO / nuevo
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Enviar a respoder preguntas.', 'error');</script>")
 
                 Case 2 'activo
                     'CARGAR DATOS DE USUARIO
