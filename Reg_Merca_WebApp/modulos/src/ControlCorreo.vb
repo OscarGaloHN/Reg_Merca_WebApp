@@ -55,7 +55,7 @@ Public Class ControlCorreo
 
 
     'Funcion para el Desencriptado de Cadenas de Texto
-    Private Function Desencriptar(ByVal texto As String) As String
+    Function Desencriptar(ByVal texto As String) As String
         If Trim(texto) = "" Then
             Desencriptar = ""
         Else

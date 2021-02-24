@@ -42,19 +42,32 @@ Public Class ControlDB
         End Using
         Return ds
     End Function
-
-    Function SP_contra(ByVal xUsuario As Integer, ByVal xClave As String, ByVal Tipo As TipoConexion)
+    Function ParametrosSYS_ADMIN(ByVal TipoParametro As String)
+        'parametros de configuracion de sistema
+        Dim Ssql As String = String.Empty
         Dim ds As DataSet = New DataSet()
-        Using cnn As MySqlConnection = New MySqlConnection(GetCadenaConexion(Tipo))
-            Dim cmd As MySqlCommand = New MySqlCommand("contrasenas", cnn)
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Parameters.AddWithValue("@idUsuario", xUsuario)
-            cmd.Parameters.AddWithValue("@claveUsuario", "SHA(" & xClave & ")")
-            cmd.ExecuteNonQuery()
-            Dim sda As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-            sda.Fill(ds)
-            cmd.Dispose()
+        Dim NumReg As Integer
+        Dim arrayParametros(0) As String
+        Select Case TipoParametro
+            Case "sistema"
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_21_parametros WHERE parametro like '%SYS%' order by 1;"
+            Case "adminstrador"
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_21_parametros WHERE parametro like '%ADMIN%' order by 1;"
+        End Select
+        Using con As New ControlDB
+            ds = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            NumReg = ds.Tables(0).Rows.Count
         End Using
-        Return 0
+        Dim registro As DataRow
+        If NumReg > 0 Then
+            ReDim arrayParametros(NumReg - 1)
+            For i = 0 To arrayParametros.Length - 1
+                registro = ds.Tables(0).Rows(i)
+                If IsDBNull(registro("valor")) = False Then
+                    arrayParametros(i) = registro("valor")
+                End If
+            Next
+        End If
+        Return arrayParametros
     End Function
 End Class

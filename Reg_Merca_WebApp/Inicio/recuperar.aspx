@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="recuperar.aspx.vb" Inherits="Reg_Merca_WebApp.recuperar" %>
-
-
 <!DOCTYPE html>
 <html>
 
