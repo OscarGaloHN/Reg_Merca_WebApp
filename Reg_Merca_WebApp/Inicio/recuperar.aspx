@@ -47,6 +47,8 @@
                         Ingrese la dirección de correo electrónico que utilizó para registrarse. 
                         Le enviaremos un correo electrónico con los pasos para recuerar su cuenta. 
                     </div>
+                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEnviar">
+
                     <div class="row">
                           <div style="padding-top: 8px;"  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                             <div class="input-group form-float">
@@ -73,7 +75,6 @@
                             </div>
                         </div>
                     </div>
-                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEnviar">
                         <div class="row">
                             <div class="col-xs-12">
                                 <asp:LinkButton  autofocus="true" onfocus="myFunctionfoco('txtEmail')"  ValidationGroup="CorreoValidar" ID="bttEnviar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">

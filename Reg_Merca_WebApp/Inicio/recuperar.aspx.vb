@@ -11,17 +11,19 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         bttPreguntas.Attributes.Add("onClick", "return false;")
         bttEnviar.Focus()
-        If IsPostBack = False Then
-            'parametros de configuracion de sistema
-            Using Parametros_Sistema As New ControlDB
-                Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-            End Using
+        'If IsPostBack = False Then
+        'parametros de configuracion de sistema
+        Using Parametros_Sistema As New ControlDB
+            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        End Using
 
-            'PARAMETROS DE ADMINISTRADOR
-            Using Parametros_admin As New ControlDB
-                Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-            End Using
-        End If
+        'PARAMETROS DE ADMINISTRADOR
+        Using Parametros_admin As New ControlDB
+            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        End Using
+        'End If
+
+
     End Sub
 
     Private Sub bttContinuar_Click(sender As Object, e As EventArgs) Handles bttContinuar.Click
@@ -57,11 +59,28 @@
             Dim registro As DataRow
             registro = DataSetX.Tables(0).Rows(0)
             Dim activationCode As String = Guid.NewGuid().ToString()
-            Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_35_activacion_usuario` (`id_usuario`, `codigo_activacion`, `vencimiento`,`tipo`,`estado`) VALUES (" & registro("id_usuario") & ", '" & activationCode & "',DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL 2 DAY),'registro',1);"
+
+            Ssql = "DELETE FROM `DB_Nac_Merca`.`tbl_35_activacion_usuario` WHERE id_usuario=" & registro("id_usuario") & ";"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electronico','Correo Enviado', 'success');</script>")
+
+            Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_35_activacion_usuario` (`id_usuario`, `codigo_activacion`, `vencimiento`,`tipo`,`estado`) VALUES (" & registro("id_usuario") & ", '" & activationCode & "',DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(8) & " DAY),'clave',1);"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+
+            Using xCorreo As New ControlCorreo
+                xCorreo.envio_correo("Recibimos una solicitud para restablecer su contraseña. Si no realizó esta solicitud, entonces ignora esta notificación. De lo contrario, puedes restablecer la contraseña mediante este enlace. ", "RESTABLECER CONTRASEÑA",
+                                     txtEmail.Text, Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
+                                     registro("nombre"),
+                                     Request.Url.AbsoluteUri.Replace("recuperar", Convert.ToString("activacion.aspx?ActivationCode=") & activationCode),
+                                     "Restablecer Contraseña",
+                                     Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10))
+            End Using
+            Response.Redirect("~/Inicio/login.aspx?acction=newsolicitud")
+
+
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electronico','Correo no enviado', 'error');</script>")
         End If

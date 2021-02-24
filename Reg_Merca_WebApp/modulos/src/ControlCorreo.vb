@@ -35,7 +35,8 @@ Public Class ControlCorreo
 
     Private des As New TripleDESCryptoServiceProvider 'Algorithmo TripleDES
     Private hashmd5 As New MD5CryptoServiceProvider 'objeto md5
-    Private myKey As String = "BDJzjq9wYr29fk31GmbS3g==" 'Clave secreta(puede alterarse)
+    Private myKey As String = "BDJzjq9wYr29fk31GmbS3g==" '"92m1101sdI19" 'Clave secreta(puede alterarse)
+
     Private disposedValue As Boolean
 
     'Funcion para el Encriptado de Cadenas de Texto
