@@ -11,14 +11,23 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Prueba_Contra
+Partial Public Class confi_perfil
 
     '''<summary>
-    '''Control txtContra.
+    '''Control CustomersSource.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtContra As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents CustomersSource As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
+    '''Control CustomersGridView.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents CustomersGridView As Global.System.Web.UI.WebControls.GridView
 End Class

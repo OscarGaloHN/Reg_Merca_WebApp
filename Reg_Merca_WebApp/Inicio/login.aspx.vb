@@ -15,42 +15,15 @@ Public Class login
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
             'parametros de configuracion de sistema
-            Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_21_parametros WHERE parametro like '%SYS%' order by 1;"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            Using Parametros_Sistema As New ControlDB
+                Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
             End Using
-            Dim registro As DataRow
-            If Session("NumReg") > 0 Then
-                Dim arrayParametros(CInt(Session("NumReg")) - 1) As String
-                For i = 0 To arrayParametros.Length - 1
-                    registro = DataSetX.Tables(0).Rows(i)
-                    'arrayParametros(i) = registro("valor")
-                    If IsDBNull(registro("valor")) = False Then
-                        arrayParametros(i) = registro("valor")
-                    End If
-                Next
-                Application("ParametrosSYS") = arrayParametros
-            End If
 
             'PARAMETROS DE ADMINISTRADOR
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_21_parametros WHERE parametro like '%ADMIN%' order by 1;"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            Using Parametros_admin As New ControlDB
+                Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
             End Using
-            If Session("NumReg") > 0 Then
-                Dim arrayParametrosADMIN(CInt(Session("NumReg")) - 1) As String
-                For i = 0 To arrayParametrosADMIN.Length - 1
-                    registro = DataSetX.Tables(0).Rows(i)
-                    'arrayParametros(i) = registro("valor")
-                    If IsDBNull(registro("valor")) = False Then
-                        arrayParametrosADMIN(i) = registro("valor")
-                    End If
-                Next
-                Application("ParametrosADMIN") = arrayParametrosADMIN
-            End If
+
 
             'parametros de USUARIO
             valiUserLargo.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(16) & " -" & Application("ParametrosADMIN")(17) & ")."

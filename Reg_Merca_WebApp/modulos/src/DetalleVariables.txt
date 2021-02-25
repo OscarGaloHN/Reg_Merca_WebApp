@@ -19,6 +19,8 @@ Application("ParametrosSYS")(3) = SYS_Historico_Contra
 Application("ParametrosSYS")(4) = SYS_MERCA
 Application("ParametrosSYS")(5) = SYS_Revision
 Application("ParametrosSYS")(6) = SYS_CLAVE_PRODUCTO
+Application("ParametrosSYS")(7) = SYS_Token_Registro
+Application("ParametrosSYS")(8) = SYS_Token_Clave
 
  
 
