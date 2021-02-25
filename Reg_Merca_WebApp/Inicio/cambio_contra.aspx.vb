@@ -40,7 +40,7 @@
 
     Private Sub bttCambiar_Click(sender As Object, e As EventArgs) Handles bttCambiar.Click
         If IsValid Then
-            Dim Ssql As String = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where id_usuario =  " & Session("usuarioPreguntas") & " and estado = 3;"
+            Dim Ssql As String = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where id_usuario =  " & Session("usuarioPreguntas") & " and id_estado = 4;"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count

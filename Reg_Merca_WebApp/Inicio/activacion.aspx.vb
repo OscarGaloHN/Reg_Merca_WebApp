@@ -35,8 +35,17 @@ Public Class activacion
                             lblUsuario.Text = registro("usuario")
                             ltMessage.Text = "Hemos verificado su correo electronico, ahora es necesario crear una contraseña."
                             PanelConfirmar.Visible = True
-                        Case "clave" 'cambio de contraseña
+                            PanelConfirmar.DefaultButton = "bttContra"
+                            bttContra.Visible = True
 
+                        Case "clave" 'cambio de contraseña 
+                            Page.Title = "Cambio de Contraseña"
+                            lblSaludo.Text = "Hola"
+                            lblUsuario.Text = registro("usuario")
+                            ltMessage.Text = "Hemos verificado su solicitud, ahora es necesario crear una nueva contraseña."
+                            PanelConfirmar.Visible = True
+                            PanelConfirmar.DefaultButton = "bttCambiarContra"
+                            bttCambiarContra.Visible = True
                     End Select
                 Else
                     PanelCaducada.Visible = True
@@ -124,6 +133,40 @@ Public Class activacion
             Response.Redirect("~/Inicio/login.aspx?acction=newsolicitud")
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Solicitud','No fue posible realizar la solicitud, contacte al adminstrador.', 'error');</script>")
+        End If
+    End Sub
+
+    Private Sub bttCambiarContra_Click(sender As Object, e As EventArgs) Handles bttCambiarContra.Click
+        Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), Guid.Empty.ToString())
+        If PanelConfirmar.Visible = True Then
+            Dim Ssql As String = "SELECT *FROM DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+                Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
+                'pendiente de editar la fecha de vencimiento
+                Ssql = "CALL contrasenas(" & registro("id_usuario") & ", SHA('" & txtContraConfirmar.Text & "'))"
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
+                    registro = DataSetX.Tables(0).Rows(0)
+                    Select Case registro("repetida")
+                        Case 1 'contraseña ya usada
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
+                        Case 2 'contraseña sin usar
+                            Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
+                            Using con As New ControlDB
+                                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                            End Using
+                            Session.Abandon()
+                            Response.Redirect("~/Inicio/login.aspx?acction=changepasswordout")
+                    End Select
+                End If
+            End If
         End If
     End Sub
 End Class

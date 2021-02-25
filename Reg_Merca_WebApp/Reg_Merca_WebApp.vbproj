@@ -209,7 +209,8 @@
     <Content Include="Inicio\preguntas_seguridad.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
-    <Content Include="modulos\configurar.aspx" />
+    <Content Include="modulos\confi_configurar.aspx" />
+    <Content Include="modulos\confi_perfil.aspx" />
     <Content Include="modulos\principal.aspx" />
     <Content Include="modulos\pruebas.aspx" />
     <Content Include="modulos\src\DetalleVariables.txt" />
@@ -1029,11 +1030,18 @@
       <DependentUpon>registro.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\configurar.aspx.designer.vb">
-      <DependentUpon>configurar.aspx</DependentUpon>
+    <Compile Include="modulos\confi_configurar.aspx.designer.vb">
+      <DependentUpon>confi_configurar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\configurar.aspx.vb">
-      <DependentUpon>configurar.aspx</DependentUpon>
+    <Compile Include="modulos\confi_configurar.aspx.vb">
+      <DependentUpon>confi_configurar.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\confi_perfil.aspx.designer.vb">
+      <DependentUpon>confi_perfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\confi_perfil.aspx.vb">
+      <DependentUpon>confi_perfil.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\principal.aspx.designer.vb">
