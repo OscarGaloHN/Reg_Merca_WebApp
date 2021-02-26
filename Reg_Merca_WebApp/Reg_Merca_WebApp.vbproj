@@ -207,10 +207,12 @@
     <Content Include="Inicio\login.aspx" />
     <Content Include="Inicio\preguntas.aspx" />
     <Content Include="Inicio\preguntas_seguridad.aspx" />
+    <Content Include="Inicio\prueba_grid.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
     <Content Include="modulos\confi_configurar.aspx" />
     <Content Include="modulos\confi_perfil.aspx" />
+    <Content Include="modulos\confi_perfil_preguntas.aspx" />
     <Content Include="modulos\principal.aspx" />
     <Content Include="modulos\pruebas.aspx" />
     <Content Include="modulos\src\DetalleVariables.txt" />
@@ -1016,6 +1018,13 @@
       <DependentUpon>preguntas_seguridad.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Inicio\prueba_grid.aspx.designer.vb">
+      <DependentUpon>prueba_grid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\prueba_grid.aspx.vb">
+      <DependentUpon>prueba_grid.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Inicio\recuperar.aspx.designer.vb">
       <DependentUpon>recuperar.aspx</DependentUpon>
     </Compile>
@@ -1042,6 +1051,13 @@
     </Compile>
     <Compile Include="modulos\confi_perfil.aspx.vb">
       <DependentUpon>confi_perfil.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\confi_perfil_preguntas.aspx.designer.vb">
+      <DependentUpon>confi_perfil_preguntas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\confi_perfil_preguntas.aspx.vb">
+      <DependentUpon>confi_perfil_preguntas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\principal.aspx.designer.vb">

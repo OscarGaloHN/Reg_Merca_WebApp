@@ -14,20 +14,29 @@ Option Explicit On
 Partial Public Class confi_perfil
 
     '''<summary>
-    '''Control CustomersSource.
+    '''Control gvCustomers.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents CustomersSource As Global.System.Web.UI.WebControls.SqlDataSource
+    Protected WithEvents gvCustomers As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''Control CustomersGridView.
+    '''Control lblid.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents CustomersGridView As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents lblid As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control txtpregunta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtpregunta As Global.System.Web.UI.WebControls.TextBox
 End Class

@@ -1,14 +1,16 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Prueba_Contra.aspx.vb" Inherits="Reg_Merca_WebApp.Prueba_Contra" %>
 
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<head>
-    <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>RegMERCA | Iniciar Sesión</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <title>RegMERCA | <%: Page.Title  %></title>
+    <!-- Favicon-->
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -26,57 +28,63 @@
     <!-- Custom Css -->
     <link href="../css/style.css" rel="stylesheet">
 
-    <script src="../plugins/sweetalert/sweetalert-dev.js"></script>
-    <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
-    <script src="../plugins/sweetalert/sweetalert.min.js"></script>
-    <script src="jsLogin.js"></script>
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../css/themes/all-themes.css" rel="stylesheet" />
 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!--  <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.bootstrap.min.css" />-->
+    
+    
+    <script type="text/javascript">
+        $(function () {
+            $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                "responsive": true,
+                "sPaginationType": "full_numbers",
+                "language": {
+                    "lengthMenu": "Mostrar  _MENU_ registros",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "info": "Mostrando _START_ al _END_ de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando 0 al 0 de 0 registros",
+                }
+            });
+        });
+    </script>
 </head>
-<body class="login-page">
-    <div class="login-box">
-        <div class="logo">
-            <a href="javascript:void(0);">Reg<b>MERCA</b></a>
-            <small>Sistema De Registro De Nacionalización De Mercancias</small>
-        </div>
-        <div class="card">
-            <div class="body">
-                <form runat="server">
-                    <div class="msg font-bold">
-                        Recuperación De Usuario
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <asp:TextBox ID="txtContra" runat="server" Text="&lt;form runat=&quot;server&quot;&gt;
-                    &lt;div class=&quot;msg font-bold&quot;&gt;
-                        Recuperación De Usuario
-                    &lt;/div&gt;
-                    &lt;div class=&quot;row clearfix&quot;&gt;
-                        &lt;div class=&quot;col-lg-9 col-md-9 col-sm-9 col-xs-9&quot;&gt;
-                            &lt;asp:TextBox ID=&quot;txtContra&quot; runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/form&gt;"></asp:TextBox>
+<body>
+    <form id="form1" runat="server">
+      <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                BASIC EXAMPLE
+                            </h2>
+                       
                         </div>
-                    </div>
-                </form>
+                        <div class="body">
+                <div class="table-responsive">
+                    <asp:GridView  ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover js-basic-example dataTable"
+                        Width="100%">
+                        <Columns >
+                            <asp:BoundField DataField="id_pregunta" HeaderText="id_pregunta" />
+                            <asp:BoundField DataField="pregunta" HeaderText="pregunta" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
+            </div>
+            </div>
             </div>
         </div>
-    </div>
-
-    <!-- Jquery Core Js -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core Js -->
-    <script src="../plugins/bootstrap/js/bootstrap.js"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="../plugins/node-waves/waves.js"></script>
-
-    <!-- Validation Plugin Js -->
-    <script src="../plugins/jquery-validation/jquery.validate.js"></script>
-
-    <!-- Custom Js -->
-    <script src="../js/admin.js"></script>
-    <script src="../js/pages/examples/sign-in.js"></script>
+    </form>
 </body>
 </html>

@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Prueba_Contra
+Partial Public Class prueba_grid
 
     '''<summary>
     '''Control form1.

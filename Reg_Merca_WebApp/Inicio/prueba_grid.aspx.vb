@@ -1,4 +1,4 @@
-﻿Public Class Prueba_Contra
+﻿Public Class prueba_grid
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -19,8 +19,6 @@
                 gvCustomers.DataBind()
             End If
         End Using
-
-
     End Sub
 
 End Class
