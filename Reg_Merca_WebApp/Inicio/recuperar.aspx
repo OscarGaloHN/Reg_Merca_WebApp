@@ -45,7 +45,7 @@
                 <form runat="server">
                     <div class="msg">
                         Ingrese la dirección de correo electrónico que utilizó para registrarse. 
-                        Le enviaremos un correo electrónico con los pasos para recuerar su cuenta. 
+                        Le enviaremos un correo electrónico con los pasos para recuerar su contraseña. 
                     </div>
                     <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEnviar">
 

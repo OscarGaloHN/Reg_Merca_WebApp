@@ -33,19 +33,20 @@ Public Class activacion
                             Page.Title = "Activación de Cuenta"
                             lblSaludo.Text = "Hola"
                             lblUsuario.Text = registro("usuario")
-                            ltMessage.Text = "Hemos verificado su correo electronico, ahora es necesario crear una contraseña."
+                            ltMessage.Text = "hemos verificado su correo electronico, ahora es necesario crear una contraseña."
                             PanelConfirmar.Visible = True
                             PanelConfirmar.DefaultButton = "bttContra"
                             bttContra.Visible = True
-
+                            bttContra.Focus()
                         Case "clave" 'cambio de contraseña 
                             Page.Title = "Cambio de Contraseña"
                             lblSaludo.Text = "Hola"
                             lblUsuario.Text = registro("usuario")
-                            ltMessage.Text = "Hemos verificado su solicitud, ahora es necesario crear una nueva contraseña."
+                            ltMessage.Text = "hemos verificado su solicitud, ahora es necesario crear una nueva contraseña."
                             PanelConfirmar.Visible = True
                             PanelConfirmar.DefaultButton = "bttCambiarContra"
                             bttCambiarContra.Visible = True
+                            bttCambiarContra.Focus()
                     End Select
                 Else
                     PanelCaducada.Visible = True
@@ -105,32 +106,42 @@ Public Class activacion
         End Using
         If Session("NumReg") > 0 Then
             Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
-
             Dim activationCodeNuevo As String = Guid.NewGuid().ToString()
-            Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL 2 DAY);"
-            Using con As New ControlDB
-                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            End Using
 
-            Using mm As New MailMessage("registrodemercanciahn@gmail.com", registro("correo"))
-                mm.Subject = "Activación de Cuenta(Nueva Solicitud)"
-                mm.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")
-                Dim body As String = "Hola " + registro("nombre") + ","
-                body += "<br /><br />Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta."
-                body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace(activationCode, activationCodeNuevo) + "'>Click aqui para poder activar su cuenta.</a>"
-                body += "<br /><br />Gracias"
-                mm.Body = body
-                mm.IsBodyHtml = True
-                Dim smtp As New SmtpClient()
-                smtp.Host = "smtp.gmail.com"
-                smtp.EnableSsl = True
-                Dim NetworkCred As New NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")
-                smtp.UseDefaultCredentials = True
-                smtp.Credentials = NetworkCred
-                smtp.Port = 587
-                smtp.Send(mm)
-            End Using
+            Select Case registro("tipo")
+                Case "registro"
+                    Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(7) & " DAY);"
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+
+                    Using xCorreo As New ControlCorreo
+                        xCorreo.envio_correo("Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta. ", "Activación de Cuenta(Nueva Solicitud)",
+                                         registro("correo"), Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
+                                         registro("nombre"),
+                                         Request.Url.AbsoluteUri.Replace(activationCode, activationCodeNuevo),
+                                         "Continuar Registro",
+                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10))
+                    End Using
+
+
+                Case "clave"
+                    Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(8) & " DAY);"
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+
+                    Using xCorreo As New ControlCorreo
+                        xCorreo.envio_correo("Recibimos una solicitud para restablecer su contraseña. Si no realizó esta solicitud, ignore esta notificación. De lo contrario, puede restablecer su contraseña mediante este enlace. ", "RESTABLECER CONTRASEÑA",
+                                         registro("correo"), Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
+                                         registro("nombre"),
+                                         Request.Url.AbsoluteUri.Replace(activationCode, activationCodeNuevo),
+                                         "Restablecer Contraseña",
+                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10))
+                    End Using
+            End Select
             Response.Redirect("~/Inicio/login.aspx?acction=newsolicitud")
+
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Solicitud','No fue posible realizar la solicitud, contacte al adminstrador.', 'error');</script>")
         End If

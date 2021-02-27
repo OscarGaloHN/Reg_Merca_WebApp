@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head runat="server">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>RegMERCA | Iniciar Sesión</title>
@@ -60,9 +60,9 @@
                                     ErrorMessage="Debe de ingresar su usuario."
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
-                                    <asp:RegularExpressionValidator runat="server" ID="valiUserLargo"
-                                        Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                        ControlToValidate="txtUsuario" />
+                                <asp:RegularExpressionValidator runat="server" ID="valiUserLargo"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtUsuario" />
                             </div>
                         </div>
                     </div>
@@ -100,20 +100,21 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-8 p-t-5">
-                                <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
-                                <label for="chkRecordar">Recordarme</label>
-                            </div>
+                            <%If CBool(Application("ParametrosADMIN")(13)) = True Then  %>
+                                <div class="col-xs-8 p-t-5">
+                                    <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
+                                    <label for="chkRecordar">Recordarme</label>
+                                </div>
+                            <%End If %>
                             <div class="col-xs-4">
                                 <asp:LinkButton onfocus="myFunctionfoco('txtUsuario')" ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
                             </div>
-
                         </div>
                     </asp:Panel>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-5">
                             <%If CBool(Application("ParametrosADMIN")(0)) = True Then  %>
-                            <a href="registro.aspx">Registrarse!</a>
+                               <a href="registro.aspx">Registrarse!</a>
                             <%End If %>
                         </div>
                         <div class="col-xs-7 align-right">
@@ -124,22 +125,16 @@
             </div>
         </div>
     </div>
-
     <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>
-
     <!-- Bootstrap Core Js -->
     <script src="../plugins/bootstrap/js/bootstrap.js"></script>
-
     <!-- Waves Effect Plugin Js -->
     <script src="../plugins/node-waves/waves.js"></script>
-
     <!-- Validation Plugin Js -->
     <script src="../plugins/jquery-validation/jquery.validate.js"></script>
-
     <!-- Custom Js -->
     <script src="../js/admin.js"></script>
     <script src="../js/pages/examples/sign-in.js"></script>
 </body>
-
 </html>

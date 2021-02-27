@@ -32,7 +32,7 @@
             </a>
         </li>
     </ul>
-    <% If Session("user_usuario") <> "" Then %>
+    <% If Session("user_nombre_usuario") <> "" Then %>
     <% If CBool(Application("ParametrosSYS")(3)) = True Then   %>
 
     <% End if  %>

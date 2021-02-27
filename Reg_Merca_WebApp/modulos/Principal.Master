@@ -1,5 +1,9 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Principal.master.vb" Inherits="Reg_Merca_WebApp.Principal" %>
 
+<%@ Register Src="~/modulos/src/piedepagina.ascx" TagPrefix="uc1" TagName="piedepagina" %>
+
+
+
 <!DOCTYPE html>
 
 <html>
@@ -82,7 +86,7 @@
                         <img src="../images/user.png" width="48" height="48" alt="User" />
                     </div>
                     <div class="info-container">
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%: Session("user_nombre") %></div>
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%: Session("user_nombre_personal") %></div>
                         <div class="email"><%: Session("user_correo") %></div>
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -102,14 +106,16 @@
                 </div>
                 <!-- #Menu -->
                 <!-- Footer -->
-                <div class="legal">
+            
+                <uc1:piedepagina runat="server" id="piedepagina" />
+               <%-- <div class="legal">
                     <div class="copyright">
                         &copy; <%: Now.Year %> <a href="javascript:void(0);">RegMERCA</a>
                     </div>
                     <div class="version">
                         <b>Version: </b>1.0.0
                     </div>
-                </div>
+                </div>--%>
                 <!-- #Footer -->
             </aside>
             <!-- #END# Left Sidebar -->

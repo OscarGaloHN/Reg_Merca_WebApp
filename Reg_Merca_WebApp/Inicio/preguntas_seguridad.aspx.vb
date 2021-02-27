@@ -56,7 +56,7 @@
             End If
 
             'PREGUNTAS
-            Ssql = "SELECT T01.*, T02.usuario, T03.pregunta FROM DB_Nac_Merca.tbl_23_preguntas_usuario T01 LEFT JOIN DB_Nac_Merca.tbl_02_usuarios T02 ON T01.id_usuario = T02.id_usuario LEFT JOIN DB_Nac_Merca.tbl_22_preguntas T03 ON T01.id_pregunta = T03.id_pregunta WHERE T02.usuario = '" & Session("usuarioPreguntas") & "' order by rand() limit " & Application("ParametrosADMIN")(7) & ""
+            Ssql = "SELECT T01.*, T02.usuario, T03.pregunta FROM DB_Nac_Merca.tbl_23_preguntas_usuario T01 LEFT JOIN DB_Nac_Merca.tbl_02_usuarios T02 ON T01.id_usuario = T02.id_usuario LEFT JOIN DB_Nac_Merca.tbl_22_preguntas T03 ON T01.id_pregunta = T03.id_pregunta WHERE T02.usuario = '" & Session("id_usuarioPreguntas") & "' order by rand() limit " & Application("ParametrosADMIN")(7) & ""
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count

@@ -59,6 +59,15 @@ Partial Public Class Principal
     Protected WithEvents ContentMenu As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
+    '''Control piedepagina.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents piedepagina As Global.Reg_Merca_WebApp.piedepagina
+
+    '''<summary>
     '''Control ContentPrincipal.
     '''</summary>
     '''<remarks>

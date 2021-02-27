@@ -126,8 +126,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <asp:LinkButton Visible ="false"  class="btn btn-block btn-lg bg-pink waves-effect" ID="bttContra" runat="server" Text="ESTABLECER CONTRASEÑA" />
-                                        <asp:LinkButton Visible ="false"  class="btn btn-block btn-lg bg-pink waves-effect" ID="bttCambiarContra" runat="server" Text="CAMBIAR CONTRASEÑA" />
+                                        <asp:LinkButton  onfocus="myFunctionfoco('txtContra')"  Visible ="false"  class="btn btn-block btn-lg bg-pink waves-effect" ID="bttContra" runat="server" Text="ESTABLECER CONTRASEÑA" />
+                                        <asp:LinkButton   onfocus="myFunctionfoco('txtContra')"  Visible ="false"  class="btn btn-block btn-lg bg-pink waves-effect" ID="bttCambiarContra" runat="server" Text="CAMBIAR CONTRASEÑA" />
                                     </div>
                                 </div>
                             </div>

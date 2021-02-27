@@ -216,6 +216,7 @@
     <Content Include="modulos\principal.aspx" />
     <Content Include="modulos\pruebas.aspx" />
     <Content Include="modulos\src\DetalleVariables.txt" />
+    <Content Include="modulos\src\piedepagina.ascx" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
@@ -1083,6 +1084,13 @@
     </Compile>
     <Compile Include="modulos\src\ControlDB.vb" />
     <Compile Include="modulos\src\ControlCorreo.vb" />
+    <Compile Include="modulos\src\piedepagina.ascx.designer.vb">
+      <DependentUpon>piedepagina.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\src\piedepagina.ascx.vb">
+      <DependentUpon>piedepagina.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

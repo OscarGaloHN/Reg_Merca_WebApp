@@ -1,13 +1,13 @@
 ﻿Session("NumReg") = Numero de registros que trae las consultas sql
 
-Session("usuarioPreguntas") = id de usuario para cargar las preguntas
+Session("id_usuarioPreguntas") = id de usuario para cargar las preguntas
  Session("usuarioCambioPW") = evalua que respondio bien la pregunta
 
 Session("preguntasDeUsuario") = 
 
   Datos del Usuario
-Session("user_usuario") = registro("usuario")
-Session("user_nombre") = registro("nombre")
+Session("user_nombre_usuario") = registro("usuario")
+Session("user_nombre_personal") = registro("nombre")
 Session("user_correo") = registro("correo")
 Session("user_rol") = registro("id_rol")
 
@@ -42,7 +42,7 @@ Application("ParametrosADMIN")(9) = ADMIN_Correo_Alertas
 Application("ParametrosADMIN")(10) = ADMIN_Puerto_Correo
 Application("ParametrosADMIN")(11) = ADMIN_Pass_Correo
 Application("ParametrosADMIN")(12) = ADMIN_Dias_Vigencia_Usuario
-Application("ParametrosADMIN")(13) = ADMIN_Recordar_Usuario
+Application("ParametrosADMIN")(13) = ADMIN_Habilitar_Recordar_Usuario
 Application("ParametrosADMIN")(14) = ADMIN_Direccion
 Application("ParametrosADMIN")(15) = ADMIN_SMTP
 Application("ParametrosADMIN")(16) = ADMIN_MIN_Usuario

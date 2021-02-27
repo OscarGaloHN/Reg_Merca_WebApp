@@ -9,7 +9,7 @@
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("usuarioPreguntas") = Nothing Or Session("usuarioCambioPW") <> True Then
+        If Session("id_usuarioPreguntas") = Nothing Or Session("usuarioCambioPW") <> True Then
             Session.Abandon()
             Response.Redirect("~/Inicio/login.aspx")
         End If
@@ -22,13 +22,13 @@
 
     Private Sub bttDesbloquear_Click(sender As Object, e As EventArgs) Handles bttDesbloquear.Click
 
-        Dim Ssql As String = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where id_usuario = " & Session("usuarioPreguntas") & " and estado=3;"
+        Dim Ssql As String = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where id_usuario = " & Session("id_usuarioPreguntas") & " and estado=3;"
         Using con As New ControlDB
             DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             Session("NumReg") = DataSetX.Tables(0).Rows.Count
         End Using
         If Session("NumReg") > 0 Then
-            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =0, estado=1 where id_usuario = " & Session("usuarioPreguntas") & ";"
+            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =0, estado=1 where id_usuario = " & Session("id_usuarioPreguntas") & ";"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
@@ -40,7 +40,7 @@
 
     Private Sub bttCambiar_Click(sender As Object, e As EventArgs) Handles bttCambiar.Click
         If IsValid Then
-            Dim Ssql As String = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where id_usuario =  " & Session("usuarioPreguntas") & " and id_estado = 4;"
+            Dim Ssql As String = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where id_usuario =  " & Session("id_usuarioPreguntas") & " and estado = 4;"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -48,7 +48,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario Bloqueado','Para cambiar su contraseña, debe desbloquear su usuario.', 'warning');</script>")
             Else
-                Ssql = "CALL contrasenas(" & Session("usuarioPreguntas") & ", SHA('" & txtContraConfirmar.Text & "'))"
+                Ssql = "CALL contrasenas(" & Session("id_usuarioPreguntas") & ", SHA('" & txtContraConfirmar.Text & "'))"
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count

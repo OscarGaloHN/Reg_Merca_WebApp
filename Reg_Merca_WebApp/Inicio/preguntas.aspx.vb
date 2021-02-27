@@ -9,7 +9,7 @@
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("usuarioPreguntas") = Nothing Then
+        If Session("id_usuarioPreguntas") = Nothing Then
             Session.Abandon()
             Response.Redirect("~/Inicio/login.aspx")
         Else
@@ -22,7 +22,7 @@
     Private Sub bttverificar_Click(sender As Object, e As EventArgs) Handles bttverificar.Click
         If IsValid Then
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_23_preguntas_usuario   where id_pregunta=" & cmbPreguntas.SelectedValue & " and id_usuario=" & Session("usuarioPreguntas") & " and respuesta = '" & txtrespuesta.Text & "';"
+            Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_23_preguntas_usuario   where id_pregunta=" & cmbPreguntas.SelectedValue & " and id_usuario=" & Session("id_usuarioPreguntas") & " and respuesta = '" & txtrespuesta.Text & "';"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -33,8 +33,8 @@
                 Session("usuarioCambioPW") = True
                 Response.Redirect("~/Inicio/cambio_contra.aspx")
             Else
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Respuesta incorrecta.', 'error');</script>")
-                Response.Redirect("~/Inicio/preguntas.aspx?result=error")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas De Seguridad','Respuesta incorrecta.', 'error');</script>")
+                'Response.Redirect("~/Inicio/preguntas.aspx?result=error")
             End If
         End If
     End Sub

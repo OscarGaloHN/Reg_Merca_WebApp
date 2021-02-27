@@ -97,7 +97,7 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <%--<asp:HyperLinkField DataNavigateUrlFields="id_pregunta,pregunta"
+                            <%--    <asp:HyperLinkField DataNavigateUrlFields="id_pregunta,pregunta"
                                     DataNavigateUrlFormatString="confi_perfil.aspx?id={0}&name={1}" DataTextField="id_pregunta" HeaderText="id_pregunta" />--%>
                                 <asp:BoundField DataField="id_pregunta" HeaderText="pregunta" />
                                 <asp:BoundField DataField="pregunta" HeaderText="pregunta" />
