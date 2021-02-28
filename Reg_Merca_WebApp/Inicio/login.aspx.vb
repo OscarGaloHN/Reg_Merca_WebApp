@@ -46,6 +46,20 @@ Public Class login
                 Case "newsolicitud"
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nueva Solicitud','Hemos enviado detalles a su correo electronico para completar su solicitud', 'success');</script>")
             End Select
+
+
+            If ((Not (Request.Cookies("UserName")) Is Nothing) _
+                      AndAlso (Not (Request.Cookies("Password")) Is Nothing) _
+                      AndAlso (Not (Request.Cookies("chkRecordar")) Is Nothing)) Then
+                chkRecordar.Checked = Request.Cookies("chkRecordar").Value
+
+                Using desencriptarck As New ControlCorreo
+                    txtContra.Attributes("value") = desencriptarck.Desencriptar(Request.Cookies("Password").Value)
+                    txtUsuario.Text = desencriptarck.Desencriptar(Request.Cookies("UserName").Value)
+                End Using
+
+            End If
+
         End If
     End Sub
 
@@ -89,6 +103,24 @@ Public Class login
                     'CARGAR DATOS DE USUARIO
                     'verificar que el sistema este configurado
                     If CBool(Application("ParametrosSYS")(2)) = True Then
+                        If chkRecordar.Checked = True Then
+                            Response.Cookies("UserName").Expires = DateTime.Now.AddDays(30)
+                            Response.Cookies("Password").Expires = DateTime.Now.AddDays(30)
+                            Response.Cookies("chkRecordar").Expires = DateTime.Now.AddDays(30)
+                        Else
+                            Response.Cookies("UserName").Expires = DateTime.Now.AddDays(-1)
+                            Response.Cookies("Password").Expires = DateTime.Now.AddDays(-1)
+                            Response.Cookies("chkRecordar").Expires = DateTime.Now.AddDays(-1)
+                        End If
+
+                        Using encriptarck As New ControlCorreo
+                            Response.Cookies("Password").Value = encriptarck.Encriptar(txtContra.Text.Trim)
+                            Response.Cookies("UserName").Value = encriptarck.Encriptar(txtUsuario.Text.Trim)
+                        End Using
+
+                        Response.Cookies("chkRecordar").Value = chkRecordar.Checked
+
+
                         'virificar que tenga las preguntas de seguridad contestadas
                         If Session("user_canti_preguntas") >= Application("ParametrosADMIN")(8) Then
                             'verificar el rol
@@ -104,17 +136,18 @@ Public Class login
                         End If
 
                     Else
-                            Select Case CInt(Session("user_rol"))
-                                Case 5 'si el rol es admin
-                                    Response.Redirect("~/modulos/confi_configurar.aspx")
-                                Case Else 'si no es admin
-                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuración','El administrador no ha completado la configuración del sistema.', 'warning');</script>")
-                                    Session.Abandon()
+                        Select Case CInt(Session("user_rol"))
+                            Case 5 'si el rol es admin
+                                Response.Redirect("~/modulos/confi_configurar.aspx")
+                            Case Else 'si no es admin
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuración','El administrador no ha completado la configuración del sistema.', 'warning');</script>")
+                                Session.Abandon()
 
-                            End Select
-                        End If
+                        End Select
+                    End If
 
-                        Case 3 'bloqueado o inactivo
+                Case 3 'bloqueado o inactivo
+
                 Case 4 'bloqueo por intentos
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
                 Case 5 'usuario caducado
