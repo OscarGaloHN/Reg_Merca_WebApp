@@ -43,6 +43,9 @@
     <script src="../plugins/sweetalert/sweetalert-dev.js"></script>
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script src="../Inicio/jsLogin.js"></script>
+
 </head>
 
 <body class="theme-teal">

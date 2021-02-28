@@ -9,6 +9,55 @@
     <script src="../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
 
     <script type="text/javascript">
+        function xModal(xcolor, xtxtfoco) {
+            var color = xcolor;
+            var txtfoco = xtxtfoco;
+            $('#mdModal .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
+            $('#mdModal').modal('show');
+            $('#mdModal').on('shown.bs.modal', function () {
+                $('#' + txtfoco).focus();
+            });
+        }
+
+
+
+        function ShowNuevo() {
+            document.getElementById('ContentPrincipal_panelNew').style.display = 'block'; // to show
+            document.getElementById('ContentPrincipal_PanelEditor').style.display = 'none'; // to hide
+            document.getElementById('ContentPrincipal_txtrespuesta').value = '';
+
+        }
+
+        function ShowEditor() {
+            document.getElementById('ContentPrincipal_panelNew').style.display = 'none'; // to show
+            document.getElementById('ContentPrincipal_PanelEditor').style.display = 'block'; // to hide
+            //document.getElementById('ContentPrincipal_txtRespuestaEditar').value = ''; 
+        }
+
+        function GetSelectedRow(lnk) {
+            //Reference the GridView Row.
+            var row = lnk.parentNode.parentNode;
+
+            //Determine the Row Index.
+            //var message = "Row Index: " + (row.rowIndex - 1);
+
+            ////Read values from Cells.
+            //message += "\nId: " + row.cells[1].innerHTML;
+            //message += "\nPregunta: " + row.cells[2].innerHTML;
+            //message += "\nRespuesta: " + row.cells[3].innerHTML;
+
+            ShowEditor();
+            document.getElementById('ContentPrincipal_lblIDPregunta').innerHTML = row.cells[1].innerHTML;
+            document.getElementById('ContentPrincipal_lblpregunta').innerHTML = row.cells[2].innerHTML;;
+            document.getElementById('ContentPrincipal_txtRespuestaEditar').value = row.cells[3].innerHTML;
+
+            xModal('pink', 'ContentPrincipal_txtRespuestaEditar');
+
+            //alert(message);
+            return false;
+        }
+
+
         $(function () {
             $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
                 "responsive": true,
@@ -26,7 +75,8 @@
                     "infoEmpty": "Mostrando del 0 al 0 de 0 registros",
                     "zeroRecords": "No se encontraron registros coincidentes.",
                     "emptyTable": "No hay datos disponibles.",
-                    "stateSave": true
+                    "stateSave": true,
+                    "infoFiltered": "(filtrado de _MAX_ registros)",
                 }
             });
         });
@@ -97,9 +147,12 @@
                     </div>
                     <asp:Panel ID="PanelPregunta" runat="server" Visible="false">
                         <div class="button-demo js-modal-buttons">
-                            <button type="button" data-color="teal" class="btn bg-teal waves-effect">NUEVA PREGUNTA</button>
+                            <button onclick="ShowNuevo()" type="button" data-color="teal" data-txtfoco="ContentPrincipal_txtrespuesta" class="btn bg-teal waves-effect">NUEVA PREGUNTA</button>
                         </div>
+
                     </asp:Panel>
+
+                    <br />
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -107,6 +160,12 @@
                                 <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                     Width="100%">
                                     <Columns>
+                                        <asp:TemplateField HeaderText="Editor" >
+                                            <ItemTemplate>
+                                                <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-red waves-effect">Editar</button>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:BoundField DataField="id" HeaderText="ID" />
                                         <asp:BoundField DataField="pregunta" HeaderText="Preguntas" />
                                         <asp:BoundField DataField="respuesta" HeaderText="Respuestas" />
@@ -122,49 +181,92 @@
                 <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="defaultModalLabel">Preguntas de Seguridad</h4>
-                            </div>
-                            <div class="modal-body">
-                                Seleccione y responda una pregunta.
+                            <asp:Panel ID="panelNew" runat="server">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Preguntas de Seguridad</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Seleccione y responda una pregunta.
                             <asp:SqlDataSource
                                 ID="SqlPreguntas"
                                 runat="server"
                                 DataSourceMode="DataReader"
                                 ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                 ProviderName="MySql.Data.MySqlClient"></asp:SqlDataSource>
-                                <div class="row clearfix">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <asp:DropDownList onchange="document.getElementById('ContentPrincipal_txtrespuesta').focus();
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <asp:DropDownList onchange="document.getElementById('ContentPrincipal_txtrespuesta').focus();
                                     document.getElementById('ContentPrincipal_txtrespuesta').value = '';"
-                                            ID="cmbPreguntas" runat="server" DataSourceID="SqlPreguntas" class="form-control show-tick"
-                                            DataTextField="pregunta" DataValueField="id_pregunta" AppendDataBoundItems="true">
-                                        </asp:DropDownList>
+                                                ID="cmbPreguntas" runat="server" DataSourceID="SqlPreguntas" class="form-control show-tick"
+                                                DataTextField="pregunta" DataValueField="id_pregunta" AppendDataBoundItems="true">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <asp:TextBox onkeyup="mayus(this);" placeholder="Respuesta" AutoComplete="off" ID="txtrespuesta" runat="server" class="form-control"></asp:TextBox>
+                                                </div>
+                                                <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtrespuesta"
+                                                    ErrorMessage="Debe de ingresar su respuesta."
+                                                    Display="Dynamic"
+                                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <br />
-                                <div class="row clearfix">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="modal-footer">
+                                    <asp:LinkButton runat="server" ID="bttGuardarPregunta" ValidationGroup="UsuarioValidar" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                                    <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
+                                </div>
+                            </asp:Panel>
+
+
+                            <!-- editor de respuestas -->
+                            <asp:Panel ID="PanelEditor" runat="server">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Preguntas de Seguridad</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Usted esta apunto de cambiar su respuesta para la pregunta:
+                         
+                               
+                                    <br />
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <asp:Label ID="lblIDPregunta" class="msg font-bold" runat="server" Text="..."></asp:Label>
+
+                                            <asp:Label ID="lblpregunta" class="msg font-bold" runat="server" Text="..."></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        </div>
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <asp:TextBox placeholder="Respuesta" AutoComplete="off" ID="txtrespuesta" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                                <asp:TextBox onkeyup="mayus(this);" placeholder="Respuesta" AutoComplete="off" ID="txtRespuestaEditar" runat="server" class="form-control"></asp:TextBox>
                                             </div>
-                                            <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtrespuesta"
+                                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtRespuestaEditar"
                                                 ErrorMessage="Debe de ingresar su respuesta."
                                                 Display="Dynamic"
                                                 ForeColor="OrangeRed" Font-Size="X-Small" />
                                         </div>
                                     </div>
                                 </div>
+                                <div class="modal-footer">
+                                    <asp:LinkButton runat="server" ID="bttActualizar" ValidationGroup="actualizarRespuesta" class="btn  btn-link  waves-effect">Actualizar</asp:LinkButton>
+                                    <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
+                                </div>
+                            </asp:Panel>
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                            </div>
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
         </div>
     </div>
