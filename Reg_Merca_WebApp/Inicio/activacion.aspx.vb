@@ -54,6 +54,8 @@ Public Class activacion
                     Page.Title = "Solicitud Caducada"
                 End If
             Else
+
+
                 PanelError.Visible = True
                 lblerror.Text = "Este intento de validación no es valido."
                 Page.Title = "Solicitud Invalida"
@@ -73,7 +75,7 @@ Public Class activacion
             If Session("NumReg") > 0 Then
                 Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
                 'pendiente de editar la fecha de vencimiento
-                Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  clave = SHA('" & txtContraConfirmar.Text & "'), estado = 1 where id_usuario=" & registro("id_usuario") & ";"
+                Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  clave = SHA('" & txtContraConfirmar.Text & "'), estado = 1 ,fecha_vencimiento = DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY where id_usuario=" & registro("id_usuario") & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

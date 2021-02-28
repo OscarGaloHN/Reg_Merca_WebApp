@@ -51,7 +51,11 @@ Public Class login
 
     Private Sub bttEntrar_Click(sender As Object, e As EventArgs) Handles bttEntrar.Click
         Dim Ssql As String = String.Empty
-        Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where usuario = BINARY  '" & txtUsuario.Text & "' and clave = SHA('" & txtContra.Text & "');"
+        Ssql = "SELECT CASE WHEN T02.CantiPreguntas IS NULL THEN 0 ELSE T02.CantiPreguntas END CantiPreguntas, T01.* FROM DB_Nac_Merca.tbl_02_usuarios T01 
+                LEFT JOIN (SELECT id_usuario, COUNT(*) as CantiPreguntas FROM DB_Nac_Merca.tbl_23_preguntas_usuario  
+                WHERE id_usuario = (SELECT id_usuario FROM DB_Nac_Merca.tbl_02_usuarios  
+                WHERE usuario = BINARY '" & txtUsuario.Text & "' GROUP BY id_usuario) 
+                ) T02 ON T01.id_usuario = T02.id_usuario   where T01.usuario = BINARY  '" & txtUsuario.Text & "' and clave = SHA('" & txtContra.Text & "');"
         Using con As New ControlDB
             DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -61,32 +65,37 @@ Public Class login
             'Si coloco las credenciales correctas
             registro = DataSetX.Tables(0).Rows(0)
             'CARGAR DATOS DE USUARIO
+            Session("user_idUsuario") = registro("id_usuario")
             Session("user_nombre_usuario") = registro("usuario")
             Session("user_nombre_personal") = registro("nombre")
             Session("user_correo") = registro("correo")
             Session("user_rol") = registro("id_rol")
             Session("user_confirma_correo") = registro("emailconfir")
             Session("user_estado") = registro("estado")
-
-            If Session("user_confirma_correo") = 1 Then ''VALIDAR QUE TENGA LA PREGUNTA
-                Select Case Session("user_estado")
-                    Case 0 'USUARIO CREADO
-                    Case 1 'CONFIGURAR USUARIO / nuevo
-                        'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Enviar a respoder preguntas.', 'error');</script>")
-                        Response.Redirect("~/modulos/confi_perfil_preguntas.aspx")
-
-                    Case 2 'activo
-                        'CARGAR DATOS DE USUARIO
-
-
-                        Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
+            Session("user_canti_preguntas") = registro("CantiPreguntas")
+            'If Session("user_confirma_correo") = 1 Then ''VALIDAR QUE TENGA LA PREGUNTA
+            Select Case Session("user_estado")
+                Case 0 'USUARIO CREADO
+                    'usuario creado por admin se otorgo contraseña enviar a activar
+                Case 1 'CONFIGURAR USUARIO / nuevo
+                    'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Enviar a respoder preguntas.', 'error');</script>")
+                    Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=autoquestions")
+                Case 2 'activo
+                    'CARGAR DATOS DE USUARIO
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
                         Using con As New ControlDB
                             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                         End Using
-                        If CBool(Application("ParametrosSYS")(2)) = True Then
+                    If CBool(Application("ParametrosSYS")(2)) = True Then
+                        'virificar que tenga las preguntas de seguridad contestadas
+                        If Session("user_canti_preguntas") >= Application("ParametrosADMIN")(8) Then
                             'si el sitio esta configurado
                             Response.Redirect("~/modulos/principal.aspx")
                         Else
+                            Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=awquestions")
+                        End If
+
+                    Else
                             Select Case CInt(Session("user_rol"))
                                 Case 5 'si el rol es admin
                                     Response.Redirect("~/modulos/confi_configurar.aspx")
@@ -96,17 +105,18 @@ Public Class login
 
                             End Select
                         End If
-                    Case 3 'bloqueado o inactivo
-                    Case 4 'bloqueo por intentos
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
-                    Case 5 'usuario caducado
-                    Case 6 'cambio clave
+
+                        Case 3 'bloqueado o inactivo
+                Case 4 'bloqueo por intentos
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
+                Case 5 'usuario caducado
+                Case 6 'cambio clave
 
                 End Select
-            Else
-                Session.Abandon()
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Confirmar Correo Electrónico','Para ingresar al sistema debe de confirmar su correo electrónico.', 'warning');</script>")
-            End If
+            'Else
+            '    Session.Abandon()
+            '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Confirmar Correo Electrónico','Para ingresar al sistema debe de confirmar su correo electrónico.', 'warning');</script>")
+            'End If
         Else
             ''''comporbar si el usuario existe para saber si escribio mal la contrasñea
             Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where usuario = BINARY  '" & txtUsuario.Text & "';"

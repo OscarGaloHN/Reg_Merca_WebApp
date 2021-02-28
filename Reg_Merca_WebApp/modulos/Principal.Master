@@ -8,9 +8,9 @@
 
 <html>
 <head runat="server">
-     <!-- Jquery Core Js -->
+    <!-- Jquery Core Js -->
     <script src="../plugins/jquery/jquery.min.js"></script>
-   
+
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>RegMERCA | <%: Page.Title  %></title>
@@ -40,6 +40,9 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
+    <script src="../plugins/sweetalert/sweetalert-dev.js"></script>
+    <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="../plugins/sweetalert/sweetalert.min.js"></script>
 </head>
 
 <body class="theme-teal">
@@ -70,8 +73,8 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                  <asp:ContentPlaceHolder ID="encabezado" runat="server">
-                    </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="encabezado" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
         </div>
     </nav>
@@ -89,13 +92,16 @@
                         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%: Session("user_nombre_personal") %></div>
                         <div class="email"><%: Session("user_correo") %></div>
                         <div class="btn-group user-helper-dropdown">
-                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                            <i class="material-icons" data-toggle="dropdown">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
+                                <li><a href="#"><i class="material-icons">person</i>Perfil</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a id="lblcerrar" runat="server" onserverclick="Salir_ServerClick" href="javascript:void(0);"><i class="material-icons">input</i>Cerrar Sesión</a></li>
+                                <li>
+                                    <asp:LinkButton ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
+
                             </ul>
                         </div>
+
                     </div>
                 </div>
                 <!-- #User Info -->
@@ -106,9 +112,9 @@
                 </div>
                 <!-- #Menu -->
                 <!-- Footer -->
-            
-                <uc1:piedepagina runat="server" id="piedepagina" />
-               <%-- <div class="legal">
+
+                <uc1:piedepagina runat="server" ID="piedepagina" />
+                <%-- <div class="legal">
                     <div class="copyright">
                         &copy; <%: Now.Year %> <a href="javascript:void(0);">RegMERCA</a>
                     </div>
@@ -131,26 +137,29 @@
                 </div>
             </div>
         </section>
+
+
+        <!-- Bootstrap Core Js -->
+        <script src="../plugins/bootstrap/js/bootstrap.js"></script>
+
+        <!-- Slimscroll Plugin Js -->
+        <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+        <!-- Jquery Spinner Plugin Js -->
+        <script src="../plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
+        <!-- Waves Effect Plugin Js -->
+        <script src="../plugins/node-waves/waves.js"></script>
+
+        <!-- Custom Js -->
+        <script src="../js/admin.js"></script>
+        <script src="../js/pages/ui/modals.js"></script>
+
+        <!-- Demo Js -->
+        <script src="../js/demo.js"></script>
+        <asp:ContentPlaceHolder ID="contenJSpie" runat="server">
+        </asp:ContentPlaceHolder>
     </form>
 
-   
-    <!-- Bootstrap Core Js -->
-    <script src="../plugins/bootstrap/js/bootstrap.js"></script>
-        
-    <!-- Slimscroll Plugin Js -->
-    <script src="../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-
-      <!-- Jquery Spinner Plugin Js -->
-    <script src="../plugins/jquery-spinner/js/jquery.spinner.js"></script>
-
-    <!-- Waves Effect Plugin Js -->
-    <script src="../plugins/node-waves/waves.js"></script>
-    
-    <!-- Custom Js -->
-    <script src="../js/admin.js"></script>
-    <script src="../js/pages/ui/modals.js"></script>
-   
-    <!-- Demo Js -->
-    <script src="../js/demo.js"></script>
 </body>
 </html>
