@@ -12,27 +12,27 @@
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
-            <a href="../../index.html">
+            <a href="menu_principal">
                 <i class="material-icons">home</i>
-                <span>Home</span>
+                <span>Inicio</span>
             </a>
         </li>
         <li class="active">
-            <a href="../../index.html">
-                <i class="material-icons">home</i>
+             <a href="#">
+                <i class="material-icons">settings</i>
                 <span>Configuraciones</span>
             </a>
         </li>
 
         <li>
 
-            <a href="../../index.html">
-                <i class="material-icons">home</i>
+            <a href="#">
+                <i class="material-icons">manage_accounts</i>
                 <span>Gestion de usuarios</span>
             </a>
         </li>
     </ul>
-    <% If Session("user_nombre_usuario") <> "" Then %>
+    <% If Session("user_usuario") <> "" Then %>
     <% If CBool(Application("ParametrosSYS")(3)) = True Then   %>
 
     <% End if  %>
@@ -47,18 +47,7 @@
                     <h2 style="font-weight: bold">Configuraciones 
                         <small>Informacion basica de la empresa y otras configuraciones</small>
                     </h2>
-                    <ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
-                                <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
-                                <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                  
                 </div>
                 <div class="body">
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Detalles de la empresa</h2>
@@ -66,22 +55,25 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ValidationGroup="configuraciones" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Nombre</label>
+                                    <asp:TextBox ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Nombre de la empresa</label>
                                 </div>
-                             <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtEmpresa"
-                                    ErrorMessage="Debe de ingresar su usuario."
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" ValidationGroup="configuraciones"/>
-                              
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtEmpresa"
+                                        ErrorMessage="Ingrese el nombre de la empresa."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Alias</label>
+                                    <label class="form-label">Alias de la empresa</label>
                                 </div>
+                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtAlias"
+                                        ErrorMessage="Ingrese el alias de la empresa."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
 
                         </div>
@@ -93,6 +85,10 @@
                                     <asp:TextBox ID="txtRTN" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">RTN</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtRTN"
+                                        ErrorMessage="Ingrese el RTN de la empresa."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -101,14 +97,22 @@
                                     <asp:TextBox ID="txtEmail" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Correo electronico</label>
                                 </div>
+                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtEmail"
+                                        ErrorMessage="Ingrese el Correo de la empresa."
+                                        Display="Dynamic" 
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtTel" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Telefono</label>
+                                    <label class="form-label">Telefono </label>
                                 </div>
+                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txttel"
+                                        ErrorMessage="Ingrese el telefono de la empresa."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
                     </div>
@@ -119,6 +123,22 @@
                                     <asp:TextBox ID="txtDireccion" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Dirección</label>
                                 </div>
+                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccion"
+                                        ErrorMessage="Ingrese la direccion de la empresa."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                        </div>
+                         <div class="col-sm-4">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox ID="TxtADMIN_URL_WEB" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">URL_WEB</label>
+                                </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtADMIN_URL_WEB"
+                                        ErrorMessage="Ingrese la URL WEB."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
 
@@ -132,27 +152,105 @@
                                     <asp:TextBox ID="txtEmailEnvio" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Correo electronico</label>
                                 </div>
+                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtEmailEnvio"
+                                        ErrorMessage="Ingrese el correo."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtContraseña" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Contraseña</label>
                                 </div>
+                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtContraseña"
+                                        ErrorMessage="Ingrese la contraseña."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtPuerto" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Puerto</label>
+                                    <label class="form-label">Puerto de salida</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtPuerto"
+                                        ErrorMessage="Ingrese el puerto de salida."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
+                         <div class="col-sm-2">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox ID="TextSMTP" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">SMTP</label>
+                                </div>
+                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtPuerto"
+                                        ErrorMessage="Ingrese el SMTP."
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                        </div>
+
                     </div>
-                    <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Inicio de sesión y constraseña</h2>
+                    <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Controlador de usuarios</h2>
                     <div class="row clearfix">
+                       
+                        <div class="col-sm-2">
+                            <small>Maximo de usuario</small>
+                            <div class="input-group spinner" data-trigger="spinner">
+                                <div class="form-line">
+                                    <input readonly="" runat="server" id="Text1" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
+                                </div>
+                                <span class="input-group-addon">
+                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </span>
+                            </div>
+
+                        </div>
+                          <div class="col-sm-2">
+                            <small>Minimo de usuario</small>
+                            <div class="input-group spinner" data-trigger="spinner">
+                                <div class="form-line">
+                                    <input readonly="" runat="server" id="Text2" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
+                                </div>
+                                <span class="input-group-addon">
+                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </span>
+                            </div>
+
+                        </div>
+                         <div class="col-sm-3">
+                            <small>Minimo de caracteres contraseña</small>
+                            <div class="input-group spinner" data-trigger="spinner">
+                                <div class="form-line">
+                                    <input readonly="" runat="server" id="Text3" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
+                                </div>
+                                <span class="input-group-addon">
+                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </span>
+                            </div>
+
+                        </div>
+                          <div class="col-sm-3">
+                            <small>Maximo caracteres contraseña</small>
+                            <div class="input-group spinner" data-trigger="spinner">
+                                <div class="form-line">
+                                    <input readonly="" runat="server" id="Text4" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
+                                </div>
+                                <span class="input-group-addon">
+                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </span>
+                            </div>
+
+                        </div>
                         <div class="col-sm-2">
                             <small>Vigencia de usuarios</small>
                             <div class="input-group spinner" data-trigger="spinner">
@@ -165,6 +263,12 @@
                                 </span>
                             </div>
                         </div>
+                       
+                        
+                    </div>
+                    <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Inicio de sesión y constraseña</h2>
+                    <div class="row clearfix">
+                        
                         <div class="col-sm-2">
                             <small>Intentos</small>
                             <div class="input-group spinner" data-trigger="spinner">
@@ -199,6 +303,7 @@
                                     <span class="lever switch-col-teal"></span>
                                     SI
                                 </label>
+
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -213,16 +318,17 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
 
                         <div class="col-sm-3 col-sm-offset-6 col-md-offset-6">
-                            <asp:LinkButton Width="100%" runat="server" ID="BttLimpiar" type="button" class="btn bg-pink waves-effect">
+                            <asp:LinkButton ValidationGroup="novalidarconfig" Width="100%" runat="server" ID="bttLimpiar" type="button" class="btn bg-pink waves-effect">
                             <i class="material-icons">refresh</i>
                             <span>Limpiar</span>
                             </asp:LinkButton>
                         </div>
                         <div class="col-sm-3">
-                            <asp:LinkButton  ValidationGroup="configuraciones" Width="100%" runat="server" ID="bttGuardar" type="button" class="btn bg-teal waves-effect">
+                            <asp:LinkButton Width="100%" runat="server" ID="bttGuardar" type="button" class="btn bg-teal waves-effect">
                             <i class="material-icons">save</i>
                             <span>Guardar</span>
                             </asp:LinkButton>
@@ -234,4 +340,8 @@
             </div>
         </div>
     </div>
+</asp:Content>
+
+
+<asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
