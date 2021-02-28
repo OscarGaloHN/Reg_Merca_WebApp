@@ -73,6 +73,11 @@ Public Class login
             Session("user_confirma_correo") = registro("emailconfir")
             Session("user_estado") = registro("estado")
             Session("user_canti_preguntas") = registro("CantiPreguntas")
+            'datos de conexion y reseteo de intentos malos
+            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
             'If Session("user_confirma_correo") = 1 Then ''VALIDAR QUE TENGA LA PREGUNTA
             Select Case Session("user_estado")
                 Case 0 'USUARIO CREADO
@@ -82,15 +87,18 @@ Public Class login
                     Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=autoquestions")
                 Case 2 'activo
                     'CARGAR DATOS DE USUARIO
-                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
-                        Using con As New ControlDB
-                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        End Using
+                    'verificar que el sistema este configurado
                     If CBool(Application("ParametrosSYS")(2)) = True Then
                         'virificar que tenga las preguntas de seguridad contestadas
                         If Session("user_canti_preguntas") >= Application("ParametrosADMIN")(8) Then
-                            'si el sitio esta configurado
-                            Response.Redirect("~/modulos/principal.aspx")
+                            'verificar el rol
+                            Select Case CInt(Session("user_rol"))
+                                Case 6 'si es auto registro
+                                    Response.Redirect("~/modulos/confi_rol.aspx")
+                                Case Else
+                                    'si el sitio esta configurado
+                                    Response.Redirect("~/modulos/principal.aspx")
+                            End Select
                         Else
                             Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=awquestions")
                         End If

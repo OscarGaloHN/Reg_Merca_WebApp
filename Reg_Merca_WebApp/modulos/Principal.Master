@@ -74,7 +74,6 @@
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <asp:ContentPlaceHolder ID="encabezado" runat="server">
                 </asp:ContentPlaceHolder>
@@ -97,10 +96,12 @@
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="#"><i class="material-icons">person</i>Perfil</a></li>
+                                 <% If Session("user_estado") = 2 Then %>
+                                <li><a id="lblIraPerfil" href="#"><i class="material-icons">person</i>Perfil</a></li>
                                 <li role="separator" class="divider"></li>
+                                <% end if %>
                                 <li>
-                                    <asp:LinkButton ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
+                                    <asp:LinkButton  ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
 
                             </ul>
                         </div>

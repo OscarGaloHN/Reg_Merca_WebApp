@@ -140,6 +140,15 @@ Partial Public Class confi_perfil_preguntas
     Protected WithEvents PanelEditor As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
+    '''Control lblHidden1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblHidden1 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Control lblIDPregunta.
     '''</summary>
     '''<remarks>
@@ -149,13 +158,31 @@ Partial Public Class confi_perfil_preguntas
     Protected WithEvents lblIDPregunta As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblpregunta.
+    '''Control SqlEditaPregunta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblpregunta As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents SqlEditaPregunta As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
+    '''Control CmbHiddenField1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents CmbHiddenField1 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control cmbNuevaPregunta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents cmbNuevaPregunta As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control txtRespuestaEditar.

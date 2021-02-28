@@ -11,5 +11,5 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class principal1
+Partial Public Class menu_principal
 End Class

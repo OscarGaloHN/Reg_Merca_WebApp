@@ -6,10 +6,14 @@ Session("id_usuarioPreguntas") = id de usuario para cargar las preguntas
 Session("preguntasDeUsuario") = 
 
   Datos del Usuario
+Session("user_idUsuario") = registro("id_usuario")
 Session("user_nombre_usuario") = registro("usuario")
 Session("user_nombre_personal") = registro("nombre")
 Session("user_correo") = registro("correo")
 Session("user_rol") = registro("id_rol")
+Session("user_confirma_correo") = registro("emailconfir")
+Session("user_estado") = registro("estado")
+Session("user_canti_preguntas") = registro("CantiPreguntas")
 
 Application("ParametrosSYS") = arreglo que almacena los paramteros de la aplicacion
 Application("ParametrosSYS")(0) = SYS_Nombre_Proyecto

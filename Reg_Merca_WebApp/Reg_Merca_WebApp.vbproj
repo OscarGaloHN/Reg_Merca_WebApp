@@ -212,9 +212,10 @@
     <Content Include="Inicio\registro.aspx" />
     <Content Include="modulos\confi_configurar.aspx" />
     <Content Include="modulos\confi_perfil.aspx" />
-    <Content Include="modulos\principal.aspx" />
+    <Content Include="modulos\menu_principal.aspx" />
     <Content Include="modulos\pruebas.aspx" />
     <Content Include="modulos\confi_perfil_preguntas.aspx" />
+    <Content Include="modulos\confi_rol.aspx" />
     <Content Include="modulos\src\DetalleVariables.txt" />
     <Content Include="modulos\src\piedepagina.ascx" />
     <Content Include="package-lock.json" />
@@ -1054,11 +1055,11 @@
       <DependentUpon>confi_perfil.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\principal.aspx.designer.vb">
-      <DependentUpon>principal.aspx</DependentUpon>
+    <Compile Include="modulos\menu_principal.aspx.designer.vb">
+      <DependentUpon>menu_principal.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\principal.aspx.vb">
-      <DependentUpon>principal.aspx</DependentUpon>
+    <Compile Include="modulos\menu_principal.aspx.vb">
+      <DependentUpon>menu_principal.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\Principal.Master.designer.vb">
@@ -1081,6 +1082,13 @@
     <Compile Include="modulos\confi_perfil_preguntas.aspx.vb">
       <DependentUpon>confi_perfil_preguntas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\confi_rol.aspx.designer.vb">
+      <DependentUpon>confi_rol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\confi_rol.aspx.vb">
+      <DependentUpon>confi_rol.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\src\ControlDB.vb" />
     <Compile Include="modulos\src\ControlCorreo.vb" />
