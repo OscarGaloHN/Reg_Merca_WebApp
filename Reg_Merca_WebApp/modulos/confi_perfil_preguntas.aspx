@@ -89,13 +89,13 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="confi_perfil.aspx">
                 <i class="material-icons">contact_page</i>
                 <span>Datos Generales</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="confi_cambio_contra.aspx">
                 <i class="material-icons">password</i>
                 <span>Cambio De Contraseña</span>
             </a>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="confi_cambio_contra.aspx.vb" Inherits="Reg_Merca_WebApp.confi_cambio_contra" %>
+﻿<%@ Page Title="Cambio de Contraseña" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="confi_cambio_contra.aspx.vb" Inherits="Reg_Merca_WebApp.confi_cambio_contra" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
@@ -14,13 +14,13 @@
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
-            <a href="../../index.html">
+            <a href="menu_principal.aspx">
                 <i class="material-icons">home</i>
                 <span>Inicio</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="confi_perfil.aspx">
                 <i class="material-icons">contact_page</i>
                 <span>Datos Generales</span>
             </a>
@@ -33,7 +33,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="confi_perfil_preguntas.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas De Seguridad</span>
             </a>
