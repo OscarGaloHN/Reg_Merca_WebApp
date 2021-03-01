@@ -50,6 +50,15 @@ Partial Public Class cambio_contra
     Protected WithEvents ValiContra As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''Control reContra.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents reContra As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''Control txtContraConfirmar.
     '''</summary>
     '''<remarks>
@@ -75,6 +84,15 @@ Partial Public Class cambio_contra
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Comparecontra As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''Control reContraConfirmar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents reContraConfirmar As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''Control bttCambiar.

@@ -12,6 +12,30 @@ Public Class activacion
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        'parametros de configuracion de sistema
+        Using Parametros_Sistema As New ControlDB
+            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        End Using
+
+        'PARAMETROS DE ADMINISTRADOR
+        Using Parametros_admin As New ControlDB
+            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        End Using
+
+
+        'parametros de contraseña
+        reContra.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(18) & " -" & Application("ParametrosADMIN")(0) & ")."
+        reContra.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
+        txtContra.MaxLength = Application("ParametrosADMIN")(0)
+
+        'parametros de contraseña confirmar
+        reContraConfirmar.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(18) & " -" & Application("ParametrosADMIN")(0) & ")."
+        reContraConfirmar.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
+        txtContraConfirmar.MaxLength = Application("ParametrosADMIN")(0)
+
+
+
+
         If Not Me.IsPostBack Then
             Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), Guid.Empty.ToString())
             Dim Ssql As String = "SELECT T01.*, T02.usuario FROM DB_Nac_Merca.tbl_35_activacion_usuario T01 left join DB_Nac_Merca.tbl_02_usuarios T02 on T01.id_usuario = T02.id_usuario where T01.codigo_activacion =  '" & activationCode & "'"
@@ -38,6 +62,7 @@ Public Class activacion
                             PanelConfirmar.DefaultButton = "bttContra"
                             bttContra.Visible = True
                             bttContra.Focus()
+
                         Case "clave" 'cambio de contraseña 
                             Page.Title = "Cambio de Contraseña"
                             lblSaludo.Text = "Hola"
@@ -47,10 +72,18 @@ Public Class activacion
                             PanelConfirmar.DefaultButton = "bttCambiarContra"
                             bttCambiarContra.Visible = True
                             bttCambiarContra.Focus()
+
                     End Select
                 Else
                     PanelCaducada.Visible = True
-                    lblcaduca.Text = "Su solicitud a cadacudao, debe de realizar una nueva solicitud de configuración."
+                    Select Case registro("tipo")
+                        Case "registro"
+                            lblcaduca.Text = "Su solicitud a cadacudao, debe de realizar una nueva solicitud de configuración."
+
+                        Case "clave"
+                            lblcaduca.Text = "Su solicitud a cadacudao, debe de realizar una nueva solicitud de cambio de contraseña."
+
+                    End Select
                     Page.Title = "Solicitud Caducada"
                 End If
             Else
@@ -65,31 +98,36 @@ Public Class activacion
     End Sub
 
     Private Sub bttContra_Click(sender As Object, e As EventArgs) Handles bttContra.Click
-        Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), Guid.Empty.ToString())
-        If PanelConfirmar.Visible = True Then
-            Dim Ssql As String = "SELECT *FROM DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
-                Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
-                'pendiente de editar la fecha de vencimiento
-                Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  clave = SHA('" & txtContraConfirmar.Text & "'), estado = 1 ,fecha_vencimiento = DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY where id_usuario=" & registro("id_usuario") & ";"
+        If UCase(txtContra.Text) = UCase(lblUsuario.Text) Then
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña no valida','La contraseña no puede ser igual a su nombre de usuario.', 'error');</script>")
+        Else
+            Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), Guid.Empty.ToString())
+            If PanelConfirmar.Visible = True Then
+                Dim Ssql As String = "SELECT *FROM DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
                 Using con As New ControlDB
-                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
+                If Session("NumReg") > 0 Then
+                    Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
+                    'pendiente de editar la fecha de vencimiento
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  clave = SHA('" & txtContraConfirmar.Text & "'), estado = 1 ,fecha_vencimiento = DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY where id_usuario=" & registro("id_usuario") & ";"
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
 
-                Ssql = "insert into DB_Nac_Merca.tbl_20_historico_claves (`id_usuario`, `clave`, `fecha`) VALUES(" & registro("id_usuario") & " , SHA('" & txtContraConfirmar.Text & "'), CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'));"
-                Using con As New ControlDB
-                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                End Using
+                    Ssql = "insert into DB_Nac_Merca.tbl_20_historico_claves (`id_usuario`, `clave`, `fecha`) VALUES(" & registro("id_usuario") & " , SHA('" & txtContraConfirmar.Text & "'), CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'));"
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
 
-                Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
-                Using con As New ControlDB
-                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                End Using
-                Response.Redirect("~/Inicio/login.aspx?acction=activateuser")
+                    Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+                    Session.Abandon()
+                    Response.Redirect("~/Inicio/login.aspx?acction=activateuser")
+                End If
             End If
         End If
     End Sub
@@ -112,7 +150,7 @@ Public Class activacion
 
             Select Case registro("tipo")
                 Case "registro"
-                    Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(7) & " DAY);"
+                    Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(7) & " DAY) where id_usuario=" & registro("id_usuario") & ";"
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
@@ -123,12 +161,13 @@ Public Class activacion
                                          registro("nombre"),
                                          Request.Url.AbsoluteUri.Replace(activationCode, activationCodeNuevo),
                                          "Continuar Registro",
-                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10))
+                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
+                                         Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                     End Using
 
 
                 Case "clave"
-                    Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(8) & " DAY);"
+                    Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(8) & " DAY) where id_usuario=" & registro("id_usuario") & ";"
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
@@ -139,45 +178,50 @@ Public Class activacion
                                          registro("nombre"),
                                          Request.Url.AbsoluteUri.Replace(activationCode, activationCodeNuevo),
                                          "Restablecer Contraseña",
-                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10))
+                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
+                                         Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                     End Using
             End Select
+            Session.Abandon()
             Response.Redirect("~/Inicio/login.aspx?acction=newsolicitud")
-
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Solicitud','No fue posible realizar la solicitud, contacte al adminstrador.', 'error');</script>")
         End If
     End Sub
 
     Private Sub bttCambiarContra_Click(sender As Object, e As EventArgs) Handles bttCambiarContra.Click
-        Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), Guid.Empty.ToString())
-        If PanelConfirmar.Visible = True Then
-            Dim Ssql As String = "SELECT *FROM DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
-                Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
-                'pendiente de editar la fecha de vencimiento
-                Ssql = "CALL contrasenas(" & registro("id_usuario") & ", SHA('" & txtContraConfirmar.Text & "'))"
+        If UCase(txtContra.Text) = UCase(lblUsuario.Text) Then
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña no valida','La contraseña no puede ser igual a su nombre de usuario.', 'error');</script>")
+        Else
+            Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), Guid.Empty.ToString())
+            If PanelConfirmar.Visible = True Then
+                Dim Ssql As String = "SELECT *FROM DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
                 If Session("NumReg") > 0 Then
-                    registro = DataSetX.Tables(0).Rows(0)
-                    Select Case registro("repetida")
-                        Case 1 'contraseña ya usada
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
-                        Case 2 'contraseña sin usar
-                            Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
-                            Using con As New ControlDB
-                                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                            End Using
-                            Session.Abandon()
-                            Response.Redirect("~/Inicio/login.aspx?acction=changepasswordout")
-                    End Select
+                    Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
+                    'pendiente de editar la fecha de vencimiento
+                    Ssql = "CALL contrasenas(" & registro("id_usuario") & ", SHA('" & txtContraConfirmar.Text & "'))"
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    If Session("NumReg") > 0 Then
+                        registro = DataSetX.Tables(0).Rows(0)
+                        Select Case registro("repetida")
+                            Case 1 'contraseña ya usada
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
+                            Case 2 'contraseña sin usar
+                                Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
+                                Using con As New ControlDB
+                                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                                End Using
+                                Session.Abandon()
+                                Response.Redirect("~/Inicio/login.aspx?acction=changepasswordout")
+                        End Select
+                    End If
                 End If
             End If
         End If

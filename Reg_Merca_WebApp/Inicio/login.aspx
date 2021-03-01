@@ -78,7 +78,7 @@
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <asp:TextBox ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox onkeypress="return noespacios(event)"  ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                         <label class="form-label">Contraseña</label>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"

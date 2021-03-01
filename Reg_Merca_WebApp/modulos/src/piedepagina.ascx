@@ -2,10 +2,10 @@
 <!-- Footer -->
 <div class="legal">
     <div class="copyright">
-        &copy; <%: Now.Year %> <a href="javascript:void(0);">RegMERCA</a>
+        &copy; <%: Now.Year %> <a href="javascript:void(0);"><%: Application("ParametrosSYS")(1) %></a>
     </div>
     <div class="version">
-        <b>Version: </b>BETA 1
+        <b>Version: </b><%: Application("ParametrosSYS")(0)  %>
     </div>
 </div>
 <!-- #Footer -->

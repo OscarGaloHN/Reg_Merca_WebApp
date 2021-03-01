@@ -58,7 +58,7 @@
                         </div>
                     </asp:Panel>
 
-                    <asp:Panel ID="PanelConfirmar" runat="server"  Visible="false">
+                    <asp:Panel ID="PanelConfirmar" runat="server" Visible="false">
                         <div class="msg font-bold col-teal">
                             <asp:Label ID="lblSaludo" runat="server" Text=""></asp:Label>
                             <asp:Label ID="lblUsuario" runat="server" Text=""></asp:Label>
@@ -75,13 +75,20 @@
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <asp:TextBox ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                                <asp:TextBox ID="txtContra"  onkeypress="return noespacios(event)" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                                 <label class="form-label">Nueva Contraseña</label>
                                             </div>
                                             <asp:RequiredFieldValidator runat="server" ID="ValiContra" ControlToValidate="txtContra"
                                                 ErrorMessage="Debe de ingresar su nueva contraseña."
                                                 Display="Dynamic"
                                                 ForeColor="OrangeRed" Font-Size="X-Small" />
+
+                                            <asp:RegularExpressionValidator runat="server" ID="reContra"
+                                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                                ControlToValidate="txtContra" />
+
+
+
                                         </div>
                                     </div>
                                     <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
@@ -103,7 +110,7 @@
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <asp:TextBox ID="txtContraConfirmar" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                                <asp:TextBox  onkeypress="return noespacios(event)" ID="txtContraConfirmar" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                                 <label class="form-label">Confrimar contraseña</label>
                                             </div>
                                             <asp:RequiredFieldValidator runat="server" ID="ValidaConfirmar" ControlToValidate="txtContraConfirmar"
@@ -114,6 +121,10 @@
                                                 ErrorMessage="Las contraseñas no coincide."
                                                 Display="Dynamic"
                                                 ForeColor="OrangeRed" Font-Size="X-Small" />
+                                            
+                                            <asp:RegularExpressionValidator runat="server" ID="reContraConfirmar"
+                                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                                ControlToValidate="txtContraConfirmar" />
                                         </div>
                                     </div>
                                     <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
@@ -126,8 +137,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <asp:LinkButton  onfocus="myFunctionfoco('txtContra')"  Visible ="false"  class="btn btn-block btn-lg bg-pink waves-effect" ID="bttContra" runat="server" Text="ESTABLECER CONTRASEÑA" />
-                                        <asp:LinkButton   onfocus="myFunctionfoco('txtContra')"  Visible ="false"  class="btn btn-block btn-lg bg-pink waves-effect" ID="bttCambiarContra" runat="server" Text="CAMBIAR CONTRASEÑA" />
+                                        <asp:LinkButton onfocus="myFunctionfoco('txtContra')" Visible="false" class="btn btn-block btn-lg bg-pink waves-effect" ID="bttContra" runat="server" Text="ESTABLECER CONTRASEÑA" />
+                                        <asp:LinkButton onfocus="myFunctionfoco('txtContra')" Visible="false" class="btn btn-block btn-lg bg-pink waves-effect" ID="bttCambiarContra" runat="server" Text="CAMBIAR CONTRASEÑA" />
                                     </div>
                                 </div>
                             </div>

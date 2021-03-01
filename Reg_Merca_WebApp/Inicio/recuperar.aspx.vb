@@ -40,6 +40,7 @@
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Este usuario puede estar inactivo, caducado o sin completar el registro.', 'warning');</script>")
             Else
                 Session("id_usuarioPreguntas") = registro("id_usuario")
+                Session("nombre_usuario_comparar") = txtUsuarioPreguntas.Text
                 Response.Redirect("~/Inicio/preguntas.aspx")
             End If
         Else
@@ -79,7 +80,8 @@
                                          registro("nombre"),
                                          Request.Url.AbsoluteUri.Replace("recuperar", Convert.ToString("activacion.aspx?ActivationCode=") & activationCode),
                                          "Restablecer Contraseña",
-                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10))
+                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
+                                         Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                 End Using
                 Response.Redirect("~/Inicio/login.aspx?acction=newsolicitud")
             End If

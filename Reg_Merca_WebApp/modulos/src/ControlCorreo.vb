@@ -7,14 +7,24 @@ Public Class ControlCorreo
     Public Sub Dispose2() Implements IDisposable.Dispose
         GC.SuppressFinalize(Me)
     End Sub
-    Function envio_correo(ByVal xmsj As String, ByVal xmsjLink As String, ByVal emaildDestinatario As String, ByVal emailRemitente As String, ByVal calve As String, ByVal nombredDestinatario As String, ByVal urlLink As String, ByVal asunto As String, ByVal Host As String, ByVal puerto As Integer)
+
+    Function envio_correo(ByVal xmsj As String, ByVal xmsjLink As String, ByVal emaildDestinatario As String, ByVal emailRemitente As String, ByVal calve As String, ByVal nombredDestinatario As String, ByVal urlLink As String, ByVal asunto As String, ByVal Host As String, ByVal puerto As Integer, ByVal xversionapp As String)
         Using mm As New MailMessage(emailRemitente, emaildDestinatario)
             mm.Subject = asunto
             mm.From = New MailAddress(emailRemitente, "RegMERCA")
-            Dim body As String = "Hola " + nombredDestinatario + ","
-            body += "<br /><br />" + xmsj
-            body += "<br /><a href = '" + urlLink + "'>" + xmsjLink + "</a>"
-            body += "<br /><br />Gracias"
+            Dim body As String = "<!DOCTYPE html><html lang='es'><head><meta charset='utf-8'><title>Correo recuperacion</title></head>"
+            body += "<body style='background-color: #ecf0f1 '><table style='max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;'><tr>"
+            body += "<td style='background-color: #ecf0f1; text-align: Left(); padding: 0'>"
+            body += "<img width='20%' style='display:block; margin: 2% 40.5%' src='https://drive.google.com/thumbnail?id=1CS7FKbXrvqBtp9ceQsh4_v1N7nbYSFkL'>"
+            body += "</a></td></tr></tr></tr></tr><td style='background-color: #ecf0f1'>"
+            body += "<div style='color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif'>"
+            body += "<h2 style='color: #009788; margin: 0 0 7px'>Estimado (a) " + nombredDestinatario + ".</h2>"
+            body += "<p style='margin: 2px; font-size: 15px'> " + xmsj + " <br></ul>"
+            body += "<div style='width: 100%; text-align: center; margin-top:5%'><br>"
+            body += "<a style='text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #009788' href=" + urlLink
+            body += ">" + xmsjLink + " </a></div><p style='color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0'>" + xversionapp + "</p></div></tr></td></table></body></html>"
+
+
             mm.Body = body
             mm.IsBodyHtml = True
             Dim smtp As New SmtpClient()
@@ -30,8 +40,6 @@ Public Class ControlCorreo
         Return True
 
     End Function
-
-
 
     Private des As New TripleDESCryptoServiceProvider 'Algorithmo TripleDES
     Private hashmd5 As New MD5CryptoServiceProvider 'objeto md5

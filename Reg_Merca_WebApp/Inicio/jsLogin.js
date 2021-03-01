@@ -82,3 +82,11 @@ function mayusculapalabras(e) {
     nombre = cadena.join(' ');
     e.value = nombre
 }
+
+//NO ESPACIOS
+function noespacios(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode == 32)
+        return false;
+    return true;
+}
