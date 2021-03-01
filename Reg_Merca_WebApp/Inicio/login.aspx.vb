@@ -45,6 +45,8 @@ Public Class login
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Activación','Su ususario esta activado, inicie sesión para configurar su cuenta.', 'success');</script>")
                 Case "newsolicitud"
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nueva Solicitud','Hemos enviado detalles a su correo electronico para completar su solicitud', 'success');</script>")
+                Case "activateemail"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electrónico','Gracias por verificar su correo electrónico.', 'success');</script>")
             End Select
 
 
@@ -96,6 +98,8 @@ Public Class login
             Select Case Session("user_estado")
                 Case 0 'USUARIO CREADO
                     'usuario creado por admin se otorgo contraseña enviar a activar
+                    Response.Redirect("~/inicio/activacion.aspx?acction=activateuser&userregis=" & Session("user_idUsuario"))
+
                 Case 1 'CONFIGURAR USUARIO / nuevo
                     'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Enviar a respoder preguntas.', 'error');</script>")
                     Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=autoquestions")
@@ -151,6 +155,7 @@ Public Class login
                 Case 4 'bloqueo por intentos
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
                 Case 5 'usuario caducado
+
                 Case 6 'cambio clave
 
                 End Select
