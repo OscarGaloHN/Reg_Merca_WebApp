@@ -90,3 +90,13 @@ function noespacios(evt) {
         return false;
     return true;
 }
+
+function mouseOver(txtMostrar, iconoOjoo) {
+    document.querySelector('#' + txtMostrar).setAttribute("type", "text");
+    document.getElementById(iconoOjoo).innerHTML = "visibility";
+}
+
+function mouseOut(txtOcultar, iconoOjoo) {
+    document.querySelector('#' + txtOcultar).setAttribute("type", "password");
+    document.getElementById(iconoOjoo).innerHTML = "visibility_off";
+}

@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="confi_cambio_contra.aspx.vb" Inherits="Reg_Merca_WebApp.confi_cambio_contra" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+
+</script>
+
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
@@ -58,10 +63,10 @@
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <asp:TextBox ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                                <asp:TextBox ID="txtContraactual" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                                 <label class="form-label">Contraseña Actual</label>
                                             </div>
-                                            <asp:RequiredFieldValidator runat="server" ID="ValiContra" ControlToValidate="txtContra"
+                                            <asp:RequiredFieldValidator runat="server" ID="ValiContra" ControlToValidate="txtContraactual"
                                                 ErrorMessage="Debe de ingresar su contraseña actual."
                                                 Display="Dynamic"
                                                 ForeColor="OrangeRed" Font-Size="X-Small" />
@@ -70,7 +75,7 @@
                                     <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                         <div class="input-group">
                                             <span>
-                                                <i id="show_password3" style="cursor: default" class="material-icons">visibility_off</i>
+                                                <i id="mostraractual" onmouseover="mouseOver('ContentPrincipal_txtContraactual','mostraractual')" onmouseout="mouseOut('ContentPrincipal_txtContraactual','mostraractual')" style="cursor: default" class="material-icons">visibility_off</i>
                                             </span>
                                         </div>
                                     </div>
@@ -85,19 +90,28 @@
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <asp:TextBox ID="txtContranu" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                                <asp:TextBox ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                                 <label class="form-label">Contraseña Nueva</label>
                                             </div>
-                                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContranu"
+                                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
                                                 ErrorMessage="Debe de ingresar su nueva contraseña."
                                                 Display="Dynamic"
                                                 ForeColor="OrangeRed" Font-Size="X-Small" />
+                                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtContra"
+                                                ErrorMessage="La contraseña no puede ser igual a la anterior."
+                                                Display="Dynamic" ControlToCompare ="txtContraactual"
+                                                ForeColor="OrangeRed" Font-Size="X-Small" Operator="NotEqual">
+   
+                                            </asp:CompareValidator>
+                                            <asp:RegularExpressionValidator runat="server" ID="reContra"
+                                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                                ControlToValidate="txtContra" />
                                         </div>
                                     </div>
                                     <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                         <div class="input-group">
                                             <span>
-                                                <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
+                                                <i id="mostrarnueva" onmouseout="mouseOut('ContentPrincipal_txtContra','mostrarnueva')" onmouseover="mouseOver('ContentPrincipal_txtContra','mostrarnueva')" style="cursor: default" class="material-icons">visibility_off</i>
                                             </span>
                                         </div>
                                     </div>
@@ -119,16 +133,20 @@
                                                 ErrorMessage="Debe de confirmar la nueva contraseña."
                                                 Display="Dynamic"
                                                 ForeColor="OrangeRed" Font-Size="X-Small" />
-                                            <asp:CompareValidator ID="Comparecontra" runat="server" ControlToCompare="txtContranu" ControlToValidate="txtContraConfirmar"
+                                            <asp:CompareValidator ID="Comparecontra" runat="server" ControlToCompare="txtContra" ControlToValidate="txtContraConfirmar"
                                                 ErrorMessage="Las contraseñas no coincide."
                                                 Display="Dynamic"
                                                 ForeColor="OrangeRed" Font-Size="X-Small" />
+                                             <asp:RegularExpressionValidator runat="server" ID="reContraConfirmar"
+                                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                                ControlToValidate="txtContraConfirmar" />
+                                                </div>
                                         </div>
                                     </div>
                                     <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                         <div class="input-group">
                                             <span>
-                                                <i id="show_password2" style="cursor: default" class="material-icons">visibility_off</i>
+                                                <i id="mostrarconfirmar" onmouseout="mouseOut('ContentPrincipal_txtContraConfirmar','mostrarconfirmar')" onmouseover="mouseOver('ContentPrincipal_txtContraConfirmar','mostrarconfirmar')" style="cursor: default" class="material-icons">visibility_off</i>
                                             </span>
                                         </div>
                                     </div>

@@ -75,16 +75,25 @@
                         <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                             Width="100%">
                             <Columns>
-                                <%--<asp:CustomButton ID="bttEditor" Styles-Style-Font-Size="Large" Styles-Style-CssClass="fas fa-user-edit" Text=" "></asp:CustomButton>
-                                <asp:ButtonField CommandName="Edit" Text='<span class="material-icons">face</span>' ButtonType="Button" ShowHeader="True" HeaderText="Editar"></asp:ButtonField>
+                               <%-- <asp:CustomButton ID="bttEditor" Styles-Style-Font-Size="Large" Styles-Style-CssClass="fas fa-user-edit" Text=" "></asp:CustomButton>
+                               --%> <%--<asp:ButtonField CommandName="Edit" Text='<span class="material-icons">face</span>' ButtonType="Button" ShowHeader="True" HeaderText="Editar"></asp:ButtonField>--%>
+                        
+                                <asp:BoundField DataField="id_pregunta" HtmlEncode="False" DataFormatString="<a   class='btn bg-red waves-effect'   href='confi_perfil.aspx?id={0}'><i class='material-icons'>edit</i>  </a>" /> 
+                                
+                                <asp:hyperlinkfield datatextfield="id_pregunta"
+            datanavigateurlfields="id_pregunta"
+            datanavigateurlformatstring="confi_perfil.aspx?id={0}"          
+            headertext="editar"  />
+                                
+                                
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <a href="javascript:void(0);" datanavigateurlformatstring="confi_perfil.aspx?id={0}&name={1}" runat="server" datanavigateurlfields="id_pregunta,pregunta">
+                                        <asp:HyperLink   datanavigateurlformatstring="confi_perfil.aspx?id={0}&name={1}" runat="server" datanavigateurlfields="id_pregunta,pregunta">
 
-                                            <i class="material-icons" data-toggle="modal" data-target="#defaultModal">accessibility</i>    </a>
+                                            <i class="material-icons" data-toggle="modal" data-target="#defaultModal">accessibility</i>    </asp:HyperLink>
                                  
                                     </ItemTemplate>
-                                </asp:TemplateField>--%>
+                                </asp:TemplateField>
                                 <asp:TemplateField>
                                     <ItemTemplate>
 

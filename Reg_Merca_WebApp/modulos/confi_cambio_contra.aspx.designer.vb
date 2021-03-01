@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class confi_cambio_contra
 
     '''<summary>
-    '''Control txtContra.
+    '''Control txtContraactual.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtContra As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtContraactual As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control ValiContra.
@@ -32,13 +32,13 @@ Partial Public Class confi_cambio_contra
     Protected WithEvents ValiContra As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtContranu.
+    '''Control txtContra.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtContranu As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtContra As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator1.
@@ -48,6 +48,24 @@ Partial Public Class confi_cambio_contra
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''Control CompareValidator1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''Control reContra.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents reContra As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''Control txtContraConfirmar.
@@ -75,6 +93,15 @@ Partial Public Class confi_cambio_contra
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Comparecontra As Global.System.Web.UI.WebControls.CompareValidator
+
+    '''<summary>
+    '''Control reContraConfirmar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents reContraConfirmar As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''Control bttCambiar.
