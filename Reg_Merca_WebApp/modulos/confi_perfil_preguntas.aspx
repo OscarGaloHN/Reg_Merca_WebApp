@@ -147,7 +147,6 @@
                     <br />
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
                             <div class="table-responsive">
                                 <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                     Width="100%">

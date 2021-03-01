@@ -212,49 +212,49 @@ Partial Public Class configurar
     Protected WithEvents RequiredFieldValidator11 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control Text1.
+    '''Control txtmaximousu.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Text1 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtmaximousu As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control Text2.
+    '''Control txtminimousu.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Text2 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtminimousu As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control Text3.
+    '''Control txtminimocarac.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Text3 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtminimocarac As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control Text4.
+    '''Control txtmaximocarat.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Text4 As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtmaximocarat As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control txtCaracteresContra.
+    '''Control txtvigenciausu.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtCaracteresContra As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtvigenciausu As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
     '''Control txtIntentos.

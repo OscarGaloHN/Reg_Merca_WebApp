@@ -104,27 +104,24 @@ Public Class login
                     'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Enviar a respoder preguntas.', 'error');</script>")
                     Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=autoquestions")
                 Case 2 'activo
-                    'CARGAR DATOS DE USUARIO
+                    If chkRecordar.Checked = True Then
+                        Response.Cookies("UserName").Expires = DateTime.Now.AddDays(30)
+                        Response.Cookies("Password").Expires = DateTime.Now.AddDays(30)
+                        Response.Cookies("chkRecordar").Expires = DateTime.Now.AddDays(30)
+                    Else
+                        Response.Cookies("UserName").Expires = DateTime.Now.AddDays(-1)
+                        Response.Cookies("Password").Expires = DateTime.Now.AddDays(-1)
+                        Response.Cookies("chkRecordar").Expires = DateTime.Now.AddDays(-1)
+                    End If
+
+                    Using encriptarck As New ControlCorreo
+                        Response.Cookies("Password").Value = encriptarck.Encriptar(txtContra.Text.Trim)
+                        Response.Cookies("UserName").Value = encriptarck.Encriptar(txtUsuario.Text.Trim)
+                    End Using
+
+                    Response.Cookies("chkRecordar").Value = chkRecordar.Checked
                     'verificar que el sistema este configurado
                     If CBool(Application("ParametrosSYS")(2)) = True Then
-                        If chkRecordar.Checked = True Then
-                            Response.Cookies("UserName").Expires = DateTime.Now.AddDays(30)
-                            Response.Cookies("Password").Expires = DateTime.Now.AddDays(30)
-                            Response.Cookies("chkRecordar").Expires = DateTime.Now.AddDays(30)
-                        Else
-                            Response.Cookies("UserName").Expires = DateTime.Now.AddDays(-1)
-                            Response.Cookies("Password").Expires = DateTime.Now.AddDays(-1)
-                            Response.Cookies("chkRecordar").Expires = DateTime.Now.AddDays(-1)
-                        End If
-
-                        Using encriptarck As New ControlCorreo
-                            Response.Cookies("Password").Value = encriptarck.Encriptar(txtContra.Text.Trim)
-                            Response.Cookies("UserName").Value = encriptarck.Encriptar(txtUsuario.Text.Trim)
-                        End Using
-
-                        Response.Cookies("chkRecordar").Value = chkRecordar.Checked
-
-
                         'virificar que tenga las preguntas de seguridad contestadas
                         If Session("user_canti_preguntas") >= Application("ParametrosADMIN")(8) Then
                             'verificar el rol

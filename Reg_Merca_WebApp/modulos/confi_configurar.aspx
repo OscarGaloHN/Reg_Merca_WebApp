@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Configuración" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="confi_configurar.aspx.vb" Inherits="Reg_Merca_WebApp.configurar" %>
 
+
 <asp:Content ID="Content4" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">Configuración</a>
 </asp:Content>
@@ -95,10 +96,10 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtEmail" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Correo electronico</label>
+                                    <label class="form-label">Correo electrónico</label>
                                 </div>
                                  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtEmail"
-                                        ErrorMessage="Ingrese el Correo de la empresa."
+                                        ErrorMessage="Ingrese el Correo electrónico de la empresa."
                                         Display="Dynamic" 
                                         ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
@@ -107,10 +108,10 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtTel" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Telefono </label>
+                                    <label class="form-label">Teléfono </label>
                                 </div>
                                  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txttel"
-                                        ErrorMessage="Ingrese el telefono de la empresa."
+                                        ErrorMessage="Ingrese el teléfono de la empresa."
                                         Display="Dynamic"
                                         ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
@@ -124,7 +125,7 @@
                                     <label class="form-label">Dirección</label>
                                 </div>
                                  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccion"
-                                        ErrorMessage="Ingrese la direccion de la empresa."
+                                        ErrorMessage="Ingrese la dirección de la empresa."
                                         Display="Dynamic"
                                         ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
@@ -133,7 +134,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="TxtADMIN_URL_WEB" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">URL_WEB</label>
+                                    <label class="form-label">URL WEB</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtADMIN_URL_WEB"
                                         ErrorMessage="Ingrese la URL WEB."
@@ -150,10 +151,10 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtEmailEnvio" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Correo electronico</label>
+                                    <label class="form-label">Correo electrónico</label>
                                 </div>
                                  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtEmailEnvio"
-                                        ErrorMessage="Ingrese el correo."
+                                        ErrorMessage="Ingrese el correo electrónico."
                                         Display="Dynamic"
                                         ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
@@ -200,10 +201,10 @@
                     <div class="row clearfix">
                        
                         <div class="col-sm-2">
-                            <small>Maximo de usuario</small>
+                            <small>Máximo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input readonly="" runat="server" id="Text1" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
+                                    <input readonly="" runat="server" id="txtmaximousu" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -213,10 +214,10 @@
 
                         </div>
                           <div class="col-sm-2">
-                            <small>Minimo de usuario</small>
+                            <small>Mínimo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input readonly="" runat="server" id="Text2" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
+                                    <input readonly="" runat="server" id="txtminimousu" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -226,10 +227,10 @@
 
                         </div>
                          <div class="col-sm-3">
-                            <small>Minimo de caracteres contraseña</small>
+                            <small>Mínimo de caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input readonly="" runat="server" id="Text3" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
+                                    <input readonly="" runat="server" id="txtminimocarac" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -239,10 +240,10 @@
 
                         </div>
                           <div class="col-sm-3">
-                            <small>Maximo caracteres contraseña</small>
+                            <small>Máximo caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input readonly="" runat="server" id="Text4" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
+                                    <input readonly="" runat="server" id="txtmaximocarat" type="text" class="form-control text-center" value="1" data-rule="quantity" data-max="30" data-min="1">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -255,7 +256,7 @@
                             <small>Vigencia de usuarios</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input readonly="" runat="server" id="txtCaracteresContra" type="text" class="form-control text-center" value="5" data-rule="quantity" data-max="1095" data-min="60">
+                                    <input readonly="" runat="server" id="txtvigenciausu" type="text" class="form-control text-center" value="5" data-rule="quantity" data-max="1095" data-min="60">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>

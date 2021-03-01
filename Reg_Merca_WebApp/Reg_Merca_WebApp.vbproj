@@ -210,6 +210,7 @@
     <Content Include="Inicio\prueba_grid.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
+    <Content Include="modulos\confi_cambio_contra.aspx" />
     <Content Include="modulos\confi_configurar.aspx" />
     <Content Include="modulos\confi_perfil.aspx" />
     <Content Include="modulos\menu_principal.aspx" />
@@ -1040,6 +1041,13 @@
     </Compile>
     <Compile Include="Inicio\registro.aspx.vb">
       <DependentUpon>registro.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\confi_cambio_contra.aspx.designer.vb">
+      <DependentUpon>confi_cambio_contra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\confi_cambio_contra.aspx.vb">
+      <DependentUpon>confi_cambio_contra.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\confi_configurar.aspx.designer.vb">
