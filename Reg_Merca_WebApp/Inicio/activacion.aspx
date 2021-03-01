@@ -75,7 +75,7 @@
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <asp:TextBox ID="txtContra"  onkeypress="return noespacios(event)" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                                <asp:TextBox ID="txtContra" onkeypress="return noespacios(event)" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                                 <label class="form-label">Nueva Contraseña</label>
                                             </div>
                                             <asp:RequiredFieldValidator runat="server" ID="ValiContra" ControlToValidate="txtContra"
@@ -87,6 +87,9 @@
                                                 Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                                 ControlToValidate="txtContra" />
 
+                                            <asp:RegularExpressionValidator runat="server" ID="validadorContraRobusta"
+                                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                                ControlToValidate="txtContra" />
 
 
                                         </div>
@@ -110,7 +113,7 @@
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <asp:TextBox  onkeypress="return noespacios(event)" ID="txtContraConfirmar" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                                <asp:TextBox onkeypress="return noespacios(event)" ID="txtContraConfirmar" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                                 <label class="form-label">Confrimar contraseña</label>
                                             </div>
                                             <asp:RequiredFieldValidator runat="server" ID="ValidaConfirmar" ControlToValidate="txtContraConfirmar"
@@ -121,7 +124,7 @@
                                                 ErrorMessage="Las contraseñas no coincide."
                                                 Display="Dynamic"
                                                 ForeColor="OrangeRed" Font-Size="X-Small" />
-                                            
+
                                             <asp:RegularExpressionValidator runat="server" ID="reContraConfirmar"
                                                 Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                                 ControlToValidate="txtContraConfirmar" />

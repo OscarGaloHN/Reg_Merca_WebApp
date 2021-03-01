@@ -34,7 +34,9 @@
             reContraConfirmar.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
             txtContraConfirmar.MaxLength = Application("ParametrosADMIN")(0)
 
-
+            'parametros de contraseña robusta
+            validadorContraRobusta.ErrorMessage = "La contraseña debe contener 1 letra minuscula, 1 letra mayuscula, 1 carácter especial, 1 numero y el rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(18) & " -" & Application("ParametrosADMIN")(0) & ")."
+            validadorContraRobusta.ValidationExpression = "^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
         End If
     End Sub
 
@@ -87,7 +89,7 @@
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
                             Case 2 'contraseña sin usar
                                 Session.Abandon()
-                                Response.Redirect("~/Inicio/login.aspx?acction=changepasswordout")
+                                Response.Redirect("~/Inicio/login.aspx?action=changepasswordout")
                         End Select
                     End If
                 End If

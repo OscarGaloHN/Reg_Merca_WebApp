@@ -13,8 +13,8 @@
         '    btt_actualizarco.Enabled = False
         'End If
         Dim Ssql As String = String.Empty
-        Session("user_idUsuario") = 10
-        Session("user_nombre_personal") = "Oscar Rene Amador"
+        'Session("user_idUsuario") = 10
+        'Session("user_nombre_personal") = "Oscar Rene Amador"
 
         Ssql = "SELECT nombre,usuario,correo,fecha_creacion,fecha_vencimiento FROM DB_Nac_Merca.tbl_02_usuarios where id_usuario= " & Session("user_idUsuario") & ";"
         Using con As New ControlDB
@@ -74,7 +74,8 @@
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                 End Using
 
-
+                Session("user_correo") = txtCorreoElectronico.Text
+                Session("user_confirma_correo") = 0
                 txtCorreoElectronico.Text = ""
                 Response.Redirect("~/modulos/confi_perfil.aspx?action=cambiocorreo")
             End If

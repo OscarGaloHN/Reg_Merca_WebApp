@@ -33,6 +33,9 @@ Public Class activacion
         reContraConfirmar.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
         txtContraConfirmar.MaxLength = Application("ParametrosADMIN")(0)
 
+        'parametros de contraseña robusta
+        validadorContraRobusta.ErrorMessage = "La contraseña debe contener 1 letra minuscula, 1 letra mayuscula, 1 carácter especial, 1 numero y el rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(18) & " -" & Application("ParametrosADMIN")(0) & ")."
+        validadorContraRobusta.ValidationExpression = "^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
 
 
         If Not Me.IsPostBack Then
@@ -116,8 +119,7 @@ Public Class activacion
                                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                                     End Using
                                     Session.Abandon()
-                            Session.Abandon()
-                                    Response.Redirect("~/Inicio/login.aspx?acction=activateemail")
+                                    Response.Redirect("~/Inicio/login.aspx?action=activateemail")
                             End Select
                         Else
                             PanelCaducada.Visible = True
@@ -190,7 +192,7 @@ Public Class activacion
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
                     Session.Abandon()
-                    Response.Redirect("~/Inicio/login.aspx?acction=activateuser")
+                    Response.Redirect("~/Inicio/login.aspx?action=activateuser")
                 End If
             End If
         End If
@@ -271,7 +273,7 @@ Public Class activacion
                     End Using
             End Select
             Session.Abandon()
-            Response.Redirect("~/Inicio/login.aspx?acction=newsolicitud")
+            Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Solicitud','No fue posible realizar la solicitud, contacte al adminstrador.', 'error');</script>")
         End If
@@ -307,7 +309,7 @@ Public Class activacion
                                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                                 End Using
                                 Session.Abandon()
-                                Response.Redirect("~/Inicio/login.aspx?acction=changepasswordout")
+                                Response.Redirect("~/Inicio/login.aspx?action=changepasswordout")
                         End Select
                     End If
                 End If

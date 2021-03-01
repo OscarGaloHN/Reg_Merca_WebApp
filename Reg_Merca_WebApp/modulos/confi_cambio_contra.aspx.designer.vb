@@ -59,6 +59,15 @@ Partial Public Class confi_cambio_contra
     Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
+    '''Control validadorContraRobusta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents validadorContraRobusta As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''Control reContra.
     '''</summary>
     '''<remarks>

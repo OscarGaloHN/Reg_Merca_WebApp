@@ -210,6 +210,7 @@
     <Content Include="Inicio\prueba_grid.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
+    <Content Include="modulos\Config_Gestion_Usuario.aspx" />
     <Content Include="modulos\confi_cambio_contra.aspx" />
     <Content Include="modulos\confi_configurar.aspx" />
     <Content Include="modulos\confi_perfil.aspx" />
@@ -1041,6 +1042,13 @@
     </Compile>
     <Compile Include="Inicio\registro.aspx.vb">
       <DependentUpon>registro.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\Config_Gestion_Usuario.aspx.designer.vb">
+      <DependentUpon>Config_Gestion_Usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\Config_Gestion_Usuario.aspx.vb">
+      <DependentUpon>Config_Gestion_Usuario.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\confi_cambio_contra.aspx.designer.vb">

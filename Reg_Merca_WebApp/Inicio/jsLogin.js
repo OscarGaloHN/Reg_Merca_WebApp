@@ -100,3 +100,9 @@ function mouseOut(txtOcultar, iconoOjoo) {
     document.querySelector('#' + txtOcultar).setAttribute("type", "password");
     document.getElementById(iconoOjoo).innerHTML = "visibility_off";
 }
+
+//Función que permite solo Números
+function SoloNumeros() {
+ if ((event.keyCode < 48) || (event.keyCode > 57)) 
+  event.returnValue = false;
+}

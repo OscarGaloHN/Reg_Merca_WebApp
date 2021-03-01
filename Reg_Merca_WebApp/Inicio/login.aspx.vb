@@ -36,9 +36,9 @@ Public Class login
             txtContra.MaxLength = Application("ParametrosADMIN")(0)
 
             bttEntrar.Focus()
-            Select Case Request.QueryString("acction")
+            Select Case Request.QueryString("action")
                 Case "changepasswordout"
-                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','Cambio de contraseña completo.', 'success');</script>")
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','Cambio de contraseña completo, inicie sesión con su nueva contraseña.', 'success');</script>")
                 Case "registro"
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Registro','La solicite de registro se ha completado, hemos enviado detalles a su correo electronico para completar su solicitud.', 'success');</script>")
                 Case "activateuser"
@@ -47,6 +47,8 @@ Public Class login
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nueva Solicitud','Hemos enviado detalles a su correo electronico para completar su solicitud', 'success');</script>")
                 Case "activateemail"
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electrónico','Gracias por verificar su correo electrónico.', 'success');</script>")
+                Case "systemconfig"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Sistema Configurado','Los cambios fueron aplicados se cerro la sesión para recargar los parametros', 'success');</script>")
             End Select
 
 
@@ -139,6 +141,8 @@ Public Class login
                     Else
                         Select Case CInt(Session("user_rol"))
                             Case 5 'si el rol es admin
+                                Response.Redirect("~/modulos/confi_configurar.aspx")
+                            Case 1 'si el rol es admin
                                 Response.Redirect("~/modulos/confi_configurar.aspx")
                             Case Else 'si no es admin
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuración','El administrador no ha completado la configuración del sistema.', 'warning');</script>")

@@ -37,7 +37,7 @@ Public Class registro
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
                     SendActivationEmail()
-                    Response.Redirect("~/Inicio/login.aspx?acction=newsolicitud")
+                    Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
             End Select
         End If
     End Sub

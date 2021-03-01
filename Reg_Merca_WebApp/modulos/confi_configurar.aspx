@@ -12,6 +12,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
+        <% If Session("user_idUsuario") <> Nothing Then %>
+        <% If CBool(Application("ParametrosSYS")(2)) = True Then   %>
         <li>
             <a href="menu_principal">
                 <i class="material-icons">home</i>
@@ -19,7 +21,7 @@
             </a>
         </li>
         <li class="active">
-             <a href="#">
+            <a href="#">
                 <i class="material-icons">settings</i>
                 <span>Configuraciones</span>
             </a>
@@ -32,11 +34,20 @@
                 <span>Gestion de usuarios</span>
             </a>
         </li>
-    </ul>
-    <% If Session("user_usuario") <> "" Then %>
-    <% If CBool(Application("ParametrosSYS")(3)) = True Then   %>
 
+        <%ELSE %>
+        
+      <li class="active">
+            <a href="#">
+                <i class="material-icons">settings</i>
+                <span>Configuraciones</span>
+            </a>
+        </li>
+    </ul>
     <% End if  %>
+
+
+
     <% End if  %>
 </asp:Content>
 
@@ -48,7 +59,7 @@
                     <h2 style="font-weight: bold">Configuraciones 
                         <small>Informacion basica de la empresa y otras configuraciones</small>
                     </h2>
-                  
+
                 </div>
                 <div class="body">
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Detalles de la empresa</h2>
@@ -56,25 +67,25 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeyup="borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Nombre de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtEmpresa"
-                                        ErrorMessage="Ingrese el nombre de la empresa."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                    ErrorMessage="Ingrese el nombre de la empresa."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeyup="borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Alias de la empresa</label>
                                 </div>
-                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtAlias"
-                                        ErrorMessage="Ingrese el alias de la empresa."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtAlias"
+                                    ErrorMessage="Ingrese el alias de la empresa."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
 
                         </div>
@@ -83,13 +94,13 @@
                         <div class="col-sm-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtRTN" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" ID="txtRTN" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">RTN</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtRTN"
-                                        ErrorMessage="Ingrese el RTN de la empresa."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                    ErrorMessage="Ingrese el RTN de la empresa."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -98,22 +109,27 @@
                                     <asp:TextBox ID="txtEmail" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Correo electrónico</label>
                                 </div>
-                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtEmail"
-                                        ErrorMessage="Ingrese el Correo electrónico de la empresa."
-                                        Display="Dynamic" 
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtEmail"
+                                    ErrorMessage="Ingrese el Correo electrónico de la empresa."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RegularExpressionValidator runat="server" ID="reEmailRegistro"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtEmail"
+                                    ErrorMessage="El correo electronico no es valido."
+                                    ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtTel" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtTel" MaxLength="8" onkeypress="SoloNumeros()" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Teléfono </label>
                                 </div>
-                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txttel"
-                                        ErrorMessage="Ingrese el teléfono de la empresa."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txttel"
+                                    ErrorMessage="Ingrese el teléfono de la empresa."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
                     </div>
@@ -121,25 +137,25 @@
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtDireccion" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtDireccion" onkeyup="borrarespacios(this);" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Dirección</label>
                                 </div>
-                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccion"
-                                        ErrorMessage="Ingrese la dirección de la empresa."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccion"
+                                    ErrorMessage="Ingrese la dirección de la empresa."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
-                         <div class="col-sm-4">
+                        <div class="col-sm-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="TxtADMIN_URL_WEB" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return noespacios(event)" ID="TxtADMIN_URL_WEB" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">URL WEB</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtADMIN_URL_WEB"
-                                        ErrorMessage="Ingrese la URL WEB."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                    ErrorMessage="Ingrese la URL WEB."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
 
@@ -153,53 +169,66 @@
                                     <asp:TextBox ID="txtEmailEnvio" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Correo electrónico</label>
                                 </div>
-                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtEmailEnvio"
-                                        ErrorMessage="Ingrese el correo electrónico."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtEmailEnvio"
+                                    ErrorMessage="Ingrese el correo electrónico."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+
+                                <asp:RegularExpressionValidator runat="server" ID="RegularEmailEnvio"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtEmailEnvio"
+                                    ErrorMessage="El correo electronico no es valido."
+                                    ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtContraseña" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox TextMode="Password" onkeypress="return noespacios(event)" ID="txtContrasena" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Contraseña</label>
                                 </div>
-                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtContraseña"
-                                        ErrorMessage="Ingrese la contraseña."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtContrasena"
+                                    ErrorMessage="Ingrese la contraseña."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                        </div>
+                        <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                            <div class="input-group">
+                                <span>
+                                    <i id="mostrarconfirmar" onmouseout="mouseOut('ContentPrincipal_txtContrasena','mostrarconfirmar')" onmouseover="mouseOver('ContentPrincipal_txtContrasena','mostrarconfirmar')" style="cursor: default" class="material-icons">visibility_off</i>
+                                </span>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtPuerto" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="SoloNumeros()" ID="txtPuerto" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Puerto de salida</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtPuerto"
-                                        ErrorMessage="Ingrese el puerto de salida."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                    ErrorMessage="Ingrese el puerto de salida."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
-                         <div class="col-sm-2">
+                        <div class="col-sm-2">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="TextSMTP" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return noespacios(event)" ID="TextSMTP" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">SMTP</label>
                                 </div>
-                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtPuerto"
-                                        ErrorMessage="Ingrese el SMTP."
-                                        Display="Dynamic"
-                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtPuerto"
+                                    ErrorMessage="Ingrese el SMTP."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
 
                     </div>
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Controlador de usuarios</h2>
                     <div class="row clearfix">
-                       
+
                         <div class="col-sm-2">
                             <small>Máximo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
@@ -213,7 +242,7 @@
                             </div>
 
                         </div>
-                          <div class="col-sm-2">
+                        <div class="col-sm-2">
                             <small>Mínimo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -226,7 +255,7 @@
                             </div>
 
                         </div>
-                         <div class="col-sm-3">
+                        <div class="col-sm-3">
                             <small>Mínimo de caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -239,7 +268,7 @@
                             </div>
 
                         </div>
-                          <div class="col-sm-3">
+                        <div class="col-sm-3">
                             <small>Máximo caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -264,12 +293,12 @@
                                 </span>
                             </div>
                         </div>
-                       
-                        
+
+
                     </div>
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Inicio de sesión y constraseña</h2>
                     <div class="row clearfix">
-                        
+
                         <div class="col-sm-2">
                             <small>Intentos</small>
                             <div class="input-group spinner" data-trigger="spinner">
@@ -300,7 +329,7 @@
                             <div class="switch">
                                 <label>
                                     NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
+                                    <input type="checkbox" name="CheckBox" runat="server" id="chkRecordarusu" class="filled-in chk-col-teal " />
                                     <span class="lever switch-col-teal"></span>
                                     SI
                                 </label>

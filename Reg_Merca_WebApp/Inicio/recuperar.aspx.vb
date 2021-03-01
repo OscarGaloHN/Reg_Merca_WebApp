@@ -83,7 +83,7 @@
                                          Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                 End Using
-                Response.Redirect("~/Inicio/login.aspx?acction=newsolicitud")
+                Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
             End If
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electronico','Correo no enviado', 'error');</script>")
