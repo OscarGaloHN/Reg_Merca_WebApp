@@ -8,21 +8,20 @@
     <!-- Bootstrap Select Css -->
     <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Gestion de Usuarios</a>
+    <a class="navbar-brand" href="#">Configuración de Usuarios</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
-            <a href="../../index.html">
+            <a href="menu_principal.aspx">
                 <i class="material-icons">home</i>
                 <span>Inicio</span>
             </a>
         </li>
         <li>
-            <a href="../../index.html">
+            <a href="confi_configurar.aspx">
                 <i class="material-icons">settings</i>
                 <span>Configuraciones</span>
             </a>
@@ -31,7 +30,7 @@
         <li class="active">
 
             <a href="#">
-                <i class="material-icons">edit</i>
+                 <i class="material-icons">manage_accounts</i>
                 <span>Gestion de usuarios</span>
             </a>
         </li>
@@ -105,7 +104,9 @@
                                 DataSourceMode="DataReader"
                                 ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                 ProviderName="MySql.Data.MySqlClient"
-                                SelectCommand="Select rol, id_rol from DB_Nac_Merca.tbl_15_rol where id_rol not in (5,6)"></asp:SqlDataSource>
+                                >
+
+                            </asp:SqlDataSource>
                             <asp:DropDownList
                                 ID="cmbRol" runat="server" DataSourceID="SqlRol" class="form-control show-tick"
                                 DataTextField="Rol" DataValueField="id_Rol" AppendDataBoundItems="true">
@@ -157,11 +158,15 @@
                                     ErrorMessage="Ingrese una contraseña"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
-                                <asp:RegularExpressionValidator runat="server" ID="Regulcontraseña"
+                               
+                             
+                                   <asp:RegularExpressionValidator runat="server" ID="validadorContraRobusta"
                                     Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ControlToValidate="txtContraseña"
-                                    ValidationExpression="^[a-zA-Z0-9'@&#.\s]{5,10}$"
-                                    ErrorMessage="El rango de caracteres debe de ser entre (5 - 10)." />
+                                    ControlToValidate="txtContraseña" />
+
+                                <asp:RegularExpressionValidator runat="server" ID="reContra"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtContraseña" />
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">

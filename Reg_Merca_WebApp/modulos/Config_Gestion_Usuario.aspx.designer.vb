@@ -113,13 +113,22 @@ Partial Public Class Config_Gestion_Usuario
     Protected WithEvents ReqContaseña As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control Regulcontraseña.
+    '''Control validadorContraRobusta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Regulcontraseña As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents validadorContraRobusta As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''Control reContra.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents reContra As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''Control bttResetear.

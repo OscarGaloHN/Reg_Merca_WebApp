@@ -28,16 +28,16 @@
         </li>
 
         <li>
-
-            <a href="#">
+         
+            <a href="Config_Usuarios.aspx">
                 <i class="material-icons">manage_accounts</i>
                 <span>Gestion de usuarios</span>
             </a>
         </li>
 
         <%ELSE %>
-        
-      <li class="active">
+
+        <li class="active">
             <a href="#">
                 <i class="material-icons">settings</i>
                 <span>Configuraciones</span>
@@ -224,7 +224,6 @@
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
-
                     </div>
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Controlador de usuarios</h2>
                     <div class="row clearfix">
