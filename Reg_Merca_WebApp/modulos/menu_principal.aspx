@@ -14,6 +14,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+
                 <div class="row clearfix">
                     <asp:Panel ID="PanelConfi" runat="server" Visible ="false" >
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -23,7 +24,7 @@
                             </div>
                             <div class="body">
                                 <%--<h6>Configuraciones</h6>--%>
-                                <button onclick="location.href='confi_configurar.aspx';" name=">"  type="button" class="btn bg-teal btn-block waves-effect  waves-float">ENTRAR</button>
+                                <button onclick="location.href='configuraciones/confi_configurar.aspx';" name=">"  type="button" class="btn bg-teal btn-block waves-effect  waves-float">ENTRAR</button>
                                 <%--<asp:Button ID="<%: Session("ModulosArray")(i, 1)%>" runat="server" Text="Button" />--%>
                                 <%--<dx:ASPxButton ID="" runat="server" Text="ENTRAR" Width="100%" Theme="Material" BackColor="#e4002b" OnClick="bttRuta_Click"></dx:ASPxButton>--%>
                             </div>

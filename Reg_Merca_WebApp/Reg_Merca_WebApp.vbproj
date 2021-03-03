@@ -210,14 +210,14 @@
     <Content Include="Inicio\prueba_grid.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
-    <Content Include="modulos\Config_Gestion_Usuario.aspx" />
-    <Content Include="modulos\Config_Usuarios.aspx" />
-    <Content Include="modulos\confi_cambio_contra.aspx" />
-    <Content Include="modulos\confi_configurar.aspx" />
-    <Content Include="modulos\confi_perfil.aspx" />
+    <Content Include="modulos\gestion_usuario\Config_Gestion_Usuario.aspx" />
+    <Content Include="modulos\gestion_usuario\Config_Usuarios.aspx" />
+    <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
+    <Content Include="modulos\configuraciones\confi_configurar.aspx" />
+    <Content Include="modulos\perfil_usuario\confi_perfil.aspx" />
     <Content Include="modulos\menu_principal.aspx" />
     <Content Include="modulos\pruebas.aspx" />
-    <Content Include="modulos\confi_perfil_preguntas.aspx" />
+    <Content Include="modulos\perfil_usuario\confi_perfil_preguntas.aspx" />
     <Content Include="modulos\confi_rol.aspx" />
     <Content Include="modulos\src\DetalleVariables.txt" />
     <Content Include="modulos\src\jsTabla.js" />
@@ -307,6 +307,7 @@
     <Content Include="plugins\morrisjs\spec\viz\run.sh" />
     <Content Include="plugins\node-waves\waves.min.js.map" />
     <Content Include="modulos\Principal.Master" />
+    <Content Include="modulos\configuraciones\master_config.Master" />
     <None Include="My Project\PublishProfiles\CarpetaLocal.pubxml" />
     <None Include="My Project\PublishProfiles\CarpetaLocar.pubxml" />
     <None Include="My Project\PublishProfiles\FTPProfile.pubxml" />
@@ -1045,38 +1046,45 @@
       <DependentUpon>registro.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\Config_Gestion_Usuario.aspx.designer.vb">
+    <Compile Include="modulos\configuraciones\master_config.Master.designer.vb">
+      <DependentUpon>master_config.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\configuraciones\master_config.Master.vb">
+      <DependentUpon>master_config.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\gestion_usuario\Config_Gestion_Usuario.aspx.designer.vb">
       <DependentUpon>Config_Gestion_Usuario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\Config_Gestion_Usuario.aspx.vb">
+    <Compile Include="modulos\gestion_usuario\Config_Gestion_Usuario.aspx.vb">
       <DependentUpon>Config_Gestion_Usuario.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\Config_Usuarios.aspx.designer.vb">
+    <Compile Include="modulos\gestion_usuario\Config_Usuarios.aspx.designer.vb">
       <DependentUpon>Config_Usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\Config_Usuarios.aspx.vb">
+    <Compile Include="modulos\gestion_usuario\Config_Usuarios.aspx.vb">
       <DependentUpon>Config_Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\confi_cambio_contra.aspx.designer.vb">
+    <Compile Include="modulos\perfil_usuario\confi_cambio_contra.aspx.designer.vb">
       <DependentUpon>confi_cambio_contra.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\confi_cambio_contra.aspx.vb">
+    <Compile Include="modulos\perfil_usuario\confi_cambio_contra.aspx.vb">
       <DependentUpon>confi_cambio_contra.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\confi_configurar.aspx.designer.vb">
+    <Compile Include="modulos\configuraciones\confi_configurar.aspx.designer.vb">
       <DependentUpon>confi_configurar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\confi_configurar.aspx.vb">
+    <Compile Include="modulos\configuraciones\confi_configurar.aspx.vb">
       <DependentUpon>confi_configurar.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\confi_perfil.aspx.designer.vb">
+    <Compile Include="modulos\perfil_usuario\confi_perfil.aspx.designer.vb">
       <DependentUpon>confi_perfil.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\confi_perfil.aspx.vb">
+    <Compile Include="modulos\perfil_usuario\confi_perfil.aspx.vb">
       <DependentUpon>confi_perfil.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -1101,10 +1109,10 @@
       <DependentUpon>pruebas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\confi_perfil_preguntas.aspx.designer.vb">
+    <Compile Include="modulos\perfil_usuario\confi_perfil_preguntas.aspx.designer.vb">
       <DependentUpon>confi_perfil_preguntas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\confi_perfil_preguntas.aspx.vb">
+    <Compile Include="modulos\perfil_usuario\confi_perfil_preguntas.aspx.vb">
       <DependentUpon>confi_perfil_preguntas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

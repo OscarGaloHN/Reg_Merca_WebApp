@@ -91,11 +91,7 @@ Public Class login
             Session("user_confirma_correo") = registro("emailconfir")
             Session("user_estado") = registro("estado")
             Session("user_canti_preguntas") = registro("CantiPreguntas")
-            'datos de conexion y reseteo de intentos malos
-            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
-            Using con As New ControlDB
-                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            End Using
+
             'If Session("user_confirma_correo") = 1 Then ''VALIDAR QUE TENGA LA PREGUNTA
             Select Case Session("user_estado")
                 Case 0 'USUARIO CREADO
@@ -106,6 +102,11 @@ Public Class login
                     'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Enviar a respoder preguntas.', 'error');</script>")
                     Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=autoquestions")
                 Case 2 'activo
+                    'datos de conexion y reseteo de intentos malos
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
                     If chkRecordar.Checked = True Then
                         Response.Cookies("UserName").Expires = DateTime.Now.AddDays(30)
                         Response.Cookies("Password").Expires = DateTime.Now.AddDays(30)
@@ -131,8 +132,8 @@ Public Class login
                                 Case 6 'si es auto registro
                                     Response.Redirect("~/modulos/confi_rol.aspx")
                                 Case Else
+                                    Response.Redirect("~/modulos/menu_principal.aspx")
                                     'si el sitio esta configurado
-                                    Response.Redirect("~/modulos/principal.aspx")
                             End Select
                         Else
                             Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=awquestions")
@@ -178,7 +179,7 @@ Public Class login
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
                     Case Else
                         Select Case CInt(registro("intentos"))
-                            Case 3
+                            Case CInt(registro("intentos")) = CInt(Application("ParametrosADMIN")(7))
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
                             Case Else
                                 If CInt(registro("intentos")) + 1 = CInt(Application("ParametrosADMIN")(7)) Then 'PARAMETRO INTENTOS DE CONTRASEÑA
