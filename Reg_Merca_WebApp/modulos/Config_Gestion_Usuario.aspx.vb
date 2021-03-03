@@ -11,12 +11,10 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("user_rol") = 5 Then
             SqlRol.SelectCommand = "Select rol, id_rol from DB_Nac_Merca.tbl_15_rol"
-
         Else
             SqlRol.SelectCommand = "Select rol, id_rol from DB_Nac_Merca.tbl_15_rol where id_rol not in (5)"
-
-
         End If
+
         'parametros de contraseña
         reContra.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(18) & " -" & Application("ParametrosADMIN")(0) & ")."
         reContra.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
@@ -30,6 +28,7 @@
 
         Select Case Request.QueryString("action")
             Case "new"
+
 
             Case "update"
                 Dim Ssql As String = String.Empty
@@ -48,8 +47,9 @@
                     cmbRol.SelectedValue = registro("id_rol")
                     txtCorreoElectronico.Text = registro("correo")
                     txtContraseña.Text = registro("clave")
-                    Fecha_Creacion.Value = registro("fecha_creacion")
-                    Fecha_Vencimiento.Attributes("value") = CDate(registro("fecha_vencimiento")).ToShortDateString
+
+                    'Fecha_Creacion.Value = registro("fecha_creacion")
+                    ' Fecha_Vencimiento.Attributes("value") = CDate(registro("fecha_vencimiento")).ToShortDateString
                     'cmbEstado.SelectedValue = registro("estado")
                 End If
 
@@ -63,7 +63,7 @@
             Dim Ssql As String = ""
             Select Case Request.QueryString("action")
                 Case "new"
-                    Ssql = "Insert into DB_Nac_Merca.tbl_02_usuarios (Nombre,Usuario,id_rol,correo,clave,fecha_vencimiento,estado,fecha_creacion,fecha_vencimiento,creado_por,intentos,emailconfir) values ('" & txtNombre.Text & "', '" & txtUsuario.Text & "', " & cmbRol.SelectedValue & ", '" & txtCorreoElectronico.Text & "',  SHA('" & txtContraseña.Text & "'), '" & Fecha_Vencimiento.Value & "',0,CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(9) & " DAY), '" & Session("user_nombre_usuario") & "',0,0"
+                    Ssql = "Insert into DB_Nac_Merca.tbl_02_usuarios (Nombre,Usuario,id_rol,correo,clave,fecha_vencimiento,estado,fecha_creacion,fecha_vencimiento,creado_por,intentos,emailconfir) values ('" & txtNombre.Text & "', '" & txtUsuario.Text & "', " & cmbRol.SelectedValue & ", '" & txtCorreoElectronico.Text & "',  SHA('" & txtContraseña.Text & "'), '" & Fecha_Vencimiento.Value & "',0,CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY), '" & Session("user_nombre_usuario") & "',0,0"
             End Select
 
             Using con As New ControlDB

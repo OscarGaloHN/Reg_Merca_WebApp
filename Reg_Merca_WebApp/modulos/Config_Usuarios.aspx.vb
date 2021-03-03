@@ -11,7 +11,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Dim Ssql As String = String.Empty
-
+        Session("user_rol") = 5
 
         If Session("user_rol") = 5 Then
             Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
@@ -36,10 +36,13 @@
             gvCustomers.DataSource = DataSetX
             gvCustomers.DataBind()
         End If
+
         Select Case Request.QueryString("action")
             Case "deleteusuer"
+
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El Usuario se elemino exitosamente.', 'success');</script>")
             Case "deletefailed"
+
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminao, solo inactivado desde el editor.', 'error');</script>")
         End Select
 

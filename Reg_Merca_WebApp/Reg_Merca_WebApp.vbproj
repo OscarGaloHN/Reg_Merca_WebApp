@@ -210,8 +210,8 @@
     <Content Include="Inicio\prueba_grid.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
-    <Content Include="modulos\gestion_usuario\Config_Gestion_Usuario.aspx" />
-    <Content Include="modulos\gestion_usuario\Config_Usuarios.aspx" />
+    <Content Include="modulos\Config_Gestion_Usuario.aspx" />
+    <Content Include="modulos\Config_Usuarios.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
     <Content Include="modulos\configuraciones\confi_configurar.aspx" />
     <Content Include="modulos\perfil_usuario\confi_perfil.aspx" />
@@ -1053,17 +1053,17 @@
       <DependentUpon>master_config.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="modulos\gestion_usuario\Config_Gestion_Usuario.aspx.designer.vb">
+    <Compile Include="modulos\Config_Gestion_Usuario.aspx.designer.vb">
       <DependentUpon>Config_Gestion_Usuario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\gestion_usuario\Config_Gestion_Usuario.aspx.vb">
+    <Compile Include="modulos\Config_Gestion_Usuario.aspx.vb">
       <DependentUpon>Config_Gestion_Usuario.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\gestion_usuario\Config_Usuarios.aspx.designer.vb">
+    <Compile Include="modulos\Config_Usuarios.aspx.designer.vb">
       <DependentUpon>Config_Usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\gestion_usuario\Config_Usuarios.aspx.vb">
+    <Compile Include="modulos\Config_Usuarios.aspx.vb">
       <DependentUpon>Config_Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -1289,6 +1289,7 @@
     <Folder Include="00_Pruebas\Franciny\" />
     <Folder Include="00_Pruebas\Oscar\" />
     <Folder Include="App_Data\" />
+    <Folder Include="modulos\gestion_usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
