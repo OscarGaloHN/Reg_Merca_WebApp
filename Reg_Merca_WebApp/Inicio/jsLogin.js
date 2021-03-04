@@ -33,16 +33,35 @@ $(document).ready(function () {
 
 
 //SOLO NUMERO Y LETRAS
-function isNumberOrLetter(evt) {
+
+function isNumberOrLetter(evt,e) {
+    var regex = new RegExp("^(?!.*?([A-Z])\1\1\1).+");
     var charCode = (evt.which) ? evt.which : event.keyCode;
-    if ((charCode >= 65 && charCode < 91) || (charCode >= 97 && charCode < 123) || (charCode > 47 && charCode < 58) || (charCode == 241) || (charCode == 209))
-        return true;
-    return false;
-}
+    xcharCode =  (evt.which) ? evt.which : event.keyCode;
+
+    if ((charCode >= 65 && charCode < 91) || (charCode >= 97 && charCode < 123) || (charCode > 47 && charCode < 58) || (charCode == 241) || (charCode == 209)) {
+         return true;
+    } else {
+        return false;
+        }
+    }
 
 //pasar a mayusculas
+var xcharCode 
 function mayus(e) {
     e.value = e.value.toUpperCase();
+    //var str = e.value.toUpperCase();
+
+    //var xxcharCode = String.fromCharCode(xcharCode);
+
+    //var xcharCodeMayus = xxcharCode.toUpperCase();
+    //var repetida = xcharCodeMayus.repeat(4)
+
+    //var n = str.indexOf(repetida);
+    //if (n >= 0) {
+    //    //alert("El carácter pulsado es: " + n);
+    //    event.returnValue = false;
+    //}
 }
 
 ////SOLO letras
@@ -105,4 +124,26 @@ function mouseOut(txtOcultar, iconoOjoo) {
 function SoloNumeros() {
  if ((event.keyCode < 48) || (event.keyCode > 57)) 
   event.returnValue = false;
+}
+
+var repetida = 0;
+var teclaAnterior = 0;
+function tresrepetida(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+
+    if (teclaAnterior == charCode) {
+        repetida = repetida + 1;
+        teclaAnterior = charCode;
+    } else {
+        repetida = 0
+        teclaAnterior = charCode;
+    }
+
+
+    if (repetida == 4) {
+        return true;
+    } else {
+        return false;
+
+    }
 }

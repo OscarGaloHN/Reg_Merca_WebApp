@@ -126,29 +126,27 @@ Public Class login
                     'verificar que el sistema este configurado
                     If CBool(Application("ParametrosSYS")(2)) = True Then
                         'virificar que tenga las preguntas de seguridad contestadas
-                        If Session("user_canti_preguntas") >= Application("ParametrosADMIN")(8) Then
-                            'verificar el rol
-                            Select Case CInt(Session("user_rol"))
-                                Case 6 'si es auto registro
-                                    Response.Redirect("~/modulos/confi_rol.aspx")
-                                Case Else
-                                    Response.Redirect("~/modulos/menu_principal.aspx")
-                                    'si el sitio esta configurado
-                            End Select
-                        Else
-                            Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=awquestions")
-                        End If
-
+                        'If Session("user_canti_preguntas") >= Application("ParametrosADMIN")(8) Then
+                        'verificar el rol
+                        Select Case CInt(Session("user_rol"))
+                            Case 6 'si es auto registro no tiene rol asignado hasta que lo de el admin
+                                Response.Redirect("~/modulos/confi_rol.aspx")
+                            Case Else
+                                Response.Redirect("~/modulos/menu_principal.aspx")
+                                'si el sitio esta configurado
+                        End Select
+                        'Else
+                        'Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=awquestions")
+                        'End If
                     Else
                         Select Case CInt(Session("user_rol"))
-                            Case 5 'si el rol es admin
+                            Case 5 'si el rol es mantenimiento
                                 Response.Redirect("~/modulos/confi_configurar.aspx")
                             Case 1 'si el rol es admin
                                 Response.Redirect("~/modulos/confi_configurar.aspx")
                             Case Else 'si no es admin
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuración','El administrador no ha completado la configuración del sistema.', 'warning');</script>")
                                 Session.Abandon()
-
                         End Select
                     End If
 
@@ -158,9 +156,7 @@ Public Class login
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
                 Case 5 'usuario caducado
 
-                Case 6 'cambio clave
-
-                End Select
+            End Select
             'Else
             '    Session.Abandon()
             '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Confirmar Correo Electrónico','Para ingresar al sistema debe de confirmar su correo electrónico.', 'warning');</script>")
@@ -174,31 +170,27 @@ Public Class login
             End Using
             If Session("NumReg") > 0 Then
                 registro = DataSetX.Tables(0).Rows(0)
-                Select Case CInt(registro("estado"))
-                    Case 0 'intento ingresar con el usuario recien creado
+                If IsDBNull(registro("clave")) Then
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
+                Else
+                    If registro("intentos") = Application("ParametrosADMIN")(7) Then
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
+                    Else
+                        If CInt(registro("intentos")) + 1 = CInt(Application("ParametrosADMIN")(7)) Then 'PARAMETRO INTENTOS DE CONTRASEÑA
+                            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & ", estado=4 where usuario = BINARY  '" & txtUsuario.Text & "';"
+                        Else
+                            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & " where usuario = BINARY  '" & txtUsuario.Text & "';"
+                        End If
+                        Using con As New ControlDB
+                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
-                    Case Else
-                        Select Case CInt(registro("intentos"))
-                            Case CInt(registro("intentos")) = CInt(Application("ParametrosADMIN")(7))
-                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
-                            Case Else
-                                If CInt(registro("intentos")) + 1 = CInt(Application("ParametrosADMIN")(7)) Then 'PARAMETRO INTENTOS DE CONTRASEÑA
-                                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & ", estado=4 where usuario = BINARY  '" & txtUsuario.Text & "';"
-                                Else
-                                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & " where usuario = BINARY  '" & txtUsuario.Text & "';"
-                                End If
-                                Using con As New ControlDB
-                                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                                End Using
-                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
-                        End Select
-                End Select
+                    End If
+                End If
             Else
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
             End If
         End If
-
-
         'Dim SmtpServer As New SmtpClient()
         'Dim mail As New MailMessage()
         'SmtpServer.Credentials = New Net.NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")

@@ -56,24 +56,36 @@ Public Class registro
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-            Using mm As New MailMessage("registrodemercanciahn@gmail.com", txtemail.Text)
-                mm.Subject = "Activación de Cuenta"
-                mm.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")
-                Dim body As String = "Hola " + txtnombre.Text.Trim() + ","
-                body += "<br /><br />Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta."
-                body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("registro", Convert.ToString("activacion.aspx?ActivationCode=") & activationCode) + "'>Click aqui para poder activar su cuenta.</a>"
-                body += "<br /><br />Gracias"
-                mm.Body = body
-                mm.IsBodyHtml = True
-                Dim smtp As New SmtpClient()
-                smtp.Host = "smtp.gmail.com"
-                smtp.EnableSsl = True
-                Dim NetworkCred As New NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")
-                smtp.UseDefaultCredentials = True
-                smtp.Credentials = NetworkCred
-                smtp.Port = 587
-                smtp.Send(mm)
+
+            Dim urllink As String = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) & "/Inicio/activacion.aspx?ActivationCode=" & activationCode
+
+            Using xCorreo As New ControlCorreo
+                xCorreo.envio_correo("Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta.", "ACTIVAR CUENTA",
+                                         txtemail.Text, Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
+                                       txtnombre.Text.Trim(),
+                                         urllink, "Activación de Cuenta",
+                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
+                                         Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
             End Using
+
+            'Using mm As New MailMessage("registrodemercanciahn@gmail.com", txtemail.Text)
+            '    mm.Subject = "Activación de Cuenta"
+            '    mm.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")
+            '    Dim body As String = "Hola " + txtnombre.Text.Trim() + ","
+            '    body += "<br /><br />Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta."
+            '    body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("registro", Convert.ToString("activacion.aspx?ActivationCode=") & activationCode) + "'>Click aqui para poder activar su cuenta.</a>"
+            '    body += "<br /><br />Gracias"
+            '    mm.Body = body
+            '    mm.IsBodyHtml = True
+            '    Dim smtp As New SmtpClient()
+            '    smtp.Host = "smtp.gmail.com"
+            '    smtp.EnableSsl = True
+            '    Dim NetworkCred As New NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")
+            '    smtp.UseDefaultCredentials = True
+            '    smtp.Credentials = NetworkCred
+            '    smtp.Port = 587
+            '    smtp.Send(mm)
+            'End Using
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El registro no fue completado. Intentelo de nuevo.', 'error');</script>")
         End If
