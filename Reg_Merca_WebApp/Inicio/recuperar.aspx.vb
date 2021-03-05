@@ -10,7 +10,7 @@
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         bttPreguntas.Attributes.Add("onClick", "return false;")
-        bttEnviar.Focus()
+        'bttEnviar.Focus()
         'If IsPostBack = False Then
         'parametros de configuracion de sistema
         Using Parametros_Sistema As New ControlDB
@@ -59,11 +59,12 @@
             Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
 
             'solo los usuarios activos
-            If CInt(registro("estado")) <> 2 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Este usuario puede estar bloqueado, inactivo, caducado o sin completar el registro.', 'warning');</script>")
-            Else
-                'enviar correo electronico con token de nueva contraseña
-                Dim activationCode As String = Guid.NewGuid().ToString()
+            'If CInt(registro("estado")) <> 2 Then
+            '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Este usuario puede estar bloqueado, inactivo, caducado o sin completar el registro.', 'warning');</script>")
+            'Else
+            'enviar correo electronico con token de nueva contraseña
+
+            Dim activationCode As String = Guid.NewGuid().ToString()
                 Ssql = "DELETE FROM `DB_Nac_Merca`.`tbl_35_activacion_usuario` WHERE id_usuario=" & registro("id_usuario") & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -84,9 +85,10 @@
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                 End Using
                 Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
-            End If
+            'End If
         Else
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electronico','Correo no enviado', 'error');</script>")
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electrónico','Correo no enviado', 'error');</script>")
+            txtEmail.Text = ""
         End If
     End Sub
 End Class

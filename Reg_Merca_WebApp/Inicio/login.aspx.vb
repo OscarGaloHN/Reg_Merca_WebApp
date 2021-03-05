@@ -96,10 +96,16 @@ Public Class login
             Select Case Session("user_estado")
                 Case 0 'USUARIO CREADO
                     'usuario creado por admin se otorgo contraseña enviar a activar
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.log_sesion(1, Session("user_idUsuario"), "configurar preguntas de seguridad ya que es nuevo usuario")
+                    End Using
                     Response.Redirect("~/inicio/activacion.aspx?acction=activateuser&userregis=" & Session("user_idUsuario"))
-
                 Case 1 'CONFIGURAR USUARIO / nuevo
                     'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Enviar a respoder preguntas.', 'error');</script>")
+                    'registrar bitacora login
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.log_sesion(1, Session("user_idUsuario"), "configurar preguntas de seguridad ya que es nuevo usuario")
+                    End Using
                     Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=autoquestions")
                 Case 2 'activo
                     'datos de conexion y reseteo de intentos malos
@@ -130,10 +136,17 @@ Public Class login
                         'verificar el rol
                         Select Case CInt(Session("user_rol"))
                             Case 6 'si es auto registro no tiene rol asignado hasta que lo de el admin
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.log_sesion(1, Session("user_idUsuario"), "a la alerta de que no tiene un rol asignado")
+                                End Using
                                 Response.Redirect("~/modulos/confi_rol.aspx")
                             Case Else
-                                Response.Redirect("~/modulos/menu_principal.aspx")
+                                'registrar bitacora login
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.log_sesion(1, Session("user_idUsuario"), "menu principal")
+                                End Using
                                 'si el sitio esta configurado
+                                Response.Redirect("~/modulos/menu_principal.aspx")
                         End Select
                         'Else
                         'Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=awquestions")
@@ -141,21 +154,42 @@ Public Class login
                     Else
                         Select Case CInt(Session("user_rol"))
                             Case 5 'si el rol es mantenimiento
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.log_sesion(1, Session("user_idUsuario"), "a configurar el sistema ya que el parametro es falso")
+                                End Using
                                 Response.Redirect("~/modulos/confi_configurar.aspx")
                             Case 1 'si el rol es admin
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.log_sesion(1, Session("user_idUsuario"), "a configurar el sistema ya que el parametro es falso")
+                                End Using
                                 Response.Redirect("~/modulos/confi_configurar.aspx")
                             Case Else 'si no es admin
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.log_sesion(1, Session("user_idUsuario"), "cerrar sesion automaticamente ya que el ssitema no esta configurado y no es administrador")
+                                End Using
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuración','El administrador no ha completado la configuración del sistema.', 'warning');</script>")
                                 Session.Abandon()
                         End Select
                     End If
 
                 Case 3 'bloqueado o inactivo
-
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.log_sesion(3, Session("user_idUsuario"), "inactivo")
+                    End Using
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Inactivo','Usuario Inactivo, Contactece con el administrador.', 'warning');</script>")
+                    Session.Abandon()
                 Case 4 'bloqueo por intentos
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.log_sesion(3, Session("user_idUsuario"), "bloqueado")
+                    End Using
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
+                    Session.Abandon()
                 Case 5 'usuario caducado
-
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.log_sesion(3, Session("user_idUsuario"), "caducado")
+                    End Using
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caducado','Usuario Caducado, Contactece con el administrador.', 'warning');</script>")
+                    Session.Abandon()
             End Select
             'Else
             '    Session.Abandon()
@@ -191,21 +225,5 @@ Public Class login
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
             End If
         End If
-        'Dim SmtpServer As New SmtpClient()
-        'Dim mail As New MailMessage()
-        'SmtpServer.Credentials = New Net.NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")
-        'SmtpServer.Port = 25
-        'SmtpServer.Host = "smtp.gmail.com"
-        'SmtpServer.EnableSsl = True
-        'mail = New MailMessage()
-        'mail.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")
-        'mail.To.Add("oscaramador7@gmail.com")
-        'mail.Subject = "Prueba del titulo"
-        'mail.IsBodyHtml = True
-        'mail.Body = "hola hoy es 16/2/2021"
-        'SmtpServer.Send(mail)
     End Sub
-
-
-
 End Class

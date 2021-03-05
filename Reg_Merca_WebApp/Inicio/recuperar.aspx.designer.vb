@@ -23,6 +23,24 @@ Partial Public Class recuperar
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
+    '''Control bttPreguntas.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttPreguntas As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control Panel3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''Control txtEmail.
     '''</summary>
     '''<remarks>
@@ -57,15 +75,6 @@ Partial Public Class recuperar
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents bttEnviar As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control bttPreguntas.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttPreguntas As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel2.

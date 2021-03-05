@@ -63,7 +63,7 @@
             Dim Ssql As String = ""
             Select Case Request.QueryString("action")
                 Case "new"
-                    Ssql = "Insert into DB_Nac_Merca.tbl_02_usuarios (Nombre,Usuario,id_rol,correo,clave,fecha_vencimiento,estado,fecha_creacion,fecha_vencimiento,creado_por,intentos,emailconfir) values ('" & txtNombre.Text & "', '" & txtUsuario.Text & "', " & cmbRol.SelectedValue & ", '" & txtCorreoElectronico.Text & "',  SHA('" & txtContraseña.Text & "'), '" & Fecha_Vencimiento.Value & "',0,CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY), '" & Session("user_nombre_usuario") & "',0,0"
+                    Ssql = "Insert into DB_Nac_Merca.tbl_02_usuarios (Nombre,Usuario,id_rol,correo,clave,fecha_vencimiento,estado,fecha_creacion,fecha_vencimiento,creado_por,intentos,emailconfir) values ('" & txtNombre.Text & "', '" & txtUsuario.Text & "', " & cmbRol.SelectedValue & ", '" & txtCorreoElectronico.Text & "',  SHA('" & txtContraseña.Text & "'), '" & Fecha_Vencimiento.Value & "',0,CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY), '" & Session("user_nombre_usuario") & "',0,0)"
             End Select
 
             Using con As New ControlDB

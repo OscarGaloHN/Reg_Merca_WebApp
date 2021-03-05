@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="recuperar.aspx.vb" Inherits="Reg_Merca_WebApp.recuperar" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,6 +32,17 @@
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
 
     <script src="jsLogin.js"></script>
+    <script type="text/javascript">
+        function xModal(xcolor, xtxtfoco, nombremodal) {
+            var color = xcolor;
+            var txtfoco = xtxtfoco;
+            $('#' + nombremodal + ' .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
+            $('#' + nombremodal).modal('show');
+            $('#' + nombremodal).on('shown.bs.modal', function () {
+                $('#' + txtfoco).focus();
+            });
+        }
+    </script>
 </head>
 
 
@@ -47,39 +59,15 @@
                         Ingrese la dirección de correo electrónico que utilizó para registrarse. 
                         Le enviaremos un correo electrónico con los pasos para recuerar su contraseña. 
                     </div>
-                    <asp:Panel ID="Panel1" runat="server" DefaultButton="bttEnviar">
+                    <asp:Panel ID="Panel1" runat="server">
 
-                    <div class="row">
-                          <div style="padding-top: 8px;"  class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <div class="input-group form-float">
-                                <span class="input-group-addon">
-                                    <i class="material-icons">email</i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                            <div class="form-group form-float">
-                                <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" ValidationGroup="CorreoValidar" runat="server" type="email" class="form-control" ID="txtEmail"></asp:TextBox>
-                                    <label class="form-label">Correo Electronico</label>
-                                </div>
-                                <asp:RequiredFieldValidator runat="server" ID="reqemailvacio" ControlToValidate="txtEmail"
-                                    ErrorMessage="Ingrese su correo electronico."
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" ValidationGroup="CorreoValidar" />
-                                <asp:RegularExpressionValidator runat="server" ID="reEmailRegistro"
-                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ControlToValidate="txtEmail"
-                                    ErrorMessage="El correo electronico no es valido." ValidationGroup="CorreoValidar"
-                                    ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
-                            </div>
-                        </div>
-                    </div>
+
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:LinkButton  autofocus="true" onfocus="myFunctionfoco('txtEmail')"  ValidationGroup="CorreoValidar" ID="bttEnviar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
+                                <button onclick="xModal('pink','txtEmail','modalCorreo');" type="button" class="btn btn-block btn-lg bg-pink waves-effect"><i class="material-icons">send</i> <span>SOLICITAR CONTRASEÑA POR CORREO</span>  </button>
+                                <%-- <asp:LinkButton autofocus="true" onfocus="myFunctionfoco('txtEmail')" ValidationGroup="CorreoValidar" ID="bttEnviar" runat="server" class="btn btn-block btn-lg bg-pink waves-effect">
                                 <i class="material-icons">send</i> <span>SOLICITAR CONTRASEÑA</span>  
-                                </asp:LinkButton>
+                                </asp:LinkButton>--%>
                             </div>
                         </div>
                     </asp:Panel>
@@ -99,15 +87,75 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+                    <!-- modal recuperar contraseña por correo -->
+                    <div class="modal fade" id="modalCorreo" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
-                            <asp:Panel ID="Panel2" runat="server" DefaultButton="bttContinuar">
+                            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttContinuar">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title" id="defaultModalLabel">RECUPERAR USUARIO O CONTRASEÑA</h4>
+                                        <h4 class="modal-title" id="lblMOdalCorreo">RECUPERAR CONTRASEÑA</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Ingrese su nombre de usuario para continuar el proceso de recuperacion de usuario o contraseña por medio de las preguntas 
+                                        Ingrese su correo electrónico y haga click en el botón 'ENVIAR' para continuar el proceso de recuperacion de contraseña.
+                                    <div class="row">
+                                        <br />
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                                <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                                    <div class="input-group form-float">
+                                                        <span class="">
+                                                            <i class="material-icons">email</i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <asp:TextBox placeholder="Correo Electrónico" AutoComplete="off" ValidationGroup="CorreoValidar" runat="server" type="email" class="form-control" ID="txtEmail"></asp:TextBox>
+                                                            </div>
+                                                            <asp:RequiredFieldValidator runat="server" ID="reqemailvacio" ControlToValidate="txtEmail"
+                                                                ErrorMessage="Ingrese su correo electronico."
+                                                                Display="Dynamic"
+                                                                ForeColor="White" Font-Size="Small" ValidationGroup="CorreoValidar" />
+                                                            <asp:RegularExpressionValidator runat="server" ID="reEmailRegistro"
+                                                                Display="Dynamic" ForeColor="White" Font-Size="Small"
+                                                                ControlToValidate="txtEmail"
+                                                                ErrorMessage="El correo electronico no es valido." ValidationGroup="CorreoValidar"
+                                                                ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <asp:LinkButton runat="server" ID="bttEnviar" ValidationGroup="CorreoValidar" class="btn  btn-link  waves-effect">ENVIAR</asp:LinkButton>
+                                        <button type="button" class="btn bg-teal waves-effect" data-dismiss="modal">CERRAR</button>
+                                    </div>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+            <!-- modal preguntas seguridad -->
+            <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <asp:Panel ID="Panel2" runat="server" DefaultButton="bttContinuar">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="defaultModalLabel">RECUPERAR USUARIO O CONTRASEÑA</h4>
+                            </div>
+                            <div class="modal-body">
+                                Ingrese su nombre de usuario para continuar el proceso de recuperacion de usuario o contraseña por medio de las preguntas 
                                   de seguridad.
                                     <div class="row">
                                         <br />
@@ -124,18 +172,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <asp:LinkButton runat="server" ID="bttContinuar" ValidationGroup="UsuarioValidar" class="btn  btn-link  waves-effect">CONTINUAR</asp:LinkButton>
-                                        <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
-                                    </div>
-                                </div>
-                            </asp:Panel>
+                            </div>
+                            <div class="modal-footer">
+                                <asp:LinkButton runat="server" ID="bttContinuar" ValidationGroup="UsuarioValidar" class="btn  btn-link  waves-effect">CONTINUAR</asp:LinkButton>
+                                <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </asp:Panel>
+                </div>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 
     <!-- Jquery Core Js -->

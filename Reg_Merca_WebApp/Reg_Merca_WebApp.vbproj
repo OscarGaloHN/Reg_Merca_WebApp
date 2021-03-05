@@ -1123,6 +1123,7 @@
       <DependentUpon>confi_rol.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="modulos\src\ControlBitacora.vb" />
     <Compile Include="modulos\src\ControlDB.vb" />
     <Compile Include="modulos\src\ControlCorreo.vb" />
     <Compile Include="modulos\src\piedepagina.ascx.designer.vb">
