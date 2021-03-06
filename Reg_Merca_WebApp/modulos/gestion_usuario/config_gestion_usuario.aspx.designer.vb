@@ -95,13 +95,13 @@ Partial Public Class Config_Gestion_Usuario
     Protected WithEvents Regemail As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
-    '''Control txtContraseña.
+    '''Control txtContra.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtContraseña As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtContra As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control ReqContaseña.
@@ -113,15 +113,6 @@ Partial Public Class Config_Gestion_Usuario
     Protected WithEvents ReqContaseña As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control validadorContraRobusta.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents validadorContraRobusta As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
     '''Control reContra.
     '''</summary>
     '''<remarks>
@@ -129,6 +120,42 @@ Partial Public Class Config_Gestion_Usuario
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents reContra As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''Control txtContraseña.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtContraseña As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control ReqConfirmarContaseña.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ReqConfirmarContaseña As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''Control validadorCContraRobusta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents validadorCContraRobusta As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
+    '''Control reCContra.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents reCContra As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
     '''Control bttResetear.
@@ -192,4 +219,13 @@ Partial Public Class Config_Gestion_Usuario
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control bttVolver.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
 End Class

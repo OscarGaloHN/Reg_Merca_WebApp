@@ -165,7 +165,7 @@ Public Class login
                                 Response.Redirect("~/modulos/confi_configurar.aspx")
                             Case Else 'si no es admin
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.log_sesion(1, Session("user_idUsuario"), "cerrar sesion automaticamente ya que el ssitema no esta configurado y no es administrador")
+                                    log_bitacora.log_sesion(1, Session("user_idUsuario"), "cerrar sesion automaticamente ya que el sistema no esta configurado y no es administrador")
                                 End Using
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuración','El administrador no ha completado la configuración del sistema.', 'warning');</script>")
                                 Session.Abandon()
@@ -190,6 +190,8 @@ Public Class login
                     End Using
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caducado','Usuario Caducado, Contactece con el administrador.', 'warning');</script>")
                     Session.Abandon()
+                Case 6 'ADMIN ENTREGA NUEVA CONTRASEÑA AL USUARIO Y SE LE SOLICITA CAMBIAR POR UNA NUEVA
+
             End Select
             'Else
             '    Session.Abandon()
@@ -205,6 +207,9 @@ Public Class login
             If Session("NumReg") > 0 Then
                 registro = DataSetX.Tables(0).Rows(0)
                 If IsDBNull(registro("clave")) Then
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.log_sesion(4, registro("id_usuario"), "Intenta iniciar sesion sin completar registro, este usuario fue autoregistrado.")
+                    End Using
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
                 Else
                     If registro("intentos") = Application("ParametrosADMIN")(7) Then

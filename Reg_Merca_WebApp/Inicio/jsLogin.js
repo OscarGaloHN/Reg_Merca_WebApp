@@ -1,6 +1,6 @@
 ﻿
 //mostrar contraseña
-$(document).ready(function () {
+/*$(document).ready(function () {
     $('#show_password').hover(function show() {
         //Cambiar el atributo a texto
         $('#txtContra').attr('type', 'text');
@@ -29,12 +29,12 @@ $(document).ready(function () {
             document.getElementById("show_password2").innerHTML = "visibility_off";
             //$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
         });
-});
+});*/
 
 
 //SOLO NUMERO Y LETRAS
 
-function isNumberOrLetter(evt,e) {
+function isNumberOrLetter(evt) {
     var regex = new RegExp("^(?!.*?([A-Z])\1\1\1).+");
     var charCode = (evt.which) ? evt.which : event.keyCode;
     xcharCode =  (evt.which) ? evt.which : event.keyCode;
@@ -66,7 +66,7 @@ function mayus(e) {
 
 ////SOLO letras
 function txNombres(event) {
-    if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))
+    if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122) || (event == 241) || (event == 209))
         event.returnValue = false;
 }
 
@@ -125,6 +125,14 @@ function SoloNumeros() {
  if ((event.keyCode < 48) || (event.keyCode > 57)) 
   event.returnValue = false;
 }
+
+//Función que permite solo LETRAS
+function soloLetras() {
+    if ((event.keyCode >= 65 && event.keyCode < 91) || (event.keyCode >= 97 && event.keyCode < 123) || (event.keyCode == 241) || (event.keyCode == 209)) 
+        event.returnValue = true;
+}
+
+
 
 var repetida = 0;
 var teclaAnterior = 0;

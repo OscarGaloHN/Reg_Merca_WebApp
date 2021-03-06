@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Gestion de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="Config_Usuarios.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Usuarios" %>
+﻿<%@ Page Title="Gestion de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_usuarios.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Usuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->

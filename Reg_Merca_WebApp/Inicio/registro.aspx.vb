@@ -13,7 +13,6 @@ Public Class registro
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         btt_registrar.Focus()
-
     End Sub
 
     Private Sub btt_registrar_Click(sender As Object, e As EventArgs) Handles btt_registrar.Click
@@ -89,20 +88,6 @@ Public Class registro
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El registro no fue completado. Intentelo de nuevo.', 'error');</script>")
         End If
-
-        'Dim SmtpServer As New SmtpClient()
-        'Dim mail As New MailMessage()
-        'SmtpServer.Credentials = New Net.NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")
-        'SmtpServer.Port = 25
-        'SmtpServer.Host = "smtp.gmail.com"
-        'SmtpServer.EnableSsl = True
-        'mail = New MailMessage()
-        'mail.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")
-        'mail.To.Add("oscaramador7@gmail.com")
-        'mail.Subject = "Prueba del titulo"
-        'mail.IsBodyHtml = True
-        'mail.Body = "hola hoy es 16/2/2021"
-        'SmtpServer.Send(mail)
     End Sub
 
 End Class

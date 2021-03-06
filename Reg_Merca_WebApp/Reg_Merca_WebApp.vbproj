@@ -210,8 +210,8 @@
     <Content Include="Inicio\prueba_grid.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
-    <Content Include="modulos\Config_Gestion_Usuario.aspx" />
-    <Content Include="modulos\Config_Usuarios.aspx" />
+    <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
+    <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
     <Content Include="modulos\configuraciones\confi_configurar.aspx" />
     <Content Include="modulos\perfil_usuario\confi_perfil.aspx" />
@@ -308,6 +308,7 @@
     <Content Include="plugins\node-waves\waves.min.js.map" />
     <Content Include="modulos\Principal.Master" />
     <Content Include="modulos\configuraciones\master_config.Master" />
+    <Content Include="modulos\gestion_usuario\master_gestion_usuarios.Master" />
     <None Include="My Project\PublishProfiles\CarpetaLocal.pubxml" />
     <None Include="My Project\PublishProfiles\CarpetaLocar.pubxml" />
     <None Include="My Project\PublishProfiles\FTPProfile.pubxml" />
@@ -1053,19 +1054,26 @@
       <DependentUpon>master_config.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="modulos\Config_Gestion_Usuario.aspx.designer.vb">
-      <DependentUpon>Config_Gestion_Usuario.aspx</DependentUpon>
+    <Compile Include="modulos\gestion_usuario\config_gestion_usuario.aspx.designer.vb">
+      <DependentUpon>config_gestion_usuario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\Config_Gestion_Usuario.aspx.vb">
-      <DependentUpon>Config_Gestion_Usuario.aspx</DependentUpon>
+    <Compile Include="modulos\gestion_usuario\config_gestion_usuario.aspx.vb">
+      <DependentUpon>config_gestion_usuario.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\Config_Usuarios.aspx.designer.vb">
-      <DependentUpon>Config_Usuarios.aspx</DependentUpon>
+    <Compile Include="modulos\gestion_usuario\config_usuarios.aspx.designer.vb">
+      <DependentUpon>config_usuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\Config_Usuarios.aspx.vb">
-      <DependentUpon>Config_Usuarios.aspx</DependentUpon>
+    <Compile Include="modulos\gestion_usuario\config_usuarios.aspx.vb">
+      <DependentUpon>config_usuarios.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\gestion_usuario\master_gestion_usuarios.Master.designer.vb">
+      <DependentUpon>master_gestion_usuarios.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\gestion_usuario\master_gestion_usuarios.Master.vb">
+      <DependentUpon>master_gestion_usuarios.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\perfil_usuario\confi_cambio_contra.aspx.designer.vb">
       <DependentUpon>confi_cambio_contra.aspx</DependentUpon>
@@ -1290,7 +1298,6 @@
     <Folder Include="00_Pruebas\Franciny\" />
     <Folder Include="00_Pruebas\Oscar\" />
     <Folder Include="App_Data\" />
-    <Folder Include="modulos\gestion_usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

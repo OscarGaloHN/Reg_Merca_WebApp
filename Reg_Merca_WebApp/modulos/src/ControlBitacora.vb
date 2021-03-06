@@ -34,11 +34,13 @@ Public Class ControlBitacora
         Dim Ssql As String = ""
         Select Case TipoEvento
             Case 1 'el objeto del frm login es 3
-                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'usuario inicia sesion exitosamente y es enviado a: " & xPagina & "');"
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'el usuario inicia sesion exitosamente y es enviado a: " & xPagina & "');"
             Case 2 'el objeto del frm menu es 4
-                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 4, '" & "logout" & "', 'usuario cierra sesion exitosamente usando la pagina maestra de " & xPagina & "');"
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 4, '" & "logout" & "', 'el usuario cierra sesion exitosamente usando la pagina maestra de " & xPagina & "');"
             Case 3 'el objeto del frm login es 3
                 Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'no se permite el inicio de sesion porque el usuario se encuentra: " & xPagina & "');"
+            Case 4 'el objeto del frm login es 3
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'el usuario  '" & xPagina & "');"
 
         End Select
         GME_Bitacora(Ssql, TipoConexion_Bitacora.Cx_Aduana)

@@ -39,17 +39,17 @@
 
         Select Case Request.QueryString("action")
             Case "deleteusuer"
-
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El Usuario se elemino exitosamente.', 'success');</script>")
+            Case "deleteinactive"
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminao, pero paso a ser inactivado.', 'warning');</script>")
             Case "deletefailed"
-
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminao, solo inactivado desde el editor.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminao.', 'error');</script>")
         End Select
 
     End Sub
 
     Private Sub bttNuevo_Click(sender As Object, e As EventArgs) Handles bttNuevo.Click
-        Response.Redirect("~/modulos/Config_Gestion_Usuario.aspx?action=new")
+        Response.Redirect("~/modulos/gestion_usuario/config_gestion_usuario.aspx?action=new")
     End Sub
 
     Private Sub bttEliminar_Click(sender As Object, e As EventArgs) Handles bttEliminar.Click
@@ -63,10 +63,17 @@
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-        Catch ex As Exception
-            Response.Redirect("~/modulos/Config_Usuarios.aspx?action=deletefailed")
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            Select Case ex.Number
+                Case 0
+                    'MessageBox.Show("Cannot connect to server. Contact administrator")
+                Case 1451
+                    Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=deleteinactive")
+                Case Else
+                    Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=deletefailed")
+            End Select
         End Try
-        Response.Redirect("~/modulos/Config_Usuarios.aspx?action=deleteusuer")
+        Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=deleteusuer")
 
     End Sub
 End Class
