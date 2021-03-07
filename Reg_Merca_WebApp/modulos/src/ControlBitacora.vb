@@ -30,7 +30,7 @@ Public Class ControlBitacora
         Return Ssql
     End Function
 
-    Function log_sesion(ByVal TipoEvento As Integer, ByVal Id_usuario As Integer, ByVal xPagina As String)
+    Function log_sesion_inicio(ByVal TipoEvento As Integer, ByVal Id_usuario As Integer, ByVal xPagina As String)
         Dim Ssql As String = ""
         Select Case TipoEvento
             Case 1 'el objeto del frm login es 3
@@ -41,12 +41,11 @@ Public Class ControlBitacora
                 Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'no se permite el inicio de sesion porque el usuario se encuentra: " & xPagina & "');"
             Case 4 'el objeto del frm login es 3
                 Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'el usuario  '" & xPagina & "');"
+            Case 5 'el objeto del frm registrar es 5
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'el usuario  '" & xPagina & "');"
 
         End Select
         GME_Bitacora(Ssql, TipoConexion_Bitacora.Cx_Aduana)
-
         Return 0
     End Function
-
-
 End Class

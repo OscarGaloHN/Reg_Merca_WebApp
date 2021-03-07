@@ -7,12 +7,16 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>RegMERCA | Iniciar Sesión</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
     <!-- Bootstrap Core Css -->
     <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
     <!-- Waves Effect Css -->
     <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
 
@@ -26,6 +30,7 @@
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
     <script src="jsLogin.js"></script>
+
 </head>
 
 
@@ -48,7 +53,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox AutoComplete="off"  ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);" onfocusout="mayus(this);" ></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);" onfocusout="mayus(this);" ></asp:TextBox>
                                     <label class="form-label">Usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtUsuario"
@@ -73,7 +78,7 @@
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <asp:TextBox onkeypress="return noespacios(event)" ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox onkeypress="return noespacios(event)"  ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                         <label class="form-label">Contraseña</label>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
@@ -88,7 +93,7 @@
                             </div>
                             <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                 <div class="input-group">
-                                    <span>
+                                   <span>
                                         <i id="mostrarnueva" onmouseout="mouseOut('txtContra','mostrarnueva')" onmouseover="mouseOver('txtContra','mostrarnueva')" style="cursor: default" class="material-icons">visibility_off</i>
                                     </span>
                                 </div>

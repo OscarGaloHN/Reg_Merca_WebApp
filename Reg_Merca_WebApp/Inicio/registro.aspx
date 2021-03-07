@@ -60,7 +60,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="return txNombres(event)" onkeyup="mayusculapalabras(this); borrarespacios(this);" class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="return txNombres(event)"  onkeydown="mayus(this);borrarespacios(this);"  onkeyup="mayus(this);"  onfocusout="mayus(this);"  class="form-control"></asp:TextBox>
                                     <label class="form-label">Ingrese su nombre completo</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Reqnombre" ControlToValidate="txtnombre"
@@ -83,13 +83,17 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                    <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);" onfocusout="mayus(this);"></asp:TextBox>
                                     <label class="form-label">Ingrese su usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Requsuario" ControlToValidate="txtusuario"
                                     ErrorMessage="Ingrese un nombre de usuario"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
+
+                                  <asp:RegularExpressionValidator runat="server" ID="valiUserLargo"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtUsuario" />
                             </div>
                         </div>
                     </div>
@@ -121,65 +125,6 @@
                             </div>
                         </div>
                     </div>
-
-                <%--    <div class="row">
-                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <div class="input-group form-float">
-                                <span class="input-group-addon">
-                                    <i class="material-icons">lock</i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <div class="form-group form-float">
-                                <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
-                                    <label class="form-label">Ingrese una contraseña</label>
-                                </div>
-                                <asp:RequiredFieldValidator runat="server" ID="Requcontra" ControlToValidate="txtContra"
-                                    ErrorMessage="Ingrese una contraseña"
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" />
-                                <asp:RegularExpressionValidator runat="server" ID="Regulcontra"
-                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ControlToValidate="txtContra"
-                                    ValidationExpression="^[a-zA-Z0-9'@&#.\s]{5,10}$"
-                                    ErrorMessage="El rango de caracteres debe de ser entre (5 - 10)." />
-                            </div>
-                        </div>
-                        <div class="col-xs-1" style="padding-top: 8px;">
-                            <i id="show_password" class="material-icons">visibility_off</i>
-                        </div>
-                    </div>--%>
-                <%--   <div class="row">
-                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <div class="input-group form-float">
-                                <span class="input-group-addon">
-                                    <i class="material-icons">check</i>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <div class="form-group form-float">
-                                <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" ID="txtContraConfirmar" runat="server" TextMode="Password" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Ingrese de nuevo la contraseña</label>
-                                </div>
-                                <asp:RequiredFieldValidator runat="server" ID="Requcontraconf" ControlToValidate="txtContra"
-                                    ErrorMessage="Ingrese de nuevo la Contraseña"
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" />
-                                <asp:CompareValidator ID="Comparecontra" runat="server" ControlToCompare="txtContra" ControlToValidate="txtContraConfirmar"
-                                    ErrorMessage="Su contraseña no coincide"
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" />
-                            </div>
-                        </div>
-                        <div class="col-xs-1" style="padding-top: 8px;">
-                            <i id="show_password2" class="material-icons">visibility_off</i>
-                        </div>
-                    </div>--%>
                     <asp:LinkButton onfocus="myFunctionfoco('txtnombre')" class="btn btn-block btn-lg bg-pink waves-effect" ID="btt_registrar" runat="server">REGISTRARSE</asp:LinkButton>
                     <div class="m-t-25 m-b--5 align-center">
                         <a class="col-teal" href="login.aspx">¿Ya Cuenta Con Un Usuario?</a>

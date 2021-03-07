@@ -59,6 +59,15 @@ Partial Public Class registro
     Protected WithEvents Requsuario As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''Control valiUserLargo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents valiUserLargo As Global.System.Web.UI.WebControls.RegularExpressionValidator
+
+    '''<summary>
     '''Control txtemail.
     '''</summary>
     '''<remarks>

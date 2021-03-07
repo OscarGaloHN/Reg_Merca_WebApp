@@ -66,9 +66,18 @@ function mayus(e) {
 
 ////SOLO letras
 function txNombres(event) {
-    if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122) || (event == 241) || (event == 209))
+    if ((event.keyCode == 32) ) {
+        event.returnValue = true;
+    }else if  ((event.keyCode >= 65) && (event.keyCode <= 90) || (event.keyCode >= 97) && (event.keyCode <= 122) || (event.keyCode == 241) || (event.keyCode == 209)) {
+        event.returnValue = true;
+    } else  {
         event.returnValue = false;
+    }
 }
+//function txNombres(event) {
+//    if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122) && (event.event != 241) && (event.event != 209))
+//        event.returnValue = false;
+//}
 
 
 function clearTextBox() {
@@ -127,31 +136,18 @@ function SoloNumeros() {
 }
 
 //Función que permite solo LETRAS
+
 function soloLetras() {
-    if ((event.keyCode >= 65 && event.keyCode < 91) || (event.keyCode >= 97 && event.keyCode < 123) || (event.keyCode == 241) || (event.keyCode == 209)) 
+    if ((event.keyCode >= 65) && (event.keyCode <= 90) || (event.keyCode >= 97) && (event.keyCode <= 122) || (event.keyCode == 241) || (event.keyCode == 209)) {
         event.returnValue = true;
-}
 
-
-
-var repetida = 0;
-var teclaAnterior = 0;
-function tresrepetida(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-
-    if (teclaAnterior == charCode) {
-        repetida = repetida + 1;
-        teclaAnterior = charCode;
     } else {
-        repetida = 0
-        teclaAnterior = charCode;
-    }
-
-
-    if (repetida == 4) {
-        return true;
-    } else {
-        return false;
+        event.returnValue = false;
 
     }
 }
+ 
+
+
+
+  
