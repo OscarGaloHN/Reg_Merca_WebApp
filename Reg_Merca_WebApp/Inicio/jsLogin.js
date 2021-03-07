@@ -97,6 +97,13 @@ function myFunctionfoco(txtfoco) {
 function borrarespacios(e) {
     e.value = e.value.replace("  ", " ");
     e.value = e.value.trimLeft();
+
+    var str = e.value;
+    var res = str.substr(str.length - 1, 1);
+    var buscar = res.repeat(3)
+    var n = str.indexOf(buscar);
+    var final = str.replace(buscar, str.substr(str.length - 1, 1));
+    e.value  = final;     
 }
 
 //mayusculas cada palabra
@@ -146,6 +153,17 @@ function soloLetras() {
 
     }
 }
+
+//Borrar Letras repetidas
+function BorrarRepetidas(e) {
+    var str = e.value;
+    var res = str.substr(str.length - 1, 1);
+    var buscar = res.repeat(3)
+    var n = str.indexOf(buscar);
+    var final = str.replace(buscar, str.substr(str.length - 1, 1));
+    e.value = final;
+}
+
  
 
 

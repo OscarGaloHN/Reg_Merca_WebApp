@@ -53,7 +53,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);" onfocusout="mayus(this);" ></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);"  onkeydown="mayus(this);BorrarRepetidas(this);"></asp:TextBox>
                                     <label class="form-label">Usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtUsuario"

@@ -8,6 +8,9 @@
     <title>RegMERCA | Registrarse</title>
 
     <!--   contraseña-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="jsLogin.js"></script>
 
 
@@ -60,7 +63,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="return txNombres(event)"  onkeydown="mayus(this);borrarespacios(this);"  onkeyup="mayus(this);"  onfocusout="mayus(this);"  class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
                                     <label class="form-label">Ingrese su nombre completo</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Reqnombre" ControlToValidate="txtnombre"
@@ -83,14 +86,13 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="15" AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);" onfocusout="mayus(this);"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);"  onkeydown="mayus(this);BorrarRepetidas(this);"></asp:TextBox>
                                     <label class="form-label">Ingrese su usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Requsuario" ControlToValidate="txtusuario"
                                     ErrorMessage="Ingrese un nombre de usuario"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
-
                                   <asp:RegularExpressionValidator runat="server" ID="valiUserLargo"
                                     Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                     ControlToValidate="txtUsuario" />
@@ -125,6 +127,7 @@
                             </div>
                         </div>
                     </div>
+                     
                     <asp:LinkButton onfocus="myFunctionfoco('txtnombre')" class="btn btn-block btn-lg bg-pink waves-effect" ID="btt_registrar" runat="server">REGISTRARSE</asp:LinkButton>
                     <div class="m-t-25 m-b--5 align-center">
                         <a class="col-teal" href="login.aspx">¿Ya Cuenta Con Un Usuario?</a>
