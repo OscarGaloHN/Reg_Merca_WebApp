@@ -50,18 +50,6 @@ function isNumberOrLetter(evt) {
 var xcharCode 
 function mayus(e) {
     e.value = e.value.toUpperCase();
-    //var str = e.value.toUpperCase();
-
-    //var xxcharCode = String.fromCharCode(xcharCode);
-
-    //var xcharCodeMayus = xxcharCode.toUpperCase();
-    //var repetida = xcharCodeMayus.repeat(4)
-
-    //var n = str.indexOf(repetida);
-    //if (n >= 0) {
-    //    //alert("El carácter pulsado es: " + n);
-    //    event.returnValue = false;
-    //}
 }
 
 ////SOLO letras
