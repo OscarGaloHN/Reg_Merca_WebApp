@@ -63,12 +63,14 @@
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
+
             Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=deleteusuer")
 
         Catch ex As MySql.Data.MySqlClient.MySqlException
             Select Case ex.Number
                 Case 0
-                    'MessageBox.Show("Cannot connect to server. Contact administrator")
+
+                    Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=deletefailed")
                 Case 1451
                     Ssql = "update DB_Nac_Merca.tbl_02_usuarios set estado=3 where id_usuario =  " & lblHidden1.Value & ""
                     Using con As New ControlDB
@@ -76,6 +78,7 @@
                     End Using
                     Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=deleteinactive")
                 Case Else
+
                     Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=deletefailed")
             End Select
         End Try
