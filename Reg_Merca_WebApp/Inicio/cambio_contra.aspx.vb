@@ -53,7 +53,7 @@
             Session("NumReg") = DataSetX.Tables(0).Rows.Count
         End Using
         If Session("NumReg") > 0 Then
-            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =0, estado=1 where id_usuario = " & Session("id_usuarioPreguntas") & ";"
+            Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =0, estado=2 where id_usuario = " & Session("id_usuarioPreguntas") & ";"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
@@ -88,6 +88,7 @@
                             Case 1 'contraseña ya usada
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
                             Case 2 'contraseña sin usar
+                                'la contraseña se actualiza en el SP
                                 Session.Abandon()
                                 Response.Redirect("~/Inicio/login.aspx?action=changepasswordout")
                         End Select

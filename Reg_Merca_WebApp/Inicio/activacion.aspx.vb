@@ -68,8 +68,6 @@ Public Class activacion
                         lblerror.Text = "Este intento de validación no es valido."
                         Page.Title = "Solicitud Invalida"
                     End If
-
-
                 Case Else
                     'si viene desde el correo electronico
                     Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), Guid.Empty.ToString())
@@ -135,17 +133,12 @@ Public Class activacion
                             Page.Title = "Solicitud Caducada"
                         End If
                     Else
-
-
                         PanelError.Visible = True
                         lblerror.Text = "Este intento de validación no es valido."
                         Page.Title = "Solicitud Invalida"
-
                     End If
             End Select
-
         End If
-
     End Sub
 
     Private Sub bttContra_Click(sender As Object, e As EventArgs) Handles bttContra.Click
@@ -304,10 +297,11 @@ Public Class activacion
                             Case 1 'contraseña ya usada
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
                             Case 2 'contraseña sin usar
-                                Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
+                                Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "' and tipo='clave'"
                                 Using con As New ControlDB
                                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                                 End Using
+
                                 Session.Abandon()
                                 Response.Redirect("~/Inicio/login.aspx?action=changepasswordout")
                         End Select

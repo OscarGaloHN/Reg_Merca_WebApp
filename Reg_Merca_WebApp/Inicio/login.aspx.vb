@@ -191,7 +191,20 @@ Public Class login
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caducado','Usuario Caducado, Contactece con el administrador.', 'warning');</script>")
                     Session.Abandon()
                 Case 6 'ADMIN ENTREGA NUEVA CONTRASEÑA AL USUARIO Y SE LE SOLICITA CAMBIAR POR UNA NUEVA
-
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.log_sesion_inicio(4, Session("user_idUsuario"), "recibio un cambio de contraseña y es envio a cambiarla")
+                    End Using
+                    Ssql = "SELECT *FROM DB_Nac_Merca.tbl_35_activacion_usuario  where tipo='clave' and id_usuario =  " & Session("user_idUsuario") & ""
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    If Session("NumReg") > 0 Then
+                        registro = DataSetX.Tables(0).Rows(0)
+                        'envair a activacion de usuario
+                        Response.Redirect("~/Inicio/activacion.aspx?ActivationCode=" & registro("codigo_activacion"))
+                        Session.Abandon()
+                    End If
             End Select
             'Else
             '    Session.Abandon()
