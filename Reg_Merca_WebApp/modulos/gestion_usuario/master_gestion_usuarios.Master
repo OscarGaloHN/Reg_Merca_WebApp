@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="master_gestion_usuarios.Master.vb" Inherits="Reg_Merca_WebApp.gestion_usuarios" %>
 <%@ Register Src="~/modulos/src/piedepagina.ascx" TagPrefix="uc1" TagName="piedepagina" %>
 
+ 
 
 <!DOCTYPE html>
 
@@ -100,7 +101,7 @@
                                 <li role="separator" class="divider"></li>
                                 <% end if %>
                                 <li>
-                                    <asp:LinkButton  ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
+                                     <asp:LinkButton  ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
                             </ul>
                         </div>
 
