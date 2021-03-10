@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Gestio de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_gestion_usuario.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Gestion_Usuario" %>
-
+﻿<%@ Page Title="Gestión de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_gestion_usuario.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Gestion_Usuario" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -35,7 +34,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Gestion de usuarios
+                    <h2 style="font-weight: bold;">Gestión De Usuarios
          
                         <small>El administrador podrá editar información general del
             usuario</small>
@@ -50,20 +49,21 @@
                                         ID="txtNombre"
                                         AutoComplete="off"
                                         runat="server"
-                                        onkeypress="return txNombres(event)"
-                                        onkeydown="borrarespacios(this)"
+                                        onkeypress="txNombres(event);"
+                                        onkeydown="borrarespacios(this);BorrarRepetidas(this);"
                                         class="form-control"
-                                        onkeyup="mayus(this);borrarespacios(this)">
+                                        onkeyup="mayus(this); borrarespacios(this);">
                                     </asp:TextBox>
                                     <label class="form-label">Nombre</label>
                                 </div>
                                 <asp:RequiredFieldValidator
                                     runat="server"
-                                    ID="Requsuario"
+                                    ID="Reqnombre"
                                     ControlToValidate="txtNombre"
                                     ErrorMessage="Ingrese su nombre"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed"
+                                    ValidationExpression="^.*(.)\1{!2}.*"
                                     Font-Size="X-Small" />
                             </div>
                         </div>
@@ -75,14 +75,17 @@
                                         ID="txtUsuario"
                                         AutoComplete="off"
                                         runat="server"
-                                        onkeypress="return isNumberOrLetter(event)"
+                                        onkeypress="txNombres(event);"
                                         onkeyup="mayus(this);"
+                                        onfocusout="mayus(this);"
+                                        onkeydown="mayus(this);BorrarRepetidas(this);"
                                         class="form-control"></asp:TextBox>
+
                                     <label class="form-label">Usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator
                                     runat="server"
-                                    ID="Reqnombre"
+                                    ID="Requsuario"
                                     ControlToValidate="txtUsuario"
                                     ErrorMessage="Ingrese su usuario"
                                     Display="Dynamic"
@@ -92,12 +95,11 @@
                         </div>
                     </div>
 
-
                     <div class="row clearfix">
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                             <label class="form-label">Rol:</label>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-11">
                             <asp:SqlDataSource
                                 ID="SqlRol"
                                 runat="server"
@@ -139,109 +141,150 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox
-                                    ID="txtContra"
-                                    AutoComplete="off"
-                                    PasswordChar="*"
-                                    runat="server"
-                                    class="form-control" TextMode="Password"></asp:TextBox>
-                                <label class="form-label">Contraseña</label>
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-5 col-sm-5 col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox
+                                        ID="txtContra"
+                                        AutoComplete="off"
+                                        PasswordChar="*"
+                                        runat="server"
+                                        class="form-control" TextMode="Password"></asp:TextBox>
+                                    <label class="form-label">Nueva Contraseña</label>
+                                </div>
+
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
+                                    ErrorMessage="Ingrese su contraseña."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+
+                                <asp:RegularExpressionValidator runat="server" ID="reqcontra"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtContra" />
+
+                                <asp:RegularExpressionValidator runat="server" ID="ReqValidacionRobusta"
+                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                    ControlToValidate="txtContra" />
                             </div>
-                          <!--  <asp:RequiredFieldValidator runat="server" ID="ReqContaseña" ControlToValidate="txtContraseña"
-                                ErrorMessage="Ingrese una contraseña"
-                                Display="Dynamic"
-                                ForeColor="OrangeRed" Font-Size="X-Small" />-->
-
-
-                            <%--<asp:RegularExpressionValidator runat="server" ID="validadorContraRobusta"
-                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                ControlToValidate="txtContraseña" />--%>
-
-                          <!--    <asp:RegularExpressionValidator runat="server" ID="reContra"
-                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                ControlToValidate="txtContraseña" />-->
                         </div>
-                    </div>
-                    <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
-                        <div class="input-group">
-                            <span>
-                                <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox
-                                    ID="txtContraseña"
-                                    AutoComplete="off"
-                                    PasswordChar="*"
-                                    runat="server"
-                                    class="form-control" TextMode="Password"></asp:TextBox>
-                                <label class="form-label">Confirmar Contraseña</label>
+                        <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                            <div class="input-group">
+                                <span>
+                                    <i id="mostraractual" onmouseover="mouseOver('ContentPrincipal_txtContra','mostraractual')" onmouseout="mouseOut('ContentPrincipal_txtContra','mostraractual')" style="cursor: default" class="material-icons">visibility_off</i>
+                                </span>
                             </div>
-                         <!--   <asp:RequiredFieldValidator runat="server" ID="ReqConfirmarContaseña" ControlToValidate="txtContraseña"
-                                ErrorMessage="Confirme su contraseña"
-                                Display="Dynamic"
-                                ForeColor="OrangeRed" Font-Size="X-Small" />
-
-
-                            <asp:RegularExpressionValidator runat="server" ID="validadorCContraRobusta"
-                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                ControlToValidate="txtContraseña" />
-
-                            <asp:RegularExpressionValidator runat="server" ID="reCContra"
-                                Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                ControlToValidate="txtContraseña" /> -->
                         </div>
-                    </div>
-                    <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
-                        <div class="input-group">
-                            <span>
-                                <i id="show_password2" style="cursor: default" class="material-icons">visibility_off</i>
-                            </span>
+
+                        <div class="col-lg-3 col-md-5 col-sm-5 col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <div class="form-line">
+                                        <asp:TextBox
+                                            ID="txtContraConfirmar"
+                                            AutoComplete="off"
+                                            runat="server"
+                                            TextMode="Password"
+                                            class="form-control"></asp:TextBox>
+                                        <label class="form-label">Confirmar Contraseña</label>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="Requcontraconf" ControlToValidate="txtContraConfirmar"
+                                        ErrorMessage="Ingrese de nuevo la Contraseña"
+                                        Display="Dynamic"
+                                        ForeColor="OrangeRed" Font-Size="X-Small" />
+
+
+                                </div>
+                                <asp:CompareValidator ID="Comparecontra" runat="server" ControlToCompare="txtContra" ControlToValidate="txtContraConfirmar"
+                                    ErrorMessage="Su contraseña no coincide"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                        <asp:LinkButton
-                            Width="100%"
-                            runat="server"
-                            ID="bttResetear"
-                            class="btn bg-pink waves-effect">
+                        <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                            <div class="input-group">
+                                <span>
+                                    <i id="mostrarconfirmar" onmouseover="mouseOver('ContentPrincipal_txtContraConfirmar','mostrarconfirmar')" onmouseout="mouseOut('ContentPrincipal_txtContraConfirmar','mostrarconfirmar')" style="cursor: default" class="material-icons">visibility_off</i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttResetear"
+                                class="btn bg-pink waves-effect">
           <i class="material-icons">refresh</i>
           <span>Resetear</span>
-                        </asp:LinkButton>
+                            </asp:LinkButton>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttGenerar"
+                                CausesValidation="False"
+                                class="btn bg-teal waves-effect">
+          <i class="material-icons">refresh</i>
+          <span>Generar</span>
+                            </asp:LinkButton>
+                        </div>
                     </div>
 
-
                     <div class="row clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <h2 class="card-inside-title">Fecha de Creación</h2>
-                            <div class="form-group">
-                                <div class="form-line" id="bs_Fecha_Creación">
-                                    <input runat="server"
-                                        id="Fecha_Creacion"
-                                        type="date"
-                                        class="form-control" />
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox
+                                        ReadOnly="true"
+                                        ID="txtFechaCreacion"
+                                        runat="server"
+                                        class="form-control">
+                                    </asp:TextBox>
+                                    <label class="form-label">Fecha de Creación</label>
+                                </div>
+                                <%--   <asp:RequiredFieldValidator
+                                    runat="server"
+                                    ID="RequiredFieldValidator2"
+                                    ControlToValidate="txtNombre"
+                                    ErrorMessage="Fecha Predeterminada"
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed"
+                                    ValidationExpression="^.*(.)\1{!2}.*"
+                                    Font-Size="X-Small" />--%>
+                            </div>
+                        </div>
+                        <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                            <div class="input-group">
+                                <span>
+                                    <i class="material-icons">calendar_today</i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-10">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox
+                                        ReadOnly="true"
+                                        ID="Fecha_Vencimiento_usuario"
+                                        runat="server"
+                                        class="form-control">
+                                    </asp:TextBox>
+                                    <label class="form-label">Fecha de Vencimiento</label>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <h2 class="card-inside-title">Fecha de Vencimiento</h2>
-                            <div class="form-group">
-                                <div class="form-line" id="bs_Fecha_Vencimiento">
-                                    <input
-                                        runat="server"
-                                        id="Fecha_Vencimiento"
-                                        type="date"
-                                        class="form-control" />
-                                </div>
+                        <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
+                            <div class="input-group">
+                                <span>
+                                    <i class="material-icons">calendar_today</i>
+                                </span>
                             </div>
                         </div>
+
+
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
@@ -261,10 +304,12 @@
                                 DataTextField="descripcion" DataValueField="id_estado" AppendDataBoundItems="true">
                             </asp:DropDownList>
                         </div>
-                    </div>
+                 <%--   </div>--%>
+                     
+               <%--     <div class="row clearfix">--%>
 
-                    <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 col-sm-offset-6 col-md-offset-6">
+
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -275,7 +320,7 @@
           <span>Guardar</span>
                             </asp:LinkButton>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                        <%-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -285,8 +330,8 @@
           <i class="material-icons">add</i>
           <span>Nuevo</span>
                             </asp:LinkButton>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                        </div>--%>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -304,6 +349,7 @@
             </div>
         </div>
     </div>
+
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>

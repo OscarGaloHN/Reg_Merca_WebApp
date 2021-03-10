@@ -23,13 +23,13 @@ Partial Public Class Config_Gestion_Usuario
     Protected WithEvents txtNombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control Requsuario.
+    '''Control Reqnombre.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Requsuario As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents Reqnombre As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtUsuario.
@@ -41,13 +41,13 @@ Partial Public Class Config_Gestion_Usuario
     Protected WithEvents txtUsuario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control Reqnombre.
+    '''Control Requsuario.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Reqnombre As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents Requsuario As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control SqlRol.
@@ -104,58 +104,58 @@ Partial Public Class Config_Gestion_Usuario
     Protected WithEvents txtContra As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control ReqContaseña.
+    '''Control RequiredFieldValidator1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ReqContaseña As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control reContra.
+    '''Control reqcontra.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reContra As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents reqcontra As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
-    '''Control txtContraseña.
+    '''Control ReqValidacionRobusta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtContraseña As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ReqValidacionRobusta As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
-    '''Control ReqConfirmarContaseña.
+    '''Control txtContraConfirmar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ReqConfirmarContaseña As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents txtContraConfirmar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control validadorCContraRobusta.
+    '''Control Requcontraconf.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents validadorCContraRobusta As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents Requcontraconf As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control reCContra.
+    '''Control Comparecontra.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reCContra As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents Comparecontra As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
     '''Control bttResetear.
@@ -167,22 +167,31 @@ Partial Public Class Config_Gestion_Usuario
     Protected WithEvents bttResetear As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control Fecha_Creacion.
+    '''Control bttGenerar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Fecha_Creacion As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents bttGenerar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control Fecha_Vencimiento.
+    '''Control txtFechaCreacion.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Fecha_Vencimiento As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtFechaCreacion As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control Fecha_Vencimiento_usuario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Fecha_Vencimiento_usuario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control SqlEstado.
@@ -210,15 +219,6 @@ Partial Public Class Config_Gestion_Usuario
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents bttGuardar As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control bttNuevo.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control bttVolver.
