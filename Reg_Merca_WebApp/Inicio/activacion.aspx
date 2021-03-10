@@ -97,7 +97,7 @@
                                     <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                         <div class="input-group">
                                             <span>
-                                                <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
+                                                <i  id="mostrarnueva" onmouseout="mouseOut('txtContra','mostrarnueva')" onmouseover="mouseOver('txtContra','mostrarnueva')" style="cursor: default" class="material-icons">visibility_off</i>
                                             </span>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                                     <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                         <div class="input-group">
                                             <span>
-                                                <i id="show_password2" style="cursor: default" class="material-icons">visibility_off</i>
+                                                <i  id="mostrarconfirmar" onmouseout="mouseOut('txtContraConfirmar','mostrarconfirmar')" onmouseover="mouseOver('txtContraConfirmar','mostrarconfirmar')" style="cursor: default" class="material-icons">visibility_off</i>
                                             </span>
                                         </div>
                                     </div>

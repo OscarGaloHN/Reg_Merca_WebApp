@@ -97,7 +97,7 @@ Public Class login
                 Case 0 'USUARIO CREADO
                     'usuario creado por admin se otorgo contraseña enviar a activar
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "configurar preguntas de seguridad ya que es nuevo usuario")
+                        log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "configurar contaseña ya que es un nuevo usuario")
                     End Using
                     Response.Redirect("~/inicio/activacion.aspx?acction=activateuser&userregis=" & Session("user_idUsuario"))
                 Case 1 'CONFIGURAR USUARIO / nuevo
@@ -106,7 +106,7 @@ Public Class login
                     Using log_bitacora As New ControlBitacora
                         log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "configurar preguntas de seguridad ya que es nuevo usuario")
                     End Using
-                    Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=autoquestions")
+                    Response.Redirect("~/modulos/perfil_usuario/confi_perfil_preguntas.aspx?acction=autoquestions")
                 Case 2 'activo
                     'datos de conexion y reseteo de intentos malos
                     Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  fecha_ultima_conexion = CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), intentos=0, en_linea=1 where usuario = BINARY  '" & txtUsuario.Text & "';"
@@ -157,12 +157,12 @@ Public Class login
                                 Using log_bitacora As New ControlBitacora
                                     log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "a configurar el sistema ya que el parametro es falso")
                                 End Using
-                                Response.Redirect("~/modulos/confi_configurar.aspx")
+                                Response.Redirect("~/modulos/configuraciones/confi_configurar.aspx")
                             Case 1 'si el rol es admin
                                 Using log_bitacora As New ControlBitacora
                                     log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "a configurar el sistema ya que el parametro es falso")
                                 End Using
-                                Response.Redirect("~/modulos/confi_configurar.aspx")
+                                Response.Redirect("~/modulos/configuraciones/confi_configurar.aspx")
                             Case Else 'si no es admin
                                 Using log_bitacora As New ControlBitacora
                                     log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "cerrar sesion automaticamente ya que el sistema no esta configurado y no es administrador")
