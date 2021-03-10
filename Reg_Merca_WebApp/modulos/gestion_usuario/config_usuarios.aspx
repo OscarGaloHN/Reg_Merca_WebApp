@@ -6,7 +6,8 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="src/jsTabla.js"></script>
+
+    <script src="../src/jsTabla.js"></script>
     <script type="text/javascript">
         function xModal(xcolor, xtxtfoco) {
             var color = xcolor;
