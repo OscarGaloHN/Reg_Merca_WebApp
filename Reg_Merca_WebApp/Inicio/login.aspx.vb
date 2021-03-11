@@ -97,14 +97,14 @@ Public Class login
                 Case 0 'USUARIO CREADO
                     'usuario creado por admin se otorgo contraseña enviar a activar
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "configurar contaseña ya que es un nuevo usuario")
+                        log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario inicia sesión exitosamente pero es enviado a configurar contaseña ya que es un nuevo usuario")
                     End Using
                     Response.Redirect("~/inicio/activacion.aspx?acction=activateuser&userregis=" & Session("user_idUsuario"))
                 Case 1 'CONFIGURAR USUARIO / nuevo
                     'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Enviar a respoder preguntas.', 'error');</script>")
                     'registrar bitacora login
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "configurar preguntas de seguridad ya que es nuevo usuario")
+                        log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario inicia sesión exitosamente pero es enviado a configurar preguntas de seguridad ya que es nuevo usuario")
                     End Using
                     Response.Redirect("~/modulos/perfil_usuario/confi_perfil_preguntas.aspx?acction=autoquestions")
                 Case 2 'activo
@@ -137,13 +137,14 @@ Public Class login
                         Select Case CInt(Session("user_rol"))
                             Case 6 'si es auto registro no tiene rol asignado hasta que lo de el admin
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "a la alerta de que no tiene un rol asignado")
+                                    log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario inicia sesión exitosamente pero es enviado a la alerta de que no tiene un rol asignado")
                                 End Using
+
                                 Response.Redirect("~/modulos/confi_rol.aspx")
                             Case Else
                                 'registrar bitacora login
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "menu principal")
+                                    log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario inicia sesión exitosamente y es enviado al menu principal")
                                 End Using
                                 'si el sitio esta configurado
                                 Response.Redirect("~/modulos/menu_principal.aspx")
@@ -155,45 +156,48 @@ Public Class login
                         Select Case CInt(Session("user_rol"))
                             Case 5 'si el rol es mantenimiento
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "a configurar el sistema ya que el parametro es falso")
+                                    log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario inicia sesión exitosamente y es enviado a configurar el sistema ya que el parametro es falso")
                                 End Using
                                 Response.Redirect("~/modulos/configuraciones/confi_configurar.aspx")
                             Case 1 'si el rol es admin
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "a configurar el sistema ya que el parametro es falso")
+                                    log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario inicia sesión exitosamente y es enviado a configurar el sistema ya que el parametro es falso")
                                 End Using
                                 Response.Redirect("~/modulos/configuraciones/confi_configurar.aspx")
                             Case Else 'si no es admin
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.log_sesion_inicio(1, Session("user_idUsuario"), "cerrar sesion automaticamente ya que el sistema no esta configurado y no es administrador")
+                                    log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario inicia sesión exitosamente pero se cierra la sesión automaticamente ya que el sistema no esta configurado y el usuario no es administrador")
                                 End Using
+
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuración','El administrador no ha completado la configuración del sistema.', 'warning');</script>")
                                 Session.Abandon()
                         End Select
                     End If
 
                 Case 3 'bloqueado o inactivo
+
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.log_sesion_inicio(3, Session("user_idUsuario"), "inactivo")
+                        log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "usuario inactivo intenta iniciar sesión")
                     End Using
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Inactivo','Usuario Inactivo, Contactece con el administrador.', 'warning');</script>")
                     Session.Abandon()
                 Case 4 'bloqueo por intentos
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.log_sesion_inicio(3, Session("user_idUsuario"), "bloqueado")
+                        log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "usuario bloqueado intenta iniciar sesión")
                     End Using
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bloqueo','Usuario Bloqueado, Contactece con el administrador.', 'warning');</script>")
                     Session.Abandon()
                 Case 5 'usuario caducado
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.log_sesion_inicio(3, Session("user_idUsuario"), "caducado")
+                        log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "usuario caducado intenta iniciar sesión")
                     End Using
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caducado','Usuario Caducado, Contactece con el administrador.', 'warning');</script>")
                     Session.Abandon()
                 Case 6 'ADMIN ENTREGA NUEVA CONTRASEÑA AL USUARIO Y SE LE SOLICITA CAMBIAR POR UNA NUEVA
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.log_sesion_inicio(4, Session("user_idUsuario"), "recibio un cambio de contraseña y es envio a cambiarla")
+                        log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario recibio un cambio de contraseña y es envio a cambiarla")
                     End Using
+
                     Ssql = "SELECT *FROM DB_Nac_Merca.tbl_35_activacion_usuario  where tipo='clave' and id_usuario =  " & Session("user_idUsuario") & ""
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -219,29 +223,32 @@ Public Class login
             End Using
             If Session("NumReg") > 0 Then
                 registro = DataSetX.Tables(0).Rows(0)
+                Session("user_idUsuario") = registro("id_usuario")
                 If IsDBNull(registro("clave")) Then 'el uusarui quiere entrar al sistema sin configurar su contraseña
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.log_sesion_inicio(4, registro("id_usuario"), "intenta iniciar sesion sin completar registro, este usuario fue autoregistrado.")
+                        log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario intenta iniciar sesión sin completar registro, este usuario fue autoregistrado")
                     End Using
+
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
                 Else
                     If registro("intentos") = Application("ParametrosADMIN")(7) Then
                         'usuario ingresa mal la contraseña pero su usuario esta bloqueado
                         Using log_bitacora As New ControlBitacora
-                            log_bitacora.log_sesion_inicio(4, registro("id_usuario"), "intenta iniciar sesión pero ingresa mal sus credenciales y su estado es bloqueado")
+                            log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario intenta iniciar sesión pero ingresa mal sus credenciales y su estado es bloqueado")
                         End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
                     Else
                         If CInt(registro("intentos")) + 1 = CInt(Application("ParametrosADMIN")(7)) Then 'PARAMETRO INTENTOS DE CONTRASEÑA el usuario se bloquea
                             Using log_bitacora As New ControlBitacora
-                                log_bitacora.log_sesion_inicio(4, registro("id_usuario"), "intenta iniciar sesión pero ingresa mal sus credenciales y el sistema lo bloquea porque llega a los " & CInt(registro("intentos")) + 1 & " intentos.")
+                                log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario intenta iniciar sesión pero ingresa mal sus credenciales y el sistema lo bloquea porque llega a los " & CInt(registro("intentos")) + 1 & " intentos")
                             End Using
                             Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & ", estado=4 where usuario = BINARY  '" & txtUsuario.Text & "';"
                         Else
                             'suma de intentos para el usuario
                             Using log_bitacora As New ControlBitacora
-                                log_bitacora.log_sesion_inicio(4, registro("id_usuario"), "intenta iniciar sesión pero ingresa mal sus credenciales, el usuario suma " & CInt(registro("intentos")) + 1 & " intentos.")
+                                log_bitacora.acciones_Comunes(1, Session("user_idUsuario"), 3, "el usuario intenta iniciar sesión pero ingresa mal sus credenciales, el usuario suma " & CInt(registro("intentos")) + 1 & " intentos")
                             End Using
+
                             Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  intentos =" & CInt(registro("intentos")) + 1 & " where usuario = BINARY  '" & txtUsuario.Text & "';"
                         End If
                         Using con As New ControlDB
@@ -250,6 +257,7 @@ Public Class login
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
                     End If
                 End If
+                Session.Abandon()
             Else
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Autenticación','Usuario o Contraseña Incorrectos.', 'error');</script>")
             End If
