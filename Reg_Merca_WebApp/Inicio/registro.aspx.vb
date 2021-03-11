@@ -43,15 +43,29 @@ Public Class registro
                 Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
                 Select Case registro("EXISTE")
                     Case -1 'usuario y correo existen
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " y correo " & txtemail.Text & " ya estan registrados")
+                        End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario & Correo','El usuario y correo electronico ya estan registrados.', 'error');</script>")
                     Case -2 'usuario existe
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " ya esta registrado")
+                        End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nombre de usuario','El nombre de usuario ya esta registrado.', 'error');</script>")
                     Case -3 'correo existe
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " ya esta registrado")
+                        End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo electronico','El correo electronico ya estan registrado.', 'error');</script>")
                     Case 0 'no existe
                         Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_02_usuarios` (`id_rol`,`usuario`, `nombre`,`estado`, `correo`,  `fecha_vencimiento`, `creado_por`, `fecha_creacion`, `intentos`, `emailconfir`) VALUES (6,'" & txtUsuario.Text & "', '" & txtnombre.Text & "',0, '" & txtemail.Text & "', null, 'Autoregistro',  CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), 0, 0);"
                         Using con As New ControlDB
                             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        End Using
+
+
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " ya esta registrado")
                         End Using
                         SendActivationEmail()
                         Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
@@ -86,6 +100,9 @@ Public Class registro
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
             End Using
 
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.log_sesion_inicio(5, registro("id_usuario"), "" & txtUsuario.Text & " fue autoregistrado con id " & registro("id_usuario") & ", fue registrado exitosamente")
+            End Using
             'Using mm As New MailMessage("registrodemercanciahn@gmail.com", txtemail.Text)
             '    mm.Subject = "Activación de Cuenta"
             '    mm.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")

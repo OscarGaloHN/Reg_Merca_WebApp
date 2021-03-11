@@ -42,7 +42,7 @@ Public Class login
                 Case "registro"
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Registro','La solicite de registro se ha completado, hemos enviado detalles a su correo electronico para completar su solicitud.', 'success');</script>")
                 Case "activateuser"
-                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Activación','Su ususario esta activado, inicie sesión para configurar su cuenta.', 'success');</script>")
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Activación','Su usuario esta activado, inicie sesión para configurar su cuenta.', 'success');</script>")
                 Case "newsolicitud"
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nueva Solicitud','Hemos enviado detalles a su correo electronico para completar su solicitud', 'success');</script>")
                 Case "activateemail"

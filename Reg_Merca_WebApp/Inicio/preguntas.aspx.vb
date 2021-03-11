@@ -33,6 +33,9 @@
                 Session("usuarioCambioPW") = True
                 Response.Redirect("~/Inicio/cambio_contra.aspx")
             Else
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.log_sesion_inicio(7, Session("id_usuarioPreguntas"), " da una respuesta incorrecta")
+                End Using
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas De Seguridad','Respuesta incorrecta.', 'error');</script>")
                 'Response.Redirect("~/Inicio/preguntas.aspx?result=error")
             End If

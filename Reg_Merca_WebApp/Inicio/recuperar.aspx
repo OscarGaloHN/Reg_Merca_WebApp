@@ -90,7 +90,7 @@
                     <!-- modal recuperar contraseña por correo -->
                     <div class="modal fade" id="modalCorreo" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
-                            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttContinuar">
+                            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttEnviar">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title" id="lblMOdalCorreo">RECUPERAR CONTRASEÑA</h4>
@@ -163,7 +163,7 @@
                                         <div class="col-xs-12">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <asp:TextBox MaxLength="15" ValidationGroup="UsuarioValidar" AutoComplete="off" runat="server" placeholder="Nombre de usuario" class="form-control" ID="txtUsuarioPreguntas" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                                    <asp:TextBox MaxLength="15" ValidationGroup="UsuarioValidar" AutoComplete="off" runat="server" placeholder="Nombre de usuario" class="form-control" ID="txtUsuarioPreguntas"  onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);"  onkeydown="mayus(this);BorrarRepetidas(this);"></asp:TextBox>
                                                 </div>
                                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtUsuarioPreguntas"
                                                     ErrorMessage="Ingrese su nombre de usuario."

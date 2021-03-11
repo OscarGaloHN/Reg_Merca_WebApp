@@ -40,9 +40,13 @@ Public Class ControlBitacora
             Case 3 'el objeto del frm login es 3
                 Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'no se permite el inicio de sesion porque el usuario se encuentra: " & xPagina & "');"
             Case 4 'el objeto del frm login es 3
-                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'el usuario  " & xPagina & ");"
-            Case 5 'el objeto del frm registrar es 5
-                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'el usuario " & xPagina & ");"
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", 3, '" & "login" & "', 'el usuario  " & xPagina & "');"
+            Case 5 'el objeto del autoregistro es 5
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), null, 5, '" & "autoregistro" & "', 'el usuario " & xPagina & "');"
+            Case 6 'el objeto de recuperar es 5
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), null, 6, '" & "recuperar" & "', 'el usuario " & xPagina & "');"
+            Case 7 'el objeto de recuperar es 5
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), null, 9, '" & "preguntas" & "', 'el usuario " & xPagina & "');"
 
         End Select
         GME_Bitacora(Ssql, TipoConexion_Bitacora.Cx_Aduana)

@@ -154,7 +154,6 @@
     <Content Include="00_Pruebas\Miguel\Pruebas-Miguel.aspx" />
     <Content Include="Inicio\activacion.aspx" />
     <Content Include="Inicio\cambio_contra.aspx" />
-    <Content Include="Inicio\Prueba_Contra.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="css\materialize.css" />
     <Content Include="css\style.css" />
@@ -206,8 +205,6 @@
     <Content Include="Inicio\jsLogin.js" />
     <Content Include="Inicio\login.aspx" />
     <Content Include="Inicio\preguntas.aspx" />
-    <Content Include="Inicio\preguntas_seguridad.aspx" />
-    <Content Include="Inicio\prueba_grid.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
@@ -993,13 +990,6 @@
       <DependentUpon>cambio_contra.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Inicio\Prueba_Contra.aspx.designer.vb">
-      <DependentUpon>Prueba_Contra.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio\Prueba_Contra.aspx.vb">
-      <DependentUpon>Prueba_Contra.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Global.asax.vb">
@@ -1017,20 +1007,6 @@
     </Compile>
     <Compile Include="Inicio\preguntas.aspx.vb">
       <DependentUpon>preguntas.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Inicio\preguntas_seguridad.aspx.designer.vb">
-      <DependentUpon>preguntas_seguridad.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio\preguntas_seguridad.aspx.vb">
-      <DependentUpon>preguntas_seguridad.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Inicio\prueba_grid.aspx.designer.vb">
-      <DependentUpon>prueba_grid.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio\prueba_grid.aspx.vb">
-      <DependentUpon>prueba_grid.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Inicio\recuperar.aspx.designer.vb">
