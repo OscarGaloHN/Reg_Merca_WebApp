@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Perfil de Usuario" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="confi_perfil.aspx.vb" Inherits="Reg_Merca_WebApp.confi_perfil" %>
+﻿<%@ Page Title="Perfil de Usuario" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/perfil_usuario/master_perfil.Master" CodeBehind="confi_perfil.aspx.vb" Inherits="Reg_Merca_WebApp.confi_perfil" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 

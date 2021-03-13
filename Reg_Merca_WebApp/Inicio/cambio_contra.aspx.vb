@@ -1,4 +1,5 @@
 ﻿Public Class cambio_contra
+    'OBJETO #10
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get

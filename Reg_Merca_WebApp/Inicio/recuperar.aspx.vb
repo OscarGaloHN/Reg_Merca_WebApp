@@ -1,4 +1,5 @@
 ﻿Public Class recuperar
+    'OBJETO #6
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -37,26 +38,30 @@
         If Session("NumReg") > 0 Then
             Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
             If CInt(registro("estado")) <> 2 And CInt(registro("estado")) <> 4 Then
-
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.log_sesion_inicio(6, Session("user_idUsuario"), "" & txtUsuarioPreguntas.Text & " puede estar inactivo, caducado o sin completar el registro y no se  le permite continuar")
+                    log_bitacora.acciones_Comunes(3, registro("id_usuario"), 6, "El usuario " & txtUsuarioPreguntas.Text & " puede estar inactivo, caducado o sin completar el registro y no se  le permite continuar")
                 End Using
+
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Este usuario puede estar inactivo, caducado o sin completar el registro.', 'warning');</script>")
             Else
-
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.log_sesion_inicio(6, Session("user_idUsuario"), "" & txtUsuarioPreguntas.Text & " es enviado a respoder preguntas de seguridad para continuar")
+                    log_bitacora.acciones_Comunes(3, 1, 6, "El usuario " & txtUsuarioPreguntas.Text & "  es enviado a respoder preguntas de seguridad para continuar")
                 End Using
+
                 Session("id_usuarioPreguntas") = registro("id_usuario")
                 Session("nombre_usuario_comparar") = txtUsuarioPreguntas.Text
                 Response.Redirect("~/Inicio/preguntas.aspx")
             End If
         Else
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(3, 1, 6, "El usuario " & txtUsuarioPreguntas.Text & "  no esta registrado en el sistema")
+            End Using
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Usuario no encontrado', 'warning');</script>")
         End If
     End Sub
 
     Private Sub bttEnviar_Click(sender As Object, e As EventArgs) Handles bttEnviar.Click
+        'envia correo con token
         Dim Ssql As String = String.Empty
         Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where correo = BINARY  '" & txtEmail.Text & "';"
         Using con As New ControlDB
@@ -66,10 +71,10 @@
         If Session("NumReg") > 0 Then
             Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
 
-            'solo los usuarios activos
+            'solo los usuarios activos o bloqueados 
             If CInt(registro("estado")) <> 2 And CInt(registro("estado")) <> 4 Then
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.log_sesion_inicio(6, Session("user_idUsuario"), "con correo " & txtEmail.Text & " puede estar inactivo, caducado o sin completar el registro y no se  le permite continuar")
+                    log_bitacora.acciones_Comunes(3, registro("id_usuario"), 6, "El usuario con correo " & txtEmail.Text & " puede estar inactivo, caducado o sin completar el registro y no se  le permite continuar")
                 End Using
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Advertencia','Este usuario puede estar inactivo, caducado o sin completar el registro.', 'warning');</script>")
             Else
@@ -94,16 +99,17 @@
                                          Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                 End Using
+
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.log_sesion_inicio(6, Session("user_idUsuario"), "con correo " & txtEmail.Text & " solicita cambio de clave por correo electrónico")
+                    log_bitacora.acciones_Comunes(4, registro("id_usuario"), 6, "El usuario con correo " & txtEmail.Text & " solicita cambio de clave por correo electrónico, se crea el token y se envia solicitud al correo")
                 End Using
                 Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
             End If
         Else
             Using log_bitacora As New ControlBitacora
-                log_bitacora.log_sesion_inicio(6, Session("user_idUsuario"), "con correo " & txtEmail.Text & " no fue encontrado")
+                log_bitacora.acciones_Comunes(3, 1, 6, "El usuario con correo" & txtEmail.Text & " no fue encontrado")
             End Using
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electrónico','Correo no enviado', 'error');</script>")
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electrónico','Correo electrónico no encontrado', 'error');</script>")
             txtEmail.Text = ""
         End If
     End Sub

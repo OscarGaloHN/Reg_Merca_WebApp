@@ -1,4 +1,5 @@
 ﻿Public Class preguntas
+    'OBJETO #9
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -29,15 +30,16 @@
             End Using
             'Dim registro As DataRow
             If Session("NumReg") > 0 Then
-                'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas','Respuesta correcta.', 'success');</script>")
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(3, Session("id_usuarioPreguntas"), 9, "El usuario da una respuesta correcta a la pregunta de seguridad y es enviado a cambio de contraseña")
+                End Using
                 Session("usuarioCambioPW") = True
                 Response.Redirect("~/Inicio/cambio_contra.aspx")
             Else
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.log_sesion_inicio(7, Session("id_usuarioPreguntas"), " da una respuesta incorrecta")
+                    log_bitacora.acciones_Comunes(3, Session("id_usuarioPreguntas"), 9, "El usuario da una respuesta incorrecta a la pregunta de seguridad")
                 End Using
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas De Seguridad','Respuesta incorrecta.', 'error');</script>")
-                'Response.Redirect("~/Inicio/preguntas.aspx?result=error")
             End If
         End If
     End Sub

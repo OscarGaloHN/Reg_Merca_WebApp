@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="master_gestion_usuarios.Master.vb" Inherits="Reg_Merca_WebApp.gestion_usuarios" %>
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="master_bitacora.Master.vb" Inherits="Reg_Merca_WebApp.master_bitacora" %>
 <%@ Register Src="~/modulos/src/piedepagina.ascx" TagPrefix="uc1" TagName="piedepagina" %>
 <!DOCTYPE html>
 
@@ -163,3 +163,4 @@
 
 </body>
 </html>
+

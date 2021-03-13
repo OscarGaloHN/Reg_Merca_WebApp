@@ -2,6 +2,7 @@
 Imports System.Net.Mail
 
 Public Class activacion
+    'OBJETO #11
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -86,6 +87,9 @@ Public Class activacion
                                     Using con As New ControlDB
                                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                                     End Using
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "El correo del usuario fue confirmado")
+                                    End Using
 
                                     Page.Title = "Activación de Cuenta"
                                     lblSaludo.Text = "Hola"
@@ -124,15 +128,26 @@ Public Class activacion
                             Select Case registro("tipo")
                                 Case "registro"
                                     lblcaduca.Text = "Su solicitud a cadacudao, debe de realizar una nueva solicitud de configuración."
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(3, registro("id_usuario"), 11, "La solicitud de registro a cadacudao")
+                                    End Using
                                 Case "clave"
                                     lblcaduca.Text = "Su solicitud a cadacudao, debe de realizar una nueva solicitud de cambio de contraseña."
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(3, registro("id_usuario"), 11, "La solicitud de cambio de contraseña a cadacudao")
+                                    End Using
                                 Case "correo"
                                     lblcaduca.Text = "Su solicitud a cadacudao, debe de realizar una nueva solicitud de confirmación de correo electrónico."
-
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(3, registro("id_usuario"), 11, "La solicitud de cambio de confirmar correo")
+                                    End Using
                             End Select
                             Page.Title = "Solicitud Caducada"
                         End If
                     Else
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.acciones_Comunes(3, 1, 11, "se intenta usar un código de activación que no existe")
+                        End Using
                         PanelError.Visible = True
                         lblerror.Text = "Este intento de validación no es valido."
                         Page.Title = "Solicitud Invalida"
@@ -168,22 +183,37 @@ Public Class activacion
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "Se actualiza exitosamente la nueva contraseña")
+                    End Using
 
                     Ssql = "insert into DB_Nac_Merca.tbl_20_historico_claves (`id_usuario`, `clave`, `fecha`) VALUES(" & registro("id_usuario") & " , SHA('" & txtContraConfirmar.Text & "'), CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'));"
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(4, registro("id_usuario"), 11, "Se crea historico de cambio de contraseña con exito")
+                    End Using
+
                     Select Case Request.QueryString("acction")
                         Case "activateuser"
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "El token se actualiza para ser usado como confirmación de correo")
+                            End Using
                             Ssql = "update DB_Nac_Merca.tbl_35_activacion_usuario set tipo='correo', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(9) & " DAY) where id_usuario =  " & Request.QueryString("userregis") & " "
+
                         Case Else
-                            Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(6, registro("id_usuario"), 11, "El token de la solicitud de registrar fue eliminado")
+                            End Using
+                            Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where tipo='registro' and codigo_activacion =  '" & activationCode & "'"
                     End Select
 
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
+
                     Session.Abandon()
                     Response.Redirect("~/Inicio/login.aspx?action=activateuser")
                 End If

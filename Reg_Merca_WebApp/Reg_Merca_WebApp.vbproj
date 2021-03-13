@@ -207,6 +207,7 @@
     <Content Include="Inicio\preguntas.aspx" />
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
+    <Content Include="modulos\bitacora\bitacora.aspx" />
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
@@ -306,6 +307,8 @@
     <Content Include="modulos\Principal.Master" />
     <Content Include="modulos\configuraciones\master_config.Master" />
     <Content Include="modulos\gestion_usuario\master_gestion_usuarios.Master" />
+    <Content Include="modulos\bitacora\master_bitacora.Master" />
+    <Content Include="modulos\perfil_usuario\master_perfil.Master" />
     <None Include="My Project\PublishProfiles\CarpetaLocal.pubxml" />
     <None Include="My Project\PublishProfiles\CarpetaLocar.pubxml" />
     <None Include="My Project\PublishProfiles\FTPProfile.pubxml" />
@@ -1023,6 +1026,20 @@
       <DependentUpon>registro.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="modulos\bitacora\bitacora.aspx.designer.vb">
+      <DependentUpon>bitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\bitacora\bitacora.aspx.vb">
+      <DependentUpon>bitacora.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\bitacora\master_bitacora.Master.designer.vb">
+      <DependentUpon>master_bitacora.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\bitacora\master_bitacora.Master.vb">
+      <DependentUpon>master_bitacora.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="modulos\configuraciones\master_config.Master.designer.vb">
       <DependentUpon>master_config.Master</DependentUpon>
     </Compile>
@@ -1078,6 +1095,13 @@
     <Compile Include="modulos\menu_principal.aspx.vb">
       <DependentUpon>menu_principal.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\perfil_usuario\master_perfil.Master.designer.vb">
+      <DependentUpon>master_perfil.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\perfil_usuario\master_perfil.Master.vb">
+      <DependentUpon>master_perfil.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\Principal.Master.designer.vb">
       <DependentUpon>Principal.Master</DependentUpon>

@@ -63,7 +63,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="150" AutoComplete="off" ID="txtnombre" runat="server" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"  class="form-control"></asp:TextBox>
                                     <label class="form-label">Ingrese su nombre completo</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Reqnombre" ControlToValidate="txtnombre"
@@ -86,7 +86,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);"  onkeydown="mayus(this);BorrarRepetidas(this);"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);quitarEspacios(this);"  onkeydown="mayus(this);BorrarRepetidas(this);"></asp:TextBox>
                                     <label class="form-label">Ingrese su usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="Requsuario" ControlToValidate="txtusuario"
@@ -112,7 +112,7 @@
                             <div class="form-group form-float">
 
                                 <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" MaxLength="50" runat="server"   class="form-control" ID="txtemail"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" MaxLength="50" runat="server" onkeypress="return noespacios(event);"  class="form-control" ID="txtemail"></asp:TextBox>
                                     <label class="form-label">Ingrese un correo electrónico</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="reqemailvacio" ControlToValidate="txtEmail"

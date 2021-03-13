@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Preguntas De Seguridad" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="confi_perfil_preguntas.aspx.vb" Inherits="Reg_Merca_WebApp.confi_perfil_preguntas" %>
+﻿<%@ Page Title="Preguntas De Seguridad" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/perfil_usuario/master_perfil.Master" CodeBehind="confi_perfil_preguntas.aspx.vb" Inherits="Reg_Merca_WebApp.confi_perfil_preguntas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->

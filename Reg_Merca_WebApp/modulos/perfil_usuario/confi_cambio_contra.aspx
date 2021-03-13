@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Cambio de Contraseña" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/Principal.Master" CodeBehind="confi_cambio_contra.aspx.vb" Inherits="Reg_Merca_WebApp.confi_cambio_contra" %>
+﻿<%@ Page Title="Cambio de Contraseña" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/perfil_usuario/master_perfil.Master" CodeBehind="confi_cambio_contra.aspx.vb" Inherits="Reg_Merca_WebApp.confi_cambio_contra" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>

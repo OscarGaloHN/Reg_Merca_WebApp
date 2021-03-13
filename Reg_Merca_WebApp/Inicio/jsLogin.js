@@ -152,7 +152,11 @@ function BorrarRepetidas(e) {
     e.value = final;
 }
 
+ //QUITAR ESPACIOS CON TRIM
+function quitarEspacios(e) {
+    e.value = e.value.trim();
  
+}
 
 
 

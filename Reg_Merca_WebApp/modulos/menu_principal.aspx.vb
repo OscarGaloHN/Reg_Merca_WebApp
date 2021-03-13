@@ -1,4 +1,5 @@
 ﻿Public Class menu_principal
+    'OBJETO #4
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -59,6 +60,12 @@
                 Session("arrayModulos") = arrayDeModulos
                 Session("TotalModulos") = Session("NumReg")
             End If
+            If Not IsPostBack Then
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 4, "El usuario ingresa a la pantalla de menu principal")
+                End Using
+            End If
+
         End If
     End Sub
 End Class

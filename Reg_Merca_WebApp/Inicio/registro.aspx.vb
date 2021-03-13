@@ -2,6 +2,7 @@
 Imports System.Net.Mail
 
 Public Class registro
+    'OBJETO #5
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -44,28 +45,23 @@ Public Class registro
                 Select Case registro("EXISTE")
                     Case -1 'usuario y correo existen
                         Using log_bitacora As New ControlBitacora
-                            log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " y correo " & txtemail.Text & " ya estan registrados")
+                            log_bitacora.acciones_Comunes(4, 1, 5, "El usuario " & txtUsuario.Text & " y correo " & txtemail.Text & " ya estan registrados")
                         End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario & Correo','El usuario y correo electronico ya estan registrados.', 'error');</script>")
                     Case -2 'usuario existe
                         Using log_bitacora As New ControlBitacora
-                            log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " ya esta registrado")
+                            log_bitacora.acciones_Comunes(4, 1, 5, "El usuario " & txtUsuario.Text & " ya esta registrado")
                         End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nombre de usuario','El nombre de usuario ya esta registrado.', 'error');</script>")
                     Case -3 'correo existe
                         Using log_bitacora As New ControlBitacora
-                            log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " ya esta registrado")
+                            log_bitacora.acciones_Comunes(4, 1, 5, "El correo " & txtemail.Text & " ya esta registrado")
                         End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo electronico','El correo electronico ya estan registrado.', 'error');</script>")
                     Case 0 'no existe
                         Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_02_usuarios` (`id_rol`,`usuario`, `nombre`,`estado`, `correo`,  `fecha_vencimiento`, `creado_por`, `fecha_creacion`, `intentos`, `emailconfir`) VALUES (6,'" & txtUsuario.Text & "', '" & txtnombre.Text & "',0, '" & txtemail.Text & "', null, 'Autoregistro',  CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), 0, 0);"
                         Using con As New ControlDB
                             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        End Using
-
-
-                        Using log_bitacora As New ControlBitacora
-                            log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " ya esta registrado")
                         End Using
                         SendActivationEmail()
                         Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
@@ -99,28 +95,9 @@ Public Class registro
                                          Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
             End Using
-
             Using log_bitacora As New ControlBitacora
-                log_bitacora.log_sesion_inicio(5, registro("id_usuario"), "" & txtUsuario.Text & " fue autoregistrado con id " & registro("id_usuario") & ", fue registrado exitosamente")
+                log_bitacora.acciones_Comunes(4, registro("id_usuario"), 5, "El usuario " & txtUsuario.Text & " fue autoregistrado")
             End Using
-            'Using mm As New MailMessage("registrodemercanciahn@gmail.com", txtemail.Text)
-            '    mm.Subject = "Activación de Cuenta"
-            '    mm.From = New MailAddress("registrodemercanciahn@gmail.com", "RegMERCA")
-            '    Dim body As String = "Hola " + txtnombre.Text.Trim() + ","
-            '    body += "<br /><br />Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta."
-            '    body += "<br /><a href = '" + Request.Url.AbsoluteUri.Replace("registro", Convert.ToString("activacion.aspx?ActivationCode=") & activationCode) + "'>Click aqui para poder activar su cuenta.</a>"
-            '    body += "<br /><br />Gracias"
-            '    mm.Body = body
-            '    mm.IsBodyHtml = True
-            '    Dim smtp As New SmtpClient()
-            '    smtp.Host = "smtp.gmail.com"
-            '    smtp.EnableSsl = True
-            '    Dim NetworkCred As New NetworkCredential("registrodemercanciahn@gmail.com", "mercancia2021")
-            '    smtp.UseDefaultCredentials = True
-            '    smtp.Credentials = NetworkCred
-            '    smtp.Port = 587
-            '    smtp.Send(mm)
-            'End Using
         Else
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El registro no fue completado. Intentelo de nuevo.', 'error');</script>")
         End If
