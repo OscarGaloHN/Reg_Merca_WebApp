@@ -3,9 +3,7 @@
 Session("id_usuarioPreguntas") = id de usuario para cargar las preguntas
  Session("usuarioCambioPW") = evalua que respondio bien la pregunta
 
-Session("preguntasDeUsuario") = 
-
-  Datos del Usuario
+Session("preguntasDeUsuario") =   Datos del Usuario
 Session("user_idUsuario") = registro("id_usuario")
 Session("user_nombre_usuario") = registro("usuario")
 Session("user_nombre_personal") = registro("nombre")
