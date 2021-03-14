@@ -14,7 +14,7 @@
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
-            <a href="menu_principal.aspx">
+            <a href="../menu_principal.aspx">
                 <i class="material-icons">home</i>
                 <span>Inicio</span>
             </a>

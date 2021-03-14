@@ -14,7 +14,7 @@
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
-            <a href="menu_principal.aspx">
+            <a href="../menu_principal.aspx">
                 <i class="material-icons">home</i>
                 <span>Inicio</span>
             </a>
@@ -47,7 +47,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">Cambio de Contraseña
-                        <small>mensajee pendiente</small>
+                        <small>Para poder cambiar su contraseña debe de ingresar su contraseña actual.</small>
                     </h2>
                 </div>
                 <div class="body">

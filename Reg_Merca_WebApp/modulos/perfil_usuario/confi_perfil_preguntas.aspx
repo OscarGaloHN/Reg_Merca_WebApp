@@ -83,7 +83,7 @@
         <li class="header">MENU PRINCIPAL</li>
         <% If Session("user_estado") = 2 Then %>
         <li>
-            <a href="menu_principal.aspx">
+            <a href="../menu_principal.aspx">
                 <i class="material-icons">home</i>
                 <span>Inicio</span>
             </a>

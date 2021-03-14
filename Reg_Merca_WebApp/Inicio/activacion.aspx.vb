@@ -164,6 +164,7 @@ Public Class activacion
     End Sub
 
     Private Sub bttContra_Click(sender As Object, e As EventArgs) Handles bttContra.Click
+        'cambio de contraseña para nuevos registros
         If UCase(txtContra.Text) = UCase(lblUsuario.Text) Then
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña no valida','La contraseña no puede ser igual a su nombre de usuario.', 'error');</script>")
         Else
@@ -271,6 +272,9 @@ Public Class activacion
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                     End Using
 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "El usuario realiza una nueva solicitud de registro")
+                    End Using
 
                 Case "clave"
                     Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(8) & " DAY) where id_usuario=" & registro("id_usuario") & ";"
@@ -286,7 +290,9 @@ Public Class activacion
                                          Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                     End Using
-
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "El usuario realiza una nueva solicitud de cambio de contraseña")
+                    End Using
                 Case "correo"
                     Ssql = "UPDATE `DB_Nac_Merca`.`tbl_35_activacion_usuario` SET codigo_activacion= '" & activationCodeNuevo & "', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(9) & " DAY) where id_usuario=" & registro("id_usuario") & ";"
                     Using con As New ControlDB
@@ -301,6 +307,9 @@ Public Class activacion
                                          Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
                                          Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                     End Using
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "El usuario realiza una nueva solicitud de confirmar correo")
+                    End Using
             End Select
             Session.Abandon()
             Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
@@ -310,6 +319,7 @@ Public Class activacion
     End Sub
 
     Private Sub bttCambiarContra_Click(sender As Object, e As EventArgs) Handles bttCambiarContra.Click
+        'cambio de contraseña desde el link del correo
         If UCase(txtContra.Text) = UCase(lblUsuario.Text) Then
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña no valida','La contraseña no puede ser igual a su nombre de usuario.', 'error');</script>")
         Else
@@ -332,11 +342,27 @@ Public Class activacion
                         registro = DataSetX.Tables(0).Rows(0)
                         Select Case registro("repetida")
                             Case 1 'contraseña ya usada
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "No se permite el cambio de contraseña, porque la nueva contraseña ya fue usada anteriormente")
+                                End Using
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
                             Case 2 'contraseña sin usar
+
                                 Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "' and tipo='clave'"
                                 Using con As New ControlDB
                                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                                End Using
+
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "El cambio de contraseña fue exitoso")
+                                End Using
+
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(4, registro("id_usuario"), 11, "Se crea historico de cambio de contraseña con exito")
+                                End Using
+
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(6, registro("id_usuario"), 11, "El token de la solicitud de cambio de contraseña fue eliminado")
                                 End Using
 
                                 Session.Abandon()
