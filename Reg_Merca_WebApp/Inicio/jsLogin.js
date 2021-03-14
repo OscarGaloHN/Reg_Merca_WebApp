@@ -13,7 +13,7 @@
             document.getElementById("show_password").innerHTML = "visibility_off";
             //$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
         });
-});
+}); 
 
 //mostrar contraseña
 $(document).ready(function () {
