@@ -54,8 +54,8 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group form-float">
-                                <asp:Label ID="Lbnomb" runat="server" class="form-label" Text="Nombre Completo:"></asp:Label>
+                            <div class="form-group">
+                                <asp:Label ID="Lbnomb" runat="server" class="form-label font-bold" Text="Nombre Completo:"></asp:Label>
                                 <asp:Label ID="Lbnombre" runat="server" class="form-label" Text=""></asp:Label>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group form-float">
-                                <asp:Label ID="Lbusua" runat="server" class="form-label" Text="Nombre de Usuario:"></asp:Label>
+                                <asp:Label ID="Lbusua" runat="server" class="form-label font-bold" Text="Nombre de Usuario:"></asp:Label>
                                 <asp:Label ID="Lbusuario" runat="server" class="form-label" Text=""></asp:Label>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
 
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <asp:Label ID="Lbcorre" runat="server" class="form-label" Text="Correo Eletrónico:"></asp:Label>
+                            <asp:Label ID="Lbcorre" runat="server" class="form-label font-bold" Text="Correo Eletrónico:"></asp:Label>
                             <asp:Label ID="Lbcorreo" runat="server" class="form-label" Text=""></asp:Label>
                         </div>
                     </div>
@@ -101,13 +101,8 @@
                                     Font-Size="X-Small"
                                     ErrorMessage="Su correo electronico es incorrecto"
                                     ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
-                            
-
-                           
                             </div>
-
                         </div>
-
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
@@ -123,14 +118,14 @@
                     <div class="row clearfix">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group form-float">
-                                <asp:Label ID="lb_fec" runat="server" class="form-label" Text="Fecha de Creación:"></asp:Label>
+                                <asp:Label ID="lb_fec" runat="server" class="form-label font-bold" Text="Fecha de Creación:"></asp:Label>
                                 <asp:Label ID="lb_fecha" runat="server" class="form-label" Text=""></asp:Label>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group form-float">
-                                <asp:Label ID="Lb_usca" runat="server" class="form-label" Text="Su usuario vence el:"></asp:Label>
-                                <asp:Label ID="lb_uscadu" runat="server" class="form-label" Text=""></asp:Label>
+                                <asp:Label ID="Lb_usca" runat="server" class="form-label font-bold" Text="Su usuario vence el:"></asp:Label>
+                                <asp:Label ID="lb_uscadu" runat="server" class="form-label font-bold col-red" Text=""></asp:Label>
                             </div>
                         </div>
                     </div>

@@ -37,7 +37,7 @@
         End Using
         If Session("NumReg") > 0 Then
             Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
-            If CInt(registro("estado")) <> 2 And CInt(registro("estado")) <> 4 Then
+            If CInt(registro("estado")) <> 2 And CInt(registro("estado")) <> 4 And CInt(registro("estado")) <> 1 Then
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(3, registro("id_usuario"), 6, "El usuario " & txtUsuarioPreguntas.Text & " puede estar inactivo, caducado o sin completar el registro y no se  le permite continuar")
                 End Using
@@ -72,7 +72,7 @@
             Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
 
             'solo los usuarios activos o bloqueados 
-            If CInt(registro("estado")) <> 2 And CInt(registro("estado")) <> 4 Then
+            If CInt(registro("estado")) <> 2 And CInt(registro("estado")) <> 4 And CInt(registro("estado")) <> 1 Then
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(3, registro("id_usuario"), 6, "El usuario con correo " & txtEmail.Text & " puede estar inactivo, caducado o sin completar el registro y no se  le permite continuar")
                 End Using

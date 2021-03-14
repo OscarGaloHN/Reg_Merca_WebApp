@@ -96,7 +96,7 @@
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="txtContra"
-                                    ErrorMessage="La contraseña no puede ser igual a la anterior."
+                                    ErrorMessage="La contraseña no puede ser igual a la actual."
                                     Display="Dynamic" ControlToCompare="txtContraactual"
                                     ForeColor="OrangeRed" Font-Size="X-Small" Operator="NotEqual">
    

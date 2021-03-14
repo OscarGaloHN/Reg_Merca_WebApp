@@ -115,10 +115,17 @@ Public Class activacion
                                     Using con As New ControlDB
                                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                                     End Using
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "El correo del usuario fue confirmado")
+                                    End Using
 
-                                    Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
+                                    Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where  tipo='correo' and  codigo_activacion =  '" & activationCode & "'"
                                     Using con As New ControlDB
                                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                                    End Using
+
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(6, registro("id_usuario"), 11, "El token de la solicitud de cambio de correo fue eliminado")
                                     End Using
                                     Session.Abandon()
                                     Response.Redirect("~/Inicio/login.aspx?action=activateemail")

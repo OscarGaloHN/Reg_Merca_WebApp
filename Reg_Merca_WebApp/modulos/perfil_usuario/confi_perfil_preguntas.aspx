@@ -122,7 +122,7 @@
             <div class="card">
                 <div class="header">
                     <h2>Configuración Y Selección De Preguntas
-                                <small>No comparta sus respuestas con danie, ya que estas preguntas le ayudaran a desbloquear su cuenta o cambiar contraseña.</small>
+                                <small>No comparta sus respuestas con nadie, ya que estas preguntas le ayudaran a desbloquear su cuenta o cambiar contraseña.</small>
                     </h2>
 
                 </div>
@@ -198,7 +198,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <asp:TextBox onkeyup="mayus(this);" placeholder="Respuesta" AutoComplete="off" ID="txtrespuesta" runat="server" class="form-control"></asp:TextBox>
+                                                    <asp:TextBox   onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);quitarEspacios(this);"  onkeydown="mayus(this);BorrarRepetidas(this);" placeholder="Respuesta" AutoComplete="off" ID="txtrespuesta" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                                 <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtrespuesta"
                                                     ErrorMessage="Debe de ingresar su respuesta."
@@ -255,7 +255,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <asp:TextBox onkeyup="mayus(this);" placeholder="Respuesta" AutoComplete="off" ID="txtRespuestaEditar" runat="server" class="form-control"></asp:TextBox>
+                                                    <asp:TextBox  onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);quitarEspacios(this);"  onkeydown="mayus(this);BorrarRepetidas(this);" placeholder="Respuesta" AutoComplete="off" ID="txtRespuestaEditar" runat="server" class="form-control"></asp:TextBox>
                                                 </div>
                                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtRespuestaEditar"
                                                     ErrorMessage="Debe de ingresar su respuesta."

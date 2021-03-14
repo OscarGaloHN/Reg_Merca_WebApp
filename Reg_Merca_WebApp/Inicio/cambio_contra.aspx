@@ -31,7 +31,13 @@
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
     <script src="jsLogin.js"></script>
-
+    <script type="text/javascript">
+        function cajascontra(){
+            document.getElementById('txtContraConfirmar').value = '';
+            document.getElementById('txtContra').value = '';
+            setTimeout(function () { document.getElementById('txtContra').focus() }, 1000);
+        }
+    </script>
 </head>
 <body class="login-page">
     <div class="login-box">
@@ -54,8 +60,7 @@
 
                         <div class="row clearfix">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <a onclick="  document.getElementById('txtContraConfirmar').value = ''; 
-                                document.getElementById('txtContra').value = '';"
+                                <a onclick="cajascontra();"
                                     class="btn btn-block btn-lg bg-pink waves-effect" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
                                     aria-controls="collapseExample">CAMBIAR CONTRASEÑA
                                 </a>
@@ -92,7 +97,7 @@
                                             <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                                 <div class="input-group">
                                                     <span>
-                                                        <i id="show_password" style="cursor: default" class="material-icons">visibility_off</i>
+                                                        <i id="mostrarnueva" onmouseout="mouseOut('txtContra','mostrarnueva')" onmouseover="mouseOver('txtContra','mostrarnueva')"  style="cursor: default" class="material-icons">visibility_off</i>
                                                     </span>
                                                 </div>
                                             </div>
@@ -127,7 +132,7 @@
                                             <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                                 <div class="input-group">
                                                     <span>
-                                                        <i id="show_password2" style="cursor: default" class="material-icons">visibility_off</i>
+                                                        <i id="mostrarconfirmar" onmouseout="mouseOut('txtContraConfirmar','mostrarconfirmar')" onmouseover="mouseOver('txtContraConfirmar','mostrarconfirmar')" style="cursor: default" class="material-icons">visibility_off</i>
                                                     </span>
                                                 </div>
                                             </div>

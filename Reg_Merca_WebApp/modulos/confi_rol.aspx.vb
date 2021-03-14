@@ -5,8 +5,10 @@
             Session.Abandon()
             Response.Redirect("~/Inicio/login.aspx")
         ElseIf Session("user_rol") <> 6 Then
-            Session.Abandon()
-            Response.Redirect("~/Inicio/login.aspx")
+            'REDIRECCIONAR A MENU PRINCIPAL
+            Response.Redirect("~/modulos/menu_principal.aspx")
+        Else
+
         End If
     End Sub
 End Class

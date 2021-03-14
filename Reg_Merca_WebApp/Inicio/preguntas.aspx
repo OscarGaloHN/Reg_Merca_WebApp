@@ -73,7 +73,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <asp:TextBox AutoComplete="off" ID="txtrespuesta" runat="server" class="form-control" onkeypress="return isNumberOrLetter(event)" onkeyup="mayus(this);"></asp:TextBox>
+                                        <asp:TextBox AutoComplete="off" ID="txtrespuesta" runat="server" class="form-control"  onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);quitarEspacios(this);"  onkeydown="mayus(this);BorrarRepetidas(this);"></asp:TextBox>
                                         <label class="form-label">Respuesta</label>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtrespuesta"

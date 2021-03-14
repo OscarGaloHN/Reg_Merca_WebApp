@@ -4,7 +4,7 @@
     Private Sub lblcerrarSesion_Click(sender As Object, e As EventArgs) Handles lblcerrarSesion.Click
         'registrar bitacora logout
         Using log_bitacora As New ControlBitacora
-            log_bitacora.acciones_Comunes(2, Session("user_idUsuario"), 4, "perfil de usuario")
+            log_bitacora.acciones_Comunes(2, Session("user_idUsuario"), 13, "perfil de usuario")
         End Using
 
         Session.Abandon()

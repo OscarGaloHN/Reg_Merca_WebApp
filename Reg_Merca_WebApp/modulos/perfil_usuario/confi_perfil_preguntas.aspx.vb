@@ -1,6 +1,7 @@
 ﻿
 Public Class confi_perfil_preguntas
     Inherits System.Web.UI.Page
+    'OBJETO #15
     Private Property DataSetX As DataSet
         Get
             Return CType(Session("DataSetX"), DataSet)
@@ -11,7 +12,6 @@ Public Class confi_perfil_preguntas
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Session("user_idUsuario") <> Nothing Then
-
             SqlPreguntas.SelectCommand = "SELECT id_pregunta, UPPER(pregunta) pregunta FROM DB_Nac_Merca.tbl_22_preguntas
             WHERE id_pregunta Not in (select id_pregunta FROM DB_Nac_Merca.tbl_23_preguntas_usuario where id_usuario = " & Session("user_idUsuario") & ")  order by 1;"
             SqlEditaPregunta.SelectCommand = "SELECT id_pregunta, UPPER(pregunta) pregunta FROM DB_Nac_Merca.tbl_22_preguntas order by 1"
@@ -37,7 +37,10 @@ Public Class confi_perfil_preguntas
             If Session("NumReg") >= Application("ParametrosADMIN")(8) Then
                 PanelPregunta.Visible = False
                 If Session("user_estado") = 1 Then
-                    Ssql = "UPDATE   `DB_Nac_Merca`.`tbl_02_usuarios` SET ESTADO=2  WHERE id_usuario=" & Session("user_idUsuario") & ";" '"INSERT INTO `DB_Nac_Merca`.`tbl_35_activacion_usuario` (`id_usuario`, `codigo_activacion`, `vencimiento`,`tipo`,`estado`) VALUES (" & registro("id_usuario") & ", '" & activationCode & "',DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL 2 DAY),'registro',1);"
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 15, "El usuario completa la configuración y pasa a un estado activo")
+                    End Using
+                    Ssql = "UPDATE   `DB_Nac_Merca`.`tbl_02_usuarios` SET ESTADO=2  WHERE id_usuario=" & Session("user_idUsuario") & ";"
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
@@ -56,12 +59,18 @@ Public Class confi_perfil_preguntas
                 Case "updateerror"
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas de Seguridad','No se permite repetir preguntas.', 'error');</script>")
                 Case "awquestions"
-
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Preguntas de Seguridad','Debe de completar las preguntas de seguridad requeridas.', 'warning');</script>")
-
+                Case Else
+                    If Not IsPostBack Then
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 15, "El usuario ingresa a la pantalla de configurar preguntas de seguridad")
+                        End Using
+                    End If
             End Select
+        Else
+            Session.Abandon()
+            Response.Redirect("~/Inicio/login.aspx")
         End If
-
     End Sub
 
     Private Sub bttGuardarPregunta_Click(sender As Object, e As EventArgs) Handles bttGuardarPregunta.Click
@@ -69,7 +78,10 @@ Public Class confi_perfil_preguntas
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
-        Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=newquestions")
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 15, "Se guardo una nueva pregunta de seguridad")
+        End Using
+        Response.Redirect("~/modulos/perfil_usuario/confi_perfil_preguntas.aspx?acction=newquestions")
     End Sub
 
     Private Sub bttActualizar_Click(sender As Object, e As EventArgs) Handles bttActualizar.Click
@@ -81,7 +93,10 @@ Public Class confi_perfil_preguntas
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=updateerror")
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 15, "No se permitio actualizar la pregunta de seguridad")
+                End Using
+                Response.Redirect("~/modulos/perfil_usuario/confi_perfil_preguntas.aspx?acction=updateerror")
 
             Else
                 lblIDPregunta.Text = lblHidden1.Value
@@ -89,7 +104,10 @@ Public Class confi_perfil_preguntas
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
-                Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=updatequestions")
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 15, "Se actualizo una pregunta de seguridad")
+                End Using
+                Response.Redirect("~/modulos/perfil_usuario/confi_perfil_preguntas.aspx?acction=updatequestions")
             End If
         Else
             lblIDPregunta.Text = lblHidden1.Value
@@ -97,8 +115,10 @@ Public Class confi_perfil_preguntas
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-            Response.Redirect("~/modulos/confi_perfil_preguntas.aspx?acction=updatequestions")
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 15, "Se actualizo una pregunta de seguridad")
+            End Using
+            Response.Redirect("~/modulos/perfil_usuario/confi_perfil_preguntas.aspx?acction=updatequestions")
         End If
-
     End Sub
 End Class
