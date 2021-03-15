@@ -187,7 +187,7 @@ Public Class activacion
                 If Session("NumReg") > 0 Then
                     Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
 
-                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  clave = SHA('" & txtContraConfirmar.Text & "'), estado = 1 ,fecha_vencimiento = DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY ) where id_usuario=" & registro("id_usuario") & ";"
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  clave = SHA('" & txtContraConfirmar.Text & "'), estado = 1 ,cambio_clave=0 ,fecha_vencimiento = DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY ) where id_usuario=" & registro("id_usuario") & ";"
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
@@ -325,14 +325,33 @@ Public Class activacion
         Else
             Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), Guid.Empty.ToString())
             If PanelConfirmar.Visible = True Then
+
+
                 Dim Ssql As String = "SELECT *FROM DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "'"
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
                 If Session("NumReg") > 0 Then
+
                     Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
+                    Session("usuario_temp") = registro("id_usuario")
                     'pendiente de editar la fecha de vencimiento
+
+
+
+
+                    Ssql = "SELECT *FROM DB_Nac_Merca.tbl_02_usuarios  where id_usuario =  " & Session("usuario_temp") & ""
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    If Session("NumReg") > 0 Then
+                        registro = DataSetX.Tables(0).Rows(0)
+                        Session("usuario_temp_estado") = registro("estado")
+                    End If
+
+
                     Ssql = "CALL contrasenas(" & registro("id_usuario") & ", SHA('" & txtContraConfirmar.Text & "'))"
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -343,7 +362,7 @@ Public Class activacion
                         Select Case registro("repetida")
                             Case 1 'contraseña ya usada
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "No se permite el cambio de contraseña, porque la nueva contraseña ya fue usada anteriormente")
+                                    log_bitacora.acciones_Comunes(5, Session("usuario_temp"), 11, "No se permite el cambio de contraseña, porque la nueva contraseña ya fue usada anteriormente")
                                 End Using
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
                             Case 2 'contraseña sin usar
@@ -354,16 +373,27 @@ Public Class activacion
                                 End Using
 
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.acciones_Comunes(5, registro("id_usuario"), 11, "El cambio de contraseña fue exitoso")
+                                    log_bitacora.acciones_Comunes(5, Session("usuario_temp"), 11, "El cambio de contraseña fue exitoso")
                                 End Using
 
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.acciones_Comunes(4, registro("id_usuario"), 11, "Se crea historico de cambio de contraseña con exito")
+                                    log_bitacora.acciones_Comunes(4, Session("usuario_temp"), 11, "Se crea historico de cambio de contraseña con exito")
                                 End Using
 
                                 Using log_bitacora As New ControlBitacora
-                                    log_bitacora.acciones_Comunes(6, registro("id_usuario"), 11, "El token de la solicitud de cambio de contraseña fue eliminado")
+                                    log_bitacora.acciones_Comunes(6, Session("usuario_temp"), 11, "El token de la solicitud de cambio de contraseña fue eliminado")
                                 End Using
+
+
+
+
+                                Ssql = "update tbl_02_usuarios set estado=" & Session("usuario_temp_estado") & " , cambio_clave=0  where id_usuario =" & Session("usuario_temp") & ""
+                                Using con As New ControlDB
+                                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                                End Using
+
+
+
 
                                 Session.Abandon()
                                 Response.Redirect("~/Inicio/login.aspx?action=changepasswordout")
