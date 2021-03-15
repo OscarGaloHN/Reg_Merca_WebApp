@@ -11,151 +11,169 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class configurar
+Partial Public Class config_avanz
 
     '''<summary>
-    '''Control txtEmpresa.
+    '''Control txtEmailEnvio.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtEmpresa As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtEmailEnvio As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control RequiredFieldValidator1.
+    '''Control RequiredFieldValidator8.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator8 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtAlias.
+    '''Control RegularEmailEnvio.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtAlias As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RegularEmailEnvio As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
-    '''Control RequiredFieldValidator5.
+    '''Control txtContrasena.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents txtContrasena As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control txtRTN.
+    '''Control RequiredFieldValidator9.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtRTN As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control RequiredFieldValidator2.
+    '''Control txtPuerto.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents txtPuerto As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control txtEmail.
+    '''Control RequiredFieldValidator10.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RequiredFieldValidator10 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control RequiredFieldValidator3.
+    '''Control TextSMTP.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents TextSMTP As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control reEmailRegistro.
+    '''Control RequiredFieldValidator11.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reEmailRegistro As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents RequiredFieldValidator11 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txttel.
+    '''Control txtmaximousu.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txttel As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtmaximousu As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control RequiredFieldValidator4.
+    '''Control txtminimousu.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents txtminimousu As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control retelefono.
+    '''Control txtminimocarac.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents retelefono As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    Protected WithEvents txtminimocarac As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control txtDireccion.
+    '''Control txtmaximocarat.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtDireccion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtmaximocarat As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control RequiredFieldValidator6.
+    '''Control txtvigenciausu.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents txtvigenciausu As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control txtADMIN_URL_WEB.
+    '''Control txtIntentos.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtADMIN_URL_WEB As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtIntentos As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control RequiredFieldValidator7.
+    '''Control txtPreguntas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents txtPreguntas As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''Control chkRecordarusu.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents chkRecordarusu As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+
+    '''<summary>
+    '''Control chkRegistro.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents chkRegistro As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
 
     '''<summary>
     '''Control bttLimpiar.
