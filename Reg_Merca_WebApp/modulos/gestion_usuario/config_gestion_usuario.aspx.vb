@@ -88,12 +88,13 @@
                 End If
             Case Else
                 Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx")
-
         End Select
-        Select Case Request.QueryString("alerta")
-            Case "1"
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','La contraseña se cambio con exito', 'success');</script>")
-        End Select
+        If Not IsPostBack Then
+            Select Case Request.QueryString("alerta")
+                Case "1"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','La contraseña se cambio con exito', 'success');</script>")
+            End Select
+        End If
     End Sub
     Private Sub bttGuardar_Click(sender As Object, e As EventArgs) Handles bttGuardar.Click
 
@@ -139,16 +140,6 @@
         End Select
 
 
-
-
-
-        'nombre = InputBox("Ingrese Nombre ",
-        '                "Registro de Datos Personales",
-        '                "Nombre", 100, 0)
-        'MessageBox.Show("Bienvenido Usuario: " + nombre,
-        '                "Registro de Datos Personales",
-        '                MessageBoxButtons.OK,
-        '                MessageBoxIcon.Information)
 
     End Sub
     Private Sub SendActivationEmail()
@@ -204,16 +195,18 @@
     End Sub
 
     Private Sub bttResetear_Click(sender As Object, e As EventArgs) Handles bttResetear.Click
-        Dim Ssql As String = "SELECT * FROM DB_Nac_Merca.tbl_02_usuarios where id_usuario = " & Request.QueryString("xuser") & ""
-        Using con As New ControlDB
-            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        End Using
-        If Session("NumReg") > 0 Then
-            Dim registro As DataRow
-            registro = DataSetX.Tables(0).Rows(0)
+        If Session("estado_temp") <> 3 And Session("estado_temp") <> 5 Then
 
-            Ssql = "CALL contrasenas(" & registro("id_usuario") & ", SHA('" & txtContraConfirmarresetear.Text & "'))"
+            Dim Ssql As String = "SELECT * FROM DB_Nac_Merca.tbl_02_usuarios where id_usuario = " & Request.QueryString("xuser") & ""
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+                Dim registro As DataRow
+                registro = DataSetX.Tables(0).Rows(0)
+
+                Ssql = "CALL contrasenas(" & registro("id_usuario") & ", SHA('" & txtContraConfirmarresetear.Text & "'))"
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -238,59 +231,69 @@
                             End Using
 
 
-                        ''envio de correo usuario token cambio clave
-                        Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & Request.QueryString("xuser") & " and tipo='clave_admin'"
-                        Using con As New ControlDB
-                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        End Using
+                            ''envio de correo usuario token cambio clave
+                            Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & Request.QueryString("xuser") & " and tipo='clave_admin'"
+                            Using con As New ControlDB
+                                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                            End Using
 
-                        Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & Request.QueryString("xuser") & " and tipo='clave'"
-                        Using con As New ControlDB
-                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        End Using
+                            Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & Request.QueryString("xuser") & " and tipo='clave'"
+                            Using con As New ControlDB
+                                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                            End Using
 
-                        Dim activationCode As String = Guid.NewGuid().ToString()
-                        If Session("estado_temp") = 0 Then
-                            Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_35_activacion_usuario` (`id_usuario`, `codigo_activacion`, `vencimiento`,`tipo`,`estado`) VALUES (" & Request.QueryString("xuser") & ", '" & activationCode & "',DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(7) & " DAY),'clave_admin',1);"
-                        Else
-                            Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_35_activacion_usuario` (`id_usuario`, `codigo_activacion`, `vencimiento`,`tipo`,`estado`) VALUES (" & Request.QueryString("xuser") & ", '" & activationCode & "',DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(7) & " DAY),'clave',1);"
-                        End If
-                        Using con As New ControlDB
-                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        End Using
-
-
-                        Using log_bitacora As New ControlBitacora
-                            log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), 8, "El token de la solicitud de cambio de contraseña fue creado para el usuario " & txtUsuario.Text)
-                        End Using
-
-                        Dim urllink As String = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) & "/Inicio/reiniciarcontra.aspx?ActivationCode=" & activationCode
-
-                        Using xCorreo As New ControlCorreo
-                            xCorreo.envio_correo("Recibimos una solicitud para restablecer su contraseña. Si no realizó esta solicitud, ignore esta notificación. De lo contrario, puede restablecer su contraseña mediante este enlace.", "CAMBIAR CONTRASEÑA",
-                                                 txtCorreoElectronico.Text, Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
-                                               txtNombre.Text.Trim(),
-                                                 urllink, "Cambio de Contraseña",
-                                                 Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
-                                                 Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
-                        End Using
-
-                            Ssql = "update tbl_02_usuarios set estado=" & Session("estado_temp") & " , cambio_clave=1  where id_usuario =" & Request.QueryString("xuser") & ""
+                            Dim activationCode As String = Guid.NewGuid().ToString()
+                            If Session("estado_temp") = 0 Then
+                                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_35_activacion_usuario` (`id_usuario`, `codigo_activacion`, `vencimiento`,`tipo`,`estado`) VALUES (" & Request.QueryString("xuser") & ", '" & activationCode & "',DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(7) & " DAY),'clave_admin',1);"
+                            Else
+                                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_35_activacion_usuario` (`id_usuario`, `codigo_activacion`, `vencimiento`,`tipo`,`estado`) VALUES (" & Request.QueryString("xuser") & ", '" & activationCode & "',DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(7) & " DAY),'clave',1);"
+                            End If
                             Using con As New ControlDB
                                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                             End Using
 
 
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), 8, "El token de la solicitud de cambio de contraseña fue creado para el usuario " & txtUsuario.Text)
+                            End Using
+
+                            Dim urllink As String
+                            If Session("estado_temp") = 0 Then
+                                urllink = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) & "/Inicio/reiniciarcontra.aspx?ActivationCode=" & activationCode
+                            Else
+                                urllink = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) & "/Inicio/activacion.aspx?ActivationCode=" & activationCode
+                            End If
+
+
+                            Using xCorreo As New ControlCorreo
+                                xCorreo.envio_correo("Recibimos una solicitud para restablecer su contraseña. Si no realizó esta solicitud, ignore esta notificación. De lo contrario, puede restablecer su contraseña mediante este enlace.", "CAMBIAR CONTRASEÑA",
+                                                     txtCorreoElectronico.Text, Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
+                                                   txtNombre.Text.Trim(),
+                                                     urllink, "Cambio de Contraseña",
+                                                     Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
+                                                     Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
+                            End Using
+
+                            If Session("estado_temp") = 4 Then
+                                Ssql = "update tbl_02_usuarios set cambio_clave=1  where id_usuario =" & Request.QueryString("xuser") & ""
+                            Else
+                                Ssql = "update tbl_02_usuarios set estado=" & Session("estado_temp") & " , cambio_clave=1  where id_usuario =" & Request.QueryString("xuser") & ""
+                            End If
+
+                            Using con As New ControlDB
+                                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                            End Using
+
                             Response.Redirect("~/modulos/gestion_usuario/config_gestion_usuario.aspx?action=update&xuser=" & Request.QueryString("xuser") & "&alerta=1")
                     End Select
                 End If
+            Else
+                ''aqui alerta de error que no encontro usuario
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','Usuario no encontrado, la contraseña no pudo ser reseteada.', 'error');</script>")
 
-
-
+            End If
         Else
-            ''aqui alerta de error que no encontro usuario
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','Usuario no encontrado, la contraseña no pudo ser reseteada.', 'error');</script>")
-
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Estado','No se permite el cambio de contraseña a un usuario inactivo o caducado', 'error');</script>")
         End If
     End Sub
 

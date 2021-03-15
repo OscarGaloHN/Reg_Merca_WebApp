@@ -98,8 +98,8 @@
         Dim activationCodeNuevo As String = Guid.NewGuid().ToString()
 
         Dim activationCode As String = If(Not String.IsNullOrEmpty(Request.QueryString("ActivationCode")), Request.QueryString("ActivationCode"), "0")
-                Ssql = "SELECT T01.*, T02.correo, T02.nombre FROM DB_Nac_Merca.tbl_35_activacion_usuario T01 left join DB_Nac_Merca.tbl_02_usuarios T02 on T01.id_usuario = T02.id_usuario where T01.codigo_activacion =  '" & activationCode & "'"
-                urllink = Request.Url.AbsoluteUri.Replace(activationCode, activationCodeNuevo)
+        Ssql = "SELECT T01.*, T02.correo, T02.nombre FROM DB_Nac_Merca.tbl_35_activacion_usuario T01 left join DB_Nac_Merca.tbl_02_usuarios T02 on T01.id_usuario = T02.id_usuario where T01.codigo_activacion =  '" & activationCode & "'"
+        urllink = Request.Url.AbsoluteUri.Replace(activationCode, activationCodeNuevo)
 
 
         Using con As New ControlDB
@@ -164,6 +164,7 @@
 
                     registro = DataSetX.Tables(0).Rows(0)
                     Session("usuario_temp") = registro("id_usuario")
+                    Session("usuario_temp_correo") = registro("correo")
 
 
                     Ssql = "CALL contrasenas(" & registro("id_usuario") & ", SHA('" & txtContraConfirmar.Text & "'))"
@@ -181,7 +182,27 @@
                                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
                             Case 2 'contraseña sin usar
                                 Ssql = "update DB_Nac_Merca.tbl_35_activacion_usuario set tipo='correo', vencimiento= DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(9) & " DAY) where codigo_activacion =  '" & activationCode & "' "
-                                'Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where codigo_activacion =  '" & activationCode & "' and tipo='clave_admin'"
+                                Using con As New ControlDB
+                                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                                End Using
+
+
+
+                                'alerta de correo
+                                Dim urllink As String = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) & "/Inicio/activacion.aspx?ActivationCode=" & activationCode
+
+                                Using xCorreo As New ControlCorreo
+                                    xCorreo.envio_correo("Recibimos una solicitud para confirmar su correo electrónico. Si no realizó esta solicitud, ignore esta notificación. De lo contrario, puede confirmar su correo electrónico mediante este enlace. ", "CONFIRMAR",
+                                          Session("usuario_temp_correo"), Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
+                                         Session("user_nombre_personal"),
+                                         urllink, "Confirmar Correo Electrónico",
+                                         Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
+                                         Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
+                                End Using
+
+
+
+                                Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & Session("usuario_temp") & " and tipo='registro'"
                                 Using con As New ControlDB
                                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                                 End Using
@@ -202,8 +223,6 @@
                                 Using con As New ControlDB
                                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                                 End Using
-
-
                                 Session.Abandon()
                                 Response.Redirect("~/Inicio/login.aspx?action=changepasswordout")
                         End Select
@@ -212,6 +231,4 @@
             End If
         End If
     End Sub
-
-
 End Class
