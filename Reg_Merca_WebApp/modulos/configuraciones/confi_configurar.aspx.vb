@@ -49,28 +49,43 @@
         End Using
 
         'alias
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Ingreso del alias de la empresa")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros  SET  valor = '" & txtAlias.Text & "' where id_parametro =6"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
 
         'RTN
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Ingreso del RTN de la empresa")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtRTN.Text & "' where id_parametro =9"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
 
         'email empresa
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Ingreso del Email de la empresa")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtEmail.Text & "' where id_parametro =7"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
         'telefono de la empresa
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Ingreso del telefono de la empresa")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txttel.Text & "' where id_parametro =8"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
         'direccion
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Ingreso de la direccion de la empresa")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtDireccion.Text & "' where id_parametro =20"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -80,7 +95,9 @@
 
 
         'sistema configurado
-
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 1, "se realizaron modificaciones a configuraciones")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor ='TRUE' where id_parametro =10"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
