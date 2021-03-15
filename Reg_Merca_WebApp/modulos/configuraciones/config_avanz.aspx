@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="config_avanz.aspx.vb" Inherits="Reg_Merca_WebApp.config_avanz" %>
+﻿<%@ Page Title="configuracion avanzada" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="config_avanz.aspx.vb" Inherits="Reg_Merca_WebApp.config_avanz" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap Spinner Css -->
     <link href="../plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 
         
          <li class="active">
-            <a href="config_avanz.aspx">
+            <a href="confi_avanz.aspx">
                 <i class="material-icons">manage_accounts</i>
                 <span>Configuracion Avanzada</span>
             </a>
@@ -264,5 +264,3 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
-
-
