@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="login.aspx.vb" Inherits="Reg_Merca_WebApp.login" %>
+﻿<%@ Page ValidateRequest="false"  Language="vb" AutoEventWireup="false" CodeBehind="login.aspx.vb" Inherits="Reg_Merca_WebApp.login" %>
 
 <!DOCTYPE html>
 <html>

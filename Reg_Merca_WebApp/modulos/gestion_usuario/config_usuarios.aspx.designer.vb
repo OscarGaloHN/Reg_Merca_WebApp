@@ -59,6 +59,24 @@ Partial Public Class Config_Usuarios
     Protected WithEvents lblHidden1 As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control lblHidden2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblHidden2 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control lblHidden3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblHidden3 As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Control bttEliminar.
     '''</summary>
     '''<remarks>
