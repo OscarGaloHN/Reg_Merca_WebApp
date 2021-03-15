@@ -32,17 +32,7 @@
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
 
     <script src="jsLogin.js"></script>
-    <script type="text/javascript">
-        function xModal(xcolor, xtxtfoco, nombremodal) {
-            var color = xcolor;
-            var txtfoco = xtxtfoco;
-            $('#' + nombremodal + ' .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
-            $('#' + nombremodal).modal('show');
-            $('#' + nombremodal).on('shown.bs.modal', function () {
-                $('#' + txtfoco).focus();
-            });
-        }
-    </script>
+    <script src="../modulos/src/jsModales.js"></script>
 </head>
 
 
@@ -56,8 +46,7 @@
             <div class="body">
                 <form runat="server">
                     <div class="msg">
-                        Ingrese la dirección de correo electrónico que utilizó para registrarse. 
-                        Le enviaremos un correo electrónico con los pasos para recuerar su contraseña. 
+                       Haga clic en el botón de su necesidad y siga las instrucciones de las ventanas emergentes.
                     </div>
                     <asp:Panel ID="Panel1" runat="server">
 
@@ -76,7 +65,7 @@
                         <div class="col-xs-12">
                             <div class="button-demo js-modal-buttons">
                                 <asp:LinkButton OnClientClick="clearTextBox()" ID="bttPreguntas" ValidationGroup="UsuarioValidarNADA" runat="server" class="btn btn-block btn-lg bg-teal waves-effect" data-color="teal" data-txtfoco="txtUsuarioPreguntas">
-                                <i class="material-icons">help_outline</i> <span>RESPONDER PREGUNTAS DE SEGURIDAD</span>  
+                                <i class="material-icons">vpn_key</i> <span>RECUPERAR USUARIO O CONTRASEÑA</span>  
                                 </asp:LinkButton>
                             </div>
                         </div>
@@ -96,8 +85,8 @@
                                         <h4 class="modal-title" id="lblMOdalCorreo">RECUPERAR CONTRASEÑA</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Ingrese su correo electrónico y haga click en el botón 'ENVIAR' para continuar el proceso de recuperacion de contraseña.
-                                    <div class="row">
+                                   Ingrese su correo electrónico y haga clic en el botón 'ENVIAR', le enviaremos un correo con las instrucciones para continuar el proceso de recuperación de contraseña.
+                                        <div class="row">
                                         <br />
                                         <div class="col-xs-12">
                                             <div class="row">
@@ -155,7 +144,7 @@
                                 <h4 class="modal-title" id="defaultModalLabel">RECUPERAR USUARIO O CONTRASEÑA</h4>
                             </div>
                             <div class="modal-body">
-                                Ingrese su nombre de usuario para continuar el proceso de recuperacion de usuario o contraseña por medio de las preguntas 
+                                Ingrese su nombre de usuario y haga clic en el botón 'CONTINUAR' para iniciar el proceso de recuperación de usuario o contraseña por medio de las preguntas 
                                   de seguridad.
                                     <div class="row">
                                         <br />

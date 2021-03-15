@@ -218,6 +218,7 @@
     <Content Include="modulos\perfil_usuario\confi_perfil_preguntas.aspx" />
     <Content Include="modulos\confi_rol.aspx" />
     <Content Include="modulos\src\DetalleVariables.txt" />
+    <Content Include="modulos\src\jsModales.js" />
     <Content Include="modulos\src\jsTabla.js" />
     <Content Include="modulos\src\piedepagina.ascx" />
     <Content Include="package-lock.json" />
