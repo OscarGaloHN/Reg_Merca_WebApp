@@ -8,6 +8,9 @@
             Response.Redirect("~/Inicio/login.aspx")
         Else
             If Not IsPostBack Then
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 1, "El usuario ingresa a la pantalla de configuraciones")
+                End Using
                 txtEmpresa.Text = Application("ParametrosADMIN")(2)
                 txtAlias.Text = Application("ParametrosADMIN")(3)
                 txtRTN.Text = Application("ParametrosADMIN")(6)
@@ -37,6 +40,9 @@
     Private Sub bttGuardar_Click(sender As Object, e As EventArgs) Handles bttGuardar.Click
         Dim Ssql As String
         'nombre empresa 
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Ingreso del nombre de la empresa")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros  SET  valor = '" & txtEmpresa.Text & "' where id_parametro =5"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)

@@ -8,6 +8,9 @@
             Response.Redirect("~/Inicio/login.aspx")
         Else
             If Not IsPostBack Then
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 1, "El usuario ingresa a la pantalla de configuraciones avanzadas")
+                End Using
 
                 txtEmailEnvio.Text = Application("ParametrosADMIN")(9)
                 txtPreguntas.Value = Application("ParametrosADMIN")(8)
