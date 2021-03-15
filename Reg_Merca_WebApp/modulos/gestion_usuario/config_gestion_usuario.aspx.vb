@@ -57,7 +57,9 @@
                 bttResetear.Visible = False
                 panelResetear.Visible = False
             Case "update"
-                panelContra.Visible = False
+                If Not IsPostBack Then
+
+                    panelContra.Visible = False
                 Dim Ssql As String = String.Empty
                 Ssql = "select * from DB_Nac_Merca.tbl_02_usuarios where id_usuario =" & Request.QueryString("xuser") & ""
                 Using con As New ControlDB
@@ -65,26 +67,28 @@
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
                 Dim registro As DataRow
-                If Session("NumReg") > 0 Then
-                    'cargar txt
-                    registro = DataSetX.Tables(0).Rows(0)
+                    If Session("NumReg") > 0 Then
+                        'cargar txt
+                        registro = DataSetX.Tables(0).Rows(0)
 
-                    txtNombre.Text = registro("nombre")
-                    txtUsuario.Text = registro("usuario")
-                    txtUsuario.ReadOnly = "TRUE"
-                    cmbRol.SelectedValue = registro("id_rol")
-                    cmbRol.Attributes.Add("disabled", "disabled")
-                    txtCorreoElectronico.Text = registro("correo")
-                    txtFechaCreacion.Enabled = "False"
-                    txtContra.Text = registro("clave")
-                    txtContra.Enabled = False
-                    txtFechaCreacion.Text = registro("fecha_creacion")
-                    txtFechaCreacion.Enabled = "TRUE"
-                    Fecha_Vencimiento_usuario.Text = CDate(registro("fecha_vencimiento")).ToShortDateString
-                    Fecha_Vencimiento_usuario.Enabled = "TRUE"
-                    cmbEstado.SelectedValue = registro("estado")
-                    Session("estado_temp") = registro("estado")
-                    cmbEstado.Attributes.Add("disabled", "disabled")
+                        txtNombre.Text = registro("nombre")
+                        txtUsuario.Text = registro("usuario")
+                        txtUsuario.ReadOnly = "TRUE"
+                        cmbRol.SelectedValue = registro("id_rol")
+                        cmbRol.Attributes.Add("disabled", "disabled")
+                        txtCorreoElectronico.Text = registro("correo")
+                        HiddenCorreo.Value = registro("correo")
+                        txtFechaCreacion.Enabled = "False"
+                        txtContra.Text = registro("clave")
+                        txtContra.Enabled = False
+                        txtFechaCreacion.Text = registro("fecha_creacion")
+                        txtFechaCreacion.Enabled = "TRUE"
+                        Fecha_Vencimiento_usuario.Text = CDate(registro("fecha_vencimiento")).ToShortDateString
+                        Fecha_Vencimiento_usuario.Enabled = "TRUE"
+                        cmbEstado.SelectedValue = registro("estado")
+                        Session("estado_temp") = registro("estado")
+                        cmbEstado.Attributes.Add("disabled", "disabled")
+                    End If
                 End If
             Case Else
                 Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx")
@@ -97,6 +101,7 @@
         End If
     End Sub
     Private Sub bttGuardar_Click(sender As Object, e As EventArgs) Handles bttGuardar.Click
+        Dim Ssql As String
 
         'Dim nombre As String
 
@@ -108,7 +113,7 @@
                 Else
 
 
-                    Dim Ssql As String = "CALL autoregistro('" & txtUsuario.Text & "', '" & txtCorreoElectronico.Text & "')"
+                    Ssql = "CALL autoregistro('" & txtUsuario.Text & "', '" & txtCorreoElectronico.Text & "')"
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                         Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -135,8 +140,75 @@
 
                 End If
             Case "update"
+                If txtCorreoElectronico.Text = HiddenCorreo.Value Then
+                    ''GUARDAR NORMAL
+                    'TERMINAR DE EDITAR 
+                    Ssql = "update tbl_02_usuarios set Nombre='" & txtNombre.Text & "',correo='" & txtCorreoElectronico.Text & "' where id_usuario =" & Request.QueryString("xuser") & ""
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
 
 
+                    Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
+
+                Else
+                    ''GUARDAR CORREO Y ENVIAR TOKEN PARA CONFIRMAR CORREO ELECTRONICO 
+                    Ssql = "SELECT *FROM DB_Nac_Merca.tbl_02_usuarios where correo= '" & txtCorreoElectronico.Text & "';"
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    If Session("NumReg") > 0 Then
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
+                        End Using
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo electronico','El correo electronico ya esta registrado.', 'error');</script>")
+                    Else
+
+                        'COMPLETAR QRY UPDATE
+                        Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  Nombre='" & txtNombre.Text & "',  correo = '" & txtCorreoElectronico.Text & "' where id_usuario =" & Request.QueryString("xuser") & ""
+                        Using con As New ControlDB
+                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        End Using
+
+                        'Using log_bitacora As New ControlBitacora
+                        '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El usuario cambia su correo de " & HiddenCorreo.Value & " a " & txtCorreoElectronico.Text & "")
+                        'End Using
+
+
+                        Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  emailconfir = 0 where  id_usuario =" & Request.QueryString("xuser") & ""
+                        Using con As New ControlDB
+                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        End Using
+
+
+                        'enviar correo electronico con token de nueva contraseña
+                        Dim activationCode As String = Guid.NewGuid().ToString()
+                        Ssql = "DELETE FROM `DB_Nac_Merca`.`tbl_35_activacion_usuario` WHERE tipo='correo' and id_usuario=" & Request.QueryString("xuser") & ";"
+                        Using con As New ControlDB
+                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        End Using
+
+                        Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_35_activacion_usuario` (`id_usuario`, `codigo_activacion`, `vencimiento`,`tipo`,`estado`) VALUES (" & Request.QueryString("xuser") & ", '" & activationCode & "',DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosSYS")(8) & " DAY),'correo',1);"
+                        Using con As New ControlDB
+                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        End Using
+                        Dim urllink As String = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) & "/Inicio/activacion.aspx?ActivationCode=" & activationCode
+
+                        Using xCorreo As New ControlCorreo
+                            xCorreo.envio_correo("Recibimos una solicitud para confirmar su correo electrónico. Si no realizó esta solicitud, ignore esta notificación. De lo contrario, puede confirmar su correo electrónico mediante este enlace. ", "CONFIRMAR",
+                                             txtCorreoElectronico.Text, Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
+                                             txtNombre.Text,
+                                             urllink, "Confirmar Correo Electrónico",
+                                             Application("ParametrosADMIN")(15), Application("ParametrosADMIN")(10),
+                                             Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
+                        End Using
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 13, "Se crea un token para que el usuario valide su correo")
+                        End Using
+                        Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
+                    End If
+                End If
         End Select
 
 
