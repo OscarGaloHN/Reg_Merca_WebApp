@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Gestión de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_gestion_usuario.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Gestion_Usuario" %>
-
+﻿<%@ Page Title="Gestio de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_gestion_usuario.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Gestion_Usuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
@@ -243,15 +242,7 @@
                                     </asp:TextBox>
                                     <label class="form-label">Fecha de Creación</label>
                                 </div>
-                                <%--   <asp:RequiredFieldValidator
-                                    runat="server"
-                                    ID="RequiredFieldValidator2"
-                                    ControlToValidate="txtNombre"
-                                    ErrorMessage="Fecha Predeterminada"
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed"
-                                    ValidationExpression="^.*(.)\1{!2}.*"
-                                    Font-Size="X-Small" />--%>
+                              
                             </div>
                         </div>
                         <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
