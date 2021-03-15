@@ -27,7 +27,7 @@
 
         
          <li class="active">
-            <a href="Confi_avanz.aspx">
+            <a href="config_avanz.aspx">
                 <i class="material-icons">manage_accounts</i>
                 <span>Configuracion Avanzada</span>
             </a>
