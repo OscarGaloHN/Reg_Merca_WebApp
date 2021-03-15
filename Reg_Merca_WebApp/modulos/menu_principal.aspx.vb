@@ -22,7 +22,7 @@
             Response.Redirect("~/modulos/confi_rol.aspx")
         Else
 
-            Dim Ssql As String = "SELECT T02.* FROM DB_Nac_Merca.tbl_37_permisos_modulos T01 LEFT JOIN DB_Nac_Merca.tbl_36_modulos T02 ON T01.id_modulo = T02.id_modulo WHERE T01.id_rol = " & Session("user_rol") & ""
+            Dim Ssql As String = "SELECT T02.* FROM DB_Nac_Merca.tbl_37_permisos_modulos T01 LEFT JOIN DB_Nac_Merca.tbl_36_modulos T02 ON T01.id_modulo = T02.id_modulo WHERE T01.id_rol = " & Session("user_rol") & " and T01.estado = 1 and T02.estado = 1"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
