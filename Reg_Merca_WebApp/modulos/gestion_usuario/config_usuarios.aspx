@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Gestion de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_usuarios.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Usuarios" %>
- 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -24,10 +24,22 @@
 
             document.getElementById('ContentPrincipal_lblUsuario').innerHTML = row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHidden1').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHidden2').value = row.cells[3].innerHTML;
+            //document.getElementById('ContentPrincipal_lblHidden3').value = row.cells[3].innerHTML;
             //document.getElementById('ContentPrincipal_CmbHiddenField1').value = row.cells[2].innerHTML;
 
 
-            xModal('teal', 'ContentPrincipal_txtRespuestaEditar');
+
+
+            if (row.cells[2].innerHTML == 2) {
+                swal('Configuración de usuarios', 'El usuario ADMIN no se puede eliminar.', 'error');
+            } else {
+                xModal('teal', 'ContentPrincipal_txtRespuestaEditar');
+
+            }
+
+
+
             return false;
         }
     </script>
@@ -39,6 +51,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
+         <% If Session("user_idUsuario") <> Nothing Then %>
+        <% If CBool(Application("ParametrosSYS")(2)) = True Then   %>
         <li>
             <a href="menu_principal.aspx">
                 <i class="material-icons">home</i>
@@ -47,13 +61,24 @@
         </li>
     
         <li class="active">
-
+            <a href="#">
+               <i class="material-icons">manage_accounts</i>
+                <span>Gestion de usuarios</span>
+            </a>
+        </li>
+        <%ELSE %>
+                <li class="active">
             <a href="#">
                <i class="material-icons">manage_accounts</i>
                 <span>Gestion de usuarios</span>
             </a>
         </li>
     </ul>
+        <% End if  %>
+
+
+
+    <% End if  %>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
     <div class="row clearfix">
@@ -62,7 +87,7 @@
                 <div class="header">
                     <h2 style="font-weight: bold;">Configuración de usuarios
          
-                        <small>Prueba llenado de Datos</small>
+                        <small>Llenado de Datos de usuarios</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -108,6 +133,7 @@
                                         </asp:TemplateField>
 
                                         <asp:BoundField DataField="id_usuario" HeaderText="Usuario" />
+                                        <%--<asp:BoundField DataField="usuario" HeaderText="Nombre de Usuario" />--%>
                                         <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                                         <asp:BoundField DataField="rol" HeaderText="Rol" />
                                         <asp:BoundField DataField="descripcion" HeaderText="Estado" />
@@ -130,12 +156,14 @@
                                 </div>
                                 <div class="modal-body"> 
                                         <h2 class="modal-title">
-                                           <b>¿Está Seguro que desea eliminar?</b> </h2> 
-                                    <br /> <b>El usuario que pertenece a:</b>  <asp:Label ID="lblUsuario" class="msg" runat="server" Text="..."></asp:Label> <br /> Si es un <b>sí</b> de clic en el botón eliminar para continuar o si es un <b>no</b> de clic en el botón cerrar para cancelar.
+                                           <b>¿Está seguro que desea eliminar el registro?</b> </h2> 
+                                    <br /> <b>El usuario pertenece a:</b>  <asp:Label ID="lblUsuario" class="msg" runat="server" Text="..."></asp:Label> <br /><br /> Si desea eliminar este registro de usuario, haga clic en el botón eliminar. <br>  Si desea cancelar haga clic en el boton cerrar.
                                     <br />
                                     <div class="row clearfix">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <asp:HiddenField ID="lblHidden1" runat="server" />
+                                            <asp:HiddenField ID="lblHidden2" runat="server" />
+                                            <asp:HiddenField ID="lblHidden3" runat="server" />
                                         </div>
                                     </div>
 

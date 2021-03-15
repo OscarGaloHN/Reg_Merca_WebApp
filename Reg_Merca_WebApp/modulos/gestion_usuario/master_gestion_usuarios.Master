@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="master_gestion_usuarios.Master.vb" Inherits="Reg_Merca_WebApp.gestion_usuarios" %>
 <%@ Register Src="~/modulos/src/piedepagina.ascx" TagPrefix="uc1" TagName="piedepagina" %>
+
+
 <!DOCTYPE html>
 
 <html>
@@ -9,7 +11,7 @@
 
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>RegMERCA | <%: Page.Title  %></title>
+    <title>RegMERCA |<%: Page.Title  %></title>
     <!-- Favicon-->
     <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <!-- Google Fonts -->
@@ -93,8 +95,8 @@
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
-                                 <% If Session("user_estado") = 2 Then %>
-                                <li><a id="lblIraPerfil" href="confi_perfil.aspx"><i class="material-icons">person</i>Perfil</a></li>
+                                 <% If Session("user_estado") = 2 Then %> <%--cambie direción y aun asi no me funciona--%>
+                                <li><a id="lblIraPerfil" href="perfil_usuario/confi_perfil.aspx"><i class="material-icons">person</i>Perfil</a></li>
                                 <li role="separator" class="divider"></li>
                                 <% end if %>
                                 <li>
