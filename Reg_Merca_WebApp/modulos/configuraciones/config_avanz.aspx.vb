@@ -9,7 +9,7 @@
         Else
             If Not IsPostBack Then
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 1, "El usuario ingresa a la pantalla de configuraciones avanzadas")
+                    log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 2, "El usuario ingresa a la pantalla de configuraciones avanzadas")
                 End Using
 
                 txtEmailEnvio.Text = Application("ParametrosADMIN")(9)
@@ -46,23 +46,35 @@
         '    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         'End Using
         'correo de alertas
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Ingreso correo de alertas de la empresa")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtEmailEnvio.Text & "' where id_parametro =14"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
         'puerto
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Ingreso del puerto de acceso")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtPuerto.Text & "' where id_parametro =15"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
 
         'smtp
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Ingreso del SMPT")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & TextSMTP.Text & "' where id_parametro =21"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
 
         'contraseña
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Ingreso de la contraseña del correo de alertas")
+        End Using
         Using encriptax As New ControlCorreo
             Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & encriptax.Encriptar(txtContrasena.Text) & "' where id_parametro =16"
         End Using
@@ -71,39 +83,59 @@
         End Using
 
         'maximo usuario
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio del maxiomo de usuarios")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtmaximousu.Value & "' where id_parametro =26"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
         'minimo usuario
-
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio del minimo de usuarios")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtminimousu.Value & "' where id_parametro =25"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
 
         'minmo de caracter de contraseña
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio del minimo de caracteres")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtminimocarac.Value & "' where id_parametro =28"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
         'maximo caracteres de contrasea
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio de maxiomo caracteres para contraseña")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtmaximocarat.Value & "' where id_parametro =1"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
         'dias de vigencia
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio del los dias de vigencia")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtvigenciausu.Value & "' where id_parametro =18"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
         'intentos
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Cambio en el numero de intentos")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtIntentos.Value & "' where id_parametro =12"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
 
         'preguntas
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio en el numero de preguntas")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtPreguntas.Value & "' where id_parametro =13"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -111,6 +143,9 @@
 
 
         'frm auto registro
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio en el autoregistro")
+        End Using
         If chkRegistro.Checked = True Then
             Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = 'TRUE' where id_parametro =2"
         Else
@@ -123,6 +158,9 @@
 
 
         'frm recordar usuario
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio en el recordar usuarios")
+        End Using
         If chkRecordarusu.Checked = True Then
             Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = 'TRUE' where id_parametro =19"
         Else
@@ -134,6 +172,9 @@
 
 
         'sistema configurado
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 2, "se realizaron modificaciones a configuraciones avanzadas")
+        End Using
         Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor ='TRUE' where id_parametro =10"
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
