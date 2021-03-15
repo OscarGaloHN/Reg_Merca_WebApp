@@ -208,6 +208,14 @@
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
     <Content Include="modulos\bitacora\bitacora.aspx" />
+    <Content Include="modulos\declaracion_aduanera\caratula.aspx" />
+    <Content Include="modulos\declaracion_aduanera\creacion_bultos.aspx" />
+    <Content Include="modulos\declaracion_aduanera\creacion_documentos.aspx" />
+    <Content Include="modulos\declaracion_aduanera\creacion_proyectos.aspx" />
+    <Content Include="modulos\declaracion_aduanera\items.aspx" />
+    <Content Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx" />
+    <Content Include="modulos\declaracion_aduanera\items_documentos.aspx" />
+    <Content Include="modulos\declaracion_aduanera\items_ventajas.aspx" />
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
@@ -310,6 +318,7 @@
     <Content Include="modulos\gestion_usuario\master_gestion_usuarios.Master" />
     <Content Include="modulos\bitacora\master_bitacora.Master" />
     <Content Include="modulos\perfil_usuario\master_perfil.Master" />
+    <Content Include="modulos\declaracion_aduanera\master_registros.Master" />
     <None Include="My Project\PublishProfiles\CarpetaLocal.pubxml" />
     <None Include="My Project\PublishProfiles\CarpetaLocar.pubxml" />
     <None Include="My Project\PublishProfiles\FTPProfile.pubxml" />
@@ -1046,6 +1055,69 @@
     </Compile>
     <Compile Include="modulos\configuraciones\master_config.Master.vb">
       <DependentUpon>master_config.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\caratula.aspx.designer.vb">
+      <DependentUpon>caratula.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\caratula.aspx.vb">
+      <DependentUpon>caratula.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\creacion_bultos.aspx.designer.vb">
+      <DependentUpon>creacion_bultos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\creacion_bultos.aspx.vb">
+      <DependentUpon>creacion_bultos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\creacion_documentos.aspx.designer.vb">
+      <DependentUpon>creacion_documentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\creacion_documentos.aspx.vb">
+      <DependentUpon>creacion_documentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\creacion_proyectos.aspx.designer.vb">
+      <DependentUpon>creacion_proyectos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\creacion_proyectos.aspx.vb">
+      <DependentUpon>creacion_proyectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items.aspx.designer.vb">
+      <DependentUpon>items.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items.aspx.vb">
+      <DependentUpon>items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx.designer.vb">
+      <DependentUpon>items_dcomplementarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx.vb">
+      <DependentUpon>items_dcomplementarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items_documentos.aspx.designer.vb">
+      <DependentUpon>items_documentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items_documentos.aspx.vb">
+      <DependentUpon>items_documentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items_ventajas.aspx.designer.vb">
+      <DependentUpon>items_ventajas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items_ventajas.aspx.vb">
+      <DependentUpon>items_ventajas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\master_registros.Master.designer.vb">
+      <DependentUpon>master_registros.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\master_registros.Master.vb">
+      <DependentUpon>master_registros.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\gestion_usuario\config_gestion_usuario.aspx.designer.vb">
