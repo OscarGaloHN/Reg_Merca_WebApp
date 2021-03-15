@@ -62,7 +62,7 @@
             Case "update"
 
                 Dim Ssql As String = String.Empty
-                Ssql = "select *from DB_Nac_Merca.tbl_02_usuarios where id_usuario =" & Request.QueryString("xuser") & ""
+                Ssql = "select * from DB_Nac_Merca.tbl_02_usuarios where id_usuario =" & Request.QueryString("xuser") & ""
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -74,16 +74,23 @@
 
                     txtNombre.Text = registro("nombre")
                     txtUsuario.Text = registro("usuario")
+                    txtUsuario.ReadOnly = "TRUE"
                     cmbRol.SelectedValue = registro("id_rol")
+                    cmbRol.Attributes.Add("disabled", "disabled")
                     txtCorreoElectronico.Text = registro("correo")
+                    txtFechaCreacion.Enabled = "False"
                     txtContra.Text = registro("clave")
-
-                    'Fecha_Creacion.Value = registro("fecha_creacion")
-                    ' Fecha_Vencimiento.Attributes("value") = CDate(registro("fecha_vencimiento")).ToShortDateString
-                    'cmbEstado.SelectedValue = registro("estado")
+                    txtContra.Enabled = False
+                    txtFechaCreacion.Text = registro("fecha_creacion")
+                    txtFechaCreacion.Enabled = "TRUE"
+                    Fecha_Vencimiento_usuario.Text = CDate(registro("fecha_vencimiento")).ToShortDateString
+                    Fecha_Vencimiento_usuario.Enabled = "TRUE"
+                    cmbEstado.SelectedValue = registro("estado")
+                    cmbEstado.Attributes.Add("disabled", "disabled")
                 End If
             Case Else
                 Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx")
+
         End Select
 
     End Sub
