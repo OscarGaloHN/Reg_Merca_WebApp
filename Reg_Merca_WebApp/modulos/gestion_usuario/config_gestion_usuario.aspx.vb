@@ -11,13 +11,13 @@
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        'Using Parametros_Sistema As New ControlDB
-        '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        'End Using
+        Using Parametros_Sistema As New ControlDB
+            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        End Using
 
-        'Using Parametros_admin As New ControlDB
-        '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        'End Using
+        Using Parametros_admin As New ControlDB
+            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        End Using
 
         If Session("user_rol") = 5 Then
             SqlRol.SelectCommand = "Select rol, id_rol from DB_Nac_Merca.tbl_15_rol"
@@ -111,8 +111,6 @@
                 If (UCase(txtUsuario.Text) = UCase(txtContra.Text)) Then
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','El usuario y la contraseña deben ser distintos.', 'error');</script>")
                 Else
-
-
                     Ssql = "CALL autoregistro('" & txtUsuario.Text & "', '" & txtCorreoElectronico.Text & "')"
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -136,9 +134,8 @@
                                 Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioRegistrado")
                         End Select
                     End If
-
-
                 End If
+
             Case "update"
                 If txtCorreoElectronico.Text = HiddenCorreo.Value Then
                     ''GUARDAR NORMAL
@@ -160,7 +157,7 @@
                     End Using
                     If Session("NumReg") > 0 Then
                         Using log_bitacora As New ControlBitacora
-                            log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
+                            log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 8, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
                         End Using
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo electronico','El correo electronico ya esta registrado.', 'error');</script>")
                     Else
@@ -204,7 +201,7 @@
                                              Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                         End Using
                         Using log_bitacora As New ControlBitacora
-                            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 13, "Se crea un token para que el usuario valide su correo")
+                            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Se crea un token para que el usuario valide su correo")
                         End Using
                         Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
                     End If
@@ -248,6 +245,10 @@
     End Sub
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
+        'Bitacora - Volver al formulario de config_usuarios
+        Using cusuario_bitacora As New ControlBitacora
+            cusuario_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 8, "El usuario es redireccionado al formulario config_usuarios")
+        End Using
         Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?")
 
     End Sub

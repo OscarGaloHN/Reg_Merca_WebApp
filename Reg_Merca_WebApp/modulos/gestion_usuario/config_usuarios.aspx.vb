@@ -38,13 +38,13 @@
 
         If Session("user_rol") = 5 Then
             Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
-                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estatus c
+                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
                                where a.id_rol = b.id_rol
                                 and a.estado = c.id_estado and a.id_rol"
 
         Else
             Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
-                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estatus c
+                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
                                where a.id_rol = b.id_rol
                                 and a.estado = c.id_estado and a.id_rol != 5"
 
@@ -62,12 +62,15 @@
 
         Select Case Request.QueryString("action")
             Case "deleteusuer"
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El Usuario se elimino exitosamente.', 'success');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El usuario se elimino exitosamente.', 'success');</script>")
             Case "deleteinactive"
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
             Case "deletefailed"
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
+            Case "new"
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El usuario ha sido creado exitosamente.', 'error');</script>")
         End Select
+
 
         'pasar el nombre del usuario en la bitacora
         'Ssql = "SELECT usuario FROM DB_Nac_Merca.tbl_02_usuarios where id_usuario= " & Session("user_idUsuario") & ";"
@@ -90,8 +93,11 @@
 
     End Sub
 
-
     Private Sub bttNuevo_Click(sender As Object, e As EventArgs) Handles bttNuevo.Click
+        'Bitacora - Redirecciona al formulario de config_gestion_usuario
+        Using cusuario_bitacora As New ControlBitacora
+            cusuario_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 8, "El usuario es redireccionado a crear el usuario")
+        End Using
         Response.Redirect("~/modulos/gestion_usuario/config_gestion_usuario.aspx?action=new")
     End Sub
 
