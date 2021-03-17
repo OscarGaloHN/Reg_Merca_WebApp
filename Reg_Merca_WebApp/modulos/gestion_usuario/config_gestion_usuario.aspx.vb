@@ -1,5 +1,5 @@
 ﻿Public Class Config_Gestion_Usuario
-
+    'OBJETO#8
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -131,6 +131,9 @@
                                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                                 End Using
                                 SendActivationEmail()
+                                Using cusuario_bitacora As New ControlBitacora
+                                    cusuario_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 8, "El usuario se ha registrado con éxito.")
+                                End Using
                                 Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioRegistrado")
                         End Select
                     End If
@@ -168,9 +171,9 @@
                             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                         End Using
 
-                        'Using log_bitacora As New ControlBitacora
-                        '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El usuario cambia su correo de " & HiddenCorreo.Value & " a " & txtCorreoElectronico.Text & "")
-                        'End Using
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 8, "El usuario cambia su correo de " & HiddenCorreo.Value & " a " & txtCorreoElectronico.Text & "")
+                        End Using
 
 
                         Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  emailconfir = 0 where  id_usuario =" & Request.QueryString("xuser") & ""
@@ -201,7 +204,7 @@
                                              Application("ParametrosSYS")(0) & " " & Application("ParametrosSYS")(1))
                         End Using
                         Using log_bitacora As New ControlBitacora
-                            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 1, "Se crea un token para que el usuario valide su correo")
+                            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 8, "Se crea un token para que el usuario valide su correo")
                         End Using
                         Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
                     End If
@@ -264,6 +267,9 @@
             Case "update"
                 txtcontraresetear.Attributes("value") = CrearPassword(Application("ParametrosADMIN")(0))
                 txtContraConfirmarresetear.Attributes("value") = txtcontraresetear.Attributes("value")
+                Using cusuario_bitacora As New ControlBitacora
+                    cusuario_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 8, "Se ha generado una nueva contraseña para el usuario")
+                End Using
         End Select
     End Sub
 
@@ -293,8 +299,6 @@
                             End Using
                             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','No puede usar una contraseña igual a las usasdas anteriormente.', 'warning');</script>")
                         Case 2 'contraseña sin usar
-
-
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 8, "El cambio de contraseña fue exitoso para el usuario " & txtUsuario.Text)
                             End Using
