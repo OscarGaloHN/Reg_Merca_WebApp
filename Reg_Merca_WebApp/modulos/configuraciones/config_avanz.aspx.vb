@@ -31,6 +31,7 @@
 
                 txtmaximocarat.Value = Application("ParametrosADMIN")(0)
                 txtminimocarac.Value = Application("ParametrosADMIN")(18)
+                txtBitacora.Value = Application("ParametrosADMIN")(34)
 
                 chkRecordarusu.Checked = CBool(Application("ParametrosADMIN")(13))
                 chkRegistro.Checked = CBool(Application("ParametrosADMIN")(1))
@@ -141,6 +142,15 @@
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
 
+        'bitacora
+        Using log_bitacora As New ControlBitacora
+            log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), 2, "Cambio en el numero de Dias para almacenar bitacora")
+        End Using
+        Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtPreguntas.Value & "' where id_parametro =34"
+        Using con As New ControlDB
+            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+        End Using
+
 
         'frm auto registro
         Using log_bitacora As New ControlBitacora
@@ -201,7 +211,7 @@
         txtvigenciausu.Value = txtvigenciausu.Attributes("data-min")
         txtmaximocarat.Value = txtmaximocarat.Attributes("data-min")
         txtminimocarac.Value = txtminimocarac.Attributes("data-min")
-
+        txtBitacora.Value = txtBitacora.Attributes("data-min")
         txtIntentos.Value = txtIntentos.Attributes("data-min")
     End Sub
 

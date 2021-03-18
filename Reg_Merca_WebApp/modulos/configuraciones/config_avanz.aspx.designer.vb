@@ -158,13 +158,13 @@ Partial Public Class config_avanz
     Protected WithEvents txtPreguntas As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Control TxtBitacora.
+    '''Control txtBitacora.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents TxtBitacora As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtBitacora As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
     '''Control chkRecordarusu.

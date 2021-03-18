@@ -129,7 +129,6 @@
                     </div>
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Controlador de usuarios</h2>
                     <div class="row clearfix">
-                        
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <small>Máximo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
@@ -169,7 +168,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <small>Máximo caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -230,7 +229,7 @@
                             <small>bitacora</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
-                                    <input readonly="" runat="server" id="TxtBitacora" type="text" class="form-control text-center" value="3" data-rule="quantity" data-max="15" data-min="5">
+                                    <input readonly="" runat="server" id="txtBitacora" type="text" class="form-control text-center" value="3" data-rule="quantity" data-max="15" data-min="5">
                                 </div>
                                 <span class="input-group-addon">
                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
