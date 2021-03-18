@@ -7,6 +7,8 @@
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">configuracion avanzada</a>
 </asp:Content>
+
+
 <asp:Content ID="Content6" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
@@ -51,16 +53,22 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold">Configuraciones Avanzadas 
-                        <small>Configuraciones </small>
+                    <h2 style="font-weight: bold">CONFIGURACIONES AVANZADAS 
+                        <small> Configuraciones de tipo avanzado</small>
                     </h2>
-    <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
+
+                   </div>
+
+                <div class="body">
+                  <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
                     <div class="row clearfix">
-                        <div class="col-sm-4">
+                        
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtEmailEnvio" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Correo electrónico</label>
+                                </div>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtEmailEnvio"
                                     ErrorMessage="Ingrese el correo electrónico."
@@ -73,8 +81,9 @@
                                     ErrorMessage="El correo electronico no es valido."
                                     ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
                             </div>
-                        </div>
-                        <div class="col-sm-3">
+                       
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox TextMode="Password" onkeypress="return noespacios(event)" ID="txtContrasena" runat="server" class="form-control"></asp:TextBox>
@@ -93,7 +102,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox onkeypress="SoloNumeros()" ID="txtPuerto" runat="server" class="form-control"></asp:TextBox>
@@ -105,7 +114,7 @@
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox onkeypress="return noespacios(event)" ID="TextSMTP" runat="server" class="form-control"></asp:TextBox>
@@ -120,8 +129,8 @@
                     </div>
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Controlador de usuarios</h2>
                     <div class="row clearfix">
-
-                        <div class="col-sm-2">
+                        
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <small>Máximo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -134,7 +143,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <small>Mínimo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -147,7 +156,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <small>Mínimo de caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -160,7 +169,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <small>Máximo caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -173,7 +182,7 @@
                             </div>
 
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <small>Vigencia de usuarios</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -188,10 +197,11 @@
 
 
                     </div>
+                    
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Inicio de sesión y constraseña</h2>
+                    
                     <div class="row clearfix">
-
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <small>Intentos</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -203,7 +213,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <small>Preguntas</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -214,9 +224,22 @@
                                     <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
                                 </span>
                             </div>
-
+                           
                         </div>
-                        <div class="col-sm-2">
+                           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>bitacora</small>
+                            <div class="input-group spinner" data-trigger="spinner">
+                                <div class="form-line">
+                                    <input readonly="" runat="server" id="TxtBitacora" type="text" class="form-control text-center" value="3" data-rule="quantity" data-max="15" data-min="5">
+                                </div>
+                                <span class="input-group-addon">
+                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </span>
+                            </div>
+                          </div>  
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <div class="demo-switch-title">Recoradar Usuario</div>
                             <div class="switch">
                                 <label>
@@ -228,7 +251,7 @@
 
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <div class="demo-switch-title">Formulario de registro</div>
                             <div class="switch">
                                 <label>
@@ -239,7 +262,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    
 
                     <div class="row">
 
@@ -258,9 +281,10 @@
                         </div>
                     </div>
                     </div>
-                </div>
             </div>
+                </div>
         </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
