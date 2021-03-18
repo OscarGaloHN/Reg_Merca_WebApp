@@ -63,7 +63,7 @@
                   <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
                     <div class="row clearfix">
                         
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtEmailEnvio" runat="server" class="form-control"></asp:TextBox>
@@ -83,7 +83,7 @@
                             </div>
                        
                         
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox TextMode="Password" onkeypress="return noespacios(event)" ID="txtContrasena" runat="server" class="form-control"></asp:TextBox>
@@ -102,7 +102,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox onkeypress="SoloNumeros()" ID="txtPuerto" runat="server" class="form-control"></asp:TextBox>
@@ -114,7 +114,7 @@
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox onkeypress="return noespacios(event)" ID="TextSMTP" runat="server" class="form-control"></asp:TextBox>
@@ -129,7 +129,7 @@
                     </div>
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Controlador de usuarios</h2>
                     <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <small>Máximo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -142,7 +142,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <small>Mínimo de usuario</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -155,7 +155,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
                             <small>Mínimo de caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -168,7 +168,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                             <small>Máximo caracteres contraseña</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -181,7 +181,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <small>Vigencia de usuarios</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -200,7 +200,7 @@
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Inicio de sesión y constraseña</h2>
                     
                     <div class="row clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <small>Intentos</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -212,7 +212,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <small>Preguntas</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -225,7 +225,7 @@
                             </div>
                            
                         </div>
-                           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                           <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <small>bitacora</small>
                             <div class="input-group spinner" data-trigger="spinner">
                                 <div class="form-line">
@@ -238,7 +238,7 @@
                             </div>
                           </div>  
 
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
                             <div class="demo-switch-title">Recoradar Usuario</div>
                             <div class="switch">
                                 <label>
@@ -250,7 +250,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                             <div class="demo-switch-title">Formulario de registro</div>
                             <div class="switch">
                                 <label>
