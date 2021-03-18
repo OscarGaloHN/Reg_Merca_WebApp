@@ -343,7 +343,7 @@
 
 
                             Using xCorreo As New ControlCorreo
-                                xCorreo.envio_correo("Recibimos una solicitud para restablecer su contraseña. Si no realizó esta solicitud, ignore esta notificación. De lo contrario, puede restablecer su contraseña mediante este enlace.", "CAMBIAR CONTRASEÑA",
+                                xCorreo.envio_correo("Recibimos una solicitud para restablecer su contraseña, su contraseña actual es: . Si no realizó esta solicitud, ignore esta notificación. De lo contrario, puede restablecer su contraseña mediante este enlace.", "CAMBIAR CONTRASEÑA",
                                                      txtCorreoElectronico.Text, Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
                                                    txtNombre.Text.Trim(),
                                                      urllink, "Cambio de Contraseña",
