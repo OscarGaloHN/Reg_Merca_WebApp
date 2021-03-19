@@ -16,30 +16,19 @@
             $('#mdModal').on('shown.bs.modal', function () {
                 $('#' + txtfoco).focus();
             });
-
-
         }
         function GetSelectedRow(lnk) {
             var row = lnk.parentNode.parentNode;
-
             document.getElementById('ContentPrincipal_lblUsuario').innerHTML = row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHidden1').value = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHidden2').value = row.cells[3].innerHTML;
             //document.getElementById('ContentPrincipal_lblHidden3').value = row.cells[3].innerHTML;
             //document.getElementById('ContentPrincipal_CmbHiddenField1').value = row.cells[2].innerHTML;
-
-
-
-
             if (row.cells[2].innerHTML == 2) {
                 swal('Configuración de usuarios', 'El usuario ADMIN no se puede eliminar.', 'error');
             } else {
                 xModal('teal', 'ContentPrincipal_txtRespuestaEditar');
-
             }
-
-
-
             return false;
         }
     </script>

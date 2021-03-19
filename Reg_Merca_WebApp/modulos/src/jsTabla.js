@@ -2,6 +2,7 @@
 
 $(function () {
     $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+   
         "responsive": true,
         "sPaginationType": "full_numbers",
         "language": {

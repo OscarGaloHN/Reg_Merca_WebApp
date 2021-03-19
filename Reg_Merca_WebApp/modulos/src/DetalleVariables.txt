@@ -13,6 +13,11 @@ Session("user_confirma_correo") = registro("emailconfir")
 Session("user_estado") = registro("estado")
 Session("user_canti_preguntas") = registro("CantiPreguntas")
 
+
+Session("IDfrmQueIngresa") 
+Session("NombrefrmQueIngresa") 
+
+
 Application("ParametrosSYS") = arreglo que almacena los paramteros de la aplicacion
 Application("ParametrosSYS")(0) = SYS_Nombre_Proyecto
 Application("ParametrosSYS")(1) = SYS_Version

@@ -10,6 +10,9 @@
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Session("IDfrmQueIngresa") = 4
+        Session("NombrefrmQueIngresa") = "Menu Principal"
+
 
         If Session("user_idUsuario") = Nothing Then
             Session.Abandon()
