@@ -31,7 +31,7 @@
 
                 txtmaximocarat.Value = Application("ParametrosADMIN")(0)
                 txtminimocarac.Value = Application("ParametrosADMIN")(18)
-                'txtBitacora.Value = Application("ParametrosADMIN")(34)
+                txtBitacora.Value = Application("ParametrosADMIN")(20)
 
                 chkRecordarusu.Checked = CBool(Application("ParametrosADMIN")(13))
                 chkRegistro.Checked = CBool(Application("ParametrosADMIN")(1))
