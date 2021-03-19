@@ -45,14 +45,15 @@
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-11">
                             <asp:SqlDataSource
-                                ID="SqlDocumento"
-                                runat="server"
-                                DataSourceMode="DataReader"
-                                ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
-                                ProviderName="MySql.Data.MySqlClient"></asp:SqlDataSource>
+                            ID="SqlId_Documento"
+                            runat="server"
+                            DataSourceMode="DataReader"
+                            ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                            ProviderName="MySql.Data.MySqlClient"
+                            SelectCommand="SELECT Id_Documento, UPPER(descripcion) descripcion FROM DB_Nac_Merca.tbl_28_Documentos"></asp:SqlDataSource>
                             <asp:DropDownList
-                                ID="cmbDocumento" runat="server" DataSourceID="SqlDocumento" class="form-control show-tick"
-                                DataTextField="Documento" DataValueField="id_Rol" AppendDataBoundItems="true">
+                                ID="cmbDocumento" runat="server" selectlistitem="seleccione" DataSourceID="SqlId_Documento" class="form-control show-tick"
+                                DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true" ItemType="">
                             </asp:DropDownList>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

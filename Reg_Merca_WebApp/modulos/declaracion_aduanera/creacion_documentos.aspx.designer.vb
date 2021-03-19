@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class creacion_documentos
 
     '''<summary>
-    '''Control SqlDocumento.
+    '''Control SqlId_Documento.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents SqlDocumento As Global.System.Web.UI.WebControls.SqlDataSource
+    Protected WithEvents SqlId_Documento As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
     '''Control cmbDocumento.
