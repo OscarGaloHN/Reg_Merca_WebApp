@@ -50,22 +50,13 @@ Partial Public Class creacion_documentos
     Protected WithEvents Reqnombre As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control SqlPresencia.
+    '''Control chkRecordarusu.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents SqlPresencia As Global.System.Web.UI.WebControls.SqlDataSource
-
-    '''<summary>
-    '''Control Presencia.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Presencia As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents chkRecordarusu As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
 
     '''<summary>
     '''Control bttConfirmar_adicion.

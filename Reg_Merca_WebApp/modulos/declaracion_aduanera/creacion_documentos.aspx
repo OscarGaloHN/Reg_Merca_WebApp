@@ -40,22 +40,22 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
-                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <label class="form-label">Documento:</label>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-11">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label class="form-label">Documento</label>
                             <asp:SqlDataSource
-                            ID="SqlId_Documento"
-                            runat="server"
-                            DataSourceMode="DataReader"
-                            ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
-                            ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_Documento, UPPER(descripcion) descripcion FROM DB_Nac_Merca.tbl_28_Documentos"></asp:SqlDataSource>
+                                ID="SqlId_Documento"
+                                runat="server"
+                                DataSourceMode="DataReader"
+                                ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                                ProviderName="MySql.Data.MySqlClient"
+                                SelectCommand="SELECT Id_Documento, UPPER(descripcion) descripcion FROM DB_Nac_Merca.tbl_28_Documentos"></asp:SqlDataSource>
                             <asp:DropDownList
                                 ID="cmbDocumento" runat="server" selectlistitem="seleccione" DataSourceID="SqlId_Documento" class="form-control show-tick"
                                 DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true" ItemType="">
                             </asp:DropDownList>
                         </div>
+                    </div>
+                    <div class="row clearfix">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -82,22 +82,20 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <label class="form-label">Presencia:</label>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-11">
-                            <asp:SqlDataSource
-                                ID="SqlPresencia"
-                                runat="server"
-                                DataSourceMode="DataReader"
-                                ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
-                                ProviderName="MySql.Data.MySqlClient"></asp:SqlDataSource>
-                            <asp:DropDownList
-                                ID="Presencia" runat="server" DataSourceID="SqlPresencia" class="form-control show-tick"
-                                DataTextField="Presencia" DataValueField="id_Rol" AppendDataBoundItems="true">
-                            </asp:DropDownList>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> 
+                            <div class="demo-switch-title">Presencia</div>
+                            <div class="switch">
+                                <label>
+                                    NO
+                                    <input type="checkbox" name="CheckBox" runat="server" id="chkRecordarusu" class="filled-in chk-col-teal " />
+                                    <span class="lever switch-col-teal"></span>
+                                    SI
+                                </label>
+
+                            </div>
                         </div>
                     </div>
+
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <asp:LinkButton
@@ -127,7 +125,7 @@
                                 ID="bttLimpiar"
                                 CausesValidation="False"
                                 class="btn bg-teal waves-effect">
-          <i class="material-icons">cleaning_services</i>
+          <i class="material-icons">refresh</i>
           <span>Limpiar</span>
                             </asp:LinkButton>
                         </div>
