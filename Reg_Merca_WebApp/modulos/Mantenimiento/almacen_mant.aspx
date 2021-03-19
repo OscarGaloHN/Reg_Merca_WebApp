@@ -31,6 +31,37 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2 style="font-weight: bold;"> MANTENIMIENTO DE ALMACEN
+         
+                        <small>A continuacion se muestra el mantenimiento del Almacen.</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="table-responsive">
+                                <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
+                                    Width="100%">
+                                    <Columns>
+                                        <asp:BoundField DataField="id_bitacora" HeaderText="ID" />Id_almacen, Nombre, Ubicación, Contacto, Tel
+                                        <asp:BoundField DataField="fecha" HeaderText="Fecha" />
+                                        <asp:BoundField DataField="usuario" HeaderText="Usuario" />
+                                        <asp:BoundField DataField="objeto" HeaderText="Objeto" />
+                                        <asp:BoundField DataField="accion" HeaderText="Acción" />
+                                        <asp:BoundField DataField="descripcion" HeaderText="Descripción" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">

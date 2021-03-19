@@ -12,4 +12,13 @@ Option Explicit On
 
 
 Partial Public Class almacen_mant
+
+    '''<summary>
+    '''Control gvCustomers.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gvCustomers As Global.System.Web.UI.WebControls.GridView
 End Class
