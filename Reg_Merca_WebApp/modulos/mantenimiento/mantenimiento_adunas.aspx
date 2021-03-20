@@ -26,6 +26,33 @@
             xModal('red', 'ContentPrincipal_txtAduana', 'modalDelete');
         }
 
+        function GetSelectedRowEdit(lnk) {
+            document.getElementById('ContentPrincipal_txtAduanaEditar').value = '';
+            document.getElementById('ContentPrincipal_txtContactoEditar').value = '';
+            document.getElementById('ContentPrincipal_txtTelEditar').value = '';
+            document.getElementById('ContentPrincipal_txtDireccionEditar').value = '';
+            var row = lnk.parentNode.parentNode;
+
+            document.getElementById('ContentPrincipal_lblHiddenNombreAduna').value = row.cells[3].innerHTML;
+
+            if (row.cells[3].innerHTML != '&nbsp;') { 
+                document.getElementById('ContentPrincipal_txtAduanaEditar').value = row.cells[3].innerHTML;
+            }
+            if (row.cells[4].innerHTML != '&nbsp;') { 
+                document.getElementById('ContentPrincipal_txtContactoEditar').value = row.cells[4].innerHTML;
+            }
+            if (row.cells[5].innerHTML != '&nbsp;') { 
+                document.getElementById('ContentPrincipal_txtTelEditar').value = row.cells[5].innerHTML;
+            }
+            if (row.cells[6].innerHTML != '&nbsp;') { 
+                 document.getElementById('ContentPrincipal_txtDireccionEditar').value = row.cells[6].innerHTML;
+            }
+            if (row.cells[2].innerHTML != '&nbsp;') { 
+            document.getElementById('ContentPrincipal_lblHiddenIDAduna').value = row.cells[2].innerHTML;
+            }
+            xModal('pink', 'ContentPrincipal_txtAduanaEditar', 'modalEditar');
+        }
+         
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
@@ -82,8 +109,11 @@
                                 <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                     Width="100%">
                                     <Columns>
-                                        <asp:BoundField HeaderText="Editar" DataField="Id_Aduana" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='config_gestion_usuario.aspx?xuser={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
-                                        <asp:TemplateField HeaderText="Eliminar">
+                                        <asp:TemplateField HeaderText="Editar">
+                                            <ItemTemplate>
+                                                <button onclick="return GetSelectedRowEdit(this);" type="button"   class="btn bg-pink waves-effect"><i class="material-icons">edit</i></button>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>   <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
@@ -205,6 +235,83 @@
 
         </div>
     </div>
+
+
+       <!-- modal editar aduana-->
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarAduana">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- TITULO -->
+                        <h4 class="modal-title" id="lblEditar">EDITAR ADUANA</h4>
+                    </div>
+                    <div class="modal-body">
+                      Luego de terminar de editar los datos de la aduana haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        <br />
+                        <br />
+                        <!-- CUERPO DEL MODAL -->
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtAduanaEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtAduanaEditar"
+                                        ErrorMessage="Ingrese el nombre de la aduana."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtContactoEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtContactoEditar"
+                                        ErrorMessage="Ingrese el nombre del contacto de la aduana."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtTelEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtTelEditar"
+                                        ErrorMessage="Ingrese el teléfono de la aduna."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtDireccionEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccionEditar"
+                                        ErrorMessage="Ingrese la dirección de la aduana."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaAduanaEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                    </div>
+                </div>
+            </asp:Panel>
+        </div>
+    </div>
+
 
 
 </asp:Content>

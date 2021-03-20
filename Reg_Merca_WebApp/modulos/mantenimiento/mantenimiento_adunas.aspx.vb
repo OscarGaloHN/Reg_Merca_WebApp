@@ -29,7 +29,8 @@
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se almaceno con exito.', 'success');</script>")
                     Case "delteaduana"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se elimino con exito.', 'success');</script>")
-
+                    Case "editduana"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se modifico con exito.', 'success');</script>")
                     Case Else
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
@@ -69,9 +70,9 @@
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=newaduana")
+                Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=editduana")
             End If
         Catch ex As Exception
 
@@ -88,6 +89,36 @@
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             End Using
             Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=delteaduana")
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
+        Try
+            Dim Ssql As String = String.Empty
+            If txtAduanaEditar.Text <> lblHiddenNombreAduna.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_06_aduanas where Nombre_aduana = BINARY  '" & txtAduanaEditar.Text & "' "
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+            Else
+                Session("NumReg") = 0
+            End If
+
+            If Session("NumReg") > 0 Then
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
+            Else
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_06_aduanas` SET `Nombre_aduana` = '" & txtAduanaEditar.Text & "', `Contacto` = '" & txtContactoEditar.Text & "', `Tel` = " & txtTelEditar.Text & ", `Ubicacion` = '" & txtDireccionEditar.Text & "' WHERE `Id_Aduana` = " & lblHiddenIDAduna.Value & ";"
+                Using con As New ControlDB
+                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                End Using
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
+                End Using
+                Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=newaduana")
+            End If
         Catch ex As Exception
 
         End Try
