@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class almacen_mant
+Partial Public Class mantenimiento_adunas
 
     '''<summary>
     '''Control gvCustomers.
@@ -32,13 +32,13 @@ Partial Public Class almacen_mant
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtnombre.
+    '''Control txtAduana.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtnombre As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtAduana As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control reqnombrevacio.
@@ -48,24 +48,6 @@ Partial Public Class almacen_mant
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Control txtubicacion.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtubicacion As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control RequiredFieldValidator2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtContacto.
@@ -104,47 +86,65 @@ Partial Public Class almacen_mant
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarAlmacen.
+    '''Control txtDireccion.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarAlmacen As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents txtDireccion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control lblAlmacen.
+    '''Control RequiredFieldValidator2.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblAlmacen As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control lblHiddenIDAlmacen.
+    '''Control bttGuardarAduana.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDAlmacen As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents bttGuardarAduana As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblHiddenNombreAlmacen.
+    '''Control lblAduna.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombreAlmacen As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblAduna As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control bttEliminarAlmacen.
+    '''Control lblHiddenIDAduna.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarAlmacen As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents lblHiddenIDAduna As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control lblHiddenNombreAduna.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblHiddenNombreAduna As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control bttEliminarAduna.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttEliminarAduna As Global.System.Web.UI.WebControls.LinkButton
 End Class

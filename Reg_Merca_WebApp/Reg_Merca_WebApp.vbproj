@@ -220,6 +220,7 @@
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\Mantenimiento\almacen_mant.aspx" />
     <Content Include="modulos\Mantenimiento\divisas_mant.aspx" />
+    <Content Include="modulos\Mantenimiento\mantenimiento_adunas.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
     <Content Include="modulos\configuraciones\confi_configurar.aspx" />
     <Content Include="modulos\perfil_usuario\confi_perfil.aspx" />
@@ -1170,6 +1171,13 @@
     </Compile>
     <Compile Include="modulos\Mantenimiento\divisas_mant.aspx.vb">
       <DependentUpon>divisas_mant.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\Mantenimiento\mantenimiento_adunas.aspx.designer.vb">
+      <DependentUpon>mantenimiento_adunas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\Mantenimiento\mantenimiento_adunas.aspx.vb">
+      <DependentUpon>mantenimiento_adunas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\Mantenimiento\master_mantenimiento.Master.designer.vb">
