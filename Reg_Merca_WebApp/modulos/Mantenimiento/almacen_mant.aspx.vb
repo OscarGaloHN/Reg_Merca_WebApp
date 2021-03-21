@@ -74,7 +74,7 @@
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo almacen con nombre: " & txtnombre.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/almacen_mant.aspx?acction=newaduana")
+                Response.Redirect("~/modulos/mantenimiento/almacen_mant.aspx?acction=newalmacen")
             End If
         Catch ex As Exception
 
@@ -91,7 +91,7 @@
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el almacen con nombre: " & lblHiddenNombreAlmacen.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=delteaduana")
+            Response.Redirect("~/modulos/mantenimiento/almacen_mant.aspx?acction=deltealmacen")
         Catch ex As Exception
 
         End Try

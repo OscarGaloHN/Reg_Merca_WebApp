@@ -164,7 +164,7 @@
                                 <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                     Width="100%">
                                     <Columns>
-                                        <asp:BoundField HeaderText="Editar" DataField="Id_almacen" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='config_gestion_usuario.aspx?xuser={0}&action=update&ignore=92'><i class='material-icons'>edit</i> </a>" />
+                                        <asp:BoundField HeaderText="Editar" DataField="Id_almacen" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='almacen_mant.aspx?xuser={0}&action=update&ignore=92'><i class='material-icons'>edit</i> </a>" />
                                         <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
@@ -192,10 +192,10 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO ALMACEN</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVA ADUANA</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos deL Almacen y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos de la aduana y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -204,7 +204,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre de Almacen" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtnombre"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtnombre"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre"
                                         ErrorMessage="Ingrese el nombre del Almacen."
@@ -227,7 +227,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtContacto"></asp:TextBox>
+                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtContacto"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtContacto"
                                         ErrorMessage="Ingrese el nombre del contacto del Almacen."

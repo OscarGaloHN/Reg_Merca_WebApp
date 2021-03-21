@@ -38,13 +38,13 @@
 
         If Session("user_rol") = 5 Then
             Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
-                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estatus c
+                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
                                where a.id_rol = b.id_rol
                                 and a.estado = c.id_estado and a.id_rol"
 
         Else
             Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
-                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estatus c
+                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
                                where a.id_rol = b.id_rol
                                 and a.estado = c.id_estado and a.id_rol != 5"
 

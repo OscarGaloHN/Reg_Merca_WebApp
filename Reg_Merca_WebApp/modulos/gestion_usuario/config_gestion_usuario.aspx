@@ -375,7 +375,7 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="Select descripcion, id_estado from DB_Nac_Merca.tbl_19_estatus where id_estado not in (6)"></asp:SqlDataSource>
+                            SelectCommand="Select descripcion, id_estado from DB_Nac_Merca.tbl_19_estado where id_estado not in (6)"></asp:SqlDataSource>
 
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-10">
                             <asp:DropDownList
