@@ -40,13 +40,13 @@
             Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
                             from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
                                where a.id_rol = b.id_rol
-                                and a.estado = c.id_estado and a.id_rol"
+                                and a.estado = c.id_estado and a.id_rol and a.id_usuario <> 1"
 
         Else
             Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
                             from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
                                where a.id_rol = b.id_rol
-                                and a.estado = c.id_estado and a.id_rol != 5"
+                                and a.estado = c.id_estado and a.id_rol != 5 and a.id_usuario <> 1"
 
         End If
 
@@ -69,25 +69,6 @@
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
         End Select
 
-        'pasar el nombre del usuario en la bitacora
-        'Ssql = "SELECT usuario FROM DB_Nac_Merca.tbl_02_usuarios where id_usuario= " & Session("user_idUsuario") & ";"
-        'Using con As New ControlDB
-        '    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '    Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        'End Using
-        'Dim registro As DataRow
-        'If Session("NumReg") > 0 Then
-        '    registro = DataSetX.Tables(0).Rows(0)
-        '    lblHidden1.Value = registro("usuario")
-        'End If
-
-        'ocultar NOUSUARIO
-        'If Session("user_idUsuario") = 1 Then
-        '    Ssql = "Select usuario, id_usuario from DB_Nac_Merca.tbl_02_usuarios"
-        'Else
-        '    Ssql = "Select usuario, id_usuario from DB_Nac_Merca.tbl_02_usuarios where id_usuario= " & lblHidden1.Value & " not in (1)"
-        'End If
-
     End Sub
 
 
@@ -96,7 +77,21 @@
     End Sub
 
     Private Sub bttEliminar_Click(sender As Object, e As EventArgs) Handles bttEliminar.Click
-        Dim Ssql As String = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & lblHidden1.Value & ""
+        Dim Ssql As String
+
+        'pasar el nombre del usuario en la bitacora
+        Ssql = "SELECT usuario FROM DB_Nac_Merca.tbl_02_usuarios where id_usuario= " & lblHidden1.Value & ";"
+        Using con As New ControlDB
+            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            Session("NumReg") = DataSetX.Tables(0).Rows.Count
+        End Using
+        Dim registro As DataRow
+        If Session("NumReg") > 0 Then
+            registro = DataSetX.Tables(0).Rows(0)
+            lblUsuario.Text = registro("usuario")
+        End If
+
+        Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & lblHidden1.Value & ""
         Using con As New ControlDB
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
@@ -110,7 +105,7 @@
             'bitacora para capturar eliminación de un usuario
             Using cusuario_bitacora As New ControlBitacora
                 'log_bitacora.log_sesion_inicio(5, Session("user_idUsuario"), "" & txtUsuario.Text & " ya esta registrado")
-                cusuario_bitacora.acciones_Comunes(6, Session("user_idUsuario"), 7, "" & lblHidden2.Value & "con codigo " & lblHidden1.Value & " se elimino exitosamente")
+                cusuario_bitacora.acciones_Comunes(6, Session("user_idUsuario"), 7, "" & lblUsuario.Text & " con codigo " & lblHidden1.Value & " se elimino exitosamente")
             End Using
         Catch ex As MySql.Data.MySqlClient.MySqlException
             Select Case ex.Number
@@ -122,7 +117,7 @@
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                         'bitacora para capturar inactivación de usuario
                         Using cusuario_bitacora As New ControlBitacora
-                            cusuario_bitacora.acciones_Comunes(7, Session("user_idUsuario"), 7, "" & lblHidden2.Value & "con codigo " & lblHidden1.Value & " no puede ser eliminado, su estado paso a inactivo.")
+                            cusuario_bitacora.acciones_Comunes(7, Session("user_idUsuario"), 7, "" & lblUsuario.Text & " con codigo " & lblHidden1.Value & " no puede ser eliminado, su estado paso a inactivo.")
                         End Using
                         Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=deleteinactive")
                     End Using

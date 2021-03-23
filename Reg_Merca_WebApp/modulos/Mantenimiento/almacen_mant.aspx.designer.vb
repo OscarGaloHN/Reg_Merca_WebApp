@@ -68,13 +68,13 @@ Partial Public Class almacen_mant
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtContacto.
+    '''Control txtcontacto.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtContacto As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtcontacto As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control validarContactoVac.
@@ -86,13 +86,13 @@ Partial Public Class almacen_mant
     Protected WithEvents validarContactoVac As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtTel.
+    '''Control txttel.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtTel As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txttel As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator1.

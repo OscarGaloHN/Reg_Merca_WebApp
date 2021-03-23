@@ -11,24 +11,25 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtAduana').value = '';
-            document.getElementById('ContentPrincipal_txtContacto').value = '';
-            document.getElementById('ContentPrincipal_txtTel').value = '';
-            document.getElementById('ContentPrincipal_txtDireccion').value = '';
+            document.getElementById('ContentPrincipal_txtDescripcion').value = '';
+            document.getElementById('ContentPrincipal_txttotalfactura').value = '';
+            document.getElementById('ContentPrincipal_txttotalflete').value = '';
+            document.getElementById('ContentPrincipal_txttotalseguro').value = '';
+            document.getElementById('ContentPrincipal_txttotalotros').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblAduna').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDAduna').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreAduna').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtAduana', 'modalDelete');
+            document.getElementById('ContentPrincipal_lbldivisas').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDdivisas').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombredivisas').value = row.cells[3].innerHTML;
+            xModal('red', 'ContentPrincipal_txtDescripcion', 'modalDelete');
         }
 
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Matenimiento de Aduanas</a>
+    <a class="navbar-brand" href="#">Matenimiento de Divisas</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -150,7 +151,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtAduana','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtDescripcion','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -170,7 +171,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Id_Divisas" HeaderText="ID" />
-                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                                         <asp:BoundField DataField="Total_Factura" HeaderText="Total Factura" />
                                         <asp:BoundField DataField="Total_Flete" HeaderText="Total flete" />
                                         <asp:BoundField DataField="Total_Seguro" HeaderText="Total Seguro" />
@@ -187,7 +188,7 @@
     <!-- modal nueva aduana-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarAduana">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarDivisas">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
@@ -203,23 +204,23 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtDescripcion"></asp:TextBox>
+                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validadivisas" runat="server" class="form-control" ID="txtDescripcion"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtDescripcion"
-                                        ErrorMessage="Ingrese el nombre de la aduana."
+                                        ErrorMessage="Ingrese la Descripción de la Divisa."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisas" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Total Factura" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txttotalfactura"></asp:TextBox>
+                                        <asp:TextBox placeholder="Total Factura" AutoComplete="off" ValidationGroup="Validadivisas" runat="server" class="form-control" ID="txttotalfactura"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txttotalfactura"
-                                        ErrorMessage="Ingrese el nombre del contacto de la aduana."
+                                        ErrorMessage="Ingrese el total de la factura."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisas" />
                                 </div>
                             </div>
 
@@ -228,40 +229,40 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Total flete" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txttotalflete"></asp:TextBox>
+                                        <asp:TextBox placeholder="Total flete" AutoComplete="off" ValidationGroup="Validadivisas" runat="server" class="form-control" ID="txttotalflete"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttotalflete"
-                                        ErrorMessage="Ingrese el teléfono de la aduna."
+                                        ErrorMessage="Ingrese el Total del Flete."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisas" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Total Seguro" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txttotalseguro"></asp:TextBox>
+                                        <asp:TextBox placeholder="Total Seguro" AutoComplete="off" ValidationGroup="Validadivisas" runat="server" class="form-control" ID="txttotalseguro"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txttotalseguro"
-                                        ErrorMessage="Ingrese la dirección de la aduana."
+                                        ErrorMessage="Ingrese el Total del Seguro."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisas" />
                                 </div>
                             </div>
                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Total otros gastos" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txttotalotros"></asp:TextBox>
+                                        <asp:TextBox placeholder="Total otros gastos" AutoComplete="off" ValidationGroup="Validadivisas" runat="server" class="form-control" ID="txttotalotros"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txttotalotros"
-                                        ErrorMessage="Ingrese la dirección de la aduana."
+                                        ErrorMessage="Ingrese el Total de Otros Gastos."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisas" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarAduana" ValidationGroup="ValidaAduana" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarDivisas" ValidationGroup="Validadivisas" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
@@ -281,16 +282,16 @@
                 </div>
                 <div class="modal-body">
                     ¿Seguro que dese eliminar esta aduna:
-                    <asp:Label runat="server" ID="lblAduna" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDAduna" />
-                        <asp:HiddenField runat="server" ID="lblHiddenNombreAduna" />
+                    <asp:Label runat="server" ID="lbldivisas" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDdivisas" />
+                        <asp:HiddenField runat="server" ID="lblHiddenNombredivisas" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarAduna" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarDivisas" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>

@@ -67,7 +67,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Almacen','El nombre del Almacen ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_9_almacenes` (`Nombre`, `Ubicacion`, `Contacto`, `Tel`) VALUES ('" & txtnombre.Text & "', '" & txtubicacion.Text & "', '" & txtContacto.Text & "', '" & txtTel.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_9_almacenes` (`Nombre`, `Ubicacion`, `Contacto`, `Tel`) VALUES ('" & txtnombre.Text & "', '" & txtubicacion.Text & "', '" & txtcontacto.Text & "', '" & txttel.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

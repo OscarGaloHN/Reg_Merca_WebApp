@@ -122,47 +122,47 @@ Partial Public Class divisas_mant
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarAduana.
+    '''Control bttGuardarDivisas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarAduana As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarDivisas As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblAduna.
+    '''Control lbldivisas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblAduna As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbldivisas As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDAduna.
+    '''Control lblHiddenIDdivisas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDAduna As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDdivisas As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenNombreAduna.
+    '''Control lblHiddenNombredivisas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombreAduna As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenNombredivisas As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control bttEliminarAduna.
+    '''Control bttEliminarDivisas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarAduna As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarDivisas As Global.System.Web.UI.WebControls.LinkButton
 End Class

@@ -164,7 +164,7 @@
                                 <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                     Width="100%">
                                     <Columns>
-                                        <asp:BoundField HeaderText="Editar" DataField="Id_almacen" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='almacen_mant.aspx?xuser={0}&action=update&ignore=92'><i class='material-icons'>edit</i> </a>" />
+                                       <asp:BoundField HeaderText="Editar" DataField="Id_almacen" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='config_gestion_usuario.aspx?xuser={0}&action=update&ignore=92'><i class='material-icons'>edit</i> </a>" /> 
                                         <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
@@ -204,57 +204,56 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtnombre"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaAlmacen" runat="server" class="form-control" ID="txtnombre"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre"
                                         ErrorMessage="Ingrese el nombre del Almacen."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Ubicación" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtubicacion"></asp:TextBox>
+                                        <asp:TextBox placeholder="Ubicación" AutoComplete="off" ValidationGroup="ValidaAlmacen" runat="server" class="form-control" ID="txtubicacion"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtubicacion"
                                         ErrorMessage="Ingrese la Ubicacion del Almacen."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
                                 </div>
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtContacto"></asp:TextBox>
+                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="ValidaAlmacen" runat="server" class="form-control" ID="txtcontacto"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtContacto"
+                                    <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtcontacto"
                                         ErrorMessage="Ingrese el nombre del contacto del Almacen."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="row">
-
-                        </div>
-                    
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtTel"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAlmacen" runat="server" class="form-control" ID="txttel"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtTel"
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttel"
                                         ErrorMessage="Ingrese el teléfono del Almacen."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduana" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
                                 </div>
                             </div>
+
+                        </div>
+                       
+                    
+                           
                         </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarAlmacen" ValidationGroup="ValidaAduana" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarAlmacen" ValidationGroup="ValidaAlmacen" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>

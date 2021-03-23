@@ -53,7 +53,11 @@
         End Try
     End Sub
 
-    Private Sub bttGuardarAduana_Click(sender As Object, e As EventArgs) Handles bttGuardarAduana.Click
+
+
+
+
+    Private Sub bttGuardarDivisas_Click(sender As Object, e As EventArgs) Handles bttGuardarDivisas.Click
         Try
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_29_Divisas where Nombre_aduana = BINARY  '" & txtDescripcion.Text & "' "
@@ -78,19 +82,18 @@
         End Try
     End Sub
 
-    Private Sub bttEliminarAduna_Click(sender As Object, e As EventArgs) Handles bttEliminarAduna.Click
+    Private Sub bttEliminarDivisas_Click(sender As Object, e As EventArgs) Handles bttEliminarDivisas.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_29_Divisas` WHERE Id_Aduana= " & lblHiddenIDAduna.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_29_Divisas` WHERE Id_Aduana= " & lblHiddenIDdivisas.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
-                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombredivisas.Value & " con exito")
             End Using
             Response.Redirect("~/modulos/mantenimiento/divisas_mant.aspx?acction=deltedivisas")
         Catch ex As Exception
 
         End Try
     End Sub
-
 End Class

@@ -56,8 +56,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold">CONFIGURACIONES 
-                        <small>Información basica de la empresa y otras configuraciones</small>
+                    <h2 style="font-weight: bold">Configuraciones 
+                        <small>Informacion basica de la empresa y otras configuraciones</small>
                     </h2>
 
                 </div>
