@@ -220,6 +220,8 @@
     <Content Include="modulos\mantenimiento\almacenes_mant.aspx" />
     <Content Include="modulos\mantenimiento\divisas_mant.aspx" />
     <Content Include="modulos\mantenimiento\mantenimiento_adunas.aspx" />
+    <Content Include="modulos\mantenimiento\modalidadesp_mant.aspx" />
+    <Content Include="modulos\mantenimiento\preguntas_mant.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
     <Content Include="modulos\configuraciones\confi_configurar.aspx" />
     <Content Include="modulos\perfil_usuario\confi_perfil.aspx" />
@@ -1176,6 +1178,20 @@
     <Compile Include="modulos\mantenimiento\master_mantenimiento.Master.vb">
       <DependentUpon>master_mantenimiento.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\modalidadesp_mant.aspx.designer.vb">
+      <DependentUpon>modalidadesp_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\modalidadesp_mant.aspx.vb">
+      <DependentUpon>modalidadesp_mant.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\preguntas_mant.aspx.designer.vb">
+      <DependentUpon>preguntas_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\preguntas_mant.aspx.vb">
+      <DependentUpon>preguntas_mant.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\perfil_usuario\confi_cambio_contra.aspx.designer.vb">
       <DependentUpon>confi_cambio_contra.aspx</DependentUpon>
