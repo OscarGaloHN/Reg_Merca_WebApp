@@ -218,6 +218,7 @@
     <Content Include="modulos\declaracion_aduanera\items_ventajas.aspx" />
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
+    <Content Include="modulos\mantenimiento\mantenimiento_adunas.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
     <Content Include="modulos\configuraciones\confi_configurar.aspx" />
     <Content Include="modulos\perfil_usuario\confi_perfil.aspx" />
@@ -319,6 +320,7 @@
     <Content Include="modulos\bitacora\master_bitacora.Master" />
     <Content Include="modulos\perfil_usuario\master_perfil.Master" />
     <Content Include="modulos\declaracion_aduanera\master_registros.Master" />
+    <Content Include="modulos\mantenimiento\master_mantenimiento.Master" />
     <None Include="My Project\PublishProfiles\CarpetaLocal.pubxml" />
     <None Include="My Project\PublishProfiles\CarpetaLocar.pubxml" />
     <None Include="My Project\PublishProfiles\FTPProfile.pubxml" />
@@ -1153,6 +1155,20 @@
     </Compile>
     <Compile Include="modulos\gestion_usuario\master_gestion_usuarios.Master.vb">
       <DependentUpon>master_gestion_usuarios.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\mantenimiento_adunas.aspx.designer.vb">
+      <DependentUpon>mantenimiento_adunas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\mantenimiento_adunas.aspx.vb">
+      <DependentUpon>mantenimiento_adunas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\master_mantenimiento.Master.designer.vb">
+      <DependentUpon>master_mantenimiento.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\master_mantenimiento.Master.vb">
+      <DependentUpon>master_mantenimiento.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\perfil_usuario\confi_cambio_contra.aspx.designer.vb">
