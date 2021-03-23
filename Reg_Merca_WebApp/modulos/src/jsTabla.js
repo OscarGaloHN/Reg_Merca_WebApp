@@ -1,10 +1,30 @@
 ﻿
-
+var tituloImprimir = '';
+var xColumnas = [];
 $(function () {
-    $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
-   
+    
+
+    $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable(
+        {
+            
+        dom: 'lBfrtip',
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="material-icons">print</i>',
+                titleAttr: 'Imprimir',
+                className: 'btn bg-teal waves-effect',
+                title: tituloImprimir,
+                exportOptions: {
+                    columns: xColumnas
+                },
+                download: 'open',
+             
+            }
+        ],
         "responsive": true,
         "sPaginationType": "full_numbers",
+
         "language": {
             "lengthMenu": "Mostrar  _MENU_ registros",
             "search": "Buscar:",
