@@ -48,7 +48,7 @@
                                 DataSourceMode="DataReader"
                                 ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                 ProviderName="MySql.Data.MySqlClient"
-                                SelectCommand="SELECT Id_Documento, UPPER(descripcion) descripcion FROM DB_Nac_Merca.tbl_28_Documentos"></asp:SqlDataSource>
+                                SelectCommand="SELECT Id_Documento, UPPER(descripcion) descripcion FROM DB_Nac_Merca.tbl_32_Cod_Documentos"></asp:SqlDataSource>
                             <asp:DropDownList
                                 ID="cmbDocumento" runat="server" selectlistitem="seleccione" DataSourceID="SqlId_Documento" class="form-control show-tick"
                                 DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true" ItemType="">
