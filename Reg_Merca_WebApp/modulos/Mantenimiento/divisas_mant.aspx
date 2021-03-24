@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="Divisas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.Divisas_mant" %>
+﻿<%@ Page Title="Divisas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="Divisas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.Divisas_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
          <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -80,7 +80,7 @@
                 <span>Aduanas</span>
             </a>
             </li>
-             <li class="active">
+             <li >
                      <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
@@ -99,7 +99,7 @@
                 <span>Condicion de Entrega</span>
             </a>
             </li>
-        <li>
+        <li class="active">
             <a href="#">
                 <i class="material-icons">monetization_on</i>
                 <span>divisas</span>
@@ -118,7 +118,7 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="modalidadesp_mant.aspx">
                 <i class="material-icons">add_moderator</i>
                 <span>Modalidad Especial</span>
             </a>
@@ -136,7 +136,7 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>

@@ -59,13 +59,13 @@ Partial Public Class modalidadesp_mant
     Protected WithEvents bttGuardarModalidad As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblAduna.
+    '''Control lblModalidad.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblAduna As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblModalidad As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control lblHiddenIDModalidad.

@@ -26,11 +26,11 @@
             If Not IsPostBack Then
                 Select Case Request.QueryString("acction")
                     Case "newmodalidad"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se almaceno con exito.', 'success');</script>")
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','La modalidad especial se almaceno con exito.', 'success');</script>")
                     Case "deltemodalidad"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se elimino con exito.', 'success');</script>")
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','La modaalidad especial se elimino con exito.', 'success');</script>")
                     Case "editmodalidad"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se modifico con exito.', 'success');</script>")
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','La modalidad especial se modifico con exito.', 'success');</script>")
                     Case Else
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
@@ -40,8 +40,8 @@
                         End If
 
                         'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 17
-                        Session("NombrefrmQueIngresa") = "Mantenimiento de Aduanas"
+                        Session("IDfrmQueIngresa") = 20
+                        Session("NombrefrmQueIngresa") = "Mantenimiento de Modalidad Especial"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -72,14 +72,14 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','El nombre de modalida especial ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_39_modalidad_especial` SET `Nombre_aduana` = '" & txtnombremodalidadEditar.Text & "' ' WHERE `Id_Aduana` = " & lblHiddenIDModalidad.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_39_modalidad_especial` SET `Nombre_modalidad` = '" & txtnombremodalidadEditar.Text & "' ' WHERE `Id_Modalidad` = " & lblHiddenIDModalidad.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtnombremodalidad.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva modalidad especial con nombre: " & txtnombremodalidad.Text)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/modalidadesp_mant.aspx?acction=newmodalidad")
             End If
@@ -97,14 +97,14 @@
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','El nombre de Modalidad especial ya esta registrado.', 'error');</script>")
             Else
                 Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_39_modalidad_especial` (`Nombre_modalidad`) VALUES ('" & txtnombremodalidad.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDModalidad.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la modalidad especial con id: " & lblHiddenIDModalidad.Value)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/modalidadesp_mant.aspx?acction=editmodalidad")
             End If

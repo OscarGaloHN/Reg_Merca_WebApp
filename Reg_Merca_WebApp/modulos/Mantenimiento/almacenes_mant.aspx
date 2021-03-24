@@ -117,7 +117,7 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="modalidadesp_mant.aspx">
                 <i class="material-icons">add_moderator</i>
                 <span>Modalidad Especial</span>
             </a>
@@ -135,7 +135,7 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
