@@ -113,13 +113,13 @@ Partial Public Class almacenes_mant
     Protected WithEvents bttGuardarAlmacen As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblAduna.
+    '''Control lblAlmacen.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblAduna As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblAlmacen As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control lblHiddenIDAlmacen.
