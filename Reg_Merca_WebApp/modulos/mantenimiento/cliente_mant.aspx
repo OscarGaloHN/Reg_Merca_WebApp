@@ -1,0 +1,743 @@
+﻿<%@ Page Title="Clientes" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="cliente_mant.aspx.vb" Inherits="Reg_Merca_WebApp.cliente_mant" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- JQuery DataTable Css -->
+    <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="../src/jsTabla.js"></script>
+    <script src="../src/jsModales.js"></script>
+
+
+    <script type="text/javascript">
+        function borrarTxtNuevo() {
+            document.getElementById('ContentPrincipal_txtnombre').value = '';
+            document.getElementById('ContentPrincipal_txtdirecciondomicilio').value = '';
+            document.getElementById('ContentPrincipal_txtdireccionenvio').value = '';
+            document.getElementById('ContentPrincipal_txtciudad').value = '';
+            document.getElementById('ContentPrincipal_txttelefono').value = '';
+            document.getElementById('ContentPrincipal_txttelefono2').value = '';
+            document.getElementById('ContentPrincipal_txttelefono3').value = '';
+            document.getElementById('ContentPrincipal_txtfax').value = '';
+            document.getElementById('ContentPrincipal_txtemailpersonal').value = '';
+            document.getElementById('ContentPrincipal_txtemailempresarial').value = '';
+            document.getElementById('ContentPrincipal_txtcontacto').value = '';
+            document.getElementById('ContentPrincipal_txtrtncli').value = '';
+            document.getElementById('ContentPrincipal_txtlimitecr').value = '';
+            document.getElementById('ContentPrincipal_txtplazocr').value = '';
+        }
+
+        function GetSelectedRowDelete(lnk) {
+            var row = lnk.parentNode.parentNode;
+            document.getElementById('ContentPrincipal_lblcliente').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDcliente').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrecliente').value = row.cells[4].innerHTML;
+            xModal('red', 'ContentPrincipal_txtnombre', 'modalDelete');
+        }
+
+        function GetSelectedRowEdit(lnk) {
+            document.getElementById('ContentPrincipal_txtnombre').value = '';
+            document.getElementById('ContentPrincipal_txtdirecciondomicilio').value = '';
+            document.getElementById('ContentPrincipal_txtdireccionenvio').value = '';
+            document.getElementById('ContentPrincipal_txtciudad').value = '';
+            document.getElementById('ContentPrincipal_txttelefono').value = '';
+            document.getElementById('ContentPrincipal_txttelefono2').value = '';
+            document.getElementById('ContentPrincipal_txttelefono3').value = '';
+            document.getElementById('ContentPrincipal_txtfax').value = '';
+            document.getElementById('ContentPrincipal_txtemailpersonal').value = '';
+            document.getElementById('ContentPrincipal_txtemailempresarial').value = '';
+            document.getElementById('ContentPrincipal_txtcontacto').value = '';
+            document.getElementById('ContentPrincipal_txtrtncli').value = '';
+            document.getElementById('ContentPrincipal_txtlimitecr').value = '';
+            document.getElementById('ContentPrincipal_txtplazocr').value = '';
+            var row = lnk.parentNode.parentNode;
+
+            document.getElementById('ContentPrincipal_lblHiddenNombrecliente').value = row.cells[3].innerHTML;
+
+            if (row.cells[3].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtnombreEditar').value = row.cells[3].innerHTML;
+            }
+            if (row.cells[4].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtdirecciondomicilioEditar').value = row.cells[4].innerHTML;
+            }
+            if (row.cells[5].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtdireccionenvioEditar').value = row.cells[5].innerHTML;
+            }
+            if (row.cells[6].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtciudadEditar').value = row.cells[6].innerHTML;
+            }
+            if (row.cells[7].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txttelefonoEditar').value = row.cells[7].innerHTML;
+            }
+            if (row.cells[8].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txttelefono2Editar').value = row.cells[8].innerHTML;
+            }
+            if (row.cells[9].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txttelefono3Editar').value = row.cells[9].innerHTML;
+            }
+            if (row.cells[10].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtfaxEditar').value = row.cells[10].innerHTML;
+            }
+            if (row.cells[11].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtemailpersonalEditar').value = row.cells[11].innerHTML;
+            }
+            if (row.cells[12].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtemailempresarialEditar').value = row.cells[12].innerHTML;
+            }
+            if (row.cells[13].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtrtncliEditar').value = row.cells[13].innerHTML;
+            }
+            if (row.cells[14].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtcontactoEditar').value = row.cells[14].innerHTML;
+            }
+            if (row.cells[15].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtlimitecrEditar').value = row.cells[15].innerHTML;
+            }
+            if (row.cells[16].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtplazocrEditar').value = row.cells[16].innerHTML;
+            }
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_lblHiddenIDcliente').value = row.cells[2].innerHTML;
+            }
+            xModal('pink', 'ContentPrincipal_txtnombreEditar', 'modalEditar');
+        }
+
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
+    <a class="navbar-brand" href="#">Mantenimiento de clientes</a>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
+    <ul class="list">
+        <li class="header">MENU PRINCIPAL</li>
+        <li>
+            <a href="../menu_principal.aspx">
+                <i class="material-icons">home</i>
+                <span>Inicio</span>
+            </a>
+        </li>
+        <li>
+            <a href="mantenimiento_adunas.aspx">
+                <i class="material-icons">directions_boat</i>
+                <span>Aduanas</span>
+            </a>
+        </li>
+        <li>
+            <a href="almacen_mant.aspx">
+                <i class="material-icons">directions_boat</i>
+                <span>Almacén</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="cliente_mant.aspx">
+                <i class="material-icons">directions_boat</i>
+                <span>Clientes</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Condicion de Entrega</span>
+            </a>
+        </li>
+        <li>
+            <a href="divisas_mant.aspx">
+                <i class="material-icons">directions_boat</i>
+                <span>divisas</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Estado de Mercancia</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Forma de Pago</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Modalidad Especial</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Nivel Comercial</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Proveedores</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Preguntas</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Paises</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Regimenes</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Tipo de Item</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Unidad de Ventaja</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Ventajas</span>
+            </a>
+        </li>
+    </ul>
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2 style="font-weight: bold;">clientes
+                                 <small>A continuación se muestra el listado de los clientes registrados.</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtnombre','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+
+                                <i class="material-icons">add</i> <span>Nuevo</span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="table-responsive">
+                                <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
+                                    Width="100%">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Editar">
+                                            <ItemTemplate>
+                                                <button onclick="return GetSelectedRowEdit(this);" type="button" class="btn bg-pink waves-effect"><i class="material-icons">edit</i></button>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Eliminar">
+                                            <ItemTemplate>
+                                                <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Id_cliente" HeaderText="ID" />
+                                        <asp:BoundField DataField="Id_nivel_com" HeaderText="id nivel comercial" />
+                                        <asp:BoundField DataField="nombrec" HeaderText=" Nombre" />
+                                        <asp:BoundField DataField="direccion_domicilio" HeaderText="Dirección domicilio" />
+                                        <asp:BoundField DataField="direccion_envio" HeaderText="Dirección envío" />
+                                        <asp:BoundField DataField="ciudad" HeaderText="Ciudad" />
+                                        <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
+                                        <asp:BoundField DataField="telefono2" HeaderText=" Teléfono2" />
+                                        <asp:BoundField DataField="telefono3" HeaderText=" Teléfono3" />
+                                        <asp:BoundField DataField="fax" HeaderText="fax" />
+                                        <asp:BoundField DataField="email_personal" HeaderText="Email personal" />
+                                        <asp:BoundField DataField="email_empresarial" HeaderText="Email empresarial" />
+                                        <asp:BoundField DataField="contacto" HeaderText="Contacto" />
+                                        <asp:BoundField DataField="rtn_cli" HeaderText="RTN cliente" />
+                                        <asp:BoundField DataField="limitecr" HeaderText="Limite del credito" />
+                                        <asp:BoundField DataField="plazocr" HeaderText="Plazo de credito" />
+                                        <asp:BoundField DataField="Id_pais" HeaderText="Id_pais" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal nueva aduana-->
+    <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarcliente">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- TITULO -->
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO CLIENTE</h4>
+                    </div>
+                    <div class="modal-body">
+                        Ingrese todos los datos del cliente y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                                            <br />
+                        <br />
+                        <!-- CUERPO DEL MODAL -->
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtnombre"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre"
+                                        ErrorMessage="Ingrese el nombre del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Identidad" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtIdentidadCliente"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator27" ControlToValidate="txtIdentidadCliente"
+                                        ErrorMessage="Ingrese la identidad."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtdirecciondomicilio"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtdirecciondomicilio"
+                                        ErrorMessage="Ingrese la dirección de domicilio."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Dirección envío" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtdireccionenvio"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtdireccionenvio"
+                                        ErrorMessage="Ingrese la Dirección del envío"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                               <asp:SqlDataSource
+                                ID="SqlPais"
+                                runat="server"
+                                DataSourceMode="DataReader"
+                                ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                                ProviderName="MySql.Data.MySqlClient"
+                                SelectCommand="SELECT Id_Pais, Nombre_Pais FROM DB_Nac_Merca.tbl_8_paises order by 2;"></asp:SqlDataSource>
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                    <asp:DropDownList 
+                                        ID="CmbPais" runat="server" DataSourceID="SqlPais" class="form-control show-tick"
+                                        DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
+                                    </asp:DropDownList>
+                                </div>
+                            <asp:SqlDataSource
+                                ID="SqlNivelComercial"
+                                runat="server"
+                                DataSourceMode="DataReader"
+                                ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                                ProviderName="MySql.Data.MySqlClient"
+                                SelectCommand="SELECT Id_nivel_com, Tipo FROM DB_Nac_Merca.tbl_12_nivel_comercial;"></asp:SqlDataSource>
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                    <asp:DropDownList 
+                                        ID="cmbNivelComercial" runat="server" DataSourceID="SqlNivelComercial" class="form-control show-tick"
+                                        DataTextField="Tipo" DataValueField="Id_nivel_com" AppendDataBoundItems="true">
+                                    </asp:DropDownList>
+                                </div>
+                            
+
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtciudad"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtciudad"
+                                        ErrorMessage="Ingrese la Ciudad"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txttelefono"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttelefono"
+                                        ErrorMessage="Ingrese el teléfono."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Teléfono2" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txttelefono2"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txttelefono2"
+                                        ErrorMessage="Ingrese el telefono."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Teléfono3" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txttelefono3"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txttelefono3"
+                                        ErrorMessage="Ingrese el teléfono"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="fax" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtfax"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtfax"
+                                        ErrorMessage="Ingrese el fax"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+
+                        
+                        
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Email Personal" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtemailpersonal"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtemailpersonal"
+                                        ErrorMessage="Ingrese el correo personal"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Email Empresarial" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtemailempresarial"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator12" ControlToValidate="txtemailempresarial"
+                                        ErrorMessage="Ingrese el correo empresarial"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtcontacto"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator13" ControlToValidate="txtcontacto"
+                                        ErrorMessage="Ingrese el Contacto"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="RTN Cliente" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtrtncli"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator14" ControlToValidate="txtrtncli"
+                                        ErrorMessage="Ingrese el RTN del cliente"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+
+                        
+                        
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Limite del credito" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtlimitecr"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator15" ControlToValidate="txtlimitecr"
+                                        ErrorMessage="Ingrese el limite del credito"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Plazo de Credito" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtplazocr"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator16" ControlToValidate="txtplazocr"
+                                        ErrorMessage="Ingrese el plazo del credito"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton runat="server" ID="bttGuardarcliente" ValidationGroup="Validacliente" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                            <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                        </div>
+                    </div>
+                </div>
+            </asp:Panel>
+
+        </div>
+    </div>
+
+
+
+    <!-- modal eliminar aduana-->
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- TITULO -->
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR cliente</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Seguro que dese eliminar esta cliente:
+                    <asp:Label runat="server" ID="lblcliente" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDcliente" />
+                    <asp:HiddenField runat="server" ID="lblHiddenNombrecliente" />
+                    <br />
+                    <br />
+                    <!-- CUERPO DEL MODAL -->
+
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bttEliminarcliente" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- modal editar aduana-->
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarcliente">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- TITULO -->
+                        <h4 class="modal-title" id="lblEditar">EDITAR CLIENTE</h4>
+                    </div>
+                    <div class="modal-body">
+                        Luego de terminar de editar los datos del cliente haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        <br />
+                        <br />
+                        <!-- CUERPO DEL MODAL -->
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtnombreEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtnombreEditar"
+                                        ErrorMessage="Ingrese el nombre del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtdirecciondomicilioEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtdirecciondomicilioEditar"
+                                        ErrorMessage="Ingrese el domicilio del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Dirección envio" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtdireccionenvioEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtdireccionenvioEditar"
+                                        ErrorMessage="Ingrese la direccion de envio del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtciudadEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtciudadEditar"
+                                        ErrorMessage="Ingrese la Ciudad del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txttelefonoEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator17" ControlToValidate="txttelefonoEditar"
+                                        ErrorMessage="Ingrese el teléfono del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Teléfono2" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txttelefono2Editar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator18" ControlToValidate="txttelefono2Editar"
+                                        ErrorMessage="Ingrese el teléfono2 del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Teléfono3" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txttelefono3Editar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator19" ControlToValidate="txttelefono3Editar"
+                                        ErrorMessage="Ingrese el teléfono3 del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="fax" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtfaxEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator20" ControlToValidate="txtfaxEditar"
+                                        ErrorMessage="Ingrese el Fax del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Email personal" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtemailpersonalEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator21" ControlToValidate="txtemailpersonalEditar"
+                                        ErrorMessage="Ingrese el email personal."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Email empresarial" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtemailempresarialEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator22" ControlToValidate="txtemailempresarialEditar"
+                                        ErrorMessage="Ingrese el email empresarial."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtcontactoEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator23" ControlToValidate="txtcontactoEditar"
+                                        ErrorMessage="Ingrese el contacto del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="RTN cliente" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtrtncliEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator24" ControlToValidate="txtrtncliEditar"
+                                        ErrorMessage="Ingrese el RTN del cliente."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Limite del credito" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtlimitecrEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator25" ControlToValidate="txtlimitecrEditar"
+                                        ErrorMessage="Ingrese el limite de credito"
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Plazo de credito" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtplazocrEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator26" ControlToValidate="txtplazocrEditar"
+                                        ErrorMessage="Ingrese el Plazo de credito."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaclienteEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                    </div>
+                </div>
+            </asp:Panel>
+        </div>
+    </div>
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
+</asp:Content>
