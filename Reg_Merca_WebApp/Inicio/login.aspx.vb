@@ -102,7 +102,7 @@ Public Class login
             Session("user_canti_preguntas") = registro("CantiPreguntas")
 
 
-            If registro("cambio_clave") = 0 Then ''VALIDAR QUE TENGA LA PREGUNTA
+            If registro("cambio_clave") = 0 Then
                 Select Case Session("user_estado")
                     Case 0 'USUARIO CREADO
                         'usuario creado por admin se otorgo contraseña enviar a activar

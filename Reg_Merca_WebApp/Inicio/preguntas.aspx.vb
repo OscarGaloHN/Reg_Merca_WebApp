@@ -17,7 +17,7 @@
             Session("usuarioCambioPW") = False
             If Not IsPostBack Then
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(3, Session("id_usuarioPreguntas"), 9, "El usuario ingresa a la pantalla de responder pregunta de seguridad para desbloquear usuario o cambiar contraseña")
+                    log_bitacora.acciones_Comunes(9, Session("id_usuarioPreguntas"), 9, "El usuario ingresa a la pantalla de responder pregunta de seguridad para desbloquear usuario o cambiar contraseña")
                 End Using
             End If
         End If
