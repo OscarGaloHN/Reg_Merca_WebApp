@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="almacenes_mant.aspx.vb" Inherits="Reg_Merca_WebApp.almacenes_mant" %>
+﻿<%@ Page Title="Almacenes" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="almacenes_mant.aspx.vb" Inherits="Reg_Merca_WebApp.almacenes_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
         <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -44,7 +44,7 @@
                 document.getElementById('ContentPrincipal_txtnombreEditar').value = row.cells[3].innerHTML;
             }
             if (row.cells[4].innerHTML != '&nbsp;') { 
-                document.getElementById('ContentPrincipal_txtbicacionEditar').value = row.cells[4].innerHTML;
+                document.getElementById('ContentPrincipal_txtubicacionEditar').value = row.cells[4].innerHTML;
             }
             if (row.cells[5].innerHTML != '&nbsp;') { 
                 document.getElementById('ContentPrincipal_txtcontactoEditar').value = row.cells[5].innerHTML;
@@ -313,7 +313,7 @@
                 </div>
                 <div class="modal-body">
                     ¿Seguro que dese eliminar este Almacén:
-                    <asp:Label runat="server" ID="lblAduna" Text="..."></asp:Label>?
+                    <asp:Label runat="server" ID="lblAlmacen" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDAlmacen" />
                         <asp:HiddenField runat="server" ID="lblHiddenNombreAlmacen" />
                     <br />
