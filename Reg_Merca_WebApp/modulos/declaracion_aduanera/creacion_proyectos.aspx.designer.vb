@@ -14,6 +14,60 @@ Option Explicit On
 Partial Public Class creacion_proyectos
 
     '''<summary>
+    '''Control txtfecha_creacion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtfecha_creacion As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control txt_cliente.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txt_cliente As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control txt_estado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txt_estado As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control txt_usuario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txt_usuario As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control btt_buscar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btt_buscar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control btt_limpiar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btt_limpiar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''Control bttNuevo.
     '''</summary>
     '''<remarks>
@@ -50,13 +104,22 @@ Partial Public Class creacion_proyectos
     Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHidden1.
+    '''Control lblnombre.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHidden1 As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblnombre As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control lblid.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblid As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''Control bttEliminar.

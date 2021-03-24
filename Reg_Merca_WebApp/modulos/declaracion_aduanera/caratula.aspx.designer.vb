@@ -14,6 +14,60 @@ Option Explicit On
 Partial Public Class caratula
 
     '''<summary>
+    '''Control txtFechaCreacion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtFechaCreacion As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control txt_numproyec.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txt_numproyec As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Control sqlestadopol.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents sqlestadopol As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
+    '''Control ddlestado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlestado As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control SqlClientes.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents SqlClientes As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
+    '''Control cmbCliente.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents cmbCliente As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''Control txtdeclarante.
     '''</summary>
     '''<remarks>
@@ -482,13 +536,13 @@ Partial Public Class caratula
     Protected WithEvents txttotalfact As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control totalotrosgast.
+    '''Control txttotalotrosgast.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents totalotrosgast As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txttotalotrosgast As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control txtttotalseg.
@@ -563,38 +617,65 @@ Partial Public Class caratula
     Protected WithEvents sqldivisaflet As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control DropDownList3.
+    '''Control ddldivisafl.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents DropDownList3 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddldivisafl As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control bttGuardar.
+    '''Control btt_guardar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents btt_guardar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control bttNuevo.
+    '''Control pbotones.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents pbotones As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control LinkButton1.
+    '''Control bttitems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LinkButton1 As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttitems As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control bttdocumen.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttdocumen As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control btt_bultos.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btt_bultos As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control bttVolver.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
 End Class
