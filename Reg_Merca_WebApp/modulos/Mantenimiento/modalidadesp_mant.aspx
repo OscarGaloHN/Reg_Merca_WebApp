@@ -235,11 +235,14 @@
                                 </div>
                             </div>
                     </div>
+                       </div> 
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttGuardarModalidad" ValidationGroup="Validamodalidad" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
-                </div>
+                
+              
+              </div>
             </asp:Panel>
         </div>
     </div>
@@ -257,7 +260,7 @@
                 <div class="modal-body">
                     ¿Seguro que dese eliminar este Almacén:
                     <asp:Label runat="server" ID="lblAduna" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDMdalidad" />
+                        <asp:HiddenField runat="server" ID="lblHiddenIDModalidad" />
                         <asp:HiddenField runat="server" ID="lblHiddenNombreModalidad" />
                     <br />
                     <br />
@@ -301,12 +304,13 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidamodalidadEditar" />
                                 </div>
                             </div>
-                            
+                         </div>   
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidamodalidadEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
+              
                 </div>
             </asp:Panel>
         </div>

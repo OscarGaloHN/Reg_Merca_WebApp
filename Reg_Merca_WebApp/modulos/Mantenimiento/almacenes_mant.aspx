@@ -80,7 +80,7 @@
             </a>
             </li>
              <li class="active">
-                     <a href="almacenes_mant.aspx">
+                     <a href="#">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
@@ -214,7 +214,7 @@
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Id_almacen" HeaderText="ID" />
                                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                                        <asp:BoundField DataField="Ubicación" HeaderText="Ubicación" />
+                                        <asp:BoundField DataField="Ubicacion" HeaderText="Ubicación" />
                                         <asp:BoundField DataField="Contacto" HeaderText="Contacto" />
                                         <asp:BoundField DataField="Tel" HeaderText="Teléfono" />
                                     </Columns>
