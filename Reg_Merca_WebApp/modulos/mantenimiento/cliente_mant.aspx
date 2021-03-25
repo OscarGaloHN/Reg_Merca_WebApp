@@ -123,7 +123,7 @@
             </a>
         </li>
         <li>
-            <a href="almacen_mant.aspx">
+            <a href="almacenes_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Almacén</span>
             </a>

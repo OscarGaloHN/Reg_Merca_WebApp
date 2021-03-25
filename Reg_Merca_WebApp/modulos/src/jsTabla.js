@@ -1,8 +1,9 @@
 ﻿
 var tituloImprimir = '';
 var xColumnas = [];
+ 
 $(function () {
-    
+ 
 
     $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable(
         {
@@ -15,11 +16,41 @@ $(function () {
                 titleAttr: 'Imprimir',
                 className: 'btn bg-teal waves-effect',
                 title: tituloImprimir,
-                exportOptions: {
-                    columns: xColumnas
+                messageBottom:    function() {
+                    var f = new Date();
+                    var newdate = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+                    const fecha = new Date();
+                    newdate = newdate + " " + fecha.toLocaleTimeString('en-US');
+                    return newdate;
                 },
+                exportOptions: {columns: xColumnas},
                 download: 'open',
-             
+                customize: function (doc) {
+                    doc.content[1].margin = [50, 0, 50, 0],
+                        doc['header']   =  function () {
+                      
+                                        var f = new Date();
+                                        var newdate = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+                                        const fecha = new Date();
+                                        newdate = newdate + " " + fecha.toLocaleTimeString('en-US');
+                                        return newdate;
+                                    },
+                               
+                    doc['footer'] = (function (page, pages) {
+                        return {
+                            columns: [
+                                {
+                                    alignment: 'center',
+                                    text: [{ text: page.toString(),   bold: true },
+                                        ' de ',
+                                        { text: pages.toString(), bold: true }],
+                                        bold: true
+                                }],
+                            margin: [10, 0]
+                            }
+                    } 
+                      );
+                }                    
             }
         ],
         "responsive": true,

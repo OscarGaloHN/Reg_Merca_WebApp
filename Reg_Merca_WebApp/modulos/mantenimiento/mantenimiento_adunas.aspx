@@ -6,10 +6,10 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
@@ -40,28 +40,28 @@
 
             document.getElementById('ContentPrincipal_lblHiddenNombreAduna').value = row.cells[3].innerHTML;
 
-            if (row.cells[3].innerHTML != '&nbsp;') { 
+            if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtAduanaEditar').value = row.cells[3].innerHTML;
             }
-            if (row.cells[4].innerHTML != '&nbsp;') { 
+            if (row.cells[4].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtContactoEditar').value = row.cells[4].innerHTML;
             }
-            if (row.cells[5].innerHTML != '&nbsp;') { 
+            if (row.cells[5].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtTelEditar').value = row.cells[5].innerHTML;
             }
-            if (row.cells[6].innerHTML != '&nbsp;') { 
-                 document.getElementById('ContentPrincipal_txtDireccionEditar').value = row.cells[6].innerHTML;
+            if (row.cells[6].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtDireccionEditar').value = row.cells[6].innerHTML;
             }
-            if (row.cells[2].innerHTML != '&nbsp;') { 
-            document.getElementById('ContentPrincipal_lblHiddenIDAduna').value = row.cells[2].innerHTML;
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_lblHiddenIDAduna').value = row.cells[2].innerHTML;
             }
             xModal('pink', 'ContentPrincipal_txtAduanaEditar', 'modalEditar');
         }
-         
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Matenimiento de Aduanas</a>
+    <a class="navbar-brand" href="#">Mantenimiento de Aduanas</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -72,34 +72,117 @@
                 <span>Inicio</span>
             </a>
         </li>
-
         <li class="active">
             <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
         </li>
-
         <li>
-            <a href="#">
-                <i class="material-icons">receipt_long</i>
-                <span>menu que sigue</span>
+            <a href="almacenes_mant.aspx">
+                <i class="material-icons">store</i>
+                <span>Almacén</span>
+            </a>
+        </li>
+        <li>
+            <a href="cliente_mant.aspx">
+                <i class="material-icons">groups</i>
+                <span>Clientes</span>
             </a>
         </li>
 
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Condicion de Entrega</span>
+            </a>
+        </li>
+        <li>
+            <a href="divisas_mant.aspx">
+                <i class="material-icons">monetization_on</i>
+                <span>divisas</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Estado de Mercancia</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Forma de Pago</span>
+            </a>
+        </li>
+        <li>
+            <a href="modalidadesp_mant.aspx">
+                <i class="material-icons">add_moderator</i>
+                <span>Modalidad Especial</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Nivel Comercial</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">hail</i>
+                <span>Proveedores</span>
+            </a>
+        </li>
+        <li>
+            <a href="preguntas_mant.aspx">
+                <i class="material-icons">help</i>
+                <span>Preguntas</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">travel_explore</i>
+                <span>Paises</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">menu_book</i>
+                <span>Regimenes</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
+                <span>Tipo de Item</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">verified</i>
+                <span>Unidad de Ventaja</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="material-icons">verified_user</i>
+                <span>Ventajas</span>
+            </a>
+        </li>
     </ul>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
     <script type="text/javascript">
         tituloImprimir = 'Listado de las Aduanas'
-        xColumnas.push(2,3,4,5,6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
     </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Adunas
+                    <h2 style="font-weight: bold;">Aduanas
                                  <small>A continuación se muestra el listado de las aduanas registradas.</small>
                     </h2>
                 </div>
@@ -121,9 +204,10 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Editar">
                                             <ItemTemplate>
-                                                <button onclick="return GetSelectedRowEdit(this);" type="button"   class="btn bg-pink waves-effect"><i class="material-icons">edit</i></button>
+                                                <button onclick="return GetSelectedRowEdit(this);" type="button" class="btn bg-pink waves-effect"><i class="material-icons">edit</i></button>
                                             </ItemTemplate>
-                                        </asp:TemplateField>   <asp:TemplateField HeaderText="Eliminar">
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
@@ -231,7 +315,7 @@
                     ¿Seguro que dese eliminar esta aduna:
                     <asp:Label runat="server" ID="lblAduna" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDAduna" />
-                        <asp:HiddenField runat="server" ID="lblHiddenNombreAduna" />
+                    <asp:HiddenField runat="server" ID="lblHiddenNombreAduna" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
@@ -247,7 +331,7 @@
     </div>
 
 
-       <!-- modal editar aduana-->
+    <!-- modal editar aduana-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarAduana">
@@ -257,7 +341,7 @@
                         <h4 class="modal-title" id="lblEditar">EDITAR ADUANA</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos de la aduana haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        Luego de terminar de editar los datos de la aduana haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -326,5 +410,4 @@
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
-  
 </asp:Content>
