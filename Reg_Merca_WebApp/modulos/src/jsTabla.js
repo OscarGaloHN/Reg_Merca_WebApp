@@ -1,6 +1,4 @@
-﻿
-
-var tituloImprimir = '';
+﻿var tituloImprimir = '';
 var xColumnas = [];
 $(function () {
 
@@ -44,3 +42,6 @@ $(function () {
             }
         });
 });
+
+
+
