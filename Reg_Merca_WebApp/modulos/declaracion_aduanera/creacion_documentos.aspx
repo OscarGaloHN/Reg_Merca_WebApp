@@ -18,7 +18,7 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlDocumento').value = '';
-            document.getElementById('ContentPrincipal_txtRefenrencia').value = '';
+            document.getElementById('ContentPrincipal_txtReferencia').value = '';
             document.getElementById('ContentPrincipal_chkPresencia').value = '';
         }
 
@@ -41,13 +41,13 @@
             document.getElementById('ContentPrincipal_lblHiddenmanifiesto').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtmanifiestoEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_dddocumentoEditar').value = row.cells[3].innerHTML;
             }
             if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txt_transEditar').value = row.cells[4].innerHTML;
+                document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
             }
             if (row.cells[5].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txt_chkindicadorEditar').Checked = row.cells[5].innerHTML;
+                document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
             }
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDbulto').value = row.cells[2].innerHTML;
@@ -95,7 +95,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtReferencia','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -138,7 +138,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblModalDocumentos">NUEVO BULTO</h4>
+                        <h4 class="modal-title" id="lblModalDocumentos">NUEVO DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
                         Ingrese todos los datos de los documetos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
