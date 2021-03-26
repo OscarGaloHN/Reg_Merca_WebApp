@@ -17,8 +17,8 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_ddl_Documento').value = '';
-            document.getElementById('ContentPrincipal_txt_Refenrencia').value = '';
+            document.getElementById('ContentPrincipal_ddlDocumento').value = '';
+            document.getElementById('ContentPrincipal_txtRefenrencia').value = '';
             document.getElementById('ContentPrincipal_chkPresencia').value = '';
         }
 
@@ -28,13 +28,13 @@
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenReferencia').value = row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenchkPresencia').value = row.cells[4].innerHTML;
-            
+
             xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_ddlDocumento').value = '';
-            document.getElementById('ContentPrincipal_txt_Referencia').value = '';
+            document.getElementById('ContentPrincipal_txtReferencia').value = '';
             document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
             var row = lnk.parentNode.parentNode;
 
@@ -118,11 +118,10 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="id_bulto" HeaderText="ID" />
-                                        <asp:BoundField DataField="manifiesto" HeaderText="Manifiesto" />
-                                        <asp:BoundField DataField="titulo_transporte" HeaderText="Título de transporte" />
-                                        <asp:BoundField DataField="indicador" HeaderText="Indicador" />
-                                        <%--<asp:BoundField DataField="id_poliza" HeaderText="Id_poliza" />--%>
+                                        <asp:BoundField DataField="id_doc" HeaderText="ID" />
+                                        <asp:BoundField DataField="Id_Documento" HeaderText="Código de Documento" />
+                                        <asp:BoundField DataField="descripcion" HeaderText="Descripción del Documento" />
+                                        <asp:BoundField DataField="presencia" HeaderText="Presencia" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -132,14 +131,14 @@
             </div>
         </div>
     </div>
-    <!-- modal nuevo bulto-->
+    <!-- modal nuevo Documentos-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarDocumento">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO BULTO</h4>
+                        <h4 class="modal-title" id="lblModalDocumentos">NUEVO BULTO</h4>
                     </div>
                     <div class="modal-body">
                         Ingrese todos los datos de los documetos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
@@ -149,9 +148,26 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <asp:SqlDataSource
+                                    ID="sqldocumentos"
+                                    runat="server"
+                                    DataSourceMode="DataReader"
+                                    ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                                    ProviderName="MySql.Data.MySqlClient"
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos"></asp:SqlDataSource>
+
+                                <label class="form-label">Documento</label>
+                                <asp:DropDownList
+                                    ID="ddldocumentos" runat="server" selectlistitem="seleccione" DataSourceID="sqldocumentos" class="form-control show-tick"
+                                    DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true" ItemType="">
+                                </asp:DropDownList>
+
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
+                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
                                             onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);">></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtReferencia"
@@ -160,19 +176,6 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaDocumento" />
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txt_trans" onkeypress="txNombres(event);"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);">></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="validartrans" ControlToValidate="txt_trans"
-                                        ErrorMessage="Ingrese el nombre de título de transporte."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validatrans" />
-                                </div>
-                            </div>
-
                         </div>
                         <div class="row">
                             <div class="col-sm-2">
@@ -180,8 +183,8 @@
                                 <div class="switch">
                                     <label>
                                         NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkindicador" class="filled-in chk-col-teal " />
-                                        <span class="lever switch-col-teal"></span>
+                                    <input type="checkbox" name="CheckBox" runat="server" id="chkindicador" class="filled-in chk-col-pink " />
+                                        <span class="lever switch-col-pink"></span>
                                         SI
                                     </label>
 
@@ -190,7 +193,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarbulto" ValidationGroup="Validabulto" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarDocumento" ValidationGroup="Validadocumento" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
@@ -205,7 +208,7 @@
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <!-- TITULO -->
+                    <!-- TITULO --> 
                     <h4 class="modal-title" id="LblDelete">ELIMINAR DOCUMENTO</h4>
                 </div>
                 <div class="modal-body">

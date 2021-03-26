@@ -32,6 +32,24 @@ Partial Public Class creacion_documentos
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
+    '''Control sqldocumentos.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents sqldocumentos As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
+    '''Control ddldocumentos.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddldocumentos As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''Control txtreferencia.
     '''</summary>
     '''<remarks>
@@ -50,24 +68,6 @@ Partial Public Class creacion_documentos
     Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txt_trans.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txt_trans As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control validartrans.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents validartrans As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''Control chkindicador.
     '''</summary>
     '''<remarks>
@@ -77,13 +77,13 @@ Partial Public Class creacion_documentos
     Protected WithEvents chkindicador As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
 
     '''<summary>
-    '''Control bttGuardarbulto.
+    '''Control bttGuardarDocumento.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarbulto As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarDocumento As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control lblbulto.
