@@ -3,11 +3,8 @@ var tituloImprimir = '';
 var xColumnas = [];
  
 $(function () {
- 
-
     $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable(
         {
-            
         dom: 'lBfrtip',
         buttons: [
             {
@@ -18,13 +15,9 @@ $(function () {
                 title: tituloImprimir,
                 exportOptions: {columns: xColumnas},
                 download: 'open',
-
-                columnDefs: [{
-                    targets: 2,
-                }],
+                
                 customize: function (doc) {
                     doc.content[1].margin = [50, 0, 50, 0],
-                     
 
                         doc['header'] = (function () {
                             var f = new Date();
@@ -41,18 +34,11 @@ $(function () {
                                         bold: true
                                     }],
                                 margin: [10, 10]
-                            }
-                        }
-                        ),
+                            }}),
 
-
-
-
-                               
+                                                       
                         doc['footer'] = (function (page, pages) {
-                        
                         return {
-                        
                             columns: [
                                 {
                                     alignment: 'right',
@@ -65,8 +51,7 @@ $(function () {
                             margin: [10, 0],
                             fontSize: 8
                             }
-                    } 
-                      );
+                        });
                 }                    
             }
         ],
