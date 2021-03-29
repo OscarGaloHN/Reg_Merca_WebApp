@@ -41,7 +41,7 @@
                         End If
 
                         'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 17
+                        Session("IDfrmQueIngresa") = 22
                         Session("NombrefrmQueIngresa") = "Mantenimiento de Divisas"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
