@@ -121,7 +121,9 @@
                                         <asp:BoundField DataField="id_doc" HeaderText="ID" />
                                         <asp:BoundField DataField="Id_Documento" HeaderText="Código de Documento" />
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripción del Documento" />
+                                        <asp:BoundField DataField="referencia" HeaderText="Referencia del Documento" />
                                         <asp:BoundField DataField="presencia" HeaderText="Presencia" />
+                                        <asp:BoundField DataField="id_poliza-doc" HeaderText="ID Póliza" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -148,6 +150,7 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label"></label>
                                 <asp:SqlDataSource
                                     ID="sqldocumentos"
                                     runat="server"
@@ -161,14 +164,15 @@
                                     ID="ddldocumentos" runat="server" selectlistitem="seleccione" DataSourceID="sqldocumentos" class="form-control show-tick"
                                     DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true" ItemType="">
                                 </asp:DropDownList>
-
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label"></label>
+                                
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);">></asp:TextBox>
+                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtReferencia"
                                         ErrorMessage="Ingrese la referencia."
@@ -301,4 +305,3 @@
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
-
