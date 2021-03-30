@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Preguntas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="preguntas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.preguntas_mant" %>
+﻿<%@ Page Title="Paises" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="paises_mant.aspx.vb" Inherits="Reg_Merca_WebApp.paises_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-       <!-- JQuery DataTable Css -->
+      <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
@@ -16,27 +16,27 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             
-            document.getElementById('ContentPrincipal_txtpregunta').value = '';
+            document.getElementById('ContentPrincipal_txtpaises').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblpregunta').innerHTML = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDpregunta').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombrepregunta').value = row.cells[2].innerHTML;
-            xModal('red', 'ContentPrincipal_txtpregunta', 'modalDelete');
+            document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[2].innerHTML;
+            xModal('red', 'ContentPrincipal_txtpaises', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtpreguntaEditar').value = '';
+            document.getElementById('ContentPrincipal_txtpaisesEditar').value = '';
             
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombrepregunta').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[2].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtpreguntaEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtpaisesEditar').value = row.cells[3].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtpreguntaEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_txtpaisesEditar', 'modalEditar');
         }
 
     </script>
@@ -114,13 +114,13 @@
                 <span>Proveedores</span>
             </a>
             </li>
-         <li class="active" >
+         <li>
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
             </li>
-         <li>
+         <li class="active">
             <a href="#">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
@@ -154,23 +154,22 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-    <script type="text/javascript">
-        tituloImprimir = 'Listado de las Preguntas'
-        xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-    </script>
-
+     <script type="text/javascript">
+         tituloImprimir = 'Listado de los Paises'
+         xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+     </script>
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Preguntas
-                                 <small>A continuación se muestra el listado de las preguntas registradas.</small>
+                    <h2 style="font-weight: bold;">Paises
+                                 <small>A continuación se muestra el listado de los paises registradas.</small>
                     </h2>
                 </div>
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtdescripcion','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtpaises','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -192,8 +191,8 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:BoundField DataField="id_pregunta" HeaderText="ID" />
-                                        <asp:BoundField DataField="pregunta" HeaderText="PREGUNTA" />
+                                         <asp:BoundField DataField="Id_Pais" HeaderText="ID" />
+                                        <asp:BoundField DataField="Nombre_Pais" HeaderText="Nombre Pais" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -203,17 +202,17 @@
             </div>
         </div>
     </div>
-  <!-- modal nueva pregunta-->
+    <!-- modal nuevo Pais-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarpregunta">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarpaises">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVA PREGUNTA</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO PAIS</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos las Preguntas y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese el Pais y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -222,10 +221,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="pregunta" AutoComplete="off" ValidationGroup="ValidaPregunta" runat="server" class="form-control" ID="txtpregunta"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre pais" AutoComplete="off" ValidationGroup="ValidaPais" runat="server" class="form-control" ID="txtpaises"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtpregunta"
-                                        ErrorMessage="Ingrese la pregunta."
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtpaises"
+                                        ErrorMessage="Ingrese el pais."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaPregunta" />
                                 </div>
@@ -234,7 +233,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarpregunta" ValidationGroup="ValidaPregunta" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarpaises" ValidationGroup="Validapaises" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
@@ -248,20 +247,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR ALMACEN</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR PAIS</h4>
                 </div>
                 <div class="modal-body">
                     ¿Seguro que dese eliminar este Almacén:
                     <asp:Label runat="server" ID="lblpregunta" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDpregunta" />
-                        <asp:HiddenField runat="server" ID="lblHiddenNombrepregunta" />
+                        <asp:HiddenField runat="server" ID="lblHiddenIDpaises" />
+                        <asp:HiddenField runat="server" ID="lblHiddenNombrepaises" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarpregunta" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarpaises" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -273,14 +272,14 @@
        <!-- modal editar aduana-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarpregunta">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarpaises">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR PREGUNTA</h4>
+                        <h4 class="modal-title" id="lblEditar">EDITAR PAISES</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos de las Preguntas haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                      Luego de terminar de editar los datos de los Paises haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -289,26 +288,24 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="pregunta" AutoComplete="off" ValidationGroup="ValidapreguntaEditar" runat="server" class="form-control" ID="txtpreguntaEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="paises" AutoComplete="off" ValidationGroup="ValidapaisesEditar" runat="server" class="form-control" ID="txtpaisesEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtpreguntaEditar"
-                                        ErrorMessage="Ingrese la pregunta."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtpaisesEditar"
+                                        ErrorMessage="Ingrese el pais."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidapreguntaEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidapaisesEditar" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaAlmacenEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidapaisesnEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
             </asp:Panel>
         </div>
     </div>    
-
-
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>

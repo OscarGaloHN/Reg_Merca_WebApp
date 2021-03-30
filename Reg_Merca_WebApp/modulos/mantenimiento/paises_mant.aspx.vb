@@ -1,4 +1,4 @@
-﻿Public Class preguntas_mant
+﻿Public Class paises_mant
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -8,12 +8,11 @@
             Session("DataSetX") = value
         End Set
     End Property
-    'OBJETO #21
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             'llenar grid
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_22_preguntas"
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_8_paises"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -40,8 +39,8 @@
                         End If
 
                         'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 21
-                        Session("NombrefrmQueIngresa") = "Mantenimiento de Preguntas"
+                        Session("IDfrmQueIngresa") = 23
+                        Session("NombrefrmQueIngresa") = "Mantenimiento de Paises"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -57,8 +56,8 @@
     Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
         Try
             Dim Ssql As String = String.Empty
-            If txtpreguntaEditar.Text <> lblHiddenNombrepregunta.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_22_preguntas where Nombre = BINARY  '" & txtpregunta.Text & "' "
+            If txtpaisesEditar.Text <> lblHiddenNombrepaises.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_8_paises where Nombre = BINARY  '" & txtpaises.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -70,12 +69,12 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('ALMACEN','El nombre del Almacén ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_22_preguntas` SET `pregunta` = '" & txtpreguntaEditar.Text & "' WHERE `Id_almacen` = " & lblHiddenIDpregunta.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_8_paises` SET `pregunta` = '" & txtpaisesEditar.Text & "' WHERE `Id_pais` = " & lblHiddenIDpaises.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo almacen con nombre: " & txtpregunta.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo almacen con nombre: " & txtpaises.Text)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/almacenes_mant.aspx?acction=newalmacenes")
             End If
@@ -84,10 +83,10 @@
         End Try
     End Sub
 
-    Private Sub bttGuardarpregunta_Click(sender As Object, e As EventArgs) Handles bttGuardarpregunta.Click
+    Private Sub bttGuardarpaises_Click(sender As Object, e As EventArgs) Handles bttGuardarpaises.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_22_preguntas where Nombre = BINARY  '" & txtpregunta.Text & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_8_paises where Nombre = BINARY  '" & txtpaises.Text & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -95,12 +94,12 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Almacen','El nombre de Almacén ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_22_preguntas` (`pregunta`) VALUES ('" & txtpregunta.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_8_paises` (`pregunta`) VALUES ('" & txtpaises.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Almacen con id: " & lblHiddenIDpregunta.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Almacen con id: " & lblHiddenIDpaises.Value)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/almacenes_mant.aspx?acction=editalmacenes")
             End If
@@ -109,14 +108,14 @@
         End Try
     End Sub
 
-    Private Sub bttEliminarpregunta_Click(sender As Object, e As EventArgs) Handles bttEliminarpregunta.Click
+    Private Sub bttEliminarpaises_Click(sender As Object, e As EventArgs) Handles bttEliminarpaises.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_22_preguntas` WHERE id_pregunta= " & lblHiddenIDpregunta.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_22_preguntas` WHERE id_pregunta= " & lblHiddenIDpaises.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
-                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombrepregunta.Value & " con exito")
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombrepaises.Value & " con exito")
             End Using
             Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=delteaduana")
         Catch ex As Exception
