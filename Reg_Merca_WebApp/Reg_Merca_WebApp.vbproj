@@ -218,6 +218,7 @@
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\mantenimiento\cliente_mant.aspx" />
+    <Content Include="modulos\mantenimiento\estadomerc_mant.aspx" />
     <Content Include="modulos\mantenimiento\mantenimiento_adunas.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
     <Content Include="modulos\configuraciones\confi_configurar.aspx" />
@@ -1153,6 +1154,13 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\cliente_mant.aspx.vb">
       <DependentUpon>cliente_mant.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\estadomerc_mant.aspx.designer.vb">
+      <DependentUpon>estadomerc_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\estadomerc_mant.aspx.vb">
+      <DependentUpon>estadomerc_mant.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\mantenimiento_adunas.aspx.designer.vb">
