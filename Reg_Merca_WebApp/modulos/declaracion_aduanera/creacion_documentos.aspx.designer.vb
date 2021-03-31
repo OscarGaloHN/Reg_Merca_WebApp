@@ -68,13 +68,13 @@ Partial Public Class creacion_documentos
     Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control chkindicador.
+    '''Control chkPresencia.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents chkindicador As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+    Protected WithEvents chkPresencia As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
 
     '''<summary>
     '''Control bttGuardarDocumento.
@@ -158,13 +158,13 @@ Partial Public Class creacion_documentos
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control chkindicadorEditar.
+    '''Control chkpresenciaEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents chkindicadorEditar As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+    Protected WithEvents chkpresenciaEditar As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
 
     '''<summary>
     '''Control bttModificardocumento.

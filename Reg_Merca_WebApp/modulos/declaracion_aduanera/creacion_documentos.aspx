@@ -181,11 +181,11 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-2">
-                                <div class="demo-switch-title">Indicador Bultos</div>
+                                <div class="demo-switch-title">Presencia</div>
                                 <div class="switch">
                                     <label>
                                         NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkindicador" class="filled-in chk-col-pink " />
+                                    <input type="checkbox" name="CheckBox" runat="server" id="chkPresencia" class="filled-in chk-col-pink " />
                                         <span class="lever switch-col-pink"></span>
                                         SI
                                     </label>
@@ -258,29 +258,29 @@
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidabultoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentosEditar" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Documentos" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txt_transEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Documentos" AutoComplete="off" ValidationGroup="ValidadocumentosEditar" runat="server" class="form-control" ID="txt_transEditar"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txt_transEditar"
-                                        ErrorMessage="Ingrese el nombre de título de transporte."
+                                        ErrorMessage="Ingrese el nombre del Documento."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidabultoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentosEditar" />
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-sm-2">
-                                <div class="demo-switch-title">Indicador Bultos</div>
+                                <div class="demo-switch-title">Presencia</div>
                                 <div class="switch">
                                     <label>
                                         NO
-                                     <input type="checkbox" name="CheckBox" runat="server" id="chkindicadorEditar" class="filled-in chk-col-grey" />
+                                     <input type="checkbox" name="CheckBox" runat="server" id="chkpresenciaEditar" class="filled-in chk-col-grey" />
                                         <span class="lever switch-col-grey"></span>
                                         SI
                                     </label>
@@ -289,7 +289,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificardocumento" ValidationGroup="ValidabultoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificardocumento" ValidationGroup="ValidadocumentosEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>

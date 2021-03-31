@@ -131,4 +131,8 @@
 
         End Try
     End Sub
+
+    Private Sub bttModificardocumento_Click(sender As Object, e As EventArgs) Handles bttModificardocumento.Click
+
+    End Sub
 End Class
