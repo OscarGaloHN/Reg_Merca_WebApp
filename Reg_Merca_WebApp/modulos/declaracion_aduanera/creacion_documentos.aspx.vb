@@ -27,9 +27,10 @@
             'End If
             'llenar grid
             Dim Ssql As String = String.Empty
-            Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, a.presencia, a.`id_poliza-doc`, b.Descripcion
+            Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, a.presencia, a.id_poliza_doc, b.Descripcion
                     From tbl_28_Documentos a, tbl_32_Cod_Documentos b
-                    Where a.Id_Documento = b.Id_Documento"
+                    Where a.Id_Documento = b.Id_Documento  and id_poliza_doc = " & Request.QueryString("idCaratula") & ""
+
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -43,7 +44,7 @@
                 Select Case Request.QueryString("acction")
                     Case "newdocumento"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se almaceno con éxito.', 'success');</script>")
-                    Case "deletedocumento"
+                    Case "deldocumento"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se elimino con éxito.', 'success');</script>")
                     Case "editdocumento"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se modifico con éxito.', 'success');</script>")
@@ -76,7 +77,7 @@
 
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where `id_poliza-doc` = '" & ddldocumentos.SelectedValue & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza_doc = '" & Request.QueryString("idCaratula") & "' and Id_Documento = '" & ddldocumentos.SelectedValue & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -85,9 +86,9 @@
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
             Else
                 If chkindicador.Checked = True Then
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (id_doc, Id_Documento, Id_poliza, descripcion, presencia) VALUES ('" & ddldocumentos.SelectedValue & "','" & txtreferencia.Text & "', '1');"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '1');"
                 Else
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (id_doc, Id_Documento, Id_poliza, descripcion, presencia) VALUES ('" & ddldocumentos.SelectedValue & "','" & txtreferencia.Text & "', '1');
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '0');
 "
 
                 End If
@@ -97,7 +98,7 @@
                 'Using log_bitacora As New ControlBitacora
                 '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
                 'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=newdocumento")
+                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=newdocumento&idCaratula=" & Request.QueryString("idCaratula"))
             End If
 
             'habilitar indicador
@@ -116,14 +117,16 @@
 
     Private Sub bttEliminarDocumento_Click(sender As Object, e As EventArgs) Handles bttEliminarDocumento.Click
         Try
-            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_28_Documentos WHERE id_bulto= " & lblHiddenIDbulto.Value
+            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_28_Documentos WHERE id_doc= " & lblHiddenIDDocumento.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             'Using log_bitacora As New ControlBitacora
             '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             'End Using
-            Response.Redirect("~/modulos/declaracion_aduanera/creacion_bultos.aspx?acction=deltebulto")
+
+            Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=deldocumento&idCaratula=" & Request.QueryString("idCaratula"))
+
         Catch ex As Exception
 
         End Try

@@ -86,49 +86,22 @@ Partial Public Class creacion_documentos
     Protected WithEvents bttGuardarDocumento As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblbulto.
+    '''Control lblDocumento.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblbulto As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblDocumento As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDbulto.
+    '''Control lblHiddenIDDocumento.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDbulto As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control lblHiddenmanifiesto.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblHiddenmanifiesto As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control lblHiddentrans.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblHiddentrans As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control lblHiddenchkindicador.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblHiddenchkindicador As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDDocumento As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''Control bttEliminarDocumento.

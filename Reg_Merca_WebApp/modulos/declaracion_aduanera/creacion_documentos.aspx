@@ -24,11 +24,9 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenReferencia').value = row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenchkPresencia').value = row.cells[4].innerHTML;
-
+            
             xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');
         }
 
@@ -50,7 +48,7 @@
                 document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
             }
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDbulto').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
             }
             xModal('pink', 'ContentPrincipal_txtReferenciaEditar', 'modalEditar');
         }
@@ -123,7 +121,7 @@
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripción del Documento" />
                                         <asp:BoundField DataField="referencia" HeaderText="Referencia del Documento" />
                                         <asp:BoundField DataField="presencia" HeaderText="Presencia" />
-                                        <asp:BoundField DataField="id_poliza-doc" HeaderText="ID Póliza" />
+                                        <asp:BoundField DataField="id_poliza_doc" HeaderText="ID Póliza" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -206,7 +204,7 @@
     </div>
 
 
-    <!-- modal eliminar bulto-->
+    <!-- modal eliminar documento-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
@@ -216,12 +214,9 @@
                     <h4 class="modal-title" id="LblDelete">ELIMINAR DOCUMENTO</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que dese eliminar este documento?
-                    <asp:Label runat="server" ID="lblbulto" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDbulto" />
-                    <asp:HiddenField runat="server" ID="lblHiddenmanifiesto" />
-                    <asp:HiddenField runat="server" ID="lblHiddentrans" />
-                    <asp:HiddenField runat="server" ID="lblHiddenchkindicador" />
+                    ¿Seguro que dese eliminar el siguiente documento? <br />
+                    <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
+                        <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
 
 
                     <br />
