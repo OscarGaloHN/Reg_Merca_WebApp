@@ -11,14 +11,26 @@
     End Property
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Try
-            If Session("user_idUsuario") = Nothing Then
-                Session.Abandon()
-                Response.Redirect("~/Inicio/login.aspx")
-            Else
+        'parametros de configuracion de sistema
+        Using Parametros_Sistema As New ControlDB
+            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        End Using
 
-                'llenar grid
-                Dim Ssql As String = String.Empty
+        'PARAMETROS DE ADMINISTRADOR
+        Using Parametros_admin As New ControlDB
+            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        End Using
+
+
+
+        Try
+            'If Session("user_idUsuario") = Nothing Then
+            '    Session.Abandon()
+            '    Response.Redirect("~/Inicio/login.aspx")
+            'Else
+
+            'llenar grid
+            Dim Ssql As String = String.Empty
                 Ssql = "SELECT * FROM DB_Nac_Merca.tbl_40_Bulto"
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -56,7 +68,7 @@
                     End Select
                 End If
 
-            End If
+            'End If
         Catch ex As Exception
 
         End Try

@@ -43,10 +43,10 @@
                 Select Case Request.QueryString("acction")
                     Case "newdocumento"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se almaceno con éxito.', 'success');</script>")
-                    Case "deltebulto"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El documento se elimino con éxito.', 'success');</script>")
-                    Case "editbulto"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El documento se modifico con éxito.', 'success');</script>")
+                    Case "deletedocumento"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se elimino con éxito.', 'success');</script>")
+                    Case "editdocumento"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se modifico con éxito.', 'success');</script>")
                     Case Else
                         ''bitacora de que salio de un form
                         'If Not IsPostBack Then
@@ -76,7 +76,7 @@
 
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza-doc = '" & ddldocumentos.SelectedValue & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where `id_poliza-doc` = '" & ddldocumentos.SelectedValue & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -84,19 +84,20 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
             Else
-                'If chkindicador.Checked = True Then
-                '    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (id_doc, Id_Documento, Id_poliza, descripcion, presencia) VALUES ('" & TXTIDDOC.Text & "','" & ddldocumentos.SelectedValue & "','" & TXTPROYEC.Text & "','" & txtreferencia.Text & "', '1');  "
-                'Else
-                '    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (id_doc, Id_Documento, Id_poliza, descripcion, presencia) VALUES ('" & TXTIDDOC.Text & "','" & ddldocumentos.SelectedValue & "','" & TXTPROYEC.Text & "','" & txtreferencia.Text & "', '0');  "
+                If chkindicador.Checked = True Then
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (id_doc, Id_Documento, Id_poliza, descripcion, presencia) VALUES ('" & ddldocumentos.SelectedValue & "','" & txtreferencia.Text & "', '1');"
+                Else
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (id_doc, Id_Documento, Id_poliza, descripcion, presencia) VALUES ('" & ddldocumentos.SelectedValue & "','" & txtreferencia.Text & "', '1');
+"
 
-                'End If
+                End If
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 'Using log_bitacora As New ControlBitacora
                 '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
                 'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/creacion_bultos.aspx?acction=newbulto")
+                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=newdocumento")
             End If
 
             'habilitar indicador
