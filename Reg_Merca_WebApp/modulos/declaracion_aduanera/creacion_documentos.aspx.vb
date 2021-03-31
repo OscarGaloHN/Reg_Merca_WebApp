@@ -85,7 +85,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
             Else
-                If chkindicador.Checked = True Then
+                If chkPresencia.Checked = True Then
                     Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '1');"
                 Else
                     Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '0');
@@ -133,6 +133,34 @@
     End Sub
 
     Private Sub bttModificardocumento_Click(sender As Object, e As EventArgs) Handles bttModificardocumento.Click
+
+        Try
+            Dim Ssql As String = String.Empty
+            If txtreferenciaEditar.Text <> lblHiddenIDDocumento.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza_doc = '" & Request.QueryString("idCaratula") & "' and Id_Documento = '" & ddldocumentos.SelectedValue & "' "
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+            Else
+                Session("NumReg") = 0
+            End If
+
+            If Session("NumReg") > 0 Then
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El documento ya esta registrado.', 'error');</script>")
+            Else
+                Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET id_doc = '" & txtreferenciaEditar.Text & "', id_doc = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+                Using con As New ControlDB
+                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                End Using
+                'Using log_bitacora As New ControlBitacora
+                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
+                'End Using
+                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=editdocumento&idCaratula=" & Request.QueryString("idCaratula"))
+            End If
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 End Class
