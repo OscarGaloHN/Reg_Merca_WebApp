@@ -1,11 +1,9 @@
 ﻿var tituloImprimir = '';
 var xColumnas = [];
+
 $(function () {
-
-
     $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable(
         {
-
             dom: 'lBfrtip',
             buttons: [
                 {
@@ -14,11 +12,47 @@ $(function () {
                     titleAttr: 'Imprimir',
                     className: 'btn bg-teal waves-effect',
                     title: tituloImprimir,
-                    exportOptions: {
-                        columns: xColumnas
-                    },
+                    exportOptions: { columns: xColumnas },
                     download: 'open',
 
+                    customize: function (doc) {
+                        doc.content[1].margin = [50, 0, 50, 0],
+
+                            doc['header'] = (function () {
+                                var f = new Date();
+                                var newdate = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
+                                const fecha = new Date();
+                                newdate = newdate + " " + fecha.toLocaleTimeString('en-US');
+                                var xfecha = newdate
+                                return {
+
+                                    columns: [
+                                        {
+                                            alignment: 'right',
+                                            text: [{ text: xfecha.toString(), bold: true, fontSize: 8 }],
+                                            bold: true
+                                        }],
+                                    margin: [10, 10]
+                                }
+                            }),
+
+
+                            doc['footer'] = (function (page, pages) {
+                                return {
+                                    columns: [
+                                        {
+                                            alignment: 'right',
+                                            text: [' Página ', { text: page.toString(), bold: true },
+                                                ' de ',
+                                                { text: pages.toString(), bold: true },
+                                            ],
+                                            bold: true
+                                        }],
+                                    margin: [10, 0],
+                                    fontSize: 8
+                                }
+                            });
+                    }
                 }
             ],
             "responsive": true,
@@ -42,6 +76,3 @@ $(function () {
             }
         });
 });
-
-
-
