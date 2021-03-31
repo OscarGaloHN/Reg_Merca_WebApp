@@ -170,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="00_Pruebas\WebService.asmx" />
+    <Content Include="images\logo.png" />
     <Content Include="Inicio\activacion.aspx" />
     <Content Include="Inicio\cambio_contra.aspx" />
     <Content Include="Content\Site.css" />

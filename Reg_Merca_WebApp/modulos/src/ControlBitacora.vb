@@ -58,4 +58,20 @@ Public Class ControlBitacora
         GME_Bitacora(Ssql, TipoConexion_Bitacora.Cx_Aduana)
         Return 0
     End Function
+
+    Function ConvertirIMG(ByVal xPath As String)
+        Dim req As System.Net.WebRequest = System.Net.WebRequest.Create(xPath)
+        Dim response As System.Net.WebResponse = req.GetResponse()
+        Dim stream As IO.Stream = response.GetResponseStream()
+        'Dim img As System.Drawing.Image = System.Drawing.Image.FromStream(stream)
+        Dim fs As System.IO.Stream = response.GetResponseStream()
+        Dim br As New System.IO.BinaryReader(fs)
+        Dim bytes As Byte() = br.ReadBytes(CType(fs.Length, Integer))
+        Dim base64String As String = Convert.ToBase64String(bytes, 0, bytes.Length)
+        'Application("ParametrosADMIN")(21) = "data:image/png;base64," & base64String
+        stream.Close()
+
+        'HiddenLogo.Value = Application("ParametrosADMIN")(21)
+        Return "data:image/png;base64," & base64String
+    End Function
 End Class

@@ -14,7 +14,7 @@
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
-
+ 
 
     <script type="text/javascript">
         function borrarTxtNuevo() {

@@ -11,6 +11,9 @@
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = Application("ParametrosADMIN")(22)
+
             If Not IsPostBack Then
                 'bitacora de que salio de un form
                 If Not IsPostBack Then

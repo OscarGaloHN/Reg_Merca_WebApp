@@ -58,4 +58,6 @@ Application("ParametrosADMIN")(17) = ADMIN_MAX_Usuario
 Application("ParametrosADMIN")(18) = ADMIN_MIN_Carateres_Contraseña
 Application("ParametrosADMIN")(19) = ADMIN_URL_WEB
 Application("ParametrosADMIN")(20) = ADMIN_Vigencia_Bitacora
+Application("ParametrosADMIN")(21) =ADMIN_Habilitar_indicador_bulto
+ Application("ParametrosADMIN")(22) = ADMIN_Logo
  

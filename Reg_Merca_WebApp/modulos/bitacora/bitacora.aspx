@@ -40,9 +40,13 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+              
     <script type="text/javascript">
         tituloImprimir = 'Detalle de la Bitácora'
-        xColumnas.push(0,1,2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xColumnas.push(0, 1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        //console.log(xlogo)
     </script>
 
     <div class="row clearfix">

@@ -1,5 +1,7 @@
 ﻿
 var tituloImprimir = '';
+var xempresa = '';
+var xlogo = '';
 var xColumnas = [];
  
 $(function () {
@@ -12,13 +14,19 @@ $(function () {
                 text: '<i class="material-icons">print</i>',
                 titleAttr: 'Imprimir',
                 className: 'btn bg-teal waves-effect',
-                title: tituloImprimir,
+                title: xempresa + ' - '+  tituloImprimir,
                 exportOptions: {columns: xColumnas},
                 download: 'open',
                 
                 customize: function (doc) {
                     doc.content[1].margin = [50, 0, 50, 0],
-
+                        doc.content.splice(0.5, 0, {
+                            width: 25,
+                            height: 25,
+                            margin: [0, 0, 0, 12],
+                            alignment: 'center',
+                            image: xlogo 
+                        }),
                         doc['header'] = (function () {
                             var f = new Date();
                             var newdate = f.getDate() + "/" + (f.getMonth() + 1) + "/" + f.getFullYear();
