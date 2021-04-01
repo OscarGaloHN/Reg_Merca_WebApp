@@ -1,4 +1,4 @@
-﻿Public Class creacion_proyectos
+﻿Public Class Creacion_items
     Inherits System.Web.UI.Page
 
     Private Property DataSetX As DataSet
@@ -20,9 +20,10 @@
             Else
                 'Llenado de Gried
                 Dim Ssql As String = String.Empty
-                Ssql = "SELECT a.Num_deItem,a.num_partida,a.pesoneto,a.cod_pais_fab,a.importes_factura,a.Id_Tipo_items  
-                         FROM DB_Nac_Merca.tbl_34_mercancias a,DB_Nac_Merca.tbl_01_polizas b
-                         WHERE b.Id_poliza=a.Id_poliza"
+                Ssql = "select a.Id_poliza,a.fecha_creacion,b.nombrec,c.descripcion,d.nombre
+                            from tbl_04_cliente b, tbl_01_polizas a, tbl_19_estado c, tbl_02_usuarios d
+                               where a.id_cliente = b.id_cliente and c.id_estado=a.estado_poliza
+                               and d.id_usuario= a.usuario_creador"
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -60,6 +61,10 @@
 
     Private Sub bttNuevo_Click(sender As Object, e As EventArgs) Handles bttNuevo.Click
         'redirecciona a form caratula
-        Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=new")
+        Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?iditems=" & Request.QueryString("iditems"))
+    End Sub
+
+    Private Sub btt_volver_Click(sender As Object, e As EventArgs) Handles btt_volver.Click
+        Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx")
     End Sub
 End Class

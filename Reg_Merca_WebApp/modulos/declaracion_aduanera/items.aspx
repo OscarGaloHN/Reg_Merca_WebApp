@@ -554,6 +554,18 @@
               <span>Complementario</span>
                             </asp:LinkButton>
                         </div>
+                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttgaurdar"
+                                type="button"
+                                class="btn bg-teal waves-effect">
+              <i class="material-icons">collections_bookmark</i>
+              <span>Guardar</span>
+                            </asp:LinkButton>
+                        </div>
+
                     </div>
                 </div>
             </div>
