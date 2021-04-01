@@ -3,6 +3,7 @@ var tituloImprimir = '';
 var xempresa = '';
 var xlogo = '';
 var xColumnas = [];
+var xMargenes = [];
  
 $(function () {
     $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable(
@@ -19,10 +20,10 @@ $(function () {
                 download: 'open',
                 
                 customize: function (doc) {
-                    doc.content[1].margin = [50, 0, 50, 0],
+                    doc.content[1].margin = xMargenes//[50, 0, 50, 0],
                         doc.content.splice(0.5, 0, {
-                            width: 25,
-                            height: 25,
+                            width: 50,
+                            height: 50,
                             margin: [0, 0, 0, 12],
                             alignment: 'center',
                             image: xlogo 

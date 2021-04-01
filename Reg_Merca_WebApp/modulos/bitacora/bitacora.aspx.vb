@@ -13,6 +13,7 @@
         Try
             'cargar logo para imprimir
             HiddenLogo.Value = Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
             If Not IsPostBack Then
                 'bitacora de que salio de un form

@@ -41,12 +41,14 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
               
     <script type="text/javascript">
         tituloImprimir = 'Detalle de la Bitácora'
         xColumnas.push(0, 1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(50,0,50,0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
-        //console.log(xlogo)
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">
