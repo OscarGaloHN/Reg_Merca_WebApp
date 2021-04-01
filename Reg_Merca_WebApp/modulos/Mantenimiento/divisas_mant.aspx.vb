@@ -92,7 +92,7 @@
     Private Sub bttGuardarDivisa_Click(sender As Object, e As EventArgs) Handles bttGuardarDivisa.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_29_Divisas where Descripcion = BINARY  '" & txtdescripcion.Text & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_29_Divisas where Descripcion = '" & txtdescripcion.Text & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -100,7 +100,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Divisas','La divisa ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_29_Divisas` (`Descripcion`, `Total_Factura`, `Total_Flete`, `Total_Seguro`, `Total_Otros_gastos`) VALUES ('" & txtdescripcion.Text & "', '" & txttotalfactura.Text & "', '" & txttotalflete.Text & "', '" & txttotalseguro.Text & "','" & txttotalotros.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_29_Divisas` (`Descripcion`,`Total_Factura`,`Total_Flete`,`Total_Seguro`,`Total_Otros_gastos`) VALUES ('" & txtdescripcion.Text & "','" & txttotalfactura.Text & "','" & txttotalflete.Text & "','" & txttotalseguro.Text & "','" & txttotalotros.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

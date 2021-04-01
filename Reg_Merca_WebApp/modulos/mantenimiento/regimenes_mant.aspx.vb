@@ -25,12 +25,12 @@
 
             If Not IsPostBack Then
                 Select Case Request.QueryString("acction")
-                    Case "newalmacenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('ALMACEN','El Almacen se Guardo con exito.', 'success');</script>")
-                    Case "deltealmacenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('ALMACEN','El Almacen se Elimino con exito.', 'success');</script>")
-                    Case "editalmacenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Almacen','El Almacen se Modifico con exito.', 'success');</script>")
+                    Case "newregimenes"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Guardo con exito.', 'success');</script>")
+                    Case "delteregimenes"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Elimino con exito.', 'success');</script>")
+                    Case "editregimenes"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Modifico con exito.', 'success');</script>")
                     Case Else
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
@@ -68,16 +68,16 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('ALMACEN','El nombre del Almacén ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_27_Regimenes` SET `pregunta` = '" & txtpreguntaEditar.Text & "' WHERE `Id_almacen` = " & lblHiddenIDregimenes.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_27_Regimenes` SET `Descripcion` = '" & txtpreguntaEditar.Text & "' WHERE `Id_Regimen` = " & lblHiddenIDregimenes.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo almacen con nombre: " & txtregimenes.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo regimen con nombre: " & txtregimenes.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/almacenes_mant.aspx?acction=newalmacenes")
+                Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=newregimenes")
             End If
         Catch ex As Exception
 
@@ -87,25 +87,41 @@
     Private Sub bttGuardarRegimenes_Click(sender As Object, e As EventArgs) Handles bttGuardarRegimenes.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_27_Regimenes where Nombre = BINARY  '" & txtregimenes.Text & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_27_Regimenes where Descripcion = BINARY  '" & txtregimenes.Text & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Almacen','El nombre de Almacén ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El regimenes ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_27_Regimenes` (`pregunta`) VALUES ('" & txtregimenes.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_27_Regimenes` (`Descripcion`) VALUES ('" & txtregimenes.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Almacen con id: " & lblHiddenIDregimenes.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Regimenes con id: " & lblHiddenIDregimenes.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/almacenes_mant.aspx?acction=editalmacenes")
+                Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=editalmacenes")
             End If
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub bttEliminarRegimenes_Click(sender As Object, e As EventArgs) Handles bttEliminarRegimenes.Click
+        Try
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_27_Regimenes` WHERE Id_Regimen= " & lblHiddenIDregimenes.Value
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el Regimen con nombre: " & lblHiddenNombreregimenes.Value & " con exito")
+            End Using
+            Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=delteregimenes")
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 End Class

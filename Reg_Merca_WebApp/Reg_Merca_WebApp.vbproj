@@ -245,6 +245,7 @@
     <Content Include="modulos\mantenimiento\paises_mant.aspx" />
     <Content Include="modulos\mantenimiento\preguntas_mant.aspx" />
     <Content Include="modulos\mantenimiento\regimenes_mant.aspx" />
+    <Content Include="modulos\mantenimiento\ventajas_mant.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
     <Content Include="modulos\configuraciones\confi_configurar.aspx" />
     <Content Include="modulos\perfil_usuario\confi_perfil.aspx" />
@@ -1242,6 +1243,13 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\regimenes_mant.aspx.vb">
       <DependentUpon>regimenes_mant.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\ventajas_mant.aspx.designer.vb">
+      <DependentUpon>ventajas_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\ventajas_mant.aspx.vb">
+      <DependentUpon>ventajas_mant.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\perfil_usuario\confi_cambio_contra.aspx.designer.vb">

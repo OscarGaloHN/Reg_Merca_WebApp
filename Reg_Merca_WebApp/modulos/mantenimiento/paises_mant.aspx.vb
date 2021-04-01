@@ -24,12 +24,12 @@
 
             If Not IsPostBack Then
                 Select Case Request.QueryString("acction")
-                    Case "newalmacenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('ALMACEN','El Almacen se Guardo con exito.', 'success');</script>")
-                    Case "deltealmacenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('ALMACEN','El Almacen se Elimino con exito.', 'success');</script>")
-                    Case "editalmacenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Almacen','El Almacen se Modifico con exito.', 'success');</script>")
+                    Case "newpaises"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El Pais se Guardo con exito.', 'success');</script>")
+                    Case "deltepaises"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El Pais se Elimino con exito.', 'success');</script>")
+                    Case "editpaises"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El Pais se Modifico con exito.', 'success');</script>")
                     Case Else
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
@@ -67,16 +67,16 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('ALMACEN','El nombre del Almacén ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El nombre del Pais ya esta registrado.', 'error');</script>")
             Else
                 Ssql = "UPDATE `DB_Nac_Merca`.`tbl_8_paises` SET `pregunta` = '" & txtpaisesEditar.Text & "' WHERE `Id_pais` = " & lblHiddenIDpaises.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo almacen con nombre: " & txtpaises.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo Pais con nombre: " & txtpaises.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/almacenes_mant.aspx?acction=newalmacenes")
+                Response.Redirect("~/modulos/mantenimiento/paises_mant.aspx?acction=newpaises")
             End If
         Catch ex As Exception
 
@@ -92,16 +92,16 @@
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Almacen','El nombre de Almacén ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El nombre de Pais ya esta registrado.', 'error');</script>")
             Else
                 Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_8_paises` (`pregunta`) VALUES ('" & txtpaises.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Almacen con id: " & lblHiddenIDpaises.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Pais con id: " & lblHiddenIDpaises.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/almacenes_mant.aspx?acction=editalmacenes")
+                Response.Redirect("~/modulos/mantenimiento/paises_mant.aspx?acction=editpaises")
             End If
         Catch ex As Exception
 
@@ -110,14 +110,14 @@
 
     Private Sub bttEliminarpaises_Click(sender As Object, e As EventArgs) Handles bttEliminarpaises.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_22_preguntas` WHERE id_pregunta= " & lblHiddenIDpaises.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_22_preguntas` WHERE Id_pais= " & lblHiddenIDpaises.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombrepaises.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=delteaduana")
+            Response.Redirect("~/modulos/mantenimiento/paises_mant.aspx?acction=deltepaises")
         Catch ex As Exception
 
         End Try
