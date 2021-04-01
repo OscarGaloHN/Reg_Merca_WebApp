@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_documentos" %>
+﻿<%@ Page Title="Documentos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -36,7 +36,7 @@
             document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenmanifiesto').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_dddocumentoEditar').value = row.cells[3].innerHTML;
@@ -234,14 +234,14 @@
     </div>
 
 
-    <!-- modal editar bulto-->
+    <!-- modal editar documento-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarDocumento">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditarDoc">EDITAR Documento</h4>
+                        <h4 class="modal-title" id="lblEditarDoc">EDITAR DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
                         Luego de terminar de editar los datos de los documentos haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
@@ -258,18 +258,18 @@
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentosEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Documentos" AutoComplete="off" ValidationGroup="ValidadocumentosEditar" runat="server" class="form-control" ID="txt_transEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Documentos" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txt_transEditar"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txt_transEditar"
                                         ErrorMessage="Ingrese el nombre del Documento."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentosEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
                                 </div>
                             </div>
                         </div>
@@ -289,7 +289,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificardocumento" ValidationGroup="ValidadocumentosEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificardocumento" ValidationGroup="ValidadocumentoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
