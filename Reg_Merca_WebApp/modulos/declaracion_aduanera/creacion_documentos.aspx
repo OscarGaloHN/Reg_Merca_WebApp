@@ -214,7 +214,7 @@
                     <h4 class="modal-title" id="LblDelete">ELIMINAR DOCUMENTO</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que dese eliminar el siguiente documento? <br />
+                    ¿Seguro que desea eliminar el siguiente documento? <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
                         <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
 

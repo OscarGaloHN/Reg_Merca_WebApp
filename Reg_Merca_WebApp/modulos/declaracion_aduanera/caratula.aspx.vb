@@ -142,7 +142,7 @@ Cod_pais_pro, id_pago, id_condicion, aduana_transdes, modalidad_especial, deposi
 ruta_transito, motivo_operacion, Observaciones, Id_Clase_deBulto, cant_bultos, pesobruto_bultos, canti_items, 
 Total_Factura, Total_Otros_gastos, Total_Seguro, Total_Flete, divisa_factura, tipo_de_cambio,
 divisa_seguro, divisa_flete, Id_cliente, id_usuario, Id_poliza) 
-values ('" & txtFechaCreacion.Text & "','" & ddlestado.SelectedValue & "',
+values ('" & "'),0,CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & "','" & ddlestado.SelectedValue & "',
 '" & txtdeclarante.Text & "', '" & ddladuanadespacho.SelectedValue & "', " & ddlregimenaduanero.SelectedValue & ", 
 '" & txtrtnimp_exp.Text & "', '" & txtimp_exp.Text & "','" & txtRTNagen_aduanera.Text & "','" & txtagen_aduanera.Text & "',
 '" & txtmanifiestorap.Text & "','" & txtNproveedor.Text & "','" & txtContra_proveedor.Text & "','" & txtDomicioProve.Text & "',
