@@ -104,13 +104,13 @@ Partial Public Class regimenes_mant
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtpreguntaEditar.
+    '''Control txtregimenesEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtpreguntaEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtregimenesEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator3.

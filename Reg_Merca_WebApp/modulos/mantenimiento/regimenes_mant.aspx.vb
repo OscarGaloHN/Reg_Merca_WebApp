@@ -57,7 +57,7 @@
     Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
         Try
             Dim Ssql As String = String.Empty
-            If txtpreguntaEditar.Text <> lblHiddenNombreregimenes.Value Then
+            If txtregimenesEditar.Text <> lblHiddenNombreregimenes.Value Then
                 Ssql = "SELECT * FROM DB_Nac_Merca.tbl_27_Regimenes where Nombre = BINARY  '" & txtregimenes.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -70,7 +70,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_27_Regimenes` SET `Descripcion` = '" & txtpreguntaEditar.Text & "' WHERE `Id_Regimen` = " & lblHiddenIDregimenes.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_27_Regimenes` SET `Descripcion` = '" & txtregimenesEditar.Text & "' WHERE `Id_Regimen` = " & lblHiddenIDregimenes.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

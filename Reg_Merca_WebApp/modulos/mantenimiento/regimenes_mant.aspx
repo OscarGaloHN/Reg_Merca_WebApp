@@ -288,9 +288,9 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="pregunta" AutoComplete="off" ValidationGroup="ValidaregimenEditar" runat="server" class="form-control" ID="txtpreguntaEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="pregunta" AutoComplete="off" ValidationGroup="ValidaregimenEditar" runat="server" class="form-control" ID="txtregimenesEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtregimenEditar"
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtregimenesEditar"
                                         ErrorMessage="Ingrese el Regimen."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaregimenaEditar" />
