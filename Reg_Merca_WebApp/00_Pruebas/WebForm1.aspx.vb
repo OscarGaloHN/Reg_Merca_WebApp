@@ -1,45 +1,73 @@
 ﻿Imports System.Net
 Imports System.IO
+Imports MySql.Data.MySqlClient
+Imports Microsoft.Reporting.WebForms
+
 Public Class WebForm1
     Inherits System.Web.UI.Page
+    Private Property DataSetX As DataSet
+        Get
+            Return CType(Session("DataSetX"), DataSet)
+        End Get
+        Set(ByVal value As DataSet)
+            Session("DataSetX") = value
+        End Set
+    End Property
 
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Function GetData() As DSClientes
 
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim amount As Decimal = 0
-        Dim fromCurrency As String = ""
-        Dim toCurrency As String = ""
-        fromCurrency = TextBox1.Text.ToUpper()
-        toCurrency = TextBox2.Text.ToUpper()
-        amount = Convert.ToDecimal(TextBox3.Text)
-
-        'Dim web As WebClient = New WebClient()
-        'Dim uri As Uri = New Uri(String.Format("http://www.google.com/ig/calculator?hl=en&q={2}{0}%3D%3F{1}", fromCurrency, toCurrency, amount))
-        'Dim response As String = web.DownloadString(uri)
-        'Dim regex As Regex = New Regex("rhs: \""(\d*.\d*)")
-        'Dim match As Match = regex.Match(response)
-        'Dim test As String = match.ToString()
-        'Dim rate As Decimal = Convert.ToDecimal(match.Groups(1).Value)
-        TextBox4.Text = CurrencyConversion(amount, fromCurrency, toCurrency)
-    End Sub
-    Public Function CurrencyConversion(ByVal amount As Decimal, ByVal fromCurrency As String, ByVal toCurrency As String) As String
-        Dim web As New WebClient()
-        'Dim apiURL As String = String.Format("http://www.google.com/ig/calculator?hl=en&q={2}{0}%3D%3F{1}", fromCurrency.ToUpper(), toCurrency.ToUpper(), amount)
-        Dim apiURL As String = String.Format("https://www.google.com/search?q=1+USD+TO+HNL")
-        'Dim request = WebRequest.Create(apiURL)
-
-        Dim response As String = web.DownloadString(apiURL)
-        Dim regex As New Regex(":(?<rhs>.+?),")
-        Dim arrDigits As String() = regex.Split(response)
-        Dim rate As String = arrDigits(3)
-
-
-        'Dim response As String = web.DownloadString(url)
-        'Dim regex As New Regex(":(?<rhs>.+?),")
-        'Dim arrDigits As String() = regex.Split(response)
-        'Dim rate As String = arrDigits(3)
-        Return rate
+        Dim constr As String = ConfigurationManager.ConnectionStrings("Cstr_1").ConnectionString
+        Using con As New MySqlConnection(constr)
+            Using cmd As New MySqlCommand("SELECT Id_cliente,  nombrec, ciudad, telefono, Id_pais FROM DB_Nac_Merca.tbl_04_cliente;")
+                Using sda As New MySqlDataAdapter()
+                    cmd.Connection = con
+                    sda.SelectCommand = cmd
+                    Using dsCustomers As New DSClientes()
+                        sda.Fill(dsCustomers, "DtClientes")
+                        Return dsCustomers
+                    End Using
+                End Using
+            End Using
+        End Using
     End Function
+    Private Sub ObtenerDatos(ByRef DataSetdeDatos As DataSet, ByVal DtTabla As String, ByVal Ssql As String)
+        Using connection As New MySqlConnection(ConfigurationManager.ConnectionStrings("Cstr_1").ConnectionString)
+            Dim command As New MySqlCommand(Ssql, connection)
+            Dim ReporteAdapter As New MySqlDataAdapter(command)
+            ReporteAdapter.Fill(DataSetdeDatos, DtTabla)
+        End Using
+    End Sub
+    Private Sub WebForm1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If Not Page.IsPostBack Then
+
+
+
+
+            'Set the processing mode for the ReportViewer to Local  
+            ReportViewer1.ProcessingMode = ProcessingMode.Local
+            Dim localReport As LocalReport
+            localReport = ReportViewer1.LocalReport
+            localReport.ReportPath = Server.MapPath("~/modulos/reportes/rptClientes.rdlc")
+
+            Dim datasetClientes As New DataSet("DSClientes")
+            'Get the sales order data  
+            ObtenerDatos(datasetClientes, "DtClientes", "SELECT Id_cliente,  nombrec, ciudad, telefono, Id_pais FROM DB_Nac_Merca.tbl_04_cliente where ciudad='tegus';")            'Create a report data source for the sales order data  
+            Dim dsClientes As New ReportDataSource()
+            dsClientes.Name = "DSClientes"
+            dsClientes.Value = datasetClientes.Tables("DtClientes")
+            localReport.DataSources.Add(dsClientes)
+
+            Dim nombreReporte As String = "Reporte de Clientes"
+            'Get the sales order data  
+            ObtenerDatos(datasetClientes, "DtEmpresa", "SELECT '" & Application("ParametrosADMIN")(2) & "' as nombre, '" & Application("ParametrosADMIN")(3) & "' as alias, '" & Application("ParametrosADMIN")(22) & "' as logo, '" & nombreReporte & "' as reporte FROM DB_Nac_Merca.tbl_21_parametros LIMIT 1;")            'Create a report data source for the sales order data  
+            Dim dsEmpresa As New ReportDataSource()
+            dsEmpresa.Name = "DSEmpresa"
+            dsEmpresa.Value = datasetClientes.Tables("DtEmpresa")
+            localReport.DataSources.Add(dsEmpresa)
+
+
+        End If
+    End Sub
+
+
 End Class

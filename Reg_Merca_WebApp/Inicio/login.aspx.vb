@@ -15,6 +15,7 @@ Public Class login
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+
             If Session("user_idUsuario") = Nothing Then
                 If IsPostBack = False Then
                     'parametros de configuracion de sistema

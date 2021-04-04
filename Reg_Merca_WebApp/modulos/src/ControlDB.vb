@@ -70,4 +70,6 @@ Public Class ControlDB
         End If
         Return arrayParametros
     End Function
+
+
 End Class

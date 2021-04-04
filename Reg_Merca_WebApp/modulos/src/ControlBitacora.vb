@@ -68,10 +68,7 @@ Public Class ControlBitacora
         Dim br As New System.IO.BinaryReader(fs)
         Dim bytes As Byte() = br.ReadBytes(CType(fs.Length, Integer))
         Dim base64String As String = Convert.ToBase64String(bytes, 0, bytes.Length)
-        'Application("ParametrosADMIN")(21) = "data:image/png;base64," & base64String
         stream.Close()
-
-        'HiddenLogo.Value = Application("ParametrosADMIN")(21)
-        Return "data:image/png;base64," & base64String
+        Return base64String
     End Function
 End Class

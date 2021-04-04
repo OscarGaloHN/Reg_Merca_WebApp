@@ -12,7 +12,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             'cargar logo para imprimir
-            HiddenLogo.Value = Application("ParametrosADMIN")(22)
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
             HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
             If Not IsPostBack Then
