@@ -70,12 +70,12 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PREGUNTAS','La pregunta ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_22_preguntas` SET `pregunta` = '" & txtpreguntaEditar.Text & "' WHERE `Id_almacen` = " & lblHiddenIDpregunta.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_22_preguntas` SET `pregunta` = '" & txtpreguntaEditar.Text & "' WHERE `id_pregunta` = " & lblHiddenIDpregunta.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo almacen con nombre: " & txtpregunta.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nueva pregunta: " & txtpregunta.Text)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/preguntas_mant.aspx?acction=newpreguntas")
             End If

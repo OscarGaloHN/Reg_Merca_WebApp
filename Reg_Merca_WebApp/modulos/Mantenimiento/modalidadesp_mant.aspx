@@ -224,15 +224,16 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre Modalidad" AutoComplete="off" ValidationGroup="Validamodalidad" runat="server" class="form-control" ID="txtnombremodalidad"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombremodalidad"
-                                        ErrorMessage="Ingrese el nombre de la Modalidad Especial."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validamodalidad" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox onkeypress="return txtnombremodalidad(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtnombremodalidad" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Modalidad Especial</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtnombremodalidad"
+                                    ErrorMessage="Ingrese la modalidad especial."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
                             </div>
                     </div>
                        </div> 

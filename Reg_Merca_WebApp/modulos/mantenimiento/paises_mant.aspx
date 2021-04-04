@@ -23,7 +23,7 @@
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
             xModal('red', 'ContentPrincipal_txtpaises', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
@@ -31,7 +31,7 @@
             
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtpaisesEditar').value = row.cells[3].innerHTML;
@@ -219,15 +219,16 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre pais" AutoComplete="off" ValidationGroup="ValidaPais" runat="server" class="form-control" ID="txtpaises"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtpaises"
-                                        ErrorMessage="Ingrese el pais."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaPregunta" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox onkeypress="return txtpaises(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtpaises" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Paises</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtpaises"
+                                    ErrorMessage="Ingrese el Pais."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
                             </div>
                            
                         </div>

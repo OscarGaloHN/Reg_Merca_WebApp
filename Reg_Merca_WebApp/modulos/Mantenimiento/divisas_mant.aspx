@@ -246,7 +246,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txtdescripcion"></asp:TextBox>
+                                    <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtdescripcion(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtdescripcion" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtdescripcion"
                                         ErrorMessage="Ingrese la descripcion de la divisa."
@@ -255,51 +255,63 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Total Factura" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txttotalfactura"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txttotalfactura"
-                                        ErrorMessage="Ingrese el Total de la Factura."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalfactura" runat="server" class="form-control"></asp:TextBox>
+
+                                    <label class="form-label">Total Factura</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txttotalfactura"
+                                    ErrorMessage="Ingrese el total factura."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                              
+                            </div>
                             </div>
 
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Total Flete" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txttotalflete"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttotalflete"
-                                        ErrorMessage="Ingrese el Total del Flete."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                               <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalflete" runat="server" class="form-control"></asp:TextBox>
+
+                                    <label class="form-label">Total Fletes</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttotalflete"
+                                    ErrorMessage="Ingrese el total de fletes de la empresa."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                              
+                            </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Total Seguro" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txttotalseguro"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txttotalseguro"
-                                        ErrorMessage="Ingrese el total del seguro."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalseguro" runat="server" class="form-control"></asp:TextBox>
+
+                                    <label class="form-label">Total Seguro</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txttotalseguro"
+                                    ErrorMessage="Ingrese el Total del Seguro."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                              
+                            </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Total Otros Gastos" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txttotalotros"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txttotalotros"
-                                        ErrorMessage="Ingrese el total de otros gastos."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalotros" runat="server" class="form-control"></asp:TextBox>
+
+                                    <label class="form-label">Total Otros Gastos</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txttotalotros"
+                                    ErrorMessage="Ingrese el Total de Otros Gastos."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                              
+                            </div>
                             </div>
 
 

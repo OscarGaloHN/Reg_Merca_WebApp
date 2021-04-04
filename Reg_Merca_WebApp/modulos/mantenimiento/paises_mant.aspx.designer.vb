@@ -41,13 +41,13 @@ Partial Public Class paises_mant
     Protected WithEvents txtpaises As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control reqnombrevacio.
+    '''Control RequiredFieldValidator5.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control bttGuardarpaises.
