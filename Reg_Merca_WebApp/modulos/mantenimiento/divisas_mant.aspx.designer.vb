@@ -59,13 +59,13 @@ Partial Public Class Divisas_mant
     Protected WithEvents txttotalfactura As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control validarContactoVac.
+    '''Control RequiredFieldValidator9.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents validarContactoVac As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txttotalflete.
