@@ -205,7 +205,7 @@
     <!-- modal nueva pregunta-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarRegimen">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarRegimenes">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->

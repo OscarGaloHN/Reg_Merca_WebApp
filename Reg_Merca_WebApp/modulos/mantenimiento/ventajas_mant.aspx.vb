@@ -58,7 +58,7 @@
         Try
             Dim Ssql As String = String.Empty
             If txtdescripcionEditar.Text <> lblHiddenIDVentajas.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_30_Ventajas where Nombre = BINARY  '" & txtventajas.Text & "' "
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_30_Ventajas where Descripcion = BINARY  '" & txtventajas.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -68,16 +68,16 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El nombre del Pais ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('VENTAJAS','La Ventaja ya esta Registrada ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_30_Ventajas` SET `pregunta` = '" & txtdescripcionEditar.Text & "' WHERE `Id_pais` = " & lblHiddenIDVentajas.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_30_Ventajas` SET `Descripcion` = '" & txtdescripcionEditar.Text & "' WHERE `id_Ventaja` = " & lblHiddenIDVentajas.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva Ventaja con nombre: " & txtventajas.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/ventajas_mant.aspx?acction=newpaises")
+                Response.Redirect("~/modulos/mantenimiento/ventajas_mant.aspx?acction=newventajas")
             End If
         Catch ex As Exception
 
@@ -95,14 +95,14 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El nombre de Pais ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_30_Ventajas` (`pregunta`) VALUES ('" & txtventajas.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_30_Ventajas` (`Descripcion`) VALUES ('" & txtventajas.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Pais con id: " & lblHiddenIDVentajas.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/paises_mant.aspx?acction=editpaises")
+                Response.Redirect("~/modulos/mantenimiento/ventajas_mant.aspx?acction=editventajas")
             End If
         Catch ex As Exception
 
@@ -111,14 +111,14 @@
 
     Private Sub bttEliminarventajas_Click(sender As Object, e As EventArgs) Handles bttEliminarventajas.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_30_Ventajas` WHERE Id_pais= " & lblHiddenIDVentajas.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_30_Ventajas` WHERE id_Ventaja= " & lblHiddenIDVentajas.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
-                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenIDVentajas.Value & " con exito")
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la ventaja con ID: " & lblHiddenIDVentajas.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/paises_mant.aspx?acction=deltepaises")
+            Response.Redirect("~/modulos/mantenimiento/ventajas_mant.aspx?acction=delteventajas")
         Catch ex As Exception
 
         End Try

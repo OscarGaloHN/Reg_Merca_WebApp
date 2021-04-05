@@ -59,13 +59,13 @@ Partial Public Class ventajas_mant
     Protected WithEvents bttGuardarventajas As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblpregunta.
+    '''Control lblventajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblpregunta As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblventajas As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control lblHiddenIDVentajas.

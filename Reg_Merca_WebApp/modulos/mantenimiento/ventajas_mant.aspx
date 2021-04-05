@@ -16,27 +16,27 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             
-            document.getElementById('ContentPrincipal_txtpaises').value = '';
+            document.getElementById('ContentPrincipal_txtventajas').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[2].innerHTML;
-            xModal('red', 'ContentPrincipal_txtpaises', 'modalDelete');
+            document.getElementById('ContentPrincipal_lblventajas').innerHTML = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombreventajas').value = row.cells[2].innerHTML;
+            xModal('red', 'ContentPrincipal_txtventajas', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtpaisesEditar').value = '';
+            document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
             
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombreventajas').value = row.cells[2].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtpaisesEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtpaisesEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_txtdescripcionEditar', 'modalEditar');
         }
 
     </script>
@@ -225,7 +225,7 @@
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtventajas"
                                         ErrorMessage="Ingrese la ventaja."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaPregunta" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaventajas" />
                                 </div>
                             </div>
                            
@@ -250,7 +250,7 @@
                 </div>
                 <div class="modal-body">
                     ¿Seguro que dese eliminar esta Ventaja:
-                    <asp:Label runat="server" ID="lblpregunta" Text="..."></asp:Label>?
+                    <asp:Label runat="server" ID="lblventajas" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDVentajas" />
                         
                     <br />
