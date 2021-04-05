@@ -1,5 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="WebForm1.aspx.vb" Inherits="Reg_Merca_WebApp.WebForm1" %>
-
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="WebForm2.aspx.vb" Inherits="Reg_Merca_WebApp.WebForm2" %>
 
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
@@ -67,7 +66,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="#">Menú Principal</a>
+                 <a class="navbar-brand" href="#">Menú Principal</a>
             </div>
         </div>
     </nav>
@@ -101,7 +100,7 @@
                 <!-- #User Info -->
                 <!-- Menu -->
                 <div class="menu">
-                    <%--   <asp:ContentPlaceHolder ID="ContentMenu" runat="server">
+                 <%--   <asp:ContentPlaceHolder ID="ContentMenu" runat="server">
                     </asp:ContentPlaceHolder>--%>
                 </div>
                 <!-- #Menu -->
@@ -125,13 +124,11 @@
             <div class="container-fluid">
                 <div class="block-header">
                     <div>
-                        <asp:Button ID="Button2" runat="server" Text="IMPRIMIR CLIENTES uno" OnClientClick="target ='_blank';"/>
-
-                        <asp:Button ID="Button1" runat="server" Text="IMPRIMIR CLIENTES dos" OnClientClick="target ='_blank';"/>
-                        <%--                            <asp:ScriptManager runat="server"></asp:ScriptManager>
+                         
+                            <asp:ScriptManager runat="server"></asp:ScriptManager>
                             <rsweb:ReportViewer  SizeToReportContent="True"  ID="ReportViewer1" runat="server" Height="100%" Width="100%">
                             </rsweb:ReportViewer>
-                        --%>
+                        
                     </div>
                 </div>
             </div>

@@ -166,6 +166,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="00_Pruebas\WebForm2.aspx" />
     <Content Include="images\logo.png" />
     <Content Include="Inicio\activacion.aspx" />
     <Content Include="Inicio\cambio_contra.aspx" />
@@ -354,6 +355,17 @@
     </None>
     <Content Include="modulos\reportes\fuentes\DSClientes.xss">
       <DependentUpon>DSClientes.xsd</DependentUpon>
+    </Content>
+    <Content Include="modulos\reportes\fuentes\DSClientes_2.xsc">
+      <DependentUpon>DSClientes_2.xsd</DependentUpon>
+    </Content>
+    <None Include="modulos\reportes\fuentes\DSClientes_2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSClientes_2.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="modulos\reportes\fuentes\DSClientes_2.xss">
+      <DependentUpon>DSClientes_2.xsd</DependentUpon>
     </Content>
     <None Include="My Project\PublishProfiles\CarpetaLocal.pubxml" />
     <None Include="My Project\PublishProfiles\CarpetaLocar.pubxml" />
@@ -1016,6 +1028,13 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="00_Pruebas\WebForm2.aspx.designer.vb">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="00_Pruebas\WebForm2.aspx.vb">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Inicio\activacion.aspx.designer.vb">
       <DependentUpon>activacion.aspx</DependentUpon>
     </Compile>
@@ -1299,6 +1318,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSClientes.xsd</DependentUpon>
     </Compile>
+    <Compile Include="modulos\reportes\fuentes\DSClientes_2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSClientes_2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="modulos\src\ControlBitacora.vb" />
     <Compile Include="modulos\src\ControlDB.vb" />
     <Compile Include="modulos\src\ControlCorreo.vb" />
@@ -1359,6 +1383,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="modulos\reportes\rptClientes.rdlc" />
+    <EmbeddedResource Include="modulos\reportes\rptClientesDOS.rdlc" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
