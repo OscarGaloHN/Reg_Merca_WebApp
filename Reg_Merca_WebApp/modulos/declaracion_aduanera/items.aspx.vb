@@ -94,73 +94,73 @@
     End Sub
 
     Private Sub bttgaurdar_Click(sender As Object, e As EventArgs) Handles bttgaurdar.Click
-'        Dim Ssql As String
-    '        Try
-    '            'inhabilita Panel de botones
-    '            pbotones.Enabled = True
+        '        Dim Ssql As String
+        '        Try
+        '            'inhabilita Panel de botones
+        '            pbotones.Enabled = True
 
-    '            Select Case Request.QueryString("action")
-    '                Case "new"
+        '            Select Case Request.QueryString("action")
+        '                Case "new"
 
-    '                    Ssql = "Insert into DB_Nac_Merca.tbl_01_polizas 
-    '                  (declarante, cod_aduana_ent, Id_regimen, rtn_importador, nombre_importador, rtn_agenciaadu, nombre_agenciaadu, manifiesto_entregarap, Id_proveedor, contrato_proveedor,
-    'domicilio_proveed, Numero_Preimpreso, entidad_mediacion, Id_almacen, cod_aduana_sal, Cod_pais_org, Cod_pais_pro, id_pago, id_condicion, aduana_transdes, modalidad_especial, deposito_aduanas, plazo,
-    'ruta_transito, motivo_operacion, Observaciones, Id_Clase_deBulto, cant_bultos, pesobruto_bultos, canti_items, Total_Factura, Total_Otros_gastos, Total_Seguro, Total_Flete, divisa_factura, tipo_de_cambio,
-    'divisa_seguro, divisa_flete, Id_cliente) 
-    'values ('" & txtdeclarante.Text & "', '" & ddladuanadespacho.SelectedValue & "', " & ddlregimenaduanero.SelectedValue & ", '" & txtrtnimp_exp.Text & "', 
-    ' '" & txtimp_exp.Text & "','" & txtRTNagen_aduanera.Text & "','" & txtagen_aduanera.Text & "','" & txtmanifiestorap.Text & "','" & txtNproveedor.Text & "','" & txtContra_proveedor.Text & "'
-    ','" & txtDomicioProve.Text & "','" & txtNumPreimp.Text & "','" & txtEntidadMed.Text & "','" & ddldepositoalmacen.SelectedValue & "','" & ddladuanaingsal.SelectedValue & "'
-    ','" & ddlpaisesdeorigen.SelectedValue & "','" & ddlpaisprocedencia.SelectedValue & "','" & ddlformadepago.SelectedValue & "','" & ddlcondicionentrega.SelectedValue & "'
-    ','" & ddladuanatransitodes.SelectedValue & "','" & ddlmodalidadesp.SelectedValue & "','" & ddldepositoaduana.SelectedValue & "','" & txtplazodiasmeses.Text & "'
-    ','" & txtrutatransito.Text & "','" & ddlmotivooper.SelectedValue & "','" & txtobservacion.Text & "','" & ddlclasebultos.SelectedValue & "','" & txtcantbultos.Text & "'
-    ','" & txtpesobrutobul.Text & "','" & txttotalitems.Text & "','" & txttotalfact.Text & "','" & txttotalotrosgast.Text & "','" & txtttotalseg.Text & "','" & txttotalflet.Text & "'
-    ','" & ddldivisafact.SelectedValue & "','" & txttipodecambio.Text & "','" & ddldivisaseg.SelectedValue & "','" & ddldivisafl.SelectedValue & "', '" & cmbCliente.SelectedValue & "')"
-    '                    Using con As New ControlDB
-    '                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-    '                    End Using
+        '                    Ssql = "Insert into DB_Nac_Merca.tbl_01_polizas 
+        '                  (declarante, cod_aduana_ent, Id_regimen, rtn_importador, nombre_importador, rtn_agenciaadu, nombre_agenciaadu, manifiesto_entregarap, Id_proveedor, contrato_proveedor,
+        'domicilio_proveed, Numero_Preimpreso, entidad_mediacion, Id_almacen, cod_aduana_sal, Cod_pais_org, Cod_pais_pro, id_pago, id_condicion, aduana_transdes, modalidad_especial, deposito_aduanas, plazo,
+        'ruta_transito, motivo_operacion, Observaciones, Id_Clase_deBulto, cant_bultos, pesobruto_bultos, canti_items, Total_Factura, Total_Otros_gastos, Total_Seguro, Total_Flete, divisa_factura, tipo_de_cambio,
+        'divisa_seguro, divisa_flete, Id_cliente) 
+        'values ('" & txtdeclarante.Text & "', '" & ddladuanadespacho.SelectedValue & "', " & ddlregimenaduanero.SelectedValue & ", '" & txtrtnimp_exp.Text & "', 
+        ' '" & txtimp_exp.Text & "','" & txtRTNagen_aduanera.Text & "','" & txtagen_aduanera.Text & "','" & txtmanifiestorap.Text & "','" & txtNproveedor.Text & "','" & txtContra_proveedor.Text & "'
+        ','" & txtDomicioProve.Text & "','" & txtNumPreimp.Text & "','" & txtEntidadMed.Text & "','" & ddldepositoalmacen.SelectedValue & "','" & ddladuanaingsal.SelectedValue & "'
+        ','" & ddlpaisesdeorigen.SelectedValue & "','" & ddlpaisprocedencia.SelectedValue & "','" & ddlformadepago.SelectedValue & "','" & ddlcondicionentrega.SelectedValue & "'
+        ','" & ddladuanatransitodes.SelectedValue & "','" & ddlmodalidadesp.SelectedValue & "','" & ddldepositoaduana.SelectedValue & "','" & txtplazodiasmeses.Text & "'
+        ','" & txtrutatransito.Text & "','" & ddlmotivooper.SelectedValue & "','" & txtobservacion.Text & "','" & ddlclasebultos.SelectedValue & "','" & txtcantbultos.Text & "'
+        ','" & txtpesobrutobul.Text & "','" & txttotalitems.Text & "','" & txttotalfact.Text & "','" & txttotalotrosgast.Text & "','" & txtttotalseg.Text & "','" & txttotalflet.Text & "'
+        ','" & ddldivisafact.SelectedValue & "','" & txttipodecambio.Text & "','" & ddldivisaseg.SelectedValue & "','" & ddldivisafl.SelectedValue & "', '" & cmbCliente.SelectedValue & "')"
+        '                    Using con As New ControlDB
+        '                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+        '                    End Using
 
-    '                    'recupera el id de la caratura
-
-
-    '                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratura=" & "ID_CARATURA_CREADA")
+        '                    'recupera el id de la caratura
 
 
-    '                    'Case "update"
-    '                    '    If txtCorreoElectronico.Text = HiddenCorreo.Value Then
-    '                    '        ''GUARDAR NORMAL
-    '                    '        'TERMINAR DE EDITAR 
-    '                    '        Ssql = "update tbl_02_usuarios set Nombre='" & txtNombre.Text & "',correo='" & txtCorreoElectronico.Text & "' where id_usuario =" & Request.QueryString("xuser") & ""
-    '                    '        Using con As New ControlDB
-    '                    '            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-    '                    '        End Using
+        '                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratura=" & "ID_CARATURA_CREADA")
 
 
-    '                    '        Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
-
-    '                    '    Else
-
-
-
-    '                    '        'COMPLETAR QRY UPDATE
-    '                    '        '    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  Nombre='" & txtNombre.Text & "',  correo = '" & txtCorreoElectronico.Text & "' where id_usuario =" & Request.QueryString("xuser") & ""
-    '                    '        '    Using con As New ControlDB
-    '                    '        '        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-    '                    '        '    End Using
-
-    '                    '        'Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  emailconfir = 0 where  id_usuario =" & Request.QueryString("xuser") & ""
-    '                    '        '    Using con As New ControlDB
-    '                    '        '        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-    '                    '        '    End Using
+        '                    'Case "update"
+        '                    '    If txtCorreoElectronico.Text = HiddenCorreo.Value Then
+        '                    '        ''GUARDAR NORMAL
+        '                    '        'TERMINAR DE EDITAR 
+        '                    '        Ssql = "update tbl_02_usuarios set Nombre='" & txtNombre.Text & "',correo='" & txtCorreoElectronico.Text & "' where id_usuario =" & Request.QueryString("xuser") & ""
+        '                    '        Using con As New ControlDB
+        '                    '            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+        '                    '        End Using
 
 
-    '                    '        Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
-    '                    '        End If
-    '                    '    End If
-    '            End Select
-    '        Catch ex As Exception
+        '                    '        Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
 
-    '        End Try
+        '                    '    Else
 
-    '    End Sub
+
+
+        '                    '        'COMPLETAR QRY UPDATE
+        '                    '        '    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  Nombre='" & txtNombre.Text & "',  correo = '" & txtCorreoElectronico.Text & "' where id_usuario =" & Request.QueryString("xuser") & ""
+        '                    '        '    Using con As New ControlDB
+        '                    '        '        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+        '                    '        '    End Using
+
+        '                    '        'Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  emailconfir = 0 where  id_usuario =" & Request.QueryString("xuser") & ""
+        '                    '        '    Using con As New ControlDB
+        '                    '        '        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+        '                    '        '    End Using
+
+
+        '                    '        Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
+        '                    '        End If
+        '                    '    End If
+        '            End Select
+        '        Catch ex As Exception
+
+        '        End Try
+
+    End Sub
 
 End Class
