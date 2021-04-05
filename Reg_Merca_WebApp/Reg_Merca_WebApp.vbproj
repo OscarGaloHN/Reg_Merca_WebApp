@@ -225,6 +225,7 @@
     <Content Include="Inicio\reiniciarcontra.aspx" />
     <Content Include="modulos\bitacora\bitacora.aspx" />
     <Content Include="modulos\configuraciones\config_avanz.aspx" />
+    <Content Include="modulos\configuraciones\config_permisos.aspx" />
     <Content Include="modulos\declaracion_aduanera\caratula.aspx" />
     <Content Include="modulos\declaracion_aduanera\creacion_bultos.aspx" />
     <Content Include="modulos\declaracion_aduanera\creacion_documentos.aspx" />
@@ -1088,6 +1089,13 @@
     </Compile>
     <Compile Include="modulos\configuraciones\config_avanz.aspx.vb">
       <DependentUpon>config_avanz.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\configuraciones\config_permisos.aspx.designer.vb">
+      <DependentUpon>config_permisos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\configuraciones\config_permisos.aspx.vb">
+      <DependentUpon>config_permisos.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\configuraciones\master_config.Master.designer.vb">

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Configuración" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="confi_configurar.aspx.vb" Inherits="Reg_Merca_WebApp.configurar" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap Spinner Css -->
     <link href="../plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
@@ -7,7 +8,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">Configuración</a>
 </asp:Content>
- 
+
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -25,16 +26,19 @@
                 <i class="material-icons">settings</i>
                 <span>Configuraciones</span>
             </a>
-        </li>    
-
+        </li>
         <li>
-         
             <a href="config_avanz.aspx">
                 <i class="material-icons">manage_accounts</i>
                 <span>Configuracion Avanzada</span>
             </a>
         </li>
-
+        <li>
+            <a href="config_permisos.aspx">
+                <i class="material-icons-round">vpn_key</i>
+                <span>Permisos</span>
+            </a>
+        </li>
         <%ELSE %>
 
         <li class="active">
@@ -67,7 +71,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtEmpresa(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtEmpresa(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Nombre de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtEmpresa"
@@ -79,7 +83,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtAlias(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtAlias(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Alias de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtAlias"
@@ -94,7 +98,7 @@
                         <div class="col-sm-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txtRTN" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)" onkeyup="borrarespacios(this);" ID="txtRTN" runat="server" class="form-control"></asp:TextBox>
 
                                     <label class="form-label">RTN</label>
                                 </div>
@@ -102,7 +106,7 @@
                                     ErrorMessage="Ingrese el RTN de la empresa."
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
-                              
+
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -120,12 +124,12 @@
                                     ControlToValidate="txtEmail"
                                     ErrorMessage="El correo electronico no es valido."
                                     ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
-                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                 <asp:TextBox MaxLength="14"  onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttel" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)" onkeyup="borrarespacios(this);" ID="txttel" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Teléfono </label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txttel"
@@ -136,8 +140,8 @@
                                     Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                     ControlToValidate="txttel"
                                     ErrorMessage="El telefono  no es valido."
-                                    ValidationExpression="^\d{4}[-.\s]?\d{4}$"/>
-                                
+                                    ValidationExpression="^\d{4}[-.\s]?\d{4}$" />
+
                             </div>
                         </div>
                     </div>
@@ -145,21 +149,21 @@
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                 <asp:TextBox onkeypress="return txtDireccion(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtDireccion" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtDireccion(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtDireccion" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Dirección</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccion"
                                     ErrorMessage="Ingrese la dirección de la empresa."
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
-                                
+
 
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtADMIN_URL_WEB(event)" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txtADMIN_URL_WEB" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtADMIN_URL_WEB(event)" onkeydown="borrarespacios(this)" onkeyup="borrarespacios(this);" ID="txtADMIN_URL_WEB" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">URL WEB</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtADMIN_URL_WEB"
@@ -170,7 +174,7 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-sm-3 col-sm-offset-6 col-md-offset-6">
                             <asp:LinkButton ValidationGroup="novalidarconfig" Width="100%" runat="server" ID="bttLimpiar" type="button" class="btn bg-pink waves-effect">
@@ -184,9 +188,9 @@
                             <span>Guardar</span>
                             </asp:LinkButton>
                         </div>
-                        
+
                     </div>
-                    
+
 
                 </div>
             </div>

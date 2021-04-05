@@ -39,7 +39,7 @@ Public Class login
                     reContraLogin.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
                     txtContra.MaxLength = Application("ParametrosADMIN")(0)
 
-                    Using logo_imprimir As New ControlBitacora
+                    Using logo_imprimir As New ControlDB
                         Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
                     End Using
 

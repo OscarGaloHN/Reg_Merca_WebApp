@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="configuracion avanzada" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="config_avanz.aspx.vb" Inherits="Reg_Merca_WebApp.config_avanz" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap Spinner Css -->
     <link href="../plugins/jquery-spinner/css/bootstrap-spinner.css" rel="stylesheet">
 </asp:Content>
-     
+
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">configuracion avanzada</a>
 </asp:Content>
@@ -25,15 +26,20 @@
             </a>
         </li>
 
-        
-         <li class="active">
+
+        <li class="active">
             <a href="confi_avanz.aspx">
                 <i class="material-icons">manage_accounts</i>
                 <span>Configuracion Avanzada</span>
             </a>
         </li>
-        
-
+        <li>
+            <a href="config_permisos.aspx">
+                <i class="material-icons-round">vpn_key</i>
+                <span>Permisos</span>
+            </a>
+        </li>
+         
         <%ELSE %>
 
         <li class="active">
@@ -54,7 +60,7 @@
                     <h2 style="font-weight: bold">Configuraciones Avanzadas 
                         <small>Configuraciones </small>
                     </h2>
-    <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
+                    <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
                     <div class="row clearfix">
                         <div class="col-sm-4">
                             <div class="form-group form-float">
@@ -257,10 +263,10 @@
                             </asp:LinkButton>
                         </div>
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
