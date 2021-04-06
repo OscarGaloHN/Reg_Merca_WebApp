@@ -1,166 +1,147 @@
 ﻿Public Class items
     Inherits System.Web.UI.Page
+    'OBJETO #29
+    Private Property DataSetX As DataSet
+        Get
+            Return CType(Session("DataSetX"), DataSet)
+        End Get
+        Set(ByVal value As DataSet)
+            Session("DataSetX") = value
+        End Set
+    End Property
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'Using Parametros_Sistema As New ControlDB
-        '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        'End Using
 
-        ''PARAMETROS DE ADMINISTRADOR
-        'Using Parametros_admin As New ControlDB
-        '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        'End Using
+        Try
+            ''parametros de configuracion de sistema
+            'Using Parametros_Sistema As New ControlDB
+            '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+            'End Using
 
+            ''PARAMETROS DE ADMINISTRADOR
+            'Using Parametros_admin As New ControlDB
+            '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+            'End Using
 
-
-
-        'Try
-
-        '    If Session("user_idUsuario") = Nothing Then
-        '        Session.Abandon()
-        '        Response.Redirect("~/Inicio/login.aspx")
-        '    Else
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                Response.Redirect("~/Inicio/login.aspx")
 
 
-        '        Select Case Request.QueryString("iditems")
+                Select Case Request.QueryString("action")
+                    Case "new"
 
-        '            Case "update"
-
-
-        '                If Not IsPostBack Then
-
-        '                    Dim Ssql As String = String.Empty
-        '                    Ssql = "select * from DB_Nac_Merca.tbl_34_mercancias where id_merca =" & Request.QueryString("iditems") & ""
-
-        '                    Using con As New ControlDB
-        '                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        '                    End Using
-        '                    Dim registro As DataRow
-        '                    If Session("NumReg") > 0 Then
-        '                        'cargar txt
-        '                        registro = DataSetX.Tables(0).Rows(0)
-        '                        txtdeclarante.Text = registro("declarante")
-        '                        ddladuanadespacho.SelectedValue = registro("cod_aduana_ent")
-        '                        ddlregimenaduanero.SelectedValue = registro("id_regimen")
-        '                        txtrtnimp_exp.Text = registro("rtn_importador")
-        '                        txtimp_exp.Text = registro("nombre_importador")
-        '                        txtRTNagen_aduanera.Text = registro("rtn_agenciaadu")
-        '                        txtagen_aduanera.Text = registro("nombre_agenciaadu")
-        '                        txtmanifiestorap.Text = registro("manifiesto_entregarap")
-        '                        txtNproveedor.Text = registro("Id_proveedor")
-        '                        txtContra_proveedor.Text = registro("contrato_proveedor")
-        '                        txtDomicioProve.Text = registro("domicilio_proveed")
-        '                        txtNumPreimp.Text = registro("Numero_Preimpreso")
-        '                        txtEntidadMed.Text = registro("entidad_mediacion")
-        '                        ddldepositoalmacen.SelectedValue = registro("Id_almacen")
-        '                        ddladuanaingsal.SelectedValue = registro("cod_aduana_sal")
-        '                        ddlpaisesdeorigen.SelectedValue = registro("Cod_pais_org")
-        '                        ddlpaisprocedencia.SelectedValue = registro("Cod_pais_pro")
-        '                        ddlformadepago.SelectedValue = registro("id_pago")
-        '                        ddlcondicionentrega.SelectedValue = registro("id_condicion")
-        '                        ddladuanatransitodes.SelectedValue = registro("aduana_transdes")
-        '                        ddlmodalidadesp.SelectedValue = registro("modalidad_especial")
-        '                        ddldepositoaduana.SelectedValue = registro("deposito_aduanas")
-        '                        txtplazodiasmeses.Text = registro("plazo")
-        '                        txtrutatransito.Text = registro("ruta_transito")
-        '                        ddlmotivooper.SelectedValue = registro("motivo_operacion")
-        '                        txtobservacion.Text = registro("Observaciones")
-        '                        ddlclasebultos.SelectedValue = registro("Id_Clase_deBulto")
-        '                        txtcantbultos.Text = registro("cant_bultos")
-        '                        txtpesobrutobul.Text = registro("pesobruto_bultos")
-        '                        txttotalitems.Text = registro("canti_items")
-        '                        txttotalfact.Text = registro("Total_Factura")
-        '                        txttotalotrosgast.Text = registro("Total_Otros_gastos")
-        '                        txtttotalseg.Text = registro("Total_Seguro")
-        '                        txttotalflet.Text = registro("Total_Flete")
-        '                        ddldivisafact.SelectedValue = registro("divisa_factura")
-        '                        txttipodecambio.Text = registro("tipo_de_cambio")
-        '                        ddldivisaseg.SelectedValue = registro("divisa_seguro")
-        '                        ddldivisafl.SelectedValue = registro("divisa_flete")
-        '                    End If
-        '                End If
-        '            Case Else
-        '                Response.Redirect("~/modulos/declaracion_aduanera/creacion_proyectos.aspx")
-        '        End Select
-
-        '    End If
+                    Case "update"
 
 
+                        If Not IsPostBack Then
 
-        'Catch ex As Exception
+                            Dim Ssql As String = String.Empty
+                            Ssql = "select * from DB_Nac_Merca.tbl_34_mercancias where ID_Merca =" & Request.QueryString("iditems") & ""
 
-        'End Try
-    End Sub
+                            Using con As New ControlDB
+                                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                            End Using
+                            Dim registro As DataRow
+                            If Session("NumReg") > 0 Then
+                                'cargar txt
+                                registro = DataSetX.Tables(0).Rows(0)
+                                ddltipoitem.SelectedValue = registro("Id_Tipo_items")
+                                txtposarancel.Text = (registro("num_partida"))
+                                txttitulocurri.Text = registro("titulo_currier")
+                                txtmmatrizinsu.Text = registro("matriz_insumos")
+                                txtnrroitemasoc.Text = registro("item_asociado")
+                                txtdeclaracioancancel.Text = registro("declaracion_a_cancelar")
+                                txtnmeroitemcancel.Text = registro("item_a_cancelar")
+                                txtpesoneto.Text = registro("pesoneto")
+                                txtpesobruto.Text = registro("pesobruto")
+                                txtcantbltos.Text = registro("bultcant")
+                                ddlestadomerca.SelectedValue = registro("Estado_Merc")
+                                ddlpaisesdeorigeni.SelectedValue = registro("cod_pais_fab")
+                                ddlpaisproce.SelectedValue = registro("cod_pais_pro")
+                                ddlpaisadd.SelectedValue = registro("cod_pais_adq")
+                                ddlcuotaarancel.SelectedValue = registro("cuota_arancelaria")
+                                ddlunidacomer.SelectedValue = registro("Id_UnidadComercial")
+                                txtcantidadcomer.Text = registro("Cantidad_Comercial")
+                                ddlunidadestadis.SelectedValue = registro("Unidad_Estadistica")
+                                txtcantidadestadis.Text = registro("cantidad_estadistica")
+                                txtimportefact.Text = registro("importes_factura")
+                                txtimporteotros.Text = registro("importes_otrosgastos")
+                                txtseguro.Text = registro("importes_seguro")
+                                txtflete.Text = registro("importes_flete")
+                                txtajuste.Text = registro("ajuste_a_incluir")
+                                txtnumerocerti.Text = registro("numero_certificado_imp")
+                                txtconvenio.Text = registro("convenio_perfeccionamiento")
+                                txtexoneracionaduanera.Text = registro("exoneracion_aduanera")
+                                txtobservacion.Text = registro("observaciones")
+                                txtcomentario.Text = registro("comentario")
+                            End If
+                        End If
+                    Case Else
+                        ''bitacora de que salio de un form
+                        'If Not IsPostBack Then
+                        '    Using log_bitacora As New ControlBitacora
+                        '        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                        '    End Using
+                        'End If
 
-    Private Sub bttgaurdar_Click(sender As Object, e As EventArgs) Handles bttgaurdar.Click
-        '        Dim Ssql As String
-        '        Try
-        '            'inhabilita Panel de botones
-        '            pbotones.Enabled = True
+                        ''bitacora de que ingreso al form
+                        'Session("IDfrmQueIngresa") = 17
+                        'Session("NombrefrmQueIngresa") = "Mantenimiento de Aduanas"
+                        'If Not IsPostBack Then
+                        '    Using log_bitacora As New ControlBitacora
+                        '        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                        '    End Using
+                        'End If
 
-        '            Select Case Request.QueryString("action")
-        '                Case "new"
+                End Select
 
-        '                    Ssql = "Insert into DB_Nac_Merca.tbl_01_polizas 
-        '                  (declarante, cod_aduana_ent, Id_regimen, rtn_importador, nombre_importador, rtn_agenciaadu, nombre_agenciaadu, manifiesto_entregarap, Id_proveedor, contrato_proveedor,
-        'domicilio_proveed, Numero_Preimpreso, entidad_mediacion, Id_almacen, cod_aduana_sal, Cod_pais_org, Cod_pais_pro, id_pago, id_condicion, aduana_transdes, modalidad_especial, deposito_aduanas, plazo,
-        'ruta_transito, motivo_operacion, Observaciones, Id_Clase_deBulto, cant_bultos, pesobruto_bultos, canti_items, Total_Factura, Total_Otros_gastos, Total_Seguro, Total_Flete, divisa_factura, tipo_de_cambio,
-        'divisa_seguro, divisa_flete, Id_cliente) 
-        'values ('" & txtdeclarante.Text & "', '" & ddladuanadespacho.SelectedValue & "', " & ddlregimenaduanero.SelectedValue & ", '" & txtrtnimp_exp.Text & "', 
-        ' '" & txtimp_exp.Text & "','" & txtRTNagen_aduanera.Text & "','" & txtagen_aduanera.Text & "','" & txtmanifiestorap.Text & "','" & txtNproveedor.Text & "','" & txtContra_proveedor.Text & "'
-        ','" & txtDomicioProve.Text & "','" & txtNumPreimp.Text & "','" & txtEntidadMed.Text & "','" & ddldepositoalmacen.SelectedValue & "','" & ddladuanaingsal.SelectedValue & "'
-        ','" & ddlpaisesdeorigen.SelectedValue & "','" & ddlpaisprocedencia.SelectedValue & "','" & ddlformadepago.SelectedValue & "','" & ddlcondicionentrega.SelectedValue & "'
-        ','" & ddladuanatransitodes.SelectedValue & "','" & ddlmodalidadesp.SelectedValue & "','" & ddldepositoaduana.SelectedValue & "','" & txtplazodiasmeses.Text & "'
-        ','" & txtrutatransito.Text & "','" & ddlmotivooper.SelectedValue & "','" & txtobservacion.Text & "','" & ddlclasebultos.SelectedValue & "','" & txtcantbultos.Text & "'
-        ','" & txtpesobrutobul.Text & "','" & txttotalitems.Text & "','" & txttotalfact.Text & "','" & txttotalotrosgast.Text & "','" & txtttotalseg.Text & "','" & txttotalflet.Text & "'
-        ','" & ddldivisafact.SelectedValue & "','" & txttipodecambio.Text & "','" & ddldivisaseg.SelectedValue & "','" & ddldivisafl.SelectedValue & "', '" & cmbCliente.SelectedValue & "')"
-        '                    Using con As New ControlDB
-        '                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '                    End Using
+            End If
 
-        '                    'recupera el id de la caratura
+        Catch ex As Exception
 
-
-        '                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratura=" & "ID_CARATURA_CREADA")
-
-
-        '                    'Case "update"
-        '                    '    If txtCorreoElectronico.Text = HiddenCorreo.Value Then
-        '                    '        ''GUARDAR NORMAL
-        '                    '        'TERMINAR DE EDITAR 
-        '                    '        Ssql = "update tbl_02_usuarios set Nombre='" & txtNombre.Text & "',correo='" & txtCorreoElectronico.Text & "' where id_usuario =" & Request.QueryString("xuser") & ""
-        '                    '        Using con As New ControlDB
-        '                    '            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '                    '        End Using
-
-
-        '                    '        Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
-
-        '                    '    Else
+        End Try
 
 
 
-        '                    '        'COMPLETAR QRY UPDATE
-        '                    '        '    Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  Nombre='" & txtNombre.Text & "',  correo = '" & txtCorreoElectronico.Text & "' where id_usuario =" & Request.QueryString("xuser") & ""
-        '                    '        '    Using con As New ControlDB
-        '                    '        '        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '                    '        '    End Using
-
-        '                    '        'Ssql = "UPDATE DB_Nac_Merca.tbl_02_usuarios  SET  emailconfir = 0 where  id_usuario =" & Request.QueryString("xuser") & ""
-        '                    '        '    Using con As New ControlDB
-        '                    '        '        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '                    '        '    End Using
-
-
-        '                    '        Response.Redirect("~/modulos/gestion_usuario/config_usuarios.aspx?action=UsuarioActualizado")
-        '                    '        End If
-        '                    '    End If
-        '            End Select
-        '        Catch ex As Exception
-
-        '        End Try
 
     End Sub
 
+    Private Sub btt_guardar_Click(sender As Object, e As EventArgs) Handles btt_guardar.Click
+        Try
+            Dim Ssql As String = String.Empty
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_34_mercancias where Id_poliza = '" & Request.QueryString("idCaratula") & "' "
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+
+            Select Case Request.QueryString("action")
+                Case "new"
+                    Ssql = "Insert into DB_Nac_Merca.tbl_34_mercancias 
+(Id_Tipo_items,num_partida,titulo_currier,matriz_insumos,item_asociado,declaracion_a_cancelar,item_a_cancelar,
+pesoneto,pesobruto,bultcant,Estado_Merc,cod_pais_fab,cod_pais_pro,cod_pais_adq,cuota_arancelaria,Id_UnidadComercial,Cantidad_Comercial,
+Unidad_Estadistica,cantidad_estadistica,importes_factura,importes_otrosgastos,importes_seguro,importes_flete,ajuste_a_incluir,
+numero_certificado_imp,convenio_perfeccionamiento,exoneracion_aduanera,observaciones,comentario) 
+values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
+'" & txttitulocurri.Text & "', '" & txtmmatrizinsu.Text & "', '" & txtnrroitemasoc.Text & "', 
+'" & txtdeclaracioancancel.Text & "', '" & txtnmeroitemcancel.Text & "','" & txtpesoneto.Text & "','" & txtpesobruto.Text & "',
+'" & txtcantbltos.Text & "','" & ddlestadomerca.SelectedValue & "','" & ddlpaisesdeorigeni.SelectedValue & "','" & ddlpaisproce.SelectedValue & "',
+'" & ddlpaisadd.SelectedValue & "','" & ddlcuotaarancel.SelectedValue & "','" & ddlunidacomer.SelectedValue & "','" & txtcantidadcomer.Text & "',
+'" & ddlunidadestadis.SelectedValue & "','" & txtcantidadestadis.Text & "','" & txtimportefact.Text & "',
+'" & txtimporteotros.Text & "','" & txtseguro.Text & "','" & txtflete.Text & "',
+'" & txtajuste.Text & "','" & txtnumerocerti.Text & "','" & txtconvenio.Text & "',
+'" & txtexoneracionaduanera.Text & "','" & txtobservacion.Text & "','" & txtcomentario.Text & "')"
+
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+
+            End Select
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

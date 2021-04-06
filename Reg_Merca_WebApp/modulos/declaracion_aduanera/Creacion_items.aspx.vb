@@ -60,8 +60,12 @@
 
 
     Private Sub bttNuevo_Click(sender As Object, e As EventArgs) Handles bttNuevo.Click
-        'redirecciona a form caratula
-        Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?iditems=" & Request.QueryString("iditems"))
+        Try
+            'redirecciona a form items
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new")
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub btt_volver_Click(sender As Object, e As EventArgs) Handles btt_volver.Click

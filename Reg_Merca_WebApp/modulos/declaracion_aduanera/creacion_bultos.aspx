@@ -15,7 +15,9 @@
     <script src="../src/jsModales.js"></script>
 
 
-    <script type="text/javascript">
+  
+<script type="text/javascript">
+
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_txtmanifiesto').value = '';
             document.getElementById('ContentPrincipal_txt_trans').value = '';
@@ -26,9 +28,7 @@
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblbulto').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDbulto').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenmanifiesto').value = row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddentrans').value = row.cells[4].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenchkindicador').Checked = row.cells[5].innerHTML;
+
 
             xModal('red', 'ContentPrincipal_txtmanifiesto', 'modalDelete');
         }
@@ -36,7 +36,7 @@
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_txtmanifiestoEditar').value = '';
             document.getElementById('ContentPrincipal_txt_transEditar').value = '';
-            document.getElementById('ContentPrincipal_chkindicadorEditar').Checked = '';
+            document.getElementById('ContentPrincipal_chkindicadorEditar').value = '';
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenmanifiesto').value = row.cells[3].innerHTML;
@@ -48,7 +48,7 @@
                 document.getElementById('ContentPrincipal_txt_transEditar').value = row.cells[4].innerHTML;
             }
             if (row.cells[5].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txt_chkindicadorEditar').Checked = row.cells[5].innerHTML;
+                document.getElementById('ContentPrincipal_chkindicadorEditar').value = row.cells[5].innerHTML;
             }
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDbulto').value = row.cells[2].innerHTML;
@@ -56,7 +56,7 @@
             xModal('pink', 'ContentPrincipal_txtmanifiestoEditar', 'modalEditar');
         }
 
-    </script>
+</script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">Creacion de bultos</a>
@@ -80,9 +80,17 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="ContentPrincipal" runat="server">
+
+   <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
+
+
     <script type="text/javascript">
-        tituloImprimir = 'Listado de bultos'
+        tituloImprimir = 'Listado de Bultos'
         xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">
@@ -123,7 +131,7 @@
                                         <asp:BoundField DataField="manifiesto" HeaderText="Manifiesto" />
                                         <asp:BoundField DataField="titulo_transporte" HeaderText="Título de transporte" />
                                         <asp:BoundField DataField="indicador" HeaderText="Indicador" />
-                                        <%--<asp:BoundField DataField="id_poliza" HeaderText="Id_poliza" />--%>
+                                        <asp:BoundField DataField="id_poliza_bul" HeaderText="ID Póliza" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -152,8 +160,8 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Manifiesto" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txtmanifiesto" onkeypress="txNombres(event);"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);">></asp:TextBox>
+                                        <asp:TextBox placeholder="Manifiesto" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txtmanifiesto" onkeypress="isNumberOrLetter(evt) ;"
+                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtmanifiesto"
                                         ErrorMessage="Ingrese el manifiesto."
@@ -164,7 +172,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txt_trans" onkeypress="txNombres(event);"
+                                        <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txt_trans" onkeypress="isNumberOrLetter(evt) ;"
                                             onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);">></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="validartrans" ControlToValidate="txt_trans"
@@ -181,8 +189,8 @@
                                 <div class="switch">
                                     <label>
                                         NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkindicador" class="filled-in chk-col-teal " />
-                                        <span class="lever switch-col-teal"></span>
+                                    <input type="checkbox" name="CheckBox" runat="server" id="chkindicador" class="filled-in chk-col-pink " />
+                                        <span class="lever switch-col-pink"></span>
                                         SI
                                     </label>
 
@@ -214,10 +222,6 @@
                     <asp:Label runat="server" ID="lblbulto" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDbulto" />
                     <asp:HiddenField runat="server" ID="lblHiddenmanifiesto" />
-                    <asp:HiddenField runat="server" ID="lblHiddentrans" />
-                    <asp:HiddenField runat="server" ID="lblHiddenchkindicador" />
-
-
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
@@ -252,7 +256,9 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Manifiesto" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txtmanifiestoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Manifiesto" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" 
+                                            class="form-control" ID="txtmanifiestoEditar" onkeypress="isNumberOrLetter(evt)"
+                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtmanifiestoEditar"
                                         ErrorMessage="Ingrese el manifiesto."
@@ -263,7 +269,9 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txt_transEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txt_transEditar"
+                                            onkeypress="isNumberOrLetter(evt)" onkeydown="borrarespacios(this);BorrarRepetidas(this);" 
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txt_transEditar"
                                         ErrorMessage="Ingrese el nombre de título de transporte."
@@ -279,8 +287,8 @@
                                 <div class="switch">
                                     <label>
                                         NO
-                                     <input type="checkbox" name="CheckBox" runat="server" id="chkindicadorEditar" class="filled-in chk-col-grey" />
-                                        <span class="lever switch-col-grey"></span>
+                                     <input type="checkbox" name="CheckBox" runat="server" id="chkindicadorEditar" class="filled-in chk-col-pink " />
+                                        <span class="lever switch-col-teal"></span>
                                         SI
                                     </label>
                                 </div>

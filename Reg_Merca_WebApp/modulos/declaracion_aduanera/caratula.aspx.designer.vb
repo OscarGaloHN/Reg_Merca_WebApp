@@ -23,15 +23,6 @@ Partial Public Class caratula
     Protected WithEvents txtFechaCreacion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control txt_numproyec.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txt_numproyec As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''Control sqlestadopol.
     '''</summary>
     '''<remarks>
@@ -59,13 +50,13 @@ Partial Public Class caratula
     Protected WithEvents SqlClientes As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control cmbCliente.
+    '''Control ddlCliente.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents cmbCliente As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddlCliente As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control txtdeclarante.
@@ -203,22 +194,22 @@ Partial Public Class caratula
     Protected WithEvents txtmanifiestorap As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control txtNproveedor.
+    '''Control Sqlproveedor.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtNproveedor As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Sqlproveedor As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control RequiredFieldValidator7.
+    '''Control ddlproveedores.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents ddlproveedores As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control txtContra_proveedor.
@@ -455,22 +446,13 @@ Partial Public Class caratula
     Protected WithEvents txtrutatransito As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control sqlmotivooper.
+    '''Control txt_motivoperacion.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents sqlmotivooper As Global.System.Web.UI.WebControls.SqlDataSource
-
-    '''<summary>
-    '''Control ddlmotivooper.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ddlmotivooper As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txt_motivoperacion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control txtobservacion.

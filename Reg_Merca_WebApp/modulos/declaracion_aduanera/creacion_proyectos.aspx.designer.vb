@@ -14,13 +14,22 @@ Option Explicit On
 Partial Public Class creacion_proyectos
 
     '''<summary>
-    '''Control txtfecha_creacion.
+    '''Control HiddenLogo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtfecha_creacion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents HiddenLogo As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control HiddenEmpresa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''Control txt_cliente.
@@ -32,13 +41,22 @@ Partial Public Class creacion_proyectos
     Protected WithEvents txt_cliente As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control txt_estado.
+    '''Control sqlestadopol.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txt_estado As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents sqlestadopol As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
+    '''Control ddlestado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlestado As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control txt_usuario.

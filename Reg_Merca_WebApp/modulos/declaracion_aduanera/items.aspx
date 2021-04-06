@@ -47,7 +47,7 @@
                         <%--                    numero de items--%>
 
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <%--  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label"></label>
 
                             <div class="form-group form-float">
@@ -60,7 +60,7 @@
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
-                        </div>
+                        </div>--%>
 
 
 
@@ -77,6 +77,7 @@
                             <asp:DropDownList
                                 ID="ddltipoitem" runat="server" selectlistitem="seleccione" DataSourceID="sqltipoitems" class="form-control show-tick"
                                 DataTextField="Descripcion" DataValueField="Id_TipoItems" AppendDataBoundItems="true" ItemType="">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
 
                         </div>
@@ -101,7 +102,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txttitulocurri" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
-                                    <label class="form-label">Tituulo de Manifiesto Currier</label>
+                                    <label class="form-label">Titulo de Manifiesto Currier</label>
                                 </div>
                                 <%--  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtnummitem"
                                    <%--     ErrorMessage="Ingrese Numero de Item"
@@ -163,7 +164,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtnmeroitemcancel" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
-                                    <label class="form-label">Nro. de Item A</label>
+                                    <label class="form-label">Nro. de Item a Cancelar</label>
                                 </div>
                                 <%-- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtnummitem"
                                     ErrorMessage="Ingrese Numero de Item"
@@ -233,8 +234,9 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label">Estado Mercancia</label>
                             <asp:DropDownList
-                                ID="ddlestadoerca" runat="server" selectlistitem="seleccione" DataSourceID="sqlestadomerca" class="form-control show-tick"
+                                ID="ddlestadomerca" runat="server" selectlistitem="seleccione" DataSourceID="sqlestadomerca" class="form-control show-tick"
                                 DataTextField="Descripcion" DataValueField="Id_Estado" AppendDataBoundItems="true" ItemType="">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
 
                         </div>
@@ -253,6 +255,7 @@
                             <asp:DropDownList
                                 ID="ddlpaisesdeorigeni" runat="server" DataSourceID="sqlpaisdeorigeni" class="form-control show-tick"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
 
@@ -270,6 +273,7 @@
                             <asp:DropDownList
                                 ID="ddlpaisproce" runat="server" DataSourceID="sqlpaisprocedencia" class="form-control show-tick"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
 
@@ -287,6 +291,7 @@
                             <asp:DropDownList
                                 ID="ddlpaisadd" runat="server" DataSourceID="sqladquisicion" class="form-control show-tick"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
 
@@ -304,6 +309,7 @@
                             <asp:DropDownList
                                 ID="ddlcuotaarancel" runat="server" class="form-control show-tick"
                                 AppendDataBoundItems="true">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
 
@@ -326,6 +332,7 @@
                             <asp:DropDownList
                                 ID="ddlunidacomer" runat="server" DataSourceID="SqlDataSource1" class="form-control show-tick"
                                 DataTextField="Descripcion" DataValueField="Id_UnidadMed" AppendDataBoundItems="true">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
 
@@ -356,6 +363,7 @@
                             <asp:DropDownList
                                 ID="ddlunidadestadis" runat="server" DataSourceID="SqlDataSource2" class="form-control show-tick"
                                 DataTextField="Descripcion" DataValueField="Id_UnidadMed" AppendDataBoundItems="true">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
 
@@ -363,11 +371,11 @@
                             <label class="form-label"></label>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtunidadestadis" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
-                                    <label class="form-label">Numero de Item</label>
+                                    <asp:TextBox ID="txtcantidadestadis" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <label class="form-label">Cantidad Estadística</label>
                                 </div>
-                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtunidadestadis"
-                                    ErrorMessage="Ingrese Unidad Estadistica"
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtcantidadestadis"
+                                    ErrorMessage="Ingrese Cantidad Estadística"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
@@ -462,24 +470,24 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtnumerocerti" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
-                                    <label class="form-label">Numero de Certificado Importación</label>
+                                    <label class="form-label">N. de Certificado Importación</label>
                                 </div>
                             </div>
 
                         </div>
 
-                          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label"></label>
 
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtconvenio" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
-                                    <label class="form-label">Convenio Perfefccionamiento</label>
+                                    <label class="form-label">Convenio Perfeccionamiento</label>
                                 </div>
                             </div>
 
                         </div>
-                        
+
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label"></label>
 
@@ -493,26 +501,26 @@
                         </div>
 
                     </div>
-                     <div class="row clearfix">
+                    <div class="row clearfix">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtobservacion" runat="server" onkeyup="mayus(this)" class="form-control"></asp:TextBox>
                                     <label class="form-label">Observaciones</label>
                                 </div>
-                            
+
                             </div>
                         </div>
 
-                   
-                     
+
+
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox ID="txtcomentario" runat="server" onkeyup="mayus(this)" class="form-control"></asp:TextBox>
                                     <label class="form-label">Comentario</label>
                                 </div>
-                            
+
                             </div>
                         </div>
 
@@ -524,7 +532,7 @@
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
-                                ID="bttGuardar"
+                                ID="bttDocumentos"
                                 type="button"
                                 class="btn bg-teal waves-effect">
               <i class="material-icons">list</i>
@@ -547,22 +555,39 @@
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
-                                ID="LinkButton1"
+                                ID="bttComplementario"
                                 type="button"
                                 class="btn bg-teal waves-effect">
               <i class="material-icons">collections_bookmark</i>
               <span>Complementario</span>
                             </asp:LinkButton>
                         </div>
-                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+                        <div class="row clearfix">
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                <asp:LinkButton
+                                    Width="100%"
+                                    runat="server"
+                                    ID="btt_guardar"
+                                    type="button"
+                                    class="btn bg-teal waves-effect">
+          <i class="material-icons">save</i>
+          <span>Guardar</span>
+                                </asp:LinkButton>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
-                                ID="bttgaurdar"
+                                ID="bttVolver"
                                 type="button"
+                                ValidationGroup="Validarbttvolver"
                                 class="btn bg-teal waves-effect">
-              <i class="material-icons">collections_bookmark</i>
-              <span>Guardar</span>
+                                <i class="material-icons">undo</i>
+                                <span>Volver</span>
                             </asp:LinkButton>
                         </div>
 

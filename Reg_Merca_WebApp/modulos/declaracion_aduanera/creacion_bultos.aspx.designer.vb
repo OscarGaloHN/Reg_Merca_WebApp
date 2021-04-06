@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class creacion_bultos
 
     '''<summary>
+    '''Control HiddenLogo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenLogo As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control HiddenEmpresa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Control gvCustomers.
     '''</summary>
     '''<remarks>
@@ -111,24 +129,6 @@ Partial Public Class creacion_bultos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lblHiddenmanifiesto As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control lblHiddentrans.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblHiddentrans As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control lblHiddenchkindicador.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblHiddenchkindicador As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''Control bttEliminarbulto.
