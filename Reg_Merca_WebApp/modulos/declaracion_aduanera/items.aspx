@@ -72,7 +72,7 @@
                             ProviderName="MySql.Data.MySqlClient"
                             SelectCommand="SELECT Id_TipoItems, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_26_Tipo_Items order by rand() "></asp:SqlDataSource>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label class="form-label">Tipo de Item</label>
                             <asp:DropDownList
                                 ID="ddltipoitem" runat="server" selectlistitem="seleccione" DataSourceID="sqltipoitems" class="form-control show-tick"
@@ -82,7 +82,7 @@
 
                         </div>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label class="form-label"></label>
 
                             <div class="form-group form-float">
@@ -96,7 +96,7 @@
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label class="form-label"></label>
 
                             <div class="form-group form-float">
@@ -182,7 +182,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtpesoneto" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="7"></asp:TextBox>
+                                    <asp:TextBox ID="txtpesoneto" runat="server" onkeyup="SoloNumeros()" onkeydown="return noespacios(event)"  onkeypress="return onKeyDecimal(event,this)" class="form-control" MaxLength="7"></asp:TextBox>
                                     <label class="form-label">Peso Neto</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtpesoneto"
@@ -197,7 +197,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtpesobruto" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox ID="txtpesobruto" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
                                     <label class="form-label">Peso Bruto</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtpesobruto"
@@ -371,7 +371,7 @@
                             <label class="form-label"></label>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtcantidadestadis" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox ID="txtcantidadestadis" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="7"></asp:TextBox>
                                     <label class="form-label">Cantidad Estadística</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtcantidadestadis"
@@ -392,7 +392,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtimportefact" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox ID="txtimportefact" runat="server" onkeyup="SoloNumeros()"  onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Importe de Factura</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtimportefact"
@@ -407,7 +407,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtimporteotros" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox ID="txtimporteotros" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Importe Otros Gastos</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtimporteotros"
@@ -422,7 +422,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtseguro" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox ID="txtseguro" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Importe de Seguro</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtseguro"
@@ -437,7 +437,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtflete" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox ID="txtflete" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Importe Flete</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtflete"
@@ -456,7 +456,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtajuste" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox ID="txtajuste" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Ajuste a Incluir</label>
                                 </div>
 
@@ -505,7 +505,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtobservacion" runat="server" onkeyup="mayus(this)" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtobservacion" runat="server" onkeydown="return noespacios(event)"  onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control"></asp:TextBox>
                                     <label class="form-label">Observaciones</label>
                                 </div>
 
@@ -517,7 +517,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtcomentario" runat="server" onkeyup="mayus(this)" class="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtcomentario" runat="server" onkeydown="return noespacios(event)"  onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control"></asp:TextBox>
                                     <label class="form-label">Comentario</label>
                                 </div>
 
@@ -528,7 +528,7 @@
 
 
                     <div class="row clearfix">
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -539,7 +539,7 @@
               <span>Documentos</span>
                             </asp:LinkButton>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -551,7 +551,7 @@
                             </asp:LinkButton>
                         </div>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -562,9 +562,13 @@
               <span>Complementario</span>
                             </asp:LinkButton>
                         </div>
+                         </div>
 
-                        <div class="row clearfix">
-                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                 <div class="row clearfix">
+
+                      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                         </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <asp:LinkButton
                                     Width="100%"
                                     runat="server"
@@ -575,10 +579,10 @@
           <span>Guardar</span>
                                 </asp:LinkButton>
                             </div>
-                        </div>
+                      
 
 
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -591,11 +595,14 @@
                             </asp:LinkButton>
                         </div>
 
-                    </div>
+                      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                         </div>
+
+                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    
 
 
 </asp:Content>
