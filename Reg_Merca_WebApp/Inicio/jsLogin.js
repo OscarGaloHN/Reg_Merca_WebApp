@@ -158,7 +158,6 @@ function quitarEspacios(e) {
  
 }
 
-//QUITAR ESPACIOS CON TRIM
 
 function onKeyDecimal(e, thix) {
     var keynum = window.event ? window.event.keyCode : e.which;
@@ -169,5 +168,4 @@ function onKeyDecimal(e, thix) {
     if (keynum <= 47 || keynum >= 58) return false;
     return /\d/.test(String.fromCharCode(keynum));
 }
-
   

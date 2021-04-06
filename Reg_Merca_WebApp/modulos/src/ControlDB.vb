@@ -70,4 +70,17 @@ Public Class ControlDB
         End If
         Return arrayParametros
     End Function
+
+    Function ConvertirIMG(ByVal xPath As String)
+        Dim req As System.Net.WebRequest = System.Net.WebRequest.Create(xPath)
+        Dim response As System.Net.WebResponse = req.GetResponse()
+        Dim stream As IO.Stream = response.GetResponseStream()
+        'Dim img As System.Drawing.Image = System.Drawing.Image.FromStream(stream)
+        Dim fs As System.IO.Stream = response.GetResponseStream()
+        Dim br As New System.IO.BinaryReader(fs)
+        Dim bytes As Byte() = br.ReadBytes(CType(fs.Length, Integer))
+        Dim base64String As String = Convert.ToBase64String(bytes, 0, bytes.Length)
+        stream.Close()
+        Return base64String
+    End Function
 End Class

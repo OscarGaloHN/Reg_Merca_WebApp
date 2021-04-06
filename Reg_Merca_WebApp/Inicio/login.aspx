@@ -1,8 +1,8 @@
-﻿<%@ Page ValidateRequest="false"  Language="vb" AutoEventWireup="false" CodeBehind="login.aspx.vb" Inherits="Reg_Merca_WebApp.login" %>
+﻿<%@ Page ValidateRequest="false" Language="vb" AutoEventWireup="false" CodeBehind="login.aspx.vb" Inherits="Reg_Merca_WebApp.login" %>
 
 <!DOCTYPE html>
 <html>
- 
+
 <head runat="server">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -30,7 +30,7 @@
     <link href="../plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <script src="../plugins/sweetalert/sweetalert.min.js"></script>
     <script src="jsLogin.js"></script>
-
+    <script src="../modulos/src/jsTabla.js"></script>
 </head>
 
 
@@ -42,7 +42,9 @@
         </div>
         <div class="card">
             <div class="body">
+
                 <form runat="server">
+                    
                     <div class="msg">Iniciar Sesión</div>
                     <div class="row">
                         <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -53,7 +55,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);"  onkeydown="mayus(this);BorrarRepetidas(this);"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtUsuario" runat="server" class="form-control" onkeypress="soloLetras();" onkeyup="mayus(this);BorrarRepetidas(this);" onfocusout="mayus(this);" onkeydown="mayus(this);BorrarRepetidas(this);"></asp:TextBox>
                                     <label class="form-label">Usuario</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="ValiUser" ControlToValidate="txtUsuario"
@@ -78,7 +80,7 @@
                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <asp:TextBox onkeypress="return noespacios(event)"  ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox onkeypress="return noespacios(event)" ID="txtContra" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                         <label class="form-label">Contraseña</label>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtContra"
@@ -93,7 +95,7 @@
                             </div>
                             <div style="padding-top: 10px; padding-right: 40px;" class="col-xs-1">
                                 <div class="input-group">
-                                   <span>
+                                    <span>
                                         <i id="mostrarnueva" onmouseout="mouseOut('txtContra','mostrarnueva')" onmouseover="mouseOver('txtContra','mostrarnueva')" style="cursor: default" class="material-icons">visibility_off</i>
                                     </span>
                                 </div>
@@ -101,10 +103,10 @@
                         </div>
                         <div class="row">
                             <%If CBool(Application("ParametrosADMIN")(13)) = True Then  %>
-                                <div class="col-xs-8 p-t-5">
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
-                                    <label for="chkRecordar">Recordarme</label>
-                                </div>
+                            <div class="col-xs-8 p-t-5">
+                                <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
+                                <label for="chkRecordar">Recordarme</label>
+                            </div>
                             <%End If %>
                             <div class="col-xs-4">
                                 <asp:LinkButton onfocus="myFunctionfoco('txtUsuario')" ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
@@ -114,7 +116,7 @@
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-5">
                             <%If CBool(Application("ParametrosADMIN")(0)) = True Then  %>
-                               <a href="registro.aspx">Registrarse!</a>
+                            <a href="registro.aspx">Registrarse!</a>
                             <%End If %>
                         </div>
                         <div class="col-xs-7 align-right">

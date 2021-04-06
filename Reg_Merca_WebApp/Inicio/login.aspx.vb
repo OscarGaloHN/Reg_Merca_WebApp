@@ -1,4 +1,5 @@
 ﻿
+Imports System.Net
 Imports System.Net.Mail
 'OBJETO #3
 Public Class login
@@ -14,6 +15,7 @@ Public Class login
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+
             If Session("user_idUsuario") = Nothing Then
                 If IsPostBack = False Then
                     'parametros de configuracion de sistema
@@ -36,6 +38,10 @@ Public Class login
                     reContraLogin.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(18) & " -" & Application("ParametrosADMIN")(0) & ")."
                     reContraLogin.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(18) & "," & Application("ParametrosADMIN")(0) & "}$"
                     txtContra.MaxLength = Application("ParametrosADMIN")(0)
+
+                    Using logo_imprimir As New ControlDB
+                        Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
+                    End Using
 
                     bttEntrar.Focus()
                     Select Case Request.QueryString("action")
@@ -256,8 +262,8 @@ Public Class login
 
             End If
         Else
-                ''''comporbar si el usuario existe para saber si escribio mal la contrasñea
-                Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where usuario = BINARY  '" & txtUsuario.Text & "';"
+            ''''comporbar si el usuario existe para saber si escribio mal la contrasñea
+            Ssql = "SELECT  * FROM DB_Nac_Merca.tbl_02_usuarios   where usuario = BINARY  '" & txtUsuario.Text & "';"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count

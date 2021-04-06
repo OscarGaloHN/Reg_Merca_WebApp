@@ -58,4 +58,6 @@ Public Class ControlBitacora
         GME_Bitacora(Ssql, TipoConexion_Bitacora.Cx_Aduana)
         Return 0
     End Function
+
+
 End Class
