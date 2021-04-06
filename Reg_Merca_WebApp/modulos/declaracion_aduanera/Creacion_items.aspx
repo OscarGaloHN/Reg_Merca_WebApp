@@ -127,12 +127,12 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
 
-                                                <asp:BoundField DataField="Num_deItem" HeaderText="Numero de Item" />
+                                                <asp:BoundField DataField="ID_Merca" HeaderText="Numero de Item" />
                                                 <asp:BoundField DataField="num_partida" HeaderText="Partida Arancelaria" />
                                                 <asp:BoundField DataField="pesoneto" HeaderText="Peso Neto" />
                                                 <asp:BoundField DataField="cod_pais_fab" HeaderText="País de Origen" />
                                                 <asp:BoundField DataField="importes_factura" HeaderText="Importe factura" />
-                                                <asp:BoundField DataField="Id_Tipo_items" HeaderText="Tipo de Items" />
+                                               
 
                                             </Columns>
                                         </asp:GridView>
