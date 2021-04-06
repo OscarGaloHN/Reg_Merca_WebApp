@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Divisas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="Divisas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.Divisas_mant" %>
+﻿a<%@ Page Title="Divisas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="Divisas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.Divisas_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
          <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
