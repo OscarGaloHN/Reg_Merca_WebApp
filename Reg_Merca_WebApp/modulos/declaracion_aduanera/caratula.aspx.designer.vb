@@ -194,22 +194,22 @@ Partial Public Class caratula
     Protected WithEvents txtmanifiestorap As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control txtNproveedor.
+    '''Control Sqlproveedor.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtNproveedor As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Sqlproveedor As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control RequiredFieldValidator7.
+    '''Control ddlproveedores.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents ddlproveedores As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control txtContra_proveedor.
