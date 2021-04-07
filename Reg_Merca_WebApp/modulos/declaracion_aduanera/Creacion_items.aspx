@@ -1,16 +1,5 @@
-﻿<%@ Page Title="Creación de proyectos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_proyectos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_proyectos" %>
-
+﻿<%@ Page Title="Creacion de Items" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.Master" CodeBehind="Creacion_items.aspx.vb" Inherits="Reg_Merca_WebApp.Creacion_items" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-    <!-- Bootstrap Material Datetime Picker Css -->
-    <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
-
-    <!-- Bootstrap DatePicker Css -->
-    <link href="../../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-
-    <!-- Bootstrap Select Css -->
-    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
@@ -45,7 +34,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creación y listado de proyectos</a>
+    <a class="navbar-brand" href="#">Creación y listado de items</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -67,128 +56,62 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-    <asp:HiddenField ID="HiddenLogo" runat="server" />
-    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
-
-
     <script type="text/javascript">
-            tituloImprimir = 'Listado de Polizas'
+            tituloImprimir = 'Listado de polizas'
             xColumnas.push(1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-            xMargenes.push(100, 0, 100, 0)
-            xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
-            xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Listado de polizas
+                    <h2 style="font-weight: bold;">Listado de Items
          
-                        <small>A continuación se muestra el listado de polizas</small>
+                        <small>A continuación se muestra el listado de items</small>
                     </h2>
                 </div>
                 <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <h2 class="card-inside-title">Rango de Fecha</h2>
-                            <div class="input-daterange input-group" id="bs_datepicker_range_container">
-                                <div class="form-line">
-                                    <input name="dt_finicial" type="date" runat="server" class="form-control" placeholder="Fecha inicio">
-                                </div>
-                                <span class="input-group-addon">to</span>
-                                <div class="form-line">
-                                    <input name="dt_ffin" type="date" runat="server" class="form-control" placeholder="Fecha Fin">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group form-float">
-                                <label class="form-label"></label>
-                                <div class="form-line">
-                                    <asp:TextBox
-                                        AutoComplete="off"
-                                        ID="txt_cliente"
-                                        runat="server"
-                                        class="form-control">
-                                    </asp:TextBox>
-                                    <label class="form-label">Nombre del cliente</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
 
                     <div class="row clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <asp:SqlDataSource
-                                ID="sqlestadopol"
-                                runat="server"
-                                DataSourceMode="DataReader"
-                                ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
-                                ProviderName="MySql.Data.MySqlClient"
-                                SelectCommand="Select descripcion, id_estado from DB_Nac_Merca.tbl_19_estado where id_estado in (7,8)"></asp:SqlDataSource>
+                       
 
-                            <label class="form-label">Estado</label>
-                            <asp:DropDownList
-                                ID="ddlestado" runat="server" DataSourceID="sqlestadopol" class="form-control show-tick"
-                                DataTextField="descripcion" DataValueField="id_estado" AppendDataBoundItems="true" ItemType="">
-                                <asp:ListItem Value="Seleccione"></asp:ListItem>
-
-                            </asp:DropDownList>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group form-float">
-                                <label class="form-label"></label>
-                                <div class="form-line">
-                                    <asp:TextBox
-                                        AutoComplete="off"
-                                        ID="txt_usuario"
-                                        runat="server"
-                                        class="form-control">
-                                    </asp:TextBox>
-                                    <label class="form-label">Usuario</label>
-                                </div>
-                            </div>
-                        </div>
+                   
 
                         <div class="body">
                             <div class="row clearfix">
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                                        <asp:LinkButton
+                                            Width="100%"
+                                            runat="server"
+                                            ID="bttNuevo"
+                                            type="button"
+                                            class="btn bg-teal waves-effect">
+          <i class="material-icons">add</i>
+          <span>Nuevo</span>
+                                        </asp:LinkButton>
+
+                                    </div>
+
+
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
                                     <asp:LinkButton
                                         Width="100%"
                                         runat="server"
-                                        ID="btt_buscar"
+                                        ID="btt_volver"
                                         type="button"
                                         class="btn bg-teal waves-effect">
           <i class="material-icons">search</i>
-          <span>Buscar</span>
+          <span>Volver</span>
                                     </asp:LinkButton>
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                                    <asp:LinkButton
-                                        Width="100%"
-                                        runat="server"
-                                        ID="btt_limpiar"
-                                        type="button"
-                                        class="btn bg-teal waves-effect">
-          <i class="material-icons">refresh</i>
-          <span>Limpiar</span>
-                                    </asp:LinkButton>
-                                </div>
+             
 
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                                    <asp:LinkButton
-                                        Width="100%"
-                                        runat="server"
-                                        ID="bttNuevo"
-                                        type="button"
-                                        class="btn bg-teal waves-effect">
-          <i class="material-icons">add</i>
-          <span>Nuevo</span>
-                                    </asp:LinkButton>
 
-                                </div>
+
+                               
+                                
+                               
                             </div>
 
                             <div class="row clearfix">
@@ -197,19 +120,19 @@
                                         <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                             Width="100%">
                                             <Columns>
-                                                <asp:BoundField HeaderText="Editar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='caratula.aspx?idCaratula={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                                <asp:BoundField HeaderText="Editar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
                                                 <%--                                            <asp:TemplateField HeaderText="Eliminar">
                                                 <ItemTemplate>
                                                     <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
 
-                                                <asp:BoundField DataField="id_poliza" HeaderText="ID" />
-                                                <%--<asp:BoundField DataField="Num_embarque" HeaderText="Embarque" />--%>
-                                                <asp:BoundField DataField="fecha_creacion" HeaderText="Fecha creacion" />
-                                                <asp:BoundField DataField="nombrec" HeaderText="Cliente" />
-                                                <asp:BoundField DataField="descripcion" HeaderText="Estado" />
-                                                <asp:BoundField DataField="nombre" HeaderText="Usuario" />
+                                                <asp:BoundField DataField="Num_deItem" HeaderText="Numero de Item" />
+                                                <asp:BoundField DataField="num_partida" HeaderText="Partida Arancelaria" />
+                                                <asp:BoundField DataField="pesoneto" HeaderText="Peso Neto" />
+                                                <asp:BoundField DataField="cod_pais_fab" HeaderText="País de Origen" />
+                                                <asp:BoundField DataField="importes_factura" HeaderText="Importe factura" />
+                                                <asp:BoundField DataField="Id_Tipo_items" HeaderText="Tipo de Items" />
 
                                             </Columns>
                                         </asp:GridView>

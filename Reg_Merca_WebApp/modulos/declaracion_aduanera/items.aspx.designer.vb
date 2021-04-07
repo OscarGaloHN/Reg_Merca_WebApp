@@ -14,24 +14,6 @@ Option Explicit On
 Partial Public Class items
 
     '''<summary>
-    '''Control txtnummitem.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtnummitem As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control RequiredFieldValidator4.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''Control sqltipoitems.
     '''</summary>
     '''<remarks>
@@ -176,13 +158,13 @@ Partial Public Class items
     Protected WithEvents sqlestadomerca As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control ddlestadoerca.
+    '''Control ddlestadomerca.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ddlestadoerca As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddlestadomerca As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control sqlpaisdeorigeni.
@@ -302,13 +284,13 @@ Partial Public Class items
     Protected WithEvents ddlunidadestadis As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control txtunidadestadis.
+    '''Control txtcantidadestadis.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtunidadestadis As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtcantidadestadis As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator7.
@@ -446,13 +428,13 @@ Partial Public Class items
     Protected WithEvents txtcomentario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control bttGuardar.
+    '''Control bttDocumentos.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttDocumentos As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control bttNuevo.
@@ -464,11 +446,29 @@ Partial Public Class items
     Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control LinkButton1.
+    '''Control Complementario.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LinkButton1 As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents Complementario As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control btt_guardar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btt_guardar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control bttVolver.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
 End Class

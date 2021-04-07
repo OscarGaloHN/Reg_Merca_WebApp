@@ -230,6 +230,7 @@
     <Content Include="modulos\declaracion_aduanera\caratula.aspx" />
     <Content Include="modulos\declaracion_aduanera\creacion_bultos.aspx" />
     <Content Include="modulos\declaracion_aduanera\creacion_documentos.aspx" />
+    <Content Include="modulos\declaracion_aduanera\Creacion_items.aspx" />
     <Content Include="modulos\declaracion_aduanera\creacion_proyectos.aspx" />
     <Content Include="modulos\declaracion_aduanera\items.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx" />
@@ -344,10 +345,10 @@
     <Content Include="modulos\perfil_usuario\master_perfil.Master" />
     <Content Include="00_Pruebas\WebForm1.aspx" />
     <Content Include="modulos\mantenimiento\master_mantenimiento.Master" />
-    <Content Include="modulos\declaracion_aduanera\master_registros.Master" />
     <Content Include="modulos\reportes\fuentes\DSClientes.xsc">
       <DependentUpon>DSClientes.xsd</DependentUpon>
     </Content>
+    <Content Include="modulos\declaracion_aduanera\master_registros.Master" />
     <None Include="modulos\reportes\fuentes\DSClientes.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -1143,6 +1144,13 @@
     </Compile>
     <Compile Include="modulos\declaracion_aduanera\creacion_documentos.aspx.vb">
       <DependentUpon>creacion_documentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\Creacion_items.aspx.designer.vb">
+      <DependentUpon>Creacion_items.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\Creacion_items.aspx.vb">
+      <DependentUpon>Creacion_items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\declaracion_aduanera\creacion_proyectos.aspx.designer.vb">
