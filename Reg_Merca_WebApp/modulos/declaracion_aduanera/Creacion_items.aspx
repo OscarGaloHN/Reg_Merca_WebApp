@@ -120,16 +120,16 @@
                                         <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                             Width="100%">
                                             <Columns>
-                                                <asp:BoundField HeaderText="Editar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                              <%-- <%--    <asp:BoundField HeaderText="Editar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='caratula.aspx?idCaratula={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
                                                 <%--                                            <asp:TemplateField HeaderText="Eliminar">
                                                 <ItemTemplate>
                                                     <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
 
-                                                <asp:BoundField DataField="ID_Merca" HeaderText="Numero de Item" />
-                                                <asp:BoundField DataField="num_partida" HeaderText="Partida Arancelaria" />
-                                                <asp:BoundField DataField="pesoneto" HeaderText="Peso Neto" />
+                                                <asp:BoundField DataField="numero_item" HeaderText="Numero de Item" />
+                                                <asp:BoundField DataField="pesoneto" HeaderText="peso neto" />
+                                                <asp:BoundField DataField="num_partida" HeaderText="Numero de Partida" />
                                                 <asp:BoundField DataField="cod_pais_fab" HeaderText="País de Origen" />
                                                 <asp:BoundField DataField="importes_factura" HeaderText="Importe factura" />
                                                

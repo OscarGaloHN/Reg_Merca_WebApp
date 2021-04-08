@@ -79,6 +79,8 @@
                                 DataTextField="Descripcion" DataValueField="Id_TipoItems" AppendDataBoundItems="true" ItemType="">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
+                            <asp:RequiredFieldValidator id="idvalidarddl"
+                             ControlToValidate="ddltipoitem" InitialValue="Seleccione" ErrorMessage="selecciones datos" ForeColor="OrangeRed" Font-Size="X-Small" runat="server"/>
 
                         </div>
 

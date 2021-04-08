@@ -120,7 +120,7 @@
             Select Case Request.QueryString("action")
                 Case "new"
                     Ssql = "Insert into DB_Nac_Merca.tbl_34_mercancias 
-(Id_Tipo_items,num_partida,titulo_currier,matriz_insumos,item_asociado,declaracion_a_cancelar,item_a_cancelar,
+(numero_item,Id_Tipo_items,num_partida,titulo_currier,matriz_insumos,item_asociado,declaracion_a_cancelar,item_a_cancelar,
 pesoneto,pesobruto,bultcant,Estado_Merc,cod_pais_fab,cod_pais_pro,cod_pais_adq,cuota_arancelaria,Id_UnidadComercial,Cantidad_Comercial,
 Unidad_Estadistica,cantidad_estadistica,importes_factura,importes_otrosgastos,importes_seguro,importes_flete,ajuste_a_incluir,
 numero_certificado_imp,convenio_perfeccionamiento,exoneracion_aduanera,observaciones,comentario) 

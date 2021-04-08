@@ -32,6 +32,15 @@ Partial Public Class items
     Protected WithEvents ddltipoitem As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control idvalidarddl.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents idvalidarddl As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txtposarancel.
     '''</summary>
     '''<remarks>
