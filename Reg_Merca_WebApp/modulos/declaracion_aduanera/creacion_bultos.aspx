@@ -16,7 +16,7 @@
 
 
   
-<script type="text/javascript">
+<script type="text/javascript"> 
 
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_txtmanifiesto').value = '';
