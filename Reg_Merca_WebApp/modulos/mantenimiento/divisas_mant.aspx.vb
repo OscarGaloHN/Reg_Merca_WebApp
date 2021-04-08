@@ -75,7 +75,8 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Divisas','La Divisa ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_29_Divisas` SET `Descripcion` = '" & txtdescripcionEditar.Text & "', `Total_Factura` = '" & txttotalfacturaEditar.Text & "', `Total_Flete` = " & txttotalfleteEditar.Text & ", `Total_Seguro` = '" & txttotalseguroEditar.Text & "', `Total_Otros_gastos` = '" & txttotalotrosEditar.Text & "' WHERE `Id_Divisas` = " & lblHiddenIDdivisas.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_29_Divisas` SET `Descripcion` = '" & txtdescripcionEditar.Text & "'  WHERE `Id_Divisas` = " & lblHiddenIDdivisas.Value & ";"
+                '`Total_Factura` = '" & txttotalfacturaEditar.Text & "', `Total_Flete` = " & txttotalfleteEditar.Text & ", `Total_Seguro` = '" & txttotalseguroEditar.Text & "', `Total_Otros_gastos` = '" & txttotalotrosEditar.Text & "'
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
@@ -100,7 +101,8 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Divisas','La divisa ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_29_Divisas` (`Descripcion`,`Total_Factura`,`Total_Flete`,`Total_Seguro`,`Total_Otros_gastos`) VALUES ('" & txtdescripcion.Text & "','" & txttotalfactura.Text & "','" & txttotalflete.Text & "','" & txttotalseguro.Text & "','" & txttotalotros.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_29_Divisas` (`Descripcion`) VALUES ('" & txtdescripcion.Text & "');"
+                ',`Total_Factura`,`Total_Flete`,`Total_Seguro`,`Total_Otros_gastos`  '" & txttotalfactura.Text & "','" & txttotalflete.Text & "','" & txttotalseguro.Text & "','" & txttotalotros.Text & "'
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
