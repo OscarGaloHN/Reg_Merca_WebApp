@@ -1,4 +1,4 @@
-﻿a<%@ Page Title="Divisas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="Divisas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.Divisas_mant" %>
+﻿<%@ Page Title="Divisas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="Divisas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.Divisas_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
          <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -17,10 +17,10 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_txtdescripcion').value = '';
-            document.getElementById('ContentPrincipal_txttotalfactura').value = '';
-            document.getElementById('ContentPrincipal_txttotalflete').value = '';
-            document.getElementById('ContentPrincipal_txttotalseguro').value = '';
-            document.getElementById('ContentPrincipal_txttotalotros').value = '';
+            //document.getElementById('ContentPrincipal_txttotalfactura').value = '';
+            //document.getElementById('ContentPrincipal_txttotalflete').value = '';
+            //document.getElementById('ContentPrincipal_txttotalseguro').value = '';
+            //document.getElementById('ContentPrincipal_txttotalotros').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
@@ -33,10 +33,10 @@
 
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
-            document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = '';
-            document.getElementById('ContentPrincipal_txttotalfleteEditar').value = '';
-            document.getElementById('ContentPrincipal_txttotalseguroEditar').value = '';
-            document.getElementById('ContentPrincipal_txttotalotrosEditar').value = '';
+            //document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = '';
+            //document.getElementById('ContentPrincipal_txttotalfleteEditar').value = '';
+            //document.getElementById('ContentPrincipal_txttotalseguroEditar').value = '';
+            //document.getElementById('ContentPrincipal_txttotalotrosEditar').value = '';
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenNombreDivisas').value = row.cells[3].innerHTML;
@@ -44,15 +44,15 @@
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
             }
-            if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = row.cells[4].innerHTML;
-            }
-            if (row.cells[5].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txttotalfleteEditar').value = row.cells[5].innerHTML;
-            }
-            if (row.cells[6].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txttotalotrosEditar').value = row.cells[6].innerHTML;
-            }
+            //if (row.cells[4].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = row.cells[4].innerHTML;
+            //}
+            //if (row.cells[5].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_txttotalfleteEditar').value = row.cells[5].innerHTML;
+            //}
+            //if (row.cells[6].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_txttotalotrosEditar').value = row.cells[6].innerHTML;
+            //}
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDdivisas').value = row.cells[2].innerHTML;
             }
@@ -214,10 +214,10 @@
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Id_Divisas" HeaderText="ID" />
                                         <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
-                                        <asp:BoundField DataField="Total_Factura" HeaderText="Total Factura" />
+                                        <%--<asp:BoundField DataField="Total_Factura" HeaderText="Total Factura" />
                                         <asp:BoundField DataField="Total_Flete" HeaderText="Total Flete" />
                                         <asp:BoundField DataField="Total_Seguro" HeaderText="Total Seguro" />
-                                        <asp:BoundField DataField="Total_Otros_gastos" HeaderText="Total Otros Gastos" />
+                                        <asp:BoundField DataField="Total_Otros_gastos" HeaderText="Total Otros Gastos" />--%>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -254,7 +254,7 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <%--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalfactura" runat="server" class="form-control"></asp:TextBox>
@@ -267,10 +267,10 @@
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                               
                             </div>
-                            </div>
+                            </div>--%>
 
                         </div>
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                <div class="form-group form-float">
                                 <div class="form-line">
@@ -315,7 +315,7 @@
                             </div>
 
 
-                        </div>
+                        </div>--%>
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttGuardarDivisa" ValidationGroup="Validadivisa" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
@@ -383,7 +383,7 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="Total Factura" AutoComplete="off" ValidationGroup="ValidadivisaEditar" runat="server" class="form-control" ID="txttotalfacturaEditar"></asp:TextBox>
@@ -393,10 +393,10 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidadivisaEditar" />
                                 </div>
-                            </div>
+                            </div>--%>
 
                         </div>
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -431,7 +431,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div>--%>
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidadivisaEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
