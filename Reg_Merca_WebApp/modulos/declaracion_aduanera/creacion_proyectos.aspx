@@ -19,11 +19,11 @@
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
     <script src="../src/jsTabla.js"></script>
 
 
-    <script src="../src/jsModales.js"></script>
+   <%-- <script src="../src/jsModales.js"></script>
 
 
     <script type="text/javascript">
@@ -41,7 +41,7 @@
 
             document.getElementById('ContentPrincipal_lblnombre').innerHTML = row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblid').value = row.cells[2].innerHTML;
-    </script>
+    </script>--%>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
