@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class estadomerc_mant
+Partial Public Class nivelcomerc_mant
 
     '''<summary>
     '''Control gvCustomers.
@@ -30,24 +30,6 @@ Partial Public Class estadomerc_mant
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''Control txtId_Estado.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtId_Estado As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control RequiredFieldValidator1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtdescripcion.
@@ -77,13 +59,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents bttGuardarEstado As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblestado.
+    '''Control lblEstado.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblestado As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblEstado As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control lblHiddenIDestado.
@@ -122,24 +104,6 @@ Partial Public Class estadomerc_mant
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtId_EstadoEditar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtId_EstadoEditar As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control RequiredFieldValidator3.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''Control txtdescripcionEditar.
     '''</summary>
     '''<remarks>
@@ -149,13 +113,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents txtdescripcionEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control RequiredFieldValidator4.
+    '''Control RequiredFieldValidator3.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control bttModificar.
