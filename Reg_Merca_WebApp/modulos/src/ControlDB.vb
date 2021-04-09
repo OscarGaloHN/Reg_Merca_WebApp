@@ -1,4 +1,5 @@
 Imports MySql.Data.MySqlClient
+Imports System.Web
 Public Class ControlDB
     Implements IDisposable
     Public Enum TipoConexion
@@ -28,6 +29,23 @@ Public Class ControlDB
         'Dim conn As String = ConfigurationManager.ConnectionStrings("Cstr_6").ConnectionString
         'Dim con As SqlConnection = New SqlConnection(conn)
         Return Ssql
+    End Function
+    Function GME_Recuperar_ID(ByRef Ssql As String, ByRef Tipo As TipoConexion)
+        Using con As New MySqlConnection(GetCadenaConexion(Tipo))
+            con.Open()
+            Dim command As MySqlCommand
+            'Dim Adapter As MySqlDataAdapter = New MySqlDataAdapter()
+            command = New MySqlCommand(Ssql, con)
+            'Adapter.InsertCommand = New MySqlCommand(Ssql, con)
+            HttpContext.Current.Session("GME_Recuperar_ID") = CInt(command.ExecuteScalar())
+            'Adapter.InsertCommand.ExecuteNonQuery()
+            'HttpContext.Current.Session("GME_Recuperar_ID") = CInt(command.LastInsertedId())
+            command.Dispose()
+            con.Close()
+        End Using
+        Return True
+        'Dim conn As String = ConfigurationManager.ConnectionStrings("Cstr_6").ConnectionString
+        'Dim con As SqlConnection = New SqlConnection(conn)
     End Function
     Function SelectX(ByRef Ssql As String, ByRef Tipo As TipoConexion)
         Dim ds As DataSet = New DataSet()
@@ -69,5 +87,18 @@ Public Class ControlDB
             Next
         End If
         Return arrayParametros
+    End Function
+
+    Function ConvertirIMG(ByVal xPath As String)
+        Dim req As System.Net.WebRequest = System.Net.WebRequest.Create(xPath)
+        Dim response As System.Net.WebResponse = req.GetResponse()
+        Dim stream As IO.Stream = response.GetResponseStream()
+        'Dim img As System.Drawing.Image = System.Drawing.Image.FromStream(stream)
+        Dim fs As System.IO.Stream = response.GetResponseStream()
+        Dim br As New System.IO.BinaryReader(fs)
+        Dim bytes As Byte() = br.ReadBytes(CType(fs.Length, Integer))
+        Dim base64String As String = Convert.ToBase64String(bytes, 0, bytes.Length)
+        stream.Close()
+        Return base64String
     End Function
 End Class
