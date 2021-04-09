@@ -90,6 +90,14 @@
                             DataTextField="nombrec" DataValueField="Id_cliente" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddlClientev"
+                            ControlToValidate="ddlCliente"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                 </div>
 
@@ -126,8 +134,16 @@
                         <asp:DropDownList
                             ID="ddladuanadespacho" AutoComplete="off" runat="server" selectlistitem="seleccione" DataSourceID="Sqladuanadespacho" class="form-control show-tick"
                             DataTextField="Nombre_aduana" DataValueField="Id_Aduana" AppendDataBoundItems="true" ItemType="">
-                            <asp:ListItem Value="Seleccione"></asp:ListItem>    
+                            <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddladuanadespachov"
+                            ControlToValidate="ddladuanadespacho"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
 
                     </div>
 
@@ -208,7 +224,8 @@
                 <%-- TERMINAR DE AGREGAR VALIDACIONES APARTIR DE AQUI--%>
                 <div class="row clearfix">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float"><label class="form-label"></label>
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
                             <div class="form-line">
                                 <asp:TextBox MaxLength="17" ID="txtmanifiestorap" AutoComplete="off" runat="server"
                                     class="form-control" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
@@ -232,7 +249,7 @@
                     </div>--%>
 
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        
+
                         <asp:SqlDataSource
                             ID="Sqlproveedor"
                             runat="server"
@@ -248,14 +265,20 @@
                             DataTextField="nombre" DataValueField="Id_proveedor" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddlproveedoresv"
+                            ControlToValidate="ddlproveedores"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
 
 
-
-
-
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float"><label class="form-label"></label>
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
                             <div class="form-line">
                                 <asp:TextBox MaxLength="17" ID="txtContra_proveedor" AutoComplete="off" runat="server" onkeydown="BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
                                 <label class="form-label">Contrato Proveedor Destinatario</label>
@@ -264,7 +287,8 @@
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float"><label class="form-label"></label>
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
                             <div class="form-line">
                                 <asp:TextBox ID="txtDomicioProve" AutoComplete="off" runat="server" class="form-control" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                 <label class="form-label">Domicilio del Proveedor</label>
@@ -316,6 +340,14 @@
                             DataTextField="Nombre" DataValueField="Id_almacen" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddldepositoalmacenv"
+                            ControlToValidate="ddldepositoalmacen"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
 
                     <asp:SqlDataSource
@@ -333,6 +365,14 @@
                             DataTextField="Nombre_aduana" DataValueField="Id_Aduana" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddladuanaingsalv"
+                            ControlToValidate="ddladuanaingsal"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                 </div>
 
@@ -352,6 +392,14 @@
                             DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddlpaisesdeorigenv"
+                            ControlToValidate="ddlpaisesdeorigen"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
 
                     <asp:SqlDataSource
@@ -369,6 +417,14 @@
                             DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddlpaisprocedenciav"
+                            ControlToValidate="ddlpaisprocedencia"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                     <asp:SqlDataSource
                         ID="sqlformadepago"
@@ -385,6 +441,14 @@
                             DataTextField="Nombre_Pago" AutoComplete="off" DataValueField="Id_Pago" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddlformadepagov"
+                            ControlToValidate="ddlformadepago"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                     <asp:SqlDataSource
                         ID="sqlcondicionentrega"
@@ -401,6 +465,14 @@
                             DataTextField="Nombre_condicion" DataValueField="Id_condicion" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddlcondicionentregav"
+                            ControlToValidate="ddlcondicionentrega"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                 </div>
                 <div class="row clearfix">
@@ -420,6 +492,14 @@
                             DataTextField="Nombre_aduana" DataValueField="Id_Aduana" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                         <asp:RequiredFieldValidator
+                            ID="ddladuanatransitodesv"
+                            ControlToValidate="ddladuanatransitodes"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
 
                     <asp:SqlDataSource
@@ -437,6 +517,14 @@
                             DataTextField="Nombre_modalidad" DataValueField="Id_Modalidad" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                         <asp:RequiredFieldValidator
+                            ID="ddlmodalidadespv"
+                            ControlToValidate="ddlmodalidadesp"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                     <asp:SqlDataSource
                         ID="sqldepositoaduana"
@@ -453,6 +541,14 @@
                             DataTextField="Nombre" DataValueField="Id_almacen" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                          <asp:RequiredFieldValidator
+                            ID="ddldepositoaduanav"
+                            ControlToValidate="ddldepositoaduana"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                     <%--  PENDIENTE CAMBIAR A UN DATETIME--%>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -512,6 +608,15 @@
                             DataTextField="Descripción" DataValueField="Id_Clase_deBulto" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="ddlclasebultosv"
+                            ControlToValidate="ddlclasebultos"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
+
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -599,6 +704,14 @@
                             DataTextField="Descripcion" DataValueField="Id_Divisas" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                         <asp:RequiredFieldValidator
+                            ID="ddldivisafactv"
+                            ControlToValidate="ddldivisafact"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -626,6 +739,14 @@
                             DataTextField="Descripcion" DataValueField="Id_Divisas" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                          <asp:RequiredFieldValidator
+                            ID="ddldivisasegv"
+                            ControlToValidate="ddldivisaseg"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                     <asp:SqlDataSource
                         ID="sqldivisaflet"
@@ -642,6 +763,14 @@
                             DataTextField="Descripcion" DataValueField="Id_Divisas" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                          <asp:RequiredFieldValidator
+                            ID="ddldivisaflv"
+                            ControlToValidate="ddldivisafl"
+                            InitialValue="Seleccione"
+                            ErrorMessage="selecciones datos"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                 </div>
 

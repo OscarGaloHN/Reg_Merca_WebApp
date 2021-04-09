@@ -32,6 +32,15 @@ Partial Public Class items
     Protected WithEvents ddltipoitem As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control idvalidarddl.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents idvalidarddl As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txtposarancel.
     '''</summary>
     '''<remarks>
@@ -446,13 +455,13 @@ Partial Public Class items
     Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control Complementario.
+    '''Control bttComplementario.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Complementario As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttComplementario As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btt_guardar.

@@ -27,11 +27,11 @@
         Try
 
 
-            ''If Session("user_idUsuario") = Nothing Then
-            '    Session.Abandon()
-            '    Response.Redirect("~/Inicio/login.aspx")
-            'Else
-            'End If
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
+            End If
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, a.presencia, a.id_poliza_doc, b.Descripcion
@@ -84,19 +84,19 @@
 
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza_doc = '" & Request.QueryString("idCaratula") & "' and Id_Documento = '" & ddldocumentos.SelectedValue & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza_doc = '" & Request.QueryString("idCaratula") & "' and Referencia = '" & txtreferencia.Text & "' "
+
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','La referencia ya esta registrada.', 'error');</script>")
             Else
                 If chkPresencia.Checked = True Then
                     Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '1');"
                 Else
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '0');
-"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '0');"
 
                 End If
                 Using con As New ControlDB
@@ -107,13 +107,6 @@
                 'End Using
                 Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=newdocumento&idCaratula=" & Request.QueryString("idCaratula"))
             End If
-
-            'habilitar indicador
-            'If chkindicador.Checked = True Then
-            '    Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = 'TRUE' where id_parametro =35"
-            'Else
-            '    Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = 'FALSE' where id_parametro =35"
-            'End If
 
 
 
@@ -143,8 +136,9 @@
 
         Try
             Dim Ssql As String = String.Empty
-            If txtreferenciaEditar.Text <> lblHiddenIDDocumento.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where where manifiesto = BINARY  '" & txtreferenciaEditar.Text & "' "
+            If dddocumentoEditar.SelectedValue <> lblHiddendddocumento.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where Id_Documento= " & lblHiddenIDDocumento.value
+
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -156,7 +150,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El documento ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & ddldocumentos.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+                Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

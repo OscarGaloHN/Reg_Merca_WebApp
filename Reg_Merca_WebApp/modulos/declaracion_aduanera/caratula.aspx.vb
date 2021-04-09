@@ -153,20 +153,34 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 '" & txtcantbultos.Text & "','" & txtpesobrutobul.Text & "','" & txttotalitems.Text & "','" & txttotalfact.Text & "',
 '" & txttotalotrosgast.Text & "','" & txtttotalseg.Text & "','" & txttotalflet.Text & "','" & ddldivisafact.SelectedValue & "',
 '" & txttipodecambio.Text & "','" & ddldivisaseg.SelectedValue & "','" & ddldivisafl.SelectedValue & "',
-'" & Session("user_idUsuario") & "', '" & Session("idCaratula") & "');  SELECT LAST_INSERT_ID();"
+'" & Session("user_idUsuario") & "', '" & Session("idCaratula") & "')"
 
 
 
                     Using con As New ControlDB
-                        con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                    End Using
+                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        End Using
+
+                    ''recupera el id de la caratura
+                    'Ssql = "Select *from( Select  LAST_INSERT_ID() as Ultio_ID) Tbl_ID"
+                    'Using con As New ControlDB
+                    '    con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    '    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    'End Using
+                    'Dim registro As DataRow
+                    'If Session("NumReg") > 0 Then
+                    '    registro = DataSetX.Tables(0).Rows(0)
+
+                    '    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratura=" & CStr(registro(0)))
+
+                    'End If
 
 
 
+                    'Ssql = "Select  LAST_INSERT_ID()"
 
-                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
-
-
+                    'inhabilita Panel de botones
+                    'pbotones.Enabled = True
 
             End Select
 

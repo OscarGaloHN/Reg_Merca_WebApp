@@ -59,6 +59,15 @@ Partial Public Class caratula
     Protected WithEvents ddlCliente As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddlClientev.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlClientev As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txtdeclarante.
     '''</summary>
     '''<remarks>
@@ -93,6 +102,15 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddladuanadespacho As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddladuanadespachov.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddladuanadespachov As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control sqlregimenaduanero.
@@ -212,6 +230,15 @@ Partial Public Class caratula
     Protected WithEvents ddlproveedores As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddlproveedoresv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlproveedoresv As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txtContra_proveedor.
     '''</summary>
     '''<remarks>
@@ -284,6 +311,15 @@ Partial Public Class caratula
     Protected WithEvents ddldepositoalmacen As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddldepositoalmacenv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddldepositoalmacenv As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control sqladuanasalida.
     '''</summary>
     '''<remarks>
@@ -300,6 +336,15 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddladuanaingsal As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddladuanaingsalv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddladuanaingsalv As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control sqlpaisdeorigen.
@@ -320,6 +365,15 @@ Partial Public Class caratula
     Protected WithEvents ddlpaisesdeorigen As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddlpaisesdeorigenv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlpaisesdeorigenv As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control sqlpaisprocedencia.
     '''</summary>
     '''<remarks>
@@ -336,6 +390,15 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddlpaisprocedencia As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddlpaisprocedenciav.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlpaisprocedenciav As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control sqlformadepago.
@@ -356,6 +419,15 @@ Partial Public Class caratula
     Protected WithEvents ddlformadepago As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddlformadepagov.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlformadepagov As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control sqlcondicionentrega.
     '''</summary>
     '''<remarks>
@@ -372,6 +444,15 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddlcondicionentrega As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddlcondicionentregav.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlcondicionentregav As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control sqladanatransitodes.
@@ -392,6 +473,15 @@ Partial Public Class caratula
     Protected WithEvents ddladuanatransitodes As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddladuanatransitodesv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddladuanatransitodesv As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control sqlmodalidadesp.
     '''</summary>
     '''<remarks>
@@ -410,6 +500,15 @@ Partial Public Class caratula
     Protected WithEvents ddlmodalidadesp As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddlmodalidadespv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlmodalidadespv As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control sqldepositoaduana.
     '''</summary>
     '''<remarks>
@@ -426,6 +525,15 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddldepositoaduana As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddldepositoaduanav.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddldepositoaduanav As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtplazodiasmeses.
@@ -480,6 +588,15 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddlclasebultos As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddlclasebultosv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlclasebultosv As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtcantbultos.
@@ -563,6 +680,15 @@ Partial Public Class caratula
     Protected WithEvents ddldivisafact As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddldivisafactv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddldivisafactv As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txttipodecambio.
     '''</summary>
     '''<remarks>
@@ -590,6 +716,15 @@ Partial Public Class caratula
     Protected WithEvents ddldivisaseg As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddldivisasegv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddldivisasegv As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control sqldivisaflet.
     '''</summary>
     '''<remarks>
@@ -606,6 +741,15 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddldivisafl As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control ddldivisaflv.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddldivisaflv As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control btt_guardar.

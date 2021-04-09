@@ -21,14 +21,14 @@
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_txtmanifiesto').value = '';
             document.getElementById('ContentPrincipal_txt_trans').value = '';
-            document.getElementById('ContentPrincipal_chkindicador').value = '';
+            document.getElementById('ContentPrincipal_chkindicador').checked = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblbulto').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDbulto').value = row.cells[2].innerHTML;
-
+            document.getElementById('ContentPrincipal_lblHiddenmanifiesto').value = row.cells[3].innerHTML;
 
             xModal('red', 'ContentPrincipal_txtmanifiesto', 'modalDelete');
         }
@@ -36,7 +36,7 @@
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_txtmanifiestoEditar').value = '';
             document.getElementById('ContentPrincipal_txt_transEditar').value = '';
-            document.getElementById('ContentPrincipal_chkindicadorEditar').value = '';
+            document.getElementById('ContentPrincipal_chkindicadorEditar').checked = '';
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenmanifiesto').value = row.cells[3].innerHTML;
@@ -48,7 +48,7 @@
                 document.getElementById('ContentPrincipal_txt_transEditar').value = row.cells[4].innerHTML;
             }
             if (row.cells[5].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_chkindicadorEditar').value = row.cells[5].innerHTML;
+                document.getElementById('ContentPrincipal_chkindicadorEditar').checked = row.cells[5].innerHTML;
             }
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDbulto').value = row.cells[2].innerHTML;

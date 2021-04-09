@@ -19,38 +19,39 @@
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlDocumento').value = '';
             document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            document.getElementById('ContentPrincipal_chkPresencia').value = '';
+            document.getElementById('ContentPrincipal_chkPresencia').checked = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
-            xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');
+            xModal('red', 'ContentPrincipal_ddlDocumento', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_ddlDocumento').value = '';
-            document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
+            document.getElementById('ContentPrincipal_dddocumentoEditar').value = '';
+            document.getElementById('ContentPrincipal_txtreferenciaEditar').value = '';
+            //document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').checked = '';
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_dddocumentoEditar').value = row.cells[3].innerHTML;
             }
-            if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
-            }
             if (row.cells[5].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
+                document.getElementById('ContentPrincipal_txtreferenciaEditar').value = row.cells[5].innerHTML;
             }
+            //if (row.cells[6].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[6].innerHTML;
+            //}
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtReferenciaEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_dddocumentoEditar', 'modalEditar');
         }
 
     </script>
@@ -100,7 +101,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="xModal('teal','ContentPrincipal_ddlDocumento','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -228,7 +229,7 @@
                     <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
                     <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
-
+                    <asp:HiddenField runat="server" ID="lblHiddendddocumento" />
 
                     <br />
                     <br />
@@ -261,24 +262,34 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label"></label>
+                                <asp:SqlDataSource
+                                    ID="sqldocumentosedit"
+                                    runat="server"
+                                    DataSourceMode="DataReader"
+                                    ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                                    ProviderName="MySql.Data.MySqlClient"
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos"></asp:SqlDataSource>
+
+                                <label class="form-label">Documento</label>
+                                <asp:DropDownList
+                                    ID="dddocumentoEditar" runat="server"
+                                    selectlistitem="" DataSourceID="sqldocumentosedit" class="form-control show-tick"
+                                    DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true"
+                                    ItemType="">
+                                    <asp:ListItem Value="Seleccione"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Documentos" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txt_transEditar"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txt_transEditar"
-                                        ErrorMessage="Ingrese el nombre del Documento."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
                                 </div>
