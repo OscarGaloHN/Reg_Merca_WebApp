@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Divisas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="divisas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.divisas_mant" %>
+﻿<%@ Page Title="Divisas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="Divisas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.Divisas_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
          <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -17,10 +17,10 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_txtdescripcion').value = '';
-            document.getElementById('ContentPrincipal_txttotalfactura').value = '';
-            document.getElementById('ContentPrincipal_txttotalflete').value = '';
-            document.getElementById('ContentPrincipal_txttotalseguro').value = '';
-            document.getElementById('ContentPrincipal_txttotalotros').value = '';
+            //document.getElementById('ContentPrincipal_txttotalfactura').value = '';
+            //document.getElementById('ContentPrincipal_txttotalflete').value = '';
+            //document.getElementById('ContentPrincipal_txttotalseguro').value = '';
+            //document.getElementById('ContentPrincipal_txttotalotros').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
@@ -33,10 +33,10 @@
 
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
-            document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = '';
-            document.getElementById('ContentPrincipal_txttotalfleteEditar').value = '';
-            document.getElementById('ContentPrincipal_txttotalseguroEditar').value = '';
-            document.getElementById('ContentPrincipal_txttotalotrosEditar').value = '';
+            //document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = '';
+            //document.getElementById('ContentPrincipal_txttotalfleteEditar').value = '';
+            //document.getElementById('ContentPrincipal_txttotalseguroEditar').value = '';
+            //document.getElementById('ContentPrincipal_txttotalotrosEditar').value = '';
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenNombreDivisas').value = row.cells[3].innerHTML;
@@ -44,15 +44,15 @@
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
             }
-            if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = row.cells[4].innerHTML;
-            }
-            if (row.cells[5].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txttotalfleteEditar').value = row.cells[5].innerHTML;
-            }
-            if (row.cells[6].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txttotalotrosEditar').value = row.cells[6].innerHTML;
-            }
+            //if (row.cells[4].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = row.cells[4].innerHTML;
+            //}
+            //if (row.cells[5].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_txttotalfleteEditar').value = row.cells[5].innerHTML;
+            //}
+            //if (row.cells[6].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_txttotalotrosEditar').value = row.cells[6].innerHTML;
+            //}
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDdivisas').value = row.cells[2].innerHTML;
             }
@@ -142,7 +142,7 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
@@ -214,10 +214,10 @@
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Id_Divisas" HeaderText="ID" />
                                         <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
-                                        <asp:BoundField DataField="Total_Factura" HeaderText="Total Factura" />
+                                        <%--<asp:BoundField DataField="Total_Factura" HeaderText="Total Factura" />
                                         <asp:BoundField DataField="Total_Flete" HeaderText="Total Flete" />
                                         <asp:BoundField DataField="Total_Seguro" HeaderText="Total Seguro" />
-                                        <asp:BoundField DataField="Total_Otros_gastos" HeaderText="Total Otros Gastos" />
+                                        <asp:BoundField DataField="Total_Otros_gastos" HeaderText="Total Otros Gastos" />--%>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -246,7 +246,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txtdescripcion"></asp:TextBox>
+                                    <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtdescripcion(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtdescripcion" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtdescripcion"
                                         ErrorMessage="Ingrese la descripcion de la divisa."
@@ -254,56 +254,68 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Total Factura" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txttotalfactura"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txttotalfactura"
-                                        ErrorMessage="Ingrese el Total de la Factura."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                            <%--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalfactura" runat="server" class="form-control"></asp:TextBox>
+
+                                    <label class="form-label">Total Factura</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txttotalfactura"
+                                    ErrorMessage="Ingrese el total factura."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                              
                             </div>
+                            </div>--%>
 
                         </div>
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Total Flete" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txttotalflete"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttotalflete"
-                                        ErrorMessage="Ingrese el Total del Flete."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                               <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalflete" runat="server" class="form-control"></asp:TextBox>
+
+                                    <label class="form-label">Total Fletes</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttotalflete"
+                                    ErrorMessage="Ingrese el total de fletes de la empresa."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                              
+                            </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Total Seguro" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txttotalseguro"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txttotalseguro"
-                                        ErrorMessage="Ingrese el total del seguro."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalseguro" runat="server" class="form-control"></asp:TextBox>
+
+                                    <label class="form-label">Total Seguro</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txttotalseguro"
+                                    ErrorMessage="Ingrese el Total del Seguro."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                              
+                            </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Total Otros Gastos" AutoComplete="off" ValidationGroup="Validadivisa" runat="server" class="form-control" ID="txttotalotros"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txttotalotros"
-                                        ErrorMessage="Ingrese el total de otros gastos."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="14" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttotalotros" runat="server" class="form-control"></asp:TextBox>
+
+                                    <label class="form-label">Total Otros Gastos</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txttotalotros"
+                                    ErrorMessage="Ingrese el Total de Otros Gastos."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                              
+                            </div>
                             </div>
 
 
-                        </div>
+                        </div>--%>
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttGuardarDivisa" ValidationGroup="Validadivisa" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
@@ -371,7 +383,7 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="Total Factura" AutoComplete="off" ValidationGroup="ValidadivisaEditar" runat="server" class="form-control" ID="txttotalfacturaEditar"></asp:TextBox>
@@ -381,10 +393,10 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidadivisaEditar" />
                                 </div>
-                            </div>
+                            </div>--%>
 
                         </div>
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -419,7 +431,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div>--%>
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidadivisaEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>

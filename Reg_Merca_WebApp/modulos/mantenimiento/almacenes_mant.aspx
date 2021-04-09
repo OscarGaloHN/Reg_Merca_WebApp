@@ -86,7 +86,7 @@
             </a>
         </li>
         <li>
-            <a href="cliente_mant.aspx">
+            <a href="#">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
@@ -141,13 +141,13 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
@@ -409,4 +409,3 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
-

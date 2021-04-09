@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Divisas_mant
+Partial Public Class preguntas_mant
 
     '''<summary>
     '''Control gvCustomers.
@@ -32,67 +32,67 @@ Partial Public Class Divisas_mant
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtdescripcion.
+    '''Control txtpregunta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtpregunta As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control reqnombrevacio.
+    '''Control RequiredFieldValidator5.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarDivisa.
+    '''Control bttGuardarpregunta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarDivisa As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarpregunta As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblDivisas.
+    '''Control lblpregunta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblDivisas As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblpregunta As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDdivisas.
+    '''Control lblHiddenIDpregunta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDdivisas As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDpregunta As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenNombreDivisas.
+    '''Control lblHiddenNombrepregunta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombreDivisas As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenNombrepregunta As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control bttEliminarDivisa.
+    '''Control bttEliminarpregunta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarDivisa As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarpregunta As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel1.
@@ -104,13 +104,13 @@ Partial Public Class Divisas_mant
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtdescripcionEditar.
+    '''Control txtpreguntaEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcionEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtpreguntaEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator3.

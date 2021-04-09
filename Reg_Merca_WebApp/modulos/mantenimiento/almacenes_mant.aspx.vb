@@ -1,5 +1,6 @@
 ﻿Public Class almacenes_mant
     Inherits System.Web.UI.Page
+
     Private Property DataSetX As DataSet
         Get
             Return CType(Session("DataSetX"), DataSet)
@@ -131,6 +132,4 @@
         End Try
 
     End Sub
-
-
 End Class

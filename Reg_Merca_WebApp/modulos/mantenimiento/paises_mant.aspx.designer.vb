@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Divisas_mant
+Partial Public Class paises_mant
 
     '''<summary>
     '''Control gvCustomers.
@@ -32,67 +32,67 @@ Partial Public Class Divisas_mant
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtdescripcion.
+    '''Control txtpaises.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtpaises As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control reqnombrevacio.
+    '''Control RequiredFieldValidator5.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarDivisa.
+    '''Control bttGuardarpaises.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarDivisa As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarpaises As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblDivisas.
+    '''Control lblpregunta.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblDivisas As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblpregunta As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDdivisas.
+    '''Control lblHiddenIDpaises.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDdivisas As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDpaises As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenNombreDivisas.
+    '''Control lblHiddenNombrepaises.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombreDivisas As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenNombrepaises As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control bttEliminarDivisa.
+    '''Control bttEliminarpaises.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarDivisa As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarpaises As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel1.
@@ -104,13 +104,13 @@ Partial Public Class Divisas_mant
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtdescripcionEditar.
+    '''Control txtpaisesEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcionEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtpaisesEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator3.

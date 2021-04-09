@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Divisas_mant
+Partial Public Class ventajas_mant
 
     '''<summary>
     '''Control gvCustomers.
@@ -32,13 +32,13 @@ Partial Public Class Divisas_mant
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtdescripcion.
+    '''Control txtventajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtventajas As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control reqnombrevacio.
@@ -50,49 +50,40 @@ Partial Public Class Divisas_mant
     Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarDivisa.
+    '''Control bttGuardarventajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarDivisa As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarventajas As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblDivisas.
+    '''Control lblventajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblDivisas As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblventajas As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDdivisas.
+    '''Control lblHiddenIDVentajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDdivisas As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDVentajas As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenNombreDivisas.
+    '''Control bttEliminarventajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombreDivisas As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control bttEliminarDivisa.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttEliminarDivisa As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarventajas As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel1.

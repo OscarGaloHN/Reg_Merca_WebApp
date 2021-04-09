@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="config_permisos.aspx.vb" Inherits="Reg_Merca_WebApp.config_permisos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
      <a class="navbar-brand" href="#">Permisos</a>
@@ -63,13 +66,33 @@
 
                 </div>
                 <div class="body">
-                    <div class="row clearfix">
-                         
+                           <asp:SqlDataSource
+                            ID="SqlRoles"
+                            runat="server"
+                            DataSourceMode="DataReader"
+                            ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                            ProviderName="MySql.Data.MySqlClient"
+                            SelectCommand="SELECT id_rol, rol FROM DB_Nac_Merca.tbl_15_rol where id_rol != 5;"></asp:SqlDataSource>
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                 <p>
+                                        <b>Seleccione un rol:</b>
+                                    </p>
+
+                                <asp:DropDownList  onchange="document.getElementById('txtrespuesta').focus();
+                                    document.getElementById('txtrespuesta').value = '';"
+                                    ID="ddlRoles" runat="server" DataSourceID="SqlRoles" class="form-control show-tick"
+                                    DataTextField="rol" DataValueField="id_rol" AppendDataBoundItems="true">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
+        <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
 </asp:Content>

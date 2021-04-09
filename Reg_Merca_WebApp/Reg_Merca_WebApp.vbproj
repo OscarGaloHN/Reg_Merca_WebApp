@@ -225,12 +225,17 @@
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\mantenimiento\almacenes_mant.aspx" />
+    <Content Include="modulos\mantenimiento\almacen_mant.aspx" />
     <Content Include="modulos\mantenimiento\cliente_mant.aspx" />
     <Content Include="modulos\mantenimiento\divisas_mant.aspx" />
     <Content Include="modulos\mantenimiento\estadomerc_mant.aspx" />
     <Content Include="modulos\mantenimiento\mantenimiento_adunas.aspx" />
     <Content Include="modulos\mantenimiento\modalidadesp_mant.aspx" />
     <Content Include="modulos\mantenimiento\nivelcomerc_mant.aspx" />
+    <Content Include="modulos\mantenimiento\paises_mant.aspx" />
+    <Content Include="modulos\mantenimiento\preguntas_mant.aspx" />
+    <Content Include="modulos\mantenimiento\regimenes_mant.aspx" />
+    <Content Include="modulos\mantenimiento\ventajas_mant.aspx" />
     <Content Include="modulos\perfil_usuario\confi_cambio_contra.aspx" />
     <Content Include="modulos\configuraciones\confi_configurar.aspx" />
     <Content Include="modulos\perfil_usuario\confi_perfil.aspx" />
@@ -1195,7 +1200,14 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\almacenes_mant.aspx.vb">
       <DependentUpon>almacenes_mant.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\almacen_mant.aspx.designer.vb">
+      <DependentUpon>almacen_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\almacen_mant.aspx.vb">
+      <DependentUpon>almacen_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\cliente_mant.aspx.designer.vb">
       <DependentUpon>cliente_mant.aspx</DependentUpon>
@@ -1209,7 +1221,7 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\divisas_mant.aspx.vb">
       <DependentUpon>divisas_mant.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\estadomerc_mant.aspx.designer.vb">
       <DependentUpon>estadomerc_mant.aspx</DependentUpon>
@@ -1237,13 +1249,41 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\modalidadesp_mant.aspx.vb">
       <DependentUpon>modalidadesp_mant.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\nivelcomerc_mant.aspx.designer.vb">
       <DependentUpon>nivelcomerc_mant.aspx</DependentUpon>
     </Compile>
     <Compile Include="modulos\mantenimiento\nivelcomerc_mant.aspx.vb">
       <DependentUpon>nivelcomerc_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\paises_mant.aspx.designer.vb">
+      <DependentUpon>paises_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\paises_mant.aspx.vb">
+      <DependentUpon>paises_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\preguntas_mant.aspx.designer.vb">
+      <DependentUpon>preguntas_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\preguntas_mant.aspx.vb">
+      <DependentUpon>preguntas_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\regimenes_mant.aspx.designer.vb">
+      <DependentUpon>regimenes_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\regimenes_mant.aspx.vb">
+      <DependentUpon>regimenes_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\ventajas_mant.aspx.designer.vb">
+      <DependentUpon>ventajas_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\ventajas_mant.aspx.vb">
+      <DependentUpon>ventajas_mant.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\perfil_usuario\confi_cambio_contra.aspx.designer.vb">
