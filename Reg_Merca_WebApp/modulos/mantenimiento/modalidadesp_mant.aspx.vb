@@ -8,9 +8,12 @@
             Session("DataSetX") = value
         End Set
     End Property
-    'OBJETO #17
+    'OBJETO #20
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_39_modalidad_especial"
@@ -99,7 +102,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','El nombre de Modalidad especial ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_39_modalidad_especial` (`Nombre_modalidad`) VALUES ('" & txtnombremodalidad.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_39_modalidad_especial` (`Id_Modalidad`,`Nombre_modalidad`) VALUES ('" & txtid.Text & "','" & txtnombremodalidad.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

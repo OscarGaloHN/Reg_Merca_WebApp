@@ -18,6 +18,7 @@
         function borrarTxtNuevo() {
             
             document.getElementById('ContentPrincipal_txtnombremodalidad').value = '';
+            document.getElementById('ContentPrincipal_txtid').value = '';
             
         }
 
@@ -25,7 +26,7 @@
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblModalidad').innerHTML = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDModalidad').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreModalidad').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombreModalidad').value = row.cells[3].innerHTML;
             xModal('red', 'ContentPrincipal_txtnombremodalidad', 'modalDelete');
         }
 
@@ -34,10 +35,10 @@
             
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreModalidad').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombreModalidad').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') { 
-                document.getElementById('ContentPrincipal_txtnombremodalidadEditar').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_txtnombremodalidadEditar').value = row.cells[3].innerHTML;
             
             document.getElementById('ContentPrincipal_lblHiddenIDModalidad').value = row.cells[2].innerHTML;
             }
@@ -158,9 +159,14 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
     <script type="text/javascript">
         tituloImprimir = 'Listado de la Modalidad Especial'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">
@@ -226,7 +232,19 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtnombremodalidad(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtnombremodalidad" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="SoloNumeros();return txtid(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">ID Modalidad Especial</label>
+                                </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
+                                    ErrorMessage="Ingrese la ID de modalidad especial."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox onkeypress="return txtnombremodalidad(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtnombremodalidad" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Modalidad Especial</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtnombremodalidad"
@@ -297,7 +315,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre Modalidad" AutoComplete="off" ValidationGroup="ValidaAmodalidadEditar" runat="server" class="form-control" ID="txtnombremodalidadEditar"></asp:TextBox>
+                                        <asp:TextBox onkeypress="return txtnombremodalidad(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtnombremodalidadEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtnombremodalidadEditar"
                                         ErrorMessage="Ingrese el nombre de la modalidad."

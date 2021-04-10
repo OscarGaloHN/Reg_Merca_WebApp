@@ -17,6 +17,7 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_txtdescripcion').value = '';
+            document.getElementById('ContentPrincipal_txtid').value = '';
             //document.getElementById('ContentPrincipal_txttotalfactura').value = '';
             //document.getElementById('ContentPrincipal_txttotalflete').value = '';
             //document.getElementById('ContentPrincipal_txttotalseguro').value = '';
@@ -32,6 +33,7 @@
         }
 
         function GetSelectedRowEdit(lnk) {
+            document.getElementById('ContentPrincipal_txtidEditar').value = '';
             document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
             //document.getElementById('ContentPrincipal_txttotalfacturaEditar').value = '';
             //document.getElementById('ContentPrincipal_txttotalfleteEditar').value = '';
@@ -39,8 +41,12 @@
             //document.getElementById('ContentPrincipal_txttotalotrosEditar').value = '';
             var row = lnk.parentNode.parentNode;
 
+            
+            document.getElementById('ContentPrincipal_lblHiddenIDdivisas').value = row.cells[2].innerHTML;
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
+            }
             document.getElementById('ContentPrincipal_lblHiddenNombreDivisas').value = row.cells[3].innerHTML;
-
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
             }
@@ -53,9 +59,9 @@
             //if (row.cells[6].innerHTML != '&nbsp;') {
             //    document.getElementById('ContentPrincipal_txttotalotrosEditar').value = row.cells[6].innerHTML;
             //}
-            if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDdivisas').value = row.cells[2].innerHTML;
-            }
+            //if (row.cells[2].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_lblHiddenIDdivisas').value = row.cells[2].innerHTML;
+            //}
             xModal('pink', 'ContentPrincipal_txtdescripcionEditar', 'modalEditar');
         }
 
@@ -251,6 +257,17 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
+                                    <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtdescripcion(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
+                                        ErrorMessage="Ingrese la ID de la divisa."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
                                     <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtdescripcion(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtdescripcion" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtdescripcion"
@@ -259,6 +276,8 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validadivisa" />
                                 </div>
                             </div>
+                            
+
                             <%--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
@@ -380,6 +399,17 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
+                                        <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="ValidadivisaEditar" runat="server" class="form-control" ID="txtidEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtidEditar"
+                                        ErrorMessage="Ingrese la ID de la Divisa."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadivisaEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
                                         <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="ValidadivisaEditar" runat="server" class="form-control" ID="txtdescripcionEditar"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtdescripcionEditar"
@@ -388,6 +418,7 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
                                 </div>
                             </div>
+
                            <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
