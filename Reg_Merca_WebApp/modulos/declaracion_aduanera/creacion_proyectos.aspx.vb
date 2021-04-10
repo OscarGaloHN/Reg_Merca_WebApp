@@ -25,14 +25,12 @@
         End Using
         Try
 
-
-
-            'If Session("user_idUsuario") = Nothing Then
-            '    Session.Abandon()
-            '    Response.Redirect("~/Inicio/login.aspx")
-            'Else
-            'Llenado de Gried
-            Dim Ssql As String = String.Empty
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
+                'Llenado de Gried
+                Dim Ssql As String = String.Empty
                 Ssql = "select a.Id_poliza,a.fecha_creacion,b.nombrec,c.descripcion,d.nombre
                             from tbl_04_cliente b, tbl_01_polizas a, tbl_19_estado c, tbl_02_usuarios d
                                where a.id_cliente = b.id_cliente and c.id_estado=a.estado_poliza
@@ -51,7 +49,7 @@
                     Select Case Request.QueryString("acction")
                         Case "new"
                             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se almaceno con éxito.', 'success');</script>")
-                        Case "edit"
+                        Case "update"
                             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se modifico con éxito.', 'success');</script>")
                         Case Else
                             ''bitacora de que salio de un form
@@ -72,7 +70,7 @@
                     End Select
 
                 End If
-            'End If
+            End If
         Catch ex As Exception
 
         End Try

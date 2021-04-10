@@ -37,9 +37,10 @@
                         'inhabilita Panel de botones
                         pbotones.Enabled = False
                     Case "update"
-                        'habilita Panel de botones
-                        pbotones.Enabled = True
+
                         If Not IsPostBack Then
+                            'habilita Panel de botones
+                            pbotones.Enabled = True
 
                             Dim Ssql As String = String.Empty
                             Ssql = "select * from DB_Nac_Merca.tbl_01_polizas where id_poliza =" & Request.QueryString("idCaratula") & ""
@@ -52,8 +53,8 @@
                             If Session("NumReg") > 0 Then
                                 'cargar txt
                                 registro = DataSetX.Tables(0).Rows(0)
-                                txtFechaCreacion.Text = CDate(registro("fecha_creacion")).ToLongDateString
-                                ddlestado.SelectedValue = registro("estado_poliza")
+                                txtFechaCreacion.Text = registro("fecha_creacion")
+                                'ddlestado.SelectedValue = registro("estado_poliza")
                                 Session("estado_temp") = registro("estado_poliza")
                                 ddlestado.Attributes.Add("disabled", "disabled")
                                 ddlCliente.SelectedValue = registro("id_cliente")
@@ -99,6 +100,16 @@
                             End If
                         End If
                     Case Else
+                        Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?idCaratula=" & Request.QueryString("idCaratula"))
+
+                        If Not IsPostBack Then
+                            Select Case Request.QueryString("alerta")
+                                Case "1"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se actualizo con exito', 'success');</script>")
+                            End Select
+                        End If
+
+
                         ''bitacora de que salio de un form
                         'If Not IsPostBack Then
                         '    Using log_bitacora As New ControlBitacora
@@ -115,7 +126,6 @@
                         '    End Using
                         'End If
 
-                        'Response.Redirect("~/modulos/declaracion_aduanera/creacion_proyectos.aspx", False)
                 End Select
 
             End If
@@ -132,7 +142,7 @@
         Try
 
             Select Case Request.QueryString("action")
-                    Case "new"
+                Case "new"
                     Ssql = "Insert into DB_Nac_Merca.tbl_01_polizas 
 (fecha_creacion,estado_poliza, Id_cliente, declarante, cod_aduana_ent, Id_regimen, rtn_importador, nombre_importador, 
 rtn_agenciaadu, nombre_agenciaadu, manifiesto_entregarap, Id_proveedor, contrato_proveedor,
@@ -155,8 +165,6 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 '" & txttipodecambio.Text & "','" & ddldivisaseg.SelectedValue & "','" & ddldivisafl.SelectedValue & "',
 '" & Session("user_idUsuario") & "', '" & Session("idCaratula") & "'); SELECT LAST_INSERT_ID();"
 
-
-
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
@@ -165,8 +173,37 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 
 
                     'inhabilita Panel de botones
-                    'pbotones.Enabled = True
+                    pbotones.Enabled = True
 
+
+
+
+                Case "update"
+                    Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
+declarante='" & txtdeclarante.Text & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', Id_regimen='" & ddlregimenaduanero.SelectedValue & "', 
+rtn_importador='" & txtrtnimp_exp.Text & "', nombre_importador='" & txtimp_exp.Text & "', 
+rtn_agenciaadu='" & txtRTNagen_aduanera.Text & "', nombre_agenciaadu='" & txtagen_aduanera.Text & "', 
+manifiesto_entregarap='" & txtmanifiestorap.Text & "', Id_proveedor='" & ddlproveedores.SelectedValue & "',
+contrato_proveedor='" & txtContra_proveedor.Text & "',domicilio_proveed='" & txtDomicioProve.Text & "',
+Numero_Preimpreso='" & txtNumPreimp.Text & "', entidad_mediacion='" & txtEntidadMed.Text & "', Id_almacen='" & ddldepositoalmacen.SelectedValue & "',
+cod_aduana_sal='" & ddladuanaingsal.SelectedValue & "', Cod_pais_org='" & ddlpaisesdeorigen.SelectedValue & "', 
+Cod_pais_pro='" & ddlpaisprocedencia.SelectedValue & "', id_pago='" & ddlformadepago.SelectedValue & "', 
+id_condicion='" & ddlcondicionentrega.SelectedValue & "', aduana_transdes='" & ddladuanatransitodes.SelectedValue & "', 
+modalidad_especial='" & ddlmodalidadesp.SelectedValue & "', deposito_aduanas='" & ddldepositoaduana.SelectedValue & "', 
+plazo='" & txtplazodiasmeses.Text & "', ruta_transito='" & txtrutatransito.Text & "', 
+motivo_operacion='" & txt_motivoperacion.Text & "', Observaciones='" & txtobservacion.Text & "', 
+Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', cant_bultos='" & txtcantbultos.Text & "', 
+pesobruto_bultos='" & txtpesobrutobul.Text & "', canti_items='" & txttotalitems.Text & "', 
+Total_Factura='" & txttotalfact.Text & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
+Total_Seguro='" & txtttotalseg.Text & "', Total_Flete='" & txttotalflet.Text & "', divisa_factura='" & ddldivisafact.SelectedValue & "', 
+tipo_de_cambio='" & txttipodecambio.Text & "', divisa_seguro='" & ddldivisaseg.SelectedValue & "', 
+divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "', Id_poliza='" & Session("idCaratula") & "'"
+
+
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
             End Select
 
         Catch ex As Exception
