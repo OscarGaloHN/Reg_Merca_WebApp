@@ -98,14 +98,6 @@
                             End If
                         End If
                     Case Else
-                        Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?idCaratula=" & Request.QueryString("idCaratula"))
-
-                        If Not IsPostBack Then
-                            Select Case Request.QueryString("alerta")
-                                Case "1"
-                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se actualizo con exito', 'success');</script>")
-                            End Select
-                        End If
 
 
                         ''bitacora de que salio de un form
@@ -174,7 +166,7 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                         'End Using
                         Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
                     Else
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se almaceno con éxito.', 'success');</script>")
+
                     End If
 
                     'inhabilita Panel de botones
