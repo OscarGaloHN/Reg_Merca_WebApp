@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Creación de bultos"  Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_bultos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_bultos" %>
+﻿<%@ Page Title="Creación de bultos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_bultos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_bultos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -15,8 +15,8 @@
     <script src="../src/jsModales.js"></script>
 
 
-  
-<script type="text/javascript">
+
+    <script type="text/javascript">
 
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_txtmanifiesto').value = '';
@@ -56,7 +56,7 @@
             xModal('pink', 'ContentPrincipal_txtmanifiestoEditar', 'modalEditar');
         }
 
-</script>
+    </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">Creacion de bultos</a>
@@ -81,7 +81,7 @@
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="ContentPrincipal" runat="server">
 
-   <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 
 
@@ -105,205 +105,216 @@
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
                             <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtmanifiesto','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
-
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
                         </div>
 
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                        <asp:LinkButton
+                            Width="100%"
+                            runat="server"
+                            ID="bttVolver"
+                            type="button"
+                            ValidationGroup="Validarbttvolver"
+                            class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">undo</i>
+                                <span>Volver</span>
+                        </asp:LinkButton>
+                                </div>
+
                     </div>
                     <div class="row clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="table-responsive">
-                                <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
-                                    Width="100%">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Editar">
-                                            <ItemTemplate>
-                                                <button onclick="return GetSelectedRowEdit(this);" type="button" class="btn bg-pink waves-effect"><i class="material-icons">edit</i></button>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Eliminar">
-                                            <ItemTemplate>
-                                                <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="id_bulto" HeaderText="ID" />
-                                        <asp:BoundField DataField="manifiesto" HeaderText="Manifiesto" />
-                                        <asp:BoundField DataField="titulo_transporte" HeaderText="Título de transporte" />
-                                        <asp:BoundField DataField="indicador" HeaderText="Indicador" />
-                                        <asp:BoundField DataField="id_poliza_bul" HeaderText="ID Póliza" />
-                                    </Columns>
-                                </asp:GridView>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="table-responsive">
+                                        <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
+                                            Width="100%">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Editar">
+                                                    <ItemTemplate>
+                                                        <button onclick="return GetSelectedRowEdit(this);" type="button" class="btn bg-pink waves-effect"><i class="material-icons">edit</i></button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Eliminar">
+                                                    <ItemTemplate>
+                                                        <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="id_bulto" HeaderText="ID" />
+                                                <asp:BoundField DataField="manifiesto" HeaderText="Manifiesto" />
+                                                <asp:BoundField DataField="titulo_transporte" HeaderText="Título de transporte" />
+                                                <asp:BoundField DataField="indicador" HeaderText="Indicador" />
+                                                <asp:BoundField DataField="id_poliza_bul" HeaderText="ID Póliza" />
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- modal nuevo bulto-->
-    <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarbulto">
+        <!-- modal nuevo bulto-->
+        <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarbulto">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- TITULO -->
+                            <h4 class="modal-title" id="lblMOdalCorreo">NUEVO BULTO</h4>
+                        </div>
+                        <div class="modal-body">
+                            Ingrese todos los datos de los bultos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                                            <br />
+                            <br />
+                            <!-- CUERPO DEL MODAL -->
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <asp:TextBox placeholder="Manifiesto" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txtmanifiesto" onkeypress="isNumberOrLetter(evt) ;"
+                                                onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtmanifiesto"
+                                            ErrorMessage="Ingrese el manifiesto."
+                                            Display="Dynamic"
+                                            ForeColor="White" Font-Size="Small" ValidationGroup="Validabulto" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txt_trans" onkeypress="isNumberOrLetter(evt) ;"
+                                                onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);">></asp:TextBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator runat="server" ID="validartrans" ControlToValidate="txt_trans"
+                                            ErrorMessage="Ingrese el nombre de título de transporte."
+                                            Display="Dynamic"
+                                            ForeColor="White" Font-Size="Small" ValidationGroup="Validatrans" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="demo-switch-title">Indicador Bultos</div>
+                                    <div class="switch">
+                                        <label>
+                                            NO
+                                    <input type="checkbox" name="CheckBox" runat="server" id="chkindicador" class="filled-in chk-col-pink " />
+                                            <span class="lever switch-col-pink"></span>
+                                            SI
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton runat="server" ID="bttGuardarbulto" ValidationGroup="Validabulto" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                            <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                        </div>
+                    </div>
+                </asp:Panel>
+            </div>
+        </div>
+
+
+        <!-- modal eliminar bulto-->
+        <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO BULTO</h4>
+                        <h4 class="modal-title" id="LblDelete">ELIMINAR BULTO</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos de los bultos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
-                                            <br />
-                        <br />
-                        <!-- CUERPO DEL MODAL -->
-
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Manifiesto" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txtmanifiesto" onkeypress="isNumberOrLetter(evt) ;"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtmanifiesto"
-                                        ErrorMessage="Ingrese el manifiesto."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validabulto" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txt_trans" onkeypress="isNumberOrLetter(evt) ;"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);">></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="validartrans" ControlToValidate="txt_trans"
-                                        ErrorMessage="Ingrese el nombre de título de transporte."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validatrans" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <div class="demo-switch-title">Indicador Bultos</div>
-                                <div class="switch">
-                                    <label>
-                                        NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkindicador" class="filled-in chk-col-pink " />
-                                        <span class="lever switch-col-pink"></span>
-                                        SI
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarbulto" ValidationGroup="Validabulto" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
-                        <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
-                    </div>
-                </div>
-            </asp:Panel>
-        </div>
-    </div>
-
-
-    <!-- modal eliminar bulto-->
-    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR BULTO</h4>
-                </div>
-                <div class="modal-body">
-                    ¿Seguro que dese eliminar este bulto:
+                        ¿Seguro que dese eliminar este bulto:
                     <asp:Label runat="server" ID="lblbulto" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDbulto" />
-                    <asp:HiddenField runat="server" ID="lblHiddenmanifiesto" />
-                    <br />
-                    <br />
-                    <!-- CUERPO DEL MODAL -->
-
-                </div>
-                <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarbulto" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
-                    <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- modal editar bulto-->
-    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarbulto">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditarbul">EDITAR BULTO</h4>
-                    </div>
-                    <div class="modal-body">
-                        Luego de terminar de editar los datos de los bultos haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        <asp:HiddenField runat="server" ID="lblHiddenmanifiesto" />
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
 
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Manifiesto" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" 
-                                            class="form-control" ID="txtmanifiestoEditar" onkeypress="isNumberOrLetter(evt)"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtmanifiestoEditar"
-                                        ErrorMessage="Ingrese el manifiesto."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidabultoEditar" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txt_transEditar"
-                                            onkeypress="isNumberOrLetter(evt)" onkeydown="borrarespacios(this);BorrarRepetidas(this);" 
-                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txt_transEditar"
-                                        ErrorMessage="Ingrese el nombre de título de transporte."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidabultoEditar" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <div class="demo-switch-title">Indicador Bultos</div>
-                                <div class="switch">
-                                    <label>
-                                        NO
-                                     <input type="checkbox" name="CheckBox" runat="server" id="chkindicadorEditar" class="filled-in chk-col-pink " />
-                                        <span class="lever switch-col-teal"></span>
-                                        SI
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificarbulto" ValidationGroup="ValidabultoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttEliminarbulto" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
-            </asp:Panel>
-        </div>
-    </div>
 
+            </div>
+        </div>
+
+
+        <!-- modal editar bulto-->
+        <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarbulto">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- TITULO -->
+                            <h4 class="modal-title" id="lblEditarbul">EDITAR BULTO</h4>
+                        </div>
+                        <div class="modal-body">
+                            Luego de terminar de editar los datos de los bultos haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        <br />
+                            <br />
+                            <!-- CUERPO DEL MODAL -->
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <asp:TextBox placeholder="Manifiesto" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server"
+                                                class="form-control" ID="txtmanifiestoEditar" onkeypress="isNumberOrLetter(evt)"
+                                                onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtmanifiestoEditar"
+                                            ErrorMessage="Ingrese el manifiesto."
+                                            Display="Dynamic"
+                                            ForeColor="White" Font-Size="Small" ValidationGroup="ValidabultoEditar" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <asp:TextBox placeholder="Título Transporte" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txt_transEditar"
+                                                onkeypress="isNumberOrLetter(evt)" onkeydown="borrarespacios(this);BorrarRepetidas(this);"
+                                                onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txt_transEditar"
+                                            ErrorMessage="Ingrese el nombre de título de transporte."
+                                            Display="Dynamic"
+                                            ForeColor="White" Font-Size="Small" ValidationGroup="ValidabultoEditar" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="demo-switch-title">Indicador Bultos</div>
+                                    <div class="switch">
+                                        <label>
+                                            NO
+                                     <input type="checkbox" name="CheckBox" runat="server" id="chkindicadorEditar" class="filled-in chk-col-pink " />
+                                            <span class="lever switch-col-teal"></span>
+                                            SI
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton runat="server" ID="bttModificarbulto" ValidationGroup="ValidabultoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                            <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                        </div>
+                    </div>
+                </asp:Panel>
+            </div>
+        </div>
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>

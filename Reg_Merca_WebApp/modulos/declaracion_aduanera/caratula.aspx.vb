@@ -37,11 +37,9 @@
                         'inhabilita Panel de botones
                         pbotones.Enabled = False
                     Case "update"
-
+                        'habilita Panel de botones
+                        pbotones.Enabled = True
                         If Not IsPostBack Then
-                            'habilita Panel de botones
-                            pbotones.Enabled = True
-
                             Dim Ssql As String = String.Empty
                             Ssql = "select * from DB_Nac_Merca.tbl_01_polizas where id_poliza =" & Request.QueryString("idCaratula") & ""
 
@@ -169,8 +167,15 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
 
-                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
 
+                    If Session("NumReg") > 0 Then
+                        'Using log_bitacora As New ControlBitacora
+                        '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
+                        'End Using
+                        Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
+                    Else
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se almaceno con éxito.', 'success');</script>")
+                    End If
 
                     'inhabilita Panel de botones
                     pbotones.Enabled = True
