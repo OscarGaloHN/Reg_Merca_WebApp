@@ -72,9 +72,9 @@
 
 
     <script type="text/javascript">
-            tituloImprimir = 'Listado de Polizas'
+            tituloImprimir = 'Listado de Polizas';
             xColumnas.push(1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-            xMargenes.push(100, 0, 100, 0)
+            xMargenes.push(100, 0, 100, 0);
             xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
             xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
