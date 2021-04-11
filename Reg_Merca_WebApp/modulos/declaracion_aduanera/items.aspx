@@ -531,7 +531,7 @@
 
                     <div class="row clearfix">
                         <asp:Panel ID="pbotones" runat="server">
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                                 <asp:LinkButton ValidationGroup="novalidar"
                                     Width="100%"
                                     runat="server"
@@ -542,8 +542,8 @@
               <span>Documentos</span>
                                 </asp:LinkButton>
                             </div>
-                          
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                                 <asp:LinkButton
                                     Width="100%"
                                     runat="server"
@@ -556,23 +556,23 @@
                             </div>
                         </asp:Panel>
                     </div>
-                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                <asp:LinkButton
-                                    Width="100%"
-                                    runat="server"
-                                    ID="bttNuevo"
-                                    type="button"
-                                    class="btn bg-teal waves-effect">
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <asp:LinkButton
+                            Width="100%"
+                            runat="server"
+                            ID="bttNuevo"
+                            type="button"
+                            class="btn bg-teal waves-effect">
               <i class="material-icons">note_add</i>
               <span>Ventajas</span>
-                                </asp:LinkButton>
-                            </div>
+                        </asp:LinkButton>
+                    </div>
 
                     <div class="row clearfix">
 
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -584,9 +584,7 @@
                             </asp:LinkButton>
                         </div>
 
-
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
