@@ -33,8 +33,6 @@
                     Case "new"
 
                     Case "update"
-
-
                         If Not IsPostBack Then
 
                             Dim Ssql As String = String.Empty
@@ -112,7 +110,7 @@
     Private Sub btt_guardar_Click(sender As Object, e As EventArgs) Handles btt_guardar.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_34_mercancias where Id_poliza = '" & Request.QueryString("idCaratula") & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_34_mercancias where ID_Merca ='" & Request.QueryString("iditems") & "'"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -133,11 +131,20 @@ values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
 '" & ddlunidadestadis.SelectedValue & "','" & txtcantidadestadis.Text & "','" & txtimportefact.Text & "',
 '" & txtimporteotros.Text & "','" & txtseguro.Text & "','" & txtflete.Text & "',
 '" & txtajuste.Text & "','" & txtnumerocerti.Text & "','" & txtconvenio.Text & "',
-'" & txtexoneracionaduanera.Text & "','" & txtobservacion.Text & "','" & txtcomentario.Text & "')"
+'" & txtexoneracionaduanera.Text & "','" & txtobservacion.Text & "','" & txtcomentario.Text & "','" & Session("iditems") & "'); SELECT LAST_INSERT_ID();"
 
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
+
+                    If Session("NumReg") > 0 Then
+                        'Using log_bitacora As New ControlBitacora
+                        '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
+                        'End Using
+                        Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Session("GME_Recuperar_ID"))
+                    Else
+
+                    End If
 
             End Select
 
@@ -147,6 +154,6 @@ values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
     End Sub
 
     Private Sub bttDocumentos_Click(sender As Object, e As EventArgs) Handles bttDocumentos.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?iditems" & Request.QueryString("iditems"))
+        Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?iditems=" & Request.QueryString("iditems"))
     End Sub
 End Class

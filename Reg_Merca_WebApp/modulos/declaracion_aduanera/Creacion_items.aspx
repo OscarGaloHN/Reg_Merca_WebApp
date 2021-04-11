@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
     <script src="../src/jsTabla.js"></script>
 
 
@@ -17,15 +18,7 @@
 
 
     <script type="text/javascript">
-        //function xModal(xcolor, xtxtfoco) {
-        //    var color = xcolor;
-        //    var txtfoco = xtxtfoco;
-        //    $('#mdModal .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
-        //    $('#mdModal').modal('show');
-        //    $('#mdModal').on('shown.bs.modal', function () {
-        //        $('#' + txtfoco).focus();
-        //    });
-        //}
+
         function GetSelectedRow(lnk) {
             var row = lnk.parentNode.parentNode;
 

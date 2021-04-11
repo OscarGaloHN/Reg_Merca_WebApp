@@ -12,34 +12,35 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        'parametros de configuracion de sistema
-        Using Parametros_Sistema As New ControlDB
-            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        End Using
+        ''parametros de configuracion de sistema
+        'Using Parametros_Sistema As New ControlDB
+        '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        'End Using
 
-        'PARAMETROS DE ADMINISTRADOR
-        Using Parametros_admin As New ControlDB
-            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        End Using
+        ''PARAMETROS DE ADMINISTRADOR
+        'Using Parametros_admin As New ControlDB
+        '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        'End Using
 
-        Using logo_imprimir As New ControlDB
-            Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
-        End Using
+        'Using logo_imprimir As New ControlDB
+        '    Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
+        'End Using
 
 
 
         Try
+
             'cargar logo para imprimir
             HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
             HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
-            'If Session("user_idUsuario") = Nothing Then
-            '    Session.Abandon()
-            '    Response.Redirect("~/Inicio/login.aspx")
-            'Else
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
 
-            'llenar grid
-            Dim Ssql As String = String.Empty
+                'llenar grid
+                Dim Ssql As String = String.Empty
                 Ssql = "SELECT id_bulto, manifiesto, titulo_transporte, indicador, id_poliza_bul FROM DB_Nac_Merca.tbl_40_Bulto
                     where id_poliza_bul = " & Request.QueryString("idCaratula") & ""
                 Using con As New ControlDB
@@ -82,7 +83,7 @@
 
                 End If
 
-            'End If
+            End If
         Catch ex As Exception
 
         End Try
