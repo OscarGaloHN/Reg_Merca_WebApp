@@ -37,7 +37,7 @@
             Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, a.presencia, a.Id_Merca, b.Descripcion
                     From tbl_41_documentos_items a, tbl_32_Cod_Documentos b
                     Where a.Id_Documento = b.Id_Documento  
-                    and a.Id_merca =4"
+                    and a.Id_merca =" & Request.QueryString("iditems") & ""
 
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
