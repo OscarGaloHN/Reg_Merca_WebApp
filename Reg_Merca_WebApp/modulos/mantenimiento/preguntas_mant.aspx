@@ -31,10 +31,13 @@
             
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombrepregunta').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepregunta').value = row.cells[3].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtpreguntaEditar').value = row.cells[3].innerHTML;
+            }
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_lblHiddenIDpregunta').value = row.cells[2].innerHTML;
             }
             xModal('pink', 'ContentPrincipal_txtpreguntaEditar', 'modalEditar');
         }
@@ -223,7 +226,7 @@
                                 <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox onkeypress="return txtpregunta(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtpregunta" runat="server" class="form-control"></asp:TextBox>
-                                    <label class="form-label">Paises</label>
+                                    <label class="form-label">Pregunta</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtpregunta"
                                     ErrorMessage="Ingrese la pregunta."
@@ -249,10 +252,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR ALMACEN</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR PREGUNTA</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que dese eliminar este Almacén:
+                    ¿Seguro que dese eliminar esta Pregunta:
                     <asp:Label runat="server" ID="lblpregunta" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDpregunta" />
                         <asp:HiddenField runat="server" ID="lblHiddenNombrepregunta" />
