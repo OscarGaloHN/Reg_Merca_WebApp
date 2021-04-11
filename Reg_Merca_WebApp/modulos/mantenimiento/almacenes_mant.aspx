@@ -129,7 +129,7 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
