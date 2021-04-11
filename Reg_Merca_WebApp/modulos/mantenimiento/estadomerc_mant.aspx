@@ -169,9 +169,16 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
+
     <script type="text/javascript">
         tituloImprimir = 'Listado del estado de mercancias'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+
     </script>
 
     <div class="row clearfix">
