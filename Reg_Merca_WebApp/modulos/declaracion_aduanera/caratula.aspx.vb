@@ -259,10 +259,14 @@ divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("
             Else
                 ssql = "select rtn_cli from DB_Nac_Merca.tbl_04_cliente where Id_cliente= '" & ddlCliente.SelectedValue & "'"
                 Using con As New ControlDB
-                    con.GME(ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    DataSetX = con.SelectX(ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
-                txtrtnimp_exp.Text = (ddlCliente.Text)
-
+                Dim registro As DataRow
+                If Session("NumReg") > 0 Then
+                    registro = DataSetX.Tables(0).Rows(0)
+                    txtrtnimp_exp.Text = registro("rtn_cli")
+                End If
             End If
 
 
