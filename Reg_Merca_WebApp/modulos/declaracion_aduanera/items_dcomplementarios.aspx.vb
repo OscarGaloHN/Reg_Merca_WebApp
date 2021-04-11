@@ -120,54 +120,54 @@ where id_merca=10 "
         '        Catch ex As Exception
 
         '        End Try
-        '    End Sub
-
-        '    Private Sub bttEliminarDocumento_Click(sender As Object, e As EventArgs) Handles bttEliminarDocumento.Click
-        '        Try
-        '            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_28_Documentos WHERE id_doc= " & lblHiddenIDDocumento.Value
-        '            Using con As New ControlDB
-        '                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '            End Using
-        '            'Using log_bitacora As New ControlBitacora
-        '            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
-        '            'End Using
-
-        '            Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=deldocumento&idCaratula=" & Request.QueryString("idCaratula"))
-
-        '        Catch ex As Exception
-
-        '        End Try
-        '    End Sub
-
-        '    Private Sub bttModificardocumento_Click(sender As Object, e As EventArgs) Handles bttModificardocumento.Click
-
-        '        Try
-        '            Dim Ssql As String = String.Empty
-        '            If txtreferenciaEditar.Text <> lblHiddenIDDocumento.Value Then
-        '                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where where manifiesto = BINARY  '" & txtreferenciaEditar.Text & "' "
-        '                Using con As New ControlDB
-        '                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        '                End Using
-        '            Else
-        '                Session("NumReg") = 0
-        '            End If
-
-        '            If Session("NumReg") > 0 Then
-        '                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El documento ya esta registrado.', 'error');</script>")
-        '            Else
-        '                Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & ddldocumentos.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
-        '                Using con As New ControlDB
-        '                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        '                End Using
-        '                'Using log_bitacora As New ControlBitacora
-        '                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
-        '                'End Using
-        '                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=editdocumento&idCaratula=" & Request.QueryString("idCaratula"))
-        '            End If
-        '        Catch ex As Exception
-
-        '        End Try
-
     End Sub
+
+    '    Private Sub bttEliminarDocumento_Click(sender As Object, e As EventArgs) Handles bttEliminarDocumento.Click
+    '        Try
+    '            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_28_Documentos WHERE id_doc= " & lblHiddenIDDocumento.Value
+    '            Using con As New ControlDB
+    '                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+    '            End Using
+    '            'Using log_bitacora As New ControlBitacora
+    '            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
+    '            'End Using
+
+    '            Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=deldocumento&idCaratula=" & Request.QueryString("idCaratula"))
+
+    '        Catch ex As Exception
+
+    '        End Try
+    '    End Sub
+
+    '    Private Sub bttModificardocumento_Click(sender As Object, e As EventArgs) Handles bttModificardocumento.Click
+
+    '        Try
+    '            Dim Ssql As String = String.Empty
+    '            If txtreferenciaEditar.Text <> lblHiddenIDDocumento.Value Then
+    '                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where where manifiesto = BINARY  '" & txtreferenciaEditar.Text & "' "
+    '                Using con As New ControlDB
+    '                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+    '                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+    '                End Using
+    '            Else
+    '                Session("NumReg") = 0
+    '            End If
+
+    '            If Session("NumReg") > 0 Then
+    '                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El documento ya esta registrado.', 'error');</script>")
+    '            Else
+    '                Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & ddldocumentos.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+    '                Using con As New ControlDB
+    '                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+    '                End Using
+    '                'Using log_bitacora As New ControlBitacora
+    '                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
+    '                'End Using
+    '                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=editdocumento&idCaratula=" & Request.QueryString("idCaratula"))
+    '            End If
+    '        Catch ex As Exception
+
+    '        End Try
+
+    'End Sub
 End Class
