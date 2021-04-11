@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class proveedores_mant
 
     '''<summary>
+    '''Control HiddenLogo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenLogo As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control HiddenEmpresa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Control gvCustomers.
     '''</summary>
     '''<remarks>
@@ -302,13 +320,13 @@ Partial Public Class proveedores_mant
     Protected WithEvents RequiredFieldValidator13 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtrtncli.
+    '''Control txtrtnpro.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtrtncli As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtrtnpro As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator14.
@@ -356,49 +374,49 @@ Partial Public Class proveedores_mant
     Protected WithEvents RequiredFieldValidator16 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarcliente.
+    '''Control bttGuardarproveedor.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarcliente As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarproveedor As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblcliente.
+    '''Control lblproveedor.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblcliente As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblproveedor As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDcliente.
+    '''Control lblHiddenIDproveedor.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDcliente As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDproveedor As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenNombrecliente.
+    '''Control lblHiddenNombreproveedor.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombrecliente As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenNombreproveedor As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control bttEliminarcliente.
+    '''Control bttEliminarproveedor.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarcliente As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarproveedor As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel1.
@@ -410,13 +428,13 @@ Partial Public Class proveedores_mant
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control LblIdentidadclienteEditar.
+    '''Control LblIdentidadproveedorEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LblIdentidadclienteEditar As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents LblIdentidadproveedorEditar As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control txtnombreEditar.
@@ -653,13 +671,13 @@ Partial Public Class proveedores_mant
     Protected WithEvents RequiredFieldValidator23 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtrtncliEditar.
+    '''Control txtrtnproEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtrtncliEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtrtnproEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator24.

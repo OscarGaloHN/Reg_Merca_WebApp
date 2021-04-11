@@ -28,16 +28,16 @@
             document.getElementById('ContentPrincipal_txtemailpersonal').value = '';
             document.getElementById('ContentPrincipal_txtemailempresarial').value = '';
             document.getElementById('ContentPrincipal_txtcontacto').value = '';
-            document.getElementById('ContentPrincipal_txtrtncli').value = '';
+            document.getElementById('ContentPrincipal_txtrtnpro').value = '';
             document.getElementById('ContentPrincipal_txtlimitecr').value = '';
             document.getElementById('ContentPrincipal_txtplazocr').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblcliente').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[4].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDcliente').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombrecliente').value = row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_lblproveedor').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDproveedor').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombreproveedor').value = row.cells[4].innerHTML;
             xModal('red', 'ContentPrincipal_txtnombre', 'modalDelete');
         }
 
@@ -53,13 +53,13 @@
             document.getElementById('ContentPrincipal_txtemailpersonalEditar').value = '';
             document.getElementById('ContentPrincipal_txtemailempresarialEditar').value = '';
             document.getElementById('ContentPrincipal_txtcontactoEditar').value = '';
-            document.getElementById('ContentPrincipal_txtrtncliEditar').value = '';
+            document.getElementById('ContentPrincipal_txtrtnproEditar').value = '';
             document.getElementById('ContentPrincipal_txtlimitecrEditar').value = '';
             document.getElementById('ContentPrincipal_txtplazocrEditar').value = '';
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombrecliente').value = row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_LblIdentidadclienteEditar').innerHTML = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombreproveedor').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_LblIdentidadproveedorEditar').innerHTML = row.cells[3].innerHTML;
 
             if (row.cells[4].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtnombreEditar').value = row.cells[4].innerHTML;
@@ -92,7 +92,7 @@
                 document.getElementById('ContentPrincipal_txtemailempresarialEditar').value = row.cells[13].innerHTML;
             }
             if (row.cells[14].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtrtncliEditar').value = row.cells[14].innerHTML;
+                document.getElementById('ContentPrincipal_txtrtnproEditar').value = row.cells[14].innerHTML;
             }
             if (row.cells[15].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtcontactoEditar').value = row.cells[15].innerHTML;
@@ -104,7 +104,7 @@
                 document.getElementById('ContentPrincipal_txtplazocrEditar').value = row.cells[17].innerHTML;
             }
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDcliente').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_lblHiddenIDproveedor').value = row.cells[2].innerHTML;
             }
         /*cargar combo box*/
             if (row.cells[18].innerHTML != '&nbsp;') {
@@ -231,17 +231,22 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
      <script type="text/javascript">
-         tituloImprimir = 'Listado de los clientes'
+         tituloImprimir = 'Listado de los Proveedores'
          xColumnas.push(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+         xMargenes.push(100, 0, 100, 0)
+         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
      </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">clientes
-                                 <small>A continuación se muestra el listado de los clientes registrados.</small>
+                    <h2 style="font-weight: bold;">Proveedores
+                                 <small>A continuación se muestra el listado de los proveedores registrados.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -270,7 +275,7 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Id_cliente" HeaderText="ID" />
+                                        <asp:BoundField DataField="Id_proveedor" HeaderText="ID" />
                                         <asp:BoundField DataField="Id_nivel_com" HeaderText="id nivel comercial" />
                                         <asp:BoundField DataField="nombre" HeaderText=" Nombre" />
                                         <asp:BoundField DataField="direccion_domicilio" HeaderText="Dirección domicilio" />
@@ -318,7 +323,7 @@
                                         <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtnombre" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre"
-                                        ErrorMessage="Ingrese el nombre del cliente."
+                                        ErrorMessage="Ingrese el nombre del proveedores."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
                                 </div>
@@ -338,23 +343,23 @@
                             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtdirecciondomicilio" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtdirecciondomicilio" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtdirecciondomicilio"
                                         ErrorMessage="Ingrese la dirección de domicilio."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección envío" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtdireccionenvio" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección envío" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtdireccionenvio" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtdireccionenvio"
                                         ErrorMessage="Ingrese la Dirección del envío"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
                                <asp:SqlDataSource
@@ -390,12 +395,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtciudad" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtciudad" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtciudad"
                                         ErrorMessage="Ingrese la Ciudad"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
 
@@ -404,34 +409,34 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txttelefono" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txttelefono" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttelefono"
                                         ErrorMessage="Ingrese el teléfono."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono2" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txttelefono2" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono2" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txttelefono2" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txttelefono2"
                                         ErrorMessage="Ingrese el telefono."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono3" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txttelefono3" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono3" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txttelefono3" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txttelefono3"
                                         ErrorMessage="Ingrese el teléfono"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
                              </div>
@@ -439,12 +444,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="fax" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtfax" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="fax" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtfax" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtfax"
                                         ErrorMessage="Ingrese el fax"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
 
@@ -453,12 +458,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Email Personal" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtemailpersonal" onkeypress="return noespacios(event);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Email Personal" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtemailpersonal" onkeypress="return noespacios(event);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtemailpersonal"
                                         ErrorMessage="Ingrese el correo personal"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                     <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1"
                                     Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                     ControlToValidate="txtemailpersonal"
@@ -469,12 +474,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Email Empresarial" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtemailempresarial" onkeypress="return noespacios(event);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Email Empresarial" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtemailempresarial" onkeypress="return noespacios(event);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator12" ControlToValidate="txtemailempresarial"
                                         ErrorMessage="Ingrese el correo empresarial"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                  <asp:RegularExpressionValidator runat="server" ID="reEmailRegistro"
                                     Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                     ControlToValidate="txtemailempresarial"
@@ -487,23 +492,23 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtcontacto" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtcontacto" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator13" ControlToValidate="txtcontacto"
                                         ErrorMessage="Ingrese el Contacto"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="RTN Cliente" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtrtncli" MaxLength="14" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="RTN Cliente" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtrtnpro" MaxLength="14" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator14" ControlToValidate="txtrtncli"
-                                        ErrorMessage="Ingrese el RTN del cliente"
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator14" ControlToValidate="txtrtnpro"
+                                        ErrorMessage="Ingrese el RTN del proveedor"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedores" />
                                 </div>
                             </div>
 
@@ -512,29 +517,29 @@
                             <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Limite de credito" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtlimitecr" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Limite de credito" AutoComplete="off" ValidationGroup="Validaproveedor" runat="server" class="form-control" ID="txtlimitecr" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator15" ControlToValidate="txtlimitecr"
                                         ErrorMessage="Ingrese el limite del credito"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedor" />
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Plazo de Credito" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtplazocr" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Plazo de Credito" AutoComplete="off" ValidationGroup="Validaproveedor" runat="server" class="form-control" ID="txtplazocr" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator16" ControlToValidate="txtplazocr"
                                         ErrorMessage="Ingrese el plazo del credito"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaproveedor" />
                                 </div>
                             </div>
                         </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:LinkButton runat="server" ID="bttGuardarcliente" ValidationGroup="Validacliente" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="bttGuardarproveedor" ValidationGroup="Validaproveedor" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                             <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                         </div>
                     
@@ -553,20 +558,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR cliente</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR PROVEEDOR</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que dese eliminar esta cliente:
-                    <asp:Label runat="server" ID="lblcliente" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDcliente" />
-                    <asp:HiddenField runat="server" ID="lblHiddenNombrecliente" />
+                    ¿Seguro que dese eliminar este proveedor:
+                    <asp:Label runat="server" ID="lblproveedor" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDproveedor" />
+                    <asp:HiddenField runat="server" ID="lblHiddenNombreproveedor" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarcliente" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarproveedor" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -579,11 +584,11 @@
     <!-- modal editar cliente-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarcliente">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarproveedor">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR CLIENTE</h4>
+                        <h4 class="modal-title" id="lblEditar">EDITAR PROVEEDOR</h4>
                     </div>
                     <div class="modal-body">
                         Luego de terminar de editar los datos del cliente haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
@@ -596,18 +601,18 @@
                                 
 
                                      
-                                        <asp:label runat="server" class="form-control" ID="LblIdentidadclienteEditar" Text="..."></asp:label>
+                                        <asp:label runat="server" class="form-control" ID="LblIdentidadproveedorEditar" Text="..."></asp:label>
                                    
                             </div>
                             <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtnombreEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaproveedorEditar" runat="server" class="form-control" ID="txtnombreEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtnombreEditar"
-                                        ErrorMessage="Ingrese el nombre del cliente."
+                                        ErrorMessage="Ingrese el nombre del proveedor."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedorEditar" />
                                 </div>
                             </div>
                          
@@ -615,21 +620,21 @@
                             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtdirecciondomicilioEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="ValidaproveedorEditar" runat="server" class="form-control" ID="txtdirecciondomicilioEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtdirecciondomicilioEditar"
-                                        ErrorMessage="Ingrese el domicilio del cliente."
+                                        ErrorMessage="Ingrese el domicilio del proveedor."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedorEditar" />
                                 </div>
                             </div>
                              <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección envio" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtdireccionenvioEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección envio" AutoComplete="off" ValidationGroup="ValidaproveedorEditar" runat="server" class="form-control" ID="txtdireccionenvioEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtdireccionenvioEditar"
-                                        ErrorMessage="Ingrese la direccion de envio del cliente."
+                                        ErrorMessage="Ingrese la direccion de envio del proveedor."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
                                 </div>
@@ -655,12 +660,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtciudadEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="ValidaproveedorEditar" runat="server" class="form-control" ID="txtciudadEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtciudadEditar"
-                                        ErrorMessage="Ingrese la Ciudad del cliente."
+                                        ErrorMessage="Ingrese la Ciudad del proveedores."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                 </div>
                             </div>
 
@@ -669,23 +674,23 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txttelefonoEditar" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txttelefonoEditar" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator17" ControlToValidate="txttelefonoEditar"
                                         ErrorMessage="Ingrese el teléfono del cliente."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono2" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txttelefono2Editar" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono2" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txttelefono2Editar" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator18" ControlToValidate="txttelefono2Editar"
                                         ErrorMessage="Ingrese el teléfono2 del cliente."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                 </div>
                             </div>
 
@@ -694,12 +699,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono3" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txttelefono3Editar" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono3" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txttelefono3Editar" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator19" ControlToValidate="txttelefono3Editar"
                                         ErrorMessage="Ingrese el teléfono3 del cliente."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                 </div>
                             </div>
                             </div>
@@ -707,12 +712,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="fax" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtfaxEditar" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="fax" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txtfaxEditar" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator20" ControlToValidate="txtfaxEditar"
                                         ErrorMessage="Ingrese el Fax del cliente."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                 </div>
                             </div>
 
@@ -721,12 +726,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Email personal" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtemailpersonalEditar" onkeypress="return noespacios(event);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Email personal" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txtemailpersonalEditar" onkeypress="return noespacios(event);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator21" ControlToValidate="txtemailpersonalEditar"
                                         ErrorMessage="Ingrese el email personal."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                      <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator2"
                                     Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                     ControlToValidate="txtemailpersonalEditar"
@@ -737,12 +742,12 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Email empresarial" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtemailempresarialEditar" onkeypress="return noespacios(event);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Email empresarial" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txtemailempresarialEditar" onkeypress="return noespacios(event);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator22" ControlToValidate="txtemailempresarialEditar"
                                         ErrorMessage="Ingrese el email empresarial."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                     <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator3"
                                     Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
                                     ControlToValidate="txtemailempresarialEditar"
@@ -757,23 +762,23 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtcontactoEditar" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txtcontactoEditar" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator23" ControlToValidate="txtcontactoEditar"
-                                        ErrorMessage="Ingrese el contacto del cliente."
+                                        ErrorMessage="Ingrese el contacto del proveedor."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="RTN cliente" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtrtncliEditar" MaxLength="14" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="RTN proveedores" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txtrtnproEditar" MaxLength="14" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator24" ControlToValidate="txtrtncliEditar"
-                                        ErrorMessage="Ingrese el RTN del cliente."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator24" ControlToValidate="txtrtnproEditar"
+                                        ErrorMessage="Ingrese el RTN del proveedor."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedorEditar" />
                                 </div>
                             </div>
 
@@ -782,30 +787,30 @@
                             <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Limite de credito" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtlimitecrEditar" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Limite de credito" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txtlimitecrEditar" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator25" ControlToValidate="txtlimitecrEditar"
                                         ErrorMessage="Ingrese el limite de credito"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Plazo de credito" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtplazocrEditar" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="Plazo de credito" AutoComplete="off" ValidationGroup="ValidaproveedoresEditar" runat="server" class="form-control" ID="txtplazocrEditar" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator26" ControlToValidate="txtplazocrEditar"
                                         ErrorMessage="Ingrese el Plazo de credito."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaproveedoresEditar" />
                                 </div>
                             </div>
                              </div>
                         
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaclienteEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaproveedoresEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
