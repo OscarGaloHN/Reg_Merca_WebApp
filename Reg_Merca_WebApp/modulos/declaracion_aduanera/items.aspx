@@ -1,4 +1,4 @@
-﻿<%@ Page   Title="Items" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items.aspx.vb" Inherits="Reg_Merca_WebApp.items" %>
+﻿<%@ Page Title="Items" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items.aspx.vb" Inherits="Reg_Merca_WebApp.items" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
@@ -79,8 +79,8 @@
                                 DataTextField="Descripcion" DataValueField="Id_TipoItems" AppendDataBoundItems="true" ItemType="">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
-                            <asp:RequiredFieldValidator id="idvalidarddl"
-                             ControlToValidate="ddltipoitem" InitialValue="Seleccione" ErrorMessage="selecciones datos" ForeColor="OrangeRed" Font-Size="X-Small" runat="server"/>
+                            <asp:RequiredFieldValidator ID="idvalidarddl"
+                                ControlToValidate="ddltipoitem" InitialValue="Seleccione" ErrorMessage="selecciones datos" ForeColor="OrangeRed" Font-Size="X-Small" runat="server" />
 
                         </div>
 
@@ -89,7 +89,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtposarancel" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="16"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtposarancel" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="16"></asp:TextBox>
                                     <label class="form-label">Posición Arancelaria</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtposarancel"
@@ -122,7 +122,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtmmatrizinsu" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtmmatrizinsu" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
                                     <label class="form-label">ID Matriz Insumos</label>
                                 </div>
                                 <%--<asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtnummitem"
@@ -137,7 +137,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtnrroitemasoc" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtnrroitemasoc" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
                                     <label class="form-label">Nro.de Item Asociado</label>
                                 </div>
                                 <%--<asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtnummitem"
@@ -165,7 +165,7 @@
                             <label class="form-label"></label>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtnmeroitemcancel" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtnmeroitemcancel" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
                                     <label class="form-label">Nro. de Item a Cancelar</label>
                                 </div>
                                 <%-- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtnummitem"
@@ -184,7 +184,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtpesoneto" runat="server" onkeyup="SoloNumeros()" onkeydown="return noespacios(event)"  onkeypress="return onKeyDecimal(event,this)" class="form-control" MaxLength="7"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtpesoneto" runat="server" onkeyup="SoloNumeros()" onkeydown="return noespacios(event)" onkeypress="return onKeyDecimal(event,this)" class="form-control" MaxLength="7"></asp:TextBox>
                                     <label class="form-label">Peso Neto</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtpesoneto"
@@ -199,7 +199,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtpesobruto" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtpesobruto" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
                                     <label class="form-label">Peso Bruto</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtpesobruto"
@@ -214,7 +214,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtcantbltos" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtcantbltos" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
                                     <label class="form-label">Cantidad de Bultos</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtcantbltos"
@@ -343,7 +343,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtcantidadcomer" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtcantidadcomer" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
                                     <label class="form-label">Cantidad Comercial</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtcantidadcomer"
@@ -394,7 +394,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtimportefact" runat="server" onkeyup="SoloNumeros()"  onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtimportefact" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Importe de Factura</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtimportefact"
@@ -409,7 +409,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtimporteotros" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtimporteotros" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Importe Otros Gastos</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtimporteotros"
@@ -424,7 +424,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtseguro" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtseguro" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Importe de Seguro</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtseguro"
@@ -439,7 +439,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtflete" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtflete" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Importe Flete</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtflete"
@@ -458,7 +458,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtajuste" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtajuste" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
                                     <label class="form-label">Ajuste a Incluir</label>
                                 </div>
 
@@ -471,7 +471,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtnumerocerti" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtnumerocerti" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
                                     <label class="form-label">N. de Certificado Importación</label>
                                 </div>
                             </div>
@@ -483,7 +483,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtconvenio" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtconvenio" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
                                     <label class="form-label">Convenio Perfeccionamiento</label>
                                 </div>
                             </div>
@@ -495,7 +495,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtexoneracionaduanera" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtexoneracionaduanera" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
                                     <label class="form-label">Exoneración Aduanera</label>
                                 </div>
                             </div>
@@ -507,7 +507,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtobservacion" runat="server" onkeydown="return noespacios(event)"  onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtobservacion" runat="server" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control"></asp:TextBox>
                                     <label class="form-label">Observaciones</label>
                                 </div>
 
@@ -519,7 +519,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtcomentario" runat="server" onkeydown="return noespacios(event)"  onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtcomentario" runat="server" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control"></asp:TextBox>
                                     <label class="form-label">Comentario</label>
                                 </div>
 
@@ -530,58 +530,60 @@
 
 
                     <div class="row clearfix">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <asp:LinkButton ValidationGroup="novalidar"
-                                Width="100%"
-                                runat="server"
-                                ID="bttDocumentos"
-                                type="button"
-                                class="btn bg-teal waves-effect">
+                        <asp:Panel ID="pbotones" runat="server">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <asp:LinkButton ValidationGroup="novalidar"
+                                    Width="100%"
+                                    runat="server"
+                                    ID="bttDocumentos"
+                                    type="button"
+                                    class="btn bg-teal waves-effect">
               <i class="material-icons">list</i>
               <span>Documentos</span>
-                            </asp:LinkButton>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="bttNuevo"
-                                type="button"
-                                class="btn bg-teal waves-effect">
-              <i class="material-icons">note_add</i>
-              <span>Ventajas</span>
-                            </asp:LinkButton>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="bttComplementario"
-                                type="button"
-                                class="btn bg-teal waves-effect">
-              <i class="material-icons">collections_bookmark</i>
-              <span>Complementario</span>
-                            </asp:LinkButton>
-                        </div>
-                         </div>
-
-                 <div class="row clearfix">
-
-                      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                         </div>
+                                </asp:LinkButton>
+                            </div>
+                          
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <asp:LinkButton
                                     Width="100%"
                                     runat="server"
-                                    ID="btt_guardar"
+                                    ID="bttComplementario"
                                     type="button"
                                     class="btn bg-teal waves-effect">
-          <i class="material-icons">save</i>
-          <span>Guardar</span>
+              <i class="material-icons">collections_bookmark</i>
+              <span>Complementario</span>
                                 </asp:LinkButton>
                             </div>
-                      
+                        </asp:Panel>
+                    </div>
+                      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <asp:LinkButton
+                                    Width="100%"
+                                    runat="server"
+                                    ID="bttNuevo"
+                                    type="button"
+                                    class="btn bg-teal waves-effect">
+              <i class="material-icons">note_add</i>
+              <span>Ventajas</span>
+                                </asp:LinkButton>
+                            </div>
+
+                    <div class="row clearfix">
+
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="btt_guardar"
+                                type="button"
+                                class="btn bg-teal waves-effect">
+          <i class="material-icons">save</i>
+          <span>Guardar</span>
+                            </asp:LinkButton>
+                        </div>
+
 
 
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -597,16 +599,13 @@
                             </asp:LinkButton>
                         </div>
 
-                      <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                         </div>
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                        </div>
 
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>
-    
-
-
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>

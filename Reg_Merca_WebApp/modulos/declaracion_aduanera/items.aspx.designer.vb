@@ -437,6 +437,15 @@ Partial Public Class items
     Protected WithEvents txtcomentario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Control pbotones.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents pbotones As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''Control bttDocumentos.
     '''</summary>
     '''<remarks>
@@ -446,15 +455,6 @@ Partial Public Class items
     Protected WithEvents bttDocumentos As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control bttNuevo.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
     '''Control bttComplementario.
     '''</summary>
     '''<remarks>
@@ -462,6 +462,15 @@ Partial Public Class items
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents bttComplementario As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control bttNuevo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btt_guardar.
