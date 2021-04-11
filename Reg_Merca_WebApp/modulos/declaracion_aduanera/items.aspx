@@ -306,14 +306,14 @@
                             ProviderName="MySql.Data.MySqlClient"
                             SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>--%>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+<%--                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label">Cuota Arancelaria</label>
                             <asp:DropDownList
                                 ID="ddlcuotaarancel" runat="server" class="form-control show-tick"
                                 AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
-                        </div>
+                        </div>--%>
 
                     </div>
 
@@ -373,7 +373,7 @@
                             <label class="form-label"></label>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtcantidadestadis" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="7"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtcantidadestadis" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="7"></asp:TextBox>
                                     <label class="form-label">Cantidad Estadística</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtcantidadestadis"

@@ -60,7 +60,6 @@
                                 ddlpaisesdeorigeni.SelectedValue = registro("cod_pais_fab")
                                 ddlpaisproce.SelectedValue = registro("cod_pais_pro")
                                 ddlpaisadd.SelectedValue = registro("cod_pais_adq")
-                                ddlcuotaarancel.SelectedValue = registro("cuota_arancelaria")
                                 ddlunidacomer.SelectedValue = registro("Id_UnidadComercial")
                                 txtcantidadcomer.Text = registro("Cantidad_Comercial")
                                 ddlunidadestadis.SelectedValue = registro("Unidad_Estadistica")
@@ -110,16 +109,11 @@
     Private Sub btt_guardar_Click(sender As Object, e As EventArgs) Handles btt_guardar.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_34_mercancias where ID_Merca ='" & Request.QueryString("iditems") & "'"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
 
             Select Case Request.QueryString("action")
                 Case "new"
                     Ssql = "Insert into DB_Nac_Merca.tbl_34_mercancias 
-(numero_item,Id_Tipo_items,num_partida,titulo_currier,matriz_insumos,item_asociado,declaracion_a_cancelar,item_a_cancelar,
+(Id_Tipo_items,num_partida,titulo_currier,matriz_insumos,item_asociado,declaracion_a_cancelar,item_a_cancelar,
 pesoneto,pesobruto,bultcant,Estado_Merc,cod_pais_fab,cod_pais_pro,cod_pais_adq,cuota_arancelaria,Id_UnidadComercial,Cantidad_Comercial,
 Unidad_Estadistica,cantidad_estadistica,importes_factura,importes_otrosgastos,importes_seguro,importes_flete,ajuste_a_incluir,
 numero_certificado_imp,convenio_perfeccionamiento,exoneracion_aduanera,observaciones,comentario) 
@@ -127,14 +121,15 @@ values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
 '" & txttitulocurri.Text & "', '" & txtmmatrizinsu.Text & "', '" & txtnrroitemasoc.Text & "', 
 '" & txtdeclaracioancancel.Text & "', '" & txtnmeroitemcancel.Text & "','" & txtpesoneto.Text & "','" & txtpesobruto.Text & "',
 '" & txtcantbltos.Text & "','" & ddlestadomerca.SelectedValue & "','" & ddlpaisesdeorigeni.SelectedValue & "','" & ddlpaisproce.SelectedValue & "',
-'" & ddlpaisadd.SelectedValue & "','" & ddlcuotaarancel.SelectedValue & "','" & ddlunidacomer.SelectedValue & "','" & txtcantidadcomer.Text & "',
+'" & ddlpaisadd.SelectedValue & "','" & ddlunidacomer.SelectedValue & "','" & txtcantidadcomer.Text & "',
 '" & ddlunidadestadis.SelectedValue & "','" & txtcantidadestadis.Text & "','" & txtimportefact.Text & "',
 '" & txtimporteotros.Text & "','" & txtseguro.Text & "','" & txtflete.Text & "',
 '" & txtajuste.Text & "','" & txtnumerocerti.Text & "','" & txtconvenio.Text & "',
-'" & txtexoneracionaduanera.Text & "','" & txtobservacion.Text & "','" & txtcomentario.Text & "','" & Session("iditems") & "'); SELECT LAST_INSERT_ID();"
+'" & txtexoneracionaduanera.Text & "','" & txtobservacion.Text & "','" & txtcomentario.Text & "',
+'" & Session("iditems") & "'); SELECT LAST_INSERT_ID();"
 
                     Using con As New ControlDB
-                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
 
                     If Session("NumReg") > 0 Then

@@ -47,6 +47,24 @@ Public Class ControlDB
         'Dim conn As String = ConfigurationManager.ConnectionStrings("Cstr_6").ConnectionString
         'Dim con As SqlConnection = New SqlConnection(conn)
     End Function
+
+    Function GME_Recuperar_item(ByRef Ssql As String, ByRef Tipo As TipoConexion)
+        Using con As New MySqlConnection(GetCadenaConexion(Tipo))
+            con.Open()
+            Dim command As MySqlCommand
+            'Dim Adapter As MySqlDataAdapter = New MySqlDataAdapter()
+            command = New MySqlCommand(Ssql, con)
+            'Adapter.InsertCommand = New MySqlCommand(Ssql, con)
+            HttpContext.Current.Session("GME_Recuperar_item") = CInt(command.ExecuteScalar())
+            'Adapter.InsertCommand.ExecuteNonQuery()
+            'HttpContext.Current.Session("GME_Recuperar_ID") = CInt(command.LastInsertedId())
+            command.Dispose()
+            con.Close()
+        End Using
+        Return True
+        'Dim conn As String = ConfigurationManager.ConnectionStrings("Cstr_6").ConnectionString
+        'Dim con As SqlConnection = New SqlConnection(conn)
+    End Function
     Function SelectX(ByRef Ssql As String, ByRef Tipo As TipoConexion)
         Dim ds As DataSet = New DataSet()
         Using con As New MySqlConnection(GetCadenaConexion(Tipo))
