@@ -33,45 +33,45 @@
             'Else
             'Llenado de Gried
             Dim Ssql As String = String.Empty
-                Ssql = "select a.Id_poliza,a.fecha_creacion,b.nombrec,c.descripcion,d.nombre
+            Ssql = "select a.Id_poliza,a.fecha_creacion,b.nombrec,c.descripcion,d.nombre
                             from tbl_04_cliente b, tbl_01_polizas a, tbl_19_estado c, tbl_02_usuarios d
                                where a.id_cliente = b.id_cliente and c.id_estado=a.estado_poliza
                                and d.id_usuario= a.usuario_creador"
 
-                Using con As New ControlDB
-                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
-                End Using
-                If Session("NumReg") > 0 Then
-                    gvCustomers.DataSource = DataSetX
-                    gvCustomers.DataBind()
-                End If
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+                gvCustomers.DataSource = DataSetX
+                gvCustomers.DataBind()
+            End If
 
-                If Not IsPostBack Then
-                    Select Case Request.QueryString("acction")
-                        Case "new"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se almaceno con éxito.', 'success');</script>")
-                        Case "edit"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se modifico con éxito.', 'success');</script>")
-                        Case Else
-                            ''bitacora de que salio de un form
-                            'If Not IsPostBack Then
-                            '    Using log_bitacora As New ControlBitacora
-                            '        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            '    End Using
-                            'End If
+            If Not IsPostBack Then
+                Select Case Request.QueryString("acction")
+                    Case "new"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se almaceno con éxito.', 'success');</script>")
+                    Case "edit"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se modifico con éxito.', 'success');</script>")
+                    Case Else
+                        ''bitacora de que salio de un form
+                        'If Not IsPostBack Then
+                        '    Using log_bitacora As New ControlBitacora
+                        '        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                        '    End Using
+                        'End If
 
-                            ''bitacora de que ingreso al form
-                            'Session("IDfrmQueIngresa") = 7
-                            'Session("NombrefrmQueIngresa") = "Gestión de usuarios"
-                            'If Not IsPostBack Then
-                            '    Using log_bitacora As New ControlBitacora
-                            '        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            '    End Using
-                            'End If
-                    End Select
+                        ''bitacora de que ingreso al form
+                        'Session("IDfrmQueIngresa") = 7
+                        'Session("NombrefrmQueIngresa") = "Gestión de usuarios"
+                        'If Not IsPostBack Then
+                        '    Using log_bitacora As New ControlBitacora
+                        '        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                        '    End Using
+                        'End If
+                End Select
 
-                End If
+            End If
             'End If
         Catch ex As Exception
 

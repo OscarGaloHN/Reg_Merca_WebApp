@@ -26,6 +26,7 @@
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
                 Response.Redirect("~/Inicio/login.aspx")
+            Else
 
 
                 Select Case Request.QueryString("action")
@@ -143,5 +144,9 @@ values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub bttDocumentos_Click(sender As Object, e As EventArgs) Handles bttDocumentos.Click
+        Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?iditems" & Request.QueryString("iditems"))
     End Sub
 End Class

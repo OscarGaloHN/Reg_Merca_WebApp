@@ -1,9 +1,9 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items.aspx.vb" Inherits="Reg_Merca_WebApp.items" %>
+﻿<%@ Page   Title="Items" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items.aspx.vb" Inherits="Reg_Merca_WebApp.items" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
     <link href="../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-    <script src="../plugins/momentjs/moment.js"></script>
+    <script src="../plugins/m   omentjs/moment.js"></script>
     <!-- Bootstrap Select Css -->
     <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 </asp:Content>
@@ -531,7 +531,7 @@
 
                     <div class="row clearfix">
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <asp:LinkButton
+                            <asp:LinkButton ValidationGroup="novalidar"
                                 Width="100%"
                                 runat="server"
                                 ID="bttDocumentos"

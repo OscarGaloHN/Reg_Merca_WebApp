@@ -198,11 +198,11 @@
                                             Width="100%">
                                             <Columns>
                                                 <asp:BoundField HeaderText="Editar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='caratula.aspx?idCaratula={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
-                                                <%--                                            <asp:TemplateField HeaderText="Eliminar">
-                                                <ItemTemplate>
-                                                    <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
+                                                <asp:TemplateField HeaderText="Eliminar">
+                                                    <ItemTemplate>
+                                                        <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
                                                 <asp:BoundField DataField="id_poliza" HeaderText="ID" />
                                                 <%--<asp:BoundField DataField="Num_embarque" HeaderText="Embarque" />--%>
