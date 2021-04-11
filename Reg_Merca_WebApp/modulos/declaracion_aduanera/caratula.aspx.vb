@@ -28,6 +28,13 @@
                 Response.Redirect("~/Inicio/login.aspx")
             Else
                 pbotones.Enabled = False
+                Dim Ssql As String = String.Empty
+
+                Ssql = "select * from DB_Nac_Merca.tbl_04_cliente where Id_cliente='" & ddlCliente.SelectedValue & "'"
+                Using con As New ControlDB
+                    con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                End Using
+
 
                 Select Case Request.QueryString("action")
                     Case "new"
@@ -40,7 +47,7 @@
                         'habilita Panel de botones
                         pbotones.Enabled = True
                         If Not IsPostBack Then
-                            Dim Ssql As String = String.Empty
+
                             Ssql = "select * from DB_Nac_Merca.tbl_01_polizas where id_poliza =" & Request.QueryString("idCaratula") & ""
 
                             Using con As New ControlDB
@@ -244,6 +251,35 @@ divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("
     End Sub
 
     Private Sub ddlCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlCliente.SelectedIndexChanged
-        'Select Case a la BD a la tabla para llenar el RTN
+        Dim ssql As String
+        Try
+            'Select Case a la BD a la tabla para llenar el RTN
+            'pruebas 1
+            If ddlCliente.SelectedValue = txtrtnimp_exp.Text Then
+            Else
+                ssql = "select rtn_cli from DB_Nac_Merca.tbl_04_cliente where Id_cliente= '" & ddlCliente.SelectedValue & "'"
+                Using con As New ControlDB
+                    con.GME(ssql, ControlDB.TipoConexion.Cx_Aduana)
+                End Using
+                txtrtnimp_exp.Text = (ddlCliente.Text)
+
+            End If
+
+
+            'pruebas 2
+            '                Dim ssql As String
+            'If ddlCliente.SelectedIndex = 0 Then
+            '    ssql = "select rtn_cli from DB_Nac_Merca.tbl_04_cliente where Id_cliente='" & ddlCliente.SelectedValue & "'"
+            '    txtrtnimp_exp.Text = ""
+            'Else
+            '    txtrtnimp_exp.Text = (ddlCliente.Text)
+
+            'End If
+
+        Catch ex As Exception
+
+        End Try
     End Sub
+
+
 End Class

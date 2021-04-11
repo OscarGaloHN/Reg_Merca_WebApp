@@ -109,7 +109,7 @@
                         <label class="form-label">Cliente</label>
                         <asp:DropDownList
                             ID="ddlCliente" runat="server" DataSourceID="SqlClientes" class="form-control show-tick"
-                            DataTextField="nombrec" DataValueField="Id_cliente" AppendDataBoundItems="true" ItemType="">
+                            DataTextField="nombrec" DataValueField="Id_cliente" AppendDataBoundItems="true" ItemType="" AutoPostBack="True">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator
@@ -203,7 +203,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox ID="txtrtnimp_exp" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control" MaxLength="14"></asp:TextBox>
+                                <asp:TextBox ID="txtrtnimp_exp" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control" MaxLength="14" ReadOnly="True"></asp:TextBox>
                                 <label class="form-label">RTN Importador/Exportador</label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtrtnimp_exp"
