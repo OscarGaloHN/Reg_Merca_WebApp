@@ -1,7 +1,6 @@
-﻿<%@ Page Title="estado_mercancias" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="estadomerc_mant.aspx.vb" Inherits="Reg_Merca_WebApp.estadomerc_mant" %>
-
+﻿<%@ Page Title="condicion de entrega" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="condentrega_mant.aspx.vb" Inherits="Reg_Merca_WebApp.condentrega_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <!-- JQuery DataTable Css -->
+    - JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
@@ -17,46 +16,46 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtId_Estado').value = '';
-            document.getElementById('ContentPrincipal_txtdescripcion').value = '';
+            document.getElementById('ContentPrincipal_txtid_condicion').value = '';
+            document.getElementById('ContentPrincipal_txtnombre_condicion').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblestado').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDestado').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtId_Estado', 'modalDelete');
+            document.getElementById('ContentPrincipal_lblcondicion').innerHTML = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDcondicion').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrecondicion').value = row.cells[3].innerHTML;
+            xModal('red', 'ContentPrincipal_txtid_condicion', 'modalDelete');
         }
 
+
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtId_EstadoEditar').value = '';
-            document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
-           
+            document.getElementById('ContentPrincipal_txtid_condicionEditar').value = '';
+            document.getElementById('ContentPrincipal_txtnombre_condicionEditar').value = '';
+
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrecondicion').value = row.cells[3].innerHTML;
 
-           
+
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtnombre_condicionEditar').value = row.cells[3].innerHTML;
             }
-           
-            
-                document.getElementById('ContentPrincipal_lblHiddenIDestado').value = row.cells[2].innerHTML;
-            
+
+
+            document.getElementById('ContentPrincipal_lblHiddenIDcondicion').value = row.cells[2].innerHTML;
+
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtId_EstadoEditar').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_txtid_condicionEditar').value = row.cells[2].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtId_EstadoEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_txtid_condicionEditar', 'modalEditar');
         }
 
 
     </script>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Matenimiento del estado de la mercancias</a>
+     <a class="navbar-brand" href="#">Mantenimiento de condicion de entrega</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -88,7 +87,7 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="condentrega_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Condicion de Entrega</span>
             </a>
@@ -166,26 +165,25 @@
             </a>
         </li>
     </ul>
-
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-    <script type="text/javascript">
-        tituloImprimir = 'Listado del estado de mercancias'
-        xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-    </script>
+     <script type="text/javascript">
+         tituloImprimir = 'Listado de condiciones de entregas'
+         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+     </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Estado de la mercancia
-                                 <small>A continuación se muestra el listado del estado de la mercancia.</small>
+                    <h2 style="font-weight: bold;">CONDICION DE ENTREGA
+                                 <small>A continuación se muestra el listado de condiciones de entregas.</small>
                     </h2>
                 </div>
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtestado','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtcondicion','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -208,8 +206,8 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Id_Estado" HeaderText="ID" />
-                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                                        <asp:BoundField DataField="id_condicion" HeaderText="ID" />
+                                        <asp:BoundField DataField="nombre_condicion" HeaderText="nombre_condicion" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -219,17 +217,17 @@
             </div>
         </div>
     </div>
-    <!-- modal nuevo estado-->
+    <!-- modal nuevo condicion de entrega-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarEstado">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarcondicion">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO ESTADO</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVA CONDICION DE ENTREGA</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos del estado de la mercancia y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos de la condicion de entrega  y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL principal -->
@@ -238,30 +236,30 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID Estado" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtId_Estado"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID CONDICIÓN" AutoComplete="off" ValidationGroup="Validacondicion" runat="server" class="form-control" ID="txtid_condicion"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_Estado"
-                                        ErrorMessage="Ingrese el ID del estado."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid_condicion"
+                                        ErrorMessage="Ingrese el ID de la condicion."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaestado" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacondicion" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtdescripcion"></asp:TextBox>
+                                        <asp:TextBox placeholder="NOMBRE_CONDICIÓN" AutoComplete="off" ValidationGroup="Validacondicion" runat="server" class="form-control" ID="txtnombre_condicion"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtdescripcion"
-                                        ErrorMessage="Ingrese la descripcion de la divisa."
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre_condicion"
+                                        ErrorMessage="Ingrese el nombre de la condición."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaestado" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validacondicion" />
                                 </div>
                             </div>
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarEstado" ValidationGroup="ValidaEstado" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarcondicion" ValidationGroup="Validacondicion" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
@@ -270,27 +268,27 @@
     </div>
 
 
-    <!-- modal eliminar estado-->
+    <!-- modal eliminar CONDICION-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR ESTADO</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR CONDICIÓN</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que desea eliminar el estado de la mercancia:
-                    <asp:Label runat="server" ID="lblestado" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDestado" />
-                    <asp:HiddenField runat="server" ID="lblHiddenNombreEstado" />
+                    ¿Seguro que desea eliminar la condición:
+                    <asp:Label runat="server" ID="lblcondicion" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDcondicion" />
+                    <asp:HiddenField runat="server" ID="lblHiddenNombrecondicion" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarEstado" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarcondicion" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -299,17 +297,17 @@
     </div>
 
 
-         <!-- modal editar Estado de la mercancia-->
+         <!-- modal editar condicion de la mercancia-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarestado">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarcondicion">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR ESTADO</h4>
+                        <h4 class="modal-title" id="lblEditar">EDITAR CONDICIÓN</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos de los estados haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                      Luego de terminar de editar los datos dE LA condicion haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -318,23 +316,23 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Id Estado" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtId_EstadoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID CONDICIÓN" AutoComplete="off" ValidationGroup="ValidacondicionEditar" runat="server" class="form-control" ID="txtid_condicionEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtId_EstadoEditar"
-                                        ErrorMessage="Ingrese el ID del estado de la mercancia" 
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtid_condicionEditar"
+                                        ErrorMessage="Ingrese el ID de la condición" 
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaestadoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidacondicionEditar" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtdescripcionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="NOMBRE CONDICIÓN" AutoComplete="off" ValidationGroup="ValidacondicionEditar" runat="server" class="form-control" ID="txtnombre_condicionEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtdescripcionEditar"
-                                        ErrorMessage="Ingrese la descripcion del estado de la mercancia."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtnombre_condicionEditar"
+                                        ErrorMessage="Ingrese la condicion de la mercancia."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaestadoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidacondicionEditar" />
                                 </div>
                             </div>
 
@@ -342,14 +340,13 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaEstadoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidacondicionEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
             </asp:Panel>
         </div>
     </div>
-
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>

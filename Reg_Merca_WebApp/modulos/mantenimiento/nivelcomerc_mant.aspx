@@ -16,32 +16,32 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtdescripcion').value = '';
+            document.getElementById('ContentPrincipal_txtTipo').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblEstado').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDEstado').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtdescripcion', 'modalDelete');
+            document.getElementById('ContentPrincipal_lblcomercial').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDcomercial').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrecomercial').value = row.cells[3].innerHTML;
+            xModal('red', 'ContentPrincipal_txtTipo', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
+            document.getElementById('ContentPrincipal_txtTipoEditar').value = '';
            
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrecomercial').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtTipoEditar').value = row.cells[3].innerHTML;
             }
             
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDestado').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_lblHiddenIDTipo').value = row.cells[2].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtdescripcionEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_txtTipoEditar', 'modalEditar');
         }
 
     </script>
@@ -109,7 +109,7 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
@@ -168,8 +168,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Estado de la mercancia
-                                 <small>A continuación se muestra el listado del estado de la mercancia.</small>
+                    <h2 style="font-weight: bold;">NIVEL COMERCIAL
+                                 <small>A continuación se muestra el listado del nivel comercial.</small>
                     </h2>
                 </div>
                 <div class="body">

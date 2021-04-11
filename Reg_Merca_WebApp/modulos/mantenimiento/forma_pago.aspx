@@ -1,7 +1,6 @@
-﻿<%@ Page Title="estado_mercancias" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="estadomerc_mant.aspx.vb" Inherits="Reg_Merca_WebApp.estadomerc_mant" %>
-
+﻿<%@ Page Title="FORMA DE PAGO " Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="forma_pago.aspx.vb" Inherits="Reg_Merca_WebApp.forma_pago" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <!-- JQuery DataTable Css -->
+     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
@@ -17,46 +16,44 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtId_Estado').value = '';
-            document.getElementById('ContentPrincipal_txtdescripcion').value = '';
+            document.getElementById('ContentPrincipal_txtid_pago').value = '';
+            document.getElementById('ContentPrincipal_txtnombre_pago').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblestado').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDestado').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtId_Estado', 'modalDelete');
+            document.getElementById('ContentPrincipal_lblpago').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDpago').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepago').value = row.cells[3].innerHTML;
+            xModal('red', 'ContentPrincipal_txtid_pago', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtId_EstadoEditar').value = '';
-            document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
+            document.getElementById('ContentPrincipal_txtid_pagoEditar').value = '';
+            document.getElementById('ContentPrincipal_txtnombre_pagoEditar').value = '';
            
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepago').value = row.cells[3].innerHTML;
 
-           
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtid_pagoEditar').value = row.cells[3].innerHTML;
+            }
+            if (row.cells[4].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtnombre_pagoEditar').value = row.cells[4].innerHTML;
             }
            
-            
-                document.getElementById('ContentPrincipal_lblHiddenIDestado').value = row.cells[2].innerHTML;
-            
-            if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtId_EstadoEditar').value = row.cells[2].innerHTML;
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_lblHiddenIDpago').value = row.cells[2].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtId_EstadoEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_txtid_pagoEditar', 'modalEditar');
         }
 
 
     </script>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Matenimiento del estado de la mercancias</a>
+ <a class="navbar-brand" href="#">Matenimiento de formas de pago</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -99,14 +96,14 @@
                 <span>divisas</span>
             </a>
         </li>
-        <li>
+        <li class="active">
             <a href="estadomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Estado de Mercancia</span>
             </a>
         </li>
-        <li  class="active">
-            <a href="#">
+        <li>
+            <a href="forma_pago.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Forma de Pago</span>
             </a>
@@ -166,20 +163,19 @@
             </a>
         </li>
     </ul>
-
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-    <script type="text/javascript">
-        tituloImprimir = 'Listado del estado de mercancias'
-        xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-    </script>
+     <script type="text/javascript">
+         tituloImprimir = 'Listado de la forma de pago'
+         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+     </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Estado de la mercancia
-                                 <small>A continuación se muestra el listado del estado de la mercancia.</small>
+                    <h2 style="font-weight: bold;">FORMAS DE PAGO
+                                 <small>A continuación se muestra el listado de la forma de pago.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -208,8 +204,8 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Id_Estado" HeaderText="ID" />
-                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                                        <asp:BoundField DataField="id_pago" HeaderText="ID" />
+                                        <asp:BoundField DataField="nombre_pago" HeaderText="nombre_pago" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -222,14 +218,14 @@
     <!-- modal nuevo estado-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarEstado">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarpago">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO ESTADO</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO FORMA_PAGO</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos del estado de la mercancia y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos de forma de pago  y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL principal -->
@@ -238,30 +234,30 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID Estado" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtId_Estado"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtid_pago"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_Estado"
-                                        ErrorMessage="Ingrese el ID del estado."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid_pago"
+                                        ErrorMessage="Ingrese el ID de la forma de pago."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaestado" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validapago" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtdescripcion"></asp:TextBox>
+                                        <asp:TextBox placeholder="NOMBRE DE PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtnombre_pago"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtdescripcion"
-                                        ErrorMessage="Ingrese la descripcion de la divisa."
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre_pago"
+                                        ErrorMessage="Ingrese el nombre del pago."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaestado" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validapago" />
                                 </div>
                             </div>
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarEstado" ValidationGroup="ValidaEstado" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarpago" ValidationGroup="Validapago" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
@@ -277,20 +273,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR ESTADO</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR PAGO</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que desea eliminar el estado de la mercancia:
-                    <asp:Label runat="server" ID="lblestado" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDestado" />
-                    <asp:HiddenField runat="server" ID="lblHiddenNombreEstado" />
+                    ¿Seguro que desea eliminar la forma de pago:
+                    <asp:Label runat="server" ID="lblpago" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDpago" />
+                    <asp:HiddenField runat="server" ID="lblHiddenNombrepago" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarEstado" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarpago" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -302,14 +298,14 @@
          <!-- modal editar Estado de la mercancia-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarestado">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarpago">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR ESTADO</h4>
+                        <h4 class="modal-title" id="lblEditar">EDITAR FORMA DE PAGO</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos de los estados haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                      Luego de terminar de editar los datos de la forma de pago haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -318,23 +314,23 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Id Estado" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtId_EstadoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtid_pagoEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtId_EstadoEditar"
-                                        ErrorMessage="Ingrese el ID del estado de la mercancia" 
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtid_pagoEditar"
+                                        ErrorMessage="Ingrese el ID de la forma de pago" 
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaestadoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidapagoEditar" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtdescripcionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="FORMA DE PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtnombre_pagoEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtdescripcionEditar"
-                                        ErrorMessage="Ingrese la descripcion del estado de la mercancia."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtnombre_pagoEditar"
+                                        ErrorMessage="Ingrese la forma de pago."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaestadoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidapagoEditar" />
                                 </div>
                             </div>
 
@@ -342,14 +338,13 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaEstadoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidapagoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
             </asp:Panel>
         </div>
     </div>
-
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
