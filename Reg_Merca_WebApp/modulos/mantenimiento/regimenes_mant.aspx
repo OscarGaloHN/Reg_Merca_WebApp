@@ -15,8 +15,9 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            
+            document.getElementById('ContentPrincipal_txtid').value = '';
             document.getElementById('ContentPrincipal_txtregimenes').value = '';
+            
         }
 
         function GetSelectedRowDelete(lnk) {
@@ -27,14 +28,18 @@
             xModal('red', 'ContentPrincipal_txtregimenes', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
+            document.getElementById('ContentPrincipal_txtidEditar').value = '';
             document.getElementById('ContentPrincipal_txtregimenesEditar').value = '';
-            
             var row = lnk.parentNode.parentNode;
+            document.getElementById('ContentPrincipal_lblHiddenNombreregimenes').value = row.cells[3].innerHTML;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreregimenes').value = row.cells[2].innerHTML;
+            if (row.cells[3].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtregimenesEditar').value = row.cells[3].innerHTML;
+            }
+            document.getElementById('ContentPrincipal_lblHiddenIDregimenes').value = row.cells[2].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtregimenesEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
             }
             xModal('pink', 'ContentPrincipal_txtregimenesEditar', 'modalEditar');
         }
@@ -154,9 +159,14 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 <script type="text/javascript">
     tituloImprimir = 'Listado de los Regimenes'
     xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+    xMargenes.push(100, 0, 100, 0)
+    xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+    xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').valu
 </script>
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -221,7 +231,18 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="DESCRIPCION" AutoComplete="off" ValidationGroup="Validaregimen" runat="server" class="form-control" ID="txtregimenes"></asp:TextBox>
+                                       <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtid(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox> 
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
+                                        ErrorMessage="Ingrese el ID del regimen."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaregimen" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                       <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtregimenes(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtregimenes" runat="server" class="form-control"></asp:TextBox> 
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtregimenes"
                                         ErrorMessage="Ingrese el regimen."
@@ -288,7 +309,18 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="pregunta" AutoComplete="off" ValidationGroup="ValidaregimenEditar" runat="server" class="form-control" ID="txtregimenesEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtidEditar(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtidEditar" runat="server" class="form-control"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtidEditar"
+                                        ErrorMessage="Ingrese el Regimen."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaregimenaEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtregimenesEditar(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtregimenesEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtregimenesEditar"
                                         ErrorMessage="Ingrese el Regimen."
