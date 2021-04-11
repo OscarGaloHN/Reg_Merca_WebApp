@@ -8,6 +8,7 @@
             Session("DataSetX") = value
         End Set
     End Property
+    'OBJETO #38
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             'cargar logo para imprimir
@@ -27,12 +28,12 @@
 
             If Not IsPostBack Then
                 Select Case Request.QueryString("acction")
-                    Case "newcliente"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El cliente se almaceno con exito.', 'success');</script>")
-                    Case "deltecliente"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El cliente se elimino con exito.', 'success');</script>")
-                    Case "editcliente"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El cliente se modifico con exito.', 'success');</script>")
+                    Case "newproveedores"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PROVEEDORES','El proveedor se almaceno con exito.', 'success');</script>")
+                    Case "delteproveedores"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PROVEEDORES','El proveedor se elimino con exito.', 'success');</script>")
+                    Case "editproveedores"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PROVEEDORES','El proveedor se modifico con exito.', 'success');</script>")
                     Case Else
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
@@ -42,7 +43,7 @@
                         End If
 
                         'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 19
+                        Session("IDfrmQueIngresa") = 38
                         Session("NombrefrmQueIngresa") = "Mantenimiento de proveedor"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
@@ -77,9 +78,9 @@
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtnombre.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo proveedor con nombre: " & txtnombre.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/cliente_mant.aspx?acction=newcliente")
+                Response.Redirect("~/modulos/mantenimiento/proveedores_mant.aspx?acction=newproveedores")
             End If
         Catch ex As Exception
 
@@ -102,9 +103,9 @@
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idusuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & txtIdentidadCliente.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idusuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el proveedor con id: " & txtIdentidadCliente.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/cliente_mant.aspx?acction=newcliente")
+                Response.Redirect("~/modulos/mantenimiento/proveedores_mant.aspx?acction=newproveedores")
             End If
         Catch ex As Exception
 
@@ -120,7 +121,7 @@
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el proveedor con nombre: " & lblHiddenNombreproveedor.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/cliente_mant.aspx?acction=deltecliente")
+            Response.Redirect("~/modulos/mantenimiento/proveedores_mant.aspx?acction=delteproveedores")
         Catch ex As Exception
 
         End Try
