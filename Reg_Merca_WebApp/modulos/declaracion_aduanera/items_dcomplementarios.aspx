@@ -17,46 +17,44 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_ddlDocumento').value = '';
-            document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            document.getElementById('ContentPrincipal_chkPresencia').value = '';
+            document.getElementById('ContentPrincipal_ddlcomplementario').value = '';
+            document.getElementById('ContentPrincipal_txtvalor').value = '';
+          
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_ddlcomplementario').innerHTML = row.cells[3].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
-            xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');
+            xModal('red', 'ContentPrincipal_txtvalor', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_ddlDocumento').value = '';
-            document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
+            document.getElementById('ContentPrincipal_ddlcomplementario').value = '';
+            document.getElementById('ContentPrincipal_txtvalor').value = '';
+          
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_dddocumentoEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_ddlcomplementario').value = row.cells[3].innerHTML;
             }
             if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
+                document.getElementById('ContentPrincipal_txtvalor').value = row.cells[4].innerHTML;
             }
+           
             if (row.cells[5].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
+                document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[5].innerHTML;
             }
-            if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-            }
-            xModal('pink', 'ContentPrincipal_txtReferenciaEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_txtvalor', 'modalEditar');
         }
 
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creacion de Documentos</a>
+    <a class="navbar-brand" href="#">Datos Complementarios</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -93,7 +91,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Documentos
+                    <h2 style="font-weight: bold;">Datos Complementarios
                                  <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta su poliza.</small>
                     </h2>
                 </div>
@@ -123,10 +121,11 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Id_DatoComple" HeaderText="ID" />
-                                        <asp:BoundField DataField="escripcion" HeaderText="Descripccion" />
+                                        <asp:BoundField DataField="Id_DatoComple" HeaderText="Codigo Dato" />
+                                        <asp:BoundField DataField="descripcion" HeaderText="Descripccion" />
                                         <asp:BoundField DataField="Valor" HeaderText="valor" />
-                                     
+                                        <asp:BoundField DataField="Id_Codigo" HeaderText="ID" />
+
                                        
                                                                        </Columns>
                                 </asp:GridView>
@@ -177,11 +176,12 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-label"></label>
+                                <label class="form-label">Valor</label>
+                                                              
 
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Valor" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtvalor" 
+                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtvalor" 
                                             onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtvalor"
@@ -213,7 +213,7 @@
                     <h4 class="modal-title" id="LblDelete">ELIMINAR DOCUMENTO</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que desea eliminar el siguiente documento?
+                    ¿Seguro que desea eliminar el siguiente dato complementario?
                     <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
                     <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
@@ -250,43 +250,46 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
-                                        ErrorMessage="Ingrese la referencia."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
-                                </div>
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label"></label>
+                                <asp:SqlDataSource
+                                    ID="SqlDataSource1"
+                                    runat="server"
+                                    DataSourceMode="DataReader"
+                                    ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                                    ProviderName="MySql.Data.MySqlClient"
+                                    SelectCommand="SELECT Id_DatoComple, UPPER(Descripcion) Descripcion FROM  DB_Nac_Merca.tbl_31_Cod_Datos_Complementarios"></asp:SqlDataSource>
+
+                                <label class="form-label">Documento</label>
+                                <asp:DropDownList
+                                    ID="ddlcomplementariedit" runat="server"
+                                    selectlistitem="" DataSourceID="sqldatoscomplementarios" class="form-control show-tick"
+                                    DataTextField="Descripcion" DataValueField="Id_DatoComple" AppendDataBoundItems="true"
+                                    ItemType="">
+                                    <asp:ListItem Value="Seleccione"></asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator id="RequiredFieldValidator1"
+                             ControlToValidate="ddlcomplementario" InitialValue="Seleccione" ErrorMessage="seleccione un dato" 
+                                    ForeColor="OrangeRed" Font-Size="X-Small" runat="server"/>
                             </div>
+
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label">Valor</label>
+
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Documentos" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txt_transEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtvaloredit" 
+                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this);"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txt_transEditar"
-                                        ErrorMessage="Ingrese el nombre del Documento."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtvalor"
+                                        ErrorMessage="Ingrese valor."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaDocumento" />
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <div class="demo-switch-title">Presencia</div>
-                                <div class="switch">
-                                    <label>
-                                        NO
-                                     <input type="checkbox" name="CheckBox" runat="server" id="chkpresenciaEditar" class="filled-in chk-col-grey" />
-                                        <span class="lever switch-col-grey"></span>
-                                        SI
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                     
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificardocumento" ValidationGroup="ValidadocumentoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>

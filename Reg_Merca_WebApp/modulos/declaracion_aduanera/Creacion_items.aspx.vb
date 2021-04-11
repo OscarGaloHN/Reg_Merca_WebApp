@@ -20,10 +20,11 @@
             Else
                 'Llenado de Gried
                 Dim Ssql As String = String.Empty
-                Ssql = "select a.Id_poliza,a.fecha_creacion,b.nombrec,c.descripcion,d.nombre
-                            from tbl_04_cliente b, tbl_01_polizas a, tbl_19_estado c, tbl_02_usuarios d
-                               where a.id_cliente = b.id_cliente and c.id_estado=a.estado_poliza
-                               and d.id_usuario= a.usuario_creador"
+                Ssql = "SELECT ROW_NUMBER() OVER (	ORDER BY ID_Merca) as numeroitems,a.ID_Merca,a.Id_poliza,
+a.pesoneto,a.num_partida,a.cod_pais_fab,a.importes_factura
+from tbl_34_mercancias a, tbl_01_polizas b
+where a.Id_poliza=b.Id_poliza
+and a.Id_poliza=" & Request.QueryString("idCaratula")
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
