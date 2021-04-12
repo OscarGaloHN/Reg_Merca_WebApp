@@ -222,7 +222,7 @@
                                 <div class="modal-content">
                                     <asp:Panel ID="PanelEditor" runat="server" DefaultButton="bttEliminar">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Eliminar Usuarios</h4>
+                                            <h4 class="modal-title">Eliminar Caratula</h4>
                                         </div>
                                         <div class="modal-body">
                                             <h2 class="modal-title">

@@ -60,8 +60,9 @@
                                 registro = DataSetX.Tables(0).Rows(0)
                                 txtFechaCreacion.Text = registro("fecha_creacion")
                                 'ddlestado.SelectedValue = registro("estado_poliza")
-                                Session("estado_temp") = registro("estado_poliza")
-                                ddlestado.Attributes.Add("disabled", "disabled")
+                                'Session("estado_temp") = registro("estado_poliza")
+                                'ddlestado.Attributes.Add("disabled", "disabled")
+                                ddlestado.SelectedValue = 7
                                 ddlCliente.SelectedValue = registro("id_cliente")
                                 txtdeclarante.Text = registro("declarante")
                                 ddladuanadespacho.SelectedValue = registro("cod_aduana_ent")
@@ -202,7 +203,7 @@ motivo_operacion='" & txt_motivoperacion.Text & "', Observaciones='" & txtobserv
 Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
 Total_Seguro='" & txtttotalseg.Text & "', Total_Flete='" & txttotalflet.Text & "', divisa_factura='" & ddldivisafact.SelectedValue & "', 
 tipo_de_cambio='" & txttipodecambio.Text & "', divisa_seguro='" & ddldivisaseg.SelectedValue & "', 
-divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "', Id_poliza='" & Session("idCaratula") & "'"
+divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "'"
 
                     '                    cant_bultos ='" & txtcantbultos.Text & "', 
                     'pesobruto_bultos ='" & txtpesobrutobul.Text & "', canti_items='" & txttotalitems.Text & "', 
@@ -210,7 +211,7 @@ divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
+                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
             End Select
 
         Catch ex As Exception
