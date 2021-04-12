@@ -18,15 +18,15 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlventajas').value = '';
-            
+
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML +' - ' + row.cells[6].innerHTML;
+            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML + ' - ' + row.cells[6].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
 
-           /* xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');*/
+            /* xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');*/
         }
 
         function GetSelectedRowEdit(lnk) {
@@ -39,17 +39,17 @@
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_ddlddlventajaedit').value = row.cells[3].innerHTML;
-            //}
-            //if (row.cells[4].innerHTML != '&nbsp;') {
-            //    document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
-            //}
-            //if (row.cells[5].innerHTML != '&nbsp;') {
-            //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
+                //}
+                //if (row.cells[4].innerHTML != '&nbsp;') {
+                //    document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
+                //}
+                //if (row.cells[5].innerHTML != '&nbsp;') {
+                //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
             }
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
             }
-          /*  xModal('pink', 'ContentPrincipal_txtReferenciaEditar', 'modalEditar');*/
+            /*  xModal('pink', 'ContentPrincipal_txtReferenciaEditar', 'modalEditar');*/
         }
 
     </script>
@@ -105,6 +105,19 @@
                             </button>
                         </div>
 
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttVolver"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">undo</i>
+                                <span>Volver</span>
+                            </asp:LinkButton>
+                        </div>
+
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -125,9 +138,9 @@
                                         <%--Id_Codigo, Id_ventaja, Id_merca, Descripcion--%>
                                         <asp:BoundField DataField="Id_Codigo" HeaderText="ID" />
                                         <asp:BoundField DataField="Id_ventaja" HeaderText="Código de Documento" />
-                                          <asp:BoundField DataField="Descripcion" HeaderText="Descripcción" />
-                                         <asp:BoundField DataField="Id_merca" HeaderText="Numero de Item" />
-                                      
+                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripcción" />
+                                        <asp:BoundField DataField="Id_merca" HeaderText="Numero de Item" />
+
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -172,16 +185,16 @@
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator
-                            ID="ddlproveedoresv"
-                            ControlToValidate="ddlventajas"
-                            InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
-                            ForeColor="OrangeRed"
-                            Font-Size="X-Small"
-                            runat="server" />
+                                    ID="ddlproveedoresv"
+                                    ControlToValidate="ddlventajas"
+                                    InitialValue="Seleccione"
+                                    ErrorMessage="selecciones datos"
+                                    ForeColor="OrangeRed"
+                                    Font-Size="X-Small"
+                                    runat="server" />
                             </div>
                         </div>
-                     
+
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttGuardarDocumento" ValidationGroup="Validadocumento" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
@@ -239,7 +252,7 @@
                         <br />
                         <!-- CUERPO DEL MODAL -->
 
-                              <div class="row">
+                        <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label"></label>
                                 <asp:SqlDataSource
@@ -259,17 +272,17 @@
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator
-                            ID="RequiredFieldValidator1"
-                            ControlToValidate="ddlventajaedit"
-                            InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
-                            ForeColor="OrangeRed"
-                            Font-Size="X-Small"
-                            runat="server" />
+                                    ID="RequiredFieldValidator1"
+                                    ControlToValidate="ddlventajaedit"
+                                    InitialValue="Seleccione"
+                                    ErrorMessage="selecciones datos"
+                                    ForeColor="OrangeRed"
+                                    Font-Size="X-Small"
+                                    runat="server" />
                             </div>
                         </div>
 
-                    
+
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificardocumento" ValidationGroup="ValidadocumentoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>

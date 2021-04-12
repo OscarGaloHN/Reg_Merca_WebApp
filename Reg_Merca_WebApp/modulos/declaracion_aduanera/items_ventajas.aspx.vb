@@ -147,9 +147,9 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
             'If txtreferenciaEditar.Text <> lblHiddenIDDocumento.Value Then
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_42_Datos_Ventaja where  id_ventaja = '" & ddlventajaedit.SelectedValue & "' "
             Using con As New ControlDB
-                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
-                End Using
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
             'Else
             '    Session("NumReg") = 0
             'End If
@@ -170,5 +170,13 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
 
         End Try
 
+    End Sub
+
+    Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
+        Try
+            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx")
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

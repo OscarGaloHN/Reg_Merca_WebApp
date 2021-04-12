@@ -103,7 +103,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txttitulocurri" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txttitulocurri" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
                                     <label class="form-label">Titulo de Manifiesto Currier</label>
                                 </div>
                                 <%--  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtnummitem"
@@ -151,7 +151,7 @@
                             <label class="form-label"></label>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox ID="txtdeclaracioancancel" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtdeclaracioancancel" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
                                     <label class="form-label">Declaracion a Cancelar</label>
                                 </div>
                                 <%--  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtnummitem"
@@ -306,7 +306,7 @@
                             ProviderName="MySql.Data.MySqlClient"
                             SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>--%>
 
-<%--                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <%--                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label">Cuota Arancelaria</label>
                             <asp:DropDownList
                                 ID="ddlcuotaarancel" runat="server" class="form-control show-tick"
@@ -314,7 +314,6 @@
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
                         </div>--%>
-
                     </div>
 
 
@@ -528,9 +527,25 @@
 
                     </div>
 
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="btt_guardar"
+                                type="button"
+                                class="btn bg-teal waves-effect">
+          <i class="material-icons">save</i>
+          <span>Guardar</span>
+                            </asp:LinkButton>
+                        </div>
+                    </div>
+
 
                     <div class="row clearfix">
                         <asp:Panel ID="pbotones" runat="server">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            </div>
                             <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                                 <asp:LinkButton ValidationGroup="novalidar"
                                     Width="100%"
@@ -543,11 +558,12 @@
                                 </asp:LinkButton>
                             </div>
 
-                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <asp:LinkButton
                                     Width="100%"
                                     runat="server"
                                     ID="bttComplementario"
+                                    ValidationGroup="Validarbttitems"
                                     type="button"
                                     class="btn bg-teal waves-effect">
               <i class="material-icons">collections_bookmark</i>
@@ -555,34 +571,21 @@
                                 </asp:LinkButton>
                             </div>
                         </asp:Panel>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <asp:LinkButton
-                            Width="100%"
-                            runat="server"
-                            ID="bttventajas"
-                            type="button"
-                            class="btn bg-teal waves-effect">
-              <i class="material-icons">note_add</i>
-              <span>Ventajas</span>
-                        </asp:LinkButton>
-                    </div>
 
-                    <div class="row clearfix">
-
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                        </div>
                         <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
-                                ID="btt_guardar"
+                                ID="bttventajas"
+                                ValidationGroup="Validarbttitems"
                                 type="button"
                                 class="btn bg-teal waves-effect">
-          <i class="material-icons">save</i>
-          <span>Guardar</span>
+              <i class="material-icons">note_add</i>
+              <span>Ventajas</span>
                             </asp:LinkButton>
                         </div>
+
+
 
                         <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton
@@ -596,14 +599,11 @@
                                 <span>Volver</span>
                             </asp:LinkButton>
                         </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>

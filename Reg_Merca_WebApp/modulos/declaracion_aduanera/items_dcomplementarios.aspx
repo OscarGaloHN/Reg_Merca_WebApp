@@ -19,7 +19,7 @@
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlcomplementario').value = '';
             document.getElementById('ContentPrincipal_txtvalor').value = '';
-          
+
         }
 
         function GetSelectedRowDelete(lnk) {
@@ -33,7 +33,7 @@
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_ddlcomplementario').value = '';
             document.getElementById('ContentPrincipal_txtvalor').value = '';
-          
+
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
@@ -44,7 +44,7 @@
             if (row.cells[4].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtvalor').value = row.cells[4].innerHTML;
             }
-           
+
             if (row.cells[5].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[5].innerHTML;
             }
@@ -104,6 +104,20 @@
                             </button>
                         </div>
 
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttVolver"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">undo</i>
+                                <span>Volver</span>
+                            </asp:LinkButton>
+                        </div>
+
+
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -126,8 +140,8 @@
                                         <asp:BoundField DataField="Valor" HeaderText="valor" />
                                         <asp:BoundField DataField="Id_Codigo" HeaderText="ID" />
 
-                                       
-                                                                       </Columns>
+
+                                    </Columns>
                                 </asp:GridView>
                             </div>
                         </div>
@@ -170,18 +184,18 @@
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator id="validarcomplementario"
-                             ControlToValidate="ddlcomplementario" InitialValue="Seleccione" ErrorMessage="seleccione un dato" 
-                                    ForeColor="OrangeRed" Font-Size="X-Small" runat="server"/>
+                                <asp:RequiredFieldValidator ID="validarcomplementario"
+                                    ControlToValidate="ddlcomplementario" InitialValue="Seleccione" ErrorMessage="seleccione un dato"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" runat="server" />
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label">Valor</label>
-                                                              
+
 
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtvalor" 
+                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtvalor"
                                             onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtvalor"
@@ -191,7 +205,7 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttGuardarDocumento" ValidationGroup="Validadocumento" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
@@ -250,7 +264,7 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label"></label>
                                 <asp:SqlDataSource
                                     ID="SqlDataSource1"
@@ -268,9 +282,9 @@
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator id="RequiredFieldValidator1"
-                             ControlToValidate="ddlcomplementario" InitialValue="Seleccione" ErrorMessage="seleccione un dato" 
-                                    ForeColor="OrangeRed" Font-Size="X-Small" runat="server"/>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                                    ControlToValidate="ddlcomplementario" InitialValue="Seleccione" ErrorMessage="seleccione un dato"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" runat="server" />
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -278,7 +292,7 @@
 
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtvaloredit" 
+                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtvaloredit"
                                             onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtvalor"
@@ -289,7 +303,7 @@
                             </div>
                         </div>
 
-                     
+
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificardocumento" ValidationGroup="ValidadocumentoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>

@@ -158,18 +158,24 @@
             '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El documento ya esta registrado.', 'error');</script>")
             'Else
             Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
-                Using con As New ControlDB
-                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                End Using
-                'Using log_bitacora As New ControlBitacora
-                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
-                'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=editdocumento&idCaratula=" & Request.QueryString("idCaratula"))
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+            'Using log_bitacora As New ControlBitacora
+            '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
+            'End Using
+            Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=editdocumento&idCaratula=" & Request.QueryString("idCaratula"))
             'End If
         Catch ex As Exception
 
         End Try
+    End Sub
 
+    Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
+        Try
+            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx")
+        Catch ex As Exception
 
+        End Try
     End Sub
 End Class

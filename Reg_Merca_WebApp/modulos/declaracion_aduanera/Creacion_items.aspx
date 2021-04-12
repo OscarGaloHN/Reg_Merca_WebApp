@@ -95,7 +95,7 @@
                                         ID="btt_volver"
                                         type="button"
                                         class="btn bg-teal waves-effect">
-          <i class="material-icons">search</i>
+          <i class="material-icons">undo</i>
           <span>Volver</span>
                                     </asp:LinkButton>
                                 </div>

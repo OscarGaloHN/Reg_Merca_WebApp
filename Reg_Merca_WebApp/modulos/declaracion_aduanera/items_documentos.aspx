@@ -1,4 +1,4 @@
-﻿<%@  Page Language="vb" Title="Documentos Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
+﻿<%@ Page Language="vb" Title="Documentos Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -106,6 +106,19 @@
                             </button>
                         </div>
 
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttVolver"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">undo</i>
+                                <span>Volver</span>
+                            </asp:LinkButton>
+                        </div>
+
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -121,17 +134,17 @@
                                         <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
-                                           
-                                          <%--  id_doc, Id_Documento, Referencia, presencia, Id_Merca, Descripcion --%>   
-                                        </ItemTemplate>
+
+                                                <%--  id_doc, Id_Documento, Referencia, presencia, Id_Merca, Descripcion --%>
+                                            </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="id_doc" HeaderText="ID" />
                                         <asp:BoundField DataField="Id_Documento" HeaderText="Código de Documento" />
-                                            <asp:BoundField DataField="descripcion" HeaderText="Descripción del Documento" />
+                                        <asp:BoundField DataField="descripcion" HeaderText="Descripción del Documento" />
                                         <asp:BoundField DataField="referencia" HeaderText="Referencia del Documento" />
                                         <asp:BoundField DataField="presencia" HeaderText="Presencia" />
                                         <asp:BoundField DataField="Id_Merca" HeaderText="ID Póliza" />
-                                       
+
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -249,7 +262,7 @@
 
 
     <!-- modal editar documento-->
-      <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarDocumento">
                 <div class="modal-content">
@@ -263,7 +276,7 @@
                         <br />
                         <!-- CUERPO DEL MODAL -->
 
-                            <div class="row">
+                        <div class="row">
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label"></label>

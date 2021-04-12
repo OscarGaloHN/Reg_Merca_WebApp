@@ -428,6 +428,15 @@ Partial Public Class items
     Protected WithEvents txtcomentario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Control btt_guardar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btt_guardar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''Control pbotones.
     '''</summary>
     '''<remarks>
@@ -462,15 +471,6 @@ Partial Public Class items
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents bttventajas As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control btt_guardar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btt_guardar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control bttVolver.
