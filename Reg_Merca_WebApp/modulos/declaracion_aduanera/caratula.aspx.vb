@@ -194,7 +194,7 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
         Try
             Response.Redirect("~/modulos/declaracion_aduanera/creacion_proyectos.aspx")
         Catch ex As Exception
-
+            lk
         End Try
 
     End Sub
