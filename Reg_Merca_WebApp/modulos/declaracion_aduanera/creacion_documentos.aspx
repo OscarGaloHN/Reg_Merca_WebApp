@@ -299,7 +299,8 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" onkeypress="txNombres(event);"
+                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."
