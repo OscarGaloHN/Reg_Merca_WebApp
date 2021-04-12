@@ -94,7 +94,9 @@
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
             Else
 
-                Ssql = "INSERT INTO DB_Nac_Merca.tbl_42_Datos_Ventaja (Id_ventaja, Id_merca) VALUES ('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & "'"
+                'Ssql = "INSERT INTO DB_Nac_Merca.tbl_42_Datos_Ventaja (Id_ventaja, Id_merca) VALUES ('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & "'"
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_42_Datos_Ventaja (Id_ventaja, Id_merca) 
+VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & "); "
 
 
             End If
@@ -104,7 +106,7 @@
             'Using log_bitacora As New ControlBitacora
             '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
             'End Using
-            '    Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=newdocumento&idCaratula=" & Request.QueryString("idCaratula"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems"))
             'End If
 
             'habilitar indicador
@@ -131,7 +133,7 @@
             '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             'End Using
 
-            Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=deldocumento&idCaratula=" & Request.QueryString("idCaratula"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems"))
 
         Catch ex As Exception
 
