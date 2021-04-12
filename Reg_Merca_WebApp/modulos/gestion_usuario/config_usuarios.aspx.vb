@@ -1,5 +1,6 @@
 ﻿Public Class Config_Usuarios
     Inherits System.Web.UI.Page
+    'OBJETO #7
     Private Property DataSetX As DataSet
         Get
             Return CType(Session("DataSetX"), DataSet)
@@ -9,94 +10,101 @@
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Try
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
 
-        'parametros de configuracion de sistema
-        Using Parametros_Sistema As New ControlDB
-            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        End Using
+                Dim Ssql As String = String.Empty
+                Session("user_rol") = 5
+                Session("user_idUsuario") = 2
 
-        'PARAMETROS DE ADMINISTRADOR
-        Using Parametros_admin As New ControlDB
-            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        End Using
-        If Session("user_idUsuario") = Nothing Then
-            Session.Abandon()
-            Response.Redirect("~/Inicio/login.aspx")
-        Else
-            'codigo que corresponde al envento load
-        End If
-
-        If Not IsPostBack Then
-            Using cusuario_bitacora As New ControlBitacora
-                cusuario_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 7, "El usuario ingresa a la pantalla de configuracion de usuarios")
-            End Using
-        End If
-
-        Dim Ssql As String = String.Empty
-        Session("user_rol") = 5
-        Session("user_idUsuario") = 2
-
-        If Session("user_rol") = 5 Then
-            Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
+                If Session("user_rol") = 5 Then
+                    Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
                             from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
                                where a.id_rol = b.id_rol
                                 and a.estado = c.id_estado and a.id_rol and a.id_usuario <> 1"
-
-        Else
-            Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
+                Else
+                    Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
                             from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
                                where a.id_rol = b.id_rol
                                 and a.estado = c.id_estado and a.id_rol != 5 and a.id_usuario <> 1"
 
-        End If
+                End If
 
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
+                    gvCustomers.DataSource = DataSetX
+                    gvCustomers.DataBind()
+                End If
 
-        Using con As New ControlDB
-            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        End Using
-        If Session("NumReg") > 0 Then
-            gvCustomers.DataSource = DataSetX
-            gvCustomers.DataBind()
-        End If
+                Select Case Request.QueryString("action")
+                    Case "deleteusuer"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El Usuario se elimino exitosamente.', 'success');</script>")
+                    Case "deleteinactive"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
+                    Case "deletefailed"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
+                End Select
 
-        Select Case Request.QueryString("action")
-            Case "deleteusuer"
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El Usuario se elimino exitosamente.', 'success');</script>")
-            Case "deleteinactive"
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
-            Case "deletefailed"
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
-        End Select
+                'bitacora de que salio de un form
+                If Not IsPostBack Then
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                    End Using
+                End If
+
+                'bitacora de que ingreso al form
+                Session("IDfrmQueIngresa") = 7
+                Session("NombrefrmQueIngresa") = "Gestión de usuarios"
+                If Not IsPostBack Then
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                    End Using
+                End If
+            End If
+
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
 
     Private Sub bttNuevo_Click(sender As Object, e As EventArgs) Handles bttNuevo.Click
-        Response.Redirect("~/modulos/gestion_usuario/config_gestion_usuario.aspx?action=new")
+        Try
+            Response.Redirect("~/modulos/gestion_usuario/config_gestion_usuario.aspx?action=new")
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub bttEliminar_Click(sender As Object, e As EventArgs) Handles bttEliminar.Click
         Dim Ssql As String
 
-        'pasar el nombre del usuario en la bitacora
-        Ssql = "SELECT usuario FROM DB_Nac_Merca.tbl_02_usuarios where id_usuario= " & lblHidden1.Value & ";"
-        Using con As New ControlDB
-            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        End Using
-        Dim registro As DataRow
-        If Session("NumReg") > 0 Then
-            registro = DataSetX.Tables(0).Rows(0)
-            lblUsuario.Text = registro("usuario")
-        End If
-
-        Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & lblHidden1.Value & ""
-        Using con As New ControlDB
-            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-        End Using
-
         Try
+
+            'pasar el nombre del usuario en la bitacora
+            Ssql = "SELECT usuario FROM DB_Nac_Merca.tbl_02_usuarios where id_usuario= " & lblHidden1.Value & ";"
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            Dim registro As DataRow
+            If Session("NumReg") > 0 Then
+                registro = DataSetX.Tables(0).Rows(0)
+                lblUsuario.Text = registro("usuario")
+            End If
+
+            Ssql = "delete from DB_Nac_Merca.tbl_35_activacion_usuario  where id_usuario =  " & lblHidden1.Value & ""
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
 
             Ssql = "delete from DB_Nac_Merca.tbl_02_usuarios where id_usuario =  " & lblHidden1.Value & ""
             Using con As New ControlDB
