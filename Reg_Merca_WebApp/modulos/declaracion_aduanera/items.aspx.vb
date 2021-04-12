@@ -129,14 +129,14 @@ values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
 '" & Session("iditems") & "'); SELECT LAST_INSERT_ID();"
 
                     Using con As New ControlDB
-                        con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        con.GME_Recuperar_item(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
 
                     If Session("NumReg") > 0 Then
                         'Using log_bitacora As New ControlBitacora
                         '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
                         'End Using
-                        Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Session("GME_Recuperar_ID"))
+                        Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Session("GME_Recuperar_item"))
                     Else
 
                     End If
