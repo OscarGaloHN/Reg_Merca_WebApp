@@ -58,7 +58,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Listado de Items
+                    <h2 style="font-weight: bold;">Listado de Items de la caratula -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>
          
                         <small>A continuación se muestra el listado de items</small>
                     </h2>

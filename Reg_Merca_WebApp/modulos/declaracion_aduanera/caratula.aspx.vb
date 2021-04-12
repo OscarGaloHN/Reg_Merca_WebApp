@@ -27,7 +27,7 @@
                 Session.Abandon()
                 Response.Redirect("~/Inicio/login.aspx")
             Else
-                pbotones.Enabled = False
+                'pbotones.Enabled = False
                 Dim Ssql As String = String.Empty
 
                 Ssql = "select * from DB_Nac_Merca.tbl_04_cliente where Id_cliente='" & ddlCliente.SelectedValue & "'"
@@ -42,10 +42,10 @@
                         txtFechaCreacion.Text = fechaactual
                         ddlestado.Enabled = False
                         'inhabilita Panel de botones
-                        pbotones.Enabled = False
+                        ddlestado.SelectedValue = 7
                     Case "update"
                         'habilita Panel de botones
-                        pbotones.Enabled = True
+                        pbotones.Visible = True
                         If Not IsPostBack Then
 
                             Ssql = "select * from DB_Nac_Merca.tbl_01_polizas where id_poliza =" & Request.QueryString("idCaratula") & ""
@@ -165,19 +165,19 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
+                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
 
 
-                    If Session("NumReg") > 0 Then
-                        'Using log_bitacora As New ControlBitacora
-                        '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
-                        'End Using
-                        Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
-                    Else
+                    'If Session("NumReg") > 0 Then
+                    '    'Using log_bitacora As New ControlBitacora
+                    '    '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
+                    '    'End Using
+                    'Else
 
-                    End If
+                    'End If
 
                     'inhabilita Panel de botones
-                    pbotones.Enabled = True
+                    'pbotones.Enabled = True
 
 
 
@@ -244,6 +244,7 @@ divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("
     Private Sub bttitems_Click(sender As Object, e As EventArgs) Handles bttitems.Click
         Try
             'redirecciona a form items
+            'Session("IdCaratulaEditor") = Request.QueryString("idCaratula")
             Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 

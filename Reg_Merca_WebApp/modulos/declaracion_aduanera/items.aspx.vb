@@ -13,6 +13,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
+            lblCatatura.Text = Request.QueryString("idCaratula")
             ''parametros de configuracion de sistema
             'Using Parametros_Sistema As New ControlDB
             '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
@@ -31,8 +32,10 @@
 
                 Select Case Request.QueryString("action")
                     Case "new"
-
+                        pbotones.Visible = False
                     Case "update"
+                        pbotones.Visible = True
+
                         If Not IsPostBack Then
 
                             Dim Ssql As String = String.Empty
@@ -113,33 +116,33 @@
             Select Case Request.QueryString("action")
                 Case "new"
                     Ssql = "Insert into DB_Nac_Merca.tbl_34_mercancias 
-(Id_Tipo_items,num_partida,titulo_currier,matriz_insumos,item_asociado,declaracion_a_cancelar,item_a_cancelar,
-pesoneto,pesobruto,bultcant,Estado_Merc,cod_pais_fab,cod_pais_pro,cod_pais_adq,cuota_arancelaria,Id_UnidadComercial,Cantidad_Comercial,
-Unidad_Estadistica,cantidad_estadistica,importes_factura,importes_otrosgastos,importes_seguro,importes_flete,ajuste_a_incluir,
-numero_certificado_imp,convenio_perfeccionamiento,exoneracion_aduanera,observaciones,comentario) 
-values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
-'" & txttitulocurri.Text & "', '" & txtmmatrizinsu.Text & "', '" & txtnrroitemasoc.Text & "', 
-'" & txtdeclaracioancancel.Text & "', '" & txtnmeroitemcancel.Text & "','" & txtpesoneto.Text & "','" & txtpesobruto.Text & "',
+(Id_poliza,Id_Tipo_items,num_partida,titulo_currier,matriz_insumos,
+item_asociado,declaracion_a_cancelar,item_a_cancelar,pesoneto,pesobruto,
+bultcant,Estado_Merc,cod_pais_fab,cod_pais_pro,
+cod_pais_adq,Id_UnidadComercial,Cantidad_Comercial,Unidad_Estadistica,
+cantidad_estadistica,importes_factura,importes_otrosgastos,importes_seguro,importes_flete,
+ajuste_a_incluir,numero_certificado_imp,convenio_perfeccionamiento,exoneracion_aduanera,observaciones,comentario) 
+values 
+(" & Request.QueryString("idCaratula") & ",'" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "','" & txttitulocurri.Text & "', '" & txtmmatrizinsu.Text & "', 
+'" & txtnrroitemasoc.Text & "', '" & txtdeclaracioancancel.Text & "', '" & txtnmeroitemcancel.Text & "','" & txtpesoneto.Text & "','" & txtpesobruto.Text & "',
 '" & txtcantbltos.Text & "','" & ddlestadomerca.SelectedValue & "','" & ddlpaisesdeorigeni.SelectedValue & "','" & ddlpaisproce.SelectedValue & "',
-'" & ddlpaisadd.SelectedValue & "','" & ddlunidacomer.SelectedValue & "','" & txtcantidadcomer.Text & "',
-'" & ddlunidadestadis.SelectedValue & "','" & txtcantidadestadis.Text & "','" & txtimportefact.Text & "',
-'" & txtimporteotros.Text & "','" & txtseguro.Text & "','" & txtflete.Text & "',
-'" & txtajuste.Text & "','" & txtnumerocerti.Text & "','" & txtconvenio.Text & "',
-'" & txtexoneracionaduanera.Text & "','" & txtobservacion.Text & "','" & txtcomentario.Text & "',
-'" & Session("iditems") & "'); SELECT LAST_INSERT_ID();"
+'" & ddlpaisadd.SelectedValue & "','" & ddlunidacomer.SelectedValue & "','" & txtcantidadcomer.Text & "','" & ddlunidadestadis.SelectedValue & "',
+'" & txtcantidadestadis.Text & "','" & txtimportefact.Text & "','" & txtimporteotros.Text & "','" & txtseguro.Text & "','" & txtflete.Text & "',
+'" & txtajuste.Text & "','" & txtnumerocerti.Text & "','" & txtconvenio.Text & "','" & txtexoneracionaduanera.Text & "',
+'" & txtobservacion.Text & "','" & txtcomentario.Text & "'); SELECT LAST_INSERT_ID();"
 
                     Using con As New ControlDB
-                        con.GME_Recuperar_item(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
+                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Session("GME_Recuperar_ID") & "&idCaratula=" & Request.QueryString("idCaratula"))
 
-                    If Session("NumReg") > 0 Then
-                        'Using log_bitacora As New ControlBitacora
-                        '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
-                        'End Using
-                        Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Session("GME_Recuperar_item"))
-                    Else
+                    'If Session("NumReg") > 0 Then
+                    '    'Using log_bitacora As New ControlBitacora
+                    '    '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
+                    '    'End Using
+                    'Else
 
-                    End If
+                    'End If
 
             End Select
 
@@ -164,7 +167,7 @@ values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
-            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx")
+            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try

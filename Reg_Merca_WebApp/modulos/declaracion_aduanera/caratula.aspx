@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="Carátula" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="caratula.aspx.vb" Inherits="Reg_Merca_WebApp.caratula" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <link href="../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
     <link href="../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
     <script src="../plugins/momentjs/moment.js"></script>
-    <!-- Bootstrap Select Css -->
-    <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">Carátula de la Poliza</a>
@@ -93,6 +95,7 @@
                         <asp:DropDownList
                             ID="ddlestado" runat="server" DataSourceID="sqlestadopol" class="form-control show-tick"
                             DataTextField="descripcion" DataValueField="id_estado" AppendDataBoundItems="true" ItemType="">
+                            <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -183,7 +186,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label class="form-label">Regimen Aduanero</label>
                         <asp:DropDownList
-                            ID="ddlregimenaduanero" runat="server" DataSourceID="sqlregimenaduanero" class="form-control show-tick"
+                            ID="ddlregimenaduanero" runat="server" DataSourceID="sqlregimenaduanero" class="form-control show-tick" data-live-search="true"
                             DataTextField="Descripcion" DataValueField="Id_Regimen" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
@@ -413,7 +416,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2 "></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Paises de Origen</label>
@@ -438,7 +441,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2 "></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Paises de Procedencia</label>
@@ -522,7 +525,7 @@
                             DataTextField="Nombre_aduana" DataValueField="Id_Aduana" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-<%--                        <asp:RequiredFieldValidator
+                        <%--                        <asp:RequiredFieldValidator
                             ID="ddladuanatransitodesv"
                             ControlToValidate="ddladuanatransitodes"
                             InitialValue="Seleccione"
@@ -547,7 +550,7 @@
                             DataTextField="Nombre_modalidad" DataValueField="Id_Modalidad" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-<%--                        <asp:RequiredFieldValidator
+                        <%--                        <asp:RequiredFieldValidator
                             ID="ddlmodalidadespv"
                             ControlToValidate="ddlmodalidadesp"
                             InitialValue="Seleccione"
@@ -571,7 +574,7 @@
                             DataTextField="Nombre" DataValueField="Id_almacen" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-<%--                        <asp:RequiredFieldValidator
+                        <%--                        <asp:RequiredFieldValidator
                             ID="ddldepositoaduanav"
                             ControlToValidate="ddldepositoaduana"
                             InitialValue="Seleccione"
@@ -816,50 +819,7 @@
           <span>Guardar</span>
                         </asp:LinkButton>
                     </div>
-                </div>
 
-                <div class="row clearfix">
-                    <asp:Panel ID="pbotones" runat="server">
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="bttitems"
-                                type="button"
-                                ValidationGroup="Validarbttitems"
-                                class="btn bg-teal waves-effect">
-          <i class="material-icons">note_add</i>
-          <span>Items</span>
-                            </asp:LinkButton>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="bttdocumen"
-                                type="button"
-                                ValidationGroup="Validarbttdocumen"
-                                class="btn bg-teal waves-effect">
-          <i class="material-icons">note_add</i>
-          <span>Documentos</span>
-                            </asp:LinkButton>
-                        </div>
-
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="btt_bultos"
-                                type="button"
-                                ValidationGroup="Validarbttbultos"
-                                class="btn bg-teal waves-effect">
-          <i class="material-icons">collections_bookmark</i>
-          <span>Bultos</span>
-                            </asp:LinkButton>
-                        </div>
-                    </asp:Panel>
                     <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                         <asp:LinkButton
                             Width="100%"
@@ -873,9 +833,60 @@
                         </asp:LinkButton>
                     </div>
                 </div>
+                <br />
+                <asp:Panel ID="pbotones" runat="server" Visible="false">
+
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttitems"
+                                type="button"
+                                ValidationGroup="Validarbttitems"
+                                class="btn bg-pink waves-effect">
+                              <i class="material-icons">note_add</i>
+                              <span>Items</span>
+                            </asp:LinkButton>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttdocumen"
+                                type="button"
+                                ValidationGroup="Validarbttdocumen"
+                                class="btn bg-pink waves-effect">
+                              <i class="material-icons">note_add</i>
+                              <span>Documentos</span>
+                            </asp:LinkButton>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="btt_bultos"
+                                type="button"
+                                ValidationGroup="Validarbttbultos"
+                                class="btn bg-pink waves-effect">
+          <i class="material-icons">collections_bookmark</i>
+          <span>Bultos</span>
+                            </asp:LinkButton>
+                        </div>
+
+                    </div>
+                </asp:Panel>
+
             </div>
+
         </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
+    <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
 </asp:Content>

@@ -12,7 +12,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
-
+            lblCatatura.Text = Request.QueryString("idCaratula")
 
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
@@ -63,13 +63,13 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
     Private Sub bttNuevo_Click(sender As Object, e As EventArgs) Handles bttNuevo.Click
         Try
             'redirecciona a form items
-            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new")
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try
     End Sub
 
     Private Sub btt_volver_Click(sender As Object, e As EventArgs) Handles btt_volver.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx")
+        Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
     End Sub
 End Class

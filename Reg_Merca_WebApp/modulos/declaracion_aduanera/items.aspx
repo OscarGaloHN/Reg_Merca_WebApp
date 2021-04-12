@@ -5,7 +5,7 @@
     <link href="../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
     <script src="../plugins/m   omentjs/moment.js"></script>
     <!-- Bootstrap Select Css -->
-    <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">Declaración Aduanera</a>
@@ -36,7 +36,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Items    
+                    <h2 style="font-weight: bold;">Nuevo item para la caratula -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>    
                             <small>Ingreso de Datos de Los Items</small>
                     </h2>
                 </div>
@@ -326,7 +326,7 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_UnidadMed, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_24_Unidad_Medida order by rand() "></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_UnidadMed, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_24_Unidad_Medida order by 2"></asp:SqlDataSource>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label">Unidad Comercial</label>
@@ -539,54 +539,6 @@
           <span>Guardar</span>
                             </asp:LinkButton>
                         </div>
-                    </div>
-
-
-                    <div class="row clearfix">
-                        <asp:Panel ID="pbotones" runat="server">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                                <asp:LinkButton ValidationGroup="novalidar"
-                                    Width="100%"
-                                    runat="server"
-                                    ID="bttDocumentos"
-                                    type="button"
-                                    class="btn bg-teal waves-effect">
-              <i class="material-icons">list</i>
-              <span>Documentos</span>
-                                </asp:LinkButton>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <asp:LinkButton
-                                    Width="100%"
-                                    runat="server"
-                                    ID="bttComplementario"
-                                    ValidationGroup="Validarbttitems"
-                                    type="button"
-                                    class="btn bg-teal waves-effect">
-              <i class="material-icons">collections_bookmark</i>
-              <span>Complementario</span>
-                                </asp:LinkButton>
-                            </div>
-                        </asp:Panel>
-
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="bttventajas"
-                                ValidationGroup="Validarbttitems"
-                                type="button"
-                                class="btn bg-teal waves-effect">
-              <i class="material-icons">note_add</i>
-              <span>Ventajas</span>
-                            </asp:LinkButton>
-                        </div>
-
-
-
                         <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
@@ -600,10 +552,58 @@
                             </asp:LinkButton>
                         </div>
                     </div>
+                    <br />
+                    <asp:Panel ID="pbotones" runat="server" Visible="false">
+
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                <asp:LinkButton ValidationGroup="novalidar"
+                                    Width="100%"
+                                    runat="server"
+                                    ID="bttDocumentos"
+                                    type="button"
+                                    class="btn bg-pink waves-effect">
+              <i class="material-icons">list</i>
+              <span>Documentos</span>
+                                </asp:LinkButton>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <asp:LinkButton
+                                    Width="100%"
+                                    runat="server"
+                                    ID="bttComplementario"
+                                    ValidationGroup="Validarbttitems"
+                                    type="button"
+                                    class="btn bg-pink waves-effect">
+              <i class="material-icons">collections_bookmark</i>
+              <span>Complementario</span>
+                                </asp:LinkButton>
+                            </div>
+
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                                <asp:LinkButton
+                                    Width="100%"
+                                    runat="server"
+                                    ID="bttventajas"
+                                    ValidationGroup="Validarbttitems"
+                                    type="button"
+                                    class="btn bg-pink waves-effect">
+              <i class="material-icons">note_add</i>
+              <span>Ventajas</span>
+                                </asp:LinkButton>
+                            </div>
+                        </div>
+                    </asp:Panel>
                 </div>
             </div>
         </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
+    <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
 </asp:Content>
