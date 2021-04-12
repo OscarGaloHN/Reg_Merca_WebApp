@@ -240,7 +240,14 @@
                                 DataTextField="Descripcion" DataValueField="Id_Estado" AppendDataBoundItems="true" ItemType="">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
-
+                                                    <asp:RequiredFieldValidator
+                            ID="ddlestadomercav"
+                            ControlToValidate="ddlestadomerca"
+                            InitialValue="Seleccione"
+                            ErrorMessage="Seleccione un dato"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                         </div>
                     </div>
                     <div class="row clearfix">
@@ -259,6 +266,15 @@
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
+
+                                                    <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator4"
+                            ControlToValidate="ddlpaisesdeorigeni"
+                            InitialValue="Seleccione"
+                            ErrorMessage="Seleccione un dato"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                         </div>
 
 
@@ -277,6 +293,14 @@
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
+                                                   <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator12"
+                            ControlToValidate="ddlpaisproce"
+                            InitialValue="Seleccione"
+                            ErrorMessage="Seleccione un dato"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                         </div>
 
 
@@ -295,6 +319,14 @@
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator13"
+                            ControlToValidate="ddlpaisadd"
+                            InitialValue="Seleccione"
+                            ErrorMessage="Seleccione un dato"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                         </div>
 
 
@@ -335,6 +367,14 @@
                                 DataTextField="Descripcion" DataValueField="Id_UnidadMed" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator14"
+                            ControlToValidate="ddlunidacomer"
+                            InitialValue="Seleccione"
+                            ErrorMessage="Seleccione un dato"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                         </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -366,6 +406,14 @@
                                 DataTextField="Descripcion" DataValueField="Id_UnidadMed" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator15"
+                            ControlToValidate="ddlunidadestadis"
+                            InitialValue="Seleccione"
+                            ErrorMessage="Seleccione un dato"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                         </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

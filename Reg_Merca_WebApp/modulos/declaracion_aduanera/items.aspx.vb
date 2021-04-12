@@ -144,6 +144,26 @@ values
 
                     'End If
 
+                Case "update"
+                    Ssql = "update DB_Nac_Merca.tbl_34_mercancias set Id_Tipo_items= '" & ddltipoitem.SelectedValue & "', 
+num_partida= '" & txtposarancel.Text & "' ,titulo_currier= '" & txttitulocurri.Text & "',
+matriz_insumos='" & txtmmatrizinsu.Text & "', item_asociado= '" & txtnrroitemasoc.Text & "' , declaracion_a_cancelar='" & txtdeclaracioancancel.Text & "',
+item_a_cancelar='" & txtnmeroitemcancel.Text & "', pesoneto='" & txtpesoneto.Text & "', pesobruto='" & txtpesobruto.Text & "',
+bultcant='" & txtcantbltos.Text & "', Estado_Merc= '" & ddlestadomerca.SelectedValue & "',
+cod_pais_fab='" & ddlpaisesdeorigeni.SelectedValue & "', cod_pais_pro='" & ddlpaisproce.SelectedValue & "',
+cod_pais_adq='" & ddlpaisadd.SelectedValue & "', Id_UnidadComercial= '" & ddlunidacomer.SelectedValue & "',
+Cantidad_Comercial= '" & txtcantidadcomer.Text & "', Unidad_Estadistica= '" & ddlunidadestadis.SelectedValue & "',
+cantidad_estadistica= '" & txtcantidadestadis.Text & "', importes_factura= '" & txtimportefact.Text & "',
+importes_otrosgastos= '" & txtimporteotros.Text & "', importes_seguro='" & txtseguro.Text & "',
+importes_flete='" & txtflete.Text & "',
+ajuste_a_incluir= '" & txtajuste.Text & "',numero_certificado_imp= '" & txtnumerocerti.Text & "',
+convenio_perfeccionamiento= '" & txtconvenio.Text & "', exoneracion_aduanera= '" & txtexoneracionaduanera.Text & "',
+observaciones= '" & txtobservacion.Text & "',comentario= '" & txtcomentario.Text & "'"
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&idCaratula=" & Request.QueryString("iditems"))
+
             End Select
 
         Catch ex As Exception

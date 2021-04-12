@@ -185,6 +185,15 @@ Partial Public Class items
     Protected WithEvents ddlestadomerca As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddlestadomercav.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddlestadomercav As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control sqlpaisdeorigeni.
     '''</summary>
     '''<remarks>
@@ -201,6 +210,15 @@ Partial Public Class items
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddlpaisesdeorigeni As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control RequiredFieldValidator4.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control sqlpaisprocedencia.
@@ -221,6 +239,15 @@ Partial Public Class items
     Protected WithEvents ddlpaisproce As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control RequiredFieldValidator12.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator12 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control sqladquisicion.
     '''</summary>
     '''<remarks>
@@ -239,6 +266,15 @@ Partial Public Class items
     Protected WithEvents ddlpaisadd As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control RequiredFieldValidator13.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator13 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control SqlDataSource1.
     '''</summary>
     '''<remarks>
@@ -255,6 +291,15 @@ Partial Public Class items
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddlunidacomer As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control RequiredFieldValidator14.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator14 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtcantidadcomer.
@@ -291,6 +336,15 @@ Partial Public Class items
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddlunidadestadis As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control RequiredFieldValidator15.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator15 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtcantidadestadis.
