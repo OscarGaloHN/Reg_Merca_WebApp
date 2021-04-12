@@ -56,21 +56,21 @@
                         Case "update"
                             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Caratula','La caratula se modifico con éxito.', 'success');</script>")
                         Case Else
-                            ''bitacora de que salio de un form
-                            'If Not IsPostBack Then
-                            '    Using log_bitacora As New ControlBitacora
-                            '        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            '    End Using
-                            'End If
+                            'bitacora de que salio de un form
+                            If Not IsPostBack Then
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                End Using
+                            End If
 
-                            ''bitacora de que ingreso al form
-                            'Session("IDfrmQueIngresa") = 7
-                            'Session("NombrefrmQueIngresa") = "Gestión de usuarios"
-                            'If Not IsPostBack Then
-                            '    Using log_bitacora As New ControlBitacora
-                            '        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            '    End Using
-                            'End If
+                            'bitacora de que ingreso al form
+                            Session("IDfrmQueIngresa") = 31
+                            Session("NombrefrmQueIngresa") = "Creación de Proyectos"
+                            If Not IsPostBack Then
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                End Using
+                            End If
                     End Select
 
                 End If
