@@ -148,7 +148,17 @@ values ('" & ddltipoitem.SelectedValue & "', '" & txtposarancel.Text & "',
         End Try
     End Sub
 
+
+
     Private Sub bttDocumentos_Click(sender As Object, e As EventArgs) Handles bttDocumentos.Click
         Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?iditems=" & Request.QueryString("iditems"))
+    End Sub
+
+    Private Sub bttComplementario_Click(sender As Object, e As EventArgs) Handles bttComplementario.Click
+        Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?iditems=" & Request.QueryString("iditems"))
+    End Sub
+
+    Private Sub bttventajas_Click(sender As Object, e As EventArgs) Handles bttventajas.Click
+        Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems"))
     End Sub
 End Class

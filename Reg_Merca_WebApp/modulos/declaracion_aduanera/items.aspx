@@ -560,7 +560,7 @@
                         <asp:LinkButton
                             Width="100%"
                             runat="server"
-                            ID="bttNuevo"
+                            ID="bttventajas"
                             type="button"
                             class="btn bg-teal waves-effect">
               <i class="material-icons">note_add</i>

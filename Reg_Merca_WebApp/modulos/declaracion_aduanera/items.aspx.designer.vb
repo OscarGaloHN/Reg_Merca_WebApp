@@ -455,13 +455,13 @@ Partial Public Class items
     Protected WithEvents bttComplementario As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control bttNuevo.
+    '''Control bttventajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttventajas As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control btt_guardar.
