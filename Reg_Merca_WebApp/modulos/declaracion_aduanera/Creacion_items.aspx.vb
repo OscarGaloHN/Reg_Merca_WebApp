@@ -35,14 +35,14 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
                     gvCustomers.DataBind()
                 End If
 
-                'Select Case Request.QueryString("action")
-                '    Case "deleteusuer"
-                '        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El Usuario se elimino exitosamente.', 'success');</script>")
-                '    Case "deleteinactive"
-                '        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
-                '    Case "deletefailed"
-                '        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
-                'End Select
+                Select Case Request.QueryString("action")
+                    Case "deleteitems"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El Item se elimino exitosamente.', 'success');</script>")
+                    Case "deleteinactive"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
+                    Case "deletefailed"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
+                End Select
             End If
 
             'If Not IsPostBack Then
@@ -60,6 +60,9 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
     End Sub
 
 
+
+
+
     Private Sub bttNuevo_Click(sender As Object, e As EventArgs) Handles bttNuevo.Click
         Try
             'redirecciona a form items
@@ -71,5 +74,22 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
 
     Private Sub btt_volver_Click(sender As Object, e As EventArgs) Handles btt_volver.Click
         Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
+    End Sub
+
+    Private Sub bttEliminar_Click(sender As Object, e As EventArgs) Handles bttEliminar.Click
+        Try
+            Dim Ssql As String
+            Ssql = "DELETE FROM DB_Nac_Merca.tbl_34_mercancias WHERE ID_Merca = " & lblHiddenitems.Value & ""
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+            'Using log_bitacora As New ControlBitacora
+            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
+            'End Using
+
+            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?acction=deleteitems")
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

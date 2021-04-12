@@ -59,31 +59,31 @@ Partial Public Class Creacion_items
     Protected WithEvents PanelEditor As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control lblUsuario.
+    '''Control lblitems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblitems As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblnombre.
+    '''Control lblHiddenitems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblnombre As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenitems As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblid.
+    '''Control lblHiddennumitems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblid As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddennumitems As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''Control bttEliminar.

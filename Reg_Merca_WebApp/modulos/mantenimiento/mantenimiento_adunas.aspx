@@ -6,15 +6,13 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
+     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
     <script src="../src/jsTabla.js"></script>
-
     <script src="../src/jsModales.js"></script>
- 
+
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
@@ -41,31 +39,31 @@
 
             document.getElementById('ContentPrincipal_lblHiddenNombreAduna').value = row.cells[3].innerHTML;
 
-            if (row.cells[3].innerHTML != '&nbsp;') {
+            if (row.cells[3].innerHTML != '&nbsp;') { 
                 document.getElementById('ContentPrincipal_txtAduanaEditar').value = row.cells[3].innerHTML;
             }
-            if (row.cells[4].innerHTML != '&nbsp;') {
+            if (row.cells[4].innerHTML != '&nbsp;') { 
                 document.getElementById('ContentPrincipal_txtContactoEditar').value = row.cells[4].innerHTML;
             }
-            if (row.cells[5].innerHTML != '&nbsp;') {
+            if (row.cells[5].innerHTML != '&nbsp;') { 
                 document.getElementById('ContentPrincipal_txtTelEditar').value = row.cells[5].innerHTML;
             }
-            if (row.cells[6].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtDireccionEditar').value = row.cells[6].innerHTML;
+            if (row.cells[6].innerHTML != '&nbsp;') { 
+                 document.getElementById('ContentPrincipal_txtDireccionEditar').value = row.cells[6].innerHTML;
             }
-            if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDAduna').value = row.cells[2].innerHTML;
+            if (row.cells[2].innerHTML != '&nbsp;') { 
+            document.getElementById('ContentPrincipal_lblHiddenIDAduna').value = row.cells[2].innerHTML;
             }
             xModal('pink', 'ContentPrincipal_txtAduanaEditar', 'modalEditar');
         }
-
+         
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Mantenimiento de Aduanas</a>
+    <a class="navbar-brand" href="#">Matenimiento de Aduanas</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-    <ul class="list">
+  <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -74,126 +72,114 @@
             </a>
         </li>
         <li class="active">
-            <a href="#">
+            <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
-        </li>
-        <li>
-            <a href="almacenes_mant.aspx">
-                <i class="material-icons">store</i>
+            </li>
+             <li >
+                     <a href="almacen_mant.aspx">
+                <i class="material-icons">directions_boat</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li>
             <a href="cliente_mant.aspx">
-                <i class="material-icons">groups</i>
+                <i class="material-icons">directions_boat</i>
                 <span>Clientes</span>
             </a>
-        </li>
-
+            </li>
+        
         <li>
             <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Condicion de Entrega</span>
             </a>
-        </li>
+            </li>
         <li>
             <a href="divisas_mant.aspx">
-                <i class="material-icons">monetization_on</i>
+                <i class="material-icons">directions_boat</i>
                 <span>divisas</span>
             </a>
-        </li>
+            </li>
         <li>
             <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Estado de Mercancia</span>
             </a>
-        </li>
+            </li>
         <li>
             <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Forma de Pago</span>
             </a>
-        </li>
-        <li>
-            <a href="modalidadesp_mant.aspx">
-                <i class="material-icons">add_moderator</i>
+            </li>
+         <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
                 <span>Modalidad Especial</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="#">
-                <i class="material-icons">hail</i>
+                <i class="material-icons">directions_boat</i>
                 <span>Proveedores</span>
             </a>
-        </li>
-        <li>
-            <a href="preguntas_mant.aspx">
-                <i class="material-icons">help</i>
+            </li>
+         <li>
+            <a href="#">
+                <i class="material-icons">directions_boat</i>
                 <span>Preguntas</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="#">
-                <i class="material-icons">travel_explore</i>
+                <i class="material-icons">directions_boat</i>
                 <span>Paises</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="#">
-                <i class="material-icons">menu_book</i>
+                <i class="material-icons">directions_boat</i>
                 <span>Regimenes</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Tipo de Item</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="#">
-                <i class="material-icons">verified</i>
+                <i class="material-icons">directions_boat</i>
                 <span>Unidad de Ventaja</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="#">
-                <i class="material-icons">verified_user</i>
+                <i class="material-icons">directions_boat</i>
                 <span>Ventajas</span>
             </a>
-        </li>
+            </li>
     </ul>
-
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-     <asp:HiddenField ID="HiddenLogo" runat="server" />
-    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
-              
-    <script type="text/javascript">
-        tituloImprimir = 'Listado de las Aduanas'
-        xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-        xMargenes.push(100, 0, 100, 0)
-        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
-        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
-    </script>
-
-    <script type="text/javascript">
-       
-    </script>
-
+      <script type="text/javascript">
+          tituloImprimir = 'Listado de los clientes'
+          xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+      </script>
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Aduanas
+                    <h2 style="font-weight: bold;">Adunas
                                  <small>A continuación se muestra el listado de las aduanas registradas.</small>
                     </h2>
                 </div>
@@ -215,10 +201,9 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Editar">
                                             <ItemTemplate>
-                                                <button onclick="return GetSelectedRowEdit(this);" type="button" class="btn bg-pink waves-effect"><i class="material-icons">edit</i></button>
+                                                <button onclick="return GetSelectedRowEdit(this);" type="button"   class="btn bg-pink waves-effect"><i class="material-icons">edit</i></button>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Eliminar">
+                                        </asp:TemplateField>   <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
@@ -256,7 +241,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtAduana"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtAduana" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtAduana"
                                         ErrorMessage="Ingrese el nombre de la aduana."
@@ -267,7 +252,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtContacto"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtContacto" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtContacto"
                                         ErrorMessage="Ingrese el nombre del contacto de la aduana."
@@ -281,7 +266,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtTel"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtTel" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtTel"
                                         ErrorMessage="Ingrese el teléfono de la aduna."
@@ -292,7 +277,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtDireccion"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtDireccion"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtDireccion"
                                         ErrorMessage="Ingrese la dirección de la aduana."
@@ -326,7 +311,7 @@
                     ¿Seguro que dese eliminar esta aduna:
                     <asp:Label runat="server" ID="lblAduna" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDAduna" />
-                    <asp:HiddenField runat="server" ID="lblHiddenNombreAduna" />
+                        <asp:HiddenField runat="server" ID="lblHiddenNombreAduna" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
@@ -342,7 +327,7 @@
     </div>
 
 
-    <!-- modal editar aduana-->
+       <!-- modal editar aduana-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarAduana">
@@ -352,7 +337,7 @@
                         <h4 class="modal-title" id="lblEditar">EDITAR ADUANA</h4>
                     </div>
                     <div class="modal-body">
-                        Luego de terminar de editar los datos de la aduana haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                      Luego de terminar de editar los datos de la aduana haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -361,7 +346,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtAduanaEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtAduanaEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtAduanaEditar"
                                         ErrorMessage="Ingrese el nombre de la aduana."
@@ -372,7 +357,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtContactoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtContactoEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtContactoEditar"
                                         ErrorMessage="Ingrese el nombre del contacto de la aduana."
@@ -386,7 +371,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtTelEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtTelEditar"  onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtTelEditar"
                                         ErrorMessage="Ingrese el teléfono de la aduna."
@@ -397,7 +382,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtDireccionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtDireccionEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccionEditar"
                                         ErrorMessage="Ingrese la dirección de la aduana."

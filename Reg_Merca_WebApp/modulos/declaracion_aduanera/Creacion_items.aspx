@@ -22,8 +22,8 @@
         function GetSelectedRow(lnk) {
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblnombre').innerHTML = row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblid').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenitems').innerHTML = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddennumitems').value = row.cells[2].innerHTML;
     </script>
 
 </asp:Content>
@@ -58,8 +58,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Listado de Items de la caratula -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>
-         
+                    <h2 style="font-weight: bold;">Listado de Items de la caratula - 
+                        <asp:Label runat="server" ID="lblCatatura"></asp:Label>
+
                         <small>A continuación se muestra el listado de items</small>
                     </h2>
                 </div>
@@ -99,13 +100,6 @@
           <span>Volver</span>
                                     </asp:LinkButton>
                                 </div>
-
-
-
-
-
-
-
                             </div>
 
                             <div class="row clearfix">
@@ -114,21 +108,21 @@
                                         <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                             Width="100%">
                                             <Columns>
-                                                 <asp:BoundField HeaderText="Editar" DataField="ID_Merca" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
-                                                
+                                                <asp:BoundField HeaderText="Editar" DataField="ID_Merca" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+
                                                 <asp:TemplateField HeaderText="Eliminar">
                                                     <ItemTemplate>
                                                         <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                               <%-- <asp:BoundField DataField="row_number" HeaderText="Numero de Item" />--%>
-                                                <asp:BoundField DataField="numeroitems" HeaderText="numeroitems" />
+                                                <%-- <asp:BoundField DataField="row_number" HeaderText="Numero de Item" />--%>
+                                                <asp:BoundField DataField="numeroitems" HeaderText="Número de Items" />
                                                 <asp:BoundField DataField="ID_Merca" HeaderText="Id" />
-                                                <asp:BoundField DataField="Id_poliza" HeaderText="Numero de Poliza" />
+                                                <asp:BoundField DataField="Id_poliza" HeaderText="Número de Poliza" />
                                                 <asp:BoundField DataField="pesoneto" HeaderText="Peso Neto" />
                                                 <asp:BoundField DataField="num_partida" HeaderText="Partida Arancelaria" />
-                                                <asp:BoundField DataField="cod_pais_fab" HeaderText="Pais de origen" />
+                                                <asp:BoundField DataField="cod_pais_fab" HeaderText="País de origen" />
                                                 <asp:BoundField DataField="importes_factura" HeaderText="Importe de Factura " />
 
 
@@ -138,31 +132,29 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <asp:Panel ID="PanelEditor" runat="server" DefaultButton="bttEliminar">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Eliminar Usuarios</h4>
+                                            <h4 class="modal-title">Eliminar Items</h4>
                                         </div>
                                         <div class="modal-body">
                                             <h2 class="modal-title">
                                                 <b>¿Está seguro que desea eliminar el registro?</b> </h2>
                                             <br />
                                             <b>El usuario pertenece a:</b>
-                                            <asp:Label ID="lblUsuario" class="msg" runat="server" Text="..."></asp:Label>
+                                            <asp:Label ID="lblitems" class="msg" runat="server" Text="..."></asp:Label>
                                             <br />
                                             <br />
-                                            Si desea eliminar este registro de usuario, haga clic en el botón eliminar.
+                                            Si desea eliminar este registro de items, haga clic en el botón eliminar.
                                     <br>
                                             Si desea cancelar haga clic en el boton cerrar.
                                     <br />
                                             <div class="row clearfix">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <asp:HiddenField ID="lblnombre" runat="server" />
-                                                    <asp:HiddenField ID="lblid" runat="server" />
+                                                    <asp:HiddenField ID="lblHiddenitems" runat="server" />
+                                                    <asp:HiddenField ID="lblHiddennumitems" runat="server" />
                                                 </div>
                                             </div>
                                         </div>

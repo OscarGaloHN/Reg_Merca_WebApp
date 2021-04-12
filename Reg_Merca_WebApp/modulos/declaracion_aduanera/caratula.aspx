@@ -30,7 +30,7 @@
             </a>
         </li>
 
-        <li class="#">
+        <%-- <li class="#">
             <a href="creacion_items.aspx">
                 <i class="material-icons">note_add</i>
                 <span>Creación de Ítems</span>
@@ -49,8 +49,7 @@
                 <i class="material-icons">collections_bookmark</i>
                 <span>Creación de Bultos</span>
             </a>
-        </li>
-
+        </li>--%>
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
@@ -106,12 +105,12 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_cliente,nombrec FROM DB_Nac_Merca.tbl_04_cliente;"></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_cliente,nombrec FROM DB_Nac_Merca.tbl_04_cliente order by 2;"></asp:SqlDataSource>
 
 
                         <label class="form-label">Cliente</label>
                         <asp:DropDownList
-                            ID="ddlCliente" runat="server" DataSourceID="SqlClientes" class="form-control show-tick"
+                            ID="ddlCliente" runat="server" DataSourceID="SqlClientes" class="form-control show-tick" data-live-search="true"
                             DataTextField="nombrec" DataValueField="Id_cliente" AppendDataBoundItems="true" ItemType="" AutoPostBack="True">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
@@ -135,7 +134,7 @@
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox AutoComplete="off" ID="txtdeclarante" runat="server" class="form-control" MaxLength="60" Wrap="True"
-                                    onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                    onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" onkeypress="return txNombres(event)"></asp:TextBox>
                                 <label class="form-label">Declarante</label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtdeclarante"
@@ -152,7 +151,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Aduana, UPPER(Nombre_aduana) Nombre_aduana FROM DB_Nac_Merca.tbl_06_aduanas order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Aduana, UPPER(Nombre_aduana) Nombre_aduana FROM DB_Nac_Merca.tbl_06_aduanas order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Aduana de Despacho</label>
@@ -181,7 +180,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Regimen, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_27_Regimenes order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Regimen, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_27_Regimenes order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label class="form-label">Regimen Aduanero</label>
@@ -267,20 +266,6 @@
                         </div>
                     </div>
 
-                    <%--                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox ID="txtNproveedor" AutoComplete="off" runat="server" onkeypress="return txNombres(event)" 
-                                    onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
-                                <label class="form-label">Nombre Proveedor/Destinatario</label>
-                            </div>
-                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtNproveedor"
-                                ErrorMessage="Ingrese Nombre Proveedor"
-                                Display="Dynamic"
-                                ForeColor="OrangeRed" Font-Size="X-Small" />
-                        </div>
-                    </div>--%>
-
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 
                         <asp:SqlDataSource
@@ -289,7 +274,7 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_proveedor,nombre FROM DB_Nac_Merca.tbl_05_proveedores;"></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_proveedor,nombre FROM DB_Nac_Merca.tbl_05_proveedores order by 2;"></asp:SqlDataSource>
 
 
                         <label class="form-label">Proveedor</label>
@@ -364,7 +349,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_almacen, UPPER(Nombre) Nombre FROM DB_Nac_Merca.tbl_9_almacenes order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_almacen, UPPER(Nombre) Nombre FROM DB_Nac_Merca.tbl_9_almacenes order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Deposito de Almacenamiento</label>
@@ -389,7 +374,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Aduana, UPPER(Nombre_aduana) Nombre_aduana FROM DB_Nac_Merca.tbl_06_aduanas order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Aduana, UPPER(Nombre_aduana) Nombre_aduana FROM DB_Nac_Merca.tbl_06_aduanas order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Aduana de Ingreso/Salida</label>
@@ -416,12 +401,12 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2 "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Paises de Origen</label>
                         <asp:DropDownList
-                            ID="ddlpaisesdeorigen" runat="server" DataSourceID="sqlpaisdeorigen" class="form-control show-tick"
+                            ID="ddlpaisesdeorigen" runat="server" DataSourceID="sqlpaisdeorigen" class="form-control show-tick" data-live-search="true"
                             DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
@@ -441,12 +426,12 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2 "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Paises de Procedencia</label>
                         <asp:DropDownList
-                            ID="ddlpaisprocedencia" runat="server" DataSourceID="sqlpaisprocedencia" class="form-control show-tick"
+                            ID="ddlpaisprocedencia" runat="server" DataSourceID="sqlpaisprocedencia" class="form-control show-tick" data-live-search="true"
                             DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
@@ -465,7 +450,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Pago, UPPER(Nombre_Pago) Nombre_Pago FROM DB_Nac_Merca.tbl_13_forma_pago order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Pago, UPPER(Nombre_Pago) Nombre_Pago FROM DB_Nac_Merca.tbl_13_forma_pago order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Forma de Pago</label>
@@ -489,7 +474,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_condicion, UPPER(Nombre_condicion) Nombre_condicion FROM DB_Nac_Merca.tbl_14_condicion_entrega order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_condicion, UPPER(Nombre_condicion) Nombre_condicion FROM DB_Nac_Merca.tbl_14_condicion_entrega order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Condición de Entrega</label>
@@ -516,7 +501,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Aduana, UPPER(Nombre_aduana) Nombre_aduana FROM DB_Nac_Merca.tbl_06_aduanas order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Aduana, UPPER(Nombre_aduana) Nombre_aduana FROM DB_Nac_Merca.tbl_06_aduanas order by 2; "></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Aduana Tránsito de Destino</label>
@@ -525,14 +510,14 @@
                             DataTextField="Nombre_aduana" DataValueField="Id_Aduana" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                        <%--                        <asp:RequiredFieldValidator
+                        <asp:RequiredFieldValidator
                             ID="ddladuanatransitodesv"
                             ControlToValidate="ddladuanatransitodes"
                             InitialValue="Seleccione"
                             ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
-                            runat="server" />--%>
+                            runat="server" />
                     </div>
 
                     <asp:SqlDataSource
@@ -541,7 +526,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Modalidad, UPPER(Nombre_modalidad) Nombre_modalidad FROM DB_Nac_Merca.tbl_39_modalidad_especial order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Modalidad, UPPER(Nombre_modalidad) Nombre_modalidad FROM DB_Nac_Merca.tbl_39_modalidad_especial order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Modalidad Especial</label>
@@ -550,14 +535,14 @@
                             DataTextField="Nombre_modalidad" DataValueField="Id_Modalidad" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                        <%--                        <asp:RequiredFieldValidator
+                        <asp:RequiredFieldValidator
                             ID="ddlmodalidadespv"
                             ControlToValidate="ddlmodalidadesp"
                             InitialValue="Seleccione"
                             ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
-                            runat="server" />--%>
+                            runat="server" />
                     </div>
                     <asp:SqlDataSource
                         ID="sqldepositoaduana"
@@ -565,7 +550,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_almacen, UPPER(Nombre) Nombre FROM DB_Nac_Merca.tbl_9_almacenes order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_almacen, UPPER(Nombre) Nombre FROM DB_Nac_Merca.tbl_9_almacenes order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Deposito de Aduanas</label>
@@ -574,21 +559,22 @@
                             DataTextField="Nombre" DataValueField="Id_almacen" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                        <%--                        <asp:RequiredFieldValidator
+                        <asp:RequiredFieldValidator
                             ID="ddldepositoaduanav"
                             ControlToValidate="ddldepositoaduana"
                             InitialValue="Seleccione"
                             ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
-                            runat="server" />--%>
+                            runat="server" />
                     </div>
                     <%--  PENDIENTE CAMBIAR A UN DATETIME--%>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label"></label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox ID="txtplazodiasmeses" AutoComplete="off" runat="server" class="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtplazodiasmeses" AutoComplete="off" runat="server" class="form-control "
+                                    onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                 <label class="form-label">Plazo Días-Meses  </label>
                             </div>
                         </div>
@@ -621,7 +607,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <%--                    CARACTERISTICAS DE BULTOS--%>
 
@@ -653,6 +638,37 @@
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
+                            <div class="form-line">
+                                <asp:TextBox ID="txttotalotrosgast" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <label class="form-label">Total Otros Gastos</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
+                            <div class="form-line">
+                                <asp:TextBox ID="txtttotalseg" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <label class="form-label">Total Seguro</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
+                            <div class="form-line">
+                                <asp:TextBox ID="txttotalflet" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <label class="form-label">Total Flete</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%--                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label"></label>
                         <div class="form-group form-float">
                             <div class="form-line">
@@ -682,7 +698,7 @@
 
                         </div>
                     </div>
-                </div>
+                
                 <div class="row clearfix">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="form-group form-float">
@@ -692,34 +708,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>--%>
 
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox ID="txttotalotrosgast" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
-                                <label class="form-label">Total Otros Gastos</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox ID="txtttotalseg" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
-                                <label class="form-label">Total Seguro</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox ID="txttotalflet" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
-                                <label class="form-label">Total Flete</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row clearfix">
                     <asp:SqlDataSource
@@ -728,7 +718,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Divisas, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_29_Divisas order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Divisas, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_29_Divisas order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Divisa Factura</label>
@@ -763,7 +753,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Divisas, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_29_Divisas order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Divisas, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_29_Divisas order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Divisa Seguro</label>
@@ -787,7 +777,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Divisas, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_29_Divisas order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Divisas, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_29_Divisas order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Divisa Flete</label>
@@ -876,12 +866,9 @@
           <span>Bultos</span>
                             </asp:LinkButton>
                         </div>
-
                     </div>
                 </asp:Panel>
-
             </div>
-
         </div>
     </div>
 </asp:Content>

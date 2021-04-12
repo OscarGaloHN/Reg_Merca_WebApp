@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="nivel comercial" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="nivelcomerc_mant.aspx.vb" Inherits="Reg_Merca_WebApp.nivelcomerc_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <!-- JQuery DataTable Css -->
+       <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
@@ -13,44 +13,42 @@
 
     <script src="../src/jsModales.js"></script>
 
-
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtdescripcion').value = '';
+
+            document.getElementById('ContentPrincipal_txtTipo').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblEstado').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDEstado').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtdescripcion', 'modalDelete');
+            document.getElementById('ContentPrincipal_lblcomercial').innerHTML = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDcomercial').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrecomercial').value = row.cells[2].innerHTML;
+            xModal('red', 'ContentPrincipal_txtTipo', 'modalDelete');
         }
-
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
-           
+            document.getElementById('ContentPrincipal_txtTipoEditar').value = '';
+
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrecomercial').value = row.cells[3].innerHTML;
 
-            if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
-            }
-            
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDestado').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_txtTipoEditar').value = row.cells[3].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtdescripcionEditar', 'modalEditar');
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_lblHiddenIDcomercial').value = row.cells[2].innerHTML;
+            }
+            xModal('pink', 'ContentPrincipal_txtTipoEditar', 'modalEditar');
         }
 
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-<a class="navbar-brand" href="#">Matenimiento del estado de la mercancias</a>
+    <a class="navbar-brand" href="#">Mantenimiento de Preguntas</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-     <ul class="list">
+    <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -58,21 +56,20 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li  >
+        <li>
             <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
             </li>
-             <li >
-                     <a href="almacenes_mant.aspx">
+             <li>
+                     <a href="#">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
-        <li >
-
-            <a href="cliente_mant.aspx">
+        <li>
+            <a href="#">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
@@ -84,14 +81,14 @@
                 <span>Condicion de Entrega</span>
             </a>
             </li>
-        <li class="active">
-            <a href="#">
+        <li>
+            <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
                 <span>divisas</span>
             </a>
             </li>
-        <li class="active">
-            <a href="estadomerc_mant.aspx">
+        <li>
+            <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Estado de Mercancia</span>
             </a>
@@ -109,7 +106,7 @@
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
@@ -120,14 +117,14 @@
                 <span>Proveedores</span>
             </a>
             </li>
-         <li>
+         <li class="active" >
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
             </li>
          <li>
-            <a href="paises_mant.aspx">
+            <a href="#">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
@@ -157,10 +154,11 @@
             </a>
             </li>
     </ul>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
     <script type="text/javascript">
-        tituloImprimir = 'Listado del estado de mercancias'
+        tituloImprimir = 'Listado del nivel comercial'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
     </script>
 
@@ -168,8 +166,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Estado de la mercancia
-                                 <small>A continuación se muestra el listado del estado de la mercancia.</small>
+                    <h2 style="font-weight: bold;">NIVEL COMERCIAL
+                                 <small>A continuación se muestra el listado del nivel comercial registrados.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -197,8 +195,8 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Id_Estado" HeaderText="ID" />
-                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                                         <asp:BoundField DataField="Id_nivel_com" HeaderText="ID" />
+                                        <asp:BoundField DataField="Tipo" HeaderText="PREGUNTA" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -208,69 +206,66 @@
             </div>
         </div>
     </div>
-    <!-- modal nueva divisa-->
+  <!-- modal nueva pregunta-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarEstado">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarcomercial">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO ESTADO</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVo nivel comercial</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos del estado de la mercancia y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese el nivel comercial y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtdescripcion"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtdescripcion"
-                                        ErrorMessage="Ingrese la descripcion de la divisa."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaestado" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox onkeypress="return txtTipo(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtTipo" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">Tipo</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtTipo"
+                                    ErrorMessage="Ingrese el tipo del nivel comercial."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
-                           
+                            </div>
                            
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarEstado" ValidationGroup="ValidaEstado" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarcomercial" ValidationGroup="Validacomercial" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
             </asp:Panel>
         </div>
     </div>
-
-
-    <!-- modal eliminar aduana-->
+ <!-- modal eliminar aduana-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR ESTADO</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR NIVEL COMERCIAL</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que desea eliminar el estado de la mercancia:
-                    <asp:Label runat="server" ID="lblEstado" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDestado" />
-                        <asp:HiddenField runat="server" ID="lblHiddenNombreEstado" />
+                    ¿Seguro que dese eliminar el nivel comercial:
+                    <asp:Label runat="server" ID="lblcomercial" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDcomercial" />
+                        <asp:HiddenField runat="server" ID="lblHiddenNombrecomercial" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarEstado" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarcomercial" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -282,14 +277,14 @@
        <!-- modal editar aduana-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarEstado">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarcomercial">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR ESTADO</h4>
+                        <h4 class="modal-title" id="lblEditar">EDITAR NIVEL COMERCIAL </h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos del estado de la mercancia haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                      Luego de terminar de editar los datos del nivel comercial haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -298,26 +293,27 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtdescripcionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtdescripcionEditar"
-                                        ErrorMessage="Ingrese la descripcion del estado de la mercancia."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtTipoEditar"
+                                        ErrorMessage="Ingrese el Tipo del nivel comercial."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadescripcionEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaTipoEditar" />
                                 </div>
                             </div>
-                           
-
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaestadoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificarcomercial" ValidationGroup="ValidacomercialEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
             </asp:Panel>
         </div>
-    </div>
+    </div>    
+
+
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
+

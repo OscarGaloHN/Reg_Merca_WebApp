@@ -1,5 +1,4 @@
-﻿<%@ Page Title="estado_mercancias" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="estadomerc_mant.aspx.vb" Inherits="Reg_Merca_WebApp.estadomerc_mant" %>
-
+﻿<%@ Page Title="UNIDAD DE MEDIDA" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="unidmedida_mant.aspx.vb" Inherits="Reg_Merca_WebApp.unidmedida_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -17,38 +16,38 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtId_Estado').value = '';
-            document.getElementById('ContentPrincipal_txtdescripcion').value = '';
+            document.getElementById('ContentPrincipal_txtId_UnidadMed').value = '';
+            document.getElementById('ContentPrincipal_txtDescripcion').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblestado').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDestado').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtId_Estado', 'modalDelete');
+            document.getElementById('ContentPrincipal_lblmedida').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDmedida').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombremedida').value = row.cells[3].innerHTML;
+            xModal('red', 'ContentPrincipal_txtId_Unidadmed', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtId_EstadoEditar').value = '';
-            document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
-           
+            document.getElementById('ContentPrincipal_txtId_UnidadMedEditar').value = '';
+            document.getElementById('ContentPrincipal_txtDescripcionEditar').value = '';
+
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreEstado').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombremedida').value = row.cells[3].innerHTML;
 
-           
+
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtDescripcionEditar').value = row.cells[3].innerHTML;
             }
-           
-            
-                document.getElementById('ContentPrincipal_lblHiddenIDestado').value = row.cells[2].innerHTML;
-            
+
+
+            document.getElementById('ContentPrincipal_lblHiddenIDmedida').value = row.cells[2].innerHTML;
+
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtId_EstadoEditar').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_txtId_UnidadMedEditar').value = row.cells[2].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtId_EstadoEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_txtId_UnidadMedEditar', 'modalEditar');
         }
 
 
@@ -56,7 +55,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Matenimiento del estado de la mercancias</a>
+    <a class="navbar-brand" href="#">Matenimiento de unidad de medida</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -154,9 +153,9 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="unidmedida_mant.aspx">
                 <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+                <span>Unidad de medida</span>
             </a>
         </li>
         <li>
@@ -173,7 +172,7 @@
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado del estado de mercancias'
+        tituloImprimir = 'Listado del estado de unidad de medida'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -185,14 +184,14 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Estado de la mercancia
-                                 <small>A continuación se muestra el listado del estado de la mercancia.</small>
+                    <h2 style="font-weight: bold;">UNIDAD DE MEDIDA
+                                 <small>A continuación se muestra el listado de unidades de medida.</small>
                     </h2>
                 </div>
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtestado','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtmedida','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -215,7 +214,7 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Id_Estado" HeaderText="ID" />
+                                        <asp:BoundField DataField="Id_UnidadMed" HeaderText="ID" />
                                         <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                                     </Columns>
                                 </asp:GridView>
@@ -229,14 +228,14 @@
     <!-- modal nuevo estado-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarEstado">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarmedida">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO ESTADO</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVA UNIDAD DE MEDIDA</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos del estado de la mercancia y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese la unidad de medida y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL principal -->
@@ -245,30 +244,30 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID Estado" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtId_Estado"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID UNIDAD MEDIDA" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtId_UnidadMed"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_Estado"
-                                        ErrorMessage="Ingrese el ID del estado."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_UnidadMed"
+                                        ErrorMessage="Ingrese la unidad de medida."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaestado" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validamedida" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtdescripcion"></asp:TextBox>
+                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtDescripcion"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtdescripcion"
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtDescripcion"
                                         ErrorMessage="Ingrese la descripcion de la divisa."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaestado" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validamedida" />
                                 </div>
                             </div>
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarEstado" ValidationGroup="ValidaEstado" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarmedida" ValidationGroup="Validamedida" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
@@ -284,20 +283,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR ESTADO</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR UNIDAD DE MEDIDA</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que desea eliminar el estado de la mercancia:
-                    <asp:Label runat="server" ID="lblestado" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDestado" />
-                    <asp:HiddenField runat="server" ID="lblHiddenNombreEstado" />
+                    ¿Seguro que desea eliminar la unidad de medida:
+                    <asp:Label runat="server" ID="lblmedida" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDmedida" />
+                    <asp:HiddenField runat="server" ID="lblHiddenNombremedida" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarEstado" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarmedida" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -309,14 +308,14 @@
          <!-- modal editar Estado de la mercancia-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarestado">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarmedida">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR ESTADO</h4>
+                        <h4 class="modal-title" id="lblEditar">EDITAR UNIDAD DE MEDIDA</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos de los estados haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                      Luego de terminar la unidad de medida haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -325,10 +324,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Id Estado" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtId_EstadoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID UNIDAD MEDIDA" AutoComplete="off" ValidationGroup="ValidamedidaEditar" runat="server" class="form-control" ID="txtId_UnidadMedEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtId_EstadoEditar"
-                                        ErrorMessage="Ingrese el ID del estado de la mercancia" 
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtId_UnidadMedEditar"
+                                        ErrorMessage="Ingrese el ID de la unidad de medida" 
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaestadoEditar" />
                                 </div>
@@ -336,12 +335,12 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtdescripcionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtDescripcionEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtdescripcionEditar"
-                                        ErrorMessage="Ingrese la descripcion del estado de la mercancia."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtDescripcionEditar"
+                                        ErrorMessage="Ingrese la descripcion de la unidad de medida."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaestadoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidamedidaEditar" />
                                 </div>
                             </div>
 
@@ -349,7 +348,7 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaEstadoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificarmedida" ValidationGroup="ValidaEstadoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>

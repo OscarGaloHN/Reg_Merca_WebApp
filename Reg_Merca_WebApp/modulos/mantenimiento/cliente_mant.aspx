@@ -152,7 +152,7 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="condentrega_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Condicion de Entrega</span>
             </a>
@@ -171,7 +171,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="forma_pago.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Forma de Pago</span>
             </a>
@@ -183,7 +183,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
@@ -213,15 +213,15 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="tipoitems_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Tipo de Item</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="unidmedida_mant.aspx">
                 <i class="material-icons">directions_boat</i>
-                <span>Unidad de Ventaja</span>
+                <span>Unidad de medida</span>
             </a>
         </li>
         <li>

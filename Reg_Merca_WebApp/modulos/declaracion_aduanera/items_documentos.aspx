@@ -178,12 +178,12 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 2;"></asp:SqlDataSource>
 
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList
                                     ID="ddldocumentos" runat="server"
-                                    selectlistitem="" DataSourceID="sqldocumentos" class="form-control show-tick"
+                                    selectlistitem="" DataSourceID="sqldocumentos" class="form-control show-tick" data-live-search="true"
                                     DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true"
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
@@ -286,12 +286,12 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 2;"></asp:SqlDataSource>
 
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList
                                     ID="dddocumentoEditar" runat="server"
-                                    selectlistitem="" DataSourceID="sqldocumentosedit" class="form-control show-tick"
+                                    selectlistitem="" DataSourceID="sqldocumentosedit" class="form-control show-tick" data-live-search="true"
                                     DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true"
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>

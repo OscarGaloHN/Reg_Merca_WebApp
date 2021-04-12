@@ -32,67 +32,67 @@ Partial Public Class nivelcomerc_mant
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtdescripcion.
+    '''Control txtTipo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtTipo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control reqnombrevacio.
+    '''Control RequiredFieldValidator5.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarEstado.
+    '''Control bttGuardarcomercial.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarEstado As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarcomercial As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblEstado.
+    '''Control lblcomercial.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblEstado As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblcomercial As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDestado.
+    '''Control lblHiddenIDcomercial.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDestado As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDcomercial As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenNombreEstado.
+    '''Control lblHiddenNombrecomercial.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombreEstado As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenNombrecomercial As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control bttEliminarEstado.
+    '''Control bttEliminarcomercial.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarEstado As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarcomercial As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel1.
@@ -104,13 +104,13 @@ Partial Public Class nivelcomerc_mant
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtdescripcionEditar.
+    '''Control txtTipoEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcionEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtTipoEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator3.
@@ -122,11 +122,11 @@ Partial Public Class nivelcomerc_mant
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttModificar.
+    '''Control bttModificarcomercial.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttModificar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttModificarcomercial As Global.System.Web.UI.WebControls.LinkButton
 End Class

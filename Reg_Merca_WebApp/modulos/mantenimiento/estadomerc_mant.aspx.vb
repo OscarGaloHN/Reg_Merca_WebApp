@@ -8,9 +8,13 @@
             Session("DataSetX") = value
         End Set
     End Property
-    'OBJETO #25
+    'OBJETO #37
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_25_Estado_Mercancias"
@@ -65,14 +69,14 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('estado','El estado  ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` (`Id_Estado`, `descripcion`) VALUES ('" & txtId_Estado.Text & "' '" & txtdescripcion.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` (`Id_Estado`, `Descripcion`) VALUES ('" & txtId_Estado.Text & "','" & txtdescripcion.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos del estado de la mercancia con el id:" & lblHiddenIDestado.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nuevo estado con descripcion: " & txtdescripcion.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=editestado")
+                Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=newestado")
             End If
         Catch ex As Exception
 
@@ -97,8 +101,8 @@
     Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
         Try
             Dim Ssql As String = String.Empty
-            If txtdescripcionEditar.Text <> lblHiddenNombreEstado.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_25_Estado_Mercancias where Id_Estado = BINARY  '" & txtId_Estado.Text & "' "
+            If txtId_EstadoEditar.Text <> lblHiddenNombreEstado.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_25_Estado_Mercancias where Id_Estado = BINARY  '" & txtId_EstadoEditar.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -110,14 +114,15 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` SET `Id_Estado` = '" & txtId_EstadoEditar.Text & "', `descripcion` = '" & txtdescripcionEditar.Text & "' WHERE `Id_Estado` = " & lblHiddenIDestado.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` SET `Id_Estado` = '" & txtId_EstadoEditar.Text & "', `Descripcion` = '" & txtdescripcionEditar.Text & "' WHERE `Id_Estado` = '" & lblHiddenIDestado.Value & "';"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nuevo estado con descripcion: " & txtdescripcion.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos del estado de la mercancia con el id:" & lblHiddenIDestado.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=newestado")
+                Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=editestado")
+
             End If
         Catch ex As Exception
 
