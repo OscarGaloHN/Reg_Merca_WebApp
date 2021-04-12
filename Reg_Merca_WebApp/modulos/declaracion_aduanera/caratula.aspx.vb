@@ -90,10 +90,10 @@
                                 txt_motivoperacion.Text = registro("motivo_operacion")
                                 txtobservacion.Text = registro("Observaciones")
                                 ddlclasebultos.SelectedValue = registro("Id_Clase_deBulto")
-                                txtcantbultos.Text = registro("cant_bultos")
-                                txtpesobrutobul.Text = registro("pesobruto_bultos")
-                                txttotalitems.Text = registro("canti_items")
-                                txttotalfact.Text = registro("Total_Factura")
+                                'txtcantbultos.Text = registro("cant_bultos")
+                                'txtpesobrutobul.Text = registro("pesobruto_bultos")
+                                'txttotalitems.Text = registro("canti_items")
+                                'txttotalfact.Text = registro("Total_Factura")
                                 txttotalotrosgast.Text = registro("Total_Otros_gastos")
                                 txtttotalseg.Text = registro("Total_Seguro")
                                 txttotalflet.Text = registro("Total_Flete")
@@ -145,8 +145,7 @@
 rtn_agenciaadu, nombre_agenciaadu, manifiesto_entregarap, Id_proveedor, contrato_proveedor,
 domicilio_proveed, Numero_Preimpreso, entidad_mediacion, Id_almacen, cod_aduana_sal, Cod_pais_org, 
 Cod_pais_pro, id_pago, id_condicion, aduana_transdes, modalidad_especial, deposito_aduanas, plazo,
-ruta_transito, motivo_operacion, Observaciones, Id_Clase_deBulto, cant_bultos, pesobruto_bultos, canti_items, 
-Total_Factura, Total_Otros_gastos, Total_Seguro, Total_Flete, divisa_factura, tipo_de_cambio,
+ruta_transito, motivo_operacion, Observaciones, Id_Clase_deBulto, Total_Otros_gastos, Total_Seguro, Total_Flete, divisa_factura, tipo_de_cambio,
 divisa_seguro, divisa_flete, usuario_creador, Id_poliza) 
 values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedValue & "', '" & ddlCliente.SelectedValue & "',
 '" & txtdeclarante.Text & "', '" & ddladuanadespacho.SelectedValue & "', '" & ddlregimenaduanero.SelectedValue & "', 
@@ -157,10 +156,14 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 '" & ddlcondicionentrega.SelectedValue & "','" & ddladuanatransitodes.SelectedValue & "','" & ddlmodalidadesp.SelectedValue & "',
 '" & ddldepositoaduana.SelectedValue & "','" & txtplazodiasmeses.Text & "','" & txtrutatransito.Text & "',
 '" & txt_motivoperacion.Text & "','" & txtobservacion.Text & "','" & ddlclasebultos.SelectedValue & "',
-'" & txtcantbultos.Text & "','" & txtpesobrutobul.Text & "','" & txttotalitems.Text & "','" & txttotalfact.Text & "',
 '" & txttotalotrosgast.Text & "','" & txtttotalseg.Text & "','" & txttotalflet.Text & "','" & ddldivisafact.SelectedValue & "',
 '" & txttipodecambio.Text & "','" & ddldivisaseg.SelectedValue & "','" & ddldivisafl.SelectedValue & "',
 '" & Session("user_idUsuario") & "', '" & Session("idCaratula") & "'); SELECT LAST_INSERT_ID();"
+
+
+                    'cant_bultos, pesobruto_bultos, canti_items, Total_Factura, 
+                    ''" & txtcantbultos.Text & "','" & txtpesobrutobul.Text & "','" & txttotalitems.Text & "','" & txttotalfact.Text & "',
+
 
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -196,14 +199,14 @@ id_condicion='" & ddlcondicionentrega.SelectedValue & "', aduana_transdes='" & d
 modalidad_especial='" & ddlmodalidadesp.SelectedValue & "', deposito_aduanas='" & ddldepositoaduana.SelectedValue & "', 
 plazo='" & txtplazodiasmeses.Text & "', ruta_transito='" & txtrutatransito.Text & "', 
 motivo_operacion='" & txt_motivoperacion.Text & "', Observaciones='" & txtobservacion.Text & "', 
-Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', cant_bultos='" & txtcantbultos.Text & "', 
-pesobruto_bultos='" & txtpesobrutobul.Text & "', canti_items='" & txttotalitems.Text & "', 
-Total_Factura='" & txttotalfact.Text & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
+Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
 Total_Seguro='" & txtttotalseg.Text & "', Total_Flete='" & txttotalflet.Text & "', divisa_factura='" & ddldivisafact.SelectedValue & "', 
 tipo_de_cambio='" & txttipodecambio.Text & "', divisa_seguro='" & ddldivisaseg.SelectedValue & "', 
 divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "', Id_poliza='" & Session("idCaratula") & "'"
 
-
+                    '                    cant_bultos ='" & txtcantbultos.Text & "', 
+                    'pesobruto_bultos ='" & txtpesobrutobul.Text & "', canti_items='" & txttotalitems.Text & "', 
+                    'Total_Factura ='" & txttotalfact.Text & "',
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using

@@ -70,7 +70,7 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_TipoItems, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_26_Tipo_Items order by rand() "></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_TipoItems, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_26_Tipo_Items order by 2; "></asp:SqlDataSource>
 
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label class="form-label">Tipo de Item</label>
@@ -103,7 +103,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" ID="txttitulocurri" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txttitulocurri" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control" MaxLength="17"></asp:TextBox>
                                     <label class="form-label">Titulo de Manifiesto Currier</label>
                                 </div>
                                 <%--  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtnummitem"
@@ -151,7 +151,7 @@
                             <label class="form-label"></label>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox AutoComplete="off" ID="txtdeclaracioancancel" runat="server" onkeypress="return isNumberOrLetter(event)" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control" MaxLength="17"></asp:TextBox>
+                                    <asp:TextBox AutoComplete="off" ID="txtdeclaracioancancel" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control" MaxLength="17"></asp:TextBox>
                                     <label class="form-label">Declaracion a Cancelar</label>
                                 </div>
                                 <%--  <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtnummitem"
@@ -231,12 +231,12 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_Estado, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_25_Estado_Mercancias order by rand() "></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_Estado, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_25_Estado_Mercancias order by 2;"></asp:SqlDataSource>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label">Estado Mercancia</label>
                             <asp:DropDownList
-                                ID="ddlestadomerca" runat="server" selectlistitem="seleccione" DataSourceID="sqlestadomerca" class="form-control show-tick"
+                                ID="ddlestadomerca" runat="server" selectlistitem="seleccione" DataSourceID="sqlestadomerca" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Descripcion" DataValueField="Id_Estado" AppendDataBoundItems="true" ItemType="">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
@@ -250,12 +250,12 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2; "></asp:SqlDataSource>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label class="form-label">País de Origen</label>
                             <asp:DropDownList
-                                ID="ddlpaisesdeorigeni" runat="server" DataSourceID="sqlpaisdeorigeni" class="form-control show-tick"
+                                ID="ddlpaisesdeorigeni" runat="server" DataSourceID="sqlpaisdeorigeni" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
@@ -268,12 +268,12 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2;"></asp:SqlDataSource>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label class="form-label">País Procedencia/Destino</label>
                             <asp:DropDownList
-                                ID="ddlpaisproce" runat="server" DataSourceID="sqlpaisprocedencia" class="form-control show-tick"
+                                ID="ddlpaisproce" runat="server" DataSourceID="sqlpaisprocedencia" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
@@ -286,12 +286,12 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2;"></asp:SqlDataSource>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label class="form-label">País de Adquisición</label>
                             <asp:DropDownList
-                                ID="ddlpaisadd" runat="server" DataSourceID="sqladquisicion" class="form-control show-tick"
+                                ID="ddlpaisadd" runat="server" DataSourceID="sqladquisicion" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
@@ -326,12 +326,12 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_UnidadMed, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_24_Unidad_Medida order by 2"></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_UnidadMed, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_24_Unidad_Medida order by 2;"></asp:SqlDataSource>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label">Unidad Comercial</label>
                             <asp:DropDownList
-                                ID="ddlunidacomer" runat="server" DataSourceID="SqlDataSource1" class="form-control show-tick"
+                                ID="ddlunidacomer" runat="server" DataSourceID="SqlDataSource1" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Descripcion" DataValueField="Id_UnidadMed" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
@@ -357,12 +357,12 @@
                             DataSourceMode="DataReader"
                             ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                             ProviderName="MySql.Data.MySqlClient"
-                            SelectCommand="SELECT Id_UnidadMed, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_24_Unidad_Medida order by rand() "></asp:SqlDataSource>
+                            SelectCommand="SELECT Id_UnidadMed, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_24_Unidad_Medida order by 2;"></asp:SqlDataSource>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label class="form-label">Unidad Estadistica</label>
                             <asp:DropDownList
-                                ID="ddlunidadestadis" runat="server" DataSourceID="SqlDataSource2" class="form-control show-tick"
+                                ID="ddlunidadestadis" runat="server" DataSourceID="SqlDataSource2" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Descripcion" DataValueField="Id_UnidadMed" AppendDataBoundItems="true">
                                 <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
