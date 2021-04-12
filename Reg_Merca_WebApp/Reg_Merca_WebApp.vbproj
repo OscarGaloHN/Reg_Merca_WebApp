@@ -212,6 +212,7 @@
     <Content Include="Inicio\reiniciarcontra.aspx" />
     <Content Include="modulos\bitacora\bitacora.aspx" />
     <Content Include="modulos\configuraciones\config_avanz.aspx" />
+    <Content Include="modulos\configuraciones\config_objetos.aspx" />
     <Content Include="modulos\configuraciones\config_permisos.aspx" />
     <Content Include="modulos\declaracion_aduanera\caratula.aspx" />
     <Content Include="modulos\declaracion_aduanera\creacion_bultos.aspx" />
@@ -450,66 +451,6 @@
     <Content Include="js\pages\widgets\infobox\infobox-4.js" />
     <Content Include="js\pages\widgets\infobox\infobox-5.js" />
     <Content Include="js\script.js" />
-    <Content Include="pages\changelogs.html" />
-    <Content Include="pages\charts\chartjs.html" />
-    <Content Include="pages\charts\flot.html" />
-    <Content Include="pages\charts\jquery-knob.html" />
-    <Content Include="pages\charts\morris.html" />
-    <Content Include="pages\charts\sparkline.html" />
-    <Content Include="pages\examples\404.html" />
-    <Content Include="pages\examples\500.html" />
-    <Content Include="pages\examples\blank.html" />
-    <Content Include="pages\examples\forgot-password.html" />
-    <Content Include="pages\examples\profile.html" />
-    <Content Include="pages\examples\sign-in.html" />
-    <Content Include="pages\examples\sign-up.html" />
-    <Content Include="pages\forms\advanced-form-elements.html" />
-    <Content Include="pages\forms\basic-form-elements.html" />
-    <Content Include="pages\forms\editors.html" />
-    <Content Include="pages\forms\form-examples.html" />
-    <Content Include="pages\forms\form-validation.html" />
-    <Content Include="pages\forms\form-wizard.html" />
-    <Content Include="pages\helper-classes.html" />
-    <Content Include="pages\maps\google.html" />
-    <Content Include="pages\maps\jvectormap.html" />
-    <Content Include="pages\maps\yandex.html" />
-    <Content Include="pages\medias\carousel.html" />
-    <Content Include="pages\medias\image-gallery.html" />
-    <Content Include="pages\tables\editable-table.html" />
-    <Content Include="pages\tables\jquery-datatable.html" />
-    <Content Include="pages\tables\normal-tables.html" />
-    <Content Include="pages\typography.html" />
-    <Content Include="pages\ui\alerts.html" />
-    <Content Include="pages\ui\animations.html" />
-    <Content Include="pages\ui\badges.html" />
-    <Content Include="pages\ui\breadcrumbs.html" />
-    <Content Include="pages\ui\buttons.html" />
-    <Content Include="pages\ui\collapse.html" />
-    <Content Include="pages\ui\colors.html" />
-    <Content Include="pages\ui\dialogs.html" />
-    <Content Include="pages\ui\icons.html" />
-    <Content Include="pages\ui\labels.html" />
-    <Content Include="pages\ui\list-group.html" />
-    <Content Include="pages\ui\media-object.html" />
-    <Content Include="pages\ui\modals.html" />
-    <Content Include="pages\ui\notifications.html" />
-    <Content Include="pages\ui\pagination.html" />
-    <Content Include="pages\ui\preloaders.html" />
-    <Content Include="pages\ui\progressbars.html" />
-    <Content Include="pages\ui\range-sliders.html" />
-    <Content Include="pages\ui\sortable-nestable.html" />
-    <Content Include="pages\ui\tabs.html" />
-    <Content Include="pages\ui\thumbnails.html" />
-    <Content Include="pages\ui\tooltips-popovers.html" />
-    <Content Include="pages\ui\waves.html" />
-    <Content Include="pages\widgets\cards\basic.html" />
-    <Content Include="pages\widgets\cards\colored.html" />
-    <Content Include="pages\widgets\cards\no-header.html" />
-    <Content Include="pages\widgets\infobox\infobox-1.html" />
-    <Content Include="pages\widgets\infobox\infobox-2.html" />
-    <Content Include="pages\widgets\infobox\infobox-3.html" />
-    <Content Include="pages\widgets\infobox\infobox-4.html" />
-    <Content Include="pages\widgets\infobox\infobox-5.html" />
     <Content Include="plugins\animate-css\animate.css" />
     <Content Include="plugins\animate-css\animate.min.css" />
     <Content Include="plugins\autosize\autosize.js" />
@@ -1088,6 +1029,13 @@
     </Compile>
     <Compile Include="modulos\configuraciones\config_avanz.aspx.vb">
       <DependentUpon>config_avanz.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\configuraciones\config_objetos.aspx.designer.vb">
+      <DependentUpon>config_objetos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\configuraciones\config_objetos.aspx.vb">
+      <DependentUpon>config_objetos.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\configuraciones\config_permisos.aspx.designer.vb">

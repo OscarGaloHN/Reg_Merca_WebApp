@@ -16,21 +16,39 @@
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
-
     <script type="text/javascript">
-        function borrarTxtNuevo() {
-  
-
-            var textToFind = 'Seleccionar Módulo...';
-            var dd = document.getElementById('ContentPrincipal_ddlModulos');
-            for (var i = 0; i < dd.options.length; i++) {
-                if (dd.options[i].text === textToFind) {
-                    dd.selectedIndex = i;
-                    break;
+        $(function () {
+            $('[id*=bttpermisonuevo]').on('click', function () {
+                $('#ContentPrincipal_ddlModulos').selectpicker();
+                $('#ContentPrincipal_ddlModulos').selectpicker('val', [0]);
+                document.getElementById('ContentPrincipal_HiddenIDRol').value = document.getElementById('ContentPrincipal_ddlRoles').value;
+                if (document.getElementById('ContentPrincipal_ddlRoles').value != 0) {
+                    xModal('teal', '', 'modalNuevo');
                 }
-            }
+            });
+        });
 
- 
+        function GetSelectedRowDelete(lnk) {
+            var row = lnk.parentNode.parentNode;
+            document.getElementById('ContentPrincipal_lblEliminar').innerHTML = row.cells[3].innerHTML + ' del rol ' + row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDPermisoEliminar').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblNombreModulo').value = row.cells[3].innerHTML;
+
+            xModal('red', 'ContentPrincipal_txtAduana', 'modalDelete');
+        }
+
+        function GetSelectedRowEdit(lnk) {
+            var row = lnk.parentNode.parentNode;
+            document.getElementById('ContentPrincipal_HiddenLblEditarNombreModulo').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_HiddenLblEditarIdPermiso').value = row.cells[2].innerHTML;
+
+            jQuery("#ContentPrincipal_ddlModulosEditar option").filter(function () {
+                return $.trim($(this).text()) == row.cells[3].innerHTML
+            }).prop('selected', true);
+            $('#ContentPrincipal_ddlModulosEditar').selectpicker('refresh');
+            document.getElementById('ContentPrincipal_HiddenLblEditarIdModulo').value = document.getElementById('ContentPrincipal_ddlModulosEditar').value;
+             
+            xModal('pink', '', 'modalEditar');
         }
     </script>
 </asp:Content>
@@ -68,6 +86,12 @@
             </a>
         </li>
 
+         <li>
+            <a href="config_objetos.aspx">
+                <i class="material-icons">vpn_key</i>
+                <span>Permisos - Objetos</span>
+            </a>
+        </li>
     </ul>
 
 </asp:Content>
@@ -98,7 +122,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT 0  AS id_rol, 'Seleccionar Rol...' AS rol UNION ALL  SELECT id_rol, rol FROM DB_Nac_Merca.tbl_15_rol where id_rol != 5;"></asp:SqlDataSource>
+                        SelectCommand="SELECT 0  AS id_rol, 'Seleccionar Rol...' AS rol UNION ALL  SELECT id_rol, rol FROM DB_Nac_Merca.tbl_15_rol;"></asp:SqlDataSource>
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <p>
@@ -114,9 +138,8 @@
                                 InitialValue="0" SetFocusOnError="True" />
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button validationgroup="ValidaRol" onclick="xModal('teal','','modalNuevo');borrarTxtNuevo(); " type="button" class="btn btn-block btn-lg bg-teal waves-effect">
-
-                                <i class="material-icons">add</i> <span>Nuevo</span>
+                            <button style="margin-top: 10px;" id="bttpermisonuevo" validationgroup="ValidaRol" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">add</i> <span>Nuevo Permiso</span>
                             </button>
                         </div>
                     </div>
@@ -154,76 +177,72 @@
 
     <!-- modal nuevo permiso-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarAduana">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVA ADUANA</h4>
-                    </div>
-                    <div class="modal-body">
-                        Seleccione el módulo al que desea dar acceso luego haga clic en el botón 'GUARDAR' para confirmar el nuevo permiso.
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- TITULO -->
+                    <h4 class="modal-title" id="lblMOdalCorreo">NUEVO PERMISO</h4>
+                </div>
+                <div class="modal-body">
+                    Seleccione el módulo al que desea dar acceso luego haga clic en el botón 'GUARDAR' para confirmar el nuevo permiso.
                         <br />
-                        <br />
-                        <!-- CUERPO DEL MODAL -->
+                    <br />
+                    <!-- CUERPO DEL MODAL -->
 
-
-                        <asp:SqlDataSource
-                            ID="SqlModulos"
-                            runat="server"
-                            DataSourceMode="DataReader"
-                            ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
-                            ProviderName="MySql.Data.MySqlClient"></asp:SqlDataSource>
-                        <div class="row clearfix">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <p><b>Seleccione un módulo para el acceso:</b></p>
-
-                                <asp:DropDownList ValidationGroup="ValidaModulo"
-                                    ID="ddlModulos" runat="server" DataSourceID="SqlModulos" class="form-control show-tick"
-                                    DataTextField="nombre" DataValueField="id_modulo" AppendDataBoundItems="false">
-                                </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlModulos"
-                                    ErrorMessage="Selecccione un módulo" ForeColor="White" Font-Size="Small" ValidationGroup="ValidaModulo"
-                                    InitialValue="0" SetFocusOnError="True" />
-                            </div>
-                           
+                    <asp:HiddenField runat="server" ID="HiddenIDRol" />
+                    <asp:SqlDataSource
+                        ID="SqlModulos"
+                        runat="server"
+                        DataSourceMode="DataReader"
+                        ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                        ProviderName="MySql.Data.MySqlClient"></asp:SqlDataSource>
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <p><b>Seleccione un módulo para el acceso:</b></p>
                         </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 
-
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarAduana" ValidationGroup="ValidaModulo" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
-                        <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                            <asp:DropDownList ValidationGroup="ValidaPermiso"
+                                ID="ddlModulos" runat="server" DataSourceID="SqlModulos" class="form-control show-tick"
+                                DataTextField="nombre" DataValueField="id_modulo" AppendDataBoundItems="False">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlModulos"
+                                ErrorMessage="Selecccione un módulo" ForeColor="White" Font-Size="Small" ValidationGroup="ValidaPermiso"
+                                InitialValue="0" SetFocusOnError="True" />
+                        </div>
                     </div>
                 </div>
-            </asp:Panel>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bttGuardarPermiso" ValidationGroup="ValidaPermiso" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                    <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                </div>
+            </div>
         </div>
     </div>
 
 
-    <!-- modal eliminar aduana-->
+    <!-- modal eliminar PERMISOS-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR ADUANA ADUANA</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR PERMISO</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que dese eliminar esta aduna:
-                    <asp:Label runat="server" ID="lblAduna" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDAduna" />
-                    <asp:HiddenField runat="server" ID="lblHiddenNombreAduna" />
+                    ¿Seguro que desea eliminar el permiso para el módulo:
+                    <asp:Label runat="server" ID="lblEliminar" Text="..."></asp:Label>?
+                    <asp:HiddenField runat="server" ID="lblHiddenIDPermisoEliminar" />
+                    <asp:HiddenField runat="server" ID="lblNombreModulo" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarAduna" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarPermiso" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -232,82 +251,57 @@
     </div>
 
 
-    <!-- modal editar aduana-->
+    <!-- modal editar PERMISOS-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarAduana">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR ADUANA</h4>
-                    </div>
-                    <div class="modal-body">
-                        Luego de terminar de editar los datos de la aduana haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
-                        <br />
-                        <br />
-                        <!-- CUERPO DEL MODAL -->
+        <div class="modal-dialog" role="document">
 
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtAduanaEditar"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtAduanaEditar"
-                                        ErrorMessage="Ingrese el nombre de la aduana."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtContactoEditar"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtContactoEditar"
-                                        ErrorMessage="Ingrese el nombre del contacto de la aduana."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtTelEditar"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtTelEditar"
-                                        ErrorMessage="Ingrese el teléfono de la aduna."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtDireccionEditar"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccionEditar"
-                                        ErrorMessage="Ingrese la dirección de la aduana."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAduanaEditar" />
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaAduanaEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
-                        <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- TITULO -->
+                    <h4 class="modal-title" id="lblEditar">EDITAR PERMISOS</h4>
                 </div>
-            </asp:Panel>
+                <div class="modal-body">
+                    Luego de terminar de editar los datos del permiso haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        <br />
+                    <br />
+                    <!-- CUERPO DEL MODAL -->
+                    <asp:HiddenField runat="server" ID="HiddenLblEditarNombreModulo" />
+                    <asp:HiddenField runat="server" ID="HiddenLblEditarIdPermiso" />
+                    <asp:HiddenField runat="server" ID="HiddenLblEditarIdModulo" />
+                    <asp:SqlDataSource
+                        ID="SqlEditar"
+                        runat="server"
+                        DataSourceMode="DataReader"
+                        ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                        ProviderName="MySql.Data.MySqlClient"
+                        SelectCommand="SELECT 0  AS id_modulo, 'Seleccionar Módulo...' AS nombre UNION ALL  SELECT id_modulo, nombre FROM DB_Nac_Merca.tbl_36_modulos;"></asp:SqlDataSource>
+                   
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <p><b>Seleccione un módulo para editar el acceso:</b></p>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+
+                                <asp:DropDownList ValidationGroup="ValidaPermisoEditar"
+                                    ID="ddlModulosEditar" runat="server" DataSourceID="SqlEditar" class="form-control show-tick"
+                                    DataTextField="nombre" DataValueField="id_modulo" AppendDataBoundItems="false">
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlModulosEditar"
+                                    ErrorMessage="Selecccione un módulo" ForeColor="White" Font-Size="Small" ValidationGroup="ValidaPermisoEditar"
+                                    InitialValue="0" SetFocusOnError="True" />
+                            </div>
+                        </div>
+                    </div>
+               
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaPermisoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                    <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                </div>
+
+
+            </div>
         </div>
     </div>
-
-
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
     <!-- Select Plugin Js -->

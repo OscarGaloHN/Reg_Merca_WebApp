@@ -35,11 +35,16 @@
         </li>
         <li>
             <a href="config_permisos.aspx">
-                <i class="material-icons-round">vpn_key</i>
-                <span>Permisos</span>
+                <i class="material-icons">vpn_key</i>
+                 <span>Permisos - Módulos</span>
             </a>
         </li>
-         
+         <li>
+            <a href="config_objetos.aspx">
+                <i class="material-icons">vpn_key</i>
+                <span>Permisos - Objetos</span>
+            </a>
+        </li>
         <%ELSE %>
 
         <li class="active">

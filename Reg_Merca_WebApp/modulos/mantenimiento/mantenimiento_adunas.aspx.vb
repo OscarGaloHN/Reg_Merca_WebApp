@@ -32,7 +32,7 @@
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se almaceno con exito.', 'success');</script>")
                     Case "delteaduana"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se elimino con exito.', 'success');</script>")
-                    Case "editduana"
+                    Case "editaduana"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La aduana se modifico con exito.', 'success');</script>")
                     Case Else
                         'bitacora de que salio de un form
@@ -75,7 +75,7 @@
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=editduana")
+                Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=editaduana")
             End If
         Catch ex As Exception
 
