@@ -241,7 +241,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtAduana"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtAduana" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtAduana"
                                         ErrorMessage="Ingrese el nombre de la aduana."
@@ -252,7 +252,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtContacto"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtContacto" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtContacto"
                                         ErrorMessage="Ingrese el nombre del contacto de la aduana."
@@ -266,7 +266,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtTel"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtTel" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtTel"
                                         ErrorMessage="Ingrese el teléfono de la aduna."
@@ -277,7 +277,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtDireccion"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduana" runat="server" class="form-control" ID="txtDireccion"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtDireccion"
                                         ErrorMessage="Ingrese la dirección de la aduana."
@@ -346,7 +346,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtAduanaEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre de Aduana" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtAduanaEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtAduanaEditar"
                                         ErrorMessage="Ingrese el nombre de la aduana."
@@ -357,7 +357,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtContactoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre del Contacto" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtContactoEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtContactoEditar"
                                         ErrorMessage="Ingrese el nombre del contacto de la aduana."
@@ -371,7 +371,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtTelEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtTelEditar"  onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtTelEditar"
                                         ErrorMessage="Ingrese el teléfono de la aduna."
@@ -382,7 +382,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtDireccionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección" AutoComplete="off" ValidationGroup="ValidaAduanaEditar" runat="server" class="form-control" ID="txtDireccionEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtDireccionEditar"
                                         ErrorMessage="Ingrese la dirección de la aduana."

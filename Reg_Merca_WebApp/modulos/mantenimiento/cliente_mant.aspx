@@ -183,7 +183,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
@@ -219,9 +219,9 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="unidmedida_mant.aspx">
                 <i class="material-icons">directions_boat</i>
-                <span>Unidad de Ventaja</span>
+                <span>Unidad de medida</span>
             </a>
         </li>
         <li>
