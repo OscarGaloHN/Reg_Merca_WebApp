@@ -158,6 +158,48 @@
         </div>
     </div>
 
+
+    <!-- modal editar PERMISOS-->
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- TITULO -->
+                    <h4 class="modal-title" id="lblEditar">EDITAR PERMISOS</h4>
+                </div>
+                <div class="modal-body">
+                    Luego de terminar de editar los datos del permiso haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        <br />
+                    <br />
+                    <!-- CUERPO DEL MODAL -->
+                    <asp:HiddenField runat="server" ID="HiddenLblEditarIDPermiso" />
+               
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <p><b>Editando los permisos para el objeto: <asp:Label runat="server" ID="lblObjeto" Text="..."></asp:Label> </b></p>
+                            </div>
+                                                </div>
+                    <div class="row clearfix">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <p><b>Seleccione un módulo para editar el acceso:</b></p>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+
+                                
+                            </div>
+                        </div>
+                    </div>
+               
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaPermisoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                    <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
         <!-- Select Plugin Js -->

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Creacion de Items" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.Master" CodeBehind="Creacion_items.aspx.vb" Inherits="Reg_Merca_WebApp.Creacion_items" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -9,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
     <script src="../src/jsTabla.js"></script>
 
 
@@ -16,15 +18,7 @@
 
 
     <script type="text/javascript">
-        //function xModal(xcolor, xtxtfoco) {
-        //    var color = xcolor;
-        //    var txtfoco = xtxtfoco;
-        //    $('#mdModal .modal-content').removeAttr('class').addClass('modal-content modal-col-' + color);
-        //    $('#mdModal').modal('show');
-        //    $('#mdModal').on('shown.bs.modal', function () {
-        //        $('#' + txtfoco).focus();
-        //    });
-        //}
+
         function GetSelectedRow(lnk) {
             var row = lnk.parentNode.parentNode;
 
@@ -64,34 +58,34 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Listado de Items
+                    <h2 style="font-weight: bold;">Listado de Items de la caratula -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>
          
                         <small>A continuación se muestra el listado de items</small>
                     </h2>
                 </div>
                 <div class="body">
-                   
+
 
                     <div class="row clearfix">
-                       
 
-                   
+
+
 
                         <div class="body">
                             <div class="row clearfix">
 
-                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                                        <asp:LinkButton
-                                            Width="100%"
-                                            runat="server"
-                                            ID="bttNuevo"
-                                            type="button"
-                                            class="btn bg-teal waves-effect">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                                    <asp:LinkButton
+                                        Width="100%"
+                                        runat="server"
+                                        ID="bttNuevo"
+                                        type="button"
+                                        class="btn bg-teal waves-effect">
           <i class="material-icons">add</i>
           <span>Nuevo</span>
-                                        </asp:LinkButton>
+                                    </asp:LinkButton>
 
-                                    </div>
+                                </div>
 
 
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
@@ -101,17 +95,17 @@
                                         ID="btt_volver"
                                         type="button"
                                         class="btn bg-teal waves-effect">
-          <i class="material-icons">search</i>
+          <i class="material-icons">undo</i>
           <span>Volver</span>
                                     </asp:LinkButton>
                                 </div>
-             
 
 
 
-                               
-                                
-                               
+
+
+
+
                             </div>
 
                             <div class="row clearfix">
@@ -120,19 +114,23 @@
                                         <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                             Width="100%">
                                             <Columns>
-                                                <asp:BoundField HeaderText="Editar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
-                                                <%--                                            <asp:TemplateField HeaderText="Eliminar">
-                                                <ItemTemplate>
-                                                    <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
+                                                 <asp:BoundField HeaderText="Editar" DataField="ID_Merca" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                                
+                                                <asp:TemplateField HeaderText="Eliminar">
+                                                    <ItemTemplate>
+                                                        <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                                <asp:BoundField DataField="Num_deItem" HeaderText="Numero de Item" />
-                                                <asp:BoundField DataField="num_partida" HeaderText="Partida Arancelaria" />
+                                               <%-- <asp:BoundField DataField="row_number" HeaderText="Numero de Item" />--%>
+                                                <asp:BoundField DataField="numeroitems" HeaderText="numeroitems" />
+                                                <asp:BoundField DataField="ID_Merca" HeaderText="Id" />
+                                                <asp:BoundField DataField="Id_poliza" HeaderText="Numero de Poliza" />
                                                 <asp:BoundField DataField="pesoneto" HeaderText="Peso Neto" />
-                                                <asp:BoundField DataField="cod_pais_fab" HeaderText="País de Origen" />
-                                                <asp:BoundField DataField="importes_factura" HeaderText="Importe factura" />
-                                                <asp:BoundField DataField="Id_Tipo_items" HeaderText="Tipo de Items" />
+                                                <asp:BoundField DataField="num_partida" HeaderText="Partida Arancelaria" />
+                                                <asp:BoundField DataField="cod_pais_fab" HeaderText="Pais de origen" />
+                                                <asp:BoundField DataField="importes_factura" HeaderText="Importe de Factura " />
+
 
                                             </Columns>
                                         </asp:GridView>

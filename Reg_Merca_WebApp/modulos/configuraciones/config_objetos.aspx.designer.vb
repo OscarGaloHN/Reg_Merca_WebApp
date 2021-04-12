@@ -93,4 +93,31 @@ Partial Public Class config_objetos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents gvCustomers As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Control HiddenLblEditarIDPermiso.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenLblEditarIDPermiso As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control lblObjeto.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblObjeto As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control bttModificar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttModificar As Global.System.Web.UI.WebControls.LinkButton
 End Class

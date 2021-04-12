@@ -1,6 +1,6 @@
 ﻿Public Class items_ventajas
     Inherits System.Web.UI.Page
-
+    '#OBJETO 34
     Private Property DataSetX As DataSet
         Get
             Return CType(Session("DataSetX"), DataSet)
@@ -34,9 +34,10 @@
             'End If
             'llenar grid
             Dim Ssql As String = String.Empty
-            Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, a.presencia, a.id_poliza_doc, b.Descripcion
-                    From tbl_28_Documentos a, tbl_32_Cod_Documentos b
-                    Where a.Id_Documento = b.Id_Documento  and id_poliza_doc = " & Request.QueryString("idCaratula") & ""
+            Ssql = "SELECT a.Id_Codigo, a.Id_ventaja, a.Id_merca,b.Descripcion
+                    FROM DB_Nac_Merca.tbl_42_Datos_Ventaja a, DB_Nac_Merca.tbl_30_Ventajas b
+                    where a.id_Ventaja=b.id_Ventaja
+                    and a.Id_merca=" & Request.QueryString("iditems") & ""
 
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -56,21 +57,21 @@
                     Case "editdocumento"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se modifico con éxito.', 'success');</script>")
                     Case Else
-                        ''bitacora de que salio de un form
-                        'If Not IsPostBack Then
-                        '    Using log_bitacora As New ControlBitacora
-                        '        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                        '    End Using
-                        'End If
+                        'bitacora de que salio de un form
+                        If Not IsPostBack Then
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
 
-                        ''bitacora de que ingreso al form
-                        'Session("IDfrmQueIngresa") = 17
-                        'Session("NombrefrmQueIngresa") = "Mantenimiento de Aduanas"
-                        'If Not IsPostBack Then
-                        '    Using log_bitacora As New ControlBitacora
-                        '        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                        '    End Using
-                        'End If
+                        'bitacora de que ingreso al form
+                        Session("IDfrmQueIngresa") = 34
+                        Session("NombrefrmQueIngresa") = "Ventas del Item"
+                        If Not IsPostBack Then
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
                 End Select
             End If
 
@@ -84,7 +85,7 @@
 
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza_doc = '" & Request.QueryString("idCaratula") & "' and Id_Documento = '" & ddldocumentos.SelectedValue & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_42_Datos_Ventaja where Id_merca = '" & Request.QueryString("iditems") & "' and Id_ventaja = '" & ddlventajas.SelectedValue & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -92,21 +93,21 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
             Else
-                If chkPresencia.Checked = True Then
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '1');"
-                Else
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '0');
-"
 
-                End If
+                'Ssql = "INSERT INTO DB_Nac_Merca.tbl_42_Datos_Ventaja (Id_ventaja, Id_merca) VALUES ('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & "'"
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_42_Datos_Ventaja (Id_ventaja, Id_merca) 
+VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & "); "
+
+
+            End If
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
-                'Using log_bitacora As New ControlBitacora
-                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
-                'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=newdocumento&idCaratula=" & Request.QueryString("idCaratula"))
-            End If
+            'Using log_bitacora As New ControlBitacora
+            '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
+            'End Using
+            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems"))
+            'End If
 
             'habilitar indicador
             'If chkindicador.Checked = True Then
@@ -124,7 +125,7 @@
 
     Private Sub bttEliminarDocumento_Click(sender As Object, e As EventArgs) Handles bttEliminarDocumento.Click
         Try
-            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_28_Documentos WHERE id_doc= " & lblHiddenIDDocumento.Value
+            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_42_Datos_Ventaja WHERE Id_Codigo= " & lblHiddenIDDocumento.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
@@ -132,7 +133,7 @@
             '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             'End Using
 
-            Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=deldocumento&idCaratula=" & Request.QueryString("idCaratula"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems"))
 
         Catch ex As Exception
 
@@ -143,31 +144,39 @@
 
         Try
             Dim Ssql As String = String.Empty
-            If txtreferenciaEditar.Text <> lblHiddenIDDocumento.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where where manifiesto = BINARY  '" & txtreferenciaEditar.Text & "' "
-                Using con As New ControlDB
-                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
-                End Using
-            Else
-                Session("NumReg") = 0
-            End If
+            'If txtreferenciaEditar.Text <> lblHiddenIDDocumento.Value Then
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_42_Datos_Ventaja where  id_ventaja = '" & ddlventajaedit.SelectedValue & "' "
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            'Else
+            '    Session("NumReg") = 0
+            'End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El documento ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La ventaja ya esta registrada.', 'error');</script>")
             Else
-                Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & ddldocumentos.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+                Ssql = "UPDATE DB_Nac_Merca.tbl_42_Datos_Ventaja SET Id_ventaja = '" & ddlventajaedit.SelectedValue & "', WHERE id_codigo= " & lblHiddenIDDocumento.Value
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 'Using log_bitacora As New ControlBitacora
                 '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
                 'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=editdocumento&idCaratula=" & Request.QueryString("idCaratula"))
+                Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=editdocumento&iditems=" & Request.QueryString("iditems"))
             End If
         Catch ex As Exception
 
         End Try
 
+    End Sub
+
+    Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
+        Try
+            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx")
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

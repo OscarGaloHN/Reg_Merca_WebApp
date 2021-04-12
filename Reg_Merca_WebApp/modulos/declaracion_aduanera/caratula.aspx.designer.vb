@@ -131,6 +131,15 @@ Partial Public Class caratula
     Protected WithEvents ddlregimenaduanero As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control RequiredFieldValidator6.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txtrtnimp_exp.
     '''</summary>
     '''<remarks>
@@ -473,15 +482,6 @@ Partial Public Class caratula
     Protected WithEvents ddladuanatransitodes As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control ddladuanatransitodesv.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ddladuanatransitodesv As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''Control sqlmodalidadesp.
     '''</summary>
     '''<remarks>
@@ -500,15 +500,6 @@ Partial Public Class caratula
     Protected WithEvents ddlmodalidadesp As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control ddlmodalidadespv.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ddlmodalidadespv As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''Control sqldepositoaduana.
     '''</summary>
     '''<remarks>
@@ -525,15 +516,6 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddldepositoaduana As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Control ddldepositoaduanav.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ddldepositoaduanav As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtplazodiasmeses.
@@ -761,6 +743,15 @@ Partial Public Class caratula
     Protected WithEvents btt_guardar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''Control bttVolver.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''Control pbotones.
     '''</summary>
     '''<remarks>
@@ -795,13 +786,4 @@ Partial Public Class caratula
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btt_bultos As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control bttVolver.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
 End Class

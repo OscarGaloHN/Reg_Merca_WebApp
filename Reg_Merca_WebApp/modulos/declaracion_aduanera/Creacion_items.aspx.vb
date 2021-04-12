@@ -12,7 +12,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
-
+            lblCatatura.Text = Request.QueryString("idCaratula")
 
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
@@ -20,10 +20,11 @@
             Else
                 'Llenado de Gried
                 Dim Ssql As String = String.Empty
-                Ssql = "select a.Id_poliza,a.fecha_creacion,b.nombrec,c.descripcion,d.nombre
-                            from tbl_04_cliente b, tbl_01_polizas a, tbl_19_estado c, tbl_02_usuarios d
-                               where a.id_cliente = b.id_cliente and c.id_estado=a.estado_poliza
-                               and d.id_usuario= a.usuario_creador"
+                Ssql = "SELECT ROW_NUMBER() OVER (	ORDER BY ID_Merca) as numeroitems,a.ID_Merca,a.Id_poliza,
+a.pesoneto,a.num_partida,a.cod_pais_fab,a.importes_factura
+from tbl_34_mercancias a, tbl_01_polizas b
+where a.Id_poliza=b.Id_poliza
+and a.Id_poliza=" & Request.QueryString("idCaratula")
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -62,13 +63,13 @@
     Private Sub bttNuevo_Click(sender As Object, e As EventArgs) Handles bttNuevo.Click
         Try
             'redirecciona a form items
-            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new")
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try
     End Sub
 
     Private Sub btt_volver_Click(sender As Object, e As EventArgs) Handles btt_volver.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx")
+        Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
     End Sub
 End Class

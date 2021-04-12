@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="Carátula" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="caratula.aspx.vb" Inherits="Reg_Merca_WebApp.caratula" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <link href="../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
     <link href="../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
     <script src="../plugins/momentjs/moment.js"></script>
-    <!-- Bootstrap Select Css -->
-    <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
     <a class="navbar-brand" href="#">Carátula de la Poliza</a>
@@ -27,6 +29,28 @@
                 <span>Declaracion Aduanera</span>
             </a>
         </li>
+
+        <li class="#">
+            <a href="creacion_items.aspx">
+                <i class="material-icons">note_add</i>
+                <span>Creación de Ítems</span>
+            </a>
+        </li>
+
+        <li class="#">
+            <a href="creacion_items.aspx">
+                <i class="material-icons">note_add</i>
+                <span>Creación de Documentos</span>
+            </a>
+        </li>
+
+        <li class="#">
+            <a href="creacion_items.aspx">
+                <i class="material-icons">collections_bookmark</i>
+                <span>Creación de Bultos</span>
+            </a>
+        </li>
+
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
@@ -71,6 +95,7 @@
                         <asp:DropDownList
                             ID="ddlestado" runat="server" DataSourceID="sqlestadopol" class="form-control show-tick"
                             DataTextField="descripcion" DataValueField="id_estado" AppendDataBoundItems="true" ItemType="">
+                            <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -87,14 +112,14 @@
                         <label class="form-label">Cliente</label>
                         <asp:DropDownList
                             ID="ddlCliente" runat="server" DataSourceID="SqlClientes" class="form-control show-tick"
-                            DataTextField="nombrec" DataValueField="Id_cliente" AppendDataBoundItems="true" ItemType="">
+                            DataTextField="nombrec" DataValueField="Id_cliente" AppendDataBoundItems="true" ItemType="" AutoPostBack="True">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator
                             ID="ddlClientev"
                             ControlToValidate="ddlCliente"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -140,7 +165,7 @@
                             ID="ddladuanadespachov"
                             ControlToValidate="ddladuanadespacho"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -161,10 +186,18 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label class="form-label">Regimen Aduanero</label>
                         <asp:DropDownList
-                            ID="ddlregimenaduanero" runat="server" DataSourceID="sqlregimenaduanero" class="form-control show-tick"
+                            ID="ddlregimenaduanero" runat="server" DataSourceID="sqlregimenaduanero" class="form-control show-tick" data-live-search="true"
                             DataTextField="Descripcion" DataValueField="Id_Regimen" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator6"
+                            ControlToValidate="ddlregimenaduanero"
+                            InitialValue="Seleccione"
+                            ErrorMessage="Seleccione un dato"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
                     </div>
                 </div>
 
@@ -173,7 +206,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox ID="txtrtnimp_exp" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control" MaxLength="14"></asp:TextBox>
+                                <asp:TextBox ID="txtrtnimp_exp" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control" MaxLength="14" ReadOnly="True"></asp:TextBox>
                                 <label class="form-label">RTN Importador/Exportador</label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtrtnimp_exp"
@@ -269,7 +302,7 @@
                             ID="ddlproveedoresv"
                             ControlToValidate="ddlproveedores"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -306,7 +339,7 @@
                         <label class="form-label"></label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox ID="txtNumPreimp" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <asp:TextBox MaxLength="8" ID="txtNumPreimp" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
                                 <label class="form-label">Número PreImpreso</label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtNumPreimp"
@@ -319,7 +352,7 @@
                         <label class="form-label"></label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox MaxLength="17" ID="txtEntidadMed" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="borrarespacios(this);" class="form-control"></asp:TextBox>
+                                <asp:TextBox MaxLength="17" ID="txtEntidadMed" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
                                 <label class="form-label">Entidad Mediación</label>
                             </div>
                         </div>
@@ -344,7 +377,7 @@
                             ID="ddldepositoalmacenv"
                             ControlToValidate="ddldepositoalmacen"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -369,7 +402,7 @@
                             ID="ddladuanaingsalv"
                             ControlToValidate="ddladuanaingsal"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -383,7 +416,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2 "></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Paises de Origen</label>
@@ -396,7 +429,7 @@
                             ID="ddlpaisesdeorigenv"
                             ControlToValidate="ddlpaisesdeorigen"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -408,7 +441,7 @@
                         DataSourceMode="DataReader"
                         ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                         ProviderName="MySql.Data.MySqlClient"
-                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by rand() "></asp:SqlDataSource>
+                        SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2 "></asp:SqlDataSource>
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label">Paises de Procedencia</label>
@@ -421,7 +454,7 @@
                             ID="ddlpaisprocedenciav"
                             ControlToValidate="ddlpaisprocedencia"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -445,7 +478,7 @@
                             ID="ddlformadepagov"
                             ControlToValidate="ddlformadepago"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -469,7 +502,7 @@
                             ID="ddlcondicionentregav"
                             ControlToValidate="ddlcondicionentrega"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -492,14 +525,14 @@
                             DataTextField="Nombre_aduana" DataValueField="Id_Aduana" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                         <asp:RequiredFieldValidator
+                        <%--                        <asp:RequiredFieldValidator
                             ID="ddladuanatransitodesv"
                             ControlToValidate="ddladuanatransitodes"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
-                            runat="server" />
+                            runat="server" />--%>
                     </div>
 
                     <asp:SqlDataSource
@@ -517,14 +550,14 @@
                             DataTextField="Nombre_modalidad" DataValueField="Id_Modalidad" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                         <asp:RequiredFieldValidator
+                        <%--                        <asp:RequiredFieldValidator
                             ID="ddlmodalidadespv"
                             ControlToValidate="ddlmodalidadesp"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
-                            runat="server" />
+                            runat="server" />--%>
                     </div>
                     <asp:SqlDataSource
                         ID="sqldepositoaduana"
@@ -541,14 +574,14 @@
                             DataTextField="Nombre" DataValueField="Id_almacen" AppendDataBoundItems="true">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                          <asp:RequiredFieldValidator
+                        <%--                        <asp:RequiredFieldValidator
                             ID="ddldepositoaduanav"
                             ControlToValidate="ddldepositoaduana"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
-                            runat="server" />
+                            runat="server" />--%>
                     </div>
                     <%--  PENDIENTE CAMBIAR A UN DATETIME--%>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -612,7 +645,7 @@
                             ID="ddlclasebultosv"
                             ControlToValidate="ddlclasebultos"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -704,11 +737,11 @@
                             DataTextField="Descripcion" DataValueField="Id_Divisas" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                         <asp:RequiredFieldValidator
+                        <asp:RequiredFieldValidator
                             ID="ddldivisafactv"
                             ControlToValidate="ddldivisafact"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -739,11 +772,11 @@
                             DataTextField="Descripcion" DataValueField="Id_Divisas" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                          <asp:RequiredFieldValidator
+                        <asp:RequiredFieldValidator
                             ID="ddldivisasegv"
                             ControlToValidate="ddldivisaseg"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -763,11 +796,11 @@
                             DataTextField="Descripcion" DataValueField="Id_Divisas" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
-                          <asp:RequiredFieldValidator
+                        <asp:RequiredFieldValidator
                             ID="ddldivisaflv"
                             ControlToValidate="ddldivisafl"
                             InitialValue="Seleccione"
-                            ErrorMessage="selecciones datos"
+                            ErrorMessage="Seleccione un dato"
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
@@ -786,50 +819,7 @@
           <span>Guardar</span>
                         </asp:LinkButton>
                     </div>
-                </div>
 
-                <div class="row clearfix">
-                    <asp:Panel ID="pbotones" runat="server">
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="bttitems"
-                                type="button"
-                                ValidationGroup="Validarbttitems"
-                                class="btn bg-teal waves-effect">
-          <i class="material-icons">note_add</i>
-          <span>Items</span>
-                            </asp:LinkButton>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="bttdocumen"
-                                type="button"
-                                ValidationGroup="Validarbttdocumen"
-                                class="btn bg-teal waves-effect">
-          <i class="material-icons">note_add</i>
-          <span>Documentos</span>
-                            </asp:LinkButton>
-                        </div>
-
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <asp:LinkButton
-                                Width="100%"
-                                runat="server"
-                                ID="btt_bultos"
-                                type="button"
-                                ValidationGroup="Validarbttbultos"
-                                class="btn bg-teal waves-effect">
-          <i class="material-icons">collections_bookmark</i>
-          <span>Bultos</span>
-                            </asp:LinkButton>
-                        </div>
-                    </asp:Panel>
                     <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
                         <asp:LinkButton
                             Width="100%"
@@ -843,12 +833,60 @@
                         </asp:LinkButton>
                     </div>
                 </div>
+                <br />
+                <asp:Panel ID="pbotones" runat="server" Visible="false">
+
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttitems"
+                                type="button"
+                                ValidationGroup="Validarbttitems"
+                                class="btn bg-pink waves-effect">
+                              <i class="material-icons">note_add</i>
+                              <span>Items</span>
+                            </asp:LinkButton>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttdocumen"
+                                type="button"
+                                ValidationGroup="Validarbttdocumen"
+                                class="btn bg-pink waves-effect">
+                              <i class="material-icons">note_add</i>
+                              <span>Documentos</span>
+                            </asp:LinkButton>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="btt_bultos"
+                                type="button"
+                                ValidationGroup="Validarbttbultos"
+                                class="btn bg-pink waves-effect">
+          <i class="material-icons">collections_bookmark</i>
+          <span>Bultos</span>
+                            </asp:LinkButton>
+                        </div>
+
+                    </div>
+                </asp:Panel>
+
             </div>
+
         </div>
     </div>
-
-
-
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
+    <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
 </asp:Content>

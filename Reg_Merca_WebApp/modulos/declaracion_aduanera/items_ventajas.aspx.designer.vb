@@ -32,6 +32,15 @@ Partial Public Class items_ventajas
     Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control bttVolver.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''Control gvCustomers.
     '''</summary>
     '''<remarks>
@@ -50,49 +59,31 @@ Partial Public Class items_ventajas
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control sqldocumentos.
+    '''Control sqlventajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents sqldocumentos As Global.System.Web.UI.WebControls.SqlDataSource
+    Protected WithEvents sqlventajas As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control ddldocumentos.
+    '''Control ddlventajas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ddldocumentos As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddlventajas As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control txtreferencia.
+    '''Control ddlproveedoresv.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtreferencia As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control reqnombrevacio.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Control chkPresencia.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents chkPresencia As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+    Protected WithEvents ddlproveedoresv As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control bttGuardarDocumento.
@@ -140,49 +131,31 @@ Partial Public Class items_ventajas
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtreferenciaEditar.
+    '''Control Sqlventajaedit.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtreferenciaEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Sqlventajaedit As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control RequiredFieldValidator3.
+    '''Control ddlventajaedit.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents ddlventajaedit As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control txt_transEditar.
+    '''Control RequiredFieldValidator1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txt_transEditar As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control RequiredFieldValidator4.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Control chkpresenciaEditar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents chkpresenciaEditar As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control bttModificardocumento.

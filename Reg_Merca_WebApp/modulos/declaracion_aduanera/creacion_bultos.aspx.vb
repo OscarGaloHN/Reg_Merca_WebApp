@@ -12,34 +12,35 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        'parametros de configuracion de sistema
-        Using Parametros_Sistema As New ControlDB
-            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        End Using
+        ''parametros de configuracion de sistema
+        'Using Parametros_Sistema As New ControlDB
+        '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        'End Using
 
-        'PARAMETROS DE ADMINISTRADOR
-        Using Parametros_admin As New ControlDB
-            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        End Using
+        ''PARAMETROS DE ADMINISTRADOR
+        'Using Parametros_admin As New ControlDB
+        '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        'End Using
 
-        Using logo_imprimir As New ControlDB
-            Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
-        End Using
+        'Using logo_imprimir As New ControlDB
+        '    Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
+        'End Using
 
 
 
         Try
+
             'cargar logo para imprimir
             HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
             HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
-            'If Session("user_idUsuario") = Nothing Then
-            '    Session.Abandon()
-            '    Response.Redirect("~/Inicio/login.aspx")
-            'Else
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
 
-            'llenar grid
-            Dim Ssql As String = String.Empty
+                'llenar grid
+                Dim Ssql As String = String.Empty
                 Ssql = "SELECT id_bulto, manifiesto, titulo_transporte, indicador, id_poliza_bul FROM DB_Nac_Merca.tbl_40_Bulto
                     where id_poliza_bul = " & Request.QueryString("idCaratula") & ""
                 Using con As New ControlDB
@@ -60,21 +61,21 @@
                         Case "editbulto"
                             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se modifico con éxito.', 'success');</script>")
                         Case Else
-                            ''bitacora de que salio de un form
-                            'If Not IsPostBack Then
-                            '    Using log_bitacora As New ControlBitacora
-                            '        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            '    End Using
-                            'End If
+                            'bitacora de que salio de un form
+                            If Not IsPostBack Then
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                End Using
+                            End If
 
-                            ''bitacora de que ingreso al form
-                            'Session("IDfrmQueIngresa") = 17
-                            'Session("NombrefrmQueIngresa") = "Mantenimiento de Aduanas"
-                            'If Not IsPostBack Then
-                            '    Using log_bitacora As New ControlBitacora
-                            '        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            '    End Using
-                            'End If
+                            'bitacora de que ingreso al form
+                            Session("IDfrmQueIngresa") = 28
+                            Session("NombrefrmQueIngresa") = "Creación de Bultos"
+                            If Not IsPostBack Then
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                End Using
+                            End If
 
                     End Select
 
@@ -82,7 +83,7 @@
 
                 End If
 
-            'End If
+            End If
         Catch ex As Exception
 
         End Try
@@ -159,6 +160,14 @@
                 'End Using
                 Response.Redirect("~/modulos/declaracion_aduanera/creacion_bultos.aspx?acction=editbulto&idCaratula=" & Request.QueryString("idCaratula"))
             End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
+        Try
+            Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx")
         Catch ex As Exception
 
         End Try
