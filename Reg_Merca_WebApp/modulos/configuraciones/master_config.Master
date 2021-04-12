@@ -49,7 +49,7 @@
 </head>
 
 <body class="theme-teal">
-        <!-- Page Loader -->
+    <!-- Page Loader -->
 
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -97,12 +97,12 @@
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
-                                 <% If Session("user_estado") = 2 Then %>
+                                <% If Session("user_estado") = 2 Then %>
                                 <li><a id="lblIraPerfil" href="../perfil_usuario/confi_perfil.aspx"><i class="material-icons">person</i>Perfil</a></li>
                                 <li role="separator" class="divider"></li>
                                 <% end if %>
                                 <li>
-                                    <asp:LinkButton  ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
+                                    <asp:LinkButton ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
                             </ul>
                         </div>
 
@@ -143,6 +143,8 @@
         </section>
 
 
+
+
         <!-- Bootstrap Core Js -->
         <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
 
@@ -155,10 +157,13 @@
         <!-- Waves Effect Plugin Js -->
         <script src="../../plugins/node-waves/waves.js"></script>
 
+
+        <!-- Validation Plugin Js -->
+        <script src="../../plugins/jquery-validation/jquery.validate.js"></script>
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/ui/modals.js"></script>
-
+        <script src="../../js/pages/examples/sign-in.js"></script>
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
         <asp:ContentPlaceHolder ID="contenJSpie" runat="server">
