@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="master_gestion_usuarios.Master.vb" Inherits="Reg_Merca_WebApp.gestion_usuarios" %>
 <%@ Register Src="~/modulos/src/piedepagina.ascx" TagPrefix="uc1" TagName="piedepagina" %>
 
-
+ 
 <!DOCTYPE html>
 
 <html>
