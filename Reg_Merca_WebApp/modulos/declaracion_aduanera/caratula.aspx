@@ -123,14 +123,26 @@
                             Font-Size="X-Small"
                             runat="server" />
                     </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
+                            <div class="form-line">
+                                <asp:TextBox ID="txtrtnimp_exp" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control" MaxLength="14" ReadOnly="True"></asp:TextBox>
+                                <label class="form-label">RTN Importador/Exportador</label>
+                            </div>
+                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtrtnimp_exp"
+                                ErrorMessage="Ingrese RTN Exportador/Importador"
+                                Display="Dynamic"
+                                ForeColor="OrangeRed" Font-Size="X-Small" />
+                        </div>
+                    </div>
                 </div>
 
 
                 <div class="row clearfix">
-                    <!-- declarante -->
+                    <%--                    <!-- declarante -->
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <label class="form-label"></label>
-
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox AutoComplete="off" ID="txtdeclarante" runat="server" class="form-control" MaxLength="60" Wrap="True"
@@ -139,6 +151,60 @@
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtdeclarante"
                                 ErrorMessage="Ingrese Declarante"
+                                Display="Dynamic"
+                                ForeColor="OrangeRed" Font-Size="X-Small" />
+                        </div>
+                    </div>--%>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <label class="form-label"></label>
+                        <asp:SqlDataSource
+                            ID="Sqldeclarante"
+                            runat="server"
+                            DataSourceMode="DataReader"
+                            ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                            ProviderName="MySql.Data.MySqlClient"
+                            SelectCommand="SELECT id_declarante,nombredecla FROM DB_Nac_Merca.tbl_43_declarante order by 2;"></asp:SqlDataSource>
+
+
+                        <label class="form-label">Declarante</label>
+                        <asp:DropDownList
+                            ID="ddldeclarante" runat="server" DataSourceID="Sqldeclarante" class="form-control show-tick"
+                            DataTextField="nombredecla" DataValueField="id_declarante" AppendDataBoundItems="true" ItemType="" AutoPostBack="True">
+                            <asp:ListItem Value="Seleccione"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator
+                            ID="RequiredFieldValidator3"
+                            ControlToValidate="ddldeclarante"
+                            InitialValue="Seleccione"
+                            ErrorMessage="Seleccione un dato"
+                            ForeColor="OrangeRed"
+                            Font-Size="X-Small"
+                            runat="server" />
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
+                            <div class="form-line">
+                                <asp:TextBox ID="txtRTNagen_aduanera" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="BorrarRepetidas(this)" class="form-control" MaxLength="14"></asp:TextBox>
+                                <label class="form-label">RTN Agencia Aduanera</label>
+                            </div>
+                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtRTNagen_aduanera"
+                                ErrorMessage="Ingrese RTN Agencia Aduanera"
+                                Display="Dynamic"
+                                ForeColor="OrangeRed" Font-Size="X-Small" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="form-group form-float">
+                            <label class="form-label"></label>
+                            <div class="form-line">
+                                <asp:TextBox MaxLength="60" ID="txtagen_aduanera" AutoComplete="off" runat="server" onkeypress="return txNombres(event)"
+                                    onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
+                                <label class="form-label">Agencia Aduanera</label>
+                            </div>
+                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtagen_aduanera"
+                                ErrorMessage="Ingrese Nombre Agencia Aduanera"
                                 Display="Dynamic"
                                 ForeColor="OrangeRed" Font-Size="X-Small" />
                         </div>
@@ -168,10 +234,15 @@
                             ForeColor="OrangeRed"
                             Font-Size="X-Small"
                             runat="server" />
-
                     </div>
 
 
+
+
+                </div>
+
+                <!-- RTN IMPORTADOR EXPORTADOR -->
+                <div class="row clearfix">
                     <!-- regimen aduanero -->
 
                     <asp:SqlDataSource
@@ -183,7 +254,7 @@
                         SelectCommand="SELECT Id_Regimen, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_27_Regimenes order by 2;"></asp:SqlDataSource>
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <label class="form-label">Regimen Aduanero</label>
+                        <label class="form-label">Régimen Aduanero</label>
                         <asp:DropDownList
                             ID="ddlregimenaduanero" runat="server" DataSourceID="sqlregimenaduanero" class="form-control show-tick" data-live-search="true"
                             DataTextField="Descripcion" DataValueField="Id_Regimen" AppendDataBoundItems="true">
@@ -198,23 +269,7 @@
                             Font-Size="X-Small"
                             runat="server" />
                     </div>
-                </div>
-
-                <!-- RTN IMPORTADOR EXPORTADOR -->
-                <div class="row clearfix">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox ID="txtrtnimp_exp" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control" MaxLength="14" ReadOnly="True"></asp:TextBox>
-                                <label class="form-label">RTN Importador/Exportador</label>
-                            </div>
-                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtrtnimp_exp"
-                                ErrorMessage="Ingrese RTN Exportador/Importador"
-                                Display="Dynamic"
-                                ForeColor="OrangeRed" Font-Size="X-Small" />
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <%--                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox MaxLength="60" ID="txtimp_exp" AutoComplete="off" runat="server" onkeypress="return txNombres(event)" class="form-control"
@@ -226,45 +281,7 @@
                                 Display="Dynamic"
                                 ForeColor="OrangeRed" Font-Size="X-Small" />
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox ID="txtRTNagen_aduanera" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="BorrarRepetidas(this)" class="form-control" MaxLength="14"></asp:TextBox>
-                                <label class="form-label">RTN Agencia Aduanera</label>
-                            </div>
-                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtRTNagen_aduanera"
-                                ErrorMessage="Ingrese RTN Agencia Aduanera"
-                                Display="Dynamic"
-                                ForeColor="OrangeRed" Font-Size="X-Small" />
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <asp:TextBox MaxLength="60" ID="txtagen_aduanera" AutoComplete="off" runat="server" onkeypress="return txNombres(event)"
-                                    onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
-                                <label class="form-label">Agencia Aduanera</label>
-                            </div>
-                            <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtagen_aduanera"
-                                ErrorMessage="Ingrese Nombre Agencia Aduanera"
-                                Display="Dynamic"
-                                ForeColor="OrangeRed" Font-Size="X-Small" />
-                        </div>
-                    </div>
-                </div>
-                <%-- TERMINAR DE AGREGAR VALIDACIONES APARTIR DE AQUI--%>
-                <div class="row clearfix">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <label class="form-label"></label>
-                            <div class="form-line">
-                                <asp:TextBox MaxLength="17" ID="txtmanifiestorap" AutoComplete="off" runat="server"
-                                    class="form-control" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
-                                <label class="form-label">Manifiesto de Entrega Rapida</label>
-                            </div>
-                        </div>
-                    </div>
+                    </div>--%>
 
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 
@@ -279,7 +296,7 @@
 
                         <label class="form-label">Proveedor</label>
                         <asp:DropDownList
-                            ID="ddlproveedores" runat="server" DataSourceID="Sqlproveedor" class="form-control show-tick"
+                            ID="ddlproveedores" runat="server" DataSourceID="Sqlproveedor" class="form-control show-tick" data-live-search="true"
                             DataTextField="nombre" DataValueField="Id_proveedor" AppendDataBoundItems="true" ItemType="">
                             <asp:ListItem Value="Seleccione"></asp:ListItem>
                         </asp:DropDownList>
@@ -303,7 +320,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="row clearfix">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="form-group form-float">
                             <label class="form-label"></label>
@@ -317,9 +336,6 @@
                                 ForeColor="OrangeRed" Font-Size="X-Small" />
                         </div>
                     </div>
-                </div>
-
-                <div class="row clearfix">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <label class="form-label"></label>
                         <div class="form-group form-float">
@@ -368,6 +384,10 @@
                             runat="server" />
                     </div>
 
+
+                </div>
+
+                <div class="row clearfix">
                     <asp:SqlDataSource
                         ID="sqladuanasalida"
                         runat="server"
@@ -392,9 +412,7 @@
                             Font-Size="X-Small"
                             runat="server" />
                     </div>
-                </div>
 
-                <div class="row clearfix">
                     <asp:SqlDataSource
                         ID="sqlpaisdeorigen"
                         runat="server"
@@ -468,6 +486,8 @@
                             Font-Size="X-Small"
                             runat="server" />
                     </div>
+                </div>
+                <div class="row clearfix">
                     <asp:SqlDataSource
                         ID="sqlcondicionentrega"
                         runat="server"
@@ -492,8 +512,6 @@
                             Font-Size="X-Small"
                             runat="server" />
                     </div>
-                </div>
-                <div class="row clearfix">
                     <!-- ADUANA TRANSITO DESTINO     -->
                     <asp:SqlDataSource
                         ID="sqladanatransitodes"
@@ -568,9 +586,11 @@
                             Font-Size="X-Small"
                             runat="server" />
                     </div>
-                    <%--  PENDIENTE CAMBIAR A UN DATETIME--%>
+
+
+                </div>
+                <div class="row clearfix">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <label class="form-label"></label>
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox ID="txtplazodiasmeses" AutoComplete="off" runat="server" class="form-control "
@@ -579,9 +599,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <asp:TextBox MaxLength="17" ID="txtmanifiestorap" AutoComplete="off" runat="server"
+                                    class="form-control" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                <label class="form-label">Manifiesto de Entrega Rápida</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox MaxLength="50" ID="txtrutatransito" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
@@ -589,11 +619,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox MaxLength="50" ID="txt_motivoperacion" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
-                                <label class="form-label">Motivo Operacion Suspensiva</label>
+                                <label class="form-label">Motivo Operación Suspensiva</label>
                             </div>
                         </div>
                     </div>

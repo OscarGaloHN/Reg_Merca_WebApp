@@ -64,7 +64,7 @@
                                 'ddlestado.Attributes.Add("disabled", "disabled")
                                 ddlestado.SelectedValue = 7
                                 ddlCliente.SelectedValue = registro("id_cliente")
-                                txtdeclarante.Text = registro("declarante")
+                                ddldeclarante.SelectedValue = registro("declarante")
                                 ddladuanadespacho.SelectedValue = registro("cod_aduana_ent")
                                 ddlregimenaduanero.SelectedValue = registro("id_regimen")
                                 txtrtnimp_exp.Text = registro("rtn_importador")
@@ -149,7 +149,7 @@ Cod_pais_pro, id_pago, id_condicion, aduana_transdes, modalidad_especial, deposi
 ruta_transito, motivo_operacion, Observaciones, Id_Clase_deBulto, Total_Otros_gastos, Total_Seguro, Total_Flete, divisa_factura, tipo_de_cambio,
 divisa_seguro, divisa_flete, usuario_creador, Id_poliza) 
 values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedValue & "', '" & ddlCliente.SelectedValue & "',
-'" & txtdeclarante.Text & "', '" & ddladuanadespacho.SelectedValue & "', '" & ddlregimenaduanero.SelectedValue & "', 
+'" & ddldeclarante.SelectedValue & "', '" & ddladuanadespacho.SelectedValue & "', '" & ddlregimenaduanero.SelectedValue & "', 
 '" & txtrtnimp_exp.Text & "', '" & txtimp_exp.Text & "','" & txtRTNagen_aduanera.Text & "','" & txtagen_aduanera.Text & "',
 '" & txtmanifiestorap.Text & "','" & ddlproveedores.SelectedValue & "','" & txtContra_proveedor.Text & "','" & txtDomicioProve.Text & "',
 '" & txtNumPreimp.Text & "','" & txtEntidadMed.Text & "','" & ddldepositoalmacen.SelectedValue & "','" & ddladuanaingsal.SelectedValue & "',
@@ -188,7 +188,7 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 
                 Case "update"
                     Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
-declarante='" & txtdeclarante.Text & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', Id_regimen='" & ddlregimenaduanero.SelectedValue & "', 
+declarante='" & ddldeclarante.SelectedValue & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', Id_regimen='" & ddlregimenaduanero.SelectedValue & "', 
 rtn_importador='" & txtrtnimp_exp.Text & "', nombre_importador='" & txtimp_exp.Text & "', 
 rtn_agenciaadu='" & txtRTNagen_aduanera.Text & "', nombre_agenciaadu='" & txtagen_aduanera.Text & "', 
 manifiesto_entregarap='" & txtmanifiestorap.Text & "', Id_proveedor='" & ddlproveedores.SelectedValue & "',
