@@ -3998,7 +3998,8 @@ section.content {
     .switch label input[type=checkbox]:checked + .lever.switch-col-white:after {
       background-color: #ffffff; }
 
-/* DateTime Picker ============================= */
+/* 
+    Picker ============================= */
 .dtp div.dtp-date,
 .dtp div.dtp-time {
   background: #007d72; }
