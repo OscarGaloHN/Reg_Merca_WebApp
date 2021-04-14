@@ -1,4 +1,4 @@
-﻿<%@ Page ValidateRequest="false"  Title="Gestio de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_gestion_usuario.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Gestion_Usuario" %>
+﻿<%@ Page ValidateRequest="false" Title="Gestión de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_gestion_usuario.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Gestion_Usuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
@@ -108,7 +108,16 @@
                             <asp:DropDownList
                                 ID="cmbRol" runat="server" DataSourceID="SqlRol" class="form-control show-tick"
                                 DataTextField="Rol" DataValueField="id_Rol" AppendDataBoundItems="true">
+                                <asp:ListItem Value="Seleccione"></asp:ListItem>
                             </asp:DropDownList>
+                            <asp:RequiredFieldValidator
+                                ID="ddladuanadespachov"
+                                ControlToValidate="cmbRol"
+                                InitialValue="Seleccione"
+                                ErrorMessage="selecciones datos"
+                                ForeColor="OrangeRed"
+                                Font-Size="X-Small"
+                                runat="server" />
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <asp:HiddenField ID="HiddenCorreo" runat="server" />
