@@ -15,7 +15,7 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            
+            document.getElementById('ContentPrincipal_txtid').value = '';
             document.getElementById('ContentPrincipal_txtventajas').value = '';
         }
 
@@ -23,18 +23,24 @@
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblventajas').innerHTML = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreventajas').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombreventajas').value = row.cells[3].innerHTML;
             xModal('red', 'ContentPrincipal_txtventajas', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
+            document.getElementById('ContentPrincipal_txtidEditar').value = '';
             document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
             
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreventajas').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombreventajas').value = row.cells[3].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
+            }
+            document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
+
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
             }
             xModal('pink', 'ContentPrincipal_txtdescripcionEditar', 'modalEditar');
         }
@@ -153,9 +159,14 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 <script type="text/javascript">
     tituloImprimir = 'Listado de las ventajas'
     xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+    xMargenes.push(100, 0, 100, 0)
+    xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+    xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value
 </script>
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -220,7 +231,18 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion de la ventaja" AutoComplete="off" ValidationGroup="Validaventajas" runat="server" class="form-control" ID="txtventajas"></asp:TextBox>
+                                       <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtid(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox> 
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
+                                        ErrorMessage="Ingrese la ID de ventaja."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaventajas" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtventajas(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtventajas" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtventajas"
                                         ErrorMessage="Ingrese la ventaja."
@@ -252,6 +274,7 @@
                     ¿Seguro que dese eliminar esta Ventaja:
                     <asp:Label runat="server" ID="lblventajas" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDVentajas" />
+                        <asp:HiddenField runat="server" ID="lblHiddenNombreventajas" />
                         
                     <br />
                     <br />
@@ -287,10 +310,21 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion de la ventaja" AutoComplete="off" ValidationGroup="ValidaventajasEditar" runat="server" class="form-control" ID="txtdescripcionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="ValidaventajasEditar" runat="server" class="form-control" ID="txtidEditar"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtidEditar"
+                                        ErrorMessage="Ingrese el ID de la ventaja."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaventajasEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                    <asp:TextBox placeholder="Descripcion de la ventaja" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtdescripcionEditar(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtdescripcionEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtdescripcionEditar"
-                                        ErrorMessage="Ingrese el pais."
+                                        ErrorMessage="Ingrese la Ventaja."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaventajasEditar" />
                                 </div>

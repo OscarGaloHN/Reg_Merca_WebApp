@@ -15,7 +15,7 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            
+            document.getElementById('ContentPrincipal_txtid').value = '';
             document.getElementById('ContentPrincipal_txtpaises').value = '';
         }
 
@@ -27,14 +27,20 @@
             xModal('red', 'ContentPrincipal_txtpaises', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
+            document.getElementById('ContentPrincipal_txtidEditar').value = '';
             document.getElementById('ContentPrincipal_txtpaisesEditar').value = '';
             
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
 
-            if (row.cells[2].innerHTML != '&nbsp;') {
+            if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtpaisesEditar').value = row.cells[3].innerHTML;
+            }
+            document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
+
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
             }
             xModal('pink', 'ContentPrincipal_txtpaisesEditar', 'modalEditar');
         }
@@ -154,9 +160,14 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
      <script type="text/javascript">
          tituloImprimir = 'Listado de los Paises'
          xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+         xMargenes.push(100, 0, 100, 0)
+         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
      </script>
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -218,6 +229,19 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox onkeypress="return txtid(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">ID Pais</label>
+                                </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
+                                    ErrorMessage="Ingrese el ID del Pais."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                            </div>
+
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
@@ -289,7 +313,18 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="paises" AutoComplete="off" ValidationGroup="ValidapaisesEditar" runat="server" class="form-control" ID="txtpaisesEditar"></asp:TextBox>
+                                        <asp:TextBox onkeypress="return txtidEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtidEditar" runat="server" class="form-control"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtidEditar"
+                                        ErrorMessage="Ingrese el ID del pais."
+                                        Display="Dynamic"
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidapaisesEditar" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                      <asp:TextBox onkeypress="return txtpaisesEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtpaisesEditar" runat="server" class="form-control"></asp:TextBox>  
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtpaisesEditar"
                                         ErrorMessage="Ingrese el pais."

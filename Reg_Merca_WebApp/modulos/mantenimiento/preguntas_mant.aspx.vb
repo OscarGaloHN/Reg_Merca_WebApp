@@ -58,7 +58,7 @@
         Try
             Dim Ssql As String = String.Empty
             If txtpreguntaEditar.Text <> lblHiddenNombrepregunta.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_22_preguntas where Nombre = BINARY  '" & txtpregunta.Text & "' "
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_22_preguntas where pregunta = BINARY  '" & txtpreguntaEditar.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -75,9 +75,9 @@
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nueva pregunta: " & txtpregunta.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la pregunta con id: " & lblHiddenIDpregunta.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/preguntas_mant.aspx?acction=newpreguntas")
+                Response.Redirect("~/modulos/mantenimiento/preguntas_mant.aspx?acction=editpreguntas")
             End If
         Catch ex As Exception
 
@@ -100,9 +100,10 @@
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la pregunta con id: " & lblHiddenIDpregunta.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nueva pregunta: " & txtpregunta.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/preguntas_mant.aspx?acction=editpreguntas")
+                Response.Redirect("~/modulos/mantenimiento/preguntas_mant.aspx?acction=newpreguntas")
+
             End If
         Catch ex As Exception
 

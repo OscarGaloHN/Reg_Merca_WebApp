@@ -162,7 +162,8 @@ observaciones= '" & txtobservacion.Text & "',comentario= '" & txtcomentario.Text
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&idCaratula=" & Request.QueryString("iditems"))
+                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems"))
+                    'Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&idCaratula=" & Request.QueryString("iditems"))
 
             End Select
 

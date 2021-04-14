@@ -17,6 +17,19 @@
 
     <script src="../src/jsModales.js"></script>
     <script type="text/javascript">
+        function chkClick(cb) {
+            if (cb.checked == false) {
+                document.getElementById('ContentPrincipal_chkInsetar').checked = false;
+                document.getElementById('ContentPrincipal_chkEliminar').checked = false;
+                document.getElementById('ContentPrincipal_chkActualizar').checked = false;
+            }
+        }
+
+        function chkActivarConsulta(cb) {
+            if (cb.checked == true) {
+                document.getElementById('ContentPrincipal_chkConsultar').checked = true;
+            }
+        }
 
 
         function GetSelectedRowEdit(lnk) {
@@ -29,30 +42,32 @@
             //                          <asp:BoundField DataField="permiso_insercion" HeaderText="Insertar" />
             //                          <asp:BoundField DataField="permiso_eliminacion" HeaderText="Eliminar" />
             //                          <asp:BoundField DataField="permiso_actualizacion" HeaderText="Actualizar" />
-            
+
             if (row.cells[3].innerHTML == 'SI') {
-                document.getElementById('ContentPrincipal_chkConsultar').checked = true 
+                document.getElementById('ContentPrincipal_chkConsultar').checked = true
             } else {
                 document.getElementById('ContentPrincipal_chkConsultar').checked = false
             }
 
-             if (row.cells[4].innerHTML == 'SI') {
-                 document.getElementById('ContentPrincipal_chkInsetar').checked = true 
+            if (row.cells[4].innerHTML == 'SI') {
+                document.getElementById('ContentPrincipal_chkInsetar').checked = true
             } else {
-                 document.getElementById('ContentPrincipal_chkInsetar').checked = false
+                document.getElementById('ContentPrincipal_chkInsetar').checked = false
             }
-            
-             if (row.cells[5].innerHTML == 'SI') {
-                 document.getElementById('ContentPrincipal_chkEliminar').checked = true 
+
+            if (row.cells[5].innerHTML == 'SI') {
+                document.getElementById('ContentPrincipal_chkEliminar').checked = true
             } else {
-                 document.getElementById('ContentPrincipal_chkEliminar').checked = false
+                document.getElementById('ContentPrincipal_chkEliminar').checked = false
             }
-            
-             if (row.cells[6].innerHTML == 'SI') {
-                 document.getElementById('ContentPrincipal_chkActualizar').checked = true 
+
+            if (row.cells[6].innerHTML == 'SI') {
+                document.getElementById('ContentPrincipal_chkActualizar').checked = true
             } else {
-                 document.getElementById('ContentPrincipal_chkActualizar').checked = false
+                document.getElementById('ContentPrincipal_chkActualizar').checked = false
             }
+
+
 
             xModal('pink', '', 'modalEditar');
         }
@@ -156,7 +171,7 @@
 
                                 <asp:DropDownList AutoPostBack="true" ValidationGroup="ValidaModulo"
                                     ID="ddlModulos" runat="server" DataSourceID="SqlModulos" class="form-control show-tick"
-                                    DataTextField="nombre" DataValueField="id_modulo" AppendDataBoundItems="true">
+                                    DataTextField="nombre" DataValueField="id_modulo" AppendDataBoundItems="false">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlModulos"
                                     ErrorMessage="Selecccione un módulo" ForeColor="OrangeRed" Font-Size="X-Small" ValidationGroup="ValidaModulo"
@@ -227,55 +242,55 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                             <div class="demo-switch-title">Permiso para consultar</div>
-                                <div class="switch">
-                                    <label>
-                                        NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkConsultar" class="filled-in chk-col-teal " />
-                                        <span class="lever switch-col-teal"></span>
-                                        SI
-                                    </label>
-                                </div>
+                            <div class="demo-switch-title">Permiso para consultar</div>
+                            <div class="switch">
+                                <label>
+                                    NO
+                                    <input onclick='chkClick(this);' type="checkbox" name="CheckBox" runat="server" id="chkConsultar" class="filled-in chk-col-teal " />
+                                    <span class="lever switch-col-teal"></span>
+                                    SI
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="demo-switch-title">Permiso para insetar</div>
-                                <div class="switch">
-                                    <label>
-                                        NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkInsetar" class="filled-in chk-col-teal " />
-                                        <span class="lever switch-col-teal"></span>
-                                        SI
-                                    </label>
-                                </div>
+                            <div class="switch">
+                                <label>
+                                    NO
+                                    <input  onclick='chkActivarConsulta(this);'   type="checkbox" name="CheckBox" runat="server" id="chkInsetar" class="filled-in chk-col-teal " />
+                                    <span class="lever switch-col-teal"></span>
+                                    SI
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                             <div class="demo-switch-title">Permiso para eliminar</div>
-                                <div class="switch">
-                                    <label>
-                                        NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkEliminar" class="filled-in chk-col-teal " />
-                                        <span class="lever switch-col-teal"></span>
-                                        SI
-                                    </label>
-                                </div>
+                            <div class="demo-switch-title">Permiso para eliminar</div>
+                            <div class="switch">
+                                <label>
+                                    NO
+                                    <input onclick='chkActivarConsulta(this);' type="checkbox" name="CheckBox" runat="server" id="chkEliminar" class="filled-in chk-col-teal " />
+                                    <span class="lever switch-col-teal"></span>
+                                    SI
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="demo-switch-title">Permiso para actuallizar</div>
-                                <div class="switch">
-                                    <label>
-                                        NO
-                                    <input type="checkbox" name="CheckBox" runat="server" id="chkActualizar" class="filled-in chk-col-teal " />
-                                        <span class="lever switch-col-teal"></span>
-                                        SI
-                                    </label>
-                                </div>
-                            
+                            <div class="switch">
+                                <label>
+                                    NO
+                                    <input onclick='chkActivarConsulta(this);' type="checkbox" name="CheckBox" runat="server" id="chkActualizar" class="filled-in chk-col-teal " />
+                                    <span class="lever switch-col-teal"></span>
+                                    SI
+                                </label>
+                            </div>
+
                         </div>
                     </div>
                 </div>

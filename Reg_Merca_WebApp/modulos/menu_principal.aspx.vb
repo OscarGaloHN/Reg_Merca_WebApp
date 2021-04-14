@@ -10,8 +10,7 @@
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Session("IDfrmQueIngresa") = 4
-        Session("NombrefrmQueIngresa") = "Menu Principal"
+
 
 
         If Session("user_idUsuario") = Nothing Then
@@ -48,9 +47,21 @@
                 Session("TotalModulos") = Session("NumReg")
             End If
             If Not IsPostBack Then
-                Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 4, "El usuario ingresa a la pantalla de menu principal")
-                End Using
+                'bitacora de que salio de un form
+                If Not IsPostBack Then
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                    End Using
+                End If
+
+                'bitacora de que ingreso al form
+                Session("IDfrmQueIngresa") = 4
+                Session("NombrefrmQueIngresa") = "Menu Principal"
+                If Not IsPostBack Then
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                    End Using
+                End If
             End If
 
         End If

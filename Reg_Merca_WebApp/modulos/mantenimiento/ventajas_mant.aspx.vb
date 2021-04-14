@@ -8,9 +8,12 @@
             Session("DataSetX") = value
         End Set
     End Property
-
+    'OBJETO #26
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_30_Ventajas"
@@ -58,7 +61,7 @@
         Try
             Dim Ssql As String = String.Empty
             If txtdescripcionEditar.Text <> lblHiddenIDVentajas.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_30_Ventajas where Descripcion = BINARY  '" & txtventajas.Text & "' "
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_30_Ventajas where Descripcion = BINARY  '" & txtdescripcionEditar.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -70,14 +73,14 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('VENTAJAS','La Ventaja ya esta Registrada ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_30_Ventajas` SET `Descripcion` = '" & txtdescripcionEditar.Text & "' WHERE `id_Ventaja` = " & lblHiddenIDVentajas.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_30_Ventajas` SET  `id_Ventaja` = '" & txtidEditar.Text & "',`Descripcion` = '" & txtdescripcionEditar.Text & "' WHERE `id_Ventaja` = " & lblHiddenIDVentajas.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva Ventaja con nombre: " & txtventajas.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Pais con id: " & lblHiddenIDVentajas.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/ventajas_mant.aspx?acction=newventajas")
+                Response.Redirect("~/modulos/mantenimiento/ventajas_mant.aspx?acction=editventajas")
             End If
         Catch ex As Exception
 
@@ -95,14 +98,15 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El nombre de Pais ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_30_Ventajas` (`Descripcion`) VALUES ('" & txtventajas.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_30_Ventajas` (`id_Ventaja`,`Descripcion`) VALUES ('" & txtid.Text & "','" & txtventajas.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Pais con id: " & lblHiddenIDVentajas.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva Ventaja con nombre: " & txtventajas.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/ventajas_mant.aspx?acction=editventajas")
+                Response.Redirect("~/modulos/mantenimiento/ventajas_mant.aspx?acction=newventajas")
+
             End If
         Catch ex As Exception
 

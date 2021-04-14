@@ -1,9 +1,12 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="master_bitacora.Master.vb" Inherits="Reg_Merca_WebApp.master_bitacora" %>
+
 <%@ Register Src="~/modulos/src/piedepagina.ascx" TagPrefix="uc1" TagName="piedepagina" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
+
+
     <!-- Jquery Core Js -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
 
@@ -25,11 +28,21 @@
     <!-- Animation Css -->
     <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="../../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="../../css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -45,7 +58,7 @@
 </head>
 
 <body class="theme-teal">
-        <!-- Page Loader -->
+    <!-- Page Loader -->
 
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -93,12 +106,12 @@
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
-                                 <% If Session("user_estado") = 2 Then %>
+                                <% If Session("user_estado") = 2 Then %>
                                 <li><a id="lblIraPerfil" href="confi_perfil.aspx"><i class="material-icons">person</i>Perfil</a></li>
                                 <li role="separator" class="divider"></li>
                                 <% end if %>
                                 <li>
-                                     <asp:LinkButton  ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
+                                    <asp:LinkButton ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
                             </ul>
                         </div>
 
@@ -150,6 +163,19 @@
 
         <!-- Waves Effect Plugin Js -->
         <script src="../../plugins/node-waves/waves.js"></script>
+         
+
+        <!-- Autosize Plugin Js -->
+        <script src="../../plugins/autosize/autosize.js"></script>
+
+        <!-- Moment Plugin Js -->
+        <script src="../../plugins/momentjs/moment.js"></script>
+
+        <!-- Bootstrap Material Datetime Picker Plugin Js -->
+        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+        <!-- Bootstrap Datepicker Plugin Js -->
+        <script src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
@@ -157,6 +183,10 @@
 
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
+
+
+        <script src="../../js/pages/forms/basic-form-elements.js"></script>
+
         <asp:ContentPlaceHolder ID="contenJSpie" runat="server">
         </asp:ContentPlaceHolder>
     </form>

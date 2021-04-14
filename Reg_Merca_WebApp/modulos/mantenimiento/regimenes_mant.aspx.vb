@@ -11,6 +11,9 @@
     'OBJETO #24
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_27_Regimenes"
@@ -58,7 +61,7 @@
         Try
             Dim Ssql As String = String.Empty
             If txtregimenesEditar.Text <> lblHiddenNombreregimenes.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_27_Regimenes where Nombre = BINARY  '" & txtregimenes.Text & "' "
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_27_Regimenes where Descripcion = BINARY  '" & txtregimenes.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -70,14 +73,15 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_27_Regimenes` SET `Descripcion` = '" & txtregimenesEditar.Text & "' WHERE `Id_Regimen` = " & lblHiddenIDregimenes.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_27_Regimenes` SET `Id_Regimen` = '" & txtidEditar.Text & "',`Descripcion` = '" & txtregimenesEditar.Text & "' WHERE `Id_Regimen` = '" & lblHiddenIDregimenes.Value & "';"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo regimen con nombre: " & txtregimenes.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Regimenes con id: " & lblHiddenIDregimenes.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=newregimenes")
+                Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=editalmacenes")
+
             End If
         Catch ex As Exception
 
@@ -95,14 +99,15 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El regimenes ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_27_Regimenes` (`Descripcion`) VALUES ('" & txtregimenes.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_27_Regimenes` (`Id_Regimen`,`Descripcion`) VALUES ('" & txtid.Text & "','" & txtregimenes.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Regimenes con id: " & lblHiddenIDregimenes.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo regimen con nombre: " & txtregimenes.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=editalmacenes")
+                Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=newregimenes")
+
             End If
         Catch ex As Exception
 

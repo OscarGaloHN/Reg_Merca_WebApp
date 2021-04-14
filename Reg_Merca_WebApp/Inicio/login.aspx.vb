@@ -17,6 +17,8 @@ Public Class login
         Try
 
             If Session("user_idUsuario") = Nothing Then
+                Session("IDfrmQueIngresa") = 3
+                Session("NombrefrmQueIngresa") = "Login"
                 If IsPostBack = False Then
                     'parametros de configuracion de sistema
                     Using Parametros_Sistema As New ControlDB

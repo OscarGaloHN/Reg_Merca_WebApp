@@ -17,10 +17,6 @@
 
             If Not IsPostBack Then
                 Select Case Request.QueryString("acction")
-                    Case "newpermiso"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','El permiso se almaceno con exito.', 'success');</script>")
-                    Case "deltepermiso"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','El permiso se elimino con exito.', 'success');</script>")
                     Case "editpermiso"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','El permiso se modifico con exito.', 'success');</script>")
                     Case Else
@@ -32,7 +28,7 @@
                         End If
                         'bitacora de que ingreso al form
                         Session("IDfrmQueIngresa") = 41
-                        Session("NombrefrmQueIngresa") = "Permiso de Objetos"
+                        Session("NombrefrmQueIngresa") = "Permisos de Objetos"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -43,8 +39,13 @@
                 Select Case Request.QueryString("rol")
                     Case > 0
                         'LlenarGrid(CInt(Request.QueryString("rol")))
-                        'ddlRoles.SelectedValue = Request.QueryString("rol")
-
+                        ddlRoles.SelectedValue = Request.QueryString("rol")
+                        SqlModulos.SelectCommand = "SELECT 0  AS id_modulo, 'Seleccionar Módulo...' AS nombre UNION ALL 
+                                                    SELECT id_modulo, nombre  FROM DB_Nac_Merca.tbl_36_modulos T001
+                                                    WHERE id_modulo   IN (SELECT *FROM (SELECT id_modulo FROM DB_Nac_Merca.tbl_37_permisos_modulos  WHERE id_rol = " & Request.QueryString("rol") & ")
+                                                    TBL_NO_MODULOS)"
+                        ddlModulos.SelectedValue = Request.QueryString("modulo")
+                        LlenarGrid(Request.QueryString("rol"), Request.QueryString("modulo"))
                 End Select
             End If
         Catch ex As Exception
@@ -87,5 +88,29 @@
 
     Private Sub ddlModulos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlModulos.SelectedIndexChanged
         LlenarGrid(ddlRoles.SelectedValue, ddlModulos.SelectedValue)
+    End Sub
+
+    Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
+        Try
+            Dim Ssql As String = String.Empty
+
+
+
+            'editando el permiso del objeto
+            Ssql = "UPDATE `DB_Nac_Merca`.`tbl_03_permisos` SET `permiso_consulta` = " & chkConsultar.Checked & " ,`permiso_insercion` = " & chkInsetar.Checked & " ,`permiso_eliminacion` = " & chkEliminar.Checked & " ,`permiso_actualizacion` = " & chkActualizar.Checked & "  WHERE `Id_Permisos` = " & HiddenLblEditarIDPermiso.Value & ";"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(11, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se cambian los permisos para el objeto con id : " & HiddenLblEditarIDPermiso.Value & " para el rol " & ddlRoles.SelectedItem.ToString)
+            End Using
+
+
+            Response.Redirect("~/modulos/configuraciones/config_objetos.aspx?acction=editpermiso&rol=" & ddlRoles.SelectedValue & "&modulo=" & ddlModulos.SelectedValue)
+
+        Catch ex As Exception
+
+
+        End Try
     End Sub
 End Class
