@@ -82,7 +82,7 @@
 
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado de Usuarios'
+        tituloImprimir = 'LISTADO DE USUARIOS'
         xColumnas.push(2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -135,8 +135,8 @@
                                         <%--<asp:BoundField DataField="id_usuario" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='confi_perfil.aspx?code={​​0}​​'><i class='material-icons'>edit</i> </a>" />--%>
                                         <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
-                                                <button onclick="return GetSelectedRow(this);" type="button" data-color="red"  class="btn bg-deep-red waves-effect"><i class="material-icons">delete</i></button>
-                                           
+                                                <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
