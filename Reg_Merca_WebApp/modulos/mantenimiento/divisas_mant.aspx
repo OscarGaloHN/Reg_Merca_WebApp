@@ -101,7 +101,7 @@
         
         <li>
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
             </li>

@@ -77,7 +77,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','El nombre de modalida especial ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_39_modalidad_especial` SET `Nombre_modalidad` = '" & txtnombremodalidadEditar.Text & "' ' WHERE `Id_Modalidad` = '" & lblHiddenIDModalidad.Value & "';"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_39_modalidad_especial` SET `Nombre_modalidad` = '" & txtnombremodalidadEditar.Text & "' ' WHERE `Id_Modalidad` = " & lblHiddenIDModalidad.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
@@ -118,7 +118,7 @@
 
     Private Sub bttEliminarModalidad_Click(sender As Object, e As EventArgs) Handles bttEliminarModalidad.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_39_modalidad_especial` WHERE Id_Modalidad= " & lblHiddenIDModalidad.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_39_modalidad_especial` WHERE Id_Modalidad = " & lblHiddenIDModalidad.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
