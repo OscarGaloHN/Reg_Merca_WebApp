@@ -94,7 +94,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Documentos
+                    <h2 style="font-weight: bold;">Documentos de la Poliza - 
+                        <asp:Label runat="server" ID="lblitems"></asp:Label>
                                  <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta su poliza.</small>
                     </h2>
                 </div>
