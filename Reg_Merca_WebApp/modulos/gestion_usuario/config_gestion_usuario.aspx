@@ -1,4 +1,4 @@
-﻿<%@ Page ValidateRequest="false" Title= "Gestión de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_gestion_usuario.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Gestion_Usuario" %>
+﻿<%@ Page Title= " GESTIÓN DE USUARIOS" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_gestion_usuario.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Gestion_Usuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
