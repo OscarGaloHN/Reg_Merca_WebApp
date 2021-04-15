@@ -1,4 +1,4 @@
-﻿<%@ Page Title= "Gestion de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_usuarios.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Usuarios" %>
+﻿<%@ Page Title="Gestion de Usuarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/gestion_usuario/master_gestion_usuarios.Master" CodeBehind="config_usuarios.aspx.vb" Inherits="Reg_Merca_WebApp.Config_Usuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -40,7 +40,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
-         <% If Session("user_idUsuario") <> Nothing Then %>
+        <% If Session("user_idUsuario") <> Nothing Then %>
         <% If CBool(Application("ParametrosSYS")(2)) = True Then   %>
         <li>
             <a href="../menu_principal.aspx">
@@ -48,28 +48,42 @@
                 <span>Inicio</span>
             </a>
         </li>
-    
+
         <li class="active">
             <a href="#">
-               <i class="material-icons">manage_accounts</i>
+                <i class="material-icons">manage_accounts</i>
                 <span>Gestion de usuarios</span>
             </a>
         </li>
         <%ELSE %>
-                <li class="active">
+        <li class="active">
             <a href="#">
-               <i class="material-icons">manage_accounts</i>
+                <i class="material-icons">manage_accounts</i>
                 <span>Gestion de usuarios</span>
             </a>
         </li>
     </ul>
-        <% End if  %>
+    <% End if  %>
 
 
 
     <% End if  %>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
+
+
+    <script type="text/javascript">
+        tituloImprimir = 'Listado de Usuarios'
+        xColumnas.push(2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+    </script>
+
+
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -103,7 +117,6 @@
           <span>Editar</span>
                             </asp:LinkButton>
                         </div>--%>
-             
                     </div>
 
                     <div class="row clearfix">
@@ -112,12 +125,12 @@
                                 <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                     Width="100%">
                                     <Columns>
-                                        <asp:BoundField  HeaderText="Editar" DataField="id_usuario" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='config_gestion_usuario.aspx?xuser={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                        <asp:BoundField HeaderText="Editar" DataField="id_usuario" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='config_gestion_usuario.aspx?xuser={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
                                         <%--<asp:BoundField DataField="id_usuario" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='confi_perfil.aspx?code={​​0}​​'><i class='material-icons'>edit</i> </a>" />--%>
                                         <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
-                                                <button onclick="return GetSelectedRow(this);" type="button" data-color="red"  class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
-                                           
+                                                <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -134,7 +147,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -143,10 +156,17 @@
                                 <div class="modal-header">
                                     <h4 class="modal-title">Eliminar Usuarios</h4>
                                 </div>
-                                <div class="modal-body"> 
-                                        <h2 class="modal-title">
-                                           <b>¿Está seguro que desea eliminar el registro?</b> </h2> 
-                                    <br /> <b>El usuario pertenece a:</b>  <asp:Label ID="lblUsuario" class="msg" runat="server" Text="..."></asp:Label> <br /><br /> Si desea eliminar este registro de usuario, haga clic en el botón eliminar. <br>  Si desea cancelar haga clic en el boton cerrar.
+                                <div class="modal-body">
+                                    <h2 class="modal-title">
+                                        <b>¿Está seguro que desea eliminar el registro?</b> </h2>
+                                    <br />
+                                    <b>El usuario pertenece a:</b>
+                                    <asp:Label ID="lblUsuario" class="msg" runat="server" Text="..."></asp:Label>
+                                    <br />
+                                    <br />
+                                    Si desea eliminar este registro de usuario, haga clic en el botón eliminar.
+                                    <br>
+                                    Si desea cancelar haga clic en el boton cerrar.
                                     <br />
                                     <div class="row clearfix">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -160,7 +180,7 @@
                                 <div class="modal-footer">
                                     <asp:LinkButton runat="server" ID="bttEliminar" ValidationGroup="actualizarRespuesta" class="btn  btn-link  waves-effect">Eliminar</asp:LinkButton>
                                     <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
-                                    </div>
+                                </div>
                             </asp:Panel>
 
                         </div>

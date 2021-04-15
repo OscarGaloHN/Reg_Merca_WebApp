@@ -74,9 +74,6 @@
 
                     <div class="row clearfix">
                        
-
-                   
-
                         <div class="body">
                             <div class="row clearfix">
 

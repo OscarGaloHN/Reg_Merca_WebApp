@@ -26,6 +26,10 @@
             'codigo que corresponde al envento load
         End If
 
+        Using logo_imprimir As New ControlDB
+            Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
+        End Using
+
         If Not IsPostBack Then
             Using cusuario_bitacora As New ControlBitacora
                 cusuario_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 7, "El usuario ingresa a la pantalla de configuracion de usuarios")
