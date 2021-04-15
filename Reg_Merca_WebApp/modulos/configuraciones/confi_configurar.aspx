@@ -71,7 +71,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtEmpresa(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtEmpresa(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)" onkeyup="mayus(this);borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Nombre de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtEmpresa"
@@ -83,7 +83,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtAlias(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtAlias(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)" onkeyup="mayus(this);borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Alias de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtAlias"

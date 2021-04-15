@@ -103,7 +103,7 @@
             con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
         End Using
 
-        Session.Abandon()
+        'Session.Abandon()
         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuraciones','Su configuacion fue almacenada exitosamente.', 'success');</script>")
     End Sub
 
