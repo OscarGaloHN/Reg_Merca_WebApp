@@ -37,7 +37,7 @@
             Ssql = "SELECT a.Id_DatoComple,b.descripcion,a.Valor,a.Id_Codigo
                     from tbl_31_Cod_Datos_Complementarios b,tbl_10_Datos_Complementarios a
                     where a.Id_DatoComple=b.Id_DatoComple
-                    and a.Id_Merca=5 "
+                    and a.Id_Merca=" & Request.QueryString("iditems") & ""
 
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -64,9 +64,16 @@
                             End Using
                         End If
 
+                        'bitacora de que salio de un form
+                        If Not IsPostBack Then
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
+
                         'bitacora de que ingreso al form
                         Session("IDfrmQueIngresa") = 32
-                        Session("NombrefrmQueIngresa") = "Datos Complementarios para un Item"
+                        Session("NombrefrmQueIngresa") = "Datos Complementarios"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -85,7 +92,7 @@
 
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_10_Datos_Complementarios where Id_Merca = '" & Request.QueryString("idCaratula") & "' and Id_DatoComple = '" & ddlcomplementario.SelectedValue & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_10_Datos_Complementarios where Id_Merca = '" & Request.QueryString("iditems") & "' and Id_DatoComple = '" & ddlcomplementario.SelectedValue & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -94,7 +101,7 @@
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
             Else
 
-                Ssql = "INSERT INTO DB_Nac_Merca.tbl_10_Datos_Complementarios (Valor, Id_DatoComple, Id_Merca) VALUES ('" & txtvalor.Text & "'," & ddlcomplementario.SelectedValue & ",'" & Request.QueryString("idCaratula") & "');"
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_10_Datos_Complementarios (Valor, Id_DatoComple, Id_Merca) VALUES ('" & txtvalor.Text & "','" & ddlcomplementario.SelectedValue & "'," & Request.QueryString("iditems") & ");"
 
             End If
             '                Using con As New ControlDB
@@ -172,7 +179,7 @@
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
-            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx")
+            Response.Redirect("~/modulos/declaracion_aduanera/Creacitems.aspx")
         Catch ex As Exception
 
         End Try

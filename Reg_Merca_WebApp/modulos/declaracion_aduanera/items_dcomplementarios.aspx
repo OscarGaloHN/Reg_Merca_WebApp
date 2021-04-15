@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_dcomplementarios.aspx.vb" Inherits="Reg_Merca_WebApp.items_dcomplementarios" %>
+﻿<%@ Page Language="vb" Title="Datos Complementarios"  AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_dcomplementarios.aspx.vb" Inherits="Reg_Merca_WebApp.items_dcomplementarios" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -134,13 +134,12 @@
                                             <ItemTemplate>
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
+                                           <%-- Id_DatoComple, descripcion, Valor, Id_Codigo--%>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Id_DatoComple" HeaderText="Codigo Dato" />
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripccion" />
                                         <asp:BoundField DataField="Valor" HeaderText="valor" />
                                         <asp:BoundField DataField="Id_Codigo" HeaderText="ID" />
-
-
                                     </Columns>
                                 </asp:GridView>
                             </div>
