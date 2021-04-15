@@ -92,7 +92,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Ventajas del item
+                    <h2 style="font-weight: bold;">Ventajas del Item - 
+                        <asp:Label runat="server" ID="lblitems"></asp:Label>
                                  <small>Acontinuación el usuario podra visualizar las ventajas del item.</small>
                     </h2>
                 </div>

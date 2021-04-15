@@ -25,6 +25,7 @@
         End Using
 
         Try
+            lblitems.Text = Request.QueryString("iditems")
 
 
             ''If Session("user_idUsuario") = Nothing Then
