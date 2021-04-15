@@ -53,7 +53,7 @@
                                         class="form-control"
                                         onkeyup="mayus(this); borrarespacios(this);">
                                     </asp:TextBox>
-                                    <label class="form-label">Nombre</label>
+                                    <label class="form-label">Nombre </label>
                                 </div>
                                 <asp:RequiredFieldValidator
                                     runat="server"
@@ -64,6 +64,7 @@
                                     ForeColor="OrangeRed"
                                     ValidationExpression="^.*(.)\1{!2}.*"
                                     Font-Size="X-Small" />
+
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -82,6 +83,7 @@
 
                                     <label class="form-label">Usuario</label>
                                 </div>
+
                                 <asp:RequiredFieldValidator
                                     runat="server"
                                     ID="Requsuario"

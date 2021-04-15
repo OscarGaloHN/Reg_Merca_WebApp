@@ -253,7 +253,7 @@
             Dim urllink As String = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) & "/Inicio/activacion.aspx?ActivationCode=" & activationCode
 
             Using xCorreo As New ControlCorreo
-                xCorreo.envio_correo("Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta.", "ACTIVAR CUENTA",
+                xCorreo.envio_correo("Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta.<br/> Tambien puede ingresar al sistema con las crendeciales:<br/> Usuario: " & txtUsuario.Text & " <br/> Clave temporal: " & txtContraConfirmar.Text & "", "ACTIVAR CUENTA",
                                          txtCorreoElectronico.Text, Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
                                        txtNombre.Text.Trim(),
                                          urllink, "Activación de Cuenta",
