@@ -29,6 +29,7 @@
 
             document.getElementById('ContentPrincipal_lblnombre').innerHTML = row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblid').value = row.cells[2].innerHTML;
+        }
     </script>
 
 </asp:Content>
@@ -67,9 +68,9 @@
             xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
-    <script type="text/javascript">
+<%--    <script type="text/javascript">
 
-</script>
+</script>--%>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

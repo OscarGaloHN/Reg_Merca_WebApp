@@ -68,7 +68,7 @@
                                 ddladuanadespacho.SelectedValue = registro("cod_aduana_ent")
                                 ddlregimenaduanero.SelectedValue = registro("id_regimen")
                                 txtrtnimp_exp.Text = registro("rtn_importador")
-                                txtimp_exp.Text = registro("nombre_importador")
+                                'txtimp_exp.Text = registro("nombre_importador")
                                 txtRTNagen_aduanera.Text = registro("rtn_agenciaadu")
                                 txtagen_aduanera.Text = registro("nombre_agenciaadu")
                                 txtmanifiestorap.Text = registro("manifiesto_entregarap")
@@ -150,7 +150,7 @@ ruta_transito, motivo_operacion, Observaciones, Id_Clase_deBulto, Total_Otros_ga
 divisa_seguro, divisa_flete, usuario_creador, Id_poliza) 
 values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedValue & "', '" & ddlCliente.SelectedValue & "',
 '" & ddldeclarante.SelectedValue & "', '" & ddladuanadespacho.SelectedValue & "', '" & ddlregimenaduanero.SelectedValue & "', 
-'" & txtrtnimp_exp.Text & "', '" & txtimp_exp.Text & "','" & txtRTNagen_aduanera.Text & "','" & txtagen_aduanera.Text & "',
+'" & txtrtnimp_exp.Text & "', '" & txtRTNagen_aduanera.Text & "','" & txtagen_aduanera.Text & "',
 '" & txtmanifiestorap.Text & "','" & ddlproveedores.SelectedValue & "','" & txtContra_proveedor.Text & "','" & txtDomicioProve.Text & "',
 '" & txtNumPreimp.Text & "','" & txtEntidadMed.Text & "','" & ddldepositoalmacen.SelectedValue & "','" & ddladuanaingsal.SelectedValue & "',
 '" & ddlpaisesdeorigen.SelectedValue & "','" & ddlpaisprocedencia.SelectedValue & "','" & ddlformadepago.SelectedValue & "',
@@ -162,7 +162,7 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 '" & Session("user_idUsuario") & "', '" & Session("idCaratula") & "'); SELECT LAST_INSERT_ID();"
 
 
-                    'cant_bultos, pesobruto_bultos, canti_items, Total_Factura, 
+                    'cant_bultos, pesobruto_bultos, canti_items, Total_Factura, '" & txtimp_exp.Text & "',
                     ''" & txtcantbultos.Text & "','" & txtpesobrutobul.Text & "','" & txttotalitems.Text & "','" & txttotalfact.Text & "',
 
 
@@ -180,7 +180,7 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 
                     'End If
 
-                    'inhabilita Panel de botones
+                    'inhabilita Panel de botones nombre_importador='" & txtimp_exp.Text & "', 
                     'pbotones.Enabled = True
 
 
@@ -189,7 +189,7 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                 Case "update"
                     Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
 declarante='" & ddldeclarante.SelectedValue & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', Id_regimen='" & ddlregimenaduanero.SelectedValue & "', 
-rtn_importador='" & txtrtnimp_exp.Text & "', nombre_importador='" & txtimp_exp.Text & "', 
+rtn_importador='" & txtrtnimp_exp.Text & "', 
 rtn_agenciaadu='" & txtRTNagen_aduanera.Text & "', nombre_agenciaadu='" & txtagen_aduanera.Text & "', 
 manifiesto_entregarap='" & txtmanifiestorap.Text & "', Id_proveedor='" & ddlproveedores.SelectedValue & "',
 contrato_proveedor='" & txtContra_proveedor.Text & "',domicilio_proveed='" & txtDomicioProve.Text & "',
