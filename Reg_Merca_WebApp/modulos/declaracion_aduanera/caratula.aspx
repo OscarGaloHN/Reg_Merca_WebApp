@@ -52,7 +52,7 @@
         </li>--%>
     </ul>
 
-        <style type="text/css">
+    <style type="text/css">
         .required {
             color: #e31937;
             font-family: Verdana;
@@ -615,7 +615,7 @@
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox MaxLength="17" ID="txtmanifiestorap" AutoComplete="off" runat="server"
-                                    class="form-control"  onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                    class="form-control" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                 <label class="form-label">Manifiesto de Entrega Rápida</label>
                             </div>
                         </div>
@@ -681,7 +681,7 @@
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
-                                <asp:TextBox ID="txttotalotrosgast" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);"   onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txttotalotrosgast" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
                                 <label class="form-label">Total Otros Gastos</label>
                             </div>
                         </div>
@@ -838,7 +838,7 @@
                 </div>
 
                 <div class="row clearfix">
-                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <asp:LinkButton
                             Width="100%"
                             runat="server"
@@ -862,10 +862,24 @@
                                 <span>Volver</span>
                         </asp:LinkButton>
                     </div>
+                    <asp:Panel ID="Panel1" runat="server" Visible="true">
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttActualizar"
+                                type="button"
+                                ValidationGroup="ValidarbttActualizar"
+                                class="btn bg-teal waves-effect">
+                                <i class="material-icons">refresh</i>
+                                <span>Actualizar Carátula</span>
+                            </asp:LinkButton>
+                        </div>
+                    </asp:Panel>
                 </div>
                 <br />
                 <asp:Panel ID="pbotones" runat="server" Visible="false">
-
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         </div>

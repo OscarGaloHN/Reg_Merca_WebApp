@@ -734,6 +734,24 @@ Partial Public Class caratula
     Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''Control Panel1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''Control bttActualizar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttActualizar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''Control pbotones.
     '''</summary>
     '''<remarks>

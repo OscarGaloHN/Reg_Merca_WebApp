@@ -48,6 +48,18 @@
                         pbotones.Visible = True
                         If Not IsPostBack Then
 
+
+                            Select Case Request.QueryString("acction")
+                                Case "update"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se almacenó con éxito.', 'success');</script>")
+                                    'Case "deltebulto"
+                                    '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se elimino con éxito.', 'success');</script>")
+                                    'Case "editbulto"
+                                    '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se modifico con éxito.', 'success');</script>")
+                                Case Else
+
+                            End Select
+
                             Ssql = "select * from DB_Nac_Merca.tbl_01_polizas where id_poliza =" & Request.QueryString("idCaratula") & ""
 
                             Using con As New ControlDB
@@ -108,23 +120,24 @@
                     Case Else
 
 
+
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
 
-                        'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 16
-                        Session("NombrefrmQueIngresa") = "Caratula"
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
+                                'bitacora de que ingreso al form
+                                Session("IDfrmQueIngresa") = 16
+                                Session("NombrefrmQueIngresa") = "Caratula"
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+                        End Select
 
-                End Select
 
             End If
 
