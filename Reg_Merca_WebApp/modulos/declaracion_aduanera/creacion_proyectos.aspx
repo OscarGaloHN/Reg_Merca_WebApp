@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Creación de proyectos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_proyectos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_proyectos" %>
+﻿<%@ Page Title="Creación de Proyectos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_proyectos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_proyectos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -34,7 +34,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creación y listado de proyectos</a>
+    <a class="navbar-brand" href="#">Creación y Listado de Proyectos</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">

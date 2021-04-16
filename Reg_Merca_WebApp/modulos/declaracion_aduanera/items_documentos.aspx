@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" Title="Documentos Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
+﻿<%@ Page Title="Documentos del Item" Language="vb" Title="Documentos Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->

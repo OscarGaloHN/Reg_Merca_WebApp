@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_dcomplementarios.aspx.vb" Inherits="Reg_Merca_WebApp.items_dcomplementarios" %>
+﻿<%@ Page Title="Datos Complementarios" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_dcomplementarios.aspx.vb" Inherits="Reg_Merca_WebApp.items_dcomplementarios" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->

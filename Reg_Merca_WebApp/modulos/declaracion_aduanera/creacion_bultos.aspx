@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Creación de bultos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_bultos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_bultos" %>
+﻿<%@ Page Title="Creación de Bultos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_bultos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_bultos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -60,7 +60,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creacion de bultos</a>
+    <a class="navbar-brand" href="#">Creacion de Bultos</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">

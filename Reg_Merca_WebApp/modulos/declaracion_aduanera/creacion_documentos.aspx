@@ -57,7 +57,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creacion de Documentos</a>
+    <a class="navbar-brand" href="#">Creación de Documentos</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">

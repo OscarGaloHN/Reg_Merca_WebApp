@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" Title="Ventajas del items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_ventajas.aspx.vb" Inherits="Reg_Merca_WebApp.items_ventajas" %>
+﻿<%@ Page Language="vb" Title="Ventajas del item" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_ventajas.aspx.vb" Inherits="Reg_Merca_WebApp.items_ventajas" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -55,7 +55,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Ventajas del Items</a>
+    <a class="navbar-brand" href="#">Ventajas del Item</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">

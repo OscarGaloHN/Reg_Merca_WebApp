@@ -37,7 +37,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">Nuevo item para la caratula -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>    
-                            <small>Ingreso de Datos de Los Items</small>
+                            <small>Ingreso de Datos de los Items</small>
                     </h2>
                 </div>
                 <div class="body">
