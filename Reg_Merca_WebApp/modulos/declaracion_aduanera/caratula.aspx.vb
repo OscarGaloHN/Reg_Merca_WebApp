@@ -142,7 +142,7 @@
             Select Case Request.QueryString("action")
                 Case "new"
                     Ssql = "Insert into DB_Nac_Merca.tbl_01_polizas 
-(fecha_creacion,estado_poliza, Id_cliente, declarante, cod_aduana_ent, Id_regimen, rtn_importador, nombre_importador, 
+(fecha_creacion,estado_poliza, Id_cliente, declarante, cod_aduana_ent, Id_regimen, rtn_importador, 
 rtn_agenciaadu, nombre_agenciaadu, manifiesto_entregarap, Id_proveedor, contrato_proveedor,
 domicilio_proveed, Numero_Preimpreso, entidad_mediacion, Id_almacen, cod_aduana_sal, Cod_pais_org, 
 Cod_pais_pro, id_pago, id_condicion, aduana_transdes, modalidad_especial, deposito_aduanas, plazo,
@@ -274,21 +274,47 @@ divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("
                 End If
             End If
 
-
-            'pruebas 2
-            '                Dim ssql As String
-            'If ddlCliente.SelectedIndex = 0 Then
-            '    ssql = "select rtn_cli from DB_Nac_Merca.tbl_04_cliente where Id_cliente='" & ddlCliente.SelectedValue & "'"
-            '    txtrtnimp_exp.Text = ""
-            'Else
-            '    txtrtnimp_exp.Text = (ddlCliente.Text)
-
-            'End If
-
         Catch ex As Exception
 
         End Try
     End Sub
 
+    Private Sub ddldeclarante_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddldeclarante.SelectedIndexChanged
+        Dim ssql As String
+        Try
+            'Select Case a la BD a la tabla para llenar el RTN
+            'pruebas 1And txtRTNagen_aduanera.Text 
+            If ddldeclarante.SelectedValue = txtagen_aduanera.Text Then
+            Else
+                ssql = "select nombre_agencia from DB_Nac_Merca.tbl_43_declarante where id_declarante= '" & ddldeclarante.SelectedValue & "'"
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                Dim registro As DataRow
+                If Session("NumReg") > 0 Then
+                    registro = DataSetX.Tables(0).Rows(0)
+                    txtagen_aduanera.Text = registro("nombre_agencia")
+                End If
+            End If
 
+            If ddldeclarante.SelectedValue = txtRTNagen_aduanera.Text Then
+            Else
+                ssql = "select rtn_agencia from DB_Nac_Merca.tbl_43_declarante where id_declarante= '" & ddldeclarante.SelectedValue & "'"
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                Dim registro As DataRow
+                If Session("NumReg") > 0 Then
+                    registro = DataSetX.Tables(0).Rows(0)
+                    txtRTNagen_aduanera.Text = registro("rtn_agencia")
+                End If
+            End If
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

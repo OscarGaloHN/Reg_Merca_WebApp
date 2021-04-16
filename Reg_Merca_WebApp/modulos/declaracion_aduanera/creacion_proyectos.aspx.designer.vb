@@ -32,31 +32,13 @@ Partial Public Class creacion_proyectos
     Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control SqlClientes.
+    '''Control txt_cliente.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents SqlClientes As Global.System.Web.UI.WebControls.SqlDataSource
-
-    '''<summary>
-    '''Control ddlCliente.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ddlCliente As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Control ddlClientev.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ddlClientev As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents txt_cliente As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control sqlestadopol.
@@ -84,15 +66,6 @@ Partial Public Class creacion_proyectos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents txt_usuario As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control RequiredFieldValidator10.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator10 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control btt_buscar.

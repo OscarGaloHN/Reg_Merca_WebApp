@@ -111,47 +111,20 @@
                             </div>
                     </div>--%>
 
-                        <%--                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
                                 <asp:TextBox
                                     AutoComplete="off"
                                     ID="txt_cliente"
-                                    runat="server"
+                                    runat="server" onkeyup="mayus(this); borrarespacios(this);" onkeypress="return txNombres(event)"
                                     class="form-control">
                                 </asp:TextBox>
                                 <label class="form-label">Nombre del cliente</label>
                             </div>
                         </div>
-                    </div>--%>
-
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label class="form-label"></label>
-                            <asp:SqlDataSource
-                                ID="SqlClientes"
-                                runat="server"
-                                DataSourceMode="DataReader"
-                                ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
-                                ProviderName="MySql.Data.MySqlClient"
-                                SelectCommand="SELECT Id_cliente,nombrec FROM DB_Nac_Merca.tbl_04_cliente order by 2;"></asp:SqlDataSource>
-
-
-                            <label class="form-label">Cliente</label>
-                            <asp:DropDownList
-                                ID="ddlCliente" runat="server" DataSourceID="SqlClientes" class="form-control show-tick" data-live-search="true"
-                                DataTextField="nombrec" DataValueField="Id_cliente" AppendDataBoundItems="true" ItemType="">
-                                <asp:ListItem Value="Seleccione"></asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator
-                                ID="ddlClientev"
-                                ControlToValidate="ddlCliente"
-                                InitialValue="Seleccione"
-                                ErrorMessage="Seleccione un dato"
-                                ForeColor="OrangeRed"
-                                Font-Size="X-Small"
-                                runat="server" />
-                        </div>
+                    </div>
                     </div>
 
                     <div class="row clearfix">
@@ -187,10 +160,10 @@
                                     </asp:TextBox>
                                     <label class="form-label">Usuario</label>
                                 </div>
-                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txt_usuario"
+<%--                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txt_usuario"
                                     ErrorMessage="Ingrese nombre de usuario"
                                     Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />--%>
                             </div>
                         </div>
 
