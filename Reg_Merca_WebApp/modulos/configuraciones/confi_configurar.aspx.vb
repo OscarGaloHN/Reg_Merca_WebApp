@@ -1,16 +1,34 @@
 ﻿Public Class configurar
     Inherits System.Web.UI.Page
 
-
+    'OBJETO 1
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("user_idUsuario") = Nothing Then
-            Session.Abandon()
-            Response.Redirect("~/Inicio/login.aspx")
-        Else
-            If Not IsPostBack Then
-                Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 1, "El usuario ingresa a la pantalla de configuraciones")
-                End Using
+        Try
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
+
+                If Not IsPostBack Then
+
+                    'bitacora de que salio de un form
+
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                    End Using
+                End If
+
+                'bitacora de que ingreso al form
+                Session("IDfrmQueIngresa") = 1
+                Session("NombrefrmQueIngresa") = "Configuraciones"
+                If Not IsPostBack Then
+                        Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                    End Using
+                    End If
+                'Using log_bitacora As New ControlBitacora
+                '    log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 1, "El usuario ingresa a la pantalla de configuraciones")
+                'End Using
                 txtEmpresa.Text = Application("ParametrosADMIN")(2)
                 txtAlias.Text = Application("ParametrosADMIN")(3)
                 txtRTN.Text = Application("ParametrosADMIN")(6)
@@ -19,8 +37,11 @@
                 txtDireccion.Text = Application("ParametrosADMIN")(14)
                 txtADMIN_URL_WEB.Text = Application("ParametrosADMIN")(19)
 
+
             End If
-        End If
+
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub bttLimpiar_Click(sender As Object, e As EventArgs) Handles bttLimpiar.Click

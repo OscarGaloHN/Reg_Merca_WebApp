@@ -21,7 +21,7 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
             xModal('red', 'ContentPrincipal_txtpaises', 'modalDelete');
@@ -276,7 +276,7 @@
                 </div>
                 <div class="modal-body">
                     ¿Seguro que dese eliminar este Almacén:
-                    <asp:Label runat="server" ID="lblpregunta" Text="..."></asp:Label>?
+                    <asp:Label runat="server" ID="lblpaises" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDpaises" />
                         <asp:HiddenField runat="server" ID="lblHiddenNombrepaises" />
                     <br />
