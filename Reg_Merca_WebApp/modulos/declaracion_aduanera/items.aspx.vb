@@ -13,7 +13,7 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
-            lblCatatura.Text = Request.QueryString("idCaratula")
+            lblCatatura.Text = Request.QueryString("iditems")
             ''parametros de configuracion de sistema
             'Using Parametros_Sistema As New ControlDB
             '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Documentos del Item" Language="vb" Title="Documentos Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
+﻿<%@ Page Language="vb" Title="Documentos Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -93,8 +93,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Documentos
-                                 <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta el item.</small>
+                    <h2 style="font-weight: bold;">Documentos del item - 
+                        <asp:Label runat="server" ID="lblitems"></asp:Label>
+                        <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta el item.</small>
                     </h2>
                 </div>
                 <div class="body">

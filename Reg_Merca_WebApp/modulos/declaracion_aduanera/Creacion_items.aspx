@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Creación de Items" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.Master" CodeBehind="Creacion_items.aspx.vb" Inherits="Reg_Merca_WebApp.Creacion_items" %>
+﻿<%@ Page Title="Creacion de Items" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.Master" CodeBehind="Creacion_items.aspx.vb" Inherits="Reg_Merca_WebApp.Creacion_items" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -28,7 +28,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creación y Listado de Items</a>
+    <a class="navbar-brand" href="#">Creación y listado de items</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">

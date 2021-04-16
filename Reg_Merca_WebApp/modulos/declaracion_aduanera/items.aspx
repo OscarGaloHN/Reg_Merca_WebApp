@@ -28,6 +28,13 @@
             </a>
         </li>
     </ul>
+    <style type="text/css">
+        .required{
+            color: #e31937;
+            font-family: Verdana;
+            margin: 0 5px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
 
@@ -36,8 +43,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Nuevo item para la caratula -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>    
-                            <small>Ingreso de Datos de los Items</small>
+                    <h2 style="font-weight: bold;">Item Numero -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>    
+                            <small>Ingreso de Datos de Los Items</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -73,7 +80,7 @@
                             SelectCommand="SELECT Id_TipoItems, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_26_Tipo_Items order by 2; "></asp:SqlDataSource>
 
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <label class="form-label">Tipo de Item</label>
+                            <label class="form-label">Tipo de Item<span class="required"> *</span></label>
                             <asp:DropDownList
                                 ID="ddltipoitem" runat="server" selectlistitem="seleccione" DataSourceID="sqltipoitems" class="form-control show-tick"
                                 DataTextField="Descripcion" DataValueField="Id_TipoItems" AppendDataBoundItems="true" ItemType="">
@@ -90,7 +97,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtposarancel" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="16"></asp:TextBox>
-                                    <label class="form-label">Posición Arancelaria</label>
+                                    <label class="form-label">Posición Arancelaria<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtposarancel"
                                     ErrorMessage="Ingrese el formato requerido"
@@ -185,7 +192,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtpesoneto" runat="server" onkeyup="SoloNumeros()" onkeydown="return noespacios(event)" onkeypress="return onKeyDecimal(event,this)" class="form-control" MaxLength="7"></asp:TextBox>
-                                    <label class="form-label">Peso Neto</label>
+                                    <label class="form-label">Peso Neto<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtpesoneto"
                                     ErrorMessage="Ingrese Numero de Item"
@@ -200,7 +207,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtpesobruto" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
-                                    <label class="form-label">Peso Bruto</label>
+                                    <label class="form-label">Peso Bruto<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtpesobruto"
                                     ErrorMessage="Ingrese Numero de Item"
@@ -215,7 +222,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtcantbltos" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
-                                    <label class="form-label">Cantidad de Bultos</label>
+                                    <label class="form-label">Cantidad de Bultos<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtcantbltos"
                                     ErrorMessage="Ingrese Numero de Item"
@@ -234,7 +241,7 @@
                             SelectCommand="SELECT Id_Estado, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_25_Estado_Mercancias order by 2;"></asp:SqlDataSource>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label class="form-label">Estado Mercancia</label>
+                            <label class="form-label">Estado Mercancia<span class="required"> *</span></label>
                             <asp:DropDownList
                                 ID="ddlestadomerca" runat="server" selectlistitem="seleccione" DataSourceID="sqlestadomerca" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Descripcion" DataValueField="Id_Estado" AppendDataBoundItems="true" ItemType="">
@@ -260,7 +267,7 @@
                             SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2; "></asp:SqlDataSource>
 
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <label class="form-label">País de Origen</label>
+                            <label class="form-label">País de Origen<span class="required"> *</span></label>
                             <asp:DropDownList
                                 ID="ddlpaisesdeorigeni" runat="server" DataSourceID="sqlpaisdeorigeni" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
@@ -287,7 +294,7 @@
                             SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2;"></asp:SqlDataSource>
 
                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <label class="form-label">País Procedencia/Destino</label>
+                            <label class="form-label">País Procedencia/Destino<span class="required"> *</span></label>
                             <asp:DropDownList
                                 ID="ddlpaisproce" runat="server" DataSourceID="sqlpaisprocedencia" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
@@ -313,7 +320,7 @@
                             SelectCommand="SELECT Id_Pais, UPPER(Nombre_pais) Nombre_pais FROM DB_Nac_Merca.tbl_8_paises order by 2;"></asp:SqlDataSource>
 
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <label class="form-label">País de Adquisición</label>
+                            <label class="form-label">País de Adquisición<span class="required"> *</span></label>
                             <asp:DropDownList
                                 ID="ddlpaisadd" runat="server" DataSourceID="sqladquisicion" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
@@ -361,7 +368,7 @@
                             SelectCommand="SELECT Id_UnidadMed, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_24_Unidad_Medida order by 2;"></asp:SqlDataSource>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label class="form-label">Unidad Comercial</label>
+                            <label class="form-label">Unidad Comercial<span class="required"> *</span></label>
                             <asp:DropDownList
                                 ID="ddlunidacomer" runat="server" DataSourceID="SqlDataSource1" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Descripcion" DataValueField="Id_UnidadMed" AppendDataBoundItems="true">
@@ -383,7 +390,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtcantidadcomer" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="5"></asp:TextBox>
-                                    <label class="form-label">Cantidad Comercial</label>
+                                    <label class="form-label">Cantidad Comercial<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtcantidadcomer"
                                     ErrorMessage="Ingrese la Cantidad Comercial"
@@ -400,7 +407,7 @@
                             SelectCommand="SELECT Id_UnidadMed, UPPER(Descripcion) Descripcion FROM DB_Nac_Merca.tbl_24_Unidad_Medida order by 2;"></asp:SqlDataSource>
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label class="form-label">Unidad Estadistica</label>
+                            <label class="form-label">Unidad Estadistica<span class="required"> *</span></label>
                             <asp:DropDownList
                                 ID="ddlunidadestadis" runat="server" DataSourceID="SqlDataSource2" class="form-control show-tick" data-live-search="true"
                                 DataTextField="Descripcion" DataValueField="Id_UnidadMed" AppendDataBoundItems="true">
@@ -421,7 +428,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtcantidadestadis" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" class="form-control" MaxLength="7"></asp:TextBox>
-                                    <label class="form-label">Cantidad Estadística</label>
+                                    <label class="form-label">Cantidad Estadística<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtcantidadestadis"
                                     ErrorMessage="Ingrese Cantidad Estadística"
@@ -442,7 +449,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtimportefact" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
-                                    <label class="form-label">Importe de Factura</label>
+                                    <label class="form-label">Importe de Factura<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtimportefact"
                                     ErrorMessage="Ingrese Importe de Factura"
@@ -599,6 +606,22 @@
                                 <span>Volver</span>
                             </asp:LinkButton>
                         </div>
+
+                        <asp:Panel ID="Panel1" runat="server" Visible="true">
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttActualizar"
+                                type="button"
+                                ValidationGroup="ValidarbttActualizar"
+                                class="btn bg-teal waves-effect">
+                                <i class="material-icons">refresh</i>
+                                <span>Actualizar Item</span>
+                            </asp:LinkButton>
+                        </div>
+                    </asp:Panel>
                     </div>
                     <br />
                     <asp:Panel ID="pbotones" runat="server" Visible="false">
