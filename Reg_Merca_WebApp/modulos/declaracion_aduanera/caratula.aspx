@@ -337,7 +337,7 @@
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
-                                <asp:TextBox ID="txtDomicioProve" AutoComplete="off" runat="server" class="form-control" onkeydown="borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                <asp:TextBox ID="txtDomicioProve" AutoComplete="off" runat="server" class="form-control" onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
                                 <label class="form-label">Domicilio del Proveedor<span class="required">*</span></label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtDomicioProve"
@@ -350,7 +350,7 @@
                         <label class="form-label"></label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox MaxLength="8" ID="txtNumPreimp" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <asp:TextBox MaxLength="8" ID="txtNumPreimp" AutoComplete="off" runat="server" onkeydown="return noespacios(event)" onkeyup="mayus(this)" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
                                 <label class="form-label">Número PreImpreso<span class="required">*</span></label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtNumPreimp"
@@ -604,7 +604,7 @@
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox MaxLength="3" ID="txtplazodiasmeses" AutoComplete="off" runat="server" class="form-control "
-                                    onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                    onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
                                 <label class="form-label">Plazo Días-Meses  </label>
                             </div>
                         </div>
@@ -615,7 +615,7 @@
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox MaxLength="17" ID="txtmanifiestorap" AutoComplete="off" runat="server"
-                                    class="form-control" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                    class="form-control" onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
                                 <label class="form-label">Manifiesto de Entrega Rápida</label>
                             </div>
                         </div>
@@ -642,7 +642,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 ">
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox ID="txtobservacion" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
+                                <asp:TextBox  MaxLength="50" ID="txtobservacion" AutoComplete="off" runat="server" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control"></asp:TextBox>
                                 <label class="form-label">Observaciones</label>
                             </div>
                         </div>
@@ -681,7 +681,7 @@
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
-                                <asp:TextBox ID="txttotalotrosgast" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <asp:TextBox MaxLength="15" ID="txttotalotrosgast" AutoComplete="off" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control"></asp:TextBox>
                                 <label class="form-label">Total Otros Gastos</label>
                             </div>
                         </div>
@@ -691,7 +691,7 @@
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
-                                <asp:TextBox ID="txtttotalseg" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <asp:TextBox MaxLength="15" ID="txtttotalseg" AutoComplete="off" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control"></asp:TextBox>
                                 <label class="form-label">Total Seguro</label>
                             </div>
                         </div>
@@ -701,7 +701,7 @@
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
-                                <asp:TextBox ID="txttotalflet" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <asp:TextBox MaxLength="15" ID="txttotalflet" AutoComplete="off" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control"></asp:TextBox>
                                 <label class="form-label">Total Flete</label>
                             </div>
                         </div>
@@ -781,7 +781,7 @@
                         <label class="form-label"></label>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox ID="txttipodecambio" AutoComplete="off" runat="server" onkeydown="borrarespacios(this);" onkeyup="borrarespacios(this);" onkeypress="SoloNumeros()" class="form-control"></asp:TextBox>
+                                <asp:TextBox MaxLength="6" ID="txttipodecambio" AutoComplete="off" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control"></asp:TextBox>
                                 <label class="form-label">Tipo de Cambio</label>
                             </div>
                         </div>
@@ -862,7 +862,7 @@
                                 <span>Volver</span>
                         </asp:LinkButton>
                     </div>
-                    <asp:Panel ID="Panel1" runat="server" Visible="true">
+                    <asp:Panel ID="pactualizar" runat="server" Visible="false">
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton
@@ -870,7 +870,6 @@
                                 runat="server"
                                 ID="bttActualizar"
                                 type="button"
-                                ValidationGroup="ValidarbttActualizar"
                                 class="btn bg-teal waves-effect">
                                 <i class="material-icons">refresh</i>
                                 <span>Actualizar Carátula</span>

@@ -46,19 +46,8 @@
                     Case "update"
                         'habilita Panel de botones
                         pbotones.Visible = True
+                        pactualizar.Visible = True
                         If Not IsPostBack Then
-
-
-                            Select Case Request.QueryString("acction")
-                                Case "update"
-                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se almacenó con éxito.', 'success');</script>")
-                                    'Case "deltebulto"
-                                    '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se elimino con éxito.', 'success');</script>")
-                                    'Case "editbulto"
-                                    '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se modifico con éxito.', 'success');</script>")
-                                Case Else
-
-                            End Select
 
                             Ssql = "select * from DB_Nac_Merca.tbl_01_polizas where id_poliza =" & Request.QueryString("idCaratula") & ""
 
@@ -118,26 +107,22 @@
                             End If
                         End If
                     Case Else
-
-
-
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
-                                    Using log_bitacora As New ControlBitacora
-                                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                                    End Using
-                                End If
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
 
-                                'bitacora de que ingreso al form
-                                Session("IDfrmQueIngresa") = 16
-                                Session("NombrefrmQueIngresa") = "Caratula"
-                                If Not IsPostBack Then
-                                    Using log_bitacora As New ControlBitacora
-                                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                                    End Using
-                                End If
-                        End Select
-
+                        'bitacora de que ingreso al form
+                        Session("IDfrmQueIngresa") = 16
+                        Session("NombrefrmQueIngresa") = "Caratula"
+                        If Not IsPostBack Then
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
+                End Select
 
             End If
 
@@ -175,52 +160,46 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 '" & Session("user_idUsuario") & "', '" & Session("idCaratula") & "'); SELECT LAST_INSERT_ID();"
 
 
-                    'cant_bultos, pesobruto_bultos, canti_items, Total_Factura, '" & txtimp_exp.Text & "',
-                    ''" & txtcantbultos.Text & "','" & txtpesobrutobul.Text & "','" & txttotalitems.Text & "','" & txttotalfact.Text & "',
-
 
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
+                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
 
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
 
-                    'If Session("NumReg") > 0 Then
-                    '    'Using log_bitacora As New ControlBitacora
-                    '    '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
-                    '    'End Using
-                    'Else
+                    If Session("NumReg") > 0 Then
+                        'Using log_bitacora As New ControlBitacora
+                        '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
+                        'End Using
+                    Else
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se almacenó con éxito.', 'success');</script>")
+                    End If
 
-                    'End If
-
-                    'inhabilita Panel de botones nombre_importador='" & txtimp_exp.Text & "', 
-                    'pbotones.Enabled = True
-
-
-
+                    'Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
 
                 Case "update"
                     Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
-declarante='" & ddldeclarante.SelectedValue & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', 
-Id_regimen='" & ddlregimenaduanero.SelectedValue & "', rtn_importador='" & txtrtnimp_exp.Text & "', 
-rtn_agenciaadu='" & txtRTNagen_aduanera.Text & "', nombre_agenciaadu='" & txtagen_aduanera.Text & "', 
-manifiesto_entregarap='" & txtmanifiestorap.Text & "', Id_proveedor='" & ddlproveedores.SelectedValue & "',
-contrato_proveedor='" & txtContra_proveedor.Text & "',domicilio_proveed='" & txtDomicioProve.Text & "',
-Numero_Preimpreso='" & txtNumPreimp.Text & "', entidad_mediacion='" & txtEntidadMed.Text & "', Id_almacen='" & ddldepositoalmacen.SelectedValue & "',
-cod_aduana_sal='" & ddladuanaingsal.SelectedValue & "', Cod_pais_org='" & ddlpaisesdeorigen.SelectedValue & "', 
-Cod_pais_pro='" & ddlpaisprocedencia.SelectedValue & "', id_pago='" & ddlformadepago.SelectedValue & "', 
-id_condicion='" & ddlcondicionentrega.SelectedValue & "', aduana_transdes='" & ddladuanatransitodes.SelectedValue & "', 
-modalidad_especial='" & ddlmodalidadesp.SelectedValue & "', deposito_aduanas='" & ddldepositoaduana.SelectedValue & "', 
-plazo='" & txtplazodiasmeses.Text & "', ruta_transito='" & txtrutatransito.Text & "', 
-motivo_operacion='" & txt_motivoperacion.Text & "', Observaciones='" & txtobservacion.Text & "', 
-Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
-Total_Seguro='" & txtttotalseg.Text & "', Total_Flete='" & txttotalflet.Text & "', divisa_factura='" & ddldivisafact.SelectedValue & "', 
-tipo_de_cambio='" & txttipodecambio.Text & "', divisa_seguro='" & ddldivisaseg.SelectedValue & "', 
-divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "'"
+                    declarante='" & ddldeclarante.SelectedValue & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', 
+                    Id_regimen='" & ddlregimenaduanero.SelectedValue & "', rtn_importador='" & txtrtnimp_exp.Text & "', 
+                    rtn_agenciaadu='" & txtRTNagen_aduanera.Text & "', nombre_agenciaadu='" & txtagen_aduanera.Text & "', 
+                    manifiesto_entregarap='" & txtmanifiestorap.Text & "', Id_proveedor='" & ddlproveedores.SelectedValue & "',
+                    contrato_proveedor='" & txtContra_proveedor.Text & "',domicilio_proveed='" & txtDomicioProve.Text & "',
+                    Numero_Preimpreso='" & txtNumPreimp.Text & "', entidad_mediacion='" & txtEntidadMed.Text & "', Id_almacen='" & ddldepositoalmacen.SelectedValue & "',
+                    cod_aduana_sal='" & ddladuanaingsal.SelectedValue & "', Cod_pais_org='" & ddlpaisesdeorigen.SelectedValue & "', 
+                    Cod_pais_pro='" & ddlpaisprocedencia.SelectedValue & "', id_pago='" & ddlformadepago.SelectedValue & "', 
+                    id_condicion='" & ddlcondicionentrega.SelectedValue & "', aduana_transdes='" & ddladuanatransitodes.SelectedValue & "', 
+                    modalidad_especial='" & ddlmodalidadesp.SelectedValue & "', deposito_aduanas='" & ddldepositoaduana.SelectedValue & "', 
+                    plazo='" & txtplazodiasmeses.Text & "', ruta_transito='" & txtrutatransito.Text & "', 
+                    motivo_operacion='" & txt_motivoperacion.Text & "', Observaciones='" & txtobservacion.Text & "', 
+                    Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
+                    Total_Seguro='" & txtttotalseg.Text & "', Total_Flete='" & txttotalflet.Text & "', divisa_factura='" & ddldivisafact.SelectedValue & "', 
+                    tipo_de_cambio='" & txttipodecambio.Text & "', divisa_seguro='" & ddldivisaseg.SelectedValue & "', 
+                    divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "'"
 
-                    '                    cant_bultos ='" & txtcantbultos.Text & "', 
-                    'pesobruto_bultos ='" & txtpesobrutobul.Text & "', canti_items='" & txttotalitems.Text & "', 
-                    'Total_Factura ='" & txttotalfact.Text & "',
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
@@ -232,6 +211,42 @@ divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("
         End Try
 
     End Sub
+
+    Private Sub bttActualizar_Click(sender As Object, e As EventArgs) Handles bttActualizar.Click
+        'Dim Ssql As String
+        Try
+
+            '            Select Case Request.QueryString("action")
+            '                Case "update"
+            '                    Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
+            'declarante='" & ddldeclarante.SelectedValue & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', 
+            'Id_regimen='" & ddlregimenaduanero.SelectedValue & "', rtn_importador='" & txtrtnimp_exp.Text & "', 
+            'rtn_agenciaadu='" & txtRTNagen_aduanera.Text & "', nombre_agenciaadu='" & txtagen_aduanera.Text & "', 
+            'manifiesto_entregarap='" & txtmanifiestorap.Text & "', Id_proveedor='" & ddlproveedores.SelectedValue & "',
+            'contrato_proveedor='" & txtContra_proveedor.Text & "',domicilio_proveed='" & txtDomicioProve.Text & "',
+            'Numero_Preimpreso='" & txtNumPreimp.Text & "', entidad_mediacion='" & txtEntidadMed.Text & "', Id_almacen='" & ddldepositoalmacen.SelectedValue & "',
+            'cod_aduana_sal='" & ddladuanaingsal.SelectedValue & "', Cod_pais_org='" & ddlpaisesdeorigen.SelectedValue & "', 
+            'Cod_pais_pro='" & ddlpaisprocedencia.SelectedValue & "', id_pago='" & ddlformadepago.SelectedValue & "', 
+            'id_condicion='" & ddlcondicionentrega.SelectedValue & "', aduana_transdes='" & ddladuanatransitodes.SelectedValue & "', 
+            'modalidad_especial='" & ddlmodalidadesp.SelectedValue & "', deposito_aduanas='" & ddldepositoaduana.SelectedValue & "', 
+            'plazo='" & txtplazodiasmeses.Text & "', ruta_transito='" & txtrutatransito.Text & "', 
+            'motivo_operacion='" & txt_motivoperacion.Text & "', Observaciones='" & txtobservacion.Text & "', 
+            'Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
+            'Total_Seguro='" & txtttotalseg.Text & "', Total_Flete='" & txttotalflet.Text & "', divisa_factura='" & ddldivisafact.SelectedValue & "', 
+            'tipo_de_cambio='" & txttipodecambio.Text & "', divisa_seguro='" & ddldivisaseg.SelectedValue & "', 
+            'divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "'"
+
+            '                    'Using con As New ControlDB
+            '                    '    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            '                    'End Using
+            '                    'Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
+            '            End Select
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
@@ -330,4 +345,6 @@ divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("
 
         End Try
     End Sub
+
+
 End Class
