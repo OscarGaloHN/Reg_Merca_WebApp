@@ -51,6 +51,13 @@
             </a>
         </li>--%>
     </ul>
+    <style type="text/css">
+        .required{
+            color: #e31937;
+            font-family: Verdana;
+            margin: 0 5px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

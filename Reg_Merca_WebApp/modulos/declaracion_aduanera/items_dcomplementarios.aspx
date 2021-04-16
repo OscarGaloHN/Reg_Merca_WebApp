@@ -25,30 +25,30 @@
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_ddlcomplementario').innerHTML = row.cells[3].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[5].innerHTML;
 
-            xModal('red', 'ContentPrincipal_txtvalor', 'modalDelete');
+            xModal('red', 'ContentPrincipal_ddlcomplementario', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_ddlcomplementario').value = '';
-            document.getElementById('ContentPrincipal_txtvalor').value = '';
+            document.getElementById('ContentPrincipal_ddlcomplementariedit').value = '';
+            document.getElementById('ContentPrincipal_txtvaloredit').value = '';
 
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
-            if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_ddlcomplementario').value = row.cells[3].innerHTML;
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_ddlcomplementariedit').value = row.cells[2].innerHTML;
             }
             if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtvalor').value = row.cells[4].innerHTML;
+                document.getElementById('ContentPrincipal_txtvaloredit').value = row.cells[4].innerHTML;
             }
 
             if (row.cells[5].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[5].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtvalor', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_ddlcomplementariedit', 'modalEditar');
         }
 
     </script>
@@ -73,6 +73,9 @@
             </a>
         </li>
     </ul>
+
+    
+
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="ContentPrincipal" runat="server">
     <asp:HiddenField ID="HiddenLogo" runat="server" />
@@ -98,7 +101,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="xModal('teal','ContentPrincipal_ddlcomplementario','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -175,7 +178,7 @@
                                     ProviderName="MySql.Data.MySqlClient"
                                     SelectCommand="SELECT Id_DatoComple, UPPER(Descripcion) Descripcion FROM  DB_Nac_Merca.tbl_31_Cod_Datos_Complementarios"></asp:SqlDataSource>
 
-                                <label class="form-label">Documento</label>
+                                <label class="form-label">Documento<span class="required">*</span></label>
                                 <asp:DropDownList
                                     ID="ddlcomplementario" runat="server"
                                     selectlistitem="" DataSourceID="sqldatoscomplementarios" class="form-control show-tick"
@@ -195,7 +198,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtvalor"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this);"></asp:TextBox>
+                                            onkeydown="borrarespacios(this);" onkeyup="mayus(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtvalor"
                                         ErrorMessage="Ingrese valor."
