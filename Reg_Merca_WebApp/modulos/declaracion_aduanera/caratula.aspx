@@ -846,7 +846,7 @@
                             type="button"
                             class="btn bg-teal waves-effect">
           <i class="material-icons">save</i>
-          <span>Guardar</span>
+          <span>Guardar y Continuar</span>
                         </asp:LinkButton>
                     </div>
 
