@@ -134,7 +134,7 @@ values
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Session("GME_Recuperar_ID") & "&idCaratula=" & Request.QueryString("idCaratula"))
+                    Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?action=update&iditems=" & Session("GME_Recuperar_ID") & "&idCaratula=" & Request.QueryString("idCaratula"))
 
                     'If Session("NumReg") > 0 Then
                     '    'Using log_bitacora As New ControlBitacora
