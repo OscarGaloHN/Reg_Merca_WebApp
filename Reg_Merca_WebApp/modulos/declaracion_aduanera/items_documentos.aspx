@@ -128,7 +128,7 @@
                                 type="button"
                                 ValidationGroup="Validarbttvolver"
                                 class="btn btn-block btn-lg bg-teal waves-effect">
-                                <i class="material-icons">undo</i>
+                                <i class="material-icons">keyboard_tab</i>
                                 <span>Continuar</span>
                             </asp:LinkButton>
                         </div>

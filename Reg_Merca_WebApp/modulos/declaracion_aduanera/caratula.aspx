@@ -137,7 +137,7 @@
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
-                                <asp:TextBox ID="txtrtnimp_exp" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="mayus(this);BorrarRepetidas(this);" class="form-control" MaxLength="14" ReadOnly="True"></asp:TextBox>
+                                <asp:TextBox ID="txtrtnimp_exp" AutoComplete="off" runat="server" class="form-control" MaxLength="14" ReadOnly="True"></asp:TextBox>
                                 <label class="form-label">RTN Importador/Exportador<span class="required">*</span></label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtrtnimp_exp"
@@ -196,7 +196,7 @@
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
-                                <asp:TextBox ID="txtRTNagen_aduanera" AutoComplete="off" runat="server" onkeypress="SoloNumeros()" onkeydown="return noespacios(event)" onkeyup="BorrarRepetidas(this)" class="form-control" MaxLength="14" ReadOnly="True"></asp:TextBox>
+                                <asp:TextBox ID="txtRTNagen_aduanera" AutoComplete="off" runat="server"  class="form-control" MaxLength="14" ReadOnly="True"></asp:TextBox>
                                 <label class="form-label">RTN Agencia Aduanera<span class="required">*</span></label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtRTNagen_aduanera"

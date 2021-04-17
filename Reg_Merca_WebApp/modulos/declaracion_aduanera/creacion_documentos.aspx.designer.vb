@@ -32,6 +32,15 @@ Partial Public Class creacion_documentos
     Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control lblCatatura.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblCatatura As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Control bttVolver.
     '''</summary>
     '''<remarks>
@@ -39,6 +48,15 @@ Partial Public Class creacion_documentos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control bttcontinuar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttcontinuar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control gvCustomers.
@@ -86,13 +104,13 @@ Partial Public Class creacion_documentos
     Protected WithEvents txtreferencia As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control reqnombrevacio.
+    '''Control RequiredFieldValidator1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control chkPresencia.
