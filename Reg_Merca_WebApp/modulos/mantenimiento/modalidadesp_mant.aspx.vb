@@ -77,7 +77,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','El nombre de modalida especial ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_39_modalidad_especial` SET `Nombre_modalidad` = '" & txtnombremodalidadEditar.Text & "' ' WHERE `Id_Modalidad` = " & lblHiddenIDModalidad.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_39_modalidad_especial` SET `Nombre_modalidad` = '" & txtnombremodalidadEditar.Text & "'  WHERE `Id_Modalidad` = " & lblHiddenIDModalidad.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
@@ -102,7 +102,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Modalidad','El nombre de Modalidad especial ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_39_modalidad_especial` (`Id_Modalidad`,`Nombre_modalidad`) VALUES ('" & txtid.Text & "','" & txtnombremodalidad.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_39_modalidad_especial` (`Nombre_modalidad`) VALUES ('" & txtnombremodalidad.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

@@ -115,7 +115,7 @@
 
     Private Sub bttEliminarpaises_Click(sender As Object, e As EventArgs) Handles bttEliminarpaises.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_8_paises` WHERE `Id_Pais` = '" & lblHiddenIDpaises.Value & "';"
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_8_paises` WHERE Id_Pais = " & lblHiddenIDpaises.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using

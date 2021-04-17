@@ -24,7 +24,7 @@
             document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtpaises', 'modalDelete');
+            xModal('red', 'ContentPrincipal_txtid', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_txtidEditar').value = '';
@@ -275,7 +275,7 @@
                     <h4 class="modal-title" id="LblDelete">ELIMINAR PAIS</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que dese eliminar este Almacén:
+                    ¿Seguro que dese eliminar este Pais:
                     <asp:Label runat="server" ID="lblpaises" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDpaises" />
                         <asp:HiddenField runat="server" ID="lblHiddenNombrepaises" />
