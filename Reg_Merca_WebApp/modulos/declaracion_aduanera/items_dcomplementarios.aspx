@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" Title="Datos Complementarios"  AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_dcomplementarios.aspx.vb" Inherits="Reg_Merca_WebApp.items_dcomplementarios" %>
+﻿<%@ Page Language="vb" Title="Datos Complementarios" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_dcomplementarios.aspx.vb" Inherits="Reg_Merca_WebApp.items_dcomplementarios" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -74,7 +74,7 @@
         </li>
     </ul>
 
-    
+
 
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="ContentPrincipal" runat="server">
@@ -94,7 +94,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                     <h2 style="font-weight: bold;">Datos complementarios del item - 
+                    <h2 style="font-weight: bold;">Datos complementarios del item - 
                         <asp:Label runat="server" ID="lblitems"></asp:Label>
                     </h2>
                 </div>
@@ -119,7 +119,18 @@
                                 <span>Volver</span>
                             </asp:LinkButton>
                         </div>
-
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttcontinuar"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">keyboard_tab</i>
+                                <span>Continuar</span>
+                            </asp:LinkButton>
+                        </div>
 
                     </div>
                     <div class="row clearfix">
@@ -137,11 +148,11 @@
                                             <ItemTemplate>
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
-                                           <%-- Id_DatoComple, descripcion, Valor, Id_Codigo--%>
+                                            <%-- Id_DatoComple, descripcion, Valor, Id_Codigo--%>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Id_DatoComple" HeaderText="Codigo Dato" />
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripccion" />
-                                        <asp:BoundField DataField="Valor" HeaderText="valor" />
+                                        <asp:BoundField DataField="Valor" HeaderText="Valor" />
                                         <asp:BoundField DataField="Id_Codigo" HeaderText="ID" />
                                     </Columns>
                                 </asp:GridView>
@@ -232,7 +243,7 @@
                     ¿Seguro que desea eliminar el siguiente dato complementario?
                     <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
-                     <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
+                    <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
                     <asp:HiddenField runat="server" ID="lblHiddendddocumento" />
 
 

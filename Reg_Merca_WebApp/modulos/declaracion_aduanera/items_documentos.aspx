@@ -120,7 +120,18 @@
                                 <span>Volver</span>
                             </asp:LinkButton>
                         </div>
-
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttcontinuar"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">keyboard_tab</i>
+                                <span>Continuar</span>
+                            </asp:LinkButton>
+                        </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -194,11 +205,10 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label">Referencia</label>
-
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
-                                             onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtReferencia"
                                         ErrorMessage="Ingrese la referencia."
@@ -302,11 +312,11 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                 <label class="form-label">Referencia</label>
+                                <label class="form-label">Referencia</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txtreferenciaEditar" onkeypress="txNombres(event);"
-                                             onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txtreferenciaEditar" onkeypress="txNombres(event);"
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."

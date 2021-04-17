@@ -204,7 +204,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox MaxLength="17" placeholder="Manifiesto" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txtmanifiesto" onkeypress="isNumberOrLetter(evt) ;"
-                                            onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtmanifiesto"
                                         ErrorMessage="Ingrese el manifiesto."
@@ -216,7 +216,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox MaxLength="25" placeholder="Título Transporte" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txt_trans" onkeypress="isNumberOrLetter(evt) ;"
-                                            onkeydown="return noespacios(event)" onkeyup="mayus(this)">></asp:TextBox>
+                                            onkeyup="mayus(this); borrarespacios(this);">></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="validartrans" ControlToValidate="txt_trans"
                                         ErrorMessage="Ingrese el nombre de título de transporte."
@@ -301,7 +301,7 @@
                                     <div class="form-line">
                                         <asp:TextBox MaxLength="17" placeholder="Manifiesto" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server"
                                             class="form-control" ID="txtmanifiestoEditar" onkeypress="isNumberOrLetter(evt)"
-                                            onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtmanifiestoEditar"
                                         ErrorMessage="Ingrese el manifiesto."
@@ -313,7 +313,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox MaxLength="25" placeholder="Título Transporte" AutoComplete="off" ValidationGroup="ValidabultoEditar" runat="server" class="form-control" ID="txt_transEditar"
-                                            onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txt_transEditar"
                                         ErrorMessage="Ingrese el nombre de título de transporte."

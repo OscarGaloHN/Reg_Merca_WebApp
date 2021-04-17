@@ -188,4 +188,12 @@
 
         End Try
     End Sub
+
+    Private Sub bttcontinuar_Click(sender As Object, e As EventArgs) Handles bttcontinuar.Click
+        Try
+            Response.Redirect("/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems"))
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

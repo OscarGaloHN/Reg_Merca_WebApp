@@ -75,13 +75,13 @@
                 <span>Inicio</span>
             </a>
         </li>
-                <li class="active">
+        <li class="active">
             <a href="caratula.aspx">
                 <i class="material-icons">aspect_ratio</i>
                 <span>Declaración Aduanera</span>
             </a>
         </li>
-<%--        <li class="active">
+        <%--        <li class="active">
 
             <a href="#">
                 <i class="material-icons">create_new_folder</i>
@@ -216,13 +216,13 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label">Referencia</label>
                                 <div class="form-group">
-                                    <label class="form-label"></label>
                                     <div class="form-line">
-                                        <asp:TextBox MaxLength="30" placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia"
-                                            onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
+                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtreferencia"
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtreferencia"
                                         ErrorMessage="Ingrese la referencia."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaDocumento" />
@@ -323,16 +323,16 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label">Referencia</label>
                                 <div class="form-group">
-                                    <label class="form-label"></label>
                                     <div class="form-line">
-                                        <asp:TextBox MaxLength="30" placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidadocumentoEditar"
-                                            onkeydown="return noespacios(event)" onkeyup="mayus(this)" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
+                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferenciaEditar" onkeypress="txNombres(event);"
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaDocumento" />
                                 </div>
                             </div>
                         </div>

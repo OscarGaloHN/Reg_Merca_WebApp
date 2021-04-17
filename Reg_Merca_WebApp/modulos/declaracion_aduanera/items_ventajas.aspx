@@ -45,12 +45,12 @@
                 //}
                 //if (row.cells[5].innerHTML != '&nbsp;') {
                 //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
-            //}
-            //if (row.cells[2].innerHTML != '&nbsp;') {
-            //    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-            //}
+                //}
+                //if (row.cells[2].innerHTML != '&nbsp;') {
+                //    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+                //}
                 xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
-        }
+            }
 
     </script>
 </asp:Content>
@@ -81,11 +81,11 @@
 
 
     <script type="text/javascript">
-        tituloImprimir = 'ventajas del items'
-        xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-        xMargenes.push(100, 0, 100, 0)
-        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
-        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+            tituloImprimir = 'ventajas del items'
+            xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+            xMargenes.push(100, 0, 100, 0)
+            xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+            xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">
@@ -94,7 +94,7 @@
                 <div class="header">
                     <h2 style="font-weight: bold;">Ventajas del Item - 
                         <asp:Label runat="server" ID="lblitems"></asp:Label>
-                                 <small>Acontinuación el usuario podra visualizar las ventajas del item.</small>
+                        <small>Acontinuación el usuario podra visualizar las ventajas del item.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -116,6 +116,19 @@
                                 class="btn btn-block btn-lg bg-teal waves-effect">
                                 <i class="material-icons">undo</i>
                                 <span>Volver</span>
+                            </asp:LinkButton>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttcontinuar"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">keyboard_tab</i>
+                                <span>Continuar</span>
                             </asp:LinkButton>
                         </div>
 
