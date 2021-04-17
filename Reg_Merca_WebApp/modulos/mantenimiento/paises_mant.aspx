@@ -265,7 +265,7 @@
             </asp:Panel>
         </div>
     </div>
- <!-- modal eliminar aduana-->
+ <!-- modal eliminar pais-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
@@ -282,7 +282,7 @@
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
-
+                   
                 </div>
                 <div class="modal-footer">
                     <asp:LinkButton runat="server" ID="bttEliminarpaises" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
