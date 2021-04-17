@@ -24,7 +24,7 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_ddlcomplementario').innerHTML = row.cells[3].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML;
+            document.getElementById('ContentPrincipal_ddlcomplementario').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[5].innerHTML;
 
             xModal('red', 'ContentPrincipal_ddlcomplementario', 'modalDelete');
@@ -36,7 +36,7 @@
 
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[2].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_ddlcomplementariedit').value = row.cells[2].innerHTML;
@@ -232,7 +232,8 @@
                     ¿Seguro que desea eliminar el siguiente dato complementario?
                     <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
-                    <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
+                     <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
+                    <asp:HiddenField runat="server" ID="lblHiddendddocumento" />
 
 
                     <br />

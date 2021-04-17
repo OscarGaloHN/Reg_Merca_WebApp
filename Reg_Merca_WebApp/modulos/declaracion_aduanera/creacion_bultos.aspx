@@ -83,6 +83,12 @@
                 <span>Creación de bultos</span>
             </a>
         </li>
+                <li class="active">
+            <a href="caratula.aspx">
+                <i class="material-icons">aspect_ratio</i>
+                <span>Declaración Aduanera</span>
+            </a>
+        </li>
     </ul>
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="ContentPrincipal" runat="server">

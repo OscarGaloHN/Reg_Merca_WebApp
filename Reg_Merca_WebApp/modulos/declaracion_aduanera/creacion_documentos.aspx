@@ -75,13 +75,19 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li class="active">
+                <li class="active">
+            <a href="caratula.aspx">
+                <i class="material-icons">aspect_ratio</i>
+                <span>Declaración Aduanera</span>
+            </a>
+        </li>
+<%--        <li class="active">
 
             <a href="#">
                 <i class="material-icons">create_new_folder</i>
                 <span>Creación de documentos</span>
             </a>
-        </li>
+        </li>--%>
     </ul>
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="ContentPrincipal" runat="server">

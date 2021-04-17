@@ -86,7 +86,7 @@
 
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza_doc = '" & Request.QueryString("idCaratula") & "' and Id_Documento = '" & ddldocumentos.SelectedValue & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_41_documentos_items where id_merca = '" & Request.QueryString("iditems") & "' and Referencia = '" & txtreferencia.Text & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -95,9 +95,9 @@
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
             Else
                 If chkPresencia.Checked = True Then
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '1');"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_41_documentos_items (Id_Documento, id_merca, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("iditems") & ",'" & txtreferencia.Text & "', '1');"
                 Else
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '0');
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_41_documentos_items (Id_Documento, id_merca, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("iditems") & ",'" & txtreferencia.Text & "', '0');
 "
 
                 End If
@@ -107,7 +107,7 @@
                 'Using log_bitacora As New ControlBitacora
                 '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
                 'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=newdocumento&idCaratula=" & Request.QueryString("idCaratula"))
+                Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems"))
             End If
 
             'habilitar indicador
@@ -134,7 +134,7 @@
             '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             'End Using
 
-            Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=deldocumento&idCaratula=" & Request.QueryString("idCaratula"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems"))
 
         Catch ex As Exception
 
@@ -144,29 +144,29 @@
     Private Sub bttModificardocumento_Click(sender As Object, e As EventArgs) Handles bttModificardocumento.Click
         Try
             Dim Ssql As String = String.Empty
-            'If dddocumentoEditar.SelectedValue <> lblHiddendddocumento.Value Then
-            '    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where Id_Documento= " & lblHiddenIDDocumento.Value
+            If dddocumentoEditar.SelectedValue <> lblHiddendddocumento.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_41_documentos_items where Id_Documento= " & lblHiddenIDDocumento.Value
 
-            '    Using con As New ControlDB
-            '        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            '        Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            '    End Using
-            'Else
-            '    Session("NumReg") = 0
-            'End If
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+            Else
+                Session("NumReg") = 0
+            End If
 
-            'If Session("NumReg") > 0 Then
-            '    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El documento ya esta registrado.', 'error');</script>")
-            'Else
-            Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
-            Using con As New ControlDB
-                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            End Using
-            'Using log_bitacora As New ControlBitacora
-            '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
-            'End Using
-            Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=editdocumento&idCaratula=" & Request.QueryString("idCaratula"))
-            'End If
+            If Session("NumReg") > 0 Then
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
+            Else
+                Ssql = "UPDATE DB_Nac_Merca.tbl_41_documentos_items SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+                Using con As New ControlDB
+                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                End Using
+                'Using log_bitacora As New ControlBitacora
+                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
+                'End Using
+                Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=editdocumento&iditems=" & Request.QueryString("iditems"))
+            End If
         Catch ex As Exception
 
         End Try
@@ -174,7 +174,7 @@
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
-            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems"))
         Catch ex As Exception
 
         End Try

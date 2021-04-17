@@ -23,10 +23,10 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML + ' - ' + row.cells[6].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
-            /* xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');*/
+            xModal('red', 'ContentPrincipal_ddlventajas', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
@@ -35,21 +35,21 @@
             //document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_ddlddlventajaedit').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_ddlventajaedit').value = row.cells[3].innerHTML;
                 //}
                 //if (row.cells[4].innerHTML != '&nbsp;') {
                 //    document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
                 //}
                 //if (row.cells[5].innerHTML != '&nbsp;') {
                 //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
-            }
-            if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-            }
-            /*  xModal('pink', 'ContentPrincipal_txtReferenciaEditar', 'modalEditar');*/
+            //}
+            //if (row.cells[2].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            //}
+                xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
         }
 
     </script>

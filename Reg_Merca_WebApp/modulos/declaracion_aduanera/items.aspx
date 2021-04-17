@@ -24,7 +24,7 @@
         <li class="active">
             <a href="caratula.aspx">
                 <i class="material-icons">aspect_ratio</i>
-                <span>Declaracion Aduanera</span>
+                <span>Declaración Aduanera</span>
             </a>
         </li>
     </ul>
