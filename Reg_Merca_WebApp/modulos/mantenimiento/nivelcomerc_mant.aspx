@@ -48,7 +48,7 @@
     <a class="navbar-brand" href="#">Mantenimiento de Preguntas</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-    <ul class="list">
+   <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -56,27 +56,27 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li>
+        <li >
             <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
             </li>
-             <li>
-                     <a href="#">
+             <li >
+                     <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
             </li>
         
         <li>
-            <a href="#">
+            <a href="condentrega_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Condicion de Entrega</span>
             </a>
@@ -88,13 +88,13 @@
             </a>
             </li>
         <li>
-            <a href="#">
+            <a href="estadomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
-            <a href="#">
+            <a href="forma_pago.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Forma de Pago</span>
             </a>
@@ -105,50 +105,50 @@
                 <span>Modalidad Especial</span>
             </a>
             </li>
-         <li>
-            <a href="nivelcomerc_mant.aspx">
+         <li class="active">
+            <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
             </li>
-         <li class="active" >
+         <li>
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="tipoitems_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Tipo de Item</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="unidmedida_mant.aspx">
                 <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+                <span>Unidad de medida</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>

@@ -88,7 +88,7 @@
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=delteaduana")
+            Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=delteaduna")
         Catch ex As Exception
 
         End Try

@@ -67,104 +67,103 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li>
+        <li >
             <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
-        </li>
-        <li>
-            <a href="almacenes_mant.aspx">
+            </li>
+             <li >
+                     <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li>
-
             <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
-        </li>
-
+            </li>
+        
         <li>
-            <a href="#">
+            <a href="condentrega_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Condicion de Entrega</span>
             </a>
-        </li>
+            </li>
+        <li>
+            <a href="divisas_mant.aspx">
+                <i class="material-icons">monetization_on</i>
+                <span>Divisas</span>
+            </a>
+            </li>
         <li class="active">
             <a href="#">
-                <i class="material-icons">monetization_on</i>
-                <span>divisas</span>
-            </a>
-        </li>
-        <li>
-            <a href="estadomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Estado de Mercancia</span>
             </a>
-        </li>
-        <li  class="active">
-            <a href="#">
+            </li>
+        <li>
+            <a href="forma_pago.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Forma de Pago</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="modalidadesp_mant.aspx">
                 <i class="material-icons">add_moderator</i>
                 <span>Modalidad Especial</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="tipoitems_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Tipo de Item</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="unidmedida_mant.aspx">
                 <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+                <span>Unidad de medida</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
-        </li>
+            </li>
     </ul>
 
 </asp:Content>
@@ -245,7 +244,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID Estado" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtId_Estado"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID Estado" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtId_Estado" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_Estado"
                                         ErrorMessage="Ingrese el ID del estado."
@@ -256,7 +255,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtdescripcion"></asp:TextBox>
+                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtdescripcion" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtdescripcion"
                                         ErrorMessage="Ingrese la descripcion de la divisa."

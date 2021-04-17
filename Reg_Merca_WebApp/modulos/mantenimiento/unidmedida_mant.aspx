@@ -24,7 +24,7 @@
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblmedida').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDmedida').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombremedida').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombremedida').valhttps://www.researchgate.net/publication/335665456_La_Implementacion_de_la_Firma_Electronica_en_el_Centro_Nacional_de_Registros_de_El_Salvadorue = row.cells[3].innerHTML;
             xModal('red', 'ContentPrincipal_txtId_Unidadmed', 'modalDelete');
         }
 
@@ -58,7 +58,7 @@
     <a class="navbar-brand" href="#">Matenimiento de unidad de medida</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-    <ul class="list">
+   <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -71,100 +71,99 @@
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
-        </li>
-        <li>
-            <a href="almacenes_mant.aspx">
+            </li>
+             <li >
+                     <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li>
-
             <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
-        </li>
-
+            </li>
+        
         <li>
-            <a href="#">
+            <a href="condentrega_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Condicion de Entrega</span>
             </a>
-        </li>
-        <li class="active">
-            <a href="#">
+            </li>
+        <li>
+            <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
                 <span>divisas</span>
             </a>
-        </li>
+            </li>
         <li>
             <a href="estadomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Estado de Mercancia</span>
             </a>
-        </li>
-        <li  class="active">
-            <a href="#">
+            </li>
+        <li>
+            <a href="forma_pago.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Forma de Pago</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="modalidadesp_mant.aspx">
                 <i class="material-icons">add_moderator</i>
                 <span>Modalidad Especial</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="tipoitems_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Tipo de Item</span>
             </a>
-        </li>
-        <li>
-            <a href="unidmedida_mant.aspx">
+            </li>
+         <li  class="active">
+            <a href="#">
                 <i class="material-icons">verified</i>
                 <span>Unidad de medida</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
+            </li>
+         <li>
+            <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
-        </li>
-    </ul>
+            </li>
+    </ul> 
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
@@ -172,7 +171,7 @@
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado del estado de unidad de medida'
+        tituloImprimir = 'Listado del Estado de Unidad de Medida'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -244,7 +243,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID UNIDAD MEDIDA" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtId_UnidadMed"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID Unidad Medida" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtId_UnidadMed"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_UnidadMed"
                                         ErrorMessage="Ingrese la unidad de medida."
@@ -258,7 +257,7 @@
                                         <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtDescripcion"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtDescripcion"
-                                        ErrorMessage="Ingrese la descripcion de la divisa."
+                                        ErrorMessage="Ingrese la descripcion de la unidad de medida."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validamedida" />
                                 </div>

@@ -71,104 +71,105 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li class="active">
-            <a href="mantenimiento_adunas.aspx">
+        <li class="active" >
+            <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
             </li>
              <li >
-                     <a href="almacen_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                     <a href="almacenes_mant.aspx">
+                <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li>
             <a href="cliente_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
             </li>
         
         <li>
-            <a href="#">
+            <a href="condentrega_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Condicion de Entrega</span>
             </a>
             </li>
         <li>
             <a href="divisas_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">monetization_on</i>
                 <span>divisas</span>
             </a>
             </li>
         <li>
-            <a href="#">
+            <a href="estadomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
-            <a href="#">
+            <a href="forma_pago.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Forma de Pago</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="modalidadesp_mant.aspx">
+                <i class="material-icons">add_moderator</i>
                 <span>Modalidad Especial</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="proveedores_mant.aspx">
+                <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="preguntas_mant.aspx">
+                <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="paises_mant.aspx">
+                <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="regimenes_mant.aspx">
+                <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="tipoitems_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Tipo de Item</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
-                <span>Unidad de Ventaja</span>
+            <a href="unidmedida_mant.aspx">
+                <i class="material-icons">verified</i>
+                <span>Unidad de medida</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="ventajas_mant.aspx">
+                <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
             </li>
     </ul>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
       <script type="text/javascript">
@@ -179,7 +180,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Adunas
+                    <h2 style="font-weight: bold;">Aduanas
                                  <small>A continuación se muestra el listado de las aduanas registradas.</small>
                     </h2>
                 </div>
