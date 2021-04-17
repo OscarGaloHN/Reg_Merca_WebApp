@@ -43,7 +43,7 @@
                 document.getElementById('ContentPrincipal_dddocumentoEditar').value = row.cells[3].innerHTML;
             }
             if (row.cells[5].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_t r').value = row.cells[5].innerHTML;
+                document.getElementById('ContentPrincipal_txtreferenciaEditar').value = row.cells[5].innerHTML;
             }
             //if (row.cells[6].innerHTML != '&nbsp;') {
             //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[6].innerHTML;

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" Title="Documentos Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
+﻿<%@ Page Language="vb" Title="Documentos del Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
@@ -24,10 +24,11 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_ddldocumentos').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
-            xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');
+            xModal('red', 'ContentPrincipal_ddlDocumento', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
@@ -36,7 +37,7 @@
             //document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').checked = '';
             var row = lnk.parentNode.parentNode;
 
-            //document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_dddocumentoEditar').value = row.cells[3].innerHTML;
@@ -56,7 +57,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creacion de Documentos del Item</a>
+    <a class="navbar-brand" href="#">Documentos del Item</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -71,7 +72,7 @@
 
             <a href="#">
                 <i class="material-icons">create_new_folder</i>
-                <span>Creacion de Documentos del item</span>
+                <span>Documentos del item</span>
             </a>
         </li>
     </ul>
@@ -179,7 +180,7 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 2;"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 1;"></asp:SqlDataSource>
 
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList
@@ -197,7 +198,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                             onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtReferencia"
                                         ErrorMessage="Ingrese la referencia."
@@ -245,6 +246,7 @@
                     <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
                     <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
+                    <asp:HiddenField runat="server" ID="lblHiddendddocumento" />
 
 
                     <br />
@@ -300,9 +302,11 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                 <label class="form-label">Referencia</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txtreferenciaEditar" onkeypress="txNombres(event);"
+                                             onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."

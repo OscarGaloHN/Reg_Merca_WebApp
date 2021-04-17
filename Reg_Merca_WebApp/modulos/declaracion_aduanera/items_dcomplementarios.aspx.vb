@@ -151,7 +151,7 @@
 
         Try
             Dim Ssql As String = String.Empty
-            If ddlcomplementariedit.SelectedValue <> lblHiddenIDDocumento.Value Then
+            If ddlcomplementariedit.SelectedValue <> lblHiddendddocumento.Value Then
                 Ssql = "SELECT * FROM DB_Nac_Merca.tbl_10_Datos_Complementarios where Id_Codigo = " & lblHiddenIDDocumento.Value
 
                 Using con As New ControlDB
@@ -182,7 +182,7 @@
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
-            Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?action=update&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems"))
 
         Catch ex As Exception
 
