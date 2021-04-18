@@ -77,13 +77,13 @@ Partial Public Class regimenes_mant
     Protected WithEvents bttGuardarRegimenes As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblpregunta.
+    '''Control lblregimenes.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblpregunta As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblregimenes As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control lblHiddenIDregimenes.

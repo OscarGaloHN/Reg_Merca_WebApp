@@ -56,46 +56,46 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li>
+        <li  >
             <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
             </li>
              <li>
-                     <a href="#">
+                     <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
             </li>
         
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="condentrega_mant">
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
             </li>
         <li>
             <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
-                <span>divisas</span>
+                <span>Divisas</span>
             </a>
             </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="estadomerc_mant.aspx">
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="forma_pago.aspx">
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
             </li>
@@ -106,49 +106,49 @@
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="nivelcomerc_mant.aspx">
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
             </li>
-         <li class="active" >
+         <li>
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
             </li>
-         <li>
-            <a href="#">
+         <li class="active" >
+            <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="tipoitems_mant.aspx">
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+            <a href="unidmedida_mant.aspx">
+                <i class="material-icons">straighten</i>
+                <span>Unidad de Medidas</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
@@ -157,9 +157,14 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
     <script type="text/javascript">
-        tituloImprimir = 'Listado de las Preguntas'
-        xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        tituloImprimir = 'LISTADO DE LAS PREGUNTAS'
+        xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">
@@ -265,7 +270,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarpregunta" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarpregunta" ValidationGroup="Validapaises" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>

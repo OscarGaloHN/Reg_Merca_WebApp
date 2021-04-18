@@ -11,6 +11,9 @@
     'OBJETO #21
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_22_preguntas"
@@ -119,7 +122,7 @@
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la pregunta con nombre: " & lblHiddenNombrepregunta.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/mantenimiento_adunas.aspx?acction=deltepreguntas")
+            Response.Redirect("~/modulos/mantenimiento/preguntas_mant.aspx?acction=deltepreguntas")
         Catch ex As Exception
 
         End Try
