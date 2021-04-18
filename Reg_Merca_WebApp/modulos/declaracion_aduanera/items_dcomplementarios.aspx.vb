@@ -151,7 +151,7 @@
         Try
             Dim Ssql As String = String.Empty
             If ddlcomplementariedit.SelectedValue <> lblHiddendddocumento.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_10_Datos_Complementarios where Id_Codigo = " & lblHiddenIDDocumento.Value
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_10_Datos_Complementarios where Id_DatoComple = " & lblHiddenIDDocumento.Value
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)

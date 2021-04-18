@@ -198,7 +198,7 @@
                                 <label class="form-label">Documento<span class="required">*</span></label>
                                 <asp:DropDownList
                                     ID="ddlcomplementario" runat="server"
-                                    selectlistitem="" DataSourceID="sqldatoscomplementarios" class="form-control show-tick"
+                                    selectlistitem="" DataSourceID="sqldatoscomplementarios" class="form-control show-tick" data-live-search="true"
                                     DataTextField="Descripcion" DataValueField="Id_DatoComple" AppendDataBoundItems="true"
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
@@ -287,7 +287,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label"></label>
                                 <asp:SqlDataSource
-                                    ID="SqlDataSource1"
+                                    ID="sqldocumentosedit"
                                     runat="server"
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
@@ -297,7 +297,7 @@
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList
                                     ID="ddlcomplementariedit" runat="server"
-                                    selectlistitem="" DataSourceID="sqldatoscomplementarios" class="form-control show-tick"
+                                    selectlistitem="" DataSourceID="sqldocumentosedit" class="form-control show-tick" data-live-search="true"
                                     DataTextField="Descripcion" DataValueField="Id_DatoComple" AppendDataBoundItems="true"
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
