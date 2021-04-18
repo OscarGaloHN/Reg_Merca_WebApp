@@ -15,7 +15,7 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtid').value = '';
+            //document.getElementById('ContentPrincipal_txtid').value = '';
             document.getElementById('ContentPrincipal_txtventajas').value = '';
         }
 
@@ -27,7 +27,7 @@
             xModal('red', 'ContentPrincipal_txtventajas', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtidEditar').value = '';
+            //document.getElementById('ContentPrincipal_txtidEditar').value = '';
             document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
             
             var row = lnk.parentNode.parentNode;
@@ -36,12 +36,13 @@
 
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
             }
-            document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
+            //document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
 
-            if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
-            }
+            //if (row.cells[2].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
+            //}
             xModal('pink', 'ContentPrincipal_txtdescripcionEditar', 'modalEditar');
         }
 
@@ -228,7 +229,7 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                        <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtid(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox> 
@@ -238,7 +239,7 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validaventajas" />
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -307,7 +308,7 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="ValidaventajasEditar" runat="server" class="form-control" ID="txtidEditar"></asp:TextBox>
@@ -317,7 +318,7 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaventajasEditar" />
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">

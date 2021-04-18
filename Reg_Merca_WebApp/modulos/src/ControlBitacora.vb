@@ -53,7 +53,10 @@ Public Class ControlBitacora
                 Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", " & xObjeto & ", '" & "ingreso" & "', '" & xDetalle & "');"
             Case 10 'SALE DE PANTALLA
                 Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", " & xObjeto & ", '" & "salida" & "', '" & xDetalle & "');"
-
+            Case 11 'OTORGAR PERMISOS
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", " & xObjeto & ", '" & "permisos" & "', '" & xDetalle & "');"
+            Case 12 'CONFIGURACIONES
+                Ssql = "INSERT INTO DB_Nac_Merca.tbl_17_bitacora (fecha, id_usuario, id_objeto, accion, descripcion) VALUES (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), " & Id_usuario & ", " & xObjeto & ", '" & "Configuracion" & "', '" & xDetalle & "');"
         End Select
         GME_Bitacora(Ssql, TipoConexion_Bitacora.Cx_Aduana)
         Return 0

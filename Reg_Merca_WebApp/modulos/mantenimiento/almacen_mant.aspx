@@ -127,7 +127,7 @@
             </li>
          <li>
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">straighten</i>
                 <span>Unidad de Ventaja</span>
             </a>
             </li>

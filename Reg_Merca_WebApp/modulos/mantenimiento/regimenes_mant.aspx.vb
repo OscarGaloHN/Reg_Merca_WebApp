@@ -73,14 +73,14 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_27_Regimenes` SET `Id_Regimen` = '" & txtidEditar.Text & "',`Descripcion` = '" & txtregimenesEditar.Text & "' WHERE `Id_Regimen` = '" & lblHiddenIDregimenes.Value & "';"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_27_Regimenes` SET `Descripcion` = '" & txtregimenesEditar.Text & "' WHERE `Id_Regimen` = " & lblHiddenIDregimenes.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el Regimenes con id: " & lblHiddenIDregimenes.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=editalmacenes")
+                Response.Redirect("~/modulos/mantenimiento/regimenes_mant.aspx?acction=editregimenes")
 
             End If
         Catch ex As Exception
@@ -99,7 +99,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El regimenes ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_27_Regimenes` (`Id_Regimen`,`Descripcion`) VALUES ('" & txtid.Text & "','" & txtregimenes.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_27_Regimenes` (`Descripcion`) VALUES ('" & txtregimenes.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

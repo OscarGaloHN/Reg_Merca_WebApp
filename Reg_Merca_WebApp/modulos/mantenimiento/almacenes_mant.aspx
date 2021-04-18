@@ -94,25 +94,25 @@
         
         <li>
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
             </li>
         <li>
             <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
-                <span>divisas</span>
+                <span>Divisas</span>
             </a>
             </li>
         <li>
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
             </li>
@@ -124,7 +124,7 @@
             </li>
          <li>
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
@@ -154,14 +154,14 @@
             </li>
          <li>
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
             </li>
          <li>
             <a href="#">
-                <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+                <i class="material-icons">straighten</i>
+                <span>Unidad de Medidas</span>
             </a>
             </li>
          <li>
@@ -174,9 +174,14 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
     <script type="text/javascript">
-        tituloImprimir = 'Listado de los Almacenes'
+        tituloImprimir = 'LISTADO DE LOS ALMACENES'
         xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">

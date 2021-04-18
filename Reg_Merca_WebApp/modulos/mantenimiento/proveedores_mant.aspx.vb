@@ -73,7 +73,8 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PROVEEDORES','El nombre de Proveedores ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_04_cliente` SET `nombre` = '" & txtnombre.Text & "', `direccion_domicilio` = '" & txtdirecciondomicilio.Text & "', `direccion_envio` = " & txtdireccionenvio.Text & "', `ciudad` = '" & txtciudad.Text & " ' ,'telefono' = '" & txttelefono.Text & "','telefono2'= '" & txttelefono2.Text & "','telefono3' = '" & txttelefono3.Text & "','fax'= '" & txtfax.Text & "','email_personal'= '" & txtemailpersonal.Text & "' ,'email_empresarial'= '" & txtemailempresarial.Text & "','rtn_cli'='" & txtrtnpro.Text & "','contacto'= '" & txtcontacto.Text & "','limitecr`='" & txtlimitecr.Text & "','plazocr' = '" & txtplazocr.Text & "'where 'Id_cliente =" & lblHiddenIDproveedor.Value & ";"
+
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_05_proveedores` SET `nombre` = '" & txtnombre.Text & "', `direccion_domicilio` = '" & txtdirecciondomicilio.Text & "', `direccion_envio` = '" & txtdireccionenvio.Text & "', `ciudad` = '" & txtciudad.Text & "' ,`telefono` = '" & txttelefono.Text & "',`telefono2`= '" & txttelefono2.Text & "',`telefono3` = '" & txttelefono3.Text & "',`fax`= '" & txtfax.Text & "',`email_personal`= '" & txtemailpersonal.Text & "' ,`email_empresarial`= '" & txtemailempresarial.Text & "',`rtn_proveedor`='" & txtrtnpro.Text & "',`contacto`= '" & txtcontacto.Text & "',`limitecr`='" & txtlimitecr.Text & "',`plazocr` = '" & txtplazocr.Text & "'where `Id_proveedor` =" & lblHiddenIDproveedor.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
@@ -98,12 +99,12 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PROVEEDORES','El proveedor ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_05_proveedores` (Id_nivel_com,Id_pais,`nombrec`,`direccion_domicilio`,`direccion_envio`,`ciudad`,`telefono`,`telefono2`,`telefono3`,`fax`,`email_personal`,`email_empresarial`,`rtn_proveedor`,`contacto`,`limitecr`,`plazocr`) VALUES ('" & cmbNivelComercial.SelectedValue & "','" & CmbPais.SelectedValue & "','" & txtnombre.Text & "', '" & txtdirecciondomicilio.Text & "','" & txtdireccionenvio.Text & "','" & txtciudad.Text & "','" & txttelefono.Text & "','" & txttelefono2.Text & "','" & txttelefono3.Text & "','" & txtfax.Text & "','" & txtemailpersonal.Text & "','" & txtemailempresarial.Text & "','" & txtrtnpro.Text & "','" & txtcontacto.Text & "','" & txtlimitecr.Text & "','" & txtplazocr.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_05_proveedores` (Id_nivel_com,Id_pais,`nombre`,`direccion_domicilio`,`direccion_envio`,`ciudad`,`telefono`,`telefono2`,`telefono3`,`fax`,`email_personal`,`email_empresarial`,`rtn_proveedor`,`contacto`,`limitecr`,`plazocr`) VALUES ('" & cmbNivelComercial.SelectedValue & "','" & CmbPais.SelectedValue & "','" & txtnombre.Text & "', '" & txtdirecciondomicilio.Text & "','" & txtdireccionenvio.Text & "','" & txtciudad.Text & "','" & txttelefono.Text & "','" & txttelefono2.Text & "','" & txttelefono3.Text & "','" & txtfax.Text & "','" & txtemailpersonal.Text & "','" & txtemailempresarial.Text & "','" & txtrtnpro.Text & "','" & txtcontacto.Text & "','" & txtlimitecr.Text & "','" & txtplazocr.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idusuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el proveedor con id: " & txtIdentidadCliente.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idusuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para el proveedor con id: " & txtnombre.Text)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/proveedores_mant.aspx?acction=newproveedores")
             End If

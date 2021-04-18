@@ -21,10 +21,10 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtpaises', 'modalDelete');
+            xModal('red', 'ContentPrincipal_txtid', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_txtidEditar').value = '';
@@ -265,7 +265,7 @@
             </asp:Panel>
         </div>
     </div>
- <!-- modal eliminar aduana-->
+ <!-- modal eliminar pais-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
@@ -275,14 +275,14 @@
                     <h4 class="modal-title" id="LblDelete">ELIMINAR PAIS</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que dese eliminar este Almacén:
-                    <asp:Label runat="server" ID="lblpregunta" Text="..."></asp:Label>?
+                    ¿Seguro que dese eliminar este Pais:
+                    <asp:Label runat="server" ID="lblpaises" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDpaises" />
                         <asp:HiddenField runat="server" ID="lblHiddenNombrepaises" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
-
+                   
                 </div>
                 <div class="modal-footer">
                     <asp:LinkButton runat="server" ID="bttEliminarpaises" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>

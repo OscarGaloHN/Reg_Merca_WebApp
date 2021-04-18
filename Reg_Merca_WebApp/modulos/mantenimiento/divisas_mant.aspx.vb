@@ -121,10 +121,10 @@
 
         End Try
     End Sub
-
+    '" & lblHiddenIDdivisas.Value
     Private Sub bttEliminarDivisa_Click(sender As Object, e As EventArgs) Handles bttEliminarDivisa.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_29_Divisas` WHERE Id_Divisas= " & lblHiddenIDdivisas.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_29_Divisas` WHERE `Id_Divisas`= '" & lblHiddenIDdivisas.Value & "';"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using

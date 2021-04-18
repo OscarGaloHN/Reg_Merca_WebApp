@@ -95,13 +95,13 @@ Partial Public Class paises_mant
     Protected WithEvents bttGuardarpaises As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblpregunta.
+    '''Control lblpaises.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblpregunta As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblpaises As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''Control lblHiddenIDpaises.

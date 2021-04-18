@@ -503,7 +503,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="RTN Cliente" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtrtnpro" MaxLength="14" onkeypress="SoloNumeros();"></asp:TextBox>
+                                        <asp:TextBox placeholder="RTN Proveedores" AutoComplete="off" ValidationGroup="Validaproveedores" runat="server" class="form-control" ID="txtrtnpro" MaxLength="14" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator14" ControlToValidate="txtrtnpro"
                                         ErrorMessage="Ingrese el RTN del proveedor"

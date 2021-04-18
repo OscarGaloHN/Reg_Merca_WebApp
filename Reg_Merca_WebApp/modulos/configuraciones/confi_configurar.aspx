@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Configuración" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="confi_configurar.aspx.vb" Inherits="Reg_Merca_WebApp.configurar" %>
+﻿<%@ Page Title="Configuraciones" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="confi_configurar.aspx.vb" Inherits="Reg_Merca_WebApp.configurar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap Spinner Css -->
@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Configuración</a>
+    <a class="navbar-brand" href="#">Configuraciones</a>
 </asp:Content>
 
 
@@ -61,7 +61,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold">Configuraciones 
-                        <small>Informacion basica de la empresa y otras configuraciones</small>
+                        <small>Informacion basica de la empresa</small>
                     </h2>
 
                 </div>
@@ -71,7 +71,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtEmpresa(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtEmpresa(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)" onkeyup="mayus(this);borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Nombre de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtEmpresa"
@@ -83,7 +83,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtAlias(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtAlias(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)" onkeyup="mayus(this);borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Alias de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtAlias"

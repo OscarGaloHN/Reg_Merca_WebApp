@@ -18,7 +18,7 @@
         function borrarTxtNuevo() {
             
             document.getElementById('ContentPrincipal_txtnombremodalidad').value = '';
-            document.getElementById('ContentPrincipal_txtid').value = '';
+            //document.getElementById('ContentPrincipal_txtid').value = '';
             
         }
 
@@ -162,7 +162,7 @@
     <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
     <script type="text/javascript">
-        tituloImprimir = 'Listado de la Modalidad Especial'
+        tituloImprimir = 'LISTADO DE LA MODALIDAD ESPECIAL'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -229,7 +229,7 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox onkeypress="SoloNumeros();return txtid(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
@@ -240,7 +240,7 @@
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
-                            </div>
+                            </div>--%>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
