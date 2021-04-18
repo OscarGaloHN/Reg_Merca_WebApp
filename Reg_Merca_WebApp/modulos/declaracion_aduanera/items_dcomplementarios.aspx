@@ -1,11 +1,15 @@
 ﻿<%@ Page Language="vb" Title="Datos Complementarios" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_dcomplementarios.aspx.vb" Inherits="Reg_Merca_WebApp.items_dcomplementarios" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
+        <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
@@ -24,8 +28,9 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_ddlcomplementario').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[5].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[2].innerHTML;
 
             xModal('red', 'ContentPrincipal_ddlcomplementario', 'modalDelete');
         }
@@ -54,7 +59,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Datos Complementarios</a>
+    <a class="navbar-brand" href="#">Items de Datos Complementarios</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -69,7 +74,7 @@
 
             <a href="#">
                 <i class="material-icons">create_new_folder</i>
-                <span>Datos Complementarios</span>
+                <span>Items de Datos Complementarios</span>
             </a>
         </li>
     </ul>
@@ -83,7 +88,7 @@
 
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado de Documentos'
+        tituloImprimir = 'Listado de Documentos Complementarios del Item'
         xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -94,7 +99,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Datos complementarios del item - 
+                    <h2 style="font-weight: bold;">Datos Complementarios del Item - 
                         <asp:Label runat="server" ID="lblitems"></asp:Label>
                     </h2>
                 </div>
@@ -150,10 +155,11 @@
                                             </ItemTemplate>
                                             <%-- Id_DatoComple, descripcion, Valor, Id_Codigo--%>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Id_DatoComple" HeaderText="Codigo Dato" />
-                                        <asp:BoundField DataField="descripcion" HeaderText="Descripccion" />
+                                        <asp:BoundField DataField="Id_DatoComple" HeaderText="Código Dato" />
+                                        <asp:BoundField DataField="descripcion" HeaderText="Descripción" />
                                         <asp:BoundField DataField="Valor" HeaderText="Valor" />
                                         <asp:BoundField DataField="Id_Codigo" HeaderText="ID" />
+                                        <asp:BoundField DataField="Id_Merca" HeaderText="ID Items" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -173,7 +179,7 @@
                         <h4 class="modal-title" id="lblModalDocumentos">NUEVO DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos de los documetos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos del ítem de datos complementarios y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -272,7 +278,7 @@
                         <h4 class="modal-title" id="lblEditarDoc">EDITAR DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
-                        Luego de terminar de editar los datos de los documentos haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        Luego de terminar de editar el ítem complementario haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -330,4 +336,6 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
+        <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>

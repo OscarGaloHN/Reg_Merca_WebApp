@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="vb" Title="Documentos del Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
+
+            <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
@@ -24,7 +28,7 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_ddldocumentos').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
@@ -46,7 +50,7 @@
                 document.getElementById('ContentPrincipal_txtreferenciaEditar').value = row.cells[5].innerHTML;
             }
             //if (row.cells[6].innerHTML != '&nbsp;') {
-            //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[6].innerHTML;
+            //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').value= row.cells[6].innerHTML;
             //}
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
@@ -83,8 +87,8 @@
 
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado de Documentos'
-        xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        tituloImprimir = 'Listado de Items Documentos'
+        xColumnas.push(2, 3, 4, 5, 6, 7); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
@@ -156,7 +160,7 @@
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripción del Documento" />
                                         <asp:BoundField DataField="referencia" HeaderText="Referencia del Documento" />
                                         <asp:BoundField DataField="presencia" HeaderText="Presencia" />
-                                        <asp:BoundField DataField="Id_Merca" HeaderText="ID Póliza" />
+                                        <asp:BoundField DataField="Id_Merca" HeaderText="ID Items" />
 
                                     </Columns>
                                 </asp:GridView>
@@ -351,4 +355,6 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
+            <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>

@@ -58,7 +58,7 @@
 
     <script type="text/javascript">
             tituloImprimir = 'Listado de Items'
-            xColumnas.push(1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+            xColumnas.push(2, 4, 5, 6, 7, 8); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
             xMargenes.push(100, 0, 100, 0)
             xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
             xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
@@ -122,13 +122,13 @@
 
                                                 <asp:TemplateField HeaderText="Eliminar">
                                                     <ItemTemplate>
-                                                        <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
+                                                        <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <%-- <asp:BoundField DataField="row_number" HeaderText="Numero de Item" />--%>
                                                 <asp:BoundField DataField="numeroitems" HeaderText="Número de Items" />
-                                                <asp:BoundField DataField="ID_Merca" HeaderText="Id" />
+                                                <asp:BoundField DataField="ID_Merca" HeaderText="Id Items" />
                                                 <asp:BoundField DataField="Id_poliza" HeaderText="Número de Poliza" />
                                                 <asp:BoundField DataField="pesoneto" HeaderText="Peso Neto" />
                                                 <asp:BoundField DataField="num_partida" HeaderText="Partida Arancelaria" />

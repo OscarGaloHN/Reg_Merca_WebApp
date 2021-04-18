@@ -189,7 +189,7 @@
                         <h4 class="modal-title" id="lblModalDocumentos">NUEVO DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos de los documetos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos de los documentos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->

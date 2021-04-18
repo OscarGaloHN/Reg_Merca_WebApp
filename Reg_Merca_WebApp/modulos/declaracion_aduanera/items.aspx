@@ -43,7 +43,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Item Numero -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>    
+                    <h2 style="font-weight: bold;">Item Número -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>    
                             <small>Ingreso de Datos de Los Items</small>
                     </h2>
                 </div>

@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="vb" Title="Ventajas del items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_ventajas.aspx.vb" Inherits="Reg_Merca_WebApp.items_ventajas" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
+
+            <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
@@ -193,7 +197,7 @@
                                 <label class="form-label">Ventajas</label>
                                 <asp:DropDownList
                                     ID="ddlventajas" runat="server"
-                                    selectlistitem="" DataSourceID="sqlventajas" class="form-control show-tick"
+                                    selectlistitem="" DataSourceID="sqlventajas" class="form-control show-tick" data-live-search="true"
                                     DataTextField="descripcion" DataValueField="id_Ventaja" AppendDataBoundItems="true"
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
@@ -280,7 +284,7 @@
                                 <label class="form-label">Ventajas</label>
                                 <asp:DropDownList
                                     ID="ddlventajaedit" runat="server"
-                                    selectlistitem="" DataSourceID="Sqlventajaedit" class="form-control show-tick"
+                                    selectlistitem="" DataSourceID="Sqlventajaedit" class="form-control show-tick" data-live-search="true"
                                     DataTextField="descripcion" DataValueField="id_Ventaja" AppendDataBoundItems="true"
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
@@ -309,4 +313,6 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
+            <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>
