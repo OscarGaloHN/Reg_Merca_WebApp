@@ -1,4 +1,5 @@
-﻿<%@ Page Title="UNIDAD DE MEDIDA" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="unidmedida_mant.aspx.vb" Inherits="Reg_Merca_WebApp.unidmedida_mant" %>
+﻿<%@ Page Title="FORMA DE PAGO " Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="forma_pago.aspx.vb" Inherits="Reg_Merca_WebApp.forma_pago" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -16,49 +17,47 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtId_UnidadMed').value = '';
-            document.getElementById('ContentPrincipal_txtDescripcion').value = '';
+            document.getElementById('ContentPrincipal_txtid_pago').value = '';
+            document.getElementById('ContentPrincipal_txtnombre_pago').value = '';
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblmedida').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDmedida').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombremedida').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtId_Unidadmed', 'modalDelete');
+            document.getElementById('ContentPrincipal_lblpago').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDpago').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepago').value = row.cells[3].innerHTML;
+            xModal('red', 'ContentPrincipal_txtid_pago', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtId_UnidadMedEditar').value = '';
-            document.getElementById('ContentPrincipal_txtDescripcionEditar').value = '';
-
+            document.getElementById('ContentPrincipal_txtid_pagoEditar').value = '';
+            document.getElementById('ContentPrincipal_txtnombre_pagoEditar').value = '';
+           
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombremedida').value = row.cells[3].innerHTML;
-
-
-            if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtDescripcionEditar').value = row.cells[3].innerHTML;
-            }
-
-
-            document.getElementById('ContentPrincipal_lblHiddenIDmedida').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombrepago').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtId_UnidadMedEditar').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_txtid_pagoEditar').value = row.cells[3].innerHTML;
             }
-            xModal('pink', 'ContentPrincipal_txtId_UnidadMedEditar', 'modalEditar');
+            if (row.cells[4].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtnombre_pagoEditar').value = row.cells[4].innerHTML;
+            }
+           
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_lblHiddenIDpago').value = row.cells[2].innerHTML;
+            }
+            xModal('pink', 'ContentPrincipal_txtid_pagoEditar', 'modalEditar');
         }
 
 
     </script>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Matenimiento de unidad de medida</a>
+    <a class="navbar-brand" href="#">Matenimiento de formas de pago</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-   <ul class="list">
+    <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -71,9 +70,9 @@
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
-            </li>
-             <li >
-                     <a href="almacenes_mant.aspx">
+        </li>
+        <li>
+            <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
@@ -83,114 +82,111 @@
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
-            </li>
-        
+        </li>
+
         <li>
             <a href="condentrega_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Condicion de Entrega</span>
             </a>
-            </li>
+        </li>
         <li>
             <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
-                <span>divisas</span>
+                <span>Divisas</span>
             </a>
-            </li>
+        </li>
         <li>
             <a href="estadomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Estado de Mercancia</span>
             </a>
-            </li>
-        <li>
-            <a href="forma_pago.aspx">
+        </li>
+        <li class="active">
+            <a href="#">
                 <i class="material-icons">directions_boat</i>
                 <span>Forma de Pago</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="modalidadesp_mant.aspx">
                 <i class="material-icons">add_moderator</i>
                 <span>Modalidad Especial</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Nivel Comercial</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="tipoitems_mant.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Tipo de Item</span>
             </a>
-            </li>
-         <li  class="active">
-            <a href="#">
+        </li>
+        <li>
+            <a href="unidmedida_mant.aspx">
                 <i class="material-icons">verified</i>
                 <span>Unidad de medida</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
-            </li>
-    </ul> 
-
+        </li>
+    </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
     <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
-
     <script type="text/javascript">
-        tituloImprimir = 'Listado del Estado de Unidad de Medida'
-        xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-        xMargenes.push(100, 0, 100, 0)
+         tituloImprimir = 'Listado de la forma de pago'
+         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
-
     </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">UNIDAD DE MEDIDA
-                                 <small>A continuación se muestra el listado de unidades de medida.</small>
+                    <h2 style="font-weight: bold;">FORMAS DE PAGO
+                                 <small>A continuación se muestra el listado de la forma de pago.</small>
                     </h2>
                 </div>
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtmedida','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtestado','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -213,8 +209,8 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="Id_UnidadMed" HeaderText="ID" />
-                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                                        <asp:BoundField DataField="id_pago" HeaderText="ID" />
+                                        <asp:BoundField DataField="nombre_pago" HeaderText="nombre_pago" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -227,14 +223,14 @@
     <!-- modal nuevo estado-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarmedida">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarpago">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVA UNIDAD DE MEDIDA</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO FORMA_PAGO</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese la unidad de medida y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos de forma de pago  y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL principal -->
@@ -243,30 +239,30 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID Unidad Medida" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtId_UnidadMed"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtid_pago"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_UnidadMed"
-                                        ErrorMessage="Ingrese la unidad de medida."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid_pago"
+                                        ErrorMessage="Ingrese el ID de la forma de pago."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validamedida" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validapago" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtDescripcion"></asp:TextBox>
+                                        <asp:TextBox placeholder="NOMBRE DE PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtnombre_pago" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtDescripcion"
-                                        ErrorMessage="Ingrese la descripcion de la unidad de medida."
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre_pago"
+                                        ErrorMessage="Ingrese el nombre del pago."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validamedida" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validapago" />
                                 </div>
                             </div>
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarmedida" ValidationGroup="Validamedida" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarpago" ValidationGroup="Validapago" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
@@ -282,20 +278,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR UNIDAD DE MEDIDA</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR PAGO</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que desea eliminar la unidad de medida:
-                    <asp:Label runat="server" ID="lblmedida" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDmedida" />
-                    <asp:HiddenField runat="server" ID="lblHiddenNombremedida" />
+                    ¿Seguro que desea eliminar la forma de pago:
+                    <asp:Label runat="server" ID="lblpago" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDpago" />
+                    <asp:HiddenField runat="server" ID="lblHiddenNombrepago" />
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarmedida" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarpago" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -304,17 +300,17 @@
     </div>
 
 
-         <!-- modal editar Estado de la mercancia-->
+    <!-- modal editar Estado de la mercancia-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarmedida">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarpago">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR UNIDAD DE MEDIDA</h4>
+                        <h4 class="modal-title" id="lblEditar">EDITAR FORMA DE PAGO</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar la unidad de medida haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        Luego de terminar de editar los datos de la forma de pago haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -323,38 +319,37 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID UNIDAD MEDIDA" AutoComplete="off" ValidationGroup="ValidamedidaEditar" runat="server" class="form-control" ID="txtId_UnidadMedEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtid_pagoEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtId_UnidadMedEditar"
-                                        ErrorMessage="Ingrese el ID de la unidad de medida" 
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtid_pagoEditar"
+                                        ErrorMessage="Ingrese el ID de la forma de pago"
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaestadoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidapagoEditar" />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtDescripcionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="FORMA DE PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtnombre_pagoEditar" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtDescripcionEditar"
-                                        ErrorMessage="Ingrese la descripcion de la unidad de medida."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtnombre_pagoEditar"
+                                        ErrorMessage="Ingrese la forma de pago."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidamedidaEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidapagoEditar" />
                                 </div>
                             </div>
 
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificarmedida" ValidationGroup="ValidaEstadoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidapagoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
             </asp:Panel>
         </div>
     </div>
-
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>

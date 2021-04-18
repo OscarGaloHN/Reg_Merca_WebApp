@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class estadomerc_mant
+Partial Public Class tipoitems_mant
 
     '''<summary>
     '''Control HiddenLogo.
@@ -50,13 +50,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtId_Estado.
+    '''Control txtId_TipoItems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtId_Estado As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtId_TipoItems As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator1.
@@ -68,13 +68,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtdescripcion.
+    '''Control txtDescripcion.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtDescripcion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control reqnombrevacio.
@@ -86,49 +86,49 @@ Partial Public Class estadomerc_mant
     Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarEstado.
+    '''Control bttGuardarItems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarEstado As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarItems As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblestado.
+    '''Control lblItems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblestado As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblItems As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDestado.
+    '''Control lblHiddenIDItems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDestado As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDItems As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenNombreEstado.
+    '''Control lblHiddenNombreItems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombreEstado As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenNombreItems As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control bttEliminarEstado.
+    '''Control bttEliminarItems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarEstado As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarItems As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel1.
@@ -140,13 +140,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtId_EstadoEditar.
+    '''Control txtId_TipoItemsEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtId_EstadoEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtId_TipoItemsEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator3.
@@ -158,13 +158,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtdescripcionEditar.
+    '''Control txtDescripcionEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcionEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtDescripcionEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator4.
@@ -176,11 +176,11 @@ Partial Public Class estadomerc_mant
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttModificar.
+    '''Control bttModificarItems.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttModificar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttModificarItems As Global.System.Web.UI.WebControls.LinkButton
 End Class

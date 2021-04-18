@@ -1,4 +1,4 @@
-﻿Public Class estadomerc_mant
+﻿Public Class condentrega_mant
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -8,16 +8,12 @@
             Session("DataSetX") = value
         End Set
     End Property
-    'OBJETO #37
+    'OBJETO #25
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            'cargar logo para imprimir
-            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
-
             'llenar grid
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_25_Estado_Mercancias"
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_14_condicion_entrega"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -29,12 +25,12 @@
 
             If Not IsPostBack Then
                 Select Case Request.QueryString("acction")
-                    Case "newestado"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('estado','El estado se almaceno con exito.', 'success');</script>")
-                    Case "delteestado"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('estado','El estado se elimino con exito.', 'success');</script>")
-                    Case "editestado"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('estado','El estado se modifico con exito.', 'success');</script>")
+                    Case "newcondicion"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se almaceno con exito.', 'success');</script>")
+                    Case "deltecondicion"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se elimino con exito.', 'success');</script>")
+                    Case "editcondicion"
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se modifico con exito.', 'success');</script>")
                     Case Else
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
@@ -44,8 +40,8 @@
                         End If
 
                         'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 25
-                        Session("NombrefrmQueIngresa") = "Mantenimiento de estados de la mercancia"
+                        Session("IDfrmQueIngresa") = 36
+                        Session("NombrefrmQueIngresa") = "Mantenimiento de condicion de entrega "
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -58,42 +54,43 @@
         End Try
     End Sub
 
-    Private Sub bttGuardarEstado_Click(sender As Object, e As EventArgs) Handles bttGuardarEstado.Click
+    Private Sub bttGuardarcondicion_Click(sender As Object, e As EventArgs) Handles bttGuardarcondicion.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_25_Estado_Mercancias where Id_Estado = BINARY  '" & txtId_Estado.Text & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_14_condicion_entrega where id_condicion = BINARY  '" & txtid_condicion.Text & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('estado','El estado  ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','la condicion  ya esta registrada.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` (`Id_Estado`, `Descripcion`) VALUES ('" & txtId_Estado.Text & "','" & txtdescripcion.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_14_condicion_entrega` (`id_condicion`, `nombre_condicion`) VALUES ('" & txtid_condicion.Text & "','" & txtnombre_condicion.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nuevo estado con descripcion: " & txtdescripcion.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo la nueva condicion con descripcion: " & txtnombre_condicion.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=newestado")
+                Response.Redirect("~/modulos/mantenimiento/condentrega_mant.aspx?acction=newcondicion")
             End If
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Private Sub bttEliminarEstado_Click(sender As Object, e As EventArgs) Handles bttEliminarEstado.Click
+    Private Sub bttEliminarcondicion_Click(sender As Object, e As EventArgs) Handles bttEliminarcondicion.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` WHERE Id_estado= " & lblHiddenIDestado.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_14_condicion_entrega` WHERE id_condicion = " & lblHiddenIDcondicion.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
-                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el estado  con nombre: " & lblHiddenNombreEstado.Value & " con exito")
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la condicion  con nombre: " & lblHiddenNombrecondicion.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=delteaduana")
+            Response.Redirect("~/modulos/mantenimiento/condentrega_mant.aspx?acction=delteaduana")
         Catch ex As Exception
+
 
         End Try
     End Sub
@@ -101,8 +98,8 @@
     Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
         Try
             Dim Ssql As String = String.Empty
-            If txtId_EstadoEditar.Text <> lblHiddenNombreEstado.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_25_Estado_Mercancias where Id_Estado = BINARY  '" & txtId_EstadoEditar.Text & "' "
+            If txtid_condicionEditar.Text <> lblHiddenNombrecondicion.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_14_condicion_entrega where id_condicion = BINARY  '" & txtid_condicionEditar.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -112,16 +109,16 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` SET `Id_Estado` = '" & txtId_EstadoEditar.Text & "', `Descripcion` = '" & txtdescripcionEditar.Text & "' WHERE `Id_Estado` = '" & lblHiddenIDestado.Value & "';"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_14_condicion_entrega` SET `id_condicion` = '" & txtid_condicionEditar.Text & "', `nombre_condicion` = '" & txtnombre_condicionEditar.Text & "' WHERE `id_condicion` = '" & lblHiddenIDcondicion.Value & "';"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos del estado de la mercancia con el id:" & lblHiddenIDestado.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se edito la condicion de la mercancia con el id:" & lblHiddenIDcondicion.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=editestado")
+                Response.Redirect("~/modulos/mantenimiento/condentrega_mant.aspx?acction=editcondicion")
 
             End If
         Catch ex As Exception
