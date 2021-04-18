@@ -178,7 +178,7 @@
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
               
     <script type="text/javascript">
-        tituloImprimir = 'Listado de las Aduanas'
+        tituloImprimir = 'LISTADO DE LAS ADUANAS'
         xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -194,7 +194,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">Aduanas
-                                 <small>A continuación se muestra el listado de las aduanas registradas.</small>
+                                 <small>A continuación se muestra el listado de las Aduanas registradas.</small>
                     </h2>
                 </div>
                 <div class="body">

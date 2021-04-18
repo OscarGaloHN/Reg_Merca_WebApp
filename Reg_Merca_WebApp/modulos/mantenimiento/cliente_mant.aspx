@@ -233,17 +233,22 @@
     
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
        <script type="text/javascript">
            tituloImprimir = 'Listado de los clientes'
            xColumnas.push(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+         xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
        </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">clientes
-                                 <small>A continuación se muestra el listado de los clientes registrados.</small>
+                    <h2 style="font-weight: bold;">Clientes
+                                 <small>A Continuación Se Muestra El Listado de los Clientes Registrados.</small>
                     </h2>
                 </div>
                 <div class="body">

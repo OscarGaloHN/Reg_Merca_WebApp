@@ -75,8 +75,8 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.23.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
-    <Reference Include="MySql.Web, Version=8.0.23.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Web, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -1212,6 +1212,7 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\condentrega_mant.aspx.vb">
       <DependentUpon>condentrega_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\divisas_mant.aspx.designer.vb">
       <DependentUpon>divisas_mant.aspx</DependentUpon>
@@ -1232,6 +1233,7 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\forma_pago.aspx.vb">
       <DependentUpon>forma_pago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\mantenimiento_adunas.aspx.designer.vb">
       <DependentUpon>mantenimiento_adunas.aspx</DependentUpon>
@@ -1294,12 +1296,14 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\tipoitems_mant.aspx.vb">
       <DependentUpon>tipoitems_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\unidmedida_mant.aspx.designer.vb">
       <DependentUpon>unidmedida_mant.aspx</DependentUpon>
     </Compile>
     <Compile Include="modulos\mantenimiento\unidmedida_mant.aspx.vb">
       <DependentUpon>unidmedida_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\ventajas_mant.aspx.designer.vb">
       <DependentUpon>ventajas_mant.aspx</DependentUpon>

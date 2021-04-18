@@ -11,6 +11,9 @@
     'OBJETO #17
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_04_cliente"
@@ -74,7 +77,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_04_cliente` SET `nombrec` = '" & txtnombre.Text & "', `direccion_domicilio` = '" & txtdirecciondomicilio.Text & "', `direccion_envio` = " & txtdireccionenvio.Text & "', `ciudad` = '" & txtciudad.Text & " ' ,'telefono' = '" & txttelefono.Text & "','telefono2'= '" & txttelefono2.Text & "','telefono3' = '" & txttelefono3.Text & "','fax'= '" & txtfax.Text & "','email_personal'= '" & txtemailpersonal.Text & "' ,'email_empresarial'= '" & txtemailempresarial.Text & "','rtn_cli'='" & txtrtncli.Text & "','contacto'= '" & txtcontacto.Text & "','limitecr`='" & txtlimitecr.Text & "','plazocr' = '" & txtplazocr.Text & "'where 'Id_cliente =" & lblHiddenIDcliente.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_04_cliente` SET `nombrec` = '" & txtnombre.Text & "', `direccion_domicilio` = '" & txtdirecciondomicilio.Text & "', `direccion_envio` = '" & txtdireccionenvio.Text & "', `ciudad` = '" & txtciudad.Text & "' ,`telefono` = '" & txttelefono.Text & "',`telefono2`= '" & txttelefono2.Text & "',`telefono3` = '" & txttelefono3.Text & "',`fax`= '" & txtfax.Text & "',`email_personal`= '" & txtemailpersonal.Text & "' ,`email_empresarial`= '" & txtemailempresarial.Text & "',`rtn_cli`='" & txtrtncli.Text & "',`contacto`= '" & txtcontacto.Text & "',`limitecr`='" & txtlimitecr.Text & "',`plazocr` = '" & txtplazocr.Text & "' where `Id_cliente` =" & lblHiddenIDcliente.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
