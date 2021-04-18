@@ -24,7 +24,7 @@
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblmedida').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDmedida').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombremedida').valhttps://www.researchgate.net/publication/335665456_La_Implementacion_de_la_Firma_Electronica_en_el_Centro_Nacional_de_Registros_de_El_Salvadorue = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenNombremedida').value = row.cells[3].innerHTML;
             xModal('red', 'ContentPrincipal_txtId_Unidadmed', 'modalDelete');
         }
 
