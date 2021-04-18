@@ -37,7 +37,8 @@
             Else
                 'llenar grid
                 Dim Ssql As String = String.Empty
-                Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, a.presencia, a.Id_Merca, b.Descripcion
+                Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia,
+                    case when a.presencia =1 then 'SI' else 'NO' end presencia, a.Id_Merca, b.Descripcion
                     From tbl_41_documentos_items a, tbl_32_Cod_Documentos b
                     Where a.Id_Documento = b.Id_Documento  
                     and a.Id_merca =" & Request.QueryString("iditems") & ""
@@ -109,7 +110,7 @@
                 'Using log_bitacora As New ControlBitacora
                 '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
                 'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems"))
+                Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
             End If
 
             'habilitar indicador
@@ -136,7 +137,7 @@
             '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             'End Using
 
-            Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
 
         Catch ex As Exception
 
@@ -167,7 +168,7 @@
                 'Using log_bitacora As New ControlBitacora
                 '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
                 'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=editdocumento&iditems=" & Request.QueryString("iditems"))
+                Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=editdocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
             End If
         Catch ex As Exception
 
@@ -176,7 +177,7 @@
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
-            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try
@@ -184,7 +185,7 @@
 
     Private Sub bttcontinuar_Click(sender As Object, e As EventArgs) Handles bttcontinuar.Click
         Try
-            Response.Redirect("/modulos/declaracion_aduanera/items_dcomplementarios.aspx?iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("/modulos/declaracion_aduanera/items_dcomplementarios.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try

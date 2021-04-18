@@ -23,7 +23,8 @@
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlDocumento').value = '';
             document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            document.getElementById('ContentPrincipal_chkPresencia').value = '';
+           
+            document.getElementById('ContentPrincipal_chkPresencia').checked = false
         }
 
         function GetSelectedRowDelete(lnk) {
@@ -40,6 +41,12 @@
             document.getElementById('ContentPrincipal_txtreferenciaEditar').value = '';
             //document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').checked = '';
             var row = lnk.parentNode.parentNode;
+
+            if (row.cells[6].innerHTML == 'SI') {
+                document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = true
+            } else {
+                document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = false
+            }
 
             document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
@@ -106,7 +113,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo; xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>

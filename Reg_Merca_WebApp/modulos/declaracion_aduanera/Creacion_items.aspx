@@ -118,8 +118,8 @@
                                         <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                             Width="100%">
                                             <Columns>
-                                                <asp:BoundField HeaderText="Editar" DataField="ID_Merca" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
-
+                                                <asp:BoundField HeaderText="Editar" DataField="ID_Merca;Id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&idCaratula={1}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                               
                                                 <asp:TemplateField HeaderText="Eliminar">
                                                     <ItemTemplate>
                                                         <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>

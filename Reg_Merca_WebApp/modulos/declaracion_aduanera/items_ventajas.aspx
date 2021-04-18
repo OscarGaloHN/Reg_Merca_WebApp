@@ -106,7 +106,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
                             <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
-                                <i class="material-icons">add</i> <span>Nuevo</span>
+                                <i class="material-icons">add</i> <span>Nueva Ventaja</span>
                             </button>
                         </div>
 
@@ -120,6 +120,18 @@
                                 class="btn btn-block btn-lg bg-teal waves-effect">
                                 <i class="material-icons">undo</i>
                                 <span>Volver</span>
+                            </asp:LinkButton>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttnuevonuevoitems"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">add</i>
+                                <span>Nuevo Item</span>
                             </asp:LinkButton>
                         </div>
 

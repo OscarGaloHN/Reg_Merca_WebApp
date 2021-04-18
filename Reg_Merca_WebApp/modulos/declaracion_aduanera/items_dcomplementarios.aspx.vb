@@ -117,7 +117,7 @@
             'Using log_bitacora As New ControlBitacora
             '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
             'End Using
-            Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
             'End If
 
 
@@ -138,7 +138,7 @@
             '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             'End Using
 
-            Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
 
         Catch ex As Exception
 
@@ -171,7 +171,7 @@
                 'Using log_bitacora As New ControlBitacora
                 '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
                 'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?acction=editdocumento&iditems=" & Request.QueryString("iditems"))
+                Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?acction=editdocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
             End If
         Catch ex As Exception
 
@@ -181,7 +181,7 @@
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
-            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
 
         Catch ex As Exception
 
@@ -190,7 +190,7 @@
 
     Private Sub bttcontinuar_Click(sender As Object, e As EventArgs) Handles bttcontinuar.Click
         Try
-            Response.Redirect("/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try

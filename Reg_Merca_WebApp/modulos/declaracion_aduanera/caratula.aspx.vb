@@ -45,6 +45,7 @@
                         ddlestado.SelectedValue = 7
                     Case "update"
                         'habilita Panel de botones
+                        btt_guardar.Visible = False
                         pbotones.Visible = True
                         pactualizar.Visible = True
                         If Not IsPostBack Then
@@ -164,7 +165,7 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
+                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new&idCaratula=" & Session("GME_Recuperar_ID"))
 
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
