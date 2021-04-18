@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class estadomerc_mant
+Partial Public Class forma_pago
 
     '''<summary>
     '''Control HiddenLogo.
@@ -50,13 +50,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtId_Estado.
+    '''Control txtid_pago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtId_Estado As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtid_pago As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator1.
@@ -68,13 +68,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtdescripcion.
+    '''Control txtnombre_pago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcion As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtnombre_pago As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control reqnombrevacio.
@@ -86,49 +86,49 @@ Partial Public Class estadomerc_mant
     Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control bttGuardarEstado.
+    '''Control bttGuardarpago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttGuardarEstado As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttGuardarpago As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblestado.
+    '''Control lblpago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblestado As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblpago As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDestado.
+    '''Control lblHiddenIDpago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDestado As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDpago As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenNombreEstado.
+    '''Control lblHiddenNombrepago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenNombreEstado As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenNombrepago As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control bttEliminarEstado.
+    '''Control bttEliminarpago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarEstado As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarpago As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel1.
@@ -140,13 +140,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control txtId_EstadoEditar.
+    '''Control txtid_pagoEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtId_EstadoEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtid_pagoEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator3.
@@ -158,13 +158,13 @@ Partial Public Class estadomerc_mant
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtdescripcionEditar.
+    '''Control txtnombre_pagoEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdescripcionEditar As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtnombre_pagoEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator4.
