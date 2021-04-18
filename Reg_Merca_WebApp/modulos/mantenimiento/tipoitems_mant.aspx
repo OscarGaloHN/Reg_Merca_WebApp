@@ -34,17 +34,16 @@
            
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenNombreItems').value = row.cells[3].innerHTML;
-
+            
+               
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtId_TipoItemsEditar').value = row.cells[3].innerHTML;
-            }
-            if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtDescripcionEditar').value = row.cells[4].innerHTML;
+               document.getElementById('ContentPrincipal_lblHiddenNombreItems').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtDescripcionEditar').value = row.cells[3].innerHTML;
             }
            
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDItems').value = row.cells[2].innerHTML;
+             document.getElementById('ContentPrincipal_txtId_TipoItemsEditar').value = row.cells[2].innerHTML;
             }
             xModal('pink', 'ContentPrincipal_txtId_TipoItemsEditar', 'modalEditar');
         }

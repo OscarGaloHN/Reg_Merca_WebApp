@@ -38,15 +38,13 @@
             document.getElementById('ContentPrincipal_lblHiddenNombrepago').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtid_pagoEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtnombre_pagoEditar').value = row.cells[3].innerHTML;
             }
-            if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtnombre_pagoEditar').value = row.cells[4].innerHTML;
-            }
-           
+              document.getElementById('ContentPrincipal_lblHiddenIDpago').value = row.cells[2].innerHTML;
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDpago').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_txtid_pagoEditar').value = row.cells[2].innerHTML;
             }
+            
             xModal('pink', 'ContentPrincipal_txtid_pagoEditar', 'modalEditar');
         }
 

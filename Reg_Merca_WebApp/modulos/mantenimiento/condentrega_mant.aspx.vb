@@ -11,6 +11,9 @@
     'OBJETO #25
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_14_condicion_entrega"
@@ -81,14 +84,14 @@
 
     Private Sub bttEliminarcondicion_Click(sender As Object, e As EventArgs) Handles bttEliminarcondicion.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_14_condicion_entrega` WHERE id_condicion = " & lblHiddenIDcondicion.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_14_condicion_entrega` WHERE `id_condicion` = '" & lblHiddenIDcondicion.Value & "';"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la condicion  con nombre: " & lblHiddenNombrecondicion.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/condentrega_mant.aspx?acction=delteaduana")
+            Response.Redirect("~/modulos/mantenimiento/condentrega_mant.aspx?acction=deltecondicion")
         Catch ex As Exception
 
 

@@ -66,16 +66,16 @@
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El estado  ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El tipo de Items  ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_26_Tipo_Items where Id_TipoItems` (`Id_TipoItems`, `Descripcion`) VALUES ('" & txtId_TipoItems.Text & "' '" & txtDescripcion.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_26_Tipo_Items` (`Id_TipoItems`, `Descripcion`) VALUES ('" & txtId_TipoItems.Text & "','" & txtDescripcion.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se edito el tipo de items  con el id:" & lblHiddenIDItems.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/tipoitems_mant.aspx?acction=editestado")
+                Response.Redirect("~/modulos/mantenimiento/tipoitems_mant.aspx?acction=editItems")
             End If
         Catch ex As Exception
 
@@ -84,14 +84,14 @@
 
     Private Sub bttEliminarItems_Click(sender As Object, e As EventArgs) Handles bttEliminarItems.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_26_Tipo_Items where Id_TipoItems` WHERE Id_TipoItems= " & lblHiddenIDItems.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_26_Tipo_Items` WHERE `Id_TipoItems`= '" & lblHiddenIDItems.Value & "';"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el estado  con nombre: " & lblHiddenNombreItems.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/tipoitems_mant.aspx?acction=delteaduana")
+            Response.Redirect("~/modulos/mantenimiento/tipoitems_mant.aspx?acction=delteItems")
         Catch ex As Exception
 
         End Try
@@ -113,7 +113,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El Tipo de Items ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_26_Tipo_Items` SET `Id_TipoItems` = '" & txtId_TipoItemsEditar.Text & "', `descripcion` = '" & txtDescripcionEditar.Text & "' WHERE `Id_TipoItems` = " & lblHiddenIDItems.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_26_Tipo_Items` SET `Id_TipoItems` = '" & txtId_TipoItemsEditar.Text & "', `descripcion` = '" & txtDescripcionEditar.Text & "' WHERE `Id_TipoItems` = '" & lblHiddenIDItems.Value & "';"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

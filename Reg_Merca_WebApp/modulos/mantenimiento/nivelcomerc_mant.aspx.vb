@@ -12,10 +12,9 @@
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'cargar logo para imprimir
-        HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-        HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+
         Try
+
             'cargar logo para imprimir
             HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
             HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
@@ -123,14 +122,14 @@
 
     Private Sub bttEliminarcomercial_Click(sender As Object, e As EventArgs) Handles bttEliminarcomercial.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_12_nivel_comercial` WHERE id_pregunta= " & lblHiddenIDcomercial.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_12_nivel_comercial` WHERE Id_nivel_com = " & lblHiddenIDcomercial.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el nivel comercial  con nombre: " & lblHiddenNombrecomercial.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/nivelcomerc_mant.aspx?acction=deltepreguntas")
+            Response.Redirect("~/modulos/mantenimiento/nivelcomerc_mant.aspx?acction=deltecomercial")
         Catch ex As Exception
 
         End Try

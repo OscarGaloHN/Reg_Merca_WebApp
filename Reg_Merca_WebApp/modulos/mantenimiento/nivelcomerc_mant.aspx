@@ -163,13 +163,11 @@
 
     <script type="text/javascript">
         tituloImprimir = 'Listado del Nivel Comercial de LAs Mercancias'
-        xColumnas.push(2); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
-    <script type="text/javascript">
-        tituloImprimir = 'Listado del nivel comercial'
-        xColumnas.push(2); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+       
     </script>
 
     <div class="row clearfix">
@@ -275,7 +273,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarcomercial" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarcomercial" ValidationGroup="Validacomercial" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>

@@ -85,14 +85,14 @@
 
     Private Sub bttEliminarEstado_Click(sender As Object, e As EventArgs) Handles bttEliminarEstado.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` WHERE Id_estado= " & lblHiddenIDestado.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_25_Estado_Mercancias` WHERE `Id_estado` = '" & lblHiddenIDestado.Value & "';"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el estado  con nombre: " & lblHiddenNombreEstado.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=delteaduana")
+            Response.Redirect("~/modulos/mantenimiento/estadomerc_mant.aspx?acction=delteestado")
         Catch ex As Exception
 
         End Try
