@@ -37,16 +37,16 @@
 
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
-            if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_ddlventajaedit').value = row.cells[3].innerHTML;
-                //}
+            //if (row.cells[3].innerHTML != '&nbsp;') {
+            //    document.getElementById('ContentPrincipal_ddlventajaedit').value = row.cells[3].innerHTML;
+            //    //}
                 //if (row.cells[4].innerHTML != '&nbsp;') {
                 //    document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
                 //}
                 //if (row.cells[5].innerHTML != '&nbsp;') {
                 //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
             //}
-            //if (row.cells[2].innerHTML != '&nbsp;') {
+            //if (row.cells[2].innerHTML != '&nbsp;') { 
             //    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
             //}
                 xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
