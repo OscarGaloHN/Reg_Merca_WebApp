@@ -36,13 +36,19 @@
         <li>
             <a href="config_permisos.aspx">
                 <i class="material-icons">vpn_key</i>
-              <span>Permisos - Módulos</span>
+                <span>Permisos - Módulos</span>
             </a>
         </li>
         <li>
             <a href="config_objetos.aspx">
                 <i class="material-icons">vpn_key</i>
                 <span>Permisos - Objetos</span>
+            </a>
+        </li>
+        <li >
+            <a href="config_respaldo.aspx">
+                <i class="material-icons">save</i>
+                <span>Copias De Seguridad</span>
             </a>
         </li>
         <%ELSE %>
@@ -194,6 +200,7 @@
                             <span>Guardar</span>
                             </asp:LinkButton>
                         </div>
+                      
 
                     </div>
 

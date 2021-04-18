@@ -45,6 +45,7 @@
             jQuery("#ContentPrincipal_ddlModulosEditar option").filter(function () {
                 return $.trim($(this).text()) == row.cells[3].innerHTML
             }).prop('selected', true);
+
             $('#ContentPrincipal_ddlModulosEditar').selectpicker('refresh');
             document.getElementById('ContentPrincipal_HiddenLblEditarIdModulo').value = document.getElementById('ContentPrincipal_ddlModulosEditar').value;
              
@@ -90,6 +91,13 @@
             <a href="config_objetos.aspx">
                 <i class="material-icons">vpn_key</i>
                 <span>Permisos - Objetos</span>
+            </a>
+            
+        </li>  
+        <li>
+            <a href="config_respaldo.aspx">
+                <i class="material-icons">save</i>
+                <span>Copias De Seguridad</span>
             </a>
         </li>
     </ul>

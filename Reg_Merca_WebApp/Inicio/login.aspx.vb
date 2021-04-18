@@ -59,6 +59,9 @@ Public Class login
                             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo Electrónico','Gracias por verificar su correo electrónico.', 'success');</script>")
                         Case "systemconfig"
                             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Sistema Configurado','Los cambios fueron aplicados se cerro la sesión para recargar los parametros', 'success');</script>")
+                        Case "restaurar"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Sistema Configurado','Los cambios fueron aplicados con exito, se cerro la sesión para recargar los datos restaurados.', 'success');</script>")
+
                     End Select
 
 

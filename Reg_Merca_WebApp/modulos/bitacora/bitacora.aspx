@@ -61,19 +61,50 @@
                     </h2>
                 </div>
                 <div class="body">
-                    <div class="col-xs-6">
-                        <h2 class="card-inside-title">Rango de fechas</h2>
-                        <div class="input-daterange input-group" id="bs_datepicker_range_container">
-                         <span class="input-group-addon">Del</span>
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="Fecha inicio...">
-                            </div>
-                            <span class="input-group-addon">hasta el</span>
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="Fecha fin...">
-                            </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <h2 class="card-inside-title">Rango de fechas</h2>
                         </div>
                     </div>
+                    <div class="row clearfix">
+                        <div class="input-daterange input-group" id="bs_datepicker_range_container">
+
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <span class="input-group-addon">Del</span>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <div class="form-line">
+                                    <input readonly style="text-align:center" id="fechaInicio" runat="server" type="text" class="form-control" placeholder="Fecha inicio...">
+                                </div>
+                                <asp:RequiredFieldValidator ControlToValidate="fechaInicio"
+                                    runat="server" ErrorMessage="Debe de seleccionar una fecha de inicio."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                <span class="input-group-addon">hasta el</span>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <div class="form-line">
+                                    <input readonly style="text-align:center" id="fechaFin" runat="server" type="text" class="form-control" placeholder="Fecha fin...">
+                                </div>
+                                <asp:RequiredFieldValidator ControlToValidate="fechaFin"
+                                    runat="server" ErrorMessage="Debe de seleccionar una fecha fin."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <asp:LinkButton Width="100%" runat="server" ID="bttFiltrar" type="button" class="btn bg-pink waves-effect">
+                            <i class="material-icons">search</i>
+                            <span>Filtrar fechas</span>
+                                </asp:LinkButton>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
 
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -92,9 +123,10 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-    </div>
+        </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">

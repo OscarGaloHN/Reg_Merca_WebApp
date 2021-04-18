@@ -11,59 +11,59 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class bitacora
+Partial Public Class config_respaldo
 
     '''<summary>
-    '''Control HiddenLogo.
+    '''Control bttRespaldo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents HiddenLogo As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents bttRespaldo As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control HiddenEmpresa.
+    '''Control FileUpload1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
-    '''Control fechaInicio.
+    '''Control RegularExpressionValidator1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents fechaInicio As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
-    '''Control fechaFin.
+    '''Control bttModal.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents fechaFin As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents bttModal As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control bttFiltrar.
+    '''Control RegularExpressionValidator2.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttFiltrar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents RegularExpressionValidator2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
 
     '''<summary>
-    '''Control gvCustomers.
+    '''Control bttRestaurar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents gvCustomers As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents bttRestaurar As Global.System.Web.UI.WebControls.LinkButton
 End Class

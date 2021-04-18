@@ -45,6 +45,12 @@
                 <span>Permisos - Objetos</span>
             </a>
         </li>
+        <li>
+            <a href="config_respaldo.aspx">
+                <i class="material-icons">save</i>
+                <span>Copias De Seguridad</span>
+            </a>
+        </li>
         <%ELSE %>
 
         <li class="active">

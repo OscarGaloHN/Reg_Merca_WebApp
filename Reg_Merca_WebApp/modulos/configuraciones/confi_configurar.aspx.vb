@@ -1,4 +1,7 @@
-﻿Public Class configurar
+﻿
+Imports MySql.Data.MySqlClient
+
+Public Class configurar
     Inherits System.Web.UI.Page
 
 
@@ -106,7 +109,5 @@
         Session.Abandon()
         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuraciones','Su configuacion fue almacenada exitosamente.', 'success');</script>")
     End Sub
-
-
 
 End Class
