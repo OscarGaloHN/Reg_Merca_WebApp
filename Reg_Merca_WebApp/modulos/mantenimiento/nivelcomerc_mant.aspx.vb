@@ -12,7 +12,13 @@
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        'cargar logo para imprimir
+        HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+        HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_12_nivel_comercial"
@@ -60,7 +66,7 @@
     Private Sub bttModificarcomercial_Click(sender As Object, e As EventArgs) Handles bttModificarcomercial.Click
         Try
             Dim Ssql As String = String.Empty
-            If txtTipoEditar.Text <> lblHiddenNombrecomercial.Value Then
+            If txtTipo.Text <> lblHiddenNombrecomercial.Value Then
                 Ssql = "SELECT * FROM DB_Nac_Merca.tbl_12_nivel_comercial where Tipo = BINARY  '" & txtTipoEditar.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)

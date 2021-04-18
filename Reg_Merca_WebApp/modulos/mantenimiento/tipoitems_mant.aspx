@@ -165,9 +165,14 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
      <script type="text/javascript">
-         tituloImprimir = 'Listado del estado de mercancias'
+         tituloImprimir = 'Listado de Tipo de Items'
          xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+         xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
      </script>
 
     <div class="row clearfix">
@@ -234,7 +239,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID TIPO DE ITEMS" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtId_TipoItems"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID TIPO DE ITEMS" AutoComplete="off" ValidationGroup="Validaestado" runat="server" class="form-control" ID="txtId_TipoItems" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_TipoItems"
                                         ErrorMessage="Ingrese el ID del tipo de ITEMS."
@@ -245,7 +250,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="ValidaItems" runat="server" class="form-control" ID="txtDescripcion"></asp:TextBox>
+                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="ValidaItems" runat="server" class="form-control" ID="txtDescripcion" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtDescripcion"
                                         ErrorMessage="Ingrese la descripcion del tipo de Items."
@@ -314,7 +319,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID TIPO DE ITEMS" AutoComplete="off" ValidationGroup="ValidaItemsEditar" runat="server" class="form-control" ID="txtId_TipoItemsEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID TIPO DE ITEMS" AutoComplete="off" ValidationGroup="ValidaItemsEditar" runat="server" class="form-control" ID="txtId_TipoItemsEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtId_TipoItemsEditar"
                                         ErrorMessage="Ingrese el ID del tipo de Items " 
@@ -325,7 +330,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaItemsEditar" runat="server" class="form-control" ID="txtDescripcionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaItemsEditar" runat="server" class="form-control" ID="txtDescripcionEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtDescripcionEditar"
                                         ErrorMessage="Ingrese la descripcion del tipo de items."

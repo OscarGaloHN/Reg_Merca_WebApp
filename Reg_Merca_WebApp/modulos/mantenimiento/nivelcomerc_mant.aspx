@@ -157,9 +157,19 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
+
+    <script type="text/javascript">
+        tituloImprimir = 'Listado del Nivel Comercial de LAs Mercancias'
+        xColumnas.push(2); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     <script type="text/javascript">
         tituloImprimir = 'Listado del nivel comercial'
-        xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xColumnas.push(2); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
     </script>
 
     <div class="row clearfix">
@@ -293,7 +303,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtTipoEditar"
                                         ErrorMessage="Ingrese el Tipo del nivel comercial."
