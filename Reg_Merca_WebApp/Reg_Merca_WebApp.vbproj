@@ -367,6 +367,17 @@
     <Content Include="modulos\reportes\fuentes\DSClientes_2.xss">
       <DependentUpon>DSClientes_2.xsd</DependentUpon>
     </Content>
+    <Content Include="modulos\reportes\fuentes\DSPoliza.xsc">
+      <DependentUpon>DSPoliza.xsd</DependentUpon>
+    </Content>
+    <None Include="modulos\reportes\fuentes\DSPoliza.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSPoliza.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="modulos\reportes\fuentes\DSPoliza.xss">
+      <DependentUpon>DSPoliza.xsd</DependentUpon>
+    </Content>
     <None Include="My Project\PublishProfiles\CarpetaLocal.pubxml" />
     <None Include="My Project\PublishProfiles\CarpetaLocar.pubxml" />
     <None Include="My Project\PublishProfiles\FTPProfile.pubxml" />
@@ -1332,6 +1343,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DSClientes_2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\reportes\fuentes\DSPoliza.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSPoliza.xsd</DependentUpon>
     </Compile>
     <Compile Include="modulos\src\ControlBitacora.vb" />
     <Compile Include="modulos\src\ControlDB.vb" />

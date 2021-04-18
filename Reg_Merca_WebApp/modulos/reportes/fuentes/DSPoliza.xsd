@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSPoliza" targetNamespace="http://tempuri.org/DSPoliza.xsd" xmlns:mstns="http://tempuri.org/DSPoliza.xsd" xmlns="http://tempuri.org/DSPoliza.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSPoliza" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSPoliza" msprop:Generator_UserDSName="DSPoliza">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DtPoliza" msprop:Generator_TableClassName="DtPolizaDataTable" msprop:Generator_TableVarName="tableDtPoliza" msprop:Generator_TablePropName="DtPoliza" msprop:Generator_RowDeletingName="DtPolizaRowDeleting" msprop:Generator_RowChangingName="DtPolizaRowChanging" msprop:Generator_RowEvHandlerName="DtPolizaRowChangeEventHandler" msprop:Generator_RowDeletedName="DtPolizaRowDeleted" msprop:Generator_UserTableName="DtPoliza" msprop:Generator_RowChangedName="DtPolizaRowChanged" msprop:Generator_RowEvArgName="DtPolizaRowChangeEvent" msprop:Generator_RowClassName="DtPolizaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_poliza" msprop:Generator_ColumnVarNameInTable="columnid_poliza" msprop:Generator_ColumnPropNameInRow="id_poliza" msprop:Generator_ColumnPropNameInTable="id_polizaColumn" msprop:Generator_UserColumnName="id_poliza" type="xs:string" minOccurs="0" />
+              <xs:element name="fecha_creacion" msprop:Generator_ColumnVarNameInTable="columnfecha_creacion" msprop:Generator_ColumnPropNameInRow="fecha_creacion" msprop:Generator_ColumnPropNameInTable="fecha_creacionColumn" msprop:Generator_UserColumnName="fecha_creacion" type="xs:string" minOccurs="0" />
+              <xs:element name="cliente" msprop:Generator_ColumnVarNameInTable="columncliente" msprop:Generator_ColumnPropNameInRow="cliente" msprop:Generator_ColumnPropNameInTable="clienteColumn" msprop:Generator_UserColumnName="cliente" type="xs:string" minOccurs="0" />
+              <xs:element name="estado" msprop:Generator_ColumnVarNameInTable="columnestado" msprop:Generator_ColumnPropNameInRow="estado" msprop:Generator_ColumnPropNameInTable="estadoColumn" msprop:Generator_UserColumnName="estado" type="xs:string" minOccurs="0" />
+              <xs:element name="usuario" msprop:Generator_ColumnVarNameInTable="columnusuario" msprop:Generator_ColumnPropNameInRow="usuario" msprop:Generator_ColumnPropNameInTable="usuarioColumn" msprop:Generator_UserColumnName="usuario" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
