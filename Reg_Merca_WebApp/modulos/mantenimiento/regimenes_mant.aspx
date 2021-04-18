@@ -273,7 +273,7 @@
                 </div>
                 <div class="modal-body">
                     ¿Seguro que dese eliminar este Régimenes:
-                    <asp:Label runat="server" ID="lblpregunta" Text="..."></asp:Label>?
+                    <asp:Label runat="server" ID="lblregimenes" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDregimenes" />
                         <asp:HiddenField runat="server" ID="lblHiddenNombreregimenes" />
                     <br />
