@@ -125,13 +125,13 @@
             <div class="container-fluid">
                 <div class="block-header">
                     <div>
-                        <asp:Button ID="Button2" runat="server" Text="IMPRIMIR CLIENTES uno" OnClientClick="target ='_blank';"/>
+                        <asp:Button ID="Button2" runat="server" Text="IMPRIMIR CLIENTES uno" OnClientClick="target ='_blank';" />
 
-                        <asp:Button ID="Button1" runat="server" Text="IMPRIMIR CLIENTES dos" OnClientClick="target ='_blank';"/>
-                        <%--                            <asp:ScriptManager runat="server"></asp:ScriptManager>
-                            <rsweb:ReportViewer  SizeToReportContent="True"  ID="ReportViewer1" runat="server" Height="100%" Width="100%">
-                            </rsweb:ReportViewer>
-                        --%>
+                        <asp:Button ID="Button1" runat="server" Text="IMPRIMIR CLIENTES dos" OnClientClick="target ='_blank';" />
+                        <asp:ScriptManager runat="server"></asp:ScriptManager>
+                        <rsweb:ReportViewer SizeToReportContent="True" ID="ReportViewer1" runat="server" Height="100%" Width="100%">
+                        </rsweb:ReportViewer>
+
                     </div>
                 </div>
             </div>
