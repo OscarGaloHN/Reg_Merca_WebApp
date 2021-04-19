@@ -27,7 +27,7 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
             xModal('red', 'ContentPrincipal_ddlventajas', 'modalDelete');
@@ -40,6 +40,7 @@
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_ddlventajaedit').value = row.cells[3].innerHTML;
                 //}
@@ -54,7 +55,6 @@
                 //}
                 xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
             }
-        }
 
     </script>
 </asp:Content>

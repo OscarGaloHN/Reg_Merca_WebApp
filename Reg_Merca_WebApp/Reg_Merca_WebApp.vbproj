@@ -223,6 +223,7 @@
     <Content Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_documentos.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_ventajas.aspx" />
+    <Content Include="modulos\declaracion_aduanera\Reporte_caratula.aspx" />
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\mantenimiento\almacenes_mant.aspx" />
@@ -1111,6 +1112,13 @@
     </Compile>
     <Compile Include="modulos\declaracion_aduanera\master_registros.Master.vb">
       <DependentUpon>master_registros.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\Reporte_caratula.aspx.designer.vb">
+      <DependentUpon>Reporte_caratula.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\Reporte_caratula.aspx.vb">
+      <DependentUpon>Reporte_caratula.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\gestion_usuario\config_gestion_usuario.aspx.designer.vb">

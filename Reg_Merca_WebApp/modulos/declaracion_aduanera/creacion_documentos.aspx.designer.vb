@@ -95,6 +95,15 @@ Partial Public Class creacion_documentos
     Protected WithEvents ddldocumentos As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control ddldocumen.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddldocumen As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control txtreferencia.
     '''</summary>
     '''<remarks>
@@ -192,6 +201,15 @@ Partial Public Class creacion_documentos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents dddocumentoEditar As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control RequiredFieldValidator2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtreferenciaEditar.

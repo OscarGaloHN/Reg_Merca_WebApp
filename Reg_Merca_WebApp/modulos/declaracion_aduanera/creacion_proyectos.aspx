@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="Creación de Proyectos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_proyectos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_proyectos" %>
 
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <!-- Bootstrap Select Css -->
@@ -61,14 +64,14 @@
 
 
     <script type="text/javascript">
-            tituloImprimir = 'Listado de Pólizas'
-            xColumnas.push(1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-            xMargenes.push(100, 0, 100, 0)
-            xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
-            xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+        tituloImprimir = 'Listado de Pólizas'
+        xColumnas.push(1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
-<%--    <script type="text/javascript">
+    <%--    <script type="text/javascript">
 
 </script>--%>
 
@@ -111,20 +114,20 @@
                             </div>
                     </div>--%>
 
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group form-float">
-                            <label class="form-label"></label>
-                            <div class="form-line">
-                                <asp:TextBox
-                                    AutoComplete="off"
-                                    ID="txt_cliente"
-                                    runat="server" onkeyup="mayus(this); borrarespacios(this);" onkeypress="return txNombres(event)"
-                                    class="form-control">
-                                </asp:TextBox>
-                                <label class="form-label">Nombre del cliente</label>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group form-float">
+                                <label class="form-label"></label>
+                                <div class="form-line">
+                                    <asp:TextBox
+                                        AutoComplete="off"
+                                        ID="txt_cliente"
+                                        runat="server" onkeyup="mayus(this); borrarespacios(this);" onkeypress="return txNombres(event)"
+                                        class="form-control">
+                                    </asp:TextBox>
+                                    <label class="form-label">Nombre del cliente</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
 
                     <div class="row clearfix">
@@ -160,7 +163,7 @@
                                     </asp:TextBox>
                                     <label class="form-label">Usuario</label>
                                 </div>
-<%--                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txt_usuario"
+                                <%--                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txt_usuario"
                                     ErrorMessage="Ingrese nombre de usuario"
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />--%>
@@ -234,7 +237,6 @@
                             </div>
                         </div>
 
-
                         <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -266,7 +268,6 @@
                                             <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
                                         </div>
                                     </asp:Panel>
-
                                 </div>
                             </div>
                         </div>
@@ -275,6 +276,7 @@
             </div>
         </div>
     </div>
+
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
     <!-- Bootstrap Datepicker Plugin Js -->

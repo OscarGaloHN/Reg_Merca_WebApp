@@ -23,6 +23,7 @@
             Using Parametros_admin As New ControlDB
                 Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
             End Using
+
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
                 Response.Redirect("~/Inicio/login.aspx")
@@ -38,10 +39,10 @@
 
                 Select Case Request.QueryString("action")
                     Case "new"
+                        pbotones.Visible = False
                         Dim fechaactual As Date = (Date.Now)
                         txtFechaCreacion.Text = fechaactual
                         ddlestado.Enabled = False
-                        'inhabilita Panel de botones
                         ddlestado.SelectedValue = 7
                     Case "update"
                         'habilita Panel de botones
@@ -70,7 +71,6 @@
                                 ddladuanadespacho.SelectedValue = registro("cod_aduana_ent")
                                 ddlregimenaduanero.SelectedValue = registro("id_regimen")
                                 txtrtnimp_exp.Text = registro("rtn_importador")
-                                'txtimp_exp.Text = registro("nombre_importador")
                                 txtRTNagen_aduanera.Text = registro("rtn_agenciaadu")
                                 txtagen_aduanera.Text = registro("nombre_agenciaadu")
                                 txtmanifiestorap.Text = registro("manifiesto_entregarap")
@@ -93,10 +93,6 @@
                                 txt_motivoperacion.Text = registro("motivo_operacion")
                                 txtobservacion.Text = registro("Observaciones")
                                 ddlclasebultos.SelectedValue = registro("Id_Clase_deBulto")
-                                'txtcantbultos.Text = registro("cant_bultos")
-                                'txtpesobrutobul.Text = registro("pesobruto_bultos")
-                                'txttotalitems.Text = registro("canti_items")
-                                'txttotalfact.Text = registro("Total_Factura")
                                 txttotalotrosgast.Text = registro("Total_Otros_gastos")
                                 txtttotalseg.Text = registro("Total_Seguro")
                                 txttotalflet.Text = registro("Total_Flete")
@@ -125,6 +121,12 @@
                         End If
                 End Select
 
+                If Not IsPostBack Then
+                    Select Case Request.QueryString("alerta")
+                        Case "update"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se actualizo con éxito.', 'success');</script>")
+                    End Select
+                End If
             End If
 
         Catch ex As Exception
@@ -167,21 +169,21 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                     End Using
                     Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new&idCaratula=" & Session("GME_Recuperar_ID"))
 
-                    Using con As New ControlDB
-                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
-                    End Using
+            End Select
 
-                    If Session("NumReg") > 0 Then
-                        'Using log_bitacora As New ControlBitacora
-                        '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
-                        'End Using
-                    Else
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se almacenó con éxito.', 'success');</script>")
-                    End If
+        Catch ex As Exception
 
-                    'Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Session("GME_Recuperar_ID"))
+        End Try
 
+    End Sub
+
+    Private Sub bttActualizar_Click(sender As Object, e As EventArgs) Handles bttActualizar.Click
+        Dim Ssql As String
+        Try
+
+
+
+            Select Case Request.QueryString("action")
                 Case "update"
                     Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
                     declarante='" & ddldeclarante.SelectedValue & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', 
@@ -199,49 +201,15 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                     Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
                     Total_Seguro='" & txtttotalseg.Text & "', Total_Flete='" & txttotalflet.Text & "', divisa_factura='" & ddldivisafact.SelectedValue & "', 
                     tipo_de_cambio='" & txttipodecambio.Text & "', divisa_seguro='" & ddldivisaseg.SelectedValue & "', 
-                    divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "'"
+                    divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "'
+                    where id_poliza =" & Request.QueryString("idCaratula") & ""
 
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
+
+                    Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula") & "&alerta=update")
             End Select
-
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
-
-    Private Sub bttActualizar_Click(sender As Object, e As EventArgs) Handles bttActualizar.Click
-        'Dim Ssql As String
-        Try
-
-            '            Select Case Request.QueryString("action")
-            '                Case "update"
-            '                    Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
-            'declarante='" & ddldeclarante.SelectedValue & "', cod_aduana_ent='" & ddladuanadespacho.SelectedValue & "', 
-            'Id_regimen='" & ddlregimenaduanero.SelectedValue & "', rtn_importador='" & txtrtnimp_exp.Text & "', 
-            'rtn_agenciaadu='" & txtRTNagen_aduanera.Text & "', nombre_agenciaadu='" & txtagen_aduanera.Text & "', 
-            'manifiesto_entregarap='" & txtmanifiestorap.Text & "', Id_proveedor='" & ddlproveedores.SelectedValue & "',
-            'contrato_proveedor='" & txtContra_proveedor.Text & "',domicilio_proveed='" & txtDomicioProve.Text & "',
-            'Numero_Preimpreso='" & txtNumPreimp.Text & "', entidad_mediacion='" & txtEntidadMed.Text & "', Id_almacen='" & ddldepositoalmacen.SelectedValue & "',
-            'cod_aduana_sal='" & ddladuanaingsal.SelectedValue & "', Cod_pais_org='" & ddlpaisesdeorigen.SelectedValue & "', 
-            'Cod_pais_pro='" & ddlpaisprocedencia.SelectedValue & "', id_pago='" & ddlformadepago.SelectedValue & "', 
-            'id_condicion='" & ddlcondicionentrega.SelectedValue & "', aduana_transdes='" & ddladuanatransitodes.SelectedValue & "', 
-            'modalidad_especial='" & ddlmodalidadesp.SelectedValue & "', deposito_aduanas='" & ddldepositoaduana.SelectedValue & "', 
-            'plazo='" & txtplazodiasmeses.Text & "', ruta_transito='" & txtrutatransito.Text & "', 
-            'motivo_operacion='" & txt_motivoperacion.Text & "', Observaciones='" & txtobservacion.Text & "', 
-            'Id_Clase_deBulto='" & ddlclasebultos.SelectedValue & "', Total_Otros_gastos='" & txttotalotrosgast.Text & "', 
-            'Total_Seguro='" & txtttotalseg.Text & "', Total_Flete='" & txttotalflet.Text & "', divisa_factura='" & ddldivisafact.SelectedValue & "', 
-            'tipo_de_cambio='" & txttipodecambio.Text & "', divisa_seguro='" & ddldivisaseg.SelectedValue & "', 
-            'divisa_flete='" & ddldivisafl.SelectedValue & "', usuario_creador='" & Session("user_idUsuario") & "'"
-
-            '                    'Using con As New ControlDB
-            '                    '    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            '                    'End Using
-            '                    'Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
-            '            End Select
         Catch ex As Exception
 
         End Try
@@ -313,19 +281,6 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
         Try
             'Select Case a la BD a la tabla para llenar el RTN
             'pruebas 1And txtRTNagen_aduanera.Text 
-            If ddldeclarante.SelectedValue = txtagen_aduanera.Text Then
-            Else
-                ssql = "select nombre_agencia from DB_Nac_Merca.tbl_43_declarante where id_declarante= '" & ddldeclarante.SelectedValue & "'"
-                Using con As New ControlDB
-                    DataSetX = con.SelectX(ssql, ControlDB.TipoConexion.Cx_Aduana)
-                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
-                End Using
-                Dim registro As DataRow
-                If Session("NumReg") > 0 Then
-                    registro = DataSetX.Tables(0).Rows(0)
-                    txtagen_aduanera.Text = registro("nombre_agencia")
-                End If
-            End If
 
             If ddldeclarante.SelectedValue = txtRTNagen_aduanera.Text Then
             Else
@@ -341,7 +296,19 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                 End If
             End If
 
-
+            If ddldeclarante.SelectedValue = txtagen_aduanera.Text Then
+            Else
+                ssql = "select nombre_agencia from DB_Nac_Merca.tbl_43_declarante where id_declarante= '" & ddldeclarante.SelectedValue & "'"
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                Dim registro As DataRow
+                If Session("NumReg") > 0 Then
+                    registro = DataSetX.Tables(0).Rows(0)
+                    txtagen_aduanera.Text = registro("nombre_agencia")
+                End If
+            End If
         Catch ex As Exception
 
         End Try
