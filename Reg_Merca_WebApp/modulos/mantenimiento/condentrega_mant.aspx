@@ -1,4 +1,4 @@
-﻿<%@ Page Title="condicion de entrega" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="condentrega_mant.aspx.vb" Inherits="Reg_Merca_WebApp.condentrega_mant" %>
+﻿<%@ Page Title="CONDICIÓN DE ENTREGA" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="condentrega_mant.aspx.vb" Inherits="Reg_Merca_WebApp.condentrega_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     - JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -55,7 +55,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-     <a class="navbar-brand" href="#">Mantenimiento de condicion de entrega</a>
+     <a class="navbar-brand" href="#">Mantenimiento De Condicion De Entrega</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
    <ul class="list">
@@ -169,7 +169,7 @@
      <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
      <script type="text/javascript">
-         tituloImprimir = 'Listado de condiciones de entregas'
+         tituloImprimir = 'LISTADO DE CONDICIONES DE ENTREGAS'
          xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -182,7 +182,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">CONDICION DE ENTREGA
-                                 <small>A continuación se muestra el listado de condiciones de entregas.</small>
+                                 <small>A Continuación Se Muestra El Listado De Condiciones De Entregas.</small>
                     </h2>
                 </div>
                 <div class="body">

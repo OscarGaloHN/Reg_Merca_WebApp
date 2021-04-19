@@ -1,4 +1,4 @@
-﻿<%@ Page Title="nivel comercial" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="nivelcomerc_mant.aspx.vb" Inherits="Reg_Merca_WebApp.nivelcomerc_mant" %>
+﻿<%@ Page Title="NIVEL COMERCIAL" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="nivelcomerc_mant.aspx.vb" Inherits="Reg_Merca_WebApp.nivelcomerc_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
        <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -45,7 +45,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Mantenimiento de Preguntas</a>
+    <a class="navbar-brand" href="#">Mantenimiento Nivel Comercial</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
    <ul class="list">
@@ -162,7 +162,7 @@
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado del Nivel Comercial de LAs Mercancias'
+        tituloImprimir = 'LISTADO DEL NIVEL COMERCIAL'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -175,7 +175,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">NIVEL COMERCIAL
-                                 <small>A continuación se muestra el listado del nivel comercial registrados.</small>
+                                 <small>A Continuación Se Muestra El Listado Del Nivel Comercial Registrados.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -233,7 +233,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtTipo(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtTipo" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtTipo(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtTipo" runat="server" class="form-control" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     <label class="form-label">Tipo</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtTipo"
@@ -301,7 +301,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtTipoEditar"
                                         ErrorMessage="Ingrese el Tipo del nivel comercial."

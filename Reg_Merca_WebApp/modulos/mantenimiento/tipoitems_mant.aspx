@@ -167,7 +167,7 @@
     <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
      <script type="text/javascript">
-         tituloImprimir = 'Listado de Tipo de Items'
+         tituloImprimir = 'LISTADO DE TIPO DE ITEMS'
          xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
          xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -179,7 +179,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">TIPO DE ITEMS
-                                 <small>A continuación se muestra el listado de tipo de items.</small>
+                                 <small>A Continuación Se Muestra El Listado De Tipo De Items.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -261,7 +261,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarItems" ValidationGroup="ValidaEstado" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardarItems" ValidationGroup="ValidaItems" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
@@ -280,7 +280,7 @@
                     <h4 class="modal-title" id="LblDelete">ELIMINAR TIPO DE ITEMS</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que desea eliminar el estado de la mercancia:
+                    ¿Seguro que desea eliminar el tipo de items de la mercancia:
                     <asp:Label runat="server" ID="lblItems" Text="..."></asp:Label>?
                         <asp:HiddenField runat="server" ID="lblHiddenIDItems" />
                     <asp:HiddenField runat="server" ID="lblHiddenNombreItems" />

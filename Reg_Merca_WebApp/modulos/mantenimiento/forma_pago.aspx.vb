@@ -112,14 +112,14 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La forma de pago ya esta registrada.', 'error');</script>")
             Else
                 Ssql = "UPDATE `DB_Nac_Merca`.`tbl_13_forma_pago` SET `id_pago` = '" & txtid_pagoEditar.Text & "', `nombre_pago` = '" & txtnombre_pagoEditar.Text & "' WHERE `id_pago` = '" & lblHiddenIDpago.Value & "';"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva forma de pago con nombre de pago: " & txtnombre_pagoEditar.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se edito una nueva forma de pago con nombre de pago: " & txtnombre_pagoEditar.Text)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/forma_pago.aspx?acction=newpago")
             End If

@@ -236,7 +236,7 @@
      <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
        <script type="text/javascript">
-           tituloImprimir = 'Listado de los clientes'
+           tituloImprimir = 'LISTADO DE LOS CLIENTE'
            xColumnas.push(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
          xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -248,7 +248,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">Clientes
-                                 <small>A Continuación Se Muestra El Listado de los Clientes Registrados.</small>
+                                 <small>A Continuación Se Muestra El Listado De Los Clientes Registrados.</small>
                     </h2>
                 </div>
                 <div class="body">

@@ -166,7 +166,7 @@
     <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
     <script type="text/javascript">
-         tituloImprimir = 'Listado de la forma de pago'
+         tituloImprimir = 'LISTADO DE LAS FORMAS DE PAGO'
          xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
          xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -178,7 +178,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">FORMAS DE PAGO
-                                 <small>A continuación se muestra el listado de la forma de pago.</small>
+                                 <small>A Continuación Se Muestra El Listado De LaS Formas De Pago.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -237,7 +237,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtid_pago"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtid_pago" MaxLength="4" ></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid_pago"
                                         ErrorMessage="Ingrese el ID de la forma de pago."
