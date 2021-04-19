@@ -108,9 +108,9 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
 
 
             End If
-                Using con As New ControlDB
-                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                End Using
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
             'Using log_bitacora As New ControlBitacora
             '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
             'End Using
@@ -165,7 +165,7 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Ventaja','La ventaja ya esta registrada.', 'error');</script>")
             Else
-                Ssql = "UPDATE DB_Nac_Merca.tbl_42_Datos_Ventaja SET Id_ventaja = '" & ddlventajaedit.SelectedValue & "', WHERE id_codigo= " & lblHiddenIDDocumento.Value
+                Ssql = "UPDATE DB_Nac_Merca.tbl_42_Datos_Ventaja SET Id_ventaja = '" & ddlventajaedit.SelectedValue & "' WHERE id_codigo= " & lblHiddenIDDocumento.Value
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
