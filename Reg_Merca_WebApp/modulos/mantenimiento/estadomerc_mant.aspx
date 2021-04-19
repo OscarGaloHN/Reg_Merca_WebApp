@@ -324,7 +324,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Id Estado" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtId_EstadoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Id Estado" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtId_EstadoEditar"  onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);" MaxLength="5"  onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtId_EstadoEditar"
                                         ErrorMessage="Ingrese el ID del estado de la mercancia" 
