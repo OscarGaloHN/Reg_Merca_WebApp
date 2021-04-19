@@ -32,6 +32,24 @@ Partial Public Class creacion_proyectos
     Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control fechaInicio.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents fechaInicio As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''Control fechaFin.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents fechaFin As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
     '''Control txt_cliente.
     '''</summary>
     '''<remarks>
