@@ -24,7 +24,7 @@
         <li class="active">
             <a href="caratula.aspx">
                 <i class="material-icons">aspect_ratio</i>
-                <span>Declaracion Aduanera</span>
+                <span>Declaración Aduanera</span>
             </a>
         </li>
     </ul>
@@ -43,7 +43,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Item Numero -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>    
+                    <h2 style="font-weight: bold;">Item Número -  <asp:Label runat="server" ID="lblCatatura"></asp:Label>    
                             <small>Ingreso de Datos de Los Items</small>
                     </h2>
                 </div>
@@ -464,7 +464,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtimporteotros" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
-                                    <label class="form-label">Importe Otros Gastos</label>
+                                    <label class="form-label">Importe Otros Gastos<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtimporteotros"
                                     ErrorMessage="Ingrese Imgrese Importe Otros Gastos"
@@ -479,7 +479,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtseguro" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
-                                    <label class="form-label">Importe de Seguro</label>
+                                    <label class="form-label">Importe de Seguro<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtseguro"
                                     ErrorMessage="Ingrese Importe de Seguro"
@@ -494,7 +494,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <asp:TextBox AutoComplete="off" ID="txtflete" runat="server" onkeyup="SoloNumeros()" onkeypress="return onKeyDecimal(event,this)" onkeydown="return noespacios(event)" class="form-control" MaxLength="10"></asp:TextBox>
-                                    <label class="form-label">Importe Flete</label>
+                                    <label class="form-label">Importe Flete<span class="required"> *</span></label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtflete"
                                     ErrorMessage="Ingrese Importe Flete"
@@ -583,7 +583,7 @@
                     </div>
 
                     <div class="row clearfix">
-                        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -591,7 +591,7 @@
                                 type="button"
                                 class="btn bg-teal waves-effect">
           <i class="material-icons">save</i>
-          <span>Guardar</span>
+          <span>Guardar y Continuar</span>
                             </asp:LinkButton>
                         </div>
                         <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
@@ -607,7 +607,7 @@
                             </asp:LinkButton>
                         </div>
 
-                        <asp:Panel ID="Panel1" runat="server" Visible="true">
+                        <asp:Panel ID="pactual" runat="server" Visible="false">
 
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <asp:LinkButton

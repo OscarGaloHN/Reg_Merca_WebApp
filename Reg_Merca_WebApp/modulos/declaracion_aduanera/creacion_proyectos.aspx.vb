@@ -24,7 +24,6 @@
         '    Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
         'End Using
         Try
-
             'cargar logo para imprimir
             HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
             HiddenEmpresa.Value = Application("ParametrosADMIN")(2)

@@ -35,7 +35,7 @@
                         pbotones.Visible = False
                     Case "update"
                         pbotones.Visible = True
-
+                        pactual.Visible = True
                         If Not IsPostBack Then
 
                             Dim Ssql As String = String.Empty
@@ -89,7 +89,7 @@
 
                         'bitacora de que ingreso al form
                         Session("IDfrmQueIngresa") = 29
-                        Session("NombrefrmQueIngresa") = "Creación de Documentos"
+                        Session("NombrefrmQueIngresa") = "Creación de Items"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -134,7 +134,7 @@ values
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Session("GME_Recuperar_ID") & "&idCaratula=" & Request.QueryString("idCaratula"))
+                    Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?action=new&iditems=" & Session("GME_Recuperar_ID") & "&idCaratula=" & Request.QueryString("idCaratula"))
 
                     'If Session("NumReg") > 0 Then
                     '    'Using log_bitacora As New ControlBitacora

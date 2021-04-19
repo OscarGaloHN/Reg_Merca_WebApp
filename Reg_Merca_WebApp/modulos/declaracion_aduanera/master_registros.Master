@@ -27,6 +27,15 @@
     <!-- Animation Css -->
     <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
 
+        <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="../../plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+
+        <!-- Wait Me Css -->
+    <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="../../css/style.css" rel="stylesheet">
 
@@ -46,7 +55,7 @@
 </head>
 
 <body class="theme-teal">
-        <!-- Page Loader -->
+    <!-- Page Loader -->
 
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -94,12 +103,12 @@
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
-                                 <% If Session("user_estado") = 2 Then %>
+                                <% If Session("user_estado") = 2 Then %>
                                 <li><a id="lblIraPerfil" href="../confi_perfil.aspx"><i class="material-icons">person</i>Perfil</a></li>
                                 <li role="separator" class="divider"></li>
                                 <% end if %>
                                 <li>
-                                    <asp:LinkButton  ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
+                                    <asp:LinkButton ValidationGroup="none" ID="lblcerrarSesion" runat="server"><i class="material-icons">input</i>Cerrar Sesión</asp:LinkButton></li>
                             </ul>
                         </div>
 
@@ -139,7 +148,6 @@
             </div>
         </section>
 
-
         <!-- Bootstrap Core Js -->
         <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
 
@@ -152,12 +160,25 @@
         <!-- Waves Effect Plugin Js -->
         <script src="../../plugins/node-waves/waves.js"></script>
 
+        <!-- Autosize Plugin Js -->
+        <script src="../../plugins/autosize/autosize.js"></script>
+
+        <!-- Moment Plugin Js -->
+        <script src="../../plugins/momentjs/moment.js"></script>
+
+        <!-- Bootstrap Material Datetime Picker Plugin Js -->
+        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+        <!-- Bootstrap Datepicker Plugin Js -->
+        <script src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
         <!-- Custom Js -->
         <script src="../../js/admin.js"></script>
         <script src="../../js/pages/ui/modals.js"></script>
 
         <!-- Demo Js -->
         <script src="../../js/demo.js"></script>
+        <script src="../../js/pages/forms/basic-form-elements.js"></script>
         <asp:ContentPlaceHolder ID="contenJSpie" runat="server">
         </asp:ContentPlaceHolder>
     </form>

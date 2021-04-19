@@ -13,6 +13,9 @@
 
         Try
             lblCatatura.Text = Request.QueryString("idCaratula")
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()

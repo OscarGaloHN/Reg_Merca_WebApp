@@ -29,6 +29,7 @@
 
 
         Try
+            lblCatatura.Text = Request.QueryString("idCaratula")
 
             'cargar logo para imprimir
             HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
@@ -101,9 +102,9 @@
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El manifiesto ya esta registrado.', 'error');</script>")
             Else
                 If chkindicador.Checked = True Then
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_40_Bulto (manifiesto, id_poliza_bul, titulo_transporte, indicador) VALUES ('" & txtmanifiesto.Text & "'," & Request.QueryString("idCaratula") & ", '" & txt_trans.Text & "', '1');"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_40_Bulto (manifiesto, id_poliza_bul, titulo_transporte, indicador) VALUES ('" & txtmanifiesto.Text & "'," & Request.QueryString("idCaratula") & ", '" & txt_trans.Text & "', 'SI');"
                 Else
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_40_Bulto (manifiesto, id_poliza_bul, titulo_transporte, indicador) VALUES ('" & txtmanifiesto.Text & "'," & Request.QueryString("idCaratula") & ", '" & txt_trans.Text & "', '0');"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_40_Bulto (manifiesto, id_poliza_bul, titulo_transporte, indicador) VALUES ('" & txtmanifiesto.Text & "'," & Request.QueryString("idCaratula") & ", '" & txt_trans.Text & "', 'NO');"
 
                 End If
                 Using con As New ControlDB

@@ -6,6 +6,7 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
@@ -50,10 +51,19 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
+
+
     <script type="text/javascript">
-            tituloImprimir = 'Listado de polizas'
-            xColumnas.push(1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+            tituloImprimir = 'Listado de Items'
+            xColumnas.push(2, 4, 5, 6, 7, 8); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+            xMargenes.push(100, 0, 100, 0)
+            xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+            xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
+
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -108,17 +118,17 @@
                                         <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                             Width="100%">
                                             <Columns>
-                                                <asp:BoundField HeaderText="Editar" DataField="ID_Merca" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
-
+                                                <asp:BoundField HeaderText="Editar" DataField="ID_Merca;Id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&idCaratula={1}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                               
                                                 <asp:TemplateField HeaderText="Eliminar">
                                                     <ItemTemplate>
-                                                        <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
+                                                        <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <%-- <asp:BoundField DataField="row_number" HeaderText="Numero de Item" />--%>
                                                 <asp:BoundField DataField="numeroitems" HeaderText="Número de Items" />
-                                                <asp:BoundField DataField="ID_Merca" HeaderText="Id" />
+                                                <asp:BoundField DataField="ID_Merca" HeaderText="Id Items" />
                                                 <asp:BoundField DataField="Id_poliza" HeaderText="Número de Poliza" />
                                                 <asp:BoundField DataField="pesoneto" HeaderText="Peso Neto" />
                                                 <asp:BoundField DataField="num_partida" HeaderText="Partida Arancelaria" />

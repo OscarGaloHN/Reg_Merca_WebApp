@@ -1,15 +1,22 @@
 ﻿<%@ Page Title="Documentos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
+
+    <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
+
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
@@ -57,7 +64,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creacion de Documentos</a>
+    <a class="navbar-brand" href="#">Creación de Documentos</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -69,12 +76,18 @@
             </a>
         </li>
         <li class="active">
+            <a href="caratula.aspx">
+                <i class="material-icons">aspect_ratio</i>
+                <span>Declaración Aduanera</span>
+            </a>
+        </li>
+        <%--        <li class="active">
 
             <a href="#">
                 <i class="material-icons">create_new_folder</i>
                 <span>Creación de documentos</span>
             </a>
-        </li>
+        </li>--%>
     </ul>
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="ContentPrincipal" runat="server">
@@ -84,7 +97,7 @@
 
     <script type="text/javascript">
         tituloImprimir = 'Listado de Documentos'
-        xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xColumnas.push(2, 3, 4, 5, 6, 7); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
@@ -94,8 +107,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Documentos
-                                 <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta su poliza.</small>
+                    <h2 style="font-weight: bold;">Listado de Documentos de la Carátula - 
+                        <asp:Label runat="server" ID="lblCatatura"></asp:Label>
+                        <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta su poliza.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -108,17 +122,30 @@
                         </div>
 
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                        <asp:LinkButton
-                            Width="100%"
-                            runat="server"
-                            ID="bttVolver"
-                            type="button"
-                            ValidationGroup="Validarbttvolver"
-                            class="btn btn-block btn-lg bg-teal waves-effect">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttVolver"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
                                 <i class="material-icons">undo</i>
                                 <span>Volver</span>
-                        </asp:LinkButton>
-                                </div>
+                            </asp:LinkButton>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttcontinuar"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">keyboard_tab</i>
+                                <span>Continuar</span>
+                            </asp:LinkButton>
+                        </div>
 
                     </div>
                     <div class="row clearfix">
@@ -162,7 +189,7 @@
                         <h4 class="modal-title" id="lblModalDocumentos">NUEVO DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos de los documetos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos de los documentos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -189,14 +216,13 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-label"></label>
-
+                                <label class="form-label">Referencia</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtReferencia"
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtreferencia"
                                         ErrorMessage="Ingrese la referencia."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaDocumento" />
@@ -297,15 +323,16 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label">Referencia</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" onkeypress="txNombres(event);"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
+                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferenciaEditar" onkeypress="txNombres(event);"
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaDocumento" />
                                 </div>
                             </div>
                         </div>
@@ -335,4 +362,6 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
+    <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>
