@@ -44,6 +44,13 @@
             //document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').checked = '';
             var row = lnk.parentNode.parentNode;
 
+            if (row.cells[6].innerHTML == 'SI') {
+                document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = true
+            } else {
+                document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = false
+            }
+
+
             document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
@@ -81,13 +88,6 @@
                 <span>Declaración Aduanera</span>
             </a>
         </li>
-        <%--        <li class="active">
-
-            <a href="#">
-                <i class="material-icons">create_new_folder</i>
-                <span>Creación de documentos</span>
-            </a>
-        </li>--%>
     </ul>
 </asp:Content>
 <asp:Content ID="Content9" ContentPlaceHolderID="ContentPrincipal" runat="server">
@@ -115,7 +115,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="xModal('teal','ContentPrincipal_ddlDocumento','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo; xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -203,7 +203,7 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 2;"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 1;"></asp:SqlDataSource>
 
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList
@@ -310,7 +310,7 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 2;"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 1;"></asp:SqlDataSource>
 
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList

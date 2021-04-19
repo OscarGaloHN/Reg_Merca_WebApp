@@ -173,4 +173,12 @@
 
         End Try
     End Sub
+
+    Private Sub bttfin_Click(sender As Object, e As EventArgs) Handles bttfin.Click
+        Try
+            Response.Redirect("/modulos/declaracion_aduanera/Reporte_caratula.aspx?idcaratula=" & Request.QueryString("idCaratula"))
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

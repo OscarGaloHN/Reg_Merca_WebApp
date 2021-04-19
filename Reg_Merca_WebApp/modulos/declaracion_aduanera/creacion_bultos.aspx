@@ -76,13 +76,6 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li class="active">
-
-            <a href="#">
-                <i class="material-icons">create_new_folder</i>
-                <span>Creación de bultos</span>
-            </a>
-        </li>
                 <li class="active">
             <a href="caratula.aspx">
                 <i class="material-icons">aspect_ratio</i>

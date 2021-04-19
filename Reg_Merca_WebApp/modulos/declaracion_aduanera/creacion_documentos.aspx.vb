@@ -36,7 +36,8 @@
             End If
             'llenar grid
             Dim Ssql As String = String.Empty
-            Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, a.presencia, a.id_poliza_doc, b.Descripcion
+            Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, 
+                    case when a.presencia =1 then 'SI' else 'NO' end presencia, a.id_poliza_doc, b.Descripcion
                     From tbl_28_Documentos a, tbl_32_Cod_Documentos b
                     Where a.Id_Documento = b.Id_Documento  and id_poliza_doc = " & Request.QueryString("idCaratula") & ""
 
@@ -96,9 +97,9 @@
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','La referencia ya esta registrada.', 'error');</script>")
             Else
                 If chkPresencia.Checked = True Then
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', 'SI');"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '1');"
                 Else
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', 'NO');"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_28_Documentos (Id_Documento, Id_poliza_doc, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("idCaratula") & ",'" & txtreferencia.Text & "', '0');"
 
                 End If
                 Using con As New ControlDB
