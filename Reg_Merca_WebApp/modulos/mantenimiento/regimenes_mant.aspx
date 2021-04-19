@@ -15,7 +15,7 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            //document.getElementById('ContentPrincipal_txtid').value = '';
+            document.getElementById('ContentPrincipal_txtid').value = '';
             document.getElementById('ContentPrincipal_txtregimenes').value = '';
             
         }
@@ -28,20 +28,21 @@
             xModal('red', 'ContentPrincipal_txtregimenes', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
-            //document.getElementById('ContentPrincipal_txtidEditar').value = '';
+            document.getElementById('ContentPrincipal_txtidEditar').value = '';
             document.getElementById('ContentPrincipal_txtregimenesEditar').value = '';
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblHiddenNombreregimenes').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtregimenesEditar').value = row.cells[3].innerHTML;
-                document.getElementById('ContentPrincipal_lblHiddenIDregimenes').value = row.cells[2].innerHTML;
+               
             }
             
-
-            //if (row.cells[2].innerHTML != '&nbsp;') {
-            //    document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
-            //}
+            document.getElementById('ContentPrincipal_lblHiddenIDregimenes').value = row.cells[2].innerHTML;
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
+                
+            }
             xModal('pink', 'ContentPrincipal_txtregimenesEditar', 'modalEditar');
         }
 
@@ -229,7 +230,7 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <%--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                        <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtid(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox> 
@@ -239,7 +240,7 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validaregimen" />
                                 </div>
-                            </div>--%>
+                            </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -282,7 +283,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarRegimenes" ValidationGroup="Validaregimen" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarRegimenes" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -307,7 +308,7 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <%--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtidEditar(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtidEditar" runat="server" class="form-control"></asp:TextBox>
@@ -317,7 +318,7 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaregimenaEditar" />
                                 </div>
-                            </div>--%>
+                            </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
