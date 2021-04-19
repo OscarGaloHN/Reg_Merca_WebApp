@@ -49,9 +49,12 @@ case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
+
                 If Session("NumReg") > 0 Then
                     gvCustomers.DataSource = DataSetX
                     gvCustomers.DataBind()
+                Else
+                    bttfin.Visible = False
                 End If
 
                 If Not IsPostBack Then

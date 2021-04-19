@@ -25,11 +25,13 @@
         'End Using
 
         Try
-            lblitems.Text = Request.QueryString("iditems")
-
             'cargar logo para imprimir
             HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
             HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+
+            lblitems.Text = Request.QueryString("iditems")
+
+
 
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()

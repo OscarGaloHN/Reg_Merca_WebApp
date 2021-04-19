@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
@@ -35,26 +36,17 @@
 
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_ddlventajaedit').value = '';
-            //document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            //document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
+
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_ddlventajaedit').value = row.cells[3].innerHTML;
-                //}
-                //if (row.cells[4].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
-                //}
-                //if (row.cells[5].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
-                //}
-                //if (row.cells[2].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-                //}
+                }
                 xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
             }
+        
 
     </script>
 </asp:Content>
@@ -70,11 +62,10 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li class="active">
-
-            <a href="#">
-                <i class="material-icons">create_new_folder</i>
-                <span>Ventajas del Items</span>
+                <li class="active">
+            <a href="caratula.aspx">
+                <i class="material-icons">aspect_ratio</i>
+                <span>Declaración Aduanera</span>
             </a>
         </li>
     </ul>
@@ -85,7 +76,7 @@
 
 
     <script type="text/javascript">
-            tituloImprimir = 'ventajas del items'
+            tituloImprimir = 'Ventajas del items'
             xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
             xMargenes.push(100, 0, 100, 0)
             xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;

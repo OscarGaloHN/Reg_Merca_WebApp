@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
@@ -70,11 +71,10 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li class="active">
-
-            <a href="#">
-                <i class="material-icons">create_new_folder</i>
-                <span>Items de Datos Complementarios</span>
+                <li class="active">
+            <a href="caratula.aspx">
+                <i class="material-icons">aspect_ratio</i>
+                <span>Declaración Aduanera</span>
             </a>
         </li>
     </ul>
