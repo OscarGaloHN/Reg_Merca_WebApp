@@ -116,7 +116,7 @@
             </li>
          <li>
             <a href="nivelcomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
@@ -146,13 +146,13 @@
             </li>
          <li>
             <a href="tipoitems_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
             </li>
          <li  class="active">
             <a href="#">
-                <i class="material-icons">verified</i>
+                <i class="material-icons">straighten</i>
                 <span>Unidad de medida</span>
             </a>
             </li>
@@ -253,7 +253,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtDescripcion"></asp:TextBox>
+                                        <asp:TextBox placeholder="Descripción" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtDescripcion" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtDescripcion"
                                         ErrorMessage="Ingrese la descripcion de la unidad de medida."
@@ -333,7 +333,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtDescripcionEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="ValidaestadoEditar" runat="server" class="form-control" ID="txtDescripcionEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtDescripcionEditar"
                                         ErrorMessage="Ingrese la descripcion de la unidad de medida."

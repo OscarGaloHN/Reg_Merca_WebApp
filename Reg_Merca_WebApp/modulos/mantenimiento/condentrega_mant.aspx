@@ -87,7 +87,7 @@
         
         <li class="active">
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
             </li>
@@ -99,13 +99,13 @@
             </li>
         <li>
             <a href="estadomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
             <a href="forma_pago.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
             </li>
@@ -117,7 +117,7 @@
             </li>
          <li>
             <a href="nivelcomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
@@ -147,7 +147,7 @@
             </li>
          <li>
             <a href="tipoitems_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
             </li>

@@ -84,7 +84,7 @@
 
         <li>
             <a href="condentrega_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
         </li>
@@ -96,13 +96,13 @@
         </li>
         <li>
             <a href="estadomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
         </li>
         <li class="active">
             <a href="#">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
         </li>
@@ -114,7 +114,7 @@
         </li>
         <li>
             <a href="nivelcomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
         </li>
@@ -144,13 +144,13 @@
         </li>
         <li>
             <a href="tipoitems_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
         </li>
         <li>
             <a href="unidmedida_mant.aspx">
-                <i class="material-icons">verified</i>
+                <i class="material-icons">straighten</i>
                 <span>Unidad de medida</span>
             </a>
         </li>
@@ -237,7 +237,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtid_pago" MaxLength="4" ></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtid_pago" MaxLength="4" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);" ></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid_pago"
                                         ErrorMessage="Ingrese el ID de la forma de pago."
@@ -317,7 +317,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtid_pagoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtid_pagoEditar" MaxLength="4" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtid_pagoEditar"
                                         ErrorMessage="Ingrese el ID de la forma de pago"
