@@ -307,7 +307,7 @@
     </div>
 
 
-    <!-- modal eliminar aduana-->
+    <!-- modal eliminar almacen-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
