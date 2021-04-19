@@ -93,16 +93,30 @@
     Private Sub btt_buscar_Click(sender As Object, e As EventArgs) Handles btt_buscar.Click
         Try
             'Dim Ssql As String = String.Empty
-            'Ssql = "select a.Id_poliza,a.fecha_creacion,b.nombrec,c.descripcion,d.nombre
-            '                from tbl_04_cliente b, tbl_01_polizas a, tbl_19_estado c, tbl_02_usuarios d
-            '                   where a.id_cliente = b.id_cliente and c.id_estado=a.estado_poliza
-            '                   and d.id_usuario= a.usuario_creador"
+            'Dim xInicio As String = fechaInicio.Value.ToString.Substring(6, 4) & fechaInicio.Value.ToString.Substring(0, 2) & fechaInicio.Value.ToString.Substring(3, 2)
+            'Dim xFin As String = fechaFin.Value.ToString.Substring(6, 4) & fechaFin.Value.ToString.Substring(0, 2) & fechaFin.Value.ToString.Substring(3, 2)
+
+            'Ssql = "SELECT T01.*, T02.usuario, T03.objeto FROM DB_Nac_Merca.tbl_17_bitacora T01
+            '    LEFT JOIN DB_Nac_Merca.tbl_02_usuarios T02 ON T01.id_usuario = T02.id_usuario
+            '    LEFT JOIN DB_Nac_Merca.tbl_16_objetos T03 ON T01.id_objeto = T03.id_objeto
+            '    WHERE convert(T01.fecha, DATE) BETWEEN '" & xInicio & "' 
+            '    AND '" & xFin & "'"
+
+
+            'Ssql = "SELECT T01.*, T02.usuario, T03.objeto FROM DB_Nac_Merca.tbl_17_bitacora T01
+            '    LEFT JOIN DB_Nac_Merca.tbl_02_usuarios T02 ON T01.id_usuario = T02.id_usuario
+            '    LEFT JOIN DB_Nac_Merca.tbl_16_objetos T03 ON T01.id_objeto = T03.id_objeto
+            '    WHERE convert(T01.fecha, DATE) BETWEEN '" & xInicio & "' 
+            '    AND '" & xFin & "'"
 
             'Using con As New ControlDB
             '    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             '    Session("NumReg") = DataSetX.Tables(0).Rows.Count
             'End Using
             'If Session("NumReg") > 0 Then
+            '    gvCustomers.DataSource = DataSetX
+            '    gvCustomers.DataBind()
+            'Else
             '    gvCustomers.DataSource = DataSetX
             '    gvCustomers.DataBind()
             'End If
