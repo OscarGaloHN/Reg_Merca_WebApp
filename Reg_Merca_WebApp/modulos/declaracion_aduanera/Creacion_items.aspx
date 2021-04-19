@@ -25,6 +25,7 @@
 
             document.getElementById('ContentPrincipal_lblHiddenitems').innerHTML = row.cells[3].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddennumitems').value = row.cells[2].innerHTML;
+        }
     </script>
 
 </asp:Content>
@@ -51,7 +52,6 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-
     <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 
