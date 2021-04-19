@@ -10,52 +10,73 @@
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Try
-            'cargar logo para imprimir
-            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
-
-            If Not IsPostBack Then
-                'bitacora de que salio de un form
-                If Not IsPostBack Then
-                    Using log_bitacora As New ControlBitacora
-                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                    End Using
-                End If
-
-                'bitacora de que ingreso al form
-                Session("IDfrmQueIngresa") = 12
-                Session("NombrefrmQueIngresa") = "Bitácora"
-                If Not IsPostBack Then
-                    Using log_bitacora As New ControlBitacora
-                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                    End Using
-                End If
-
-
-            End If
-
-
+        '
+        If Session("user_idUsuario") = Nothing Then
+            Session.Abandon()
+            'REDIRECCIONAR A MENU PRINCIPAL
+            Response.Redirect("~/Inicio/login.aspx")
+        Else
+            'si hay una sesion activa
+            'comprobar que el rol del usuario tenga permisos para editar
             Dim Ssql As String = String.Empty
-
-            Ssql = "SELECT T01.*, T02.usuario, T03.objeto FROM DB_Nac_Merca.tbl_17_bitacora T01
-LEFT JOIN DB_Nac_Merca.tbl_02_usuarios T02 ON T01.id_usuario = T02.id_usuario
-LEFT JOIN DB_Nac_Merca.tbl_16_objetos T03 ON T01.id_objeto = T03.id_objeto"
-
-
-
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 12 and permiso_consulta = 1"
 
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                gvCustomers.DataSource = DataSetX
-                gvCustomers.DataBind()
-            End If
-        Catch ex As Exception
+                'si tiene los permisos
+                Try
+                    'cargar logo para imprimir
+                    HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+                    HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
-        End Try
+                    If Not IsPostBack Then
+                        'bitacora de que salio de un form
+                        If Not IsPostBack Then
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
+
+                        'bitacora de que ingreso al form
+                        Session("IDfrmQueIngresa") = 12
+                        Session("NombrefrmQueIngresa") = "Bitácora"
+                        If Not IsPostBack Then
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
+                    End If
+
+                    Ssql = "SELECT T01.*, T02.usuario, T03.objeto FROM DB_Nac_Merca.tbl_17_bitacora T01
+                        LEFT JOIN DB_Nac_Merca.tbl_02_usuarios T02 ON T01.id_usuario = T02.id_usuario
+                        LEFT JOIN DB_Nac_Merca.tbl_16_objetos T03 ON T01.id_objeto = T03.id_objeto"
+
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    If Session("NumReg") > 0 Then
+                        gvCustomers.DataSource = DataSetX
+                        gvCustomers.DataBind()
+                    Else
+                        gvCustomers.DataSource = Nothing
+                        gvCustomers.DataBind()
+                    End If
+                Catch ex As Exception
+
+                End Try
+            Else
+                'si no tiene permisos 
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                End Using
+                Response.Redirect("~/modulos/acceso_denegado.aspx")
+            End If
+        End If
     End Sub
 
     Private Sub bttFiltrar_Click(sender As Object, e As EventArgs) Handles bttFiltrar.Click

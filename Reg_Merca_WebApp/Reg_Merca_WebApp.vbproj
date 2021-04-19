@@ -255,6 +255,7 @@
     <Content Include="Inicio\recuperar.aspx" />
     <Content Include="Inicio\registro.aspx" />
     <Content Include="Inicio\reiniciarcontra.aspx" />
+    <Content Include="modulos\acceso_denegado.aspx" />
     <Content Include="modulos\bitacora\bitacora.aspx" />
     <Content Include="modulos\configuraciones\config_avanz.aspx" />
     <Content Include="modulos\configuraciones\config_objetos.aspx" />
@@ -1059,6 +1060,13 @@
     </Compile>
     <Compile Include="Inicio\reiniciarcontra.aspx.vb">
       <DependentUpon>reiniciarcontra.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\acceso_denegado.aspx.designer.vb">
+      <DependentUpon>acceso_denegado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\acceso_denegado.aspx.vb">
+      <DependentUpon>acceso_denegado.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\bitacora\bitacora.aspx.designer.vb">

@@ -14,7 +14,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-center">
            <span class="material-icons"  style="font-size:90px;">person_off</span>
 
-            <div class="font-40">El administrador <br /> no ha definido un rol para este usuario.</div>
+            <div class="font-40">
+               
+                El administrador <br /> no ha definido un rol para este usuario.</div>
         </div>
     </div>
 
