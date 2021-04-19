@@ -6,19 +6,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.02349cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.02349cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.02349cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.02349cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.02349cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -43,7 +43,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -84,7 +84,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -125,7 +125,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -166,7 +166,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -207,7 +207,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -303,14 +303,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="cliente">
+                    <Textbox Name="Id_cliente">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!cliente.Value</Value>
+                              <Value>=Fields!Id_cliente.Value</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -320,7 +320,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>cliente</rd:DefaultName>
+                      <rd:DefaultName>Id_cliente</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -336,14 +336,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="estado">
+                    <Textbox Name="estado_poliza">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!estado.Value</Value>
+                              <Value>=Fields!estado_poliza.Value</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -353,7 +353,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>estado</rd:DefaultName>
+                      <rd:DefaultName>estado_poliza</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -369,14 +369,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="usuario">
+                    <Textbox Name="usuario_creador">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!usuario.Value</Value>
+                              <Value>=Fields!usuario_creador.Value</Value>
                               <Style>
                                 <FontWeight>Normal</FontWeight>
                                 <Color>#333333</Color>
@@ -386,7 +386,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>usuario</rd:DefaultName>
+                      <rd:DefaultName>usuario_creador</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -424,10 +424,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DSPoliza</DataSetName>
-        <Top>1.77271cm</Top>
+        <Top>1.42875cm</Top>
         <Left>2.52677cm</Left>
         <Height>1.2cm</Height>
-        <Width>12.5cm</Width>
+        <Width>15.11744cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -436,7 +436,12 @@
       </Tablix>
     </ReportItems>
     <Height>2in</Height>
-    <Style />
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+      <BackgroundColor>White</BackgroundColor>
+    </Style>
   </Body>
   <Width>7.44792in</Width>
   <Page>
@@ -651,16 +656,16 @@ Globals!OverallTotalPages</Value>
           <DataField>fecha_creacion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="cliente">
-          <DataField>cliente</DataField>
+        <Field Name="Id_cliente">
+          <DataField>Id_cliente</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="estado">
-          <DataField>estado</DataField>
+        <Field Name="estado_poliza">
+          <DataField>estado_poliza</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="usuario">
-          <DataField>usuario</DataField>
+        <Field Name="usuario_creador">
+          <DataField>usuario_creador</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>

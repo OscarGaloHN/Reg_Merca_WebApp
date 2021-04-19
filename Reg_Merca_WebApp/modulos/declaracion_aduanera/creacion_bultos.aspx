@@ -140,7 +140,7 @@
                             </asp:LinkButton>
                         </div>
 
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 ">
+                        <div class="col-lg3- col-md-3 col-sm-6 col-xs-12 ">
                             <asp:LinkButton
                                 Width="100%"
                                 runat="server"
@@ -149,7 +149,7 @@
                                 ValidationGroup="Validarbttvolver"
                                 class="btn btn-block btn-lg bg-teal waves-effect">
                                 <i class="material-icons">verified</i>
-                                <span>Finalizar Póliza</span>
+                                <span>Finalizar e Imprimir Póliza</span>
                             </asp:LinkButton>
                         </div>
 

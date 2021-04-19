@@ -322,11 +322,11 @@ Partial Public Class DSPoliza
         
         Private columnfecha_creacion As Global.System.Data.DataColumn
         
-        Private columncliente As Global.System.Data.DataColumn
+        Private columnId_cliente As Global.System.Data.DataColumn
         
-        Private columnestado As Global.System.Data.DataColumn
+        Private columnestado_poliza As Global.System.Data.DataColumn
         
-        Private columnusuario As Global.System.Data.DataColumn
+        Private columnusuario_creador As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -381,25 +381,25 @@ Partial Public Class DSPoliza
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property clienteColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property Id_clienteColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columncliente
+                Return Me.columnId_cliente
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property estadoColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property estado_polizaColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnestado
+                Return Me.columnestado_poliza
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property usuarioColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property usuario_creadorColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnusuario
+                Return Me.columnusuario_creador
             End Get
         End Property
         
@@ -440,9 +440,9 @@ Partial Public Class DSPoliza
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddDtPolizaRow(ByVal fecha_creacion As String, ByVal cliente As String, ByVal estado As Integer, ByVal usuario As Integer) As DtPolizaRow
+        Public Overloads Function AddDtPolizaRow(ByVal fecha_creacion As String, ByVal Id_cliente As String, ByVal estado_poliza As Integer, ByVal usuario_creador As Integer) As DtPolizaRow
             Dim rowDtPolizaRow As DtPolizaRow = CType(Me.NewRow,DtPolizaRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, fecha_creacion, cliente, estado, usuario}
+            Dim columnValuesArray() As Object = New Object() {Nothing, fecha_creacion, Id_cliente, estado_poliza, usuario_creador}
             rowDtPolizaRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowDtPolizaRow)
             Return rowDtPolizaRow
@@ -467,9 +467,9 @@ Partial Public Class DSPoliza
         Friend Sub InitVars()
             Me.columnid_poliza = MyBase.Columns("id_poliza")
             Me.columnfecha_creacion = MyBase.Columns("fecha_creacion")
-            Me.columncliente = MyBase.Columns("cliente")
-            Me.columnestado = MyBase.Columns("estado")
-            Me.columnusuario = MyBase.Columns("usuario")
+            Me.columnId_cliente = MyBase.Columns("Id_cliente")
+            Me.columnestado_poliza = MyBase.Columns("estado_poliza")
+            Me.columnusuario_creador = MyBase.Columns("usuario_creador")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -479,12 +479,12 @@ Partial Public Class DSPoliza
             MyBase.Columns.Add(Me.columnid_poliza)
             Me.columnfecha_creacion = New Global.System.Data.DataColumn("fecha_creacion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnfecha_creacion)
-            Me.columncliente = New Global.System.Data.DataColumn("cliente", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncliente)
-            Me.columnestado = New Global.System.Data.DataColumn("estado", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnestado)
-            Me.columnusuario = New Global.System.Data.DataColumn("usuario", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnusuario)
+            Me.columnId_cliente = New Global.System.Data.DataColumn("Id_cliente", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnId_cliente)
+            Me.columnestado_poliza = New Global.System.Data.DataColumn("estado_poliza", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnestado_poliza)
+            Me.columnusuario_creador = New Global.System.Data.DataColumn("usuario_creador", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnusuario_creador)
             Me.columnid_poliza.AutoIncrement = true
             Me.columnid_poliza.AutoIncrementSeed = -1
             Me.columnid_poliza.AutoIncrementStep = -1
@@ -958,46 +958,46 @@ Partial Public Class DSPoliza
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property cliente() As String
+        Public Property Id_cliente() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDtPoliza.clienteColumn),String)
+                    Return CType(Me(Me.tableDtPoliza.Id_clienteColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'cliente' de la tabla 'DtPoliza' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Id_cliente' de la tabla 'DtPoliza' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDtPoliza.clienteColumn) = value
+                Me(Me.tableDtPoliza.Id_clienteColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property estado() As Integer
+        Public Property estado_poliza() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableDtPoliza.estadoColumn),Integer)
+                    Return CType(Me(Me.tableDtPoliza.estado_polizaColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estado' de la tabla 'DtPoliza' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'estado_poliza' de la tabla 'DtPoliza' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDtPoliza.estadoColumn) = value
+                Me(Me.tableDtPoliza.estado_polizaColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property usuario() As Integer
+        Public Property usuario_creador() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableDtPoliza.usuarioColumn),Integer)
+                    Return CType(Me(Me.tableDtPoliza.usuario_creadorColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'usuario' de la tabla 'DtPoliza' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'usuario_creador' de la tabla 'DtPoliza' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDtPoliza.usuarioColumn) = value
+                Me(Me.tableDtPoliza.usuario_creadorColumn) = value
             End Set
         End Property
         
@@ -1027,38 +1027,38 @@ Partial Public Class DSPoliza
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsclienteNull() As Boolean
-            Return Me.IsNull(Me.tableDtPoliza.clienteColumn)
+        Public Function IsId_clienteNull() As Boolean
+            Return Me.IsNull(Me.tableDtPoliza.Id_clienteColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetclienteNull()
-            Me(Me.tableDtPoliza.clienteColumn) = Global.System.Convert.DBNull
+        Public Sub SetId_clienteNull()
+            Me(Me.tableDtPoliza.Id_clienteColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsestadoNull() As Boolean
-            Return Me.IsNull(Me.tableDtPoliza.estadoColumn)
+        Public Function Isestado_polizaNull() As Boolean
+            Return Me.IsNull(Me.tableDtPoliza.estado_polizaColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetestadoNull()
-            Me(Me.tableDtPoliza.estadoColumn) = Global.System.Convert.DBNull
+        Public Sub Setestado_polizaNull()
+            Me(Me.tableDtPoliza.estado_polizaColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsusuarioNull() As Boolean
-            Return Me.IsNull(Me.tableDtPoliza.usuarioColumn)
+        Public Function Isusuario_creadorNull() As Boolean
+            Return Me.IsNull(Me.tableDtPoliza.usuario_creadorColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetusuarioNull()
-            Me(Me.tableDtPoliza.usuarioColumn) = Global.System.Convert.DBNull
+        Public Sub Setusuario_creadorNull()
+            Me(Me.tableDtPoliza.usuario_creadorColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

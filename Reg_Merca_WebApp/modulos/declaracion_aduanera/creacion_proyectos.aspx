@@ -237,7 +237,6 @@
                             </div>
                         </div>
 
-
                         <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -269,7 +268,6 @@
                                             <button type="button" class="btn bg-pink waves-effect" data-dismiss="modal">CERRAR</button>
                                         </div>
                                     </asp:Panel>
-
                                 </div>
                             </div>
                         </div>
@@ -278,22 +276,6 @@
             </div>
         </div>
     </div>
-
-    <section class="content">
-        <div class="container-fluid">
-            <div class="block-header">
-                <div>
-                    <asp:Button ID="Button2" runat="server" Text="IMPRIMIR CLIENTES uno" OnClientClick="target ='_blank';" />
-                    <asp:Button ID="Button1" runat="server" Text="IMPRIMIR CLIENTES dos" OnClientClick="target ='_blank';" />
-
-                    <asp:ScriptManager runat="server"></asp:ScriptManager>
-                    <rsweb:ReportViewer SizeToReportContent="True" ID="ReportViewer1" runat="server" Height="100%" Width="100%">
-                    </rsweb:ReportViewer>
-
-                </div>
-            </div>
-        </div>
-    </section>
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
