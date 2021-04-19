@@ -230,7 +230,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtpregunta(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtpregunta" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox placeholder="pregunta" onkeypress="return txtpregunta(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtpregunta" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Pregunta</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtpregunta"
