@@ -207,7 +207,7 @@ observaciones= '" & txtobservacion.Text & "',comentario= '" & txtcomentario.Text
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula") "&alerta=update")
+                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula") & "&alerta=update")
 
             End Select
         Catch ex As Exception
