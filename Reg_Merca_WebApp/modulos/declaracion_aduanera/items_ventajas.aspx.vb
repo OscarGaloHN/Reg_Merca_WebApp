@@ -178,7 +178,7 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
-            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx")
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try
@@ -186,7 +186,7 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
 
     Private Sub bttcontinuar_Click(sender As Object, e As EventArgs) Handles bttcontinuar.Click
         Try
-            Response.Redirect("/modulos/declaracion_aduanera/creacion_documentos.aspx?action=new&idcaratula=" & Request.QueryString("idCaratula"))
+            Response.Redirect("/modulos/declaracion_aduanera/creacion_documentos.aspx?idcaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try
