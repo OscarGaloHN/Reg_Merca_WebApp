@@ -12,12 +12,10 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
+            lblCatatura.Text = Request.QueryString("idCaratula")
             'cargar logo para imprimir
             HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
             HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
-
-            lblCatatura.Text = Request.QueryString("idCaratula")
-
 
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
@@ -81,18 +79,17 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
         Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
     End Sub
 
-    Private Sub bttEliminar_Click(sender As Object, e As EventArgs) Handles bttEliminar.Click
+    Private Sub bttEliminarDocumento_Click(sender As Object, e As EventArgs) Handles bttEliminarDocumento.Click
         Try
-            Dim Ssql As String
-            Ssql = "DELETE FROM DB_Nac_Merca.tbl_34_mercancias WHERE ID_Merca = " & lblHiddenitems.Value & ""
+            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_34_mercancias WHERE ID_Merca = " & lblHiddenIDDocumento.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             'Using log_bitacora As New ControlBitacora
-            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
+            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se se elimino items: " & lblHiddenIDDocumento.Value & " con exito")
             'End Using
 
-            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?acction=deleteitems")
+            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try

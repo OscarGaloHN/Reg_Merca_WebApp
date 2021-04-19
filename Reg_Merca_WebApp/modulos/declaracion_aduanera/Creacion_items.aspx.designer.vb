@@ -68,47 +68,29 @@ Partial Public Class Creacion_items
     Protected WithEvents gvCustomers As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''Control PanelEditor.
+    '''Control lblDocumento.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents PanelEditor As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents lblDocumento As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblitems.
+    '''Control lblHiddenIDDocumento.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblitems As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblHiddenIDDocumento As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control lblHiddenitems.
+    '''Control bttEliminarDocumento.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenitems As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control lblHiddennumitems.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblHiddennumitems As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control bttEliminar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttEliminar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarDocumento As Global.System.Web.UI.WebControls.LinkButton
 End Class

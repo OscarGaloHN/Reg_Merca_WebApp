@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="Creacion de Items" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.Master" CodeBehind="Creacion_items.aspx.vb" Inherits="Reg_Merca_WebApp.Creacion_items" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
@@ -12,8 +15,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
-    <script src="../src/jsTabla.js"></script>
 
+    <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
 
@@ -24,7 +27,16 @@
             var row = lnk.parentNode.parentNode;
 
             document.getElementById('ContentPrincipal_lblHiddenitems').innerHTML = row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddennumitems').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddennumitems').value = row.cells[3].innerHTML;
+        }
+
+        function GetSelectedRowDelete(lnk) {
+            var row = lnk.parentNode.parentNode;
+            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
+           
+
+            xModal('red', '', 'modalDelete');
         }
     </script>
 
@@ -52,6 +64,7 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+
     <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 
@@ -120,14 +133,15 @@
                                             <Columns>
                                                 <%--<asp:BoundField HeaderText="Editar" DataField="ID_Merca;Id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&idCaratula={1}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />--%>
                                              
-                                                <asp:HyperLinkField HeaderText="Editar"  DataNavigateUrlFields="ID_Merca;Id_poliza"  DataNavigateUrlFormatString=" href=items.aspx?iditems={0}&idCaratula={1}&action=update&ignore=92  " Text="<i class='btn bg-pink waves-effect'><i class='material-icons'>edit</i> " />
+<%--                                                  <asp:HyperLinkField HeaderText="Editar"  DataNavigateUrlFields="ID_Merca;Id_poliza"  DataNavigateUrlFormatString=" href=items.aspx?iditems={0}&idCaratula={1}&action=update&ignore=92  " Text="<i class='btn bg-pink waves-effect'><i class='material-icons'>edit</i> " />--%>
                                                 
+                                                <asp:BoundField HeaderText="Editar" DataField="ID_Merca" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
                                                 <asp:TemplateField HeaderText="Eliminar">
                                                     <ItemTemplate>
                                                         <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
+                                               
                                                 <%-- <asp:BoundField DataField="row_number" HeaderText="Numero de Item" />--%>
                                                 <asp:BoundField DataField="numeroitems" HeaderText="Número de Items" />
                                                 <asp:BoundField DataField="ID_Merca" HeaderText="Id Items" />
@@ -144,7 +158,41 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+
+
+                        
+    <!-- modal eliminar documento-->
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- TITULO -->
+                    <h4 class="modal-title" id="LblDelete">Eliminar Item</h4>
+                </div>
+                <div class="modal-body">
+                    ¿Seguro que desea eliminar el item?
+                    <br />
+                    <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
+                    <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
+                    
+
+                    <br />
+                    <br />
+                    <!-- CUERPO DEL MODAL -->
+
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" ID="bttEliminarDocumento" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+                  <%--      <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <asp:Panel ID="PanelEditor" runat="server" DefaultButton="bttEliminar">
@@ -178,7 +226,7 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -186,4 +234,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
+      <!-- Select Plugin Js -->
+     <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>
