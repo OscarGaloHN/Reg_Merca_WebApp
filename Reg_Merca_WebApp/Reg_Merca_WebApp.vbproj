@@ -223,6 +223,7 @@
     <Content Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_documentos.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_ventajas.aspx" />
+    <Content Include="modulos\declaracion_aduanera\Reporte_caratula.aspx" />
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\mantenimiento\almacenes_mant.aspx" />
@@ -1124,6 +1125,13 @@
       <DependentUpon>master_registros.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="modulos\declaracion_aduanera\Reporte_caratula.aspx.designer.vb">
+      <DependentUpon>Reporte_caratula.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\Reporte_caratula.aspx.vb">
+      <DependentUpon>Reporte_caratula.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="modulos\gestion_usuario\config_gestion_usuario.aspx.designer.vb">
       <DependentUpon>config_gestion_usuario.aspx</DependentUpon>
     </Compile>
@@ -1410,6 +1418,7 @@
   <ItemGroup>
     <EmbeddedResource Include="modulos\reportes\rptClientes.rdlc" />
     <EmbeddedResource Include="modulos\reportes\rptClientesDOS.rdlc" />
+    <EmbeddedResource Include="modulos\reportes\rptPoliza.rdlc" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
