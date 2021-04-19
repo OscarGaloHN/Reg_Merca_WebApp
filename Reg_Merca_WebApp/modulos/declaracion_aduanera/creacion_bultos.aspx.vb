@@ -42,7 +42,8 @@
 
                 'llenar grid
                 Dim Ssql As String = String.Empty
-                Ssql = "SELECT id_bulto, manifiesto, titulo_transporte, indicador, id_poliza_bul FROM DB_Nac_Merca.tbl_40_Bulto
+                Ssql = "SELECT id_bulto, manifiesto, titulo_transporte, 
+case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_Nac_Merca.tbl_40_Bulto
                     where id_poliza_bul = " & Request.QueryString("idCaratula") & ""
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -99,12 +100,12 @@
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El manifiesto ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto de su carátula ya esta registrado.', 'error');</script>")
             Else
                 If chkindicador.Checked = True Then
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_40_Bulto (manifiesto, id_poliza_bul, titulo_transporte, indicador) VALUES ('" & txtmanifiesto.Text & "'," & Request.QueryString("idCaratula") & ", '" & txt_trans.Text & "', 'SI');"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_40_Bulto (manifiesto, id_poliza_bul, titulo_transporte, indicador) VALUES ('" & txtmanifiesto.Text & "'," & Request.QueryString("idCaratula") & ", '" & txt_trans.Text & "', '1');"
                 Else
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_40_Bulto (manifiesto, id_poliza_bul, titulo_transporte, indicador) VALUES ('" & txtmanifiesto.Text & "'," & Request.QueryString("idCaratula") & ", '" & txt_trans.Text & "', 'NO');"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_40_Bulto (manifiesto, id_poliza_bul, titulo_transporte, indicador) VALUES ('" & txtmanifiesto.Text & "'," & Request.QueryString("idCaratula") & ", '" & txt_trans.Text & "', '0');"
 
                 End If
                 Using con As New ControlDB
@@ -150,7 +151,7 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bultos','El manifiesto de bultos ya esta registrado.', 'error');</script>")
             Else
                 Ssql = "UPDATE DB_Nac_Merca.tbl_40_Bulto SET manifiesto = '" & txtmanifiestoEditar.Text & "', titulo_transporte = '" & txt_transEditar.Text & "' WHERE id_bulto = " & lblHiddenIDbulto.Value & ";"
                 Using con As New ControlDB

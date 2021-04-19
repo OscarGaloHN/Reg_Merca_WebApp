@@ -316,7 +316,7 @@
                         <div class="form-group form-float">
                             <label class="form-label"></label>
                             <div class="form-line">
-                                <asp:TextBox ID="txtDomicioProve" AutoComplete="off" runat="server" class="form-control" onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
+                                <asp:TextBox ID="txtDomicioProve" AutoComplete="off" runat="server" class="form-control" onkeydown="BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                 <label class="form-label">Domicilio del Proveedor<span class="required">*</span></label>
                             </div>
                             <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtDomicioProve"
@@ -594,7 +594,7 @@
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <asp:TextBox MaxLength="17" ID="txtmanifiestorap" AutoComplete="off" runat="server"
-                                    class="form-control" onkeydown="return noespacios(event)" onkeyup="mayus(this)"></asp:TextBox>
+                                    class="form-control" onkeydown="BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                 <label class="form-label">Manifiesto de Entrega Rápida</label>
                             </div>
                         </div>
@@ -621,7 +621,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 ">
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <asp:TextBox  MaxLength="50" ID="txtobservacion" AutoComplete="off" runat="server" onkeydown="return noespacios(event)" onkeyup="mayus(this)" class="form-control"></asp:TextBox>
+                                <asp:TextBox  MaxLength="50" ID="txtobservacion" AutoComplete="off" runat="server" onkeydown="BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" class="form-control"></asp:TextBox>
                                 <label class="form-label">Observaciones</label>
                             </div>
                         </div>

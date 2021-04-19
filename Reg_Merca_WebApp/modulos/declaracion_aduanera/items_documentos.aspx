@@ -22,8 +22,7 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlDocumento').value = '';
-            document.getElementById('ContentPrincipal_txtReferencia').value = '';
-           
+            document.getElementById('ContentPrincipal_txtReferencia').value = '';           
             document.getElementById('ContentPrincipal_chkPresencia').checked = false
         }
 

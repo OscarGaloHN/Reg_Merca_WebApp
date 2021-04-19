@@ -33,49 +33,50 @@
                 Session.Abandon()
                 Response.Redirect("~/Inicio/login.aspx")
             Else
-            End If
-            'llenar grid
-            Dim Ssql As String = String.Empty
-            Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, 
+                'llenar grid
+                Dim Ssql As String = String.Empty
+                Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, 
                     case when a.presencia =1 then 'SI' else 'NO' end presencia, a.id_poliza_doc, b.Descripcion
                     From tbl_28_Documentos a, tbl_32_Cod_Documentos b
                     Where a.Id_Documento = b.Id_Documento  and id_poliza_doc = " & Request.QueryString("idCaratula") & ""
 
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
-                gvCustomers.DataSource = DataSetX
-                gvCustomers.DataBind()
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
+                    gvCustomers.DataSource = DataSetX
+                    gvCustomers.DataBind()
+                End If
+
+                If Not IsPostBack Then
+                    Select Case Request.QueryString("acction")
+                        Case "newdocumento"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se almaceno con éxito.', 'success');</script>")
+                        Case "deldocumento"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se elimino con éxito.', 'success');</script>")
+                        Case "editdocumento"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se modifico con éxito.', 'success');</script>")
+                        Case Else
+                            'bitacora de que salio de un form
+                            If Not IsPostBack Then
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                End Using
+                            End If
+
+                            'bitacora de que ingreso al form
+                            Session("IDfrmQueIngresa") = 30
+                            Session("NombrefrmQueIngresa") = "Creación de Documentos"
+                            If Not IsPostBack Then
+                                Using log_bitacora As New ControlBitacora
+                                    log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                End Using
+                            End If
+                    End Select
+                End If
             End If
 
-            If Not IsPostBack Then
-                Select Case Request.QueryString("acction")
-                    Case "newdocumento"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se almaceno con éxito.', 'success');</script>")
-                    Case "deldocumento"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se elimino con éxito.', 'success');</script>")
-                    Case "editdocumento"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se modifico con éxito.', 'success');</script>")
-                    Case Else
-                        'bitacora de que salio de un form
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
-
-                        'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 30
-                        Session("NombrefrmQueIngresa") = "Creación de Documentos"
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
-                End Select
-            End If
 
 
         Catch ex As Exception
@@ -138,9 +139,13 @@
     Private Sub bttModificardocumento_Click(sender As Object, e As EventArgs) Handles bttModificardocumento.Click
 
         Try
+
             Dim Ssql As String = String.Empty
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza_doc = '" & Request.QueryString("idCaratula") & "' and Referencia = '" & txtreferencia.Text & "' "
+
+
             If dddocumentoEditar.SelectedValue <> lblHiddendddocumento.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where Id_Documento= " & lblHiddenIDDocumento.value
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where Id_Documento= " & lblHiddenIDDocumento.Value
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -151,7 +156,7 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','La referencia ya esta registrada.', 'error');</script>")
             Else
                 Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
                 Using con As New ControlDB

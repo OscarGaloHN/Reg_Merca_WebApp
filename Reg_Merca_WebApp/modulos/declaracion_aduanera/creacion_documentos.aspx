@@ -26,7 +26,7 @@
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlDocumento').value = '';
             document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            document.getElementById('ContentPrincipal_chkPresencia').checked = '';
+            document.getElementById('ContentPrincipal_chkPresencia').checked = false
         }
 
         function GetSelectedRowDelete(lnk) {
@@ -115,7 +115,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo; xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo; xModal('teal','ContentPrincipal_dddocumentoEditar','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -210,9 +210,17 @@
                                     ID="ddldocumentos" runat="server"
                                     selectlistitem="" DataSourceID="sqldocumentos" class="form-control show-tick" data-live-search="true"
                                     DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true"
-                                    ItemType="">
-                                    <asp:ListItem Value="Seleccione"></asp:ListItem>
+                                    ItemType=""> <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator
+                                    ID="ddldocumen"
+                                    ControlToValidate="ddldocumentos"
+                                    InitialValue="Seleccione"
+                                    ErrorMessage="Seleccione un dato"
+                                    ForeColor="OrangeRed"
+                                    Font-Size="X-Small"
+                                    runat="server" />
+
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -320,6 +328,14 @@
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator
+                                    ID="RequiredFieldValidator2"
+                                    ControlToValidate="dddocumentoEditar"
+                                    InitialValue="Seleccione"
+                                    ErrorMessage="Seleccione un dato"
+                                    ForeColor="OrangeRed"
+                                    Font-Size="X-Small"
+                                    runat="server" />
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

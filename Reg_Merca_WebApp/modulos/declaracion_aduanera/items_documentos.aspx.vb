@@ -113,15 +113,6 @@
                 Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
             End If
 
-            'habilitar indicador
-            'If chkindicador.Checked = True Then
-            '    Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = 'TRUE' where id_parametro =35"
-            'Else
-            '    Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = 'FALSE' where id_parametro =35"
-            'End If
-
-
-
         Catch ex As Exception
 
         End Try

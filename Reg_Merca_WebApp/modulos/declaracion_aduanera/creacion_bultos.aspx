@@ -27,7 +27,8 @@
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_txtmanifiesto').value = '';
             document.getElementById('ContentPrincipal_txt_trans').value = '';
-            document.getElementById('ContentPrincipal_chkindicador').checked = '';
+            document.getElementById('ContentPrincipal_chkindicador').checked = false
+           
         }
 
         function GetSelectedRowDelete(lnk) {
