@@ -133,9 +133,9 @@
                                             <Columns>
                                                 <%--<asp:BoundField HeaderText="Editar" DataField="ID_Merca;Id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&idCaratula={1}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />--%>
                                              
-<%--                                                  <asp:HyperLinkField HeaderText="Editar"  DataNavigateUrlFields="ID_Merca;Id_poliza"  DataNavigateUrlFormatString=" href=items.aspx?iditems={0}&idCaratula={1}&action=update&ignore=92  " Text="<i class='btn bg-pink waves-effect'><i class='material-icons'>edit</i> " />--%>
-                                                
-                                                <asp:BoundField HeaderText="Editar" DataField="ID_Merca" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                                  <asp:HyperLinkField HeaderText="Editar"  DataNavigateUrlFields="ID_Merca,Id_poliza"  DataNavigateUrlFormatString="items.aspx?iditems={0}&idCaratula={1}&action=update&ignore=92" Text="<i class='btn bg-pink waves-effect'><i class='material-icons'>edit</i> " />
+                                                <%--<asp:HyperLinkField  DataNavigateUrlFields="id_usuario,nombre" DataNavigateUrlFormatString="config_gestion_usuario.aspx?xuser={0}&nombre={1}&action=update&ignore=92  " Text="<i class='btn bg-red waves-effect'><i class='material-icons'>face</i> </i>" />--%>
+                                                <%--<asp:BoundField HeaderText="Editar" DataField="ID_Merca" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='items.aspx?iditems={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />--%>
                                                 <asp:TemplateField HeaderText="Eliminar">
                                                     <ItemTemplate>
                                                         <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>

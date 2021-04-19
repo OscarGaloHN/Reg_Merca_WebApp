@@ -180,6 +180,12 @@ case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_
 
     Private Sub bttfin_Click(sender As Object, e As EventArgs) Handles bttfin.Click
         Try
+            Dim Ssql As String = String.Empty
+            Ssql = "UPDATE DB_Nac_Merca.tbl_01_polizas set "
+
+
+
+
             Response.Redirect("/modulos/declaracion_aduanera/Reporte_caratula.aspx?idcaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
