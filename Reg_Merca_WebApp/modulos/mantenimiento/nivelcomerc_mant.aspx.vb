@@ -102,7 +102,7 @@
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('comercial','El tipo de comercio ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('comercial','El nivel comercial ya esta registrado.', 'error');</script>")
             Else
                 Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_12_nivel_comercial` (`Tipo`) VALUES ('" & txtTipo.Text & "');"
                 Using con As New ControlDB

@@ -16,7 +16,7 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            document.getElementById('ContentPrincipal_txtId_UnidadMed').value = '';
+           
             document.getElementById('ContentPrincipal_txtDescripcion').value = '';
         }
 
@@ -29,7 +29,7 @@
         }
 
         function GetSelectedRowEdit(lnk) {
-            document.getElementById('ContentPrincipal_txtId_UnidadMedEditar').value = '';
+           
             document.getElementById('ContentPrincipal_txtDescripcionEditar').value = '';
 
             var row = lnk.parentNode.parentNode;
@@ -39,14 +39,13 @@
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtDescripcionEditar').value = row.cells[3].innerHTML;
+               document.getElementById('ContentPrincipal_lblHiddenIDmedida').value = row.cells[2].innerHTML;
             }
 
 
-            document.getElementById('ContentPrincipal_lblHiddenIDmedida').value = row.cells[2].innerHTML;
+           
 
-            if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtId_UnidadMedEditar').value = row.cells[2].innerHTML;
-            }
+           
             xModal('pink', 'ContentPrincipal_txtId_UnidadMedEditar', 'modalEditar');
         }
 
@@ -55,7 +54,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Matenimiento de unidad de medida</a>
+    <a class="navbar-brand" href="#">Matenimiento De Unidad De Medida</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
    <ul class="list">
@@ -87,7 +86,7 @@
         
         <li>
             <a href="condentrega_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
             </li>
@@ -99,13 +98,13 @@
             </li>
         <li>
             <a href="estadomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
             <a href="forma_pago.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
             </li>
@@ -171,7 +170,7 @@
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado del Estado de Unidad de Medida'
+        tituloImprimir = 'LISTADO DE LA UNIDAD DE MEDIDA'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -184,7 +183,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">UNIDAD DE MEDIDA
-                                 <small>A continuación se muestra el listado de unidades de medida.</small>
+                                 <small>A Continuación Se Muestra El Listado De Unidades De Medida.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -240,7 +239,7 @@
                         <!-- CUERPO DEL MODAL principal -->
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="ID Unidad Medida" AutoComplete="off" ValidationGroup="Validamedida" runat="server" class="form-control" ID="txtId_UnidadMed"></asp:TextBox>
@@ -250,7 +249,7 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validamedida" />
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -320,7 +319,7 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="ID UNIDAD MEDIDA" AutoComplete="off" ValidationGroup="ValidamedidaEditar" runat="server" class="form-control" ID="txtId_UnidadMedEditar"></asp:TextBox>
@@ -330,7 +329,7 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaestadoEditar" />
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
