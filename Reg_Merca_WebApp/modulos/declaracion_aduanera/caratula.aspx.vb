@@ -23,6 +23,7 @@
             Using Parametros_admin As New ControlDB
                 Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
             End Using
+
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
                 Response.Redirect("~/Inicio/login.aspx")

@@ -29,27 +29,6 @@
                 <span>Declaración Aduanera</span>
             </a>
         </li>
-
-        <%-- <li class="#">
-            <a href="creacion_items.aspx">
-                <i class="material-icons">note_add</i>
-                <span>Creación de Ítems</span>
-            </a>
-        </li>
-
-        <li class="#">
-            <a href="creacion_items.aspx">
-                <i class="material-icons">note_add</i>
-                <span>Creación de Documentos</span>
-            </a>
-        </li>
-
-        <li class="#">
-            <a href="creacion_items.aspx">
-                <i class="material-icons">collections_bookmark</i>
-                <span>Creación de Bultos</span>
-            </a>
-        </li>--%>
     </ul>
 
     <style type="text/css">
