@@ -20,7 +20,9 @@
         '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
         'End Using
 
-
+        'Using logo_imprimir As New ControlDB
+        '    Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
+        'End Using
 
         Try
             lblCatatura.Text = Request.QueryString("idCaratula")
@@ -33,6 +35,7 @@
                 Session.Abandon()
                 Response.Redirect("~/Inicio/login.aspx")
             Else
+
                 'llenar grid
                 Dim Ssql As String = String.Empty
                 Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia, 
@@ -75,10 +78,8 @@
                             End If
                     End Select
                 End If
+
             End If
-
-
-
         Catch ex As Exception
 
         End Try
@@ -139,13 +140,12 @@
     Private Sub bttModificardocumento_Click(sender As Object, e As EventArgs) Handles bttModificardocumento.Click
 
         Try
-
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where id_poliza_doc = '" & Request.QueryString("idCaratula") & "' and Referencia = '" & txtreferencia.Text & "' "
 
 
             If dddocumentoEditar.SelectedValue <> lblHiddendddocumento.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where Id_Documento= " & lblHiddenIDDocumento.Value
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_28_Documentos where Id_Documento= " & lblHiddenIDDocumento.value
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -188,4 +188,5 @@
 
         End Try
     End Sub
+
 End Class

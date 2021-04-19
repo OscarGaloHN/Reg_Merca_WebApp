@@ -1,22 +1,15 @@
 ﻿<%@ Page Title="Documentos" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="creacion_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.creacion_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
-
-    <!-- Bootstrap Select Css -->
-    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
-
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
@@ -26,7 +19,7 @@
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlDocumento').value = '';
             document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            document.getElementById('ContentPrincipal_chkPresencia').checked = false
+            document.getElementById('ContentPrincipal_chkPresencia').checked = '';
         }
 
         function GetSelectedRowDelete(lnk) {
@@ -50,7 +43,6 @@
                 document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = false
             }
 
-
             document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
@@ -71,7 +63,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creación de Documentos</a>
+    <a class="navbar-brand" href="#">Creacion de Documentos</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -83,9 +75,10 @@
             </a>
         </li>
         <li class="active">
-            <a href="caratula.aspx">
-                <i class="material-icons">aspect_ratio</i>
-                <span>Declaración Aduanera</span>
+
+            <a href="#">
+                <i class="material-icons">create_new_folder</i>
+                <span>Creación de documentos</span>
             </a>
         </li>
     </ul>
@@ -97,7 +90,7 @@
 
     <script type="text/javascript">
         tituloImprimir = 'Listado de Documentos'
-        xColumnas.push(2, 3, 4, 5, 6, 7); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
@@ -115,7 +108,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo; xModal('teal','ContentPrincipal_dddocumentoEditar','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo; xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -133,7 +126,6 @@
                                 <span>Volver</span>
                             </asp:LinkButton>
                         </div>
-
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
                             <asp:LinkButton
                                 Width="100%"
@@ -146,7 +138,6 @@
                                 <span>Continuar</span>
                             </asp:LinkButton>
                         </div>
-
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -189,7 +180,7 @@
                         <h4 class="modal-title" id="lblModalDocumentos">NUEVO DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos de los documentos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos de los documetos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -203,34 +194,27 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 1;"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 2;"></asp:SqlDataSource>
 
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList
                                     ID="ddldocumentos" runat="server"
                                     selectlistitem="" DataSourceID="sqldocumentos" class="form-control show-tick" data-live-search="true"
                                     DataTextField="descripcion" DataValueField="Id_Documento" AppendDataBoundItems="true"
-                                    ItemType=""> <asp:ListItem Value="Seleccione"></asp:ListItem>
+                                    ItemType="">
+                                    <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator
-                                    ID="ddldocumen"
-                                    ControlToValidate="ddldocumentos"
-                                    InitialValue="Seleccione"
-                                    ErrorMessage="Seleccione un dato"
-                                    ForeColor="OrangeRed"
-                                    Font-Size="X-Small"
-                                    runat="server" />
-
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-label">Referencia</label>
+                                <label class="form-label"></label>
+
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
-                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
+                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtreferencia"
+                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtReferencia"
                                         ErrorMessage="Ingrese la referencia."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaDocumento" />
@@ -318,7 +302,7 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 1;"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 2;"></asp:SqlDataSource>
 
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList
@@ -328,27 +312,18 @@
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:RequiredFieldValidator
-                                    ID="RequiredFieldValidator2"
-                                    ControlToValidate="dddocumentoEditar"
-                                    InitialValue="Seleccione"
-                                    ErrorMessage="Seleccione un dato"
-                                    ForeColor="OrangeRed"
-                                    Font-Size="X-Small"
-                                    runat="server" />
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-label">Referencia</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferenciaEditar" onkeypress="txNombres(event);"
-                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" onkeypress="txNombres(event);"
+                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtreferenciaEditar"
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaDocumento" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidadocumentoEditar" />
                                 </div>
                             </div>
                         </div>
@@ -378,6 +353,4 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
-    <!-- Select Plugin Js -->
-    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>
