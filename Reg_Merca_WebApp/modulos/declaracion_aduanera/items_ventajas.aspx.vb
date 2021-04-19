@@ -148,8 +148,8 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
 
         Try
             Dim Ssql As String = String.Empty
-            If ddlventajaedit.SelectedValue = lblHiddenIDDocumento.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_42_Datos_Ventaja where  id_ventaja = '" & ddlventajaedit.SelectedValue & "' "
+            If ddlventajaedit.SelectedValue <> lblHiddenIDDocumento.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_42_Datos_Ventaja where  id_ventaja = '" & ddlventajaedit.SelectedValue & "' And Id_Codigo= '" & Request.QueryString("iditems") & "; "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
