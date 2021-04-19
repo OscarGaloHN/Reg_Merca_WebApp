@@ -542,7 +542,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.54cm</Height>
+      <Height>3.28083cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -652,21 +652,45 @@ Globals!OverallTotalPages</Value>
           <DataField>id_poliza</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="fecha_creacion">
-          <DataField>fecha_creacion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Id_cliente">
-          <DataField>Id_cliente</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="estado_poliza">
           <DataField>estado_poliza</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cod_aduana_ent">
+          <DataField>cod_aduana_ent</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cod_aduana_sal">
+          <DataField>cod_aduana_sal</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="usuario_creador">
           <DataField>usuario_creador</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Id_regimen">
+          <DataField>Id_regimen</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nombre_agenciaadu">
+          <DataField>nombre_agenciaadu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Numero_Preimpreso">
+          <DataField>Numero_Preimpreso</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_condicion">
+          <DataField>id_condicion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fecha_creacion">
+          <DataField>fecha_creacion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="divisa_seguro">
+          <DataField>divisa_seguro</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -705,6 +729,126 @@ Globals!OverallTotalPages</Value>
         <rd:DataSetName>DSPoliza</rd:DataSetName>
         <rd:SchemaPath>C:\Users\User\Documents\IMPLEMENTACION 2021\Proyecto  Reg_Merca\Reg_Merca_WebApp\modulos\reportes\fuentes\DSPoliza.xsd</rd:SchemaPath>
         <rd:TableName>DtEmpresa</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSCliente">
+      <Query>
+        <DataSourceName>DSPoliza</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="nombrec">
+          <DataField>nombrec</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSPoliza</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\User\Documents\IMPLEMENTACION 2021\Proyecto  Reg_Merca\Reg_Merca_WebApp\modulos\reportes\fuentes\DSPoliza.xsd</rd:SchemaPath>
+        <rd:TableName>DtCliente</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSDocumentos">
+      <Query>
+        <DataSourceName>DSPoliza</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Descripcion">
+          <DataField>Descripcion</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSPoliza</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\User\Documents\IMPLEMENTACION 2021\Proyecto  Reg_Merca\Reg_Merca_WebApp\modulos\reportes\fuentes\DSPoliza.xsd</rd:SchemaPath>
+        <rd:TableName>DtDocumentos</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSUsuarios">
+      <Query>
+        <DataSourceName>DSPoliza</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="nombre">
+          <DataField>nombre</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSPoliza</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\User\Documents\IMPLEMENTACION 2021\Proyecto  Reg_Merca\Reg_Merca_WebApp\modulos\reportes\fuentes\DSPoliza.xsd</rd:SchemaPath>
+        <rd:TableName>DtUsuarios</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSDeclarante">
+      <Query>
+        <DataSourceName>DSPoliza</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="nombredecla">
+          <DataField>nombredecla</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSPoliza</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\User\Documents\IMPLEMENTACION 2021\Proyecto  Reg_Merca\Reg_Merca_WebApp\modulos\reportes\fuentes\DSPoliza.xsd</rd:SchemaPath>
+        <rd:TableName>DtDeclarante</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSProveedores">
+      <Query>
+        <DataSourceName>DSPoliza</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="nombre">
+          <DataField>nombre</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSPoliza</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\User\Documents\IMPLEMENTACION 2021\Proyecto  Reg_Merca\Reg_Merca_WebApp\modulos\reportes\fuentes\DSPoliza.xsd</rd:SchemaPath>
+        <rd:TableName>DtProveedores</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSPaises">
+      <Query>
+        <DataSourceName>DSPoliza</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Nombre_Pais">
+          <DataField>Nombre_Pais</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSPoliza</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\User\Documents\IMPLEMENTACION 2021\Proyecto  Reg_Merca\Reg_Merca_WebApp\modulos\reportes\fuentes\DSPoliza.xsd</rd:SchemaPath>
+        <rd:TableName>DtPaises</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
