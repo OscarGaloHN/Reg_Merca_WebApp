@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="datosventajas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.datosventajas_mant" %>
+﻿<%@ Page Title="Datos Ventajas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="datosventajas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.datosventajas_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -21,17 +21,17 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblpaises').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lbldatos').innerHTML = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDdatosvent').value = row.cells[2].innerHTML;
+            //document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
             xModal('red', 'ContentPrincipal_txtid', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_txtidEditar').value = '';
-            document.getElementById('ContentPrincipal_txtpaisesEditar').value = '';
+            //document.getElementById('ContentPrincipal_txtpaisesEditar').value = '';
             
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblHiddenIDpaises').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDdatosvent').value = row.cells[2].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
@@ -53,52 +53,52 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li>
+        <li  >
             <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
             </li>
              <li>
-                     <a href="#">
+                     <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
             </li>
         
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="condentrega_mant">
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
             </li>
-        <li>
+     <li class="active" >
             <a href="#">
-                <i class="material-icons">verified_user</i>
-                <span>Ventajas</span>
+                <i class="material-icons">history_edu</i>
+                <span>Datos Ventajas</span>
             </a>
             </li>
         <li>
             <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
-                <span>divisas</span>
+                <span>Divisas</span>
             </a>
             </li>
         <li>
             <a href="estadomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="forma_pago.aspx">
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
             </li>
@@ -109,13 +109,13 @@
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="nivelcomerc_mant.aspx">
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
@@ -126,32 +126,32 @@
                 <span>Preguntas</span>
             </a>
             </li>
-         <li class="active">
-            <a href="#">
+         <li>
+            <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="tipoitems_mant.aspx">
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+            <a href="unidmedida_mant.aspx">
+                <i class="material-icons">straighten</i>
+                <span>Unidad de Medidas</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
@@ -172,8 +172,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Paises
-                                 <small>A continuación se muestra el listado de los paises registradas.</small>
+                    <h2 style="font-weight: bold;">DATOS VENTAJAS
+                                 <small>A continuación se muestra el listado de los Datos Ventajas registradas.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -202,8 +202,8 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                          <asp:BoundField DataField="Id_Codigo" HeaderText="ID CODIGO" />
-                                        <asp:BoundField DataField="Id_ventaja" HeaderText="Id Ventaja" />
-                                        <asp:BoundField DataField="Id_merca" HeaderText="Id Mercancia" />
+                                        <%--<asp:BoundField DataField="Id_ventaja" HeaderText="Id Ventaja" />
+                                        <asp:BoundField DataField="Id_merca" HeaderText="Id Mercancia" />--%>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -220,7 +220,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO PAIS</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO DATO VENTAJA</h4>
                     </div>
                     <div class="modal-body">
                         Ingrese el Dato de la Ventaja y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
@@ -232,11 +232,11 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox placeholder="ID CODIGO" onkeypress="return txtid(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox MaxLength="4"  placeholder="ID CODIGO" onkeypress="SoloNumeros()" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">ID Pais</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
-                                    ErrorMessage="Ingrese el ID del Pais."
+                                    ErrorMessage="Ingrese el ID del datos ventaja."
                                     Display="Dynamic"
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
@@ -265,9 +265,9 @@
                 </div>
                 <div class="modal-body">
                     ¿Seguro que dese eliminar este Pais:
-                    <asp:Label runat="server" ID="lblpaises" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDpaises" />
-                        <asp:HiddenField runat="server" ID="lblHiddenNombrepaises" />
+                    <asp:Label runat="server" ID="lbldatos" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDdatosvent" />
+                        <%--<asp:HiddenField runat="server" ID="lblHiddenNombrepaises" />--%>
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
@@ -302,7 +302,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID" onkeypress="return txtidEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtidEditar" runat="server" class="form-control"></asp:TextBox>
+                                        <asp:TextBox MaxLength="4" placeholder="ID CODIGO" onkeypress="SoloNumeros()" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtidEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtidEditar"
                                         ErrorMessage="Ingrese el ID del pais."

@@ -77,31 +77,22 @@ Partial Public Class datosventajas_mant
     Protected WithEvents bttGuardardatosvent As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control lblpaises.
+    '''Control lbldatos.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblpaises As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbldatos As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control lblHiddenIDpaises.
+    '''Control lblHiddenIDdatosvent.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHiddenIDpaises As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control lblHiddenNombrepaises.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblHiddenNombrepaises As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents lblHiddenIDdatosvent As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
     '''Control bttEliminardatosvent.

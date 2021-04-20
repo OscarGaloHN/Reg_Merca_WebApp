@@ -93,9 +93,15 @@
             </li>
         
         <li>
-            <a href="condentrega_mant">
+            <a href="condentrega_mant.aspx">
                 <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
+            </a>
+            </li>
+     <li>
+            <a href="datosventajas_mant.aspx">
+                <i class="material-icons">history_edu</i>
+                <span>Datos Ventajas</span>
             </a>
             </li>
         <li>

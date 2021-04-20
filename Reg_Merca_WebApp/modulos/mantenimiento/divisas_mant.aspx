@@ -105,6 +105,12 @@
                 <span>Condicion de Entrega</span>
             </a>
             </li>
+     <li>
+            <a href="datosventajas_mant.aspx">
+                <i class="material-icons">history_edu</i>
+                <span>Datos Ventajas</span>
+            </a>
+            </li>
         <li class="active" >
             <a href="#">
                 <i class="material-icons">monetization_on</i>
@@ -183,7 +189,7 @@
     <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
    <script type="text/javascript">
-       tituloImprimir = 'Listado de las Aduanas'
+       tituloImprimir = 'LISTADO DE LAS DIVISAS'
        xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
        xMargenes.push(100, 0, 100, 0)
        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
