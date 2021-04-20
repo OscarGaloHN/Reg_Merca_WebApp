@@ -228,6 +228,7 @@
     <Content Include="modulos\mantenimiento\almacen_mant.aspx" />
     <Content Include="modulos\mantenimiento\cliente_mant.aspx" />
     <Content Include="modulos\mantenimiento\condentrega_mant.aspx" />
+    <Content Include="modulos\mantenimiento\datosventajas_mant.aspx" />
     <Content Include="modulos\mantenimiento\divisas_mant.aspx" />
     <Content Include="modulos\mantenimiento\estadomerc_mant.aspx" />
     <Content Include="modulos\mantenimiento\forma_pago.aspx" />
@@ -1213,6 +1214,13 @@
     <Compile Include="modulos\mantenimiento\condentrega_mant.aspx.vb">
       <DependentUpon>condentrega_mant.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\datosventajas_mant.aspx.designer.vb">
+      <DependentUpon>datosventajas_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\datosventajas_mant.aspx.vb">
+      <DependentUpon>datosventajas_mant.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\divisas_mant.aspx.designer.vb">
       <DependentUpon>divisas_mant.aspx</DependentUpon>
