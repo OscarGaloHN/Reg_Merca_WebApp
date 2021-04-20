@@ -28,32 +28,25 @@ Public Class Reporte_caratula
             ReportViewer1.ProcessingMode = ProcessingMode.Local
             Dim localReport As LocalReport
             localReport = ReportViewer1.LocalReport
-            localReport.ReportPath = Server.MapPath("~/modulos/reportes/rptPoliza.rdlc")
+            localReport.ReportPath = Server.MapPath(Session("nombreRPT"))
 
-            Dim datasetClientes As New DataSet(Session("DSPoliza"))
+            Dim datasetClientes As New DataSet(Session("nombreDS"))
             'Get the sales order data  
-            ObtenerDatos(datasetClientes, "DtPoliza", "select a.Id_poliza, a.estado_poliza, a.cod_aduana_ent,  a.cod_aduana_sal, a.Id_regimen, a.nombre_agenciaadu,
- a.Numero_Preimpreso, a.id_condicion,  a.Id_Clase_deBulto,  a.fecha_creacion, a.divisa_seguro,
-b.nombrec, c.Descripcion, d.nombre, e.nombredecla, f.nombre, g.Nombre_Pais
-
-from tbl_01_polizas a, tbl_04_cliente b, tbl_32_Cod_Documentos c, tbl_02_usuarios d, tbl_43_declarante e, 
-     tbl_05_proveedores f, tbl_8_paises g, tbl_28_Documentos dc
-
-where a.Id_cliente = b.Id_cliente
-and dc.id_poliza_doc = a.Id_poliza
-and dc.Id_Documento = c.Id_Documento
-and a.ultimo_editor = d.id_usuario
-and a.Id_proveedor = f.Id_proveedor
-and a.Cod_pais_org = g.Id_Pais
-and a.declarante = e.id_declarante;")
+            ObtenerDatos(datasetClientes, Session("nombreDT"), Session("xSsql"))            'Create a report data source for the sales order data  
             Dim dsClientes As New ReportDataSource()
-            dsClientes.Name = Session("DSPoliza")
-            dsClientes.Value = datasetClientes.Tables(Session("DtPoliza"))
+            dsClientes.Name = Session("nombreDS")
+            dsClientes.Value = datasetClientes.Tables(Session("nombreDT"))
             localReport.DataSources.Add(dsClientes)
 
 
+            'Get the sales order data  
+            ObtenerDatos(datasetClientes, Session("nombreDT2"), Session("xSsql2"))            'Create a report data source for the sales order data  
+            Dim dsClientes2 As New ReportDataSource()
+            dsClientes2.Name = Session("nombreDS2")
+            dsClientes2.Value = datasetClientes.Tables(Session("nombreDT2"))
+            localReport.DataSources.Add(dsClientes2)
 
-            Dim nombreReporte As String = "Reporte de Polizas"
+            Dim nombreReporte As String = "Reporte de Clientes"
             'Get the sales order data  
             ObtenerDatos(datasetClientes, "DtEmpresa", "SELECT '" & Application("ParametrosADMIN")(2) & "' as nombre, '" & Application("ParametrosADMIN")(3) & "' as alias, '" & Application("ParametrosADMIN")(22) & "' as logo, '" & nombreReporte & "' as reporte FROM DB_Nac_Merca.tbl_21_parametros LIMIT 1;")            'Create a report data source for the sales order data  
             Dim dsEmpresa As New ReportDataSource()
