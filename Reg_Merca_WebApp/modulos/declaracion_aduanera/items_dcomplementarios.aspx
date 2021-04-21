@@ -259,7 +259,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarDocumento" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarDocumento"  ValidationGroup="Validadocumento" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
