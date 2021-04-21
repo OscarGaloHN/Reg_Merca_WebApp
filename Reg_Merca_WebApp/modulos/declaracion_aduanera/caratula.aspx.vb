@@ -14,15 +14,15 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
-            'parametros de configuracion de sistema
-            Using Parametros_Sistema As New ControlDB
-                Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-            End Using
+            ''parametros de configuracion de sistema
+            'Using Parametros_Sistema As New ControlDB
+            '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+            'End Using
 
-            'PARAMETROS DE ADMINISTRADOR
-            Using Parametros_admin As New ControlDB
-                Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-            End Using
+            ''PARAMETROS DE ADMINISTRADOR
+            'Using Parametros_admin As New ControlDB
+            '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+            'End Using
 
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
@@ -113,7 +113,7 @@
 
                         'bitacora de que ingreso al form
                         Session("IDfrmQueIngresa") = 16
-                        Session("NombrefrmQueIngresa") = "Caratula"
+                        Session("NombrefrmQueIngresa") = "Carátula"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -167,6 +167,14 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
+
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "La carátula ha sido guardada con éxito.")
+                    End Using
                     Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new&idCaratula=" & Session("GME_Recuperar_ID"))
 
             End Select
@@ -180,9 +188,6 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
     Private Sub bttActualizar_Click(sender As Object, e As EventArgs) Handles bttActualizar.Click
         Dim Ssql As String
         Try
-
-
-
             Select Case Request.QueryString("action")
                 Case "update"
                     Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
@@ -208,6 +213,10 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
 
+
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "La carátula número " & Request.QueryString("idCaratula") & " se actualizo con éxito.")
+                    End Using
                     Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula") & "&alerta=update")
             End Select
         Catch ex As Exception
@@ -244,8 +253,6 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 
     Private Sub bttitems_Click(sender As Object, e As EventArgs) Handles bttitems.Click
         Try
-            'redirecciona a form items
-            'Session("IdCaratulaEditor") = Request.QueryString("idCaratula")
             Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
