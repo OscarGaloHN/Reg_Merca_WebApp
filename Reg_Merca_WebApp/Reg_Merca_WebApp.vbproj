@@ -221,6 +221,7 @@
     <Content Include="modulos\declaracion_aduanera\creacion_proyectos.aspx" />
     <Content Include="modulos\declaracion_aduanera\items.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx" />
+    <Content Include="modulos\declaracion_aduanera\items_dcompletario.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_documentos.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_ventajas.aspx" />
     <Content Include="modulos\declaracion_aduanera\Reporte_caratula.aspx" />
@@ -1103,6 +1104,13 @@
     <Compile Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx.vb">
       <DependentUpon>items_dcomplementarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items_dcompletario.aspx.designer.vb">
+      <DependentUpon>items_dcompletario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\items_dcompletario.aspx.vb">
+      <DependentUpon>items_dcompletario.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="modulos\declaracion_aduanera\items_documentos.aspx.designer.vb">
       <DependentUpon>items_documentos.aspx</DependentUpon>
