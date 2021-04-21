@@ -85,6 +85,12 @@
             </a>
             </li>
         <li>
+            <a href="datosventajas_mant.aspx">
+                <i class="material-icons">history_edu</i>
+                <span>Datos Ventajas</span>
+            </a>
+            </li>
+        <li>
             <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
                 <span>divisas</span>
@@ -232,7 +238,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtid(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox placeholder="ID" onkeypress="return txtid(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">ID Pais</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
@@ -241,11 +247,11 @@
                                     ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
                             </div>
-
+                             
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtpaises(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtpaises" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox placeholder="Nombre pais" onkeypress="return txtpaises(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtpaises" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Paises</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtpaises"
@@ -313,7 +319,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox onkeypress="return txtidEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtidEditar" runat="server" class="form-control"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID" onkeypress="return txtidEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtidEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtidEditar"
                                         ErrorMessage="Ingrese el ID del pais."
@@ -324,7 +330,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                      <asp:TextBox onkeypress="return txtpaisesEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtpaisesEditar" runat="server" class="form-control"></asp:TextBox>  
+                                      <asp:TextBox placeholder="Nombre pais" onkeypress="return txtpaisesEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtpaisesEditar" runat="server" class="form-control"></asp:TextBox>  
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtpaisesEditar"
                                         ErrorMessage="Ingrese el pais."

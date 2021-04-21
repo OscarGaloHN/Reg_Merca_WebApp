@@ -157,6 +157,12 @@
             </a>
             </li>
         <li>
+            <a href="datosventajas_mant.aspx">
+                <i class="material-icons">history_edu</i>
+                <span>Datos Ventajas</span>
+            </a>
+            </li>
+        <li>
             <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
                 <span>Divisas</span>

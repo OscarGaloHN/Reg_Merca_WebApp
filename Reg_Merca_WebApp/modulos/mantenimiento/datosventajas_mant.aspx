@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ventajas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="ventajas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.ventajas_mant" %>
+﻿<%@ Page Title="Datos Ventajas" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="datosventajas_mant.aspx.vb" Inherits="Reg_Merca_WebApp.datosventajas_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -15,44 +15,37 @@
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
-            //document.getElementById('ContentPrincipal_txtid').value = '';
-            document.getElementById('ContentPrincipal_txtventajas').value = '';
+            document.getElementById('ContentPrincipal_txtid').value = '';
+            
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblventajas').innerHTML = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenNombreventajas').value = row.cells[3].innerHTML;
-            xModal('red', 'ContentPrincipal_txtventajas', 'modalDelete');
+            document.getElementById('ContentPrincipal_lbldatos').innerHTML = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDdatosvent').value = row.cells[2].innerHTML;
+            //document.getElementById('ContentPrincipal_lblHiddenNombrepaises').value = row.cells[3].innerHTML;
+            xModal('red', 'ContentPrincipal_txtid', 'modalDelete');
         }
         function GetSelectedRowEdit(lnk) {
-            //document.getElementById('ContentPrincipal_txtidEditar').value = '';
-            document.getElementById('ContentPrincipal_txtdescripcionEditar').value = '';
+            document.getElementById('ContentPrincipal_txtidEditar').value = '';
+            //document.getElementById('ContentPrincipal_txtpaisesEditar').value = '';
             
             var row = lnk.parentNode.parentNode;
-
-            document.getElementById('ContentPrincipal_lblHiddenNombreventajas').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDdatosvent').value = row.cells[2].innerHTML;
 
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtdescripcionEditar').value = row.cells[3].innerHTML;
-                document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
             }
-            //document.getElementById('ContentPrincipal_lblHiddenIDVentajas').value = row.cells[2].innerHTML;
-
-            //if (row.cells[2].innerHTML != '&nbsp;') {
-            //    document.getElementById('ContentPrincipal_txtidEditar').value = row.cells[2].innerHTML;
-            //}
-            xModal('pink', 'ContentPrincipal_txtdescripcionEditar', 'modalEditar');
+            xModal('pink', 'ContentPrincipal_txtpaisesEditar', 'modalEditar');
         }
 
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-  <a class="navbar-brand" href="#">Mantenimiento de Ventajas</a>
+     <a class="navbar-brand" href="#">Mantenimiento de Datos de Ventajas</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-<ul class="list">
+    <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -85,8 +78,8 @@
                 <span>Condicion de Entrega</span>
             </a>
             </li>
-    <li>
-            <a href="datosventajas_mant.aspx">
+     <li class="active" >
+            <a href="#">
                 <i class="material-icons">history_edu</i>
                 <span>Datos Ventajas</span>
             </a>
@@ -157,8 +150,8 @@
                 <span>Unidad de Medidas</span>
             </a>
             </li>
-         <li class="active" >
-            <a href="#">
+         <li>
+            <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
@@ -166,27 +159,27 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
-<script type="text/javascript">
-    tituloImprimir = 'Listado de las ventajas'
-    xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-    xMargenes.push(100, 0, 100, 0)
-    xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
-    xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value
-</script>
+     <script type="text/javascript">
+         tituloImprimir = 'LISTADO DE LOS DATOS DE LAS VENTAJAS'
+         xColumnas.push(2,3,4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+         xMargenes.push(100, 0, 100, 0)
+         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+     </script>
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Ventajas
-                                 <small>A continuación se muestra el listado de las Ventajas registradas.</small>
+                    <h2 style="font-weight: bold;">DATOS VENTAJAS
+                                 <small>A continuación se muestra el listado de los Datos Ventajas registradas.</small>
                     </h2>
                 </div>
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtventajas','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo(); xModal('teal','ContentPrincipal_txtpaises','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -208,8 +201,9 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                         <asp:BoundField DataField="id_Ventaja" HeaderText="ID" />
-                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripcion de la ventaja" />
+                                         <asp:BoundField DataField="Id_Codigo" HeaderText="ID CODIGO" />
+                                        <%--<asp:BoundField DataField="Id_ventaja" HeaderText="Id Ventaja" />
+                                        <asp:BoundField DataField="Id_merca" HeaderText="Id Mercancia" />--%>
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -219,77 +213,68 @@
             </div>
         </div>
     </div>
-     <!-- modal nuevo Ventajas-->
+    <!-- modal nuevo Pais-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardarventajas">
+            <asp:Panel ID="Panel3" runat="server" DefaultButton="bttGuardardatosvent">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVA VENTAJAS</h4>
+                        <h4 class="modal-title" id="lblMOdalCorreo">NUEVO DATO VENTAJA</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese la ventaja y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese el Dato de la Ventaja y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                       <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtid(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox> 
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
-                                        ErrorMessage="Ingrese la ID de ventaja."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaventajas" />
-                                </div>
-                            </div>--%>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="Descripcion" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtventajas(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtventajas" runat="server" class="form-control"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtventajas"
-                                        ErrorMessage="Ingrese la ventaja."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="Validaventajas" />
+                                <div class="form-group form-float">
+                                <div class="form-line">
+                                    <asp:TextBox MaxLength="4"  placeholder="ID CODIGO" onkeypress="SoloNumeros()" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtid" runat="server" class="form-control"></asp:TextBox>
+                                    <label class="form-label">ID Pais</label>
                                 </div>
+                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid"
+                                    ErrorMessage="Ingrese el ID del datos ventaja."
+                                    Display="Dynamic"
+                                    ForeColor="OrangeRed" Font-Size="X-Small" />
                             </div>
+                            </div>
+                             
+                           
                            
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttGuardarventajas" ValidationGroup="Validaventajas" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttGuardardatosvent" ValidationGroup="Validapaises" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
             </asp:Panel>
         </div>
     </div>
- <!-- modal eliminar aduana-->
+ <!-- modal eliminar dato de la ventaja-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- TITULO -->
-                    <h4 class="modal-title" id="LblDelete">ELIMINAR VENTAJAS</h4>
+                    <h4 class="modal-title" id="LblDelete">ELIMINAR PAIS</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que dese eliminar esta Ventaja:
-                    <asp:Label runat="server" ID="lblventajas" Text="..."></asp:Label>?
-                        <asp:HiddenField runat="server" ID="lblHiddenIDVentajas" />
-                        <asp:HiddenField runat="server" ID="lblHiddenNombreventajas" />
-                        
+                    ¿Seguro que dese eliminar este Pais:
+                    <asp:Label runat="server" ID="lbldatos" Text="..."></asp:Label>?
+                        <asp:HiddenField runat="server" ID="lblHiddenIDdatosvent" />
+                        <%--<asp:HiddenField runat="server" ID="lblHiddenNombrepaises" />--%>
                     <br />
                     <br />
                     <!-- CUERPO DEL MODAL -->
-
+                   
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarventajas" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminardatosvent" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -298,54 +283,44 @@
     </div>
 
 
-       <!-- modal editar aduana-->
+       <!-- modal editar Dato de la ventaja-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
-            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarventajas">
+            <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardardatosvent">
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditar">EDITAR VENTAJAS</h4>
+                        <h4 class="modal-title" id="lblEditar">EDITAR PAISES</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos de las ventajas haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                      Luego de terminar de editar los datos de los Paises haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                           <%-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <asp:TextBox placeholder="ID" AutoComplete="off" ValidationGroup="ValidaventajasEditar" runat="server" class="form-control" ID="txtidEditar"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtidEditar"
-                                        ErrorMessage="Ingrese el ID de la ventaja."
-                                        Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaventajasEditar" />
-                                </div>
-                            </div>--%>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                    <asp:TextBox placeholder="Descripcion de la ventaja" AutoComplete="off" ValidationGroup="Validadivisa"  onkeypress="return txtdescripcionEditar(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtdescripcionEditar" runat="server" class="form-control"></asp:TextBox>
+                                        <asp:TextBox MaxLength="4" placeholder="ID CODIGO" onkeypress="SoloNumeros()" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtidEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtdescripcionEditar"
-                                        ErrorMessage="Ingrese la Ventaja."
+                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtidEditar"
+                                        ErrorMessage="Ingrese el ID del pais."
                                         Display="Dynamic"
-                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidaventajasEditar" />
+                                        ForeColor="White" Font-Size="Small" ValidationGroup="ValidapaisesEditar" />
                                 </div>
                             </div>
+                           
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaventajasEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidapaisesnEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
                         <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                     </div>
                 </div>
             </asp:Panel>
         </div>
-    </div>  
+    </div>    
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="contenJSpie" runat="server">
 </asp:Content>
