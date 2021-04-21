@@ -33,7 +33,7 @@ Public Class WebForm2
 
             Dim nombreReporte As String = "Reporte de Clientes"
             'Get the sales order data  
-            ObtenerDatos(datasetClientes, "DtEmpresa", "SELECT '" & Application("ParametrosADMIN")(2) & "' as nombre, '" & Application("ParametrosADMIN")(3) & "' as alias, '" & Application("ParametrosADMIN")(22) & "' as logo, '" & nombreReporte & "' as reporte FROM DB_Nac_Merca.tbl_21_parametros LIMIT 1;")            'Create a report data source for the sales order data  
+            ObtenerDatos(datasetClientes, "DtEmpresa", "SELECT '' as nombre, '' as alias, null as logo, '" & nombreReporte & "' as reporte FROM DB_Nac_Merca.tbl_21_parametros LIMIT 1;")            'Create a report data source for the sales order data  
             Dim dsEmpresa As New ReportDataSource()
             dsEmpresa.Name = "DSEmpresa"
             dsEmpresa.Value = datasetClientes.Tables("DtEmpresa")

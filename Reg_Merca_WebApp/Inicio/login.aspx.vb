@@ -15,7 +15,6 @@ Public Class login
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-
             If Session("user_idUsuario") = Nothing Then
                 Session("IDfrmQueIngresa") = 3
                 Session("NombrefrmQueIngresa") = "Login"
@@ -82,8 +81,21 @@ Public Class login
                 'REDIRECCIONAR A MENU PRINCIPAL
                 Response.Redirect("~/modulos/menu_principal.aspx")
             End If
+
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            Select Case ex.Number
+                Case 1042
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','No fue posible conectarse al el servidor.', 'error');</script>")
+                Case Else
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','Error inesperado contacte al administrador.', 'error');</script>")
+
+            End Select
+        Catch ex As NullReferenceException
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','Error inesperado contacte al administrador.', 'error');</script>")
+
         Catch ex As Exception
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','Error inesperado recargue la pagina', 'error');</script>")
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','Error inesperado contacte al administrador.', 'error');</script>")
+
         End Try
     End Sub
 

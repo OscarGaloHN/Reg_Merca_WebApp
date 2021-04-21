@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="FORMA DE PAGO " Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="forma_pago.aspx.vb" Inherits="Reg_Merca_WebApp.forma_pago" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <!-- JQuery DataTable Css -->
+    <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
@@ -37,15 +38,13 @@
             document.getElementById('ContentPrincipal_lblHiddenNombrepago').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtid_pagoEditar').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_txtnombre_pagoEditar').value = row.cells[3].innerHTML;
             }
-            if (row.cells[4].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_txtnombre_pagoEditar').value = row.cells[4].innerHTML;
-            }
-           
+              document.getElementById('ContentPrincipal_lblHiddenIDpago').value = row.cells[2].innerHTML;
             if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDpago').value = row.cells[2].innerHTML;
+                document.getElementById('ContentPrincipal_txtid_pagoEditar').value = row.cells[2].innerHTML;
             }
+            
             xModal('pink', 'ContentPrincipal_txtid_pagoEditar', 'modalEditar');
         }
 
@@ -53,7 +52,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
- <a class="navbar-brand" href="#">Matenimiento de formas de pago</a>
+    <a class="navbar-brand" href="#">Matenimiento de formas de pago</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -77,7 +76,6 @@
             </a>
         </li>
         <li>
-
             <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
@@ -85,26 +83,26 @@
         </li>
 
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="condentrega_mant.aspx">
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
         </li>
-        <li class="active">
-            <a href="#">
+        <li>
+            <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
-                <span>divisas</span>
-            </a>
-        </li>
-        <li class="active">
-            <a href="estadomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
-                <span>Estado de Mercancia</span>
+                <span>Divisas</span>
             </a>
         </li>
         <li>
-            <a href="forma_pago.aspx">
-                <i class="material-icons">directions_boat</i>
+            <a href="estadomerc_mant.aspx">
+                <i class="material-icons">rule</i>
+                <span>Estado de Mercancia</span>
+            </a>
+        </li>
+        <li class="active">
+            <a href="#">
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
         </li>
@@ -115,13 +113,13 @@
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="nivelcomerc_mant.aspx">
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
@@ -139,25 +137,25 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="tipoitems_mant.aspx">
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+            <a href="unidmedida_mant.aspx">
+                <i class="material-icons">straighten</i>
+                <span>Unidad de medida</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
@@ -165,17 +163,22 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-     <script type="text/javascript">
-         tituloImprimir = 'Listado de la forma de pago'
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
+    <script type="text/javascript">
+         tituloImprimir = 'LISTADO DE LAS FORMAS DE PAGO'
          xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-     </script>
+         xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+    </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">FORMAS DE PAGO
-                                 <small>A continuación se muestra el listado de la forma de pago.</small>
+                                 <small>A Continuación Se Muestra El Listado De LaS Formas De Pago.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -234,7 +237,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtid_pago"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtid_pago" MaxLength="4" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);" ></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtid_pago"
                                         ErrorMessage="Ingrese el ID de la forma de pago."
@@ -245,7 +248,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="NOMBRE DE PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtnombre_pago"></asp:TextBox>
+                                        <asp:TextBox placeholder="NOMBRE DE PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtnombre_pago" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre_pago"
                                         ErrorMessage="Ingrese el nombre del pago."
@@ -295,7 +298,7 @@
     </div>
 
 
-         <!-- modal editar Estado de la mercancia-->
+    <!-- modal editar Estado de la mercancia-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <asp:Panel ID="Panel1" runat="server" DefaultButton="bttGuardarpago">
@@ -305,7 +308,7 @@
                         <h4 class="modal-title" id="lblEditar">EDITAR FORMA DE PAGO</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos de la forma de pago haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        Luego de terminar de editar los datos de la forma de pago haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
@@ -314,10 +317,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtid_pagoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtid_pagoEditar" MaxLength="4" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtid_pagoEditar"
-                                        ErrorMessage="Ingrese el ID de la forma de pago" 
+                                        ErrorMessage="Ingrese el ID de la forma de pago"
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidapagoEditar" />
                                 </div>
@@ -325,7 +328,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="FORMA DE PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtnombre_pagoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="FORMA DE PAGO" AutoComplete="off" ValidationGroup="ValidapagoEditar" runat="server" class="form-control" ID="txtnombre_pagoEditar" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtnombre_pagoEditar"
                                         ErrorMessage="Ingrese la forma de pago."
@@ -335,7 +338,7 @@
                             </div>
 
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidapagoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>

@@ -270,12 +270,14 @@
     <Content Include="modulos\declaracion_aduanera\items_dcomplementarios.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_documentos.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_ventajas.aspx" />
+    <Content Include="modulos\declaracion_aduanera\Reporte_caratula.aspx" />
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\mantenimiento\almacenes_mant.aspx" />
     <Content Include="modulos\mantenimiento\almacen_mant.aspx" />
     <Content Include="modulos\mantenimiento\cliente_mant.aspx" />
     <Content Include="modulos\mantenimiento\condentrega_mant.aspx" />
+    <Content Include="modulos\mantenimiento\datosventajas_mant.aspx" />
     <Content Include="modulos\mantenimiento\divisas_mant.aspx" />
     <Content Include="modulos\mantenimiento\estadomerc_mant.aspx" />
     <Content Include="modulos\mantenimiento\forma_pago.aspx" />
@@ -395,6 +397,17 @@
       <DependentUpon>DSClientes.xsd</DependentUpon>
     </Content>
     <Content Include="modulos\declaracion_aduanera\master_registros.Master" />
+    <Content Include="modulos\reportes\fuentes\DSCaratula.xsc">
+      <DependentUpon>DSCaratula.xsd</DependentUpon>
+    </Content>
+    <None Include="modulos\reportes\fuentes\DSCaratula.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSCaratula.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="modulos\reportes\fuentes\DSCaratula.xss">
+      <DependentUpon>DSCaratula.xsd</DependentUpon>
+    </Content>
     <None Include="modulos\reportes\fuentes\DSClientes.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -984,6 +997,17 @@
     <Content Include="plugins\waitme\waitMe.min.css" />
     <Content Include="plugins\waitme\waitMe.min.js" />
     <Content Include="favicon.ico" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
@@ -1188,6 +1212,13 @@
       <DependentUpon>master_registros.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="modulos\declaracion_aduanera\Reporte_caratula.aspx.designer.vb">
+      <DependentUpon>Reporte_caratula.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\declaracion_aduanera\Reporte_caratula.aspx.vb">
+      <DependentUpon>Reporte_caratula.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="modulos\gestion_usuario\config_gestion_usuario.aspx.designer.vb">
       <DependentUpon>config_gestion_usuario.aspx</DependentUpon>
     </Compile>
@@ -1235,6 +1266,13 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\condentrega_mant.aspx.vb">
       <DependentUpon>condentrega_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\datosventajas_mant.aspx.designer.vb">
+      <DependentUpon>datosventajas_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\datosventajas_mant.aspx.vb">
+      <DependentUpon>datosventajas_mant.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\divisas_mant.aspx.designer.vb">
@@ -1398,6 +1436,11 @@
       <DependentUpon>confi_rol.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="modulos\reportes\fuentes\DSCaratula.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSCaratula.xsd</DependentUpon>
+    </Compile>
     <Compile Include="modulos\reportes\fuentes\DSClientes.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1467,7 +1510,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="modulos\reportes\rptClientes.rdlc" />
+    <EmbeddedResource Include="00_Pruebas\reportes\rptClientes.rdlc" />
+    <EmbeddedResource Include="modulos\reportes\rptCaratula.rdlc" />
     <EmbeddedResource Include="modulos\reportes\rptClientesDOS.rdlc" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

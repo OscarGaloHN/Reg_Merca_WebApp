@@ -12,30 +12,32 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        Try
-            lblCatatura.Text = Request.QueryString("idCaratula")
-            ''parametros de configuracion de sistema
-            'Using Parametros_Sistema As New ControlDB
-            '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-            'End Using
+        ''parametros de configuracion de sistema
+        'Using Parametros_Sistema As New ControlDB
+        '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        'End Using
 
-            ''PARAMETROS DE ADMINISTRADOR
-            'Using Parametros_admin As New ControlDB
-            '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-            'End Using
+        ''PARAMETROS DE ADMINISTRADOR
+        'Using Parametros_admin As New ControlDB
+        '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        'End Using
+
+
+        Try
+            lblCatatura.Text = Request.QueryString("iditems")
 
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
                 Response.Redirect("~/Inicio/login.aspx")
             Else
 
-
                 Select Case Request.QueryString("action")
                     Case "new"
                         pbotones.Visible = False
                     Case "update"
+                        btt_guardar.Visible = False
                         pbotones.Visible = True
-
+                        pactual.Visible = True
                         If Not IsPostBack Then
 
                             Dim Ssql As String = String.Empty
@@ -89,7 +91,7 @@
 
                         'bitacora de que ingreso al form
                         Session("IDfrmQueIngresa") = 29
-                        Session("NombrefrmQueIngresa") = "Creación de Documentos"
+                        Session("NombrefrmQueIngresa") = "Creación de Items"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -98,6 +100,12 @@
 
                 End Select
 
+                If Not IsPostBack Then
+                    Select Case Request.QueryString("alerta")
+                        Case "update"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El Item se actualizo con éxito.', 'success');</script>")
+                    End Select
+                End If
             End If
 
         Catch ex As Exception
@@ -134,7 +142,7 @@ values
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Session("GME_Recuperar_ID") & "&idCaratula=" & Request.QueryString("idCaratula"))
+                    Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?action=new&iditems=" & Session("GME_Recuperar_ID") & "&idCaratula=" & Request.QueryString("idCaratula"))
 
                     'If Session("NumReg") > 0 Then
                     '    'Using log_bitacora As New ControlBitacora
@@ -144,6 +152,43 @@ values
 
                     'End If
 
+
+
+            End Select
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+
+    Private Sub bttDocumentos_Click(sender As Object, e As EventArgs) Handles bttDocumentos.Click
+        Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+    End Sub
+
+    Private Sub bttComplementario_Click(sender As Object, e As EventArgs) Handles bttComplementario.Click
+        Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+    End Sub
+
+    Private Sub bttventajas_Click(sender As Object, e As EventArgs) Handles bttventajas.Click
+        Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+    End Sub
+
+    Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
+        Try
+            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub bttActualizar_Click(sender As Object, e As EventArgs) Handles bttActualizar.Click
+        Dim Ssql As String
+        Try
+
+
+            Select Case Request.QueryString("action")
                 Case "update"
                     Ssql = "update DB_Nac_Merca.tbl_34_mercancias set Id_Tipo_items= '" & ddltipoitem.SelectedValue & "', 
 num_partida= '" & txtposarancel.Text & "' ,titulo_currier= '" & txttitulocurri.Text & "',
@@ -158,37 +203,13 @@ importes_otrosgastos= '" & txtimporteotros.Text & "', importes_seguro='" & txtse
 importes_flete='" & txtflete.Text & "',
 ajuste_a_incluir= '" & txtajuste.Text & "',numero_certificado_imp= '" & txtnumerocerti.Text & "',
 convenio_perfeccionamiento= '" & txtconvenio.Text & "', exoneracion_aduanera= '" & txtexoneracionaduanera.Text & "',
-observaciones= '" & txtobservacion.Text & "',comentario= '" & txtcomentario.Text & "'"
+observaciones= '" & txtobservacion.Text & "',comentario= '" & txtcomentario.Text & "' where ID_Merca =" & Request.QueryString("iditems") & " "
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems"))
-                    'Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&idCaratula=" & Request.QueryString("iditems"))
+                    Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula") & "&alerta=update")
 
             End Select
-
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-
-
-    Private Sub bttDocumentos_Click(sender As Object, e As EventArgs) Handles bttDocumentos.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?iditems=" & Request.QueryString("iditems"))
-    End Sub
-
-    Private Sub bttComplementario_Click(sender As Object, e As EventArgs) Handles bttComplementario.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?iditems=" & Request.QueryString("iditems"))
-    End Sub
-
-    Private Sub bttventajas_Click(sender As Object, e As EventArgs) Handles bttventajas.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems"))
-    End Sub
-
-    Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
-        Try
-            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try

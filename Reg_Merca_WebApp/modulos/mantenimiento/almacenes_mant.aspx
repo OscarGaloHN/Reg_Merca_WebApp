@@ -86,33 +86,39 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
             </li>
         
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="condentrega_mant.aspx">
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
+            </a>
+            </li>
+     <li>
+            <a href="datosventajas_mant.aspx">
+                <i class="material-icons">history_edu</i>
+                <span>Datos Ventajas</span>
             </a>
             </li>
         <li>
             <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
-                <span>divisas</span>
+                <span>Divisas</span>
             </a>
             </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="estadomerc_mant.aspx">
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="forma_pago.aspx">
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
             </li>
@@ -123,8 +129,8 @@
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="nivelcomerc_mant.aspx">
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
@@ -153,15 +159,15 @@
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="tipoitems_mant.aspx">
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+            <a href="unidmedida_mant.aspx">
+                <i class="material-icons">straighten</i>
+                <span>Unidad de Medidas</span>
             </a>
             </li>
          <li>
@@ -174,9 +180,14 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
     <script type="text/javascript">
-        tituloImprimir = 'Listado de los Almacenes'
+        tituloImprimir = 'LISTADO DE LOS ALMACENES'
         xColumnas.push(2, 3, 4, 5, 6); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">
@@ -245,7 +256,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaAlmacen" runat="server" class="form-control" ID="txtnombre"></asp:TextBox>
+                                          <asp:TextBox  MaxLength="50" placeholder="Nombre" AutoComplete="off" ValidationGroup="Validanombre"  onkeypress="return txtnombre(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtnombre" runat="server" class="form-control"></asp:TextBox> 
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre"
                                         ErrorMessage="Ingrese el nombre del almacén."
@@ -256,9 +267,9 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Ubicación" AutoComplete="off" ValidationGroup="ValidaAlmacen" runat="server" class="form-control" ID="txtubicacion"></asp:TextBox>
+                                          <asp:TextBox  MaxLength="50" placeholder="Ubicacion" AutoComplete="off" ValidationGroup="ValidaAlmacen"  onkeypress="return txtubicacion(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtubicacion" runat="server" class="form-control"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtubicacion"
+                                    <asp:RequiredFieldValidator runat="server" ID="ValidaAlmacen" ControlToValidate="txtubicacion"
                                         ErrorMessage="Ingrese la ubicación del almacén."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
@@ -270,10 +281,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="ValidaAlmacen" runat="server" class="form-control" ID="txtcontacto"></asp:TextBox>
+                                       <asp:TextBox MaxLength="8" placeholder="Contacto" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txtcontacto" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtcontacto"
-                                        ErrorMessage="Ingrese la dirección de la aduana."
+                                        ErrorMessage="Verifique el Contacto deL Almacen."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
                                 </div>
@@ -281,10 +292,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAlmacen" runat="server" class="form-control" ID="txttel"></asp:TextBox>
+                                        <asp:TextBox MaxLength="8" placeholder="Teléfono" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttel" runat="server" class="form-control"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txttel"
-                                        ErrorMessage="Ingrese el teléfono del Almacén."
+                                    <asp:RequiredFieldValidator runat="server" ID="reqtelvacio" ControlToValidate="txttel"
+                                        ErrorMessage="verifique el teléfono del Almacén."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
                                 </div>
@@ -302,7 +313,7 @@
     </div>
 
 
-    <!-- modal eliminar aduana-->
+    <!-- modal eliminar almacen-->
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
 
@@ -350,7 +361,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaAlmacenEditar" runat="server" class="form-control" ID="txtnombreEditar"></asp:TextBox>
+                                        <asp:TextBox  MaxLength="50" placeholder="Nombre" AutoComplete="off" ValidationGroup="Validanombre"  onkeypress="return txtnombreEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtnombreEditar" runat="server" class="form-control"></asp:TextBox> 
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtnombreEditar"
                                         ErrorMessage="Ingrese el nombre del almacén."
@@ -361,7 +372,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Ubicación" AutoComplete="off" ValidationGroup="ValidaAlmacenEditar" runat="server" class="form-control" ID="txtubicacionEditar"></asp:TextBox>
+                                        <asp:TextBox  MaxLength="50" placeholder="Ubicacion" AutoComplete="off" ValidationGroup="ValidaAlmacen"  onkeypress="return txtubicacionEditar(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)"  onkeyup="mayus(this);borrarespacios(this);" ID="txtubicacionEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtubicacionEditar"
                                         ErrorMessage="Ingrese la ubicación."
@@ -375,7 +386,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Teléfono" AutoComplete="off" ValidationGroup="ValidaAlmacenEditar" runat="server" class="form-control" ID="txttelEditar"></asp:TextBox>
+                                        <asp:TextBox MaxLength="8" placeholder="Teléfono" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttelEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txttelEditar"
                                         ErrorMessage="Ingrese el teléfono del almacén."
@@ -386,7 +397,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Contacto" AutoComplete="off" ValidationGroup="ValidaAlmacenEditar" runat="server" class="form-control" ID="txtcontactoEditar"></asp:TextBox>
+                                        <asp:TextBox MaxLength="8" placeholder="Contacto" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txtcontactoEditar" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtcontactoEditar"
                                         ErrorMessage="Ingrese el nombre del contacto del Almacén."

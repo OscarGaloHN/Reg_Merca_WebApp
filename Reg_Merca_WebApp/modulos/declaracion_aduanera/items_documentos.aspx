@@ -1,6 +1,10 @@
-﻿<%@ Page Language="vb" Title="Documentos Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
+﻿<%@ Page Language="vb" Title="Documentos del Items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_documentos.aspx.vb" Inherits="Reg_Merca_WebApp.items_documentos" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
+
+            <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
@@ -10,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
@@ -18,16 +23,17 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlDocumento').value = '';
-            document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            document.getElementById('ContentPrincipal_chkPresencia').value = '';
+            document.getElementById('ContentPrincipal_txtReferencia').value = '';           
+            document.getElementById('ContentPrincipal_chkPresencia').checked = false
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
-            xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');
+            xModal('red', 'ContentPrincipal_ddlDocumento', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
@@ -36,7 +42,13 @@
             //document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').checked = '';
             var row = lnk.parentNode.parentNode;
 
-            //document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
+            if (row.cells[6].innerHTML == 'SI') {
+                document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = true
+            } else {
+                document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = false
+            }
+
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_dddocumentoEditar').value = row.cells[3].innerHTML;
@@ -45,7 +57,7 @@
                 document.getElementById('ContentPrincipal_txtreferenciaEditar').value = row.cells[5].innerHTML;
             }
             //if (row.cells[6].innerHTML != '&nbsp;') {
-            //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[6].innerHTML;
+            //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').value= row.cells[6].innerHTML;
             //}
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
@@ -56,7 +68,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Creacion de Documentos del Item</a>
+    <a class="navbar-brand" href="#">Documentos del Item</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -67,11 +79,10 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li class="active">
-
-            <a href="#">
-                <i class="material-icons">create_new_folder</i>
-                <span>Creacion de Documentos del item</span>
+                <li class="active">
+            <a href="caratula.aspx">
+                <i class="material-icons">aspect_ratio</i>
+                <span>Declaración Aduanera</span>
             </a>
         </li>
     </ul>
@@ -82,8 +93,8 @@
 
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado de Documentos'
-        xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        tituloImprimir = 'Listado de Items Documentos'
+        xColumnas.push(2, 3, 4, 5, 6, 7); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
@@ -93,14 +104,15 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Documentos
-                                 <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta el item.</small>
+                    <h2 style="font-weight: bold;">Documentos del item - 
+                        <asp:Label runat="server" ID="lblitems"></asp:Label>
+                        <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta el item.</small>
                     </h2>
                 </div>
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo; xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
@@ -118,7 +130,18 @@
                                 <span>Volver</span>
                             </asp:LinkButton>
                         </div>
-
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttcontinuar"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">keyboard_tab</i>
+                                <span>Continuar</span>
+                            </asp:LinkButton>
+                        </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -143,7 +166,7 @@
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripción del Documento" />
                                         <asp:BoundField DataField="referencia" HeaderText="Referencia del Documento" />
                                         <asp:BoundField DataField="presencia" HeaderText="Presencia" />
-                                        <asp:BoundField DataField="Id_Merca" HeaderText="ID Póliza" />
+                                        <asp:BoundField DataField="Id_Merca" HeaderText="ID Items" />
 
                                     </Columns>
                                 </asp:GridView>
@@ -178,7 +201,7 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 2;"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Documento, UPPER(descripcion) descripcion FROM  DB_Nac_Merca.tbl_32_Cod_Documentos order by 1;"></asp:SqlDataSource>
 
                                 <label class="form-label">Documento</label>
                                 <asp:DropDownList
@@ -192,11 +215,10 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label">Referencia</label>
-
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
-                                            onkeydown="borrarespacios(this);BorrarRepetidas(this);" onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
+                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidaDocumento" runat="server" class="form-control" ID="txtreferencia" onkeypress="txNombres(event);"
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtReferencia"
                                         ErrorMessage="Ingrese la referencia."
@@ -244,6 +266,7 @@
                     <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
                     <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
+                    <asp:HiddenField runat="server" ID="lblHiddendddocumento" />
 
 
                     <br />
@@ -299,9 +322,11 @@
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-label">Referencia</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Referencia" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txtreferenciaEditar"></asp:TextBox>
+                                        <asp:TextBox MaxLength="30" placeholder="" AutoComplete="off" ValidationGroup="ValidadocumentoEditar" runat="server" class="form-control" ID="txtreferenciaEditar" onkeypress="txNombres(event);"
+                                            onkeyup="mayus(this); borrarespacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtreferenciaEditar"
                                         ErrorMessage="Ingrese la referencia."
@@ -336,4 +361,6 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
+            <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>

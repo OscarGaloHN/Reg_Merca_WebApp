@@ -73,7 +73,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('VENTAJAS','La Ventaja ya esta Registrada ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_30_Ventajas` SET  `id_Ventaja` = '" & txtidEditar.Text & "',`Descripcion` = '" & txtdescripcionEditar.Text & "' WHERE `id_Ventaja` = " & lblHiddenIDVentajas.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_30_Ventajas` SET  `Descripcion` = '" & txtdescripcionEditar.Text & "' WHERE `id_Ventaja` = " & lblHiddenIDVentajas.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
@@ -98,7 +98,7 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('PAISES','El nombre de Pais ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_30_Ventajas` (`id_Ventaja`,`Descripcion`) VALUES ('" & txtid.Text & "','" & txtventajas.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_30_Ventajas` (`Descripcion`) VALUES ('" & txtventajas.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using

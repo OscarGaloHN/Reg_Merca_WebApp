@@ -1,4 +1,4 @@
-﻿<%@ Page Title="nivel comercial" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="nivelcomerc_mant.aspx.vb" Inherits="Reg_Merca_WebApp.nivelcomerc_mant" %>
+﻿<%@ Page Title="NIVEL COMERCIAL" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="nivelcomerc_mant.aspx.vb" Inherits="Reg_Merca_WebApp.nivelcomerc_mant" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
        <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -45,10 +45,10 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Mantenimiento de Preguntas</a>
+    <a class="navbar-brand" href="#">Mantenimiento Nivel Comercial</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-    <ul class="list">
+   <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -56,28 +56,28 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li>
+        <li >
             <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
             </li>
-             <li>
-                     <a href="#">
+             <li >
+                     <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
             </li>
         
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="condentrega_mant.aspx">
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
             </li>
@@ -88,14 +88,14 @@
             </a>
             </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="estadomerc_mant.aspx">
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
             </li>
         <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="forma_pago.aspx">
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
             </li>
@@ -105,50 +105,50 @@
                 <span>Modalidad Especial</span>
             </a>
             </li>
-         <li>
-            <a href="nivelcomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+         <li class="active">
+            <a href="#">
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
             </li>
-         <li class="active" >
+         <li>
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            <a href="tipoitems_mant.aspx">
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
             </li>
          <li>
-            <a href="#">
-                <i class="material-icons">verified</i>
-                <span>Unidad de Ventaja</span>
+            <a href="unidmedida_mant.aspx">
+                <i class="material-icons">straighten</i>
+                <span>Unidad de medida</span>
             </a>
             </li>
          <li>
-            <a href="#">
+            <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
@@ -157,9 +157,17 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
+
     <script type="text/javascript">
-        tituloImprimir = 'Listado del nivel comercial'
+        tituloImprimir = 'LISTADO DEL NIVEL COMERCIAL'
         xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+       
     </script>
 
     <div class="row clearfix">
@@ -167,7 +175,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold;">NIVEL COMERCIAL
-                                 <small>A continuación se muestra el listado del nivel comercial registrados.</small>
+                                 <small>A Continuación Se Muestra El Listado Del Nivel Comercial Registrados.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -225,7 +233,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtTipo(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtTipo" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtTipo(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtTipo" runat="server" class="form-control" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     <label class="form-label">Tipo</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtTipo"
@@ -265,7 +273,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarcomercial" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarcomercial" ValidationGroup="Validacomercial" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -293,7 +301,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar"></asp:TextBox>
+                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtTipoEditar"
                                         ErrorMessage="Ingrese el Tipo del nivel comercial."

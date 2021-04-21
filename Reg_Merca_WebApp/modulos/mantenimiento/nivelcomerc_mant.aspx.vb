@@ -12,7 +12,12 @@
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         Try
+
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_12_nivel_comercial"
@@ -60,7 +65,7 @@
     Private Sub bttModificarcomercial_Click(sender As Object, e As EventArgs) Handles bttModificarcomercial.Click
         Try
             Dim Ssql As String = String.Empty
-            If txtTipoEditar.Text <> lblHiddenNombrecomercial.Value Then
+            If txtTipo.Text <> lblHiddenNombrecomercial.Value Then
                 Ssql = "SELECT * FROM DB_Nac_Merca.tbl_12_nivel_comercial where Tipo = BINARY  '" & txtTipoEditar.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -97,7 +102,7 @@
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('comercial','El tipo de comercio ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('comercial','El nivel comercial ya esta registrado.', 'error');</script>")
             Else
                 Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_12_nivel_comercial` (`Tipo`) VALUES ('" & txtTipo.Text & "');"
                 Using con As New ControlDB
@@ -117,14 +122,14 @@
 
     Private Sub bttEliminarcomercial_Click(sender As Object, e As EventArgs) Handles bttEliminarcomercial.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_12_nivel_comercial` WHERE id_pregunta= " & lblHiddenIDcomercial.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_12_nivel_comercial` WHERE Id_nivel_com = " & lblHiddenIDcomercial.Value
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
                 log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el nivel comercial  con nombre: " & lblHiddenNombrecomercial.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/nivelcomerc_mant.aspx?acction=deltepreguntas")
+            Response.Redirect("~/modulos/mantenimiento/nivelcomerc_mant.aspx?acction=deltecomercial")
         Catch ex As Exception
 
         End Try

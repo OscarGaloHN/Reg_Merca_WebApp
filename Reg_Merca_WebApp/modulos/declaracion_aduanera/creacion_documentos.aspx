@@ -37,6 +37,12 @@
             //document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').checked = '';
             var row = lnk.parentNode.parentNode;
 
+            if (row.cells[6].innerHTML == 'SI') {
+                document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = true
+            } else {
+                document.getElementById('ContentPrincipal_chkpresenciaEditar').checked = false
+            }
+
             document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
@@ -94,32 +100,44 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Documentos
-                                 <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta su poliza.</small>
+                    <h2 style="font-weight: bold;">Listado de Documentos de la Carátula - 
+                        <asp:Label runat="server" ID="lblCatatura"></asp:Label>
+                        <small>Acontinuación el usuario podra visualizar los documentos con los que cuenta su poliza.</small>
                     </h2>
                 </div>
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="xModal('teal','ContentPrincipal_ddlDocumento','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo; xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
                         </div>
 
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                        <asp:LinkButton
-                            Width="100%"
-                            runat="server"
-                            ID="bttVolver"
-                            type="button"
-                            ValidationGroup="Validarbttvolver"
-                            class="btn btn-block btn-lg bg-teal waves-effect">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttVolver"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
                                 <i class="material-icons">undo</i>
                                 <span>Volver</span>
-                        </asp:LinkButton>
-                                </div>
-
+                            </asp:LinkButton>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttcontinuar"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">keyboard_tab</i>
+                                <span>Continuar</span>
+                            </asp:LinkButton>
+                        </div>
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

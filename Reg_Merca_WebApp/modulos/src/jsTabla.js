@@ -4,7 +4,7 @@ var xempresa = '';
 var xlogo = '';
 var xColumnas = [];
 var xMargenes = [];
- 
+var xOrientarPag = 'portrait'
 $(function () {
     $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable(
         {
@@ -15,8 +15,13 @@ $(function () {
                 text: '<i class="material-icons">print</i>',
                 titleAttr: 'Imprimir',
                 className: 'btn bg-teal waves-effect',
-                title: xempresa + ' - '+  tituloImprimir,
-                exportOptions: {columns: xColumnas},
+                orientation: xOrientarPag ,
+                    
+
+             
+           
+                title: xempresa + '\n'+  tituloImprimir,
+                exportOptions: { columns: xColumnas},
                 download: 'open',
                 
                 customize: function (doc) {
@@ -35,15 +40,18 @@ $(function () {
                             newdate = newdate + " " + fecha.toLocaleTimeString('en-US');
                             var xfecha = newdate
                             return {
-
                                 columns: [
+                                   
                                     {
                                         alignment: 'right',
-                                        text: [{ text: xfecha.toString(), bold: true, fontSize: 8} ],
+                                        text: [{ text:'Emitido el: '+ xfecha.toString(), bold: true, fontSize: 8} ],
                                         bold: true
-                                    }],
+                                    }
+                                ],
+
                                 margin: [10, 10]
-                            }}),
+                                }
+                            }),
 
                                                        
                         doc['footer'] = (function (page, pages) {

@@ -11,6 +11,9 @@
     'OBJETO #35
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            'cargar logo para imprimir
+            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
             'llenar grid
             Dim Ssql As String = String.Empty
             Ssql = "SELECT * FROM DB_Nac_Merca.tbl_13_forma_pago"
@@ -58,22 +61,22 @@
     Private Sub bttGuardarpago_Click(sender As Object, e As EventArgs) Handles bttGuardarpago.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_13_forma_pago where Id_Estado = BINARY  '" & txtid_pago.Text & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_13_forma_pago where id_pago = BINARY  '" & txtid_pago.Text & "'"
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('estado','El estado  ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('pago','la forma de pago  ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_13_forma_pago` (`id_pago`, `nombre_pago`) VALUES ('" & txtid_pago.Text & "' '" & txtnombre_pago.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_13_forma_pago` (`id_pago`, `nombre_pago`) VALUES ('" & txtid_pago.Text & "','" & txtnombre_pago.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos del estado de la mercancia con el id:" & lblHiddenIDpago.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardaron los datos de la forma de pago de la mercancia con el id:" & lblHiddenIDpago.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/forma_pago.aspx?acction=editestado")
+                Response.Redirect("~/modulos/mantenimiento/forma_pago.aspx?acction=editpago")
             End If
         Catch ex As Exception
 
@@ -82,7 +85,7 @@
 
     Private Sub bttEliminarpago_Click(sender As Object, e As EventArgs) Handles bttEliminarpago.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_13_forma_pago` WHERE id_pago= " & lblHiddenIDpago.Value
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_13_forma_pago` WHERE `id_pago` = '" & lblHiddenIDpago.Value & "';"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
@@ -109,14 +112,14 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La forma de pago ya esta registrada.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_13_forma_pago` SET `id_pago` = '" & txtid_pagoEditar.Text & "', `nombre_pago` = '" & txtnombre_pagoEditar.Text & "' WHERE `id_pago` = " & lblHiddenIDpago.Value & ";"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_13_forma_pago` SET `id_pago` = '" & txtid_pagoEditar.Text & "', `nombre_pago` = '" & txtnombre_pagoEditar.Text & "' WHERE `id_pago` = '" & lblHiddenIDpago.Value & "';"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva forma de pago con nombre de pago: " & txtnombre_pagoEditar.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se edito una nueva forma de pago con nombre de pago: " & txtnombre_pagoEditar.Text)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/forma_pago.aspx?acction=newpago")
             End If

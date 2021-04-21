@@ -32,6 +32,15 @@ Partial Public Class items_dcomplementarios
     Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control lblitems.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblitems As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Control bttVolver.
     '''</summary>
     '''<remarks>
@@ -39,6 +48,15 @@ Partial Public Class items_dcomplementarios
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents bttVolver As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control bttcontinuar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttcontinuar As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control gvCustomers.
@@ -131,6 +149,15 @@ Partial Public Class items_dcomplementarios
     Protected WithEvents lblHiddenIDDocumento As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control lblHiddendddocumento.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblHiddendddocumento As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Control bttEliminarDocumento.
     '''</summary>
     '''<remarks>
@@ -149,13 +176,13 @@ Partial Public Class items_dcomplementarios
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control SqlDataSource1.
+    '''Control sqldocumentosedit.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
+    Protected WithEvents sqldocumentosedit As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
     '''Control ddlcomplementariedit.

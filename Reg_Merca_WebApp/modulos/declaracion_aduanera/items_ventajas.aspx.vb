@@ -25,6 +25,7 @@
         End Using
 
         Try
+            lblitems.Text = Request.QueryString("iditems")
 
 
             ''If Session("user_idUsuario") = Nothing Then
@@ -46,6 +47,9 @@
             If Session("NumReg") > 0 Then
                 gvCustomers.DataSource = DataSetX
                 gvCustomers.DataBind()
+            Else
+                bttcontinuar.Visible = False
+                bttnuevonuevoitems.Visible = False
             End If
 
             If Not IsPostBack Then
@@ -106,7 +110,7 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
             'Using log_bitacora As New ControlBitacora
             '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
             'End Using
-            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=newdocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
             'End If
 
             'habilitar indicador
@@ -133,7 +137,7 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
             '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
             'End Using
 
-            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems"))
+            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems") & Request.QueryString("idCaratula"))
 
         Catch ex As Exception
 
@@ -144,18 +148,18 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
 
         Try
             Dim Ssql As String = String.Empty
-            'If txtreferenciaEditar.Text <> lblHiddenIDDocumento.Value Then
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_42_Datos_Ventaja where  id_ventaja = '" & ddlventajaedit.SelectedValue & "' "
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            'Else
-            '    Session("NumReg") = 0
-            'End If
+            If ddlventajaedit.SelectedValue = lblHiddenIDDocumento.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_42_Datos_Ventaja where  id_ventaja = '" & ddlventajaedit.SelectedValue & "' "
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+            Else
+                Session("NumReg") = 0
+            End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La ventaja ya esta registrada.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Ventaja','La ventaja ya esta registrada.', 'error');</script>")
             Else
                 Ssql = "UPDATE DB_Nac_Merca.tbl_42_Datos_Ventaja SET Id_ventaja = '" & ddlventajaedit.SelectedValue & "', WHERE id_codigo= " & lblHiddenIDDocumento.Value
                 Using con As New ControlDB
@@ -164,7 +168,7 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
                 'Using log_bitacora As New ControlBitacora
                 '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
                 'End Using
-                Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=editdocumento&iditems=" & Request.QueryString("iditems"))
+                Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?acction=editdocumento&iditems=" & Request.QueryString("iditems") & Request.QueryString("idCaratula"))
             End If
         Catch ex As Exception
 
@@ -174,9 +178,26 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
         Try
-            Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx")
+            Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub bttcontinuar_Click(sender As Object, e As EventArgs) Handles bttcontinuar.Click
+        Try
+            Response.Redirect("/modulos/declaracion_aduanera/creacion_documentos.aspx?idcaratula=" & Request.QueryString("idCaratula"))
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub bttnuevonuevoitems_Click(sender As Object, e As EventArgs) Handles bttnuevonuevoitems.Click
+        Try
+            Response.Redirect("/modulos/declaracion_aduanera/items.aspx?action=new&idcaratula=" & Request.QueryString("idCaratula"))
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 End Class

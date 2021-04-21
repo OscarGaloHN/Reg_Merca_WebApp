@@ -53,16 +53,9 @@ Public Class WebForm1
         'End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Session("nombreRPT") = "~/modulos/reportes/rptClientesDOS.rdlc"
-        Session("nombreDS") = "DSClientes_2"
-        Session("nombreDT") = "DtClientes_dos"
-        Session("xSsql") = "SELECT Id_cliente,  nombrec,  telefono FROM DB_Nac_Merca.tbl_04_cliente;"
-        Response.Redirect("~/00_Pruebas/WebForm2.aspx")
-    End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Session("nombreRPT") = "~/modulos/reportes/rptClientes.rdlc"
+        Session("nombreRPT") = "~/00_Pruebas/reportes/rptClientes.rdlc"
         Session("nombreDS") = "DSClientes"
         Session("nombreDT") = "DtClientes"
         Session("xSsql") = "SELECT Id_cliente,  nombrec, ciudad, telefono, Id_pais FROM DB_Nac_Merca.tbl_04_cliente where ciudad='tegus';"

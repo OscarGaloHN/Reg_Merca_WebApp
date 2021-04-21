@@ -1,8 +1,10 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="WebForm2.aspx.vb" Inherits="Reg_Merca_WebApp.WebForm2" %>
 
+<%--<%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>--%>
+
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
-
+ 
 <!DOCTYPE html>
 
 <html>
@@ -125,6 +127,7 @@
                 <div class="block-header">
                     <div>
                          
+                       <%--  --%>
                             <asp:ScriptManager runat="server"></asp:ScriptManager>
                             <rsweb:ReportViewer  SizeToReportContent="True"  ID="ReportViewer1" runat="server" Height="100%" Width="100%">
                             </rsweb:ReportViewer>

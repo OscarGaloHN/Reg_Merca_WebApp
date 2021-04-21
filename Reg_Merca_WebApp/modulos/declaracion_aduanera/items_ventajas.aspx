@@ -1,6 +1,10 @@
 ﻿<%@ Page Language="vb" Title="Ventajas del items" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_ventajas.aspx.vb" Inherits="Reg_Merca_WebApp.items_ventajas" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
+
+            <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
@@ -23,10 +27,11 @@
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
-            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML + ' - ' + row.cells[5].innerHTML + ' - ' + row.cells[6].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_ddldocumento').value = row.cells[3].innerHTML;
 
-            /* xModal('red', 'ContentPrincipal_txtReferencia', 'modalDelete');*/
+            xModal('red', 'ContentPrincipal_ddlDocumento', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
@@ -35,22 +40,22 @@
             //document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_ddlddlventajaedit').value = row.cells[3].innerHTML;
+                document.getElementById('ContentPrincipal_ddlventajaedit').value = row.cells[3].innerHTML;
                 //}
                 //if (row.cells[4].innerHTML != '&nbsp;') {
                 //    document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
                 //}
                 //if (row.cells[5].innerHTML != '&nbsp;') {
                 //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
+                //}
+                //if (row.cells[2].innerHTML != '&nbsp;') {
+                //    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+                //}
+                xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
             }
-            if (row.cells[2].innerHTML != '&nbsp;') {
-                document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-            }
-            /*  xModal('pink', 'ContentPrincipal_txtReferenciaEditar', 'modalEditar');*/
-        }
 
     </script>
 </asp:Content>
@@ -81,19 +86,20 @@
 
 
     <script type="text/javascript">
-        tituloImprimir = 'ventajas del items'
-        xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-        xMargenes.push(100, 0, 100, 0)
-        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
-        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+            tituloImprimir = 'ventajas del items'
+            xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+            xMargenes.push(100, 0, 100, 0)
+            xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+            xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Ventajas del item
-                                 <small>Acontinuación el usuario podra visualizar las ventajas del item.</small>
+                    <h2 style="font-weight: bold;">Ventajas del Item - 
+                        <asp:Label runat="server" ID="lblitems"></asp:Label>
+                        <small>Acontinuación el usuario podra visualizar las ventajas del item.</small>
                     </h2>
                 </div>
                 <div class="body">
@@ -101,7 +107,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
                             <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
-                                <i class="material-icons">add</i> <span>Nuevo</span>
+                                <i class="material-icons">add</i> <span>Nueva Ventaja</span>
                             </button>
                         </div>
 
@@ -115,6 +121,31 @@
                                 class="btn btn-block btn-lg bg-teal waves-effect">
                                 <i class="material-icons">undo</i>
                                 <span>Volver</span>
+                            </asp:LinkButton>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttnuevonuevoitems"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">add</i>
+                                <span>Nuevo Item</span>
+                            </asp:LinkButton>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                            <asp:LinkButton
+                                Width="100%"
+                                runat="server"
+                                ID="bttcontinuar"
+                                type="button"
+                                ValidationGroup="Validarbttvolver"
+                                class="btn btn-block btn-lg bg-teal waves-effect">
+                                <i class="material-icons">keyboard_tab</i>
+                                <span>Continuar</span>
                             </asp:LinkButton>
                         </div>
 
@@ -179,7 +210,7 @@
                                 <label class="form-label">Ventajas</label>
                                 <asp:DropDownList
                                     ID="ddlventajas" runat="server"
-                                    selectlistitem="" DataSourceID="sqlventajas" class="form-control show-tick"
+                                    selectlistitem="" DataSourceID="sqlventajas" class="form-control show-tick" data-live-search="true"
                                     DataTextField="descripcion" DataValueField="id_Ventaja" AppendDataBoundItems="true"
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
@@ -228,7 +259,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarDocumento" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarDocumento" ValidationGroup="Validadocumento2" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -266,7 +297,7 @@
                                 <label class="form-label">Ventajas</label>
                                 <asp:DropDownList
                                     ID="ddlventajaedit" runat="server"
-                                    selectlistitem="" DataSourceID="Sqlventajaedit" class="form-control show-tick"
+                                    selectlistitem="" DataSourceID="Sqlventajaedit" class="form-control show-tick" data-live-search="true"
                                     DataTextField="descripcion" DataValueField="id_Ventaja" AppendDataBoundItems="true"
                                     ItemType="">
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
@@ -295,4 +326,6 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
+            <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>

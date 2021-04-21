@@ -108,7 +108,7 @@
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
 
     <script type="text/javascript">
-        tituloImprimir = 'Listado de Permiso en Modulos';
+        tituloImprimir = 'Listado De Permiso En Modulos';
         xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0);
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -145,7 +145,7 @@
                                 ErrorMessage="Selecccione un rol" ForeColor="OrangeRed" Font-Size="X-Small" ValidationGroup="ValidaRol"
                                 InitialValue="0" SetFocusOnError="True" />
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
                             <button style="margin-top: 10px;" id="bttpermisonuevo" validationgroup="ValidaRol" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
                                 <i class="material-icons">add</i> <span>Nuevo Permiso</span>
                             </button>

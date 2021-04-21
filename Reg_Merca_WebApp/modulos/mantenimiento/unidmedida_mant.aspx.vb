@@ -45,7 +45,7 @@
 
                         'bitacora de que ingreso al form
                         Session("IDfrmQueIngresa") = 25
-                        Session("NombrefrmQueIngresa") = "Mantenimiento unidad de medida"
+                        Session("NombrefrmQueIngresa") = "Mantenimiento Unidad De Medida"
                         If Not IsPostBack Then
                             Using log_bitacora As New ControlBitacora
                                 log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -61,7 +61,7 @@
     Private Sub bttGuardarmedida_Click(sender As Object, e As EventArgs) Handles bttGuardarmedida.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_24_Unidad_Medida where Id_UnidadMed = BINARY  '" & txtId_UnidadMed.Text & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_24_Unidad_Medida where Descripcion = BINARY  '" & txtDescripcion.Text & "' "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -69,12 +69,12 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('medida','La unidad de medida ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_24_Unidad_Medida` (`Id_UnidadMed`, `Descripcion`) VALUES ('" & txtId_UnidadMed.Text & "','" & txtDescripcion.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_24_Unidad_Medida` (`Descripcion`) VALUES ('" & txtDescripcion.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nuevo estado con descripcion: " & txtDescripcion.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo la unidad de medida con descripcion: " & txtDescripcion.Text)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/unidmedida_mant.aspx?acction=newmedida")
             End If
@@ -101,8 +101,8 @@
     Private Sub bttModificarmedida_Click(sender As Object, e As EventArgs) Handles bttModificarmedida.Click
         Try
             Dim Ssql As String = String.Empty
-            If txtId_UnidadMedEditar.Text <> lblHiddenNombremedida.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_24_Unidad_Medida where Id_UnidadMed = BINARY  '" & txtId_UnidadMedEditar.Text & "' "
+            If txtDescripcionEditar.Text <> lblHiddenNombremedida.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_24_Unidad_Medida where Descripcion = BINARY  '" & txtDescripcionEditar.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -114,12 +114,12 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_24_Unidad_Medida` SET `Id_UnidadMed` = '" & txtId_UnidadMedEditar.Text & "', `Descripcion` = '" & txtDescripcionEditar.Text & "' WHERE `Id_UnidadMed` = '" & lblHiddenIDmedida.Value & "';"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_24_Unidad_Medida` SET `Descripcion` = '" & txtDescripcionEditar.Text & "' WHERE `Id_UnidadMed` = '" & lblHiddenIDmedida.Value & "';"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos del estado de la mercancia con el id:" & lblHiddenIDmedida.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos de la unidad de medida con el id:" & lblHiddenIDmedida.Value)
                 End Using
                 Response.Redirect("~/modulos/mantenimiento/unidmedida_mant.aspx?acction=editmedida")
 

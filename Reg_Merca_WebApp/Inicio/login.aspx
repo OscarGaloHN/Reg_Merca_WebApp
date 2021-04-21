@@ -44,7 +44,7 @@
             <div class="body">
 
                 <form runat="server">
-                    
+
                     <div class="msg">Iniciar Sesión</div>
                     <div class="row">
                         <div style="padding-top: 8px;" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -102,12 +102,15 @@
                             </div>
                         </div>
                         <div class="row">
+                            <% Try %>
                             <%If CBool(Application("ParametrosADMIN")(13)) = True Then  %>
                             <div class="col-xs-8 p-t-5">
                                 <input type="checkbox" name="CheckBox" runat="server" id="chkRecordar" class="filled-in chk-col-teal " />
                                 <label for="chkRecordar">Recordarme</label>
                             </div>
                             <%End If %>
+                            <%   Catch ex As Exception %>
+                            <% End Try  %>
                             <div class="col-xs-4">
                                 <asp:LinkButton onfocus="myFunctionfoco('txtUsuario')" ID="bttEntrar" runat="server" Text="ENTRAR" class="btn btn-block bg-pink waves-effect" />
                             </div>
@@ -115,9 +118,13 @@
                     </asp:Panel>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-5">
+                            <% Try %>
                             <%If CBool(Application("ParametrosADMIN")(0)) = True Then  %>
                             <a href="registro.aspx">Registrarse!</a>
                             <%End If %>
+
+                            <%   Catch ex As Exception %>
+                            <% End Try  %>
                         </div>
                         <div class="col-xs-7 align-right">
                             <a href="recuperar.aspx">¿Olvidó Su Contraseña?</a>

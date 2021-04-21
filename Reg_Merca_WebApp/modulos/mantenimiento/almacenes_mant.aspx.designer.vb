@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class almacenes_mant
 
     '''<summary>
+    '''Control HiddenLogo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenLogo As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control HiddenEmpresa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Control gvCustomers.
     '''</summary>
     '''<remarks>
@@ -59,13 +77,13 @@ Partial Public Class almacenes_mant
     Protected WithEvents txtubicacion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control validarContactoVac.
+    '''Control ValidaAlmacen.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents validarContactoVac As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents ValidaAlmacen As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control txtcontacto.
@@ -95,13 +113,13 @@ Partial Public Class almacenes_mant
     Protected WithEvents txttel As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control RequiredFieldValidator1.
+    '''Control reqtelvacio.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents reqtelvacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control bttGuardarAlmacen.

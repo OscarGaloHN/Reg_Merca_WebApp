@@ -124,7 +124,7 @@
     <a class="navbar-brand" href="#">Mantenimiento de clientes</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-    <ul class="list">
+  <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -132,118 +132,123 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li>
+        <li  >
             <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
-        </li>
-        <li>
-            <a href="almacen_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+            </li>
+             <li >
+                     <a href="almacenes_mant.aspx">
+                <i class="material-icons">store</i>
                 <span>Almacén</span>
             </a>
         </li>
         <li class="active">
-            <a href="cliente_mant.aspx">
-                <i class="material-icons">hail></i>
+            <a href="#">
+                <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
-        </li>
-
+            </li>
+        
         <li>
             <a href="condentrega_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
-        </li>
+            </li>
         <li>
             <a href="divisas_mant.aspx">
-                <i class="material-icons">directions_boat</i>
-                <span>divisas</span>
+                <i class="material-icons">monetization_on</i>
+                <span>Divisas</span>
             </a>
-        </li>
+            </li>
         <li>
-
             <a href="estadomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
-        </li>
+            </li>
         <li>
             <a href="forma_pago.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            </li>
+         <li>
+            <a href="modalidadesp_mant.aspx">
+                <i class="material-icons">add_moderator</i>
                 <span>Modalidad Especial</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="nivelcomerc_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            </li>
+         <li>
+            <a href="proveedores_mant.aspx">
+                <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            </li>
+         <li>
+            <a href="preguntas_mant.aspx">
+                <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            </li>
+         <li>
+            <a href="paises_mant.aspx">
+                <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            </li>
+         <li>
+            <a href="regimenes_mant.aspx">
+                <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="tipoitems_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
-        </li>
-        <li>
+            </li>
+         <li>
             <a href="unidmedida_mant.aspx">
-                <i class="material-icons">directions_boat</i>
+                <i class="material-icons">straighten</i>
                 <span>Unidad de medida</span>
             </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="material-icons">directions_boat</i>
+            </li>
+         <li>
+            <a href="ventajas_mant.aspx">
+                <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
-        </li>
+            </li>
     </ul>
+    
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
        <script type="text/javascript">
-           tituloImprimir = 'Listado de los clientes'
+           tituloImprimir = 'LISTADO DE LOS CLIENTE'
            xColumnas.push(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+         xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
        </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">clientes
-                                 <small>A continuación se muestra el listado de los clientes registrados.</small>
+                    <h2 style="font-weight: bold;">Clientes
+                                 <small>A Continuación Se Muestra El Listado De Los Clientes Registrados.</small>
                     </h2>
                 </div>
                 <div class="body">
