@@ -1,6 +1,6 @@
 ﻿Public Class Creacion_items
     Inherits System.Web.UI.Page
-
+    'OBJETO #45
     Private Property DataSetX As DataSet
         Get
             Return CType(Session("DataSetX"), DataSet)
@@ -41,20 +41,24 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
                 Select Case Request.QueryString("action")
                     Case "deleteitems"
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El Item se elimino exitosamente.', 'success');</script>")
-                    Case "deleteinactive"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
-                    Case "deletefailed"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
+                    Case Else
+                        'bitacora de que salio de un form
+                        If Not IsPostBack Then
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
+
+                        'bitacora de que ingreso al form
+                        Session("IDfrmQueIngresa") = 45
+                        Session("NombrefrmQueIngresa") = "Creación de Items"
+                        If Not IsPostBack Then
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                            End Using
+                        End If
                 End Select
             End If
-
-            'If Not IsPostBack Then
-            '    Using cusuario_bitacora As New ControlBitacora
-            '        cusuario_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 7, "El usuario ingresa a la pantalla de configuracion de usuarios")
-            '    End Using
-            'End If
-
-
 
         Catch ex As Exception
 
@@ -85,9 +89,9 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-            'Using log_bitacora As New ControlBitacora
-            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se se elimino items: " & lblHiddenIDDocumento.Value & " con exito")
-            'End Using
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El item " & lblHiddenIDDocumento.Value & " se elimino con éxito.")
+            End Using
 
             Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception

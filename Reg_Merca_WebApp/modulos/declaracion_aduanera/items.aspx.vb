@@ -142,17 +142,16 @@ values
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
+
+                    Using con As New ControlDB
+                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El ítem ha sido guardado con éxito.")
+                    End Using
+
                     Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?action=new&iditems=" & Session("GME_Recuperar_ID") & "&idCaratula=" & Request.QueryString("idCaratula"))
-
-                    'If Session("NumReg") > 0 Then
-                    '    'Using log_bitacora As New ControlBitacora
-                    '    '    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), 13, "El correo " & txtCorreoElectronico.Text & " ya esta registrado")
-                    '    'End Using
-                    'Else
-
-                    'End If
-
-
 
             End Select
 
@@ -164,15 +163,31 @@ values
 
 
     Private Sub bttDocumentos_Click(sender As Object, e As EventArgs) Handles bttDocumentos.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+        Try
+            Response.Redirect("~/modulos/declaracion_aduanera/items_documentos.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub bttComplementario_Click(sender As Object, e As EventArgs) Handles bttComplementario.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+        Try
+            Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub bttventajas_Click(sender As Object, e As EventArgs) Handles bttventajas.Click
-        Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+        Try
+            Response.Redirect("~/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub bttVolver_Click(sender As Object, e As EventArgs) Handles bttVolver.Click
@@ -184,10 +199,8 @@ values
     End Sub
 
     Private Sub bttActualizar_Click(sender As Object, e As EventArgs) Handles bttActualizar.Click
-        Dim Ssql As String
+        Dim Ssql As String = String.Empty
         Try
-
-
             Select Case Request.QueryString("action")
                 Case "update"
                     Ssql = "update DB_Nac_Merca.tbl_34_mercancias set Id_Tipo_items= '" & ddltipoitem.SelectedValue & "', 
@@ -206,6 +219,10 @@ convenio_perfeccionamiento= '" & txtconvenio.Text & "', exoneracion_aduanera= '"
 observaciones= '" & txtobservacion.Text & "',comentario= '" & txtcomentario.Text & "' where ID_Merca =" & Request.QueryString("iditems") & " "
                     Using con As New ControlDB
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    End Using
+
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El ítem número " & Request.QueryString("iditems") & " se actualizo con éxito.")
                     End Using
                     Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=update&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula") & "&alerta=update")
 
