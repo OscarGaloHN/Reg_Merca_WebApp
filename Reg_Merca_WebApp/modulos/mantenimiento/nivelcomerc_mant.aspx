@@ -33,7 +33,7 @@
 
             document.getElementById('ContentPrincipal_lblHiddenNombrecomercial').value = row.cells[3].innerHTML;
 
-            if (row.cells[2].innerHTML != '&nbsp;') {
+            if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txtTipoEditar').value = row.cells[3].innerHTML;
             }
             if (row.cells[2].innerHTML != '&nbsp;') {
@@ -204,7 +204,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                          <asp:BoundField DataField="Id_nivel_com" HeaderText="ID" />
-                                        <asp:BoundField DataField="Tipo" HeaderText="PREGUNTA" />
+                                        <asp:BoundField DataField="Tipo" HeaderText="Tipo" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -233,7 +233,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtTipo(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)"  onkeyup="borrarespacios(this);" ID="txtTipo" runat="server" class="form-control" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                    <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="Validacomercial" runat="server" class="form-control" ID="txtTipo"></asp:TextBox>
                                     <label class="form-label">Tipo</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtTipo"
@@ -301,7 +301,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Tipo" AutoComplete="off" ValidationGroup="ValidacomercialEditar" runat="server" class="form-control" ID="txtTipoEditar"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtTipoEditar"
                                         ErrorMessage="Ingrese el Tipo del nivel comercial."
