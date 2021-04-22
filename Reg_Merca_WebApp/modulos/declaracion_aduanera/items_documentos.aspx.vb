@@ -102,8 +102,7 @@
                 If chkPresencia.Checked = True Then
                     Ssql = "INSERT INTO DB_Nac_Merca.tbl_41_documentos_items (Id_Documento, id_merca, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("iditems") & ",'" & txtreferencia.Text & "', '1');"
                 Else
-                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_41_documentos_items (Id_Documento, id_merca, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("iditems") & ",'" & txtreferencia.Text & "', '0');
-"
+                    Ssql = "INSERT INTO DB_Nac_Merca.tbl_41_documentos_items (Id_Documento, id_merca, referencia, presencia) VALUES ('" & ddldocumentos.SelectedValue & "'," & Request.QueryString("iditems") & ",'" & txtreferencia.Text & "', '0');"
 
                 End If
                 Using con As New ControlDB
@@ -154,7 +153,15 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','El documento ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE DB_Nac_Merca.tbl_41_documentos_items SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+                If chkPresencia.Checked = True Then
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_41_documentos_items SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "', 
+                  presencia= '1' WHERE id_doc= " & lblHiddenIDDocumento.Value
+                Else
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_41_documentos_items SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "', 
+                  presencia= '0' WHERE id_doc= " & lblHiddenIDDocumento.Value
+
+                End If
+
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
