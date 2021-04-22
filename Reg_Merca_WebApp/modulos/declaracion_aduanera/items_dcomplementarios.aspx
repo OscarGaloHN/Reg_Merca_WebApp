@@ -1,7 +1,9 @@
 ﻿<%@ Page Language="vb" Title="Datos Complementarios" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="items_dcomplementarios.aspx.vb" Inherits="Reg_Merca_WebApp.items_dcomplementarios" %>
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
-        <!-- Bootstrap Select Css -->
+    
+  
+            <!-- Bootstrap Select Css -->
     <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
     <!-- JQuery DataTable Css -->
@@ -9,7 +11,6 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
@@ -17,7 +18,7 @@
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
-
+    
 
     <script type="text/javascript">
         function borrarTxtNuevo() {
@@ -29,8 +30,8 @@
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[5].innerHTML;
-            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
             xModal('red', 'ContentPrincipal_ddlcomplementario', 'modalDelete');
         }
@@ -155,11 +156,12 @@
                                             </ItemTemplate>
                                             <%-- Id_DatoComple, descripcion, Valor, Id_Codigo--%>
                                         </asp:TemplateField>
+                                         <asp:BoundField DataField="Id_Merca" HeaderText="ID Items" />
                                         <asp:BoundField DataField="Id_DatoComple" HeaderText="Código Dato" />
                                         <asp:BoundField DataField="descripcion" HeaderText="Descripción" />
                                         <asp:BoundField DataField="Valor" HeaderText="Valor" />
                                         <asp:BoundField DataField="Id_Codigo" HeaderText="ID" />
-                                        <asp:BoundField DataField="Id_Merca" HeaderText="ID Items" />
+                                       
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -259,7 +261,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarDocumento" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarDocumentos" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -336,6 +338,6 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
-        <!-- Select Plugin Js -->
-    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+      <!-- Bootstrap Datepicker Plugin Js -->
+     <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>

@@ -128,23 +128,7 @@
         End Try
     End Sub
 
-    Private Sub bttEliminarDocumento_Click(sender As Object, e As EventArgs) Handles bttEliminarDocumento.Click
-        Try
-            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_10_Datos_Complementarios where Id_Codigo = " & lblHiddenIDDocumento.Value
-            Using con As New ControlDB
-                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            End Using
-            'Using log_bitacora As New ControlBitacora
-            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
-            'End Using
 
-            Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
-
-        Catch ex As Exception
-
-        End Try
-        
-    End Sub
 
     Private Sub bttModificardocumento_Click(sender As Object, e As EventArgs) Handles bttModificardocumento.Click
 
@@ -191,6 +175,23 @@
     Private Sub bttcontinuar_Click(sender As Object, e As EventArgs) Handles bttcontinuar.Click
         Try
             Response.Redirect("/modulos/declaracion_aduanera/items_ventajas.aspx?iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub bttEliminarDocumentos_Click(sender As Object, e As EventArgs) Handles bttEliminarDocumentos.Click
+        Try
+            Dim Ssql As String = "DELETE FROM DB_Nac_Merca.tbl_10_Datos_Complementarios where id_doc = " & lblHiddenIDDocumento.Value
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+            'Using log_bitacora As New ControlBitacora
+            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
+            'End Using
+
+            Response.Redirect("~/modulos/declaracion_aduanera/items_dcomplementarios.aspx?acction=deldocumento&iditems=" & Request.QueryString("iditems") & "&idCaratula=" & Request.QueryString("idCaratula"))
+
         Catch ex As Exception
 
         End Try

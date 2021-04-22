@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content6" ContentPlaceHolderID="head" runat="server">
 
-            <!-- Bootstrap Select Css -->
+    <!-- Bootstrap Select Css -->
     <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
     <!-- JQuery DataTable Css -->
@@ -10,10 +10,13 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js "></script>
+
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
@@ -22,45 +25,39 @@
     <script type="text/javascript">
         function borrarTxtNuevo() {
             document.getElementById('ContentPrincipal_ddlventajas').value = '';
-
+            
+           
         }
 
         function GetSelectedRowDelete(lnk) {
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_ddldocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
-            xModal('red', 'ContentPrincipal_ddlDocumento', 'modalDelete');
+            xModal('red', 'ContentPrincipal_ddlventajas', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_ddlventajaedit').value = '';
-            //document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            //document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+          
+            document.getElementById('ContentPrincipal_lblHiddendddocumento').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_ddlventajaedit').value = row.cells[3].innerHTML;
-                //}
-                //if (row.cells[4].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
-                //}
-                //if (row.cells[5].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
-                //}
-                //if (row.cells[2].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-                //}
-                xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
+           
+            if (row.cells[2].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
             }
+                xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
+        }
 
     </script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Ventajas del Items</a>
+    <a class="navbar-brand" href="#">Ventajas del Item</a>
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -72,10 +69,9 @@
             </a>
         </li>
         <li class="active">
-
-            <a href="#">
-                <i class="material-icons">create_new_folder</i>
-                <span>Ventajas del Items</span>
+            <a href="caratula.aspx">
+                <i class="material-icons">aspect_ratio</i>
+                <span>Declaración Aduanera</span>
             </a>
         </li>
     </ul>
@@ -86,28 +82,28 @@
 
 
     <script type="text/javascript">
-            tituloImprimir = 'ventajas del items'
-            xColumnas.push(2, 3, 4); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
-            xMargenes.push(100, 0, 100, 0)
-            xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
-            xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+        tituloImprimir = 'Listado de Documentos'
+        xColumnas.push(2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
     </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Ventajas del Item - 
+                    <h2 style="font-weight: bold;">Listado de Ventajas del Item - 
                         <asp:Label runat="server" ID="lblitems"></asp:Label>
-                        <small>Acontinuación el usuario podra visualizar las ventajas del item.</small>
+                        <small>Acontinuación el usuario podra visualizar la ventaja del item.</small>
                     </h2>
                 </div>
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo; xModal('teal','ContentPrincipal_ddlventajas','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
-                                <i class="material-icons">add</i> <span>Nueva Ventaja</span>
+                                <i class="material-icons">add</i> <span>Nuevo</span>
                             </button>
                         </div>
 
@@ -123,6 +119,7 @@
                                 <span>Volver</span>
                             </asp:LinkButton>
                         </div>
+
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
                             <asp:LinkButton
                                 Width="100%"
@@ -166,12 +163,10 @@
                                                 <button onclick="return GetSelectedRowDelete(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <%--Id_Codigo, Id_ventaja, Id_merca, Descripcion--%>
                                         <asp:BoundField DataField="Id_Codigo" HeaderText="ID" />
                                         <asp:BoundField DataField="Id_ventaja" HeaderText="Código de Documento" />
                                         <asp:BoundField DataField="Descripcion" HeaderText="Descripcción" />
                                         <asp:BoundField DataField="Id_merca" HeaderText="Numero de Item" />
-
                                     </Columns>
                                 </asp:GridView>
                             </div>
@@ -188,16 +183,16 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblModalDocumentos">Seleccione ventaja del item </h4>
+                        <h4 class="modal-title" id="lblModalDocumentos">NUEVO DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
-                        Ingrese todos los datos de los ventajas y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
+                        Ingrese todos los datos de los documentos y haga clic en el botón 'GUARDAR' para confirmar el nuevo registro.
                                             <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label"></label>
                                 <asp:SqlDataSource
                                     ID="sqlventajas"
@@ -205,7 +200,7 @@
                                     DataSourceMode="DataReader"
                                     ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                     ProviderName="MySql.Data.MySqlClient"
-                                    SelectCommand="SELECT id_Ventaja,descripcion FROM  DB_Nac_Merca.tbl_30_Ventajas"></asp:SqlDataSource>
+                                    SelectCommand="SELECT id_Ventaja,descripcion FROM  DB_Nac_Merca.tbl_30_Ventajas order by 1"></asp:SqlDataSource>
 
                                 <label class="form-label">Ventajas</label>
                                 <asp:DropDownList
@@ -224,8 +219,10 @@
                                     Font-Size="X-Small"
                                     runat="server" />
                             </div>
-                        </div>
 
+                          
+                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttGuardarDocumento" ValidationGroup="Validadocumento" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
@@ -247,11 +244,11 @@
                     <h4 class="modal-title" id="LblDelete">ELIMINAR VENTAJA</h4>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que desea eliminar la siguiente ventaja?
+                    ¿Seguro que desea eliminar el siguiente ventaja?
                     <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
                     <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
-
+                    <asp:HiddenField runat="server" ID="lblHiddendddocumento" />
 
                     <br />
                     <br />
@@ -259,7 +256,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <asp:LinkButton runat="server" ID="bttEliminarDocumento" ValidationGroup="Validadocumento2" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="bttEliminarDocumento" class="btn  btn-link  waves-effect">ELIMINAR</asp:LinkButton>
                     <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
                 </div>
             </div>
@@ -275,7 +272,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- TITULO -->
-                        <h4 class="modal-title" id="lblEditarDoc">EDITAR VENTAJA</h4>
+                        <h4 class="modal-title" id="lblEditarDoc">EDITAR DOCUMENTO</h4>
                     </div>
                     <div class="modal-body">
                         Luego de terminar de editar los datos de los documentos haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
@@ -284,7 +281,8 @@
                         <!-- CUERPO DEL MODAL -->
 
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-label"></label>
                                 <asp:SqlDataSource
                                     ID="Sqlventajaedit"
@@ -303,7 +301,7 @@
                                     <asp:ListItem Value="Seleccione"></asp:ListItem>
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator
-                                    ID="RequiredFieldValidator1"
+                                    ID="RequiredFieldValidator2"
                                     ControlToValidate="ddlventajaedit"
                                     InitialValue="Seleccione"
                                     ErrorMessage="selecciones datos"
@@ -311,9 +309,10 @@
                                     Font-Size="X-Small"
                                     runat="server" />
                             </div>
+
                         </div>
 
-
+                     
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificardocumento" ValidationGroup="ValidadocumentoEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
@@ -326,6 +325,6 @@
 
 </asp:Content>
 <asp:Content ID="Content10" ContentPlaceHolderID="contenJSpie" runat="server">
-            <!-- Select Plugin Js -->
+    <!-- Select Plugin Js -->
     <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </asp:Content>

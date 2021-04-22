@@ -10,19 +10,19 @@
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'parametros de configuracion de sistema
-        Using Parametros_Sistema As New ControlDB
-            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        End Using
+        ''parametros de configuracion de sistema
+        'Using Parametros_Sistema As New ControlDB
+        '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        'End Using
 
-        'PARAMETROS DE ADMINISTRADOR
-        Using Parametros_admin As New ControlDB
-            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        End Using
+        ''PARAMETROS DE ADMINISTRADOR
+        'Using Parametros_admin As New ControlDB
+        '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        'End Using
 
-        Using logo_imprimir As New ControlDB
-            Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
-        End Using
+        'Using logo_imprimir As New ControlDB
+        '    Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
+        'End Using
 
         Try
             lblitems.Text = Request.QueryString("iditems")
@@ -104,9 +104,9 @@ VALUES('" & ddlventajas.SelectedValue & "'," & Request.QueryString("iditems") & 
 
 
             End If
-                Using con As New ControlDB
-                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                End Using
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
             'Using log_bitacora As New ControlBitacora
             '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
             'End Using

@@ -140,6 +140,15 @@ Partial Public Class items_ventajas
     Protected WithEvents lblHiddenIDDocumento As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
+    '''Control lblHiddendddocumento.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblHiddendddocumento As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
     '''Control bttEliminarDocumento.
     '''</summary>
     '''<remarks>
@@ -176,13 +185,13 @@ Partial Public Class items_ventajas
     Protected WithEvents ddlventajaedit As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control RequiredFieldValidator1.
+    '''Control RequiredFieldValidator2.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''Control bttModificardocumento.

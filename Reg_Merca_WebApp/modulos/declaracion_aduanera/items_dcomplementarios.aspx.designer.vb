@@ -158,13 +158,13 @@ Partial Public Class items_dcomplementarios
     Protected WithEvents lblHiddendddocumento As Global.System.Web.UI.WebControls.HiddenField
 
     '''<summary>
-    '''Control bttEliminarDocumento.
+    '''Control bttEliminarDocumentos.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttEliminarDocumento As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttEliminarDocumentos As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''Control Panel1.
