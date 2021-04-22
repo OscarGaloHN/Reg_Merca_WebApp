@@ -16,7 +16,7 @@
     <div>
 
         <asp:ScriptManager runat="server"></asp:ScriptManager>
-        <rsweb:ReportViewer  ID="ReportViewer1" runat="server"   Width="100%">
+        <rsweb:ReportViewer   SizeToReportContent="True"  ID="ReportViewer1" runat="server" Height="100%" Width="100%">
         </rsweb:ReportViewer>
 
     </div>
