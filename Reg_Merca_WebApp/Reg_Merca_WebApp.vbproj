@@ -271,6 +271,7 @@
     <Content Include="modulos\declaracion_aduanera\items_documentos.aspx" />
     <Content Include="modulos\declaracion_aduanera\items_ventajas.aspx" />
     <Content Include="modulos\declaracion_aduanera\Reporte_caratula.aspx" />
+    <Content Include="modulos\exportar\exportar.aspx" />
     <Content Include="modulos\gestion_usuario\config_gestion_usuario.aspx" />
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\mantenimiento\almacenes_mant.aspx" />
@@ -400,6 +401,7 @@
     <Content Include="modulos\reportes\fuentes\DSCaratula.xsc">
       <DependentUpon>DSCaratula.xsd</DependentUpon>
     </Content>
+    <Content Include="modulos\exportar\master_exportar.Master" />
     <None Include="modulos\reportes\fuentes\DSCaratula.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DSCaratula.Designer.vb</LastGenOutput>
@@ -1217,6 +1219,20 @@
     </Compile>
     <Compile Include="modulos\declaracion_aduanera\Reporte_caratula.aspx.vb">
       <DependentUpon>Reporte_caratula.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\exportar\exportar.aspx.designer.vb">
+      <DependentUpon>exportar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\exportar\exportar.aspx.vb">
+      <DependentUpon>exportar.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="modulos\exportar\master_exportar.Master.designer.vb">
+      <DependentUpon>master_exportar.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\exportar\master_exportar.Master.vb">
+      <DependentUpon>master_exportar.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\gestion_usuario\config_gestion_usuario.aspx.designer.vb">

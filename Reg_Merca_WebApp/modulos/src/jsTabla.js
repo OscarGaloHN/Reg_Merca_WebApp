@@ -4,10 +4,26 @@ var xempresa = '';
 var xlogo = '';
 var xColumnas = [];
 var xMargenes = [];
-var xOrientarPag = 'portrait'
+var xOrientarPag = 'portrait';  
+
+//var table = $('[id*=gvCustomers]').DataTable();
+
+ 
+
 $(function () {
+    //var table = $('[id *= gvCustomers]').DataTable();
+    //if (!table.data().count()) {
+    //    alert('Empty table');
+    //}
+
+
+
+  
+
     $('[id*=gvCustomers]').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable(
+     
         {
+       
         dom: 'lBfrtip',
         buttons: [
             {
@@ -16,7 +32,11 @@ $(function () {
                 titleAttr: 'Imprimir',
                 className: 'btn bg-teal waves-effect',
                 orientation: xOrientarPag ,
-                    
+
+                attr: {
+                    title: 'Exportar',
+                    id: 'bttPDFgrid'
+                },
 
              
            
@@ -91,5 +111,13 @@ $(function () {
             "stateSave": true,
             "infoFiltered": "(filtrado de _MAX_ registros)",
         }
-    });
+        }).on('draw', function () {
+            console.log(this.api().page.info());
+            //var info = table.page.info();
+            //console.log('Redraw occurred at: ' + info.recordsDisplay);
+        });
+
+
+    
 });
+
