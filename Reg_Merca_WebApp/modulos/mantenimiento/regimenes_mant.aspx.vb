@@ -10,51 +10,76 @@
     End Property
     'OBJETO #24
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Try
-            'cargar logo para imprimir
-            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
-            'llenar grid
+        If Session("user_idUsuario") = Nothing Then
+            Session.Abandon()
+            'REDIRECCIONAR A MENU PRINCIPAL
+            Response.Redirect("~/Inicio/login.aspx")
+        Else
+            'si hay una sesion activa
+            'comprobar que el rol del usuario tenga permisos para editar
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_27_Regimenes"
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 24 and permiso_consulta = 1"
+
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                gvCustomers.DataSource = DataSetX
-                gvCustomers.DataBind()
+                'si tiene los permisos
+                Try
+                    'cargar logo para imprimir
+                    HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+                    HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+                    'llenar grid
+
+                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_27_Regimenes"
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    If Session("NumReg") > 0 Then
+                        gvCustomers.DataSource = DataSetX
+                        gvCustomers.DataBind()
+                    End If
+
+                    If Not IsPostBack Then
+                        Select Case Request.QueryString("acction")
+                            Case "newregimenes"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Guardo con exito.', 'success');</script>")
+                            Case "delteregimenes"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Elimino con exito.', 'success');</script>")
+                            Case "editregimenes"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Modifico con exito.', 'success');</script>")
+                            Case Else
+                                'bitacora de que salio de un form
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+
+                                'bitacora de que ingreso al form
+                                Session("IDfrmQueIngresa") = 24
+                                Session("NombrefrmQueIngresa") = "Mantenimiento de Regimenes"
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+                        End Select
+                    End If
+                Catch ex As Exception
+
+                End Try
+            Else
+                'si no tiene permisos 
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                End Using
+                Response.Redirect("~/modulos/acceso_denegado.aspx")
             End If
-
-            If Not IsPostBack Then
-                Select Case Request.QueryString("acction")
-                    Case "newregimenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Guardo con exito.', 'success');</script>")
-                    Case "delteregimenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Elimino con exito.', 'success');</script>")
-                    Case "editregimenes"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('REGIMENES','El Regimenes se Modifico con exito.', 'success');</script>")
-                    Case Else
-                        'bitacora de que salio de un form
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
-
-                        'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 24
-                        Session("NombrefrmQueIngresa") = "Mantenimiento de Regimenes"
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
-                End Select
-            End If
-        Catch ex As Exception
-
-        End Try
+        End If
     End Sub
 
     Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
