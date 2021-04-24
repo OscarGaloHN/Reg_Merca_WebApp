@@ -107,9 +107,9 @@
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
-                'Using log_bitacora As New ControlBitacora
-                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
-                'End Using
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El documento número " & lblHiddenIDDocumento.Value & "  de la carátula  " & Request.QueryString("idCaratula") & " se guardo con éxito.")
+                End Using
                 Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=newdocumento&idCaratula=" & Request.QueryString("idCaratula"))
             End If
 
@@ -126,10 +126,10 @@
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-            'Using log_bitacora As New ControlBitacora
-            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
-            'End Using
 
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El documento número " & lblHiddenIDDocumento.Value & "  de la carátula  " & Request.QueryString("idCaratula") & " se elimino con éxito.")
+            End Using
             Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=deldocumento&idCaratula=" & Request.QueryString("idCaratula"))
 
         Catch ex As Exception
@@ -158,13 +158,22 @@
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documentos','La referencia ya esta registrada.', 'error');</script>")
             Else
-                Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', Referencia = '" & txtreferenciaEditar.Text & "'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+                If chkPresencia.Checked = True Then
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', 
+               Referencia = '" & txtreferenciaEditar.Text & "', presencia= '1'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+
+                Else
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_28_Documentos SET Id_Documento = '" & dddocumentoEditar.SelectedValue & "', 
+               Referencia = '" & txtreferenciaEditar.Text & "', presencia= '0'  WHERE id_doc= " & lblHiddenIDDocumento.Value
+                End If
+
+
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
-                'Using log_bitacora As New ControlBitacora
-                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
-                'End Using
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El documento número " & lblHiddenIDDocumento.Value & "  de la carátula  " & Request.QueryString("idCaratula") & " se actualizo con éxito.")
+                End Using
                 Response.Redirect("~/modulos/declaracion_aduanera/creacion_documentos.aspx?acction=editdocumento&idCaratula=" & Request.QueryString("idCaratula"))
             End If
         Catch ex As Exception

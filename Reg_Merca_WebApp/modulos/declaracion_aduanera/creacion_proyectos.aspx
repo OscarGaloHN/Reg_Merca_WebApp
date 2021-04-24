@@ -65,7 +65,7 @@
 
     <script type="text/javascript">
         tituloImprimir = 'Listado de Pólizas'
-        xColumnas.push(1, 2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xColumnas.push(3, 4, 5, 6,7); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="row clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group form-float">
                                 <label class="form-label"></label>
                                 <div class="form-line">
@@ -134,28 +134,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row clearfix">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <asp:SqlDataSource
-                                ID="sqlestadopol"
-                                runat="server"
-                                DataSourceMode="DataReader"
-                                ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
-                                ProviderName="MySql.Data.MySqlClient"
-                                SelectCommand="Select descripcion, id_estado from DB_Nac_Merca.tbl_19_estado where id_estado in (7,8)"></asp:SqlDataSource>
+                         
 
-                            <label class="form-label">Estado</label>
-                            <asp:DropDownList
-                                ID="ddlestado" runat="server" DataSourceID="sqlestadopol" class="form-control show-tick"
-                                DataTextField="descripcion" DataValueField="id_estado" AppendDataBoundItems="true" ItemType="">
-                                <asp:ListItem Value="Seleccione"></asp:ListItem>
 
-                            </asp:DropDownList>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="form-group form-float">
                                 <label class="form-label"></label>
                                 <div class="form-line">
@@ -169,15 +152,10 @@
                                     </asp:TextBox>
                                     <label class="form-label">Usuario</label>
                                 </div>
-                                <%--                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txt_usuario"
-                                    ErrorMessage="Ingrese nombre de usuario"
-                                    Display="Dynamic"
-                                    ForeColor="OrangeRed" Font-Size="X-Small" />--%>
+                                </div>
+                     
                             </div>
-                        </div>
-
-                        <div class="body">
-                            <div class="row clearfix">
+                        
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
                                     <asp:LinkButton
                                         Width="100%"
@@ -202,20 +180,41 @@
                                     </asp:LinkButton>
                                 </div>
 
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                                    <asp:LinkButton
+                                
+
+                            </div>
+                            <div class="row clearfix">
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <asp:SqlDataSource
+                                        ID="sqlestadopol"
+                                        runat="server"
+                                        DataSourceMode="DataReader"
+                                        ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
+                                        ProviderName="MySql.Data.MySqlClient"
+                                        SelectCommand="Select descripcion, id_estado from DB_Nac_Merca.tbl_19_estado where id_estado in (7,8)"></asp:SqlDataSource>
+
+                                    <label class="form-label">Filtrar por estado</label>
+                                    <asp:DropDownList AutoPostBack="true"
+                                        ID="ddlestado" runat="server" DataSourceID="sqlestadopol" class="form-control show-tick"
+                                        DataTextField="descripcion" DataValueField="id_estado" AppendDataBoundItems="true" ItemType="">
+                                        <asp:ListItem Value="Todos los estados"></asp:ListItem>
+
+                                    </asp:DropDownList>
+                                </div>
+                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <asp:LinkButton Style="margin-top:15px;"
                                         Width="100%"
                                         runat="server"
                                         ID="bttNuevo"
                                         type="button"
                                         ValidationGroup="Validarnuevo"
-                                        class="btn bg-teal waves-effect">
-          <i class="material-icons">add</i>
-          <span>Nuevo</span>
+                                        class="btn bg-teal waves-effect"><i class="material-icons">add</i><span>Nuevo Proyecto</span>
                                     </asp:LinkButton>
 
-                                </div>
+                                </div> 
                             </div>
+                        
 
                             <div class="row clearfix">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -223,13 +222,12 @@
                                         <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                             Width="100%">
                                             <Columns>
-                                                <asp:BoundField HeaderText="Editar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='caratula.aspx?idCaratula={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
-                                                <%--                                            <asp:TemplateField HeaderText="Eliminar">
-                                                <ItemTemplate>
-                                                    <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
 
+                                                <asp:BoundField HeaderText="Editar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='caratula.aspx?idCaratula={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                                <asp:BoundField HeaderText="Imprimir" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a target='_blank' class='btn bg-teal waves-effect' href='Reporte_caratula.aspx?idcaratula={0}&action=print&ignore=92​​'><i class='material-icons'>print</i> </a>" />
+                                                <asp:BoundField HeaderText="Exportar" DataField="id_poliza" HtmlEncode="False" DataFormatString="<a target='_blank' class='btn bg-red waves-effect' href='../exportar/exportar.aspx?xIdCaratual={0}&action=exportar&ignore=92​​'><i class='material-icons'>file_download</i> </a>" />
+
+                                       
                                                 <asp:BoundField DataField="id_poliza" HeaderText="ID" />
                                                 <asp:BoundField DataField="fecha_creacion" HeaderText="Fecha creación" />
                                                 <asp:BoundField DataField="nombrec" HeaderText="Cliente" />
@@ -277,8 +275,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                   
                 </div>
             </div>
         </div>

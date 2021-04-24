@@ -29,31 +29,25 @@
             var row = lnk.parentNode.parentNode;
             document.getElementById('ContentPrincipal_lblDocumento').innerHTML = row.cells[2].innerHTML + ' - ' + row.cells[3].innerHTML + ' - ' + row.cells[4].innerHTML;
             document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-            document.getElementById('ContentPrincipal_ddldocumento').value = row.cells[3].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenddlventajas').value = row.cells[3].innerHTML;
 
-            xModal('red', 'ContentPrincipal_ddlDocumento', 'modalDelete');
+            xModal('red', 'ContentPrincipal_ddlventajas', 'modalDelete');
         }
 
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_ddlventajaedit').value = '';
-            //document.getElementById('ContentPrincipal_txtReferencia').value = '';
-            //document.getElementById('ContentPrincipal_chkPresenciaEditar').Checked = '';
+
             var row = lnk.parentNode.parentNode;
 
-            document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+            document.getElementById('ContentPrincipal_lblHiddenddlventajas').value = row.cells[3].innerHTML;
 
             if (row.cells[3].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_ddlventajaedit').value = row.cells[3].innerHTML;
-                //}
-                //if (row.cells[4].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_txtReferenciaEditar').value = row.cells[4].innerHTML;
-                //}
-                //if (row.cells[5].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').Checked = row.cells[5].innerHTML;
-                //}
-                //if (row.cells[2].innerHTML != '&nbsp;') {
-                //    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
-                //}
+                }
+
+                if (row.cells[2].innerHTML != '&nbsp;') {
+                    document.getElementById('ContentPrincipal_lblHiddenIDDocumento').value = row.cells[2].innerHTML;
+                }
                 xModal('pink', 'ContentPrincipal_ddlventajaedit', 'modalEditar');
             }
 
@@ -105,7 +99,7 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 ">
-                            <button onclick="xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
+                            <button onclick="borrarTxtNuevo; xModal('teal','','modalNuevo');" type="button" class="btn btn-block btn-lg bg-teal waves-effect">
 
                                 <i class="material-icons">add</i> <span>Nueva Ventaja</span>
                             </button>
@@ -251,7 +245,7 @@
                     <br />
                     <asp:Label runat="server" ID="lblDocumento" Text="..."></asp:Label>
                     <asp:HiddenField runat="server" ID="lblHiddenIDDocumento" />
-
+                    <asp:HiddenField runat="server" ID="lblHiddenddlventajas" />
 
                     <br />
                     <br />
@@ -278,7 +272,7 @@
                         <h4 class="modal-title" id="lblEditarDoc">EDITAR VENTAJA</h4>
                     </div>
                     <div class="modal-body">
-                        Luego de terminar de editar los datos de los documentos haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                        Luego de terminar de editar los datos de la ventaja haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->
