@@ -196,7 +196,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Estado de la mercancia
+                    <h2 style="font-weight: bold;">Estado De La Mercancia
                                  <small>A Continuación Se Muestra El Listado Del Estado De La Mercancia.</small>
                     </h2>
                 </div>

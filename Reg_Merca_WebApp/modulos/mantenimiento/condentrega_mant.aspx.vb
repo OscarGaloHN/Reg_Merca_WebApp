@@ -29,11 +29,11 @@
             If Not IsPostBack Then
                 Select Case Request.QueryString("acction")
                     Case "newcondicion"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se almaceno con exito.', 'success');</script>")
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se almaceno con èxito.', 'success');</script>")
                     Case "deltecondicion"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se elimino con exito.', 'success');</script>")
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se elimino con èxito.', 'success');</script>")
                     Case "editcondicion"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se modifico con exito.', 'success');</script>")
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('condicion','La condicion se modifico con èxito.', 'success');</script>")
                     Case Else
                         'bitacora de que salio de un form
                         If Not IsPostBack Then
