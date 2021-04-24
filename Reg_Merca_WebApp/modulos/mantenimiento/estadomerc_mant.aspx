@@ -79,12 +79,24 @@
                 <span>Almacén</span>
             </a>
         </li>
+         <li>
+            <a href="clasebulto_mant.aspx">
+                <i class="material-icons">inventory_2</i>
+                <span>Clase de Bulto</span>
+            </a>
+        </li>
         <li>
             <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
             </li>
+         <li>
+            <a href="clasebulto_mant.aspx">
+                <i class="material-icons">store</i>
+                <span>Clase de Bulto</span>
+            </a>
+        </li>
         
         <li>
             <a href="condentrega_mant.aspx">

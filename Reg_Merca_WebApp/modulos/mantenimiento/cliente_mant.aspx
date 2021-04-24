@@ -1,15 +1,15 @@
 ﻿<%@ Page Title="Clientes" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/mantenimiento/master_mantenimiento.Master" CodeBehind="cliente_mant.aspx.vb" Inherits="Reg_Merca_WebApp.cliente_mant" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-             <!-- JQuery DataTable Css -->
+    <!-- JQuery DataTable Css -->
     <link href="../../plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
     <script src="../src/jsTabla.js"></script>
 
     <script src="../src/jsModales.js"></script>
@@ -124,7 +124,7 @@
     <a class="navbar-brand" href="#">Mantenimiento de clientes</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
-  <ul class="list">
+    <ul class="list">
         <li class="header">MENU PRINCIPAL</li>
         <li>
             <a href="../menu_principal.aspx">
@@ -132,16 +132,22 @@
                 <span>Inicio</span>
             </a>
         </li>
-        <li  >
+        <li>
             <a href="mantenimiento_adunas.aspx">
                 <i class="material-icons">directions_boat</i>
                 <span>Aduanas</span>
             </a>
-            </li>
-             <li >
-                     <a href="almacenes_mant.aspx">
+        </li>
+        <li>
+            <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
-                <span>Almacén</span>
+                <span>Almacenes</span>
+            </a>
+        </li>
+        <li>
+            <a href="clasebulto_mant.aspx">
+                <i class="material-icons">inventory_2</i>
+                <span>Clase de Bulto</span>
             </a>
         </li>
         <li class="active">
@@ -149,99 +155,100 @@
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
-            </li>
-        
+        </li>
+
         <li>
             <a href="condentrega_mant.aspx">
                 <i class="material-icons">flaky</i>
                 <span>Condicion de Entrega</span>
             </a>
-            </li>
+        </li>
         <li>
             <a href="divisas_mant.aspx">
                 <i class="material-icons">monetization_on</i>
                 <span>Divisas</span>
             </a>
-            </li>
+        </li>
         <li>
             <a href="estadomerc_mant.aspx">
                 <i class="material-icons">rule</i>
                 <span>Estado de Mercancia</span>
             </a>
-            </li>
+        </li>
         <li>
             <a href="forma_pago.aspx">
                 <i class="material-icons">point_of_sale</i>
                 <span>Forma de Pago</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="modalidadesp_mant.aspx">
                 <i class="material-icons">add_moderator</i>
                 <span>Modalidad Especial</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="nivelcomerc_mant.aspx">
                 <i class="material-icons">credit_score</i>
                 <span>Nivel Comercial</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="proveedores_mant.aspx">
                 <i class="material-icons">hail</i>
                 <span>Proveedores</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="preguntas_mant.aspx">
                 <i class="material-icons">help</i>
                 <span>Preguntas</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="paises_mant.aspx">
                 <i class="material-icons">travel_explore</i>
                 <span>Paises</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="regimenes_mant.aspx">
                 <i class="material-icons">menu_book</i>
                 <span>Regimenes</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="tipoitems_mant.aspx">
                 <i class="material-icons">segment</i>
                 <span>Tipo de Item</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="unidmedida_mant.aspx">
                 <i class="material-icons">straighten</i>
                 <span>Unidad de medida</span>
             </a>
-            </li>
-         <li>
+        </li>
+        <li>
             <a href="ventajas_mant.aspx">
                 <i class="material-icons">verified_user</i>
                 <span>Ventajas</span>
             </a>
-            </li>
+        </li>
     </ul>
-    
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
-     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
-       <script type="text/javascript">
+    <script type="text/javascript">
            tituloImprimir = 'LISTADO DE LOS CLIENTE'
-           xColumnas.push(2, 3, 4, 5, 7, 8, 11, 12, 14, 15, 16, 17, 18); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+           xColumnas.push(2, 3, 4, 5, 7, 8, 11, 12, 14, 15, 16, 17); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
          xMargenes.push(1, 0, 1, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
-       </script>
+        
+    </script>
 
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -322,16 +329,16 @@
                             <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtnombre" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtnombre" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre"
                                         ErrorMessage="Ingrese el nombre del cliente."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
                                 </div>
-                                 
+
                             </div>
-                      <!--      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <!--      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <asp:TextBox placeholder="Identidad" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtIdentidadCliente" onkeypress="SoloNumeros();"></asp:TextBox>
@@ -345,7 +352,7 @@
                             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtdirecciondomicilio" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtdirecciondomicilio" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="validarContactoVac" ControlToValidate="txtdirecciondomicilio"
                                         ErrorMessage="Ingrese la dirección de domicilio."
@@ -356,7 +363,7 @@
                             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección envío" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtdireccionenvio" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección envío" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtdireccionenvio" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtdireccionenvio"
                                         ErrorMessage="Ingrese la Dirección del envío"
@@ -364,19 +371,19 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
                                 </div>
                             </div>
-                               <asp:SqlDataSource
+                            <asp:SqlDataSource
                                 ID="SqlPais"
                                 runat="server"
                                 DataSourceMode="DataReader"
                                 ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                 ProviderName="MySql.Data.MySqlClient"
                                 SelectCommand="SELECT Id_Pais, Nombre_Pais FROM DB_Nac_Merca.tbl_8_paises order by 2;"></asp:SqlDataSource>
-                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                    <asp:DropDownList 
-                                        ID="CmbPais" runat="server" DataSourceID="SqlPais" class="form-control show-tick"
-                                        DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
-                                    </asp:DropDownList>
-                                </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <asp:DropDownList
+                                    ID="CmbPais" runat="server" DataSourceID="SqlPais" class="form-control show-tick"
+                                    DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
+                                </asp:DropDownList>
+                            </div>
                             <asp:SqlDataSource
                                 ID="SqlNivelComercial"
                                 runat="server"
@@ -384,20 +391,20 @@
                                 ConnectionString="<%$ ConnectionStrings:Cstr_1 %>"
                                 ProviderName="MySql.Data.MySqlClient"
                                 SelectCommand="SELECT Id_nivel_com, Tipo FROM DB_Nac_Merca.tbl_12_nivel_comercial;"></asp:SqlDataSource>
-                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                    <asp:DropDownList 
-                                        ID="cmbNivelComercial" runat="server" DataSourceID="SqlNivelComercial" class="form-control show-tick"
-                                        DataTextField="Tipo" DataValueField="Id_nivel_com" AppendDataBoundItems="true">
-                                    </asp:DropDownList>
-                                </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <asp:DropDownList
+                                    ID="cmbNivelComercial" runat="server" DataSourceID="SqlNivelComercial" class="form-control show-tick"
+                                    DataTextField="Tipo" DataValueField="Id_nivel_com" AppendDataBoundItems="true">
+                                </asp:DropDownList>
+                            </div>
 
 
-                            
+
 
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtciudad" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="Validacliente" runat="server" class="form-control" ID="txtciudad" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="txtciudad"
                                         ErrorMessage="Ingrese la Ciudad"
@@ -441,7 +448,7 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
                                 </div>
                             </div>
-                             </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
@@ -455,8 +462,8 @@
                                 </div>
                             </div>
 
-                        
-                        
+
+
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -467,10 +474,10 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
                                     <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1"
-                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ControlToValidate="txtemailpersonal"
-                                    ErrorMessage="El correo electronico no es valido."
-                                    ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
+                                        Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                        ControlToValidate="txtemailpersonal"
+                                        ErrorMessage="El correo electronico no es valido."
+                                        ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -482,15 +489,15 @@
                                         ErrorMessage="Ingrese el correo empresarial"
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validacliente" />
-                                 <asp:RegularExpressionValidator runat="server" ID="reEmailRegistro"
-                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ControlToValidate="txtemailempresarial"
-                                    ErrorMessage="El correo electronico no es valido."
-                                    ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
-                               </div>
+                                    <asp:RegularExpressionValidator runat="server" ID="reEmailRegistro"
+                                        Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                        ControlToValidate="txtemailempresarial"
+                                        ErrorMessage="El correo electronico no es valido."
+                                        ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
+                                </div>
                             </div>
-                            </div>
-                            <div class="row">
+                        </div>
+                        <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -514,8 +521,8 @@
                                 </div>
                             </div>
 
-                        
-                        
+
+
                             <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -539,12 +546,12 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        <div class="modal-footer">
-                            <asp:LinkButton runat="server" ID="bttGuardarcliente" ValidationGroup="Validacliente" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
-                            <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
-                        </div>
-                    
+                    </div>
+                    <div class="modal-footer">
+                        <asp:LinkButton runat="server" ID="bttGuardarcliente" ValidationGroup="Validacliente" class="btn  btn-link  waves-effect">GUARDAR</asp:LinkButton>
+                        <button type="button" class="btn  btn-link waves-effect" data-dismiss="modal">CERRAR</button>
+                    </div>
+
                 </div>
             </asp:Panel>
 
@@ -598,18 +605,18 @@
                         <br />
                         <!-- CUERPO DEL MODAL -->
 
-                        <div class="row"> 
+                        <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                
 
-                                     
-                                        <asp:label runat="server" class="form-control" ID="LblIdentidadclienteEditar" Text="..."></asp:label>
-                                   
+
+
+                                <asp:Label runat="server" class="form-control" ID="LblIdentidadclienteEditar" Text="..."></asp:Label>
+
                             </div>
                             <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtnombreEditar" onkeypress="txNombres(event);"  onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Nombre" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtnombreEditar" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtnombreEditar"
                                         ErrorMessage="Ingrese el nombre del cliente."
@@ -617,12 +624,12 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
                                 </div>
                             </div>
-                         
+
 
                             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtdirecciondomicilioEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección domicilio" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtdirecciondomicilioEditar" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtdirecciondomicilioEditar"
                                         ErrorMessage="Ingrese el domicilio del cliente."
@@ -630,10 +637,10 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
                                 </div>
                             </div>
-                             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Dirección envio" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtdireccionenvioEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Dirección envio" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtdireccionenvioEditar" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtdireccionenvioEditar"
                                         ErrorMessage="Ingrese la direccion de envio del cliente."
@@ -641,28 +648,28 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
                                 </div>
                             </div>
-     
-                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                    <asp:DropDownList 
-                                        ID="cmbPaiseditar" runat="server" DataSourceID="SqlPais" class="form-control show-tick"
-                                        DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
-                                    </asp:DropDownList>
-                                </div>
-                
-                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                    <asp:DropDownList 
-                                        ID="cmbNivelComercialeditar" runat="server" DataSourceID="SqlNivelComercial" class="form-control show-tick"
-                                        DataTextField="Tipo" DataValueField="Id_nivel_com" AppendDataBoundItems="true">
-                                    </asp:DropDownList>
-                                </div>
 
-                     
-                       
-                           
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <asp:DropDownList
+                                    ID="cmbPaiseditar" runat="server" DataSourceID="SqlPais" class="form-control show-tick"
+                                    DataTextField="Nombre_Pais" DataValueField="Id_Pais" AppendDataBoundItems="true">
+                                </asp:DropDownList>
+                            </div>
+
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                <asp:DropDownList
+                                    ID="cmbNivelComercialeditar" runat="server" DataSourceID="SqlNivelComercial" class="form-control show-tick"
+                                    DataTextField="Tipo" DataValueField="Id_nivel_com" AppendDataBoundItems="true">
+                                </asp:DropDownList>
+                            </div>
+
+
+
+
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtciudadEditar" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="Ciudad" AutoComplete="off" ValidationGroup="ValidaclienteEditar" runat="server" class="form-control" ID="txtciudadEditar" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator6" ControlToValidate="txtciudadEditar"
                                         ErrorMessage="Ingrese la Ciudad del cliente."
@@ -671,7 +678,7 @@
                                 </div>
                             </div>
 
-                           </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
@@ -696,8 +703,8 @@
                                 </div>
                             </div>
 
-                       
-                        
+
+
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -709,7 +716,7 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
                                 </div>
                             </div>
-                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
@@ -723,8 +730,8 @@
                                 </div>
                             </div>
 
-                        
-                        
+
+
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -734,11 +741,11 @@
                                         ErrorMessage="Ingrese el email personal."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
-                                     <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator2"
-                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ControlToValidate="txtemailpersonalEditar"
-                                    ErrorMessage="El correo electronico no es valido."
-                                    ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
+                                    <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator2"
+                                        Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                        ControlToValidate="txtemailpersonalEditar"
+                                        ErrorMessage="El correo electronico no es valido."
+                                        ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -751,16 +758,16 @@
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
                                     <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator3"
-                                    Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
-                                    ControlToValidate="txtemailempresarialEditar"
-                                    ErrorMessage="El correo electronico no es valido."
-                                    ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
+                                        Display="Dynamic" ForeColor="OrangeRed" Font-Size="X-Small"
+                                        ControlToValidate="txtemailempresarialEditar"
+                                        ErrorMessage="El correo electronico no es valido."
+                                        ValidationExpression="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" />
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
                         <div class="row">
-                        
+
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -784,8 +791,8 @@
                                 </div>
                             </div>
 
-                        
-                        
+
+
                             <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
@@ -808,8 +815,8 @@
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaclienteEditar" />
                                 </div>
                             </div>
-                             </div>
-                        
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <asp:LinkButton runat="server" ID="bttModificar" ValidationGroup="ValidaclienteEditar" class="btn  btn-link  waves-effect">MODIFICAR</asp:LinkButton>
