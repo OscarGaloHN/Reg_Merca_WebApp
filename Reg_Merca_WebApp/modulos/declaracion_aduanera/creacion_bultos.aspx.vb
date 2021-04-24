@@ -114,9 +114,9 @@ case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
-                'Using log_bitacora As New ControlBitacora
-                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se editaron los datos para la aduana con id: " & lblHiddenIDAduna.Value)
-                'End Using
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El bulto número " & lblHiddenIDbulto.Value & "  de la carátula  " & Request.QueryString("idCaratula") & " se guardo con éxito.")
+                End Using
                 Response.Redirect("~/modulos/declaracion_aduanera/creacion_bultos.aspx?acction=newbulto&idCaratula=" & Request.QueryString("idCaratula"))
             End If
         Catch ex As Exception
@@ -130,9 +130,9 @@ case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-            'Using log_bitacora As New ControlBitacora
-            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino la aduna con nombre: " & lblHiddenNombreAduna.Value & " con exito")
-            'End Using
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El bulto número " & lblHiddenIDbulto.Value & "  de la carátula  " & Request.QueryString("idCaratula") & " se elimino con éxito.")
+            End Using
 
             Response.Redirect("~/modulos/declaracion_aduanera/creacion_bultos.aspx?acction=deltebulto&idCaratula=" & Request.QueryString("idCaratula"))
 
@@ -156,13 +156,21 @@ case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_
             If Session("NumReg") > 0 Then
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bultos','El manifiesto de bultos ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE DB_Nac_Merca.tbl_40_Bulto SET manifiesto = '" & txtmanifiestoEditar.Text & "', titulo_transporte = '" & txt_transEditar.Text & "' WHERE id_bulto = " & lblHiddenIDbulto.Value & ";"
+
+                If chkindicador.Checked = True Then
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_40_Bulto SET manifiesto = '" & txtmanifiestoEditar.Text & "', titulo_transporte = '" & txt_transEditar.Text & "', indicador= '1'
+WHERE id_bulto = " & lblHiddenIDbulto.Value & ";"
+                Else
+                    Ssql = "UPDATE DB_Nac_Merca.tbl_40_Bulto SET manifiesto = '" & txtmanifiestoEditar.Text & "', titulo_transporte = '" & txt_transEditar.Text & "', indicador= '0'
+WHERE id_bulto = " & lblHiddenIDbulto.Value & ";"
+                End If
+
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
-                'Using log_bitacora As New ControlBitacora
-                '    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo una nueva aduna con nombre: " & txtAduana.Text)
-                'End Using
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El bulto número " & lblHiddenIDbulto.Value & "  de la carátula  " & Request.QueryString("idCaratula") & " se actualizo con éxito.")
+                End Using
                 Response.Redirect("~/modulos/declaracion_aduanera/creacion_bultos.aspx?acction=editbulto&idCaratula=" & Request.QueryString("idCaratula"))
             End If
         Catch ex As Exception
@@ -185,7 +193,9 @@ case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El estado de la  " & Request.QueryString("idCaratula") & " se actualizo con éxito.")
+            End Using
 
             Session("nombreRPT") = "~/modulos/reportes/rptCaratula.rdlc"
             Session("nombreDS") = "DSCaratula"
@@ -263,6 +273,12 @@ LEFT JOIN ( SELECT *FROM (SELECT Id_poliza, observaciones FROM DB_Nac_Merca.tbl_
 where length(observaciones) > 1 and Id_poliza = " & Request.QueryString("idCaratula") & " limit 1) TBL_TEMP
 ) T002 ON T001.Id_poliza = T002.Id_poliza
 where T001.Id_poliza = " & Request.QueryString("idCaratula")
+
+
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(3, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El reporte de la póliza con número de carátula  " & Request.QueryString("idCaratula") & "  y de items número  " & Request.QueryString("iditems") & " se ha realizado con éxito.")
+            End Using
+
             Response.Redirect("/modulos/declaracion_aduanera/Reporte_caratula.aspx?idcaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
