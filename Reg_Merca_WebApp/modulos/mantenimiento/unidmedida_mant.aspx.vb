@@ -137,7 +137,7 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El nombre de aduana ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','La unidad de medida ya esta registrado.', 'error');</script>")
             Else
                 Ssql = "UPDATE `DB_Nac_Merca`.`tbl_24_Unidad_Medida` SET `Descripcion` = '" & txtDescripcionEditar.Text & "' WHERE `Id_UnidadMed` = '" & lblHiddenIDmedida.Value & "';"
                 Using con As New ControlDB
