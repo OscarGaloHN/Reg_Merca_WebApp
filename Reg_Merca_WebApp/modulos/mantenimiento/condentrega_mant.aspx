@@ -79,6 +79,12 @@
             </a>
         </li>
         <li>
+            <a href="clasebulto_mant.aspx">
+                <i class="material-icons">inventory_2</i>
+                <span>Clase de Bulto</span>
+            </a>
+        </li>
+        <li>
             <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
@@ -169,7 +175,7 @@
      <asp:HiddenField ID="HiddenLogo" runat="server" />
     <asp:HiddenField ID="HiddenEmpresa" runat="server" />
      <script type="text/javascript">
-         tituloImprimir = 'LISTADO DE CONDICIONES DE ENTREGAS'
+         tituloImprimir = 'LISTADO DE CONDICION DE ENTREGA'
          xColumnas.push(2, 3); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
         xMargenes.push(100, 0, 100, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
@@ -312,7 +318,7 @@
                         <h4 class="modal-title" id="lblEditar">EDITAR CONDICIÓN</h4>
                     </div>
                     <div class="modal-body">
-                      Luego de terminar de editar los datos dE LA condicion haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
+                      Luego de terminar de editar los datos de lA condicion haga clic en el botón 'MODIFICAR' para confirmar los nuevos datos.
                         <br />
                         <br />
                         <!-- CUERPO DEL MODAL -->

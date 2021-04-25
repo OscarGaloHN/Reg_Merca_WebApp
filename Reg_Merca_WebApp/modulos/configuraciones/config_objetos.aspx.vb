@@ -10,22 +10,23 @@
     End Property
     'OBJETO #41
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("user_idUsuario") = Nothing Then
-            Session.Abandon()
-            'REDIRECCIONAR A MENU PRINCIPAL
-            Response.Redirect("~/Inicio/login.aspx")
-        Else
-            'si hay una sesion activa
-            'comprobar que el rol del usuario tenga permisos para ingresar
-            Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+        Try
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                'REDIRECCIONAR A MENU PRINCIPAL
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para ingresar
+                Dim Ssql As String = String.Empty
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
                     where id_rol = " & Session("user_rol") & " and id_objeto = 41 and permiso_consulta = 1"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
-                Try
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
+
                     'cargar logo para imprimir
                     HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
                     HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
@@ -63,17 +64,18 @@
                                 LlenarGrid(Request.QueryString("rol"), Request.QueryString("modulo"))
                         End Select
                     End If
-                Catch ex As Exception
-
-                End Try
-            Else
-                'si no tiene permisos 
-                Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 41, "El usuario intenta ingresa a una pantalla sin permisos")
-                End Using
-                Response.Redirect("~/modulos/acceso_denegado.aspx")
+                Else
+                    'si no tiene permisos 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 41, "El usuario intenta ingresa a una pantalla sin permisos")
+                    End Using
+                    Response.Redirect("~/modulos/acceso_denegado.aspx")
+                End If
             End If
-        End If
+        Catch ex As Exception
+
+        End Try
+
     End Sub
     Private Sub LlenarGrid(ByVal xidrol As Integer, ByVal xidModulo As Integer)
         Dim Ssql As String = String.Empty

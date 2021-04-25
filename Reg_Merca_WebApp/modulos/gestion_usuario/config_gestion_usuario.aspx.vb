@@ -1,6 +1,8 @@
 ﻿Public Class Config_Gestion_Usuario
 
     Inherits System.Web.UI.Page
+    '#OBJETO 8
+
     Private Property DataSetX As DataSet
         Get
             Return CType(Session("DataSetX"), DataSet)
@@ -11,13 +13,13 @@
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        'Using Parametros_Sistema As New ControlDB
-        '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        'End Using
+        Using Parametros_Sistema As New ControlDB
+            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+        End Using
 
-        'Using Parametros_admin As New ControlDB
-        '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        'End Using
+        Using Parametros_admin As New ControlDB
+            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+        End Using
 
         If Session("user_rol") = 5 Then
             SqlRol.SelectCommand = "Select rol, id_rol from DB_Nac_Merca.tbl_15_rol"
@@ -99,6 +101,23 @@
                     Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Contraseña','La contraseña se cambio con exito', 'success');</script>")
             End Select
         End If
+
+        'bitacora de que salio de un form
+        If Not IsPostBack Then
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+            End Using
+        End If
+
+        'bitacora de que ingreso al form
+        Session("IDfrmQueIngresa") = 8
+        Session("NombrefrmQueIngresa") = "Configuracion de Gestion de Usuarios"
+        If Not IsPostBack Then
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+            End Using
+        End If
+
     End Sub
     Private Sub bttGuardar_Click(sender As Object, e As EventArgs) Handles bttGuardar.Click
         Dim Ssql As String
@@ -234,7 +253,7 @@
             Dim urllink As String = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) & "/Inicio/activacion.aspx?ActivationCode=" & activationCode
 
             Using xCorreo As New ControlCorreo
-                xCorreo.envio_correo("Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta.", "ACTIVAR CUENTA",
+                xCorreo.envio_correo("Para continuar con el registro haga click en el siguiente enlace y asi poder activar su cuenta.<br/> Tambien puede ingresar al sistema con las crendeciales:<br/> Usuario: " & txtUsuario.Text & " <br/> Clave temporal: " & txtContraConfirmar.Text & "", "ACTIVAR CUENTA",
                                          txtCorreoElectronico.Text, Application("ParametrosADMIN")(9), Application("ParametrosADMIN")(11),
                                        txtNombre.Text.Trim(),
                                          urllink, "Activación de Cuenta",

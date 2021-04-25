@@ -10,23 +10,24 @@
     End Property
     'OBJETO #27
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("user_idUsuario") = Nothing Then
-            Session.Abandon()
-            'REDIRECCIONAR A MENU PRINCIPAL
-            Response.Redirect("~/Inicio/login.aspx")
-        Else
-            'si hay una sesion activa
-            'comprobar que el rol del usuario tenga permisos para ingresar
-            Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+        Try
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                'REDIRECCIONAR A MENU PRINCIPAL
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para ingresar
+                Dim Ssql As String = String.Empty
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
                     where id_rol = " & Session("user_rol") & " and id_objeto = 27 and permiso_consulta = 1"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
 
-                Try
+
                     ''parametros de configuracion de sistema
                     'Using Parametros_Sistema As New ControlDB
                     '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
@@ -73,11 +74,9 @@
 
                         End Select
                     End If
-                Catch ex As Exception
 
-                End Try
 
-            Else
+                Else
                 'si no tiene permisos 
                 Using log_bitacora As New ControlBitacora
                     log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 27, "El usuario intenta ingresa a una pantalla sin permisos")
@@ -85,6 +84,10 @@
                 Response.Redirect("~/modulos/acceso_denegado.aspx")
             End If
         End If
+
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Sub LlenarGrid(ByVal xidrol As Integer)
         Dim Ssql As String = String.Empty
@@ -113,15 +116,16 @@
     End Sub
 
     Private Sub bttGuardarPermiso_Click(sender As Object, e As EventArgs) Handles bttGuardarPermiso.Click
-        Dim Ssql As String = String.Empty
-        Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+        Try
+            Dim Ssql As String = String.Empty
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
                     where id_rol = " & Session("user_rol") & " and id_objeto = 27 and permiso_insercion = 1"
-        Using con As New ControlDB
-            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        End Using
-        If Session("NumReg") > 0 Then
-            Try
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+
                 Ssql = "SELECT * FROM DB_Nac_Merca.tbl_37_permisos_modulos where id_modulo = " & ddlModulos.SelectedValue & " and id_rol =    " & ddlRoles.SelectedValue & " "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -154,24 +158,25 @@
                     End Using
                     Response.Redirect("~/modulos/configuraciones/config_permisos.aspx?acction=newpermiso&rol=" & ddlRoles.SelectedValue)
                 End If
-            Catch ex As Exception
+            Else
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','Su usuario no tiene permisos para realizar esta acción.', 'error');</script>")
+            End If
+        Catch ex As Exception
 
-            End Try
-        Else
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','Su usuario no tiene permisos para realizar esta acción.', 'error');</script>")
-        End If
+        End Try
     End Sub
 
     Private Sub bttEliminarPermiso_Click(sender As Object, e As EventArgs) Handles bttEliminarPermiso.Click
-        Dim Ssql As String = String.Empty
-        Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+        Try
+            Dim Ssql As String = String.Empty
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
                     where id_rol = " & Session("user_rol") & " and id_objeto = 27 and permiso_eliminacion = 1"
-        Using con As New ControlDB
-            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        End Using
-        If Session("NumReg") > 0 Then
-            Try
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+
                 'eliminar permisos a los objetos
                 Ssql = "DELETE  from DB_Nac_Merca.tbl_03_permisos where id_rol=" & ddlRoles.SelectedValue & "  and id_objeto 
                                   in ( SELECT id_objeto FROM DB_Nac_Merca.tbl_16_objetos where id_modulo = 
@@ -196,24 +201,26 @@
 
 
                 Response.Redirect("~/modulos/configuraciones/config_permisos.aspx?acction=deltepermiso&rol=" & ddlRoles.SelectedValue)
-            Catch ex As Exception
 
-            End Try
-        Else
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','Su usuario no tiene permisos para realizar esta acción.', 'error');</script>")
-        End If
+            Else
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','Su usuario no tiene permisos para realizar esta acción.', 'error');</script>")
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
-        Dim Ssql As String = String.Empty
-        Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+        Try
+            Dim Ssql As String = String.Empty
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
                     where id_rol = " & Session("user_rol") & " and id_objeto = 27 and permiso_actualizacion = 1"
-        Using con As New ControlDB
-            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        End Using
-        If Session("NumReg") > 0 Then
-            Try
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+
                 If ddlModulosEditar.SelectedItem.ToString = HiddenLblEditarNombreModulo.Value Then
                     Session("NumReg") = 0
                     Exit Sub
@@ -271,11 +278,12 @@
 
                     Response.Redirect("~/modulos/configuraciones/config_permisos.aspx?acction=editpermiso&rol=" & ddlRoles.SelectedValue)
                 End If
-            Catch ex As Exception
 
-            End Try
-        Else
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','Su usuario no tiene permisos para realizar esta acción.', 'error');</script>")
-        End If
+            Else
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','Su usuario no tiene permisos para realizar esta acción.', 'error');</script>")
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

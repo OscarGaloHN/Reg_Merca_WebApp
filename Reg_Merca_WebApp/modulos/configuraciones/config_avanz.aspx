@@ -33,14 +33,16 @@
                 <span>Configuracion Avanzada</span>
             </a>
         </li>
+
         <li>
             <a href="config_permisos.aspx">
                 <i class="material-icons">vpn_key</i>
-                 <span>Permisos - Módulos</span>
+                <span>Permisos - Módulos</span>
             </a>
         </li>
-         <li>
-            <a href="config_objetos.aspx">
+
+        <li>
+            <a href="#">
                 <i class="material-icons">vpn_key</i>
                 <span>Permisos - Objetos</span>
             </a>
@@ -51,6 +53,7 @@
                 <span>Copias De Seguridad</span>
             </a>
         </li>
+
         <%ELSE %>
 
         <li class="active">
@@ -69,8 +72,10 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold">Configuraciones Avanzadas 
-                        <small>Configuraciones </small>
+                        <small>Configuraciones de parametros </small>
                     </h2>
+                </div>
+                <div class="body">
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
                     <div class="row clearfix">
                         <div class="col-sm-4">

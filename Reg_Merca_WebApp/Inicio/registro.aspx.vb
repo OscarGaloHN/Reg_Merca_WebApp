@@ -13,61 +13,69 @@ Public Class registro
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'parametros de configuracion de sistema
-        Using Parametros_Sistema As New ControlDB
-            Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        End Using
+        Try
+            'parametros de configuracion de sistema
+            Using Parametros_Sistema As New ControlDB
+                Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+            End Using
 
-        'PARAMETROS DE ADMINISTRADOR
-        Using Parametros_admin As New ControlDB
-            Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        End Using
-
-
-        'parametros de USUARIO
-        valiUserLargo.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(16) & " -" & Application("ParametrosADMIN")(17) & ")."
-        valiUserLargo.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(16) & "," & Application("ParametrosADMIN")(17) & "}$"
-        txtUsuario.MaxLength = Application("ParametrosADMIN")(17)
+            'PARAMETROS DE ADMINISTRADOR
+            Using Parametros_admin As New ControlDB
+                Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+            End Using
 
 
-        btt_registrar.Focus()
+            'parametros de USUARIO
+            valiUserLargo.ErrorMessage = "El rango de caracteres debe de ser entre (" & Application("ParametrosADMIN")(16) & " -" & Application("ParametrosADMIN")(17) & ")."
+            valiUserLargo.ValidationExpression = "^[\s\S]{" & Application("ParametrosADMIN")(16) & "," & Application("ParametrosADMIN")(17) & "}$"
+            txtUsuario.MaxLength = Application("ParametrosADMIN")(17)
+
+
+            btt_registrar.Focus()
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub btt_registrar_Click(sender As Object, e As EventArgs) Handles btt_registrar.Click
-        If IsValid Then
-            Dim Ssql As String = "CALL autoregistro('" & txtUsuario.Text & "', '" & txtemail.Text & "')"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
-                Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
-                Select Case registro("EXISTE")
-                    Case -1 'usuario y correo existen
-                        Using log_bitacora As New ControlBitacora
-                            log_bitacora.acciones_Comunes(4, 1, 5, "El usuario " & txtUsuario.Text & " y correo " & txtemail.Text & " ya estan registrados")
-                        End Using
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario & Correo','El usuario y correo electronico ya estan registrados.', 'error');</script>")
-                    Case -2 'usuario existe
-                        Using log_bitacora As New ControlBitacora
-                            log_bitacora.acciones_Comunes(4, 1, 5, "El usuario " & txtUsuario.Text & " ya esta registrado")
-                        End Using
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nombre de usuario','El nombre de usuario ya esta registrado.', 'error');</script>")
-                    Case -3 'correo existe
-                        Using log_bitacora As New ControlBitacora
-                            log_bitacora.acciones_Comunes(4, 1, 5, "El correo " & txtemail.Text & " ya esta registrado")
-                        End Using
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo electronico','El correo electronico ya esta registrado.', 'error');</script>")
-                    Case 0 'no existe
-                        Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_02_usuarios` (`id_rol`,`usuario`, `nombre`,`estado`, `correo`,  `creado_por`, `fecha_creacion`, `intentos`, `emailconfir`,`cambio_clave`,`fecha_vencimiento`) VALUES (6,'" & txtUsuario.Text & "', '" & txtnombre.Text & "',0, '" & txtemail.Text & "',  'Autoregistro',  CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), 0, 0, 0, DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY));"
-                        Using con As New ControlDB
-                            con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        End Using
-                        SendActivationEmail()
-                        Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
-                End Select
+        Try
+            If IsValid Then
+                Dim Ssql As String = "CALL autoregistro('" & txtUsuario.Text & "', '" & txtemail.Text & "')"
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
+                    Dim registro As DataRow = DataSetX.Tables(0).Rows(0)
+                    Select Case registro("EXISTE")
+                        Case -1 'usuario y correo existen
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(4, 1, 5, "El usuario " & txtUsuario.Text & " y correo " & txtemail.Text & " ya estan registrados")
+                            End Using
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario & Correo','El usuario y correo electronico ya estan registrados.', 'error');</script>")
+                        Case -2 'usuario existe
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(4, 1, 5, "El usuario " & txtUsuario.Text & " ya esta registrado")
+                            End Using
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Nombre de usuario','El nombre de usuario ya esta registrado.', 'error');</script>")
+                        Case -3 'correo existe
+                            Using log_bitacora As New ControlBitacora
+                                log_bitacora.acciones_Comunes(4, 1, 5, "El correo " & txtemail.Text & " ya esta registrado")
+                            End Using
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Correo electronico','El correo electronico ya esta registrado.', 'error');</script>")
+                        Case 0 'no existe
+                            Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_02_usuarios` (`id_rol`,`usuario`, `nombre`,`estado`, `correo`,  `creado_por`, `fecha_creacion`, `intentos`, `emailconfir`,`cambio_clave`,`fecha_vencimiento`) VALUES (6,'" & txtUsuario.Text & "', '" & txtnombre.Text & "',0, '" & txtemail.Text & "',  'Autoregistro',  CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), 0, 0, 0, DATE_ADD(CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'), INTERVAL " & Application("ParametrosADMIN")(12) & " DAY));"
+                            Using con As New ControlDB
+                                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                            End Using
+                            SendActivationEmail()
+                            Response.Redirect("~/Inicio/login.aspx?action=newsolicitud")
+                    End Select
+                End If
             End If
-        End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub SendActivationEmail()

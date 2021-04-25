@@ -198,7 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="00_Pruebas\WebForm2.aspx" />
-    <Content Include="images\logo.png" />
     <Content Include="Inicio\activacion.aspx" />
     <Content Include="Inicio\cambio_contra.aspx" />
     <Content Include="Content\Site.css" />
@@ -276,6 +275,7 @@
     <Content Include="modulos\gestion_usuario\config_usuarios.aspx" />
     <Content Include="modulos\mantenimiento\almacenes_mant.aspx" />
     <Content Include="modulos\mantenimiento\almacen_mant.aspx" />
+    <Content Include="modulos\mantenimiento\clasebulto_mant.aspx" />
     <Content Include="modulos\mantenimiento\cliente_mant.aspx" />
     <Content Include="modulos\mantenimiento\condentrega_mant.aspx" />
     <Content Include="modulos\mantenimiento\datosventajas_mant.aspx" />
@@ -1268,6 +1268,13 @@
     </Compile>
     <Compile Include="modulos\mantenimiento\almacen_mant.aspx.vb">
       <DependentUpon>almacen_mant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\clasebulto_mant.aspx.designer.vb">
+      <DependentUpon>clasebulto_mant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="modulos\mantenimiento\clasebulto_mant.aspx.vb">
+      <DependentUpon>clasebulto_mant.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\mantenimiento\cliente_mant.aspx.designer.vb">

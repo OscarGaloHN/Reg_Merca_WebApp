@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Configuración" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="confi_configurar.aspx.vb" Inherits="Reg_Merca_WebApp.configurar" %>
+﻿<%@ Page Title="Configuraciones" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="confi_configurar.aspx.vb" Inherits="Reg_Merca_WebApp.configurar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap Spinner Css -->
@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Configuración</a>
+    <a class="navbar-brand" href="#">Configuraciones</a>
 </asp:Content>
 
 
@@ -33,19 +33,21 @@
                 <span>Configuracion Avanzada</span>
             </a>
         </li>
+
         <li>
             <a href="config_permisos.aspx">
                 <i class="material-icons">vpn_key</i>
                 <span>Permisos - Módulos</span>
             </a>
         </li>
+
         <li>
-            <a href="config_objetos.aspx">
+            <a href="#">
                 <i class="material-icons">vpn_key</i>
                 <span>Permisos - Objetos</span>
             </a>
         </li>
-        <li >
+        <li>
             <a href="config_respaldo.aspx">
                 <i class="material-icons">save</i>
                 <span>Copias De Seguridad</span>
@@ -73,7 +75,7 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold">Configuraciones 
-                        <small>Informacion basica de la empresa y otras configuraciones</small>
+                        <small>Informacion basica de la empresa</small>
                     </h2>
 
                 </div>
@@ -83,7 +85,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtEmpresa(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtEmpresa(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)" onkeyup="mayus(this);borrarespacios(this);" ID="txtEmpresa" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Nombre de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtEmpresa"
@@ -95,7 +97,7 @@
                         <div class="col-sm-6">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <asp:TextBox onkeypress="return txtAlias(event)" onkeydown="borrarespacios(this);BorrarRepetidas(this)" onkeyup="borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
+                                    <asp:TextBox onkeypress="return txtAlias(event)" onkeydown="mayus(this);borrarespacios(this);BorrarRepetidas(this)" onkeyup="mayus(this);borrarespacios(this);" ID="txtAlias" runat="server" class="form-control"></asp:TextBox>
                                     <label class="form-label">Alias de la empresa</label>
                                 </div>
                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtAlias"
@@ -158,6 +160,7 @@
                         </div>
                     </div>
                     <div class="row clearfix">
+
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -172,6 +175,8 @@
 
                             </div>
                         </div>
+                    </div>
+                    <div class="row clearfix">
                         <div class="col-sm-4">
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -185,6 +190,20 @@
                             </div>
                         </div>
 
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
+                            <small>Seleccionar logo de la empresa</small>
+
+                            <asp:FileUpload ID="FileUpload1" runat="server" />
+                            <asp:RequiredFieldValidator ControlToValidate="FileUpload1"
+                                runat="server" ErrorMessage="Debe de seleccionar el archivo de respaldo."
+                                Display="Dynamic"
+                                ForeColor="OrangeRed" Font-Size="X-Small" />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ValidationExpression="([a-zA-Z0-9\s_\\.\-:])+(.png)$"
+                                ControlToValidate="FileUpload1" runat="server" ErrorMessage="Formato de archivo no valido."
+                                Display="Dynamic"
+                                ForeColor="OrangeRed" Font-Size="X-Small" />
+                            <br />
+                        </div>
                     </div>
 
                     <div class="row">
@@ -200,7 +219,6 @@
                             <span>Guardar</span>
                             </asp:LinkButton>
                         </div>
-                      
 
                     </div>
 

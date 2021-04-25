@@ -11,51 +11,77 @@
     'OBJETO #35
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            'cargar logo para imprimir
-            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
-            'llenar grid
-            Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_13_forma_pago"
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
-                gvCustomers.DataSource = DataSetX
-                gvCustomers.DataBind()
-            End If
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                'REDIRECCIONAR A MENU PRINCIPAL
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para editar
+                Dim Ssql As String = String.Empty
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 35 and permiso_consulta = 1"
 
-            If Not IsPostBack Then
-                Select Case Request.QueryString("acction")
-                    Case "newpago"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('pago','La forma de pago se almaceno con exito.', 'success');</script>")
-                    Case "deltepago"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('pago','La forma de pago se elimino con exito.', 'success');</script>")
-                    Case "editpago"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('pago','La forma de pago se modifico con exito.', 'success');</script>")
-                    Case Else
-                        'bitacora de que salio de un form
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
+                    'si tiene los permisos
 
-                        'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 35
-                        Session("NombrefrmQueIngresa") = "Mantenimiento de formas de pago"
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
-                End Select
+                    'cargar logo para imprimir
+                    HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+                    HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+                    'llenar grid
+
+                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_13_forma_pago"
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    If Session("NumReg") > 0 Then
+                        gvCustomers.DataSource = DataSetX
+                        gvCustomers.DataBind()
+                    End If
+
+                    If Not IsPostBack Then
+                        Select Case Request.QueryString("acction")
+                            Case "newpago"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('pago','La forma de pago se almaceno con exito.', 'success');</script>")
+                            Case "deltepago"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('pago','La forma de pago se elimino con exito.', 'success');</script>")
+                            Case "editpago"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('pago','La forma de pago se modifico con exito.', 'success');</script>")
+                            Case Else
+                                'bitacora de que salio de un form
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+
+                                'bitacora de que ingreso al form
+                                Session("IDfrmQueIngresa") = 35
+                                Session("NombrefrmQueIngresa") = "Mantenimiento de formas de pago"
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+                        End Select
+                    End If
+
+                Else
+                    'si no tiene permisos 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                    End Using
+                    Response.Redirect("~/modulos/acceso_denegado.aspx")
+                End If
             End If
         Catch ex As Exception
 
         End Try
-
     End Sub
 
     Private Sub bttGuardarpago_Click(sender As Object, e As EventArgs) Handles bttGuardarpago.Click
