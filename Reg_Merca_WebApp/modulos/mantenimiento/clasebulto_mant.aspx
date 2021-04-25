@@ -52,7 +52,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
- <a class="navbar-brand" href="#">Mantenimiento Clase de Bultos</a>
+ <a class="navbar-brand" href="#">Mantenimiento Clase de Bulto</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
      <ul class="list">
