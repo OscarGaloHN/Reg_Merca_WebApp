@@ -43,16 +43,8 @@
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_txtmanifiestoEditar').value = '';
             document.getElementById('ContentPrincipal_txt_transEditar').value = '';
-
+            document.getElementById('ContentPrincipal_chkindicadorEditar').checked = '';
             var row = lnk.parentNode.parentNode;
-
-            if (row.cells[5].innerHTML == 'SI') {
-                document.getElementById('ContentPrincipal_chkindicadorEditar').checked = true
-            } else {
-                document.getElementById('ContentPrincipal_chkindicadorEditar').checked = false
-            }
-
-
 
             document.getElementById('ContentPrincipal_lblHiddenmanifiesto').value = row.cells[3].innerHTML;
 
@@ -62,9 +54,9 @@
             if (row.cells[4].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_txt_transEditar').value = row.cells[4].innerHTML;
             }
-            //if (row.cells[5].innerHTML != '&nbsp;') {
-            //    document.getElementById('ContentPrincipal_chkindicadorEditar').checked = row.cells[5].innerHTML;
-            //}
+            if (row.cells[5].innerHTML != '&nbsp;') {
+                document.getElementById('ContentPrincipal_chkindicadorEditar').checked = row.cells[5].innerHTML;
+            }
             if (row.cells[2].innerHTML != '&nbsp;') {
                 document.getElementById('ContentPrincipal_lblHiddenIDbulto').value = row.cells[2].innerHTML;
             }

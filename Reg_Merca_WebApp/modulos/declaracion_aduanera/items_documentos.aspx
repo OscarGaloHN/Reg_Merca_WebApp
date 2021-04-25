@@ -39,7 +39,7 @@
         function GetSelectedRowEdit(lnk) {
             document.getElementById('ContentPrincipal_dddocumentoEditar').value = '';
             document.getElementById('ContentPrincipal_txtreferenciaEditar').value = '';
-
+            //document.getElementById('ContentPrincipal_txt_chkPresenciaEditar').checked = '';
             var row = lnk.parentNode.parentNode;
 
             if (row.cells[6].innerHTML == 'SI') {

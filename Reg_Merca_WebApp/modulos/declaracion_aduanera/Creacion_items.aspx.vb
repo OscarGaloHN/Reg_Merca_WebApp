@@ -1,6 +1,6 @@
 ﻿Public Class Creacion_items
     Inherits System.Web.UI.Page
-    'OBJETO #45
+
     Private Property DataSetX As DataSet
         Get
             Return CType(Session("DataSetX"), DataSet)
@@ -10,60 +10,81 @@
         End Set
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
         Try
-            lblCatatura.Text = Request.QueryString("idCaratula")
-            'cargar logo para imprimir
-            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
-
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
+                'REDIRECCIONAR A MENU PRINCIPAL
                 Response.Redirect("~/Inicio/login.aspx")
             Else
-                'Llenado de Gried
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para editar
                 Dim Ssql As String = String.Empty
-                Ssql = "SELECT ROW_NUMBER() OVER (	ORDER BY ID_Merca) as numeroitems,a.ID_Merca,a.Id_poliza,
-a.pesoneto,a.num_partida,a.cod_pais_fab,a.importes_factura
-from tbl_34_mercancias a, tbl_01_polizas b
-where a.Id_poliza=b.Id_poliza
-and a.Id_poliza=" & Request.QueryString("idCaratula")
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 45 and permiso_consulta = 1"
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
                 If Session("NumReg") > 0 Then
-                    gvCustomers.DataSource = DataSetX
-                    gvCustomers.DataBind()
+                    'si tiene los permisos
+
+
+                    lblCatatura.Text = Request.QueryString("idCaratula")
+                    'cargar logo para imprimir
+                    HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+                    HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+
+                    If Session("user_idUsuario") = Nothing Then
+                        Session.Abandon()
+                        Response.Redirect("~/Inicio/login.aspx")
+                    Else
+                        'Llenado de Gried
+                        Ssql = "SELECT ROW_NUMBER() OVER (	ORDER BY ID_Merca) as numeroitems,a.ID_Merca,a.Id_poliza,
+a.pesoneto,a.num_partida,a.cod_pais_fab,a.importes_factura
+from tbl_34_mercancias a, tbl_01_polizas b
+where a.Id_poliza=b.Id_poliza
+and a.Id_poliza=" & Request.QueryString("idCaratula")
+
+                        Using con As New ControlDB
+                            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                            Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                        End Using
+                        If Session("NumReg") > 0 Then
+                            gvCustomers.DataSource = DataSetX
+                            gvCustomers.DataBind()
+                        End If
+
+                        Select Case Request.QueryString("action")
+                            Case "deleteitems"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El Item se elimino exitosamente.', 'success');</script>")
+                            Case "deleteinactive"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
+                            Case "deletefailed"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
+                        End Select
+                    End If
+
+                    'If Not IsPostBack Then
+                    '    Using cusuario_bitacora As New ControlBitacora
+                    '        cusuario_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 7, "El usuario ingresa a la pantalla de configuracion de usuarios")
+                    '    End Using
+                    'End If
+
+
+
+
+                Else
+                    'si no tiene permisos 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                    End Using
+                    Response.Redirect("~/modulos/acceso_denegado.aspx")
                 End If
-
-                Select Case Request.QueryString("action")
-                    Case "deleteitems"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El Item se elimino exitosamente.', 'success');</script>")
-                    Case Else
-                        'bitacora de que salio de un form
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
-
-                        'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 45
-                        Session("NombrefrmQueIngresa") = "Creación de Items"
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
-                End Select
             End If
-
         Catch ex As Exception
 
         End Try
-
     End Sub
 
 
@@ -89,9 +110,9 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
-            Using log_bitacora As New ControlBitacora
-                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El item " & lblHiddenIDDocumento.Value & " se elimino con éxito.")
-            End Using
+            'Using log_bitacora As New ControlBitacora
+            '    log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se se elimino items: " & lblHiddenIDDocumento.Value & " con exito")
+            'End Using
 
             Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception

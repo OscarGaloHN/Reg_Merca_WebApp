@@ -12,127 +12,152 @@
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
         Try
-            ''parametros de configuracion de sistema
-            'Using Parametros_Sistema As New ControlDB
-            '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-            'End Using
-
-            ''PARAMETROS DE ADMINISTRADOR
-            'Using Parametros_admin As New ControlDB
-            '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-            'End Using
-
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
+                'REDIRECCIONAR A MENU PRINCIPAL
                 Response.Redirect("~/Inicio/login.aspx")
             Else
-                'pbotones.Enabled = False
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para editar
                 Dim Ssql As String = String.Empty
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 16 and permiso_consulta = 1"
 
-                Ssql = "select * from DB_Nac_Merca.tbl_04_cliente where Id_cliente='" & ddlCliente.SelectedValue & "'"
                 Using con As New ControlDB
-                    con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
+                If Session("NumReg") > 0 Then
+                    'si tiene los permisos
+
+                    'parametros de configuracion de sistema
+                    Using Parametros_Sistema As New ControlDB
+                        Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
+                    End Using
+
+                    'PARAMETROS DE ADMINISTRADOR
+                    Using Parametros_admin As New ControlDB
+                        Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
+                    End Using
+
+                    If Session("user_idUsuario") = Nothing Then
+                        Session.Abandon()
+                        Response.Redirect("~/Inicio/login.aspx")
+                    Else
+                        'pbotones.Enabled = False
 
 
-                Select Case Request.QueryString("action")
-                    Case "new"
-                        pbotones.Visible = False
-                        Dim fechaactual As Date = (Date.Now)
-                        txtFechaCreacion.Text = fechaactual
-                        ddlestado.Enabled = False
-                        ddlestado.SelectedValue = 7
-                    Case "update"
-                        'habilita Panel de botones
-                        btt_guardar.Visible = False
-                        pbotones.Visible = True
-                        pactualizar.Visible = True
-                        If Not IsPostBack Then
+                        Ssql = "select * from DB_Nac_Merca.tbl_04_cliente where Id_cliente='" & ddlCliente.SelectedValue & "'"
+                        Using con As New ControlDB
+                            con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        End Using
 
-                            Ssql = "select * from DB_Nac_Merca.tbl_01_polizas where id_poliza =" & Request.QueryString("idCaratula") & ""
 
-                            Using con As New ControlDB
-                                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-                            End Using
-                            Dim registro As DataRow
-                            If Session("NumReg") > 0 Then
-                                'cargar txt
-                                registro = DataSetX.Tables(0).Rows(0)
-                                txtFechaCreacion.Text = registro("fecha_creacion")
-                                'ddlestado.SelectedValue = registro("estado_poliza")
-                                'Session("estado_temp") = registro("estado_poliza")
-                                'ddlestado.Attributes.Add("disabled", "disabled")
+                        Select Case Request.QueryString("action")
+                            Case "new"
+                                pbotones.Visible = False
+                                Dim fechaactual As Date = (Date.Now)
+                                txtFechaCreacion.Text = fechaactual
+                                ddlestado.Enabled = False
                                 ddlestado.SelectedValue = 7
-                                ddlCliente.SelectedValue = registro("id_cliente")
-                                ddldeclarante.SelectedValue = registro("declarante")
-                                ddladuanadespacho.SelectedValue = registro("cod_aduana_ent")
-                                ddlregimenaduanero.SelectedValue = registro("id_regimen")
-                                txtrtnimp_exp.Text = registro("rtn_importador")
-                                txtRTNagen_aduanera.Text = registro("rtn_agenciaadu")
-                                txtagen_aduanera.Text = registro("nombre_agenciaadu")
-                                txtmanifiestorap.Text = registro("manifiesto_entregarap")
-                                ddlproveedores.SelectedValue = registro("Id_proveedor")
-                                txtContra_proveedor.Text = registro("contrato_proveedor")
-                                txtDomicioProve.Text = registro("domicilio_proveed")
-                                txtNumPreimp.Text = registro("Numero_Preimpreso")
-                                txtEntidadMed.Text = registro("entidad_mediacion")
-                                ddldepositoalmacen.SelectedValue = registro("Id_almacen")
-                                ddladuanaingsal.SelectedValue = registro("cod_aduana_sal")
-                                ddlpaisesdeorigen.SelectedValue = registro("Cod_pais_org")
-                                ddlpaisprocedencia.SelectedValue = registro("Cod_pais_pro")
-                                ddlformadepago.SelectedValue = registro("id_pago")
-                                ddlcondicionentrega.SelectedValue = registro("id_condicion")
-                                ddladuanatransitodes.SelectedValue = registro("aduana_transdes")
-                                ddlmodalidadesp.SelectedValue = registro("modalidad_especial")
-                                ddldepositoaduana.SelectedValue = registro("deposito_aduanas")
-                                txtplazodiasmeses.Text = registro("plazo")
-                                txtrutatransito.Text = registro("ruta_transito")
-                                txt_motivoperacion.Text = registro("motivo_operacion")
-                                txtobservacion.Text = registro("Observaciones")
-                                ddlclasebultos.SelectedValue = registro("Id_Clase_deBulto")
-                                txttotalotrosgast.Text = registro("Total_Otros_gastos")
-                                txtttotalseg.Text = registro("Total_Seguro")
-                                txttotalflet.Text = registro("Total_Flete")
-                                ddldivisafact.SelectedValue = registro("divisa_factura")
-                                txttipodecambio.Text = registro("tipo_de_cambio")
-                                ddldivisaseg.SelectedValue = registro("divisa_seguro")
-                                ddldivisafl.SelectedValue = registro("divisa_flete")
+                            Case "update"
+                                'habilita Panel de botones
+                                btt_guardar.Visible = False
+                                pbotones.Visible = True
+                                pactualizar.Visible = True
+                                If Not IsPostBack Then
 
-                            End If
-                        End If
-                    Case Else
-                        'bitacora de que salio de un form
+                                    Ssql = "select * from DB_Nac_Merca.tbl_01_polizas where id_poliza =" & Request.QueryString("idCaratula") & ""
+
+                                    Using con As New ControlDB
+                                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                                    End Using
+                                    Dim registro As DataRow
+                                    If Session("NumReg") > 0 Then
+                                        'cargar txt
+                                        registro = DataSetX.Tables(0).Rows(0)
+                                        txtFechaCreacion.Text = registro("fecha_creacion")
+                                        'ddlestado.SelectedValue = registro("estado_poliza")
+                                        'Session("estado_temp") = registro("estado_poliza")
+                                        'ddlestado.Attributes.Add("disabled", "disabled")
+                                        ddlestado.SelectedValue = 7
+                                        ddlCliente.SelectedValue = registro("id_cliente")
+                                        ddldeclarante.SelectedValue = registro("declarante")
+                                        ddladuanadespacho.SelectedValue = registro("cod_aduana_ent")
+                                        ddlregimenaduanero.SelectedValue = registro("id_regimen")
+                                        txtrtnimp_exp.Text = registro("rtn_importador")
+                                        txtRTNagen_aduanera.Text = registro("rtn_agenciaadu")
+                                        txtagen_aduanera.Text = registro("nombre_agenciaadu")
+                                        txtmanifiestorap.Text = registro("manifiesto_entregarap")
+                                        ddlproveedores.SelectedValue = registro("Id_proveedor")
+                                        txtContra_proveedor.Text = registro("contrato_proveedor")
+                                        txtDomicioProve.Text = registro("domicilio_proveed")
+                                        txtNumPreimp.Text = registro("Numero_Preimpreso")
+                                        txtEntidadMed.Text = registro("entidad_mediacion")
+                                        ddldepositoalmacen.SelectedValue = registro("Id_almacen")
+                                        ddladuanaingsal.SelectedValue = registro("cod_aduana_sal")
+                                        ddlpaisesdeorigen.SelectedValue = registro("Cod_pais_org")
+                                        ddlpaisprocedencia.SelectedValue = registro("Cod_pais_pro")
+                                        ddlformadepago.SelectedValue = registro("id_pago")
+                                        ddlcondicionentrega.SelectedValue = registro("id_condicion")
+                                        ddladuanatransitodes.SelectedValue = registro("aduana_transdes")
+                                        ddlmodalidadesp.SelectedValue = registro("modalidad_especial")
+                                        ddldepositoaduana.SelectedValue = registro("deposito_aduanas")
+                                        txtplazodiasmeses.Text = registro("plazo")
+                                        txtrutatransito.Text = registro("ruta_transito")
+                                        txt_motivoperacion.Text = registro("motivo_operacion")
+                                        txtobservacion.Text = registro("Observaciones")
+                                        ddlclasebultos.SelectedValue = registro("Id_Clase_deBulto")
+                                        txttotalotrosgast.Text = registro("Total_Otros_gastos")
+                                        txtttotalseg.Text = registro("Total_Seguro")
+                                        txttotalflet.Text = registro("Total_Flete")
+                                        ddldivisafact.SelectedValue = registro("divisa_factura")
+                                        txttipodecambio.Text = registro("tipo_de_cambio")
+                                        ddldivisaseg.SelectedValue = registro("divisa_seguro")
+                                        ddldivisafl.SelectedValue = registro("divisa_flete")
+
+                                    End If
+                                End If
+                            Case Else
+                                'bitacora de que salio de un form
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+
+                                'bitacora de que ingreso al form
+                                Session("IDfrmQueIngresa") = 16
+                                Session("NombrefrmQueIngresa") = "Caratula"
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+                        End Select
+
                         If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
+                            Select Case Request.QueryString("alerta")
+                                Case "update"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se actualizo con éxito.', 'success');</script>")
+                            End Select
                         End If
+                    End If
 
-                        'bitacora de que ingreso al form
-                        Session("IDfrmQueIngresa") = 16
-                        Session("NombrefrmQueIngresa") = "Carátula"
-                        If Not IsPostBack Then
-                            Using log_bitacora As New ControlBitacora
-                                log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                            End Using
-                        End If
-                End Select
 
-                If Not IsPostBack Then
-                    Select Case Request.QueryString("alerta")
-                        Case "update"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Carátula','La carátula se actualizo con éxito.', 'success');</script>")
-                    End Select
+                Else
+                    'si no tiene permisos 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                    End Using
+                    Response.Redirect("~/modulos/acceso_denegado.aspx")
                 End If
             End If
-
         Catch ex As Exception
 
         End Try
-
     End Sub
 
 
@@ -167,14 +192,6 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                     Using con As New ControlDB
                         con.GME_Recuperar_ID(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
-
-                    Using con As New ControlDB
-                        con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                    End Using
-
-                    Using log_bitacora As New ControlBitacora
-                        log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "La carátula ha sido guardada con éxito.")
-                    End Using
                     Response.Redirect("~/modulos/declaracion_aduanera/items.aspx?action=new&idCaratula=" & Session("GME_Recuperar_ID"))
 
             End Select
@@ -188,6 +205,9 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
     Private Sub bttActualizar_Click(sender As Object, e As EventArgs) Handles bttActualizar.Click
         Dim Ssql As String
         Try
+
+
+
             Select Case Request.QueryString("action")
                 Case "update"
                     Ssql = "update DB_Nac_Merca.tbl_01_polizas set Id_cliente= '" & ddlCliente.SelectedValue & "', 
@@ -213,10 +233,6 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
                         con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     End Using
 
-
-                    Using log_bitacora As New ControlBitacora
-                        log_bitacora.acciones_Comunes(5, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "La carátula número " & Request.QueryString("idCaratula") & " se actualizo con éxito.")
-                    End Using
                     Response.Redirect("~/modulos/declaracion_aduanera/caratula.aspx?action=update&idCaratula=" & Request.QueryString("idCaratula") & "&alerta=update")
             End Select
         Catch ex As Exception
@@ -253,6 +269,8 @@ values (CONVERT_TZ(NOW(), @@session.time_zone, '-6:00'),'" & ddlestado.SelectedV
 
     Private Sub bttitems_Click(sender As Object, e As EventArgs) Handles bttitems.Click
         Try
+            'redirecciona a form items
+            'Session("IdCaratulaEditor") = Request.QueryString("idCaratula")
             Response.Redirect("~/modulos/declaracion_aduanera/Creacion_items.aspx?idCaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 
