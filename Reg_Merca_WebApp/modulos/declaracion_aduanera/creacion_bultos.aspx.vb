@@ -11,87 +11,99 @@
     End Property
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Session("user_idUsuario") = Nothing Then
+            Session.Abandon()
+            'REDIRECCIONAR A MENU PRINCIPAL
+            Response.Redirect("~/Inicio/login.aspx")
+        Else
+            'si hay una sesion activa
+            'comprobar que el rol del usuario tenga permisos para editar
+            Dim Ssql As String = String.Empty
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 28 and permiso_consulta = 1"
 
-        ''parametros de configuracion de sistema
-        'Using Parametros_Sistema As New ControlDB
-        '    Application("ParametrosSYS") = Parametros_Sistema.ParametrosSYS_ADMIN("sistema")
-        'End Using
-
-        ''PARAMETROS DE ADMINISTRADOR
-        'Using Parametros_admin As New ControlDB
-        '    Application("ParametrosADMIN") = Parametros_admin.ParametrosSYS_ADMIN("adminstrador")
-        'End Using
-
-        'Using logo_imprimir As New ControlDB
-        '    Application("ParametrosADMIN")(22) = logo_imprimir.ConvertirIMG(Server.MapPath("~/images/" & Application("ParametrosADMIN")(22)))
-        'End Using
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+                'si tiene los permisos
 
 
+                Try
+                    lblCatatura.Text = Request.QueryString("idCaratula")
 
-        Try
-            lblCatatura.Text = Request.QueryString("idCaratula")
+                    'cargar logo para imprimir
+                    HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+                    HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
-            'cargar logo para imprimir
-            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+                    If Session("user_idUsuario") = Nothing Then
+                        Session.Abandon()
+                        Response.Redirect("~/Inicio/login.aspx")
+                    Else
 
-            If Session("user_idUsuario") = Nothing Then
-                Session.Abandon()
-                Response.Redirect("~/Inicio/login.aspx")
-            Else
-
-                'llenar grid
-                Dim Ssql As String = String.Empty
-                Ssql = "SELECT id_bulto, manifiesto, titulo_transporte, 
+                        'llenar grid
+                        Ssql = "SELECT id_bulto, manifiesto, titulo_transporte, 
 case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_Nac_Merca.tbl_40_Bulto
                     where id_poliza_bul = " & Request.QueryString("idCaratula") & ""
-                Using con As New ControlDB
-                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                        Using con As New ControlDB
+                            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                            Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                        End Using
+
+                        If Session("NumReg") > 0 Then
+                            gvCustomers.DataSource = DataSetX
+                            gvCustomers.DataBind()
+                        Else
+                            bttfin.Visible = False
+                        End If
+
+                        If Not IsPostBack Then
+                            Select Case Request.QueryString("acction")
+                                Case "newbulto"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se almaceno con éxito.', 'success');</script>")
+                                Case "deltebulto"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se elimino con éxito.', 'success');</script>")
+                                Case "editbulto"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se modifico con éxito.', 'success');</script>")
+                                Case Else
+                                    'bitacora de que salio de un form
+                                    If Not IsPostBack Then
+                                        Using log_bitacora As New ControlBitacora
+                                            log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                        End Using
+                                    End If
+
+                                    'bitacora de que ingreso al form
+                                    Session("IDfrmQueIngresa") = 28
+                                    Session("NombrefrmQueIngresa") = "Creación de Bultos"
+                                    If Not IsPostBack Then
+                                        Using log_bitacora As New ControlBitacora
+                                            log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                        End Using
+                                    End If
+
+                            End Select
+
+
+
+                        End If
+
+                    End If
+                Catch ex As Exception
+
+                End Try
+
+            Else
+                'si no tiene permisos 
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
                 End Using
-
-                If Session("NumReg") > 0 Then
-                    gvCustomers.DataSource = DataSetX
-                    gvCustomers.DataBind()
-                Else
-                    bttfin.Visible = False
-                End If
-
-                If Not IsPostBack Then
-                    Select Case Request.QueryString("acction")
-                        Case "newbulto"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se almaceno con éxito.', 'success');</script>")
-                        Case "deltebulto"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se elimino con éxito.', 'success');</script>")
-                        Case "editbulto"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Bulto','El bulto se modifico con éxito.', 'success');</script>")
-                        Case Else
-                            'bitacora de que salio de un form
-                            If Not IsPostBack Then
-                                Using log_bitacora As New ControlBitacora
-                                    log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                                End Using
-                            End If
-
-                            'bitacora de que ingreso al form
-                            Session("IDfrmQueIngresa") = 28
-                            Session("NombrefrmQueIngresa") = "Creación de Bultos"
-                            If Not IsPostBack Then
-                                Using log_bitacora As New ControlBitacora
-                                    log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                                End Using
-                            End If
-
-                    End Select
-
-
-
-                End If
-
+                Response.Redirect("~/modulos/acceso_denegado.aspx")
             End If
-        Catch ex As Exception
+        End If
 
-        End Try
+
     End Sub
 
     Private Sub bttGuardarbulto_Click(sender As Object, e As EventArgs) Handles bttGuardarbulto.Click
@@ -236,8 +248,7 @@ T004.Nombre_Pais AS pais_fab,T005.Nombre_Pais AS pais_pro, T006.Nombre_Pais AS p
 T007.Descripcion as UnidadComercial , T001.Cantidad_Comercial , T008.Descripcion as Unidad_Estadistica,
 T001.cantidad_estadistica,T001.importes_factura, T001.importes_otrosgastos ,T001.importes_seguro, T001.importes_flete ,
 T001.ajuste_a_incluir, T001.numero_certificado_imp, T001.convenio_perfeccionamiento, T001.exoneracion_aduanera ,
-T001.observaciones, T001.comentario, T001.num_partida,  ROW_NUMBER() OVER ( ORDER BY ID_Merca) as num_Item
-
+T001.observaciones, T001.comentario
 FROM DB_Nac_Merca.tbl_34_mercancias T001
 LEFT JOIN DB_Nac_Merca.tbl_26_Tipo_Items T002 ON T001.Id_Tipo_items = T002.Id_TipoItems
 LEFT JOIN DB_Nac_Merca.tbl_25_Estado_Mercancias T003 ON T001.Estado_Merc = T003.Id_Estado
@@ -248,21 +259,6 @@ LEFT JOIN DB_Nac_Merca.tbl_24_Unidad_Medida T007 ON T001.Id_UnidadComercial = T0
 LEFT JOIN DB_Nac_Merca.tbl_24_Unidad_Medida T008 ON T001.Unidad_Estadistica = T008.Id_UnidadMed
 
 WHERE T001.Id_poliza = " & Request.QueryString("idCaratula")
-
-
-
-            Session("nombreDS3") = "DSResumenItems"
-            Session("nombreDT3") = "DtResumenItems"
-            Session("xSsql3") = "SELECT T001.Id_poliza,count(*) canti_items, T002.observaciones,
-sum(pesoneto) pesoneto,sum(pesobruto) pesobruto,sum(bultcant) bultcant,
-sum(importes_factura) importes_factura,sum(importes_otrosgastos)importes_otrosgastos,
-sum(importes_seguro) importes_seguro,sum(importes_flete) importes_flete,
-(sum(importes_factura) +sum(importes_otrosgastos)+sum(importes_seguro)+ sum(importes_flete) ) Total
-FROM DB_Nac_Merca.tbl_34_mercancias T001
-LEFT JOIN ( SELECT *FROM (SELECT Id_poliza, observaciones FROM DB_Nac_Merca.tbl_34_mercancias
-where length(observaciones) > 1 and Id_poliza = " & Request.QueryString("idCaratula") & " limit 1) TBL_TEMP
-) T002 ON T001.Id_poliza = T002.Id_poliza
-where T001.Id_poliza = " & Request.QueryString("idCaratula")
             Response.Redirect("/modulos/declaracion_aduanera/Reporte_caratula.aspx?idcaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 

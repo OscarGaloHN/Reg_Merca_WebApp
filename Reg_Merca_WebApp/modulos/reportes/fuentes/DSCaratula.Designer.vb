@@ -31,8 +31,6 @@ Partial Public Class DSPoliza
     
     Private tableDtItems As DtItemsDataTable
     
-    Private tableDtResumenItems As DtResumenItemsDataTable
-    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -70,9 +68,6 @@ Partial Public Class DSPoliza
             End If
             If (Not (ds.Tables("DtItems")) Is Nothing) Then
                 MyBase.Tables.Add(New DtItemsDataTable(ds.Tables("DtItems")))
-            End If
-            If (Not (ds.Tables("DtResumenItems")) Is Nothing) Then
-                MyBase.Tables.Add(New DtResumenItemsDataTable(ds.Tables("DtResumenItems")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -118,16 +113,6 @@ Partial Public Class DSPoliza
     Public ReadOnly Property DtItems() As DtItemsDataTable
         Get
             Return Me.tableDtItems
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property DtResumenItems() As DtResumenItemsDataTable
-        Get
-            Return Me.tableDtResumenItems
         End Get
     End Property
     
@@ -207,9 +192,6 @@ Partial Public Class DSPoliza
             If (Not (ds.Tables("DtItems")) Is Nothing) Then
                 MyBase.Tables.Add(New DtItemsDataTable(ds.Tables("DtItems")))
             End If
-            If (Not (ds.Tables("DtResumenItems")) Is Nothing) Then
-                MyBase.Tables.Add(New DtResumenItemsDataTable(ds.Tables("DtResumenItems")))
-            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -260,12 +242,6 @@ Partial Public Class DSPoliza
                 Me.tableDtItems.InitVars
             End If
         End If
-        Me.tableDtResumenItems = CType(MyBase.Tables("DtResumenItems"),DtResumenItemsDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableDtResumenItems) Is Nothing) Then
-                Me.tableDtResumenItems.InitVars
-            End If
-        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -282,8 +258,6 @@ Partial Public Class DSPoliza
         MyBase.Tables.Add(Me.tableDtEmpresa)
         Me.tableDtItems = New DtItemsDataTable()
         MyBase.Tables.Add(Me.tableDtItems)
-        Me.tableDtResumenItems = New DtResumenItemsDataTable()
-        MyBase.Tables.Add(Me.tableDtResumenItems)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -301,12 +275,6 @@ Partial Public Class DSPoliza
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Function ShouldSerializeDtItems() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Private Function ShouldSerializeDtResumenItems() As Boolean
         Return false
     End Function
     
@@ -376,9 +344,6 @@ Partial Public Class DSPoliza
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Delegate Sub DtItemsRowChangeEventHandler(ByVal sender As Object, ByVal e As DtItemsRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Delegate Sub DtResumenItemsRowChangeEventHandler(ByVal sender As Object, ByVal e As DtResumenItemsRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -1443,10 +1408,6 @@ Partial Public Class DSPoliza
         
         Private columncomentario As Global.System.Data.DataColumn
         
-        Private columnnum_partida As Global.System.Data.DataColumn
-        
-        Private columnnum_Item As Global.System.Data.DataColumn
-        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -1715,22 +1676,6 @@ Partial Public Class DSPoliza
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property num_partidaColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnnum_partida
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property num_ItemColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnnum_Item
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1796,11 +1741,9 @@ Partial Public Class DSPoliza
                     ByVal convenio_perfeccionamiento As String,  _
                     ByVal exoneracion_aduanera As String,  _
                     ByVal observaciones As String,  _
-                    ByVal comentario As String,  _
-                    ByVal num_partida As String,  _
-                    ByVal num_Item As String) As DtItemsRow
+                    ByVal comentario As String) As DtItemsRow
             Dim rowDtItemsRow As DtItemsRow = CType(Me.NewRow,DtItemsRow)
-            Dim columnValuesArray() As Object = New Object() {ID_Merca, Id_poliza, Id_TipoItems, titulo_currier, matriz_insumos, item_asociado, declaracion_a_cancelar, item_a_cancelar, pesoneto, pesobruto, bultcant, Estado_Merc, pais_fab, pais_pro, pais_adq, UnidadComercial, Cantidad_Comercial, Unidad_Estadistica, cantidad_estadistica, importes_factura, importes_otrosgastos, importes_seguro, importes_flete, ajuste_a_incluir, numero_certificado_imp, convenio_perfeccionamiento, exoneracion_aduanera, observaciones, comentario, num_partida, num_Item}
+            Dim columnValuesArray() As Object = New Object() {ID_Merca, Id_poliza, Id_TipoItems, titulo_currier, matriz_insumos, item_asociado, declaracion_a_cancelar, item_a_cancelar, pesoneto, pesobruto, bultcant, Estado_Merc, pais_fab, pais_pro, pais_adq, UnidadComercial, Cantidad_Comercial, Unidad_Estadistica, cantidad_estadistica, importes_factura, importes_otrosgastos, importes_seguro, importes_flete, ajuste_a_incluir, numero_certificado_imp, convenio_perfeccionamiento, exoneracion_aduanera, observaciones, comentario}
             rowDtItemsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowDtItemsRow)
             Return rowDtItemsRow
@@ -1852,8 +1795,6 @@ Partial Public Class DSPoliza
             Me.columnexoneracion_aduanera = MyBase.Columns("exoneracion_aduanera")
             Me.columnobservaciones = MyBase.Columns("observaciones")
             Me.columncomentario = MyBase.Columns("comentario")
-            Me.columnnum_partida = MyBase.Columns("num_partida")
-            Me.columnnum_Item = MyBase.Columns("num_Item")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1917,10 +1858,6 @@ Partial Public Class DSPoliza
             MyBase.Columns.Add(Me.columnobservaciones)
             Me.columncomentario = New Global.System.Data.DataColumn("comentario", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncomentario)
-            Me.columnnum_partida = New Global.System.Data.DataColumn("num_partida", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnnum_partida)
-            Me.columnnum_Item = New Global.System.Data.DataColumn("num_Item", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnnum_Item)
             Me.columnID_Merca.Caption = "nombre"
             Me.columnId_poliza.Caption = "alias"
             Me.columnId_TipoItems.Caption = "logo"
@@ -2011,389 +1948,6 @@ Partial Public Class DSPoliza
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "DtItemsDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class DtResumenItemsDataTable
-        Inherits Global.System.Data.TypedTableBase(Of DtResumenItemsRow)
-        
-        Private columnId_poliza As Global.System.Data.DataColumn
-        
-        Private columncanti_items As Global.System.Data.DataColumn
-        
-        Private columnobservaciones As Global.System.Data.DataColumn
-        
-        Private columnpesoneto As Global.System.Data.DataColumn
-        
-        Private columnpesobruto As Global.System.Data.DataColumn
-        
-        Private columnbultcant As Global.System.Data.DataColumn
-        
-        Private columnimportes_factura As Global.System.Data.DataColumn
-        
-        Private columnimportes_otrosgastos As Global.System.Data.DataColumn
-        
-        Private columnimportes_seguro As Global.System.Data.DataColumn
-        
-        Private columnimportes_flete As Global.System.Data.DataColumn
-        
-        Private columnTotal As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "DtResumenItems"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property Id_polizaColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnId_poliza
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property canti_itemsColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columncanti_items
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property observacionesColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnobservaciones
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property pesonetoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnpesoneto
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property pesobrutoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnpesobruto
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property bultcantColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnbultcant
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property importes_facturaColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnimportes_factura
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property importes_otrosgastosColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnimportes_otrosgastos
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property importes_seguroColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnimportes_seguro
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property importes_fleteColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnimportes_flete
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property TotalColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTotal
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As DtResumenItemsRow
-            Get
-                Return CType(Me.Rows(index),DtResumenItemsRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event DtResumenItemsRowChanging As DtResumenItemsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event DtResumenItemsRowChanged As DtResumenItemsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event DtResumenItemsRowDeleting As DtResumenItemsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event DtResumenItemsRowDeleted As DtResumenItemsRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Sub AddDtResumenItemsRow(ByVal row As DtResumenItemsRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddDtResumenItemsRow(ByVal Id_poliza As String, ByVal canti_items As String, ByVal observaciones As String, ByVal pesoneto As String, ByVal pesobruto As String, ByVal bultcant As String, ByVal importes_factura As String, ByVal importes_otrosgastos As String, ByVal importes_seguro As String, ByVal importes_flete As String, ByVal Total As String) As DtResumenItemsRow
-            Dim rowDtResumenItemsRow As DtResumenItemsRow = CType(Me.NewRow,DtResumenItemsRow)
-            Dim columnValuesArray() As Object = New Object() {Id_poliza, canti_items, observaciones, pesoneto, pesobruto, bultcant, importes_factura, importes_otrosgastos, importes_seguro, importes_flete, Total}
-            rowDtResumenItemsRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowDtResumenItemsRow)
-            Return rowDtResumenItemsRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As DtResumenItemsDataTable = CType(MyBase.Clone,DtResumenItemsDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New DtResumenItemsDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnId_poliza = MyBase.Columns("Id_poliza")
-            Me.columncanti_items = MyBase.Columns("canti_items")
-            Me.columnobservaciones = MyBase.Columns("observaciones")
-            Me.columnpesoneto = MyBase.Columns("pesoneto")
-            Me.columnpesobruto = MyBase.Columns("pesobruto")
-            Me.columnbultcant = MyBase.Columns("bultcant")
-            Me.columnimportes_factura = MyBase.Columns("importes_factura")
-            Me.columnimportes_otrosgastos = MyBase.Columns("importes_otrosgastos")
-            Me.columnimportes_seguro = MyBase.Columns("importes_seguro")
-            Me.columnimportes_flete = MyBase.Columns("importes_flete")
-            Me.columnTotal = MyBase.Columns("Total")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnId_poliza = New Global.System.Data.DataColumn("Id_poliza", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnId_poliza)
-            Me.columncanti_items = New Global.System.Data.DataColumn("canti_items", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncanti_items)
-            Me.columnobservaciones = New Global.System.Data.DataColumn("observaciones", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnobservaciones)
-            Me.columnpesoneto = New Global.System.Data.DataColumn("pesoneto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnpesoneto)
-            Me.columnpesobruto = New Global.System.Data.DataColumn("pesobruto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnpesobruto)
-            Me.columnbultcant = New Global.System.Data.DataColumn("bultcant", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnbultcant)
-            Me.columnimportes_factura = New Global.System.Data.DataColumn("importes_factura", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnimportes_factura)
-            Me.columnimportes_otrosgastos = New Global.System.Data.DataColumn("importes_otrosgastos", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnimportes_otrosgastos)
-            Me.columnimportes_seguro = New Global.System.Data.DataColumn("importes_seguro", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnimportes_seguro)
-            Me.columnimportes_flete = New Global.System.Data.DataColumn("importes_flete", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnimportes_flete)
-            Me.columnTotal = New Global.System.Data.DataColumn("Total", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTotal)
-            Me.columnimportes_flete.Caption = "DataColumn9"
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function NewDtResumenItemsRow() As DtResumenItemsRow
-            Return CType(Me.NewRow,DtResumenItemsRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New DtResumenItemsRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(DtResumenItemsRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.DtResumenItemsRowChangedEvent) Is Nothing) Then
-                RaiseEvent DtResumenItemsRowChanged(Me, New DtResumenItemsRowChangeEvent(CType(e.Row,DtResumenItemsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.DtResumenItemsRowChangingEvent) Is Nothing) Then
-                RaiseEvent DtResumenItemsRowChanging(Me, New DtResumenItemsRowChangeEvent(CType(e.Row,DtResumenItemsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.DtResumenItemsRowDeletedEvent) Is Nothing) Then
-                RaiseEvent DtResumenItemsRowDeleted(Me, New DtResumenItemsRowChangeEvent(CType(e.Row,DtResumenItemsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.DtResumenItemsRowDeletingEvent) Is Nothing) Then
-                RaiseEvent DtResumenItemsRowDeleting(Me, New DtResumenItemsRowChangeEvent(CType(e.Row,DtResumenItemsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub RemoveDtResumenItemsRow(ByVal row As DtResumenItemsRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As DSPoliza = New DSPoliza()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "DtResumenItemsDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -3923,36 +3477,6 @@ Partial Public Class DSPoliza
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property num_partida() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtItems.num_partidaColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'num_partida' de la tabla 'DtItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtItems.num_partidaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property num_Item() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtItems.num_ItemColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'num_Item' de la tabla 'DtItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtItems.num_ItemColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsID_MercaNull() As Boolean
             Return Me.IsNull(Me.tableDtItems.ID_MercaColumn)
         End Function
@@ -4298,345 +3822,6 @@ Partial Public Class DSPoliza
         Public Sub SetcomentarioNull()
             Me(Me.tableDtItems.comentarioColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Isnum_partidaNull() As Boolean
-            Return Me.IsNull(Me.tableDtItems.num_partidaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setnum_partidaNull()
-            Me(Me.tableDtItems.num_partidaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Isnum_ItemNull() As Boolean
-            Return Me.IsNull(Me.tableDtItems.num_ItemColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setnum_ItemNull()
-            Me(Me.tableDtItems.num_ItemColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class DtResumenItemsRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableDtResumenItems As DtResumenItemsDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableDtResumenItems = CType(Me.Table,DtResumenItemsDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Id_poliza() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.Id_polizaColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Id_poliza' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.Id_polizaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property canti_items() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.canti_itemsColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'canti_items' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.canti_itemsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property observaciones() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.observacionesColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'observaciones' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.observacionesColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property pesoneto() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.pesonetoColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'pesoneto' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.pesonetoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property pesobruto() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.pesobrutoColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'pesobruto' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.pesobrutoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property bultcant() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.bultcantColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'bultcant' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.bultcantColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property importes_factura() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.importes_facturaColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'importes_factura' de la tabla 'DtResumenItems' es DBNull."& _ 
-                            "", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.importes_facturaColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property importes_otrosgastos() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.importes_otrosgastosColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'importes_otrosgastos' de la tabla 'DtResumenItems' es DBN"& _ 
-                            "ull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.importes_otrosgastosColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property importes_seguro() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.importes_seguroColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'importes_seguro' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.importes_seguroColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property importes_flete() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.importes_fleteColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'importes_flete' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.importes_fleteColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Total() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDtResumenItems.TotalColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Total' de la tabla 'DtResumenItems' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDtResumenItems.TotalColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsId_polizaNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.Id_polizaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetId_polizaNull()
-            Me(Me.tableDtResumenItems.Id_polizaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Iscanti_itemsNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.canti_itemsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setcanti_itemsNull()
-            Me(Me.tableDtResumenItems.canti_itemsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsobservacionesNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.observacionesColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetobservacionesNull()
-            Me(Me.tableDtResumenItems.observacionesColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IspesonetoNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.pesonetoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetpesonetoNull()
-            Me(Me.tableDtResumenItems.pesonetoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IspesobrutoNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.pesobrutoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetpesobrutoNull()
-            Me(Me.tableDtResumenItems.pesobrutoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsbultcantNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.bultcantColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetbultcantNull()
-            Me(Me.tableDtResumenItems.bultcantColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Isimportes_facturaNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.importes_facturaColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setimportes_facturaNull()
-            Me(Me.tableDtResumenItems.importes_facturaColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Isimportes_otrosgastosNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.importes_otrosgastosColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setimportes_otrosgastosNull()
-            Me(Me.tableDtResumenItems.importes_otrosgastosColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Isimportes_seguroNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.importes_seguroColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setimportes_seguroNull()
-            Me(Me.tableDtResumenItems.importes_seguroColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function Isimportes_fleteNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.importes_fleteColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub Setimportes_fleteNull()
-            Me(Me.tableDtResumenItems.importes_fleteColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsTotalNull() As Boolean
-            Return Me.IsNull(Me.tableDtResumenItems.TotalColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetTotalNull()
-            Me(Me.tableDtResumenItems.TotalColumn) = Global.System.Convert.DBNull
-        End Sub
     End Class
     
     '''<summary>
@@ -4733,42 +3918,6 @@ Partial Public Class DSPoliza
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property Row() As DtItemsRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Class DtResumenItemsRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As DtResumenItemsRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New(ByVal row As DtResumenItemsRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property Row() As DtResumenItemsRow
             Get
                 Return Me.eventRow
             End Get

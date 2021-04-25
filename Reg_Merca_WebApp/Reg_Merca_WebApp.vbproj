@@ -287,6 +287,7 @@
     <Content Include="modulos\pruebas.aspx" />
     <Content Include="modulos\perfil_usuario\confi_perfil_preguntas.aspx" />
     <Content Include="modulos\confi_rol.aspx" />
+    <Content Include="modulos\reportes\fuentes\Product.xml" />
     <Content Include="modulos\src\DetalleVariables.txt" />
     <Content Include="modulos\src\jsModales.js" />
     <Content Include="modulos\src\jsTabla.js" />
@@ -382,37 +383,25 @@
     <Content Include="modulos\perfil_usuario\master_perfil.Master" />
     <Content Include="00_Pruebas\WebForm1.aspx" />
     <Content Include="modulos\mantenimiento\master_mantenimiento.Master" />
-    <Content Include="modulos\reportes\fuentes\DSClientes.xsc">
-      <DependentUpon>DSClientes.xsd</DependentUpon>
-    </Content>
     <Content Include="modulos\declaracion_aduanera\master_registros.Master" />
     <Content Include="modulos\reportes\fuentes\DSCaratula.xsc">
       <DependentUpon>DSCaratula.xsd</DependentUpon>
     </Content>
-    <None Include="modulos\reportes\fuentes\DSCaratula.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSCaratula.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="modulos\reportes\fuentes\DSCaratula.xsd" />
     <Content Include="modulos\reportes\fuentes\DSCaratula.xss">
       <DependentUpon>DSCaratula.xsd</DependentUpon>
     </Content>
-    <None Include="modulos\reportes\fuentes\DSClientes.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSClientes.Designer.vb</LastGenOutput>
-    </None>
+    <Content Include="modulos\reportes\fuentes\DSClientes.xsc">
+      <DependentUpon>DSClientes.xsd</DependentUpon>
+    </Content>
+    <None Include="modulos\reportes\fuentes\DSClientes.xsd" />
     <Content Include="modulos\reportes\fuentes\DSClientes.xss">
       <DependentUpon>DSClientes.xsd</DependentUpon>
     </Content>
     <Content Include="modulos\reportes\fuentes\DSClientes_2.xsc">
       <DependentUpon>DSClientes_2.xsd</DependentUpon>
     </Content>
-    <None Include="modulos\reportes\fuentes\DSClientes_2.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSClientes_2.Designer.vb</LastGenOutput>
-    </None>
+    <None Include="modulos\reportes\fuentes\DSClientes_2.xsd" />
     <Content Include="modulos\reportes\fuentes\DSClientes_2.xss">
       <DependentUpon>DSClientes_2.xsd</DependentUpon>
     </Content>
@@ -1411,21 +1400,9 @@
       <DependentUpon>confi_rol.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="modulos\reportes\fuentes\DSCaratula.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DSCaratula.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="modulos\reportes\fuentes\DSClientes.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DSClientes.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="modulos\reportes\fuentes\DSClientes_2.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DSClientes_2.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="modulos\reportes\fuentes\DSCaratula.Designer.vb" />
+    <Compile Include="modulos\reportes\fuentes\DSClientes.Designer.vb" />
+    <Compile Include="modulos\reportes\fuentes\DSClientes_2.Designer.vb" />
     <Compile Include="modulos\src\ControlBitacora.vb" />
     <Compile Include="modulos\src\ControlDB.vb" />
     <Compile Include="modulos\src\ControlCorreo.vb" />
