@@ -243,7 +243,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <asp:TextBox placeholder="ID Clase De Bulto" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txtId_Clase_deBulto" onkeydown="mayus(this);borrarespacios(this);"   onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
+                                        <asp:TextBox placeholder="ID Clase De Bulto" AutoComplete="off" ValidationGroup="Validabulto" runat="server" class="form-control" ID="txtId_Clase_deBulto" MaxLength="3" onkeypress="SoloNumeros();"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtId_Clase_deBulto"
                                         ErrorMessage="Ingrese el ID De La Clase de Bulto."
