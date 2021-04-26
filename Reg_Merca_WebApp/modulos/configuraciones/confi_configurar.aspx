@@ -207,6 +207,12 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
+                            <asp:LinkButton ValidationGroup="novalidarconfig" Width="100%" runat="server" ID="BttGuaradryContinuar" type="button" class="btn bg-pink waves-effect">
+                            <i class="material-icons">save</i>
+                            <span>Guardar y Continuar</span>
+                            </asp:LinkButton>
+                        </div>
                         <div class="col-sm-3 col-sm-offset-6 col-md-offset-6">
                             <asp:LinkButton ValidationGroup="novalidarconfig" Width="100%" runat="server" ID="bttLimpiar" type="button" class="btn bg-pink waves-effect">
                             <i class="material-icons">refresh</i>

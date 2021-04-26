@@ -260,6 +260,21 @@ LEFT JOIN DB_Nac_Merca.tbl_24_Unidad_Medida T007 ON T001.Id_UnidadComercial = T0
 LEFT JOIN DB_Nac_Merca.tbl_24_Unidad_Medida T008 ON T001.Unidad_Estadistica = T008.Id_UnidadMed
 
 WHERE T001.Id_poliza = " & Request.QueryString("idCaratula")
+
+
+            Session("nombreDS3") = "DSResumenItems"
+            Session("nombreDT3") = "DtResumenItems"
+            Session("xSsql3") = "SELECT T001.Id_poliza,count(*) canti_items, T002.observaciones,
+sum(pesoneto) pesoneto,sum(pesobruto) pesobruto,sum(bultcant) bultcant,
+sum(importes_factura) importes_factura,sum(importes_otrosgastos)importes_otrosgastos,
+sum(importes_seguro) importes_seguro,sum(importes_flete) importes_flete,
+(sum(importes_factura) +sum(importes_otrosgastos)+sum(importes_seguro)+ sum(importes_flete) ) Total
+FROM DB_Nac_Merca.tbl_34_mercancias T001
+LEFT JOIN ( SELECT *FROM (SELECT Id_poliza, observaciones FROM DB_Nac_Merca.tbl_34_mercancias
+where length(observaciones) > 1 and Id_poliza = " & Request.QueryString("idCaratula") & " limit 1) TBL_TEMP
+) T002 ON T001.Id_poliza = T002.Id_poliza
+where T001.Id_poliza = " & Request.QueryString("idCaratula")
+
             Response.Redirect("/modulos/declaracion_aduanera/Reporte_caratula.aspx?idcaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 

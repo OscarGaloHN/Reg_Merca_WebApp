@@ -176,6 +176,15 @@ Partial Public Class config_avanz
     Protected WithEvents chkRegistro As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
 
     '''<summary>
+    '''Control bttTerminarConfigurar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttTerminarConfigurar As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''Control bttLimpiar.
     '''</summary>
     '''<remarks>

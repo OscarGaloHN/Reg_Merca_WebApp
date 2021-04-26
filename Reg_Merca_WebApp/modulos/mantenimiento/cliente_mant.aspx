@@ -247,7 +247,8 @@
          xMargenes.push(1, 0, 1, 0)
         xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
         xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
-        
+          xOrientarPag = 'landscape'; 
+
     </script>
 
     <div class="row clearfix">

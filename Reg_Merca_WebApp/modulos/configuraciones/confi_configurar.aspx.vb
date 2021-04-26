@@ -53,7 +53,15 @@
                     txtDireccion.Text = Application("ParametrosADMIN")(14)
                     txtADMIN_URL_WEB.Text = Application("ParametrosADMIN")(19)
 
-
+                    If CBool(Application("ParametrosSYS")(2)) = True Then
+                        bttGuardar.Visible = True
+                        bttLimpiar.Visible = True
+                        BttGuaradryContinuar.Visible = False
+                    Else
+                        bttGuardar.Visible = False
+                        bttLimpiar.Visible = False
+                        BttGuaradryContinuar.Visible = True
+                    End If
                 Else
                     'si no tiene permisos 
                     Using log_bitacora As New ControlBitacora
@@ -163,6 +171,92 @@
 
 
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuraciones','Su configuacion fue almacenada exitosamente.', 'success');</script>")
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub BttGuaradryContinuar_Click(sender As Object, e As EventArgs) Handles BttGuaradryContinuar.Click
+        Try
+            Dim Ssql As String
+            'nombre empresa 
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), 1, "Ingreso del nombre de la empresa")
+            End Using
+            Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros  SET  valor = '" & txtEmpresa.Text & "' where id_parametro =5"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+
+            'alias
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), 1, "Ingreso del alias de la empresa")
+            End Using
+            Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros  SET  valor = '" & txtAlias.Text & "' where id_parametro =6"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+
+            'RTN
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), 1, "Ingreso del RTN de la empresa")
+            End Using
+            Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtRTN.Text & "' where id_parametro =9"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+
+            'email empresa
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), 1, "Ingreso del Email de la empresa")
+            End Using
+            Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtEmail.Text & "' where id_parametro =7"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+            'telefono de la empresa
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), 1, "Ingreso del telefono de la empresa")
+            End Using
+            Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txttel.Text & "' where id_parametro =8"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+            'direccion
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), 1, "Ingreso de la direccion de la empresa")
+            End Using
+            Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & txtDireccion.Text & "' where id_parametro =20"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+            'sistema configurado
+            Using log_bitacora As New ControlBitacora
+                log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), 1, "se realizaron modificaciones a configuraciones")
+            End Using
+            Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor ='TRUE' where id_parametro =10"
+            Using con As New ControlDB
+                con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+            End Using
+
+            If (FileUpload1.HasFile) Then
+                'eliminar logo actual
+                If (System.IO.File.Exists(Server.MapPath("~/images/") + Session("xLOGO"))) Then
+                    System.IO.File.Delete(Server.MapPath("~/images/") + Session("xLOGO"))
+                End If
+                'guardar imagen
+                Dim fso = Server.CreateObject("Scripting.FileSystemObject")
+                FileUpload1.SaveAs(Server.MapPath("~/images/") + FileUpload1.FileName)
+                Using log_bitacora As New ControlBitacora
+                    log_bitacora.acciones_Comunes(12, Session("user_idUsuario"), 1, "Cambio del logo")
+                End Using
+                Ssql = "UPDATE DB_Nac_Merca.tbl_21_parametros SET valor = '" & FileUpload1.FileName & "' where id_parametro =36"
+                Using con As New ControlDB
+                    con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                End Using
+            End If
+            Response.Redirect("~/modulos/configuraciones/config_avanz.aspx")
+            'Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Configuraciones','Su configuacion fue almacenada exitosamente.', 'success');</script>")
         Catch ex As Exception
 
         End Try
