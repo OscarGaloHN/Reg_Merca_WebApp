@@ -1,4 +1,4 @@
-﻿Public Class tipoitems_mant
+﻿Public Class clasebulto_mant
     Inherits System.Web.UI.Page
     Private Property DataSetX As DataSet
         Get
@@ -8,7 +8,8 @@
             Session("DataSetX") = value
         End Set
     End Property
-    'OBJETO #37
+    'OBJETO #44
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             If Session("user_idUsuario") = Nothing Then
@@ -20,7 +21,7 @@
                 'comprobar que el rol del usuario tenga permisos para editar
                 Dim Ssql As String = String.Empty
                 Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
-                    where id_rol = " & Session("user_rol") & " and id_objeto = 37 and permiso_consulta = 1"
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 44 and permiso_consulta = 1"
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
@@ -32,9 +33,10 @@
                     'cargar logo para imprimir
                     HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
                     HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+
                     'llenar grid
 
-                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_26_Tipo_Items"
+                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_18_Clase_deBulto"
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                         Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -46,12 +48,12 @@
 
                     If Not IsPostBack Then
                         Select Case Request.QueryString("acction")
-                            Case "newItems"
-                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El tipo de items se almaceno con exito.', 'success');</script>")
-                            Case "delteItems"
-                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El tipo de items se elimino con exito.', 'success');</script>")
-                            Case "editItems"
-                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El tipo de items se modifico con exito.', 'success');</script>")
+                            Case "newbulto"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se almaceno con exito.', 'success');</script>")
+                            Case "deltebulto"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se elimino con exito.', 'success');</script>")
+                            Case "editbulto"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se modifico con exito.', 'success');</script>")
                             Case Else
                                 'bitacora de que salio de un form
                                 If Not IsPostBack Then
@@ -61,8 +63,8 @@
                                 End If
 
                                 'bitacora de que ingreso al form
-                                Session("IDfrmQueIngresa") = 37
-                                Session("NombrefrmQueIngresa") = "Mantenimiento de tipos de items"
+                                Session("IDfrmQueIngresa") = 44
+                                Session("NombrefrmQueIngresa") = "Mantenimiento Clase de Bulto"
                                 If Not IsPostBack Then
                                     Using log_bitacora As New ControlBitacora
                                         log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
@@ -84,51 +86,51 @@
         End Try
     End Sub
 
-    Private Sub bttGuardarItems_Click(sender As Object, e As EventArgs) Handles bttGuardarItems.Click
+    Private Sub bttGuardarbulto_Click(sender As Object, e As EventArgs) Handles bttGuardarbulto.Click
         Try
             Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_26_Tipo_Items where Id_TipoItems = BINARY  '" & txtId_TipoItems.Text & "' "
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_18_Clase_deBulto where Id_Clase_deBulto = BINARY  " & txtId_Clase_deBulto.Text & " "
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
             End Using
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Items','El tipo de Items  ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto  ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_26_Tipo_Items` (`Id_TipoItems`, `Descripcion`) VALUES ('" & txtId_TipoItems.Text & "','" & txtDescripcion.Text & "');"
+                Ssql = "INSERT INTO `DB_Nac_Merca`.`tbl_18_Clase_deBulto` (`Id_Clase_deBulto`, `Descripción`) VALUES (" & txtId_Clase_deBulto.Text & ",'" & txtDescripcion.Text & "');"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se edito el tipo de items  con el id:" & lblHiddenIDItems.Value)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo La Clase De Bulto  Con El Id:" & lblHiddenIDbulto.Value)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/tipoitems_mant.aspx?acction=editItems")
+                Response.Redirect("~/modulos/mantenimiento/clasebulto_mant.aspx?acction=newbulto")
             End If
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Private Sub bttEliminarItems_Click(sender As Object, e As EventArgs) Handles bttEliminarItems.Click
+    Private Sub bttEliminarbulto_Click(sender As Object, e As EventArgs) Handles bttEliminarbulto.Click
         Try
-            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_26_Tipo_Items` WHERE `Id_TipoItems`= '" & lblHiddenIDItems.Value & "';"
+            Dim Ssql As String = "DELETE FROM `DB_Nac_Merca`.`tbl_18_Clase_deBulto` WHERE `Id_Clase_deBulto`= '" & lblHiddenIDbulto.Value & "';"
             Using con As New ControlDB
                 con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
             End Using
             Using log_bitacora As New ControlBitacora
-                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el estado  con nombre: " & lblHiddenNombreItems.Value & " con exito")
+                log_bitacora.acciones_Comunes(6, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se elimino el estado  con nombre: " & lblHiddenNombrebulto.Value & " con exito")
             End Using
-            Response.Redirect("~/modulos/mantenimiento/tipoitems_mant.aspx?acction=delteItems")
+            Response.Redirect("~/modulos/mantenimiento/clasebulto_mant.aspx?acction=deltebulto")
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Private Sub bttModificarItems_Click(sender As Object, e As EventArgs) Handles bttModificarItems.Click
+    Private Sub bttModificarbulto_Click(sender As Object, e As EventArgs) Handles bttModificarbulto.Click
         Try
             Dim Ssql As String = String.Empty
-            If txtId_TipoItemsEditar.Text <> lblHiddenNombreItems.Value Then
-                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_26_Tipo_Items where Id_TipoItems = BINARY  '" & txtId_TipoItems.Text & "' "
+            If txtId_Clase_deBultoEditar.Text <> lblHiddenNombrebulto.Value Then
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_18_Clase_deBulto where Id_Clase_deBulto = BINARY  '" & txtId_Clase_deBultoEditar.Text & "' "
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -138,16 +140,16 @@
             End If
 
             If Session("NumReg") > 0 Then
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Aduanas','El Tipo de Items ya esta registrado.', 'error');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto ya esta registrado.', 'error');</script>")
             Else
-                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_26_Tipo_Items` SET `Id_TipoItems` = '" & txtId_TipoItemsEditar.Text & "', `descripcion` = '" & txtDescripcionEditar.Text & "' WHERE `Id_TipoItems` = '" & lblHiddenIDItems.Value & "';"
+                Ssql = "UPDATE `DB_Nac_Merca`.`tbl_18_Clase_deBulto` SET `Id_Clase_deBulto` = '" & txtId_Clase_deBultoEditar.Text & "', `Descripción` = '" & txtDescripcionEditar.Text & "' WHERE `Id_Clase_deBulto` = " & lblHiddenIDbulto.Value & ";"
                 Using con As New ControlDB
                     con.GME(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 End Using
                 Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se guardo un nuevo tipo de Items con descripcion: " & txtDescripcion.Text)
+                    log_bitacora.acciones_Comunes(4, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "Se modifico la clase de bulto con descripción: " & txtDescripcion.Text)
                 End Using
-                Response.Redirect("~/modulos/mantenimiento/tipoitems_mant.aspx?acction=newItems")
+                Response.Redirect("~/modulos/mantenimiento/clasebulto_mant.aspx?acction=editbulto")
             End If
         Catch ex As Exception
 

@@ -6,6 +6,12 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
+     <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js "></script>
+
     <script src="../src/jsTabla.js"></script>
     <script type="text/javascript">
         function xModal(xcolor, xtxtfoco) {
@@ -70,6 +76,19 @@
     <% End if  %>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPrincipal" runat="server">
+
+     <asp:HiddenField ID="HiddenLogo" runat="server" />
+    <asp:HiddenField ID="HiddenEmpresa" runat="server" />
+
+
+    <script type="text/javascript">
+        tituloImprimir = 'LISTADO DE USUARIOS'
+        xColumnas.push(2, 3, 4, 5); /*AGREGAR ELEMENTOS AL FINAL DE UN ARRAY*/
+        xMargenes.push(100, 0, 100, 0)
+        xlogo = document.getElementById('ContentPrincipal_HiddenLogo').value;
+        xempresa = document.getElementById('ContentPrincipal_HiddenEmpresa').value;
+    </script>
+
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -112,12 +131,12 @@
                                 <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" class="table table-bordered table-striped table-hover display compact"
                                     Width="100%">
                                     <Columns>
-                                        <asp:BoundField  HeaderText="Editar" DataField="id_usuario" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='config_gestion_usuario.aspx?xuser={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
+                                        <asp:BoundField  HeaderText="Editar" DataField="id_usuario" HtmlEncode="False" DataFormatString="<a class='btn bg-pink waves-effect' href='config_gestion_usuario.aspx?xuser={0}&action=update&ignore=92​​'><i class='material-icons'>edit</i> </a>" />
                                         <%--<asp:BoundField DataField="id_usuario" HtmlEncode="False" DataFormatString="<a class='btn bg-red waves-effect' href='confi_perfil.aspx?code={​​0}​​'><i class='material-icons'>edit</i> </a>" />--%>
                                         <asp:TemplateField HeaderText="Eliminar">
                                             <ItemTemplate>
-                                                <button onclick="return GetSelectedRow(this);" type="button" data-color="red"  class="btn bg-deep-orange waves-effect"><i class="material-icons">delete</i></button>
-                                           
+                                                <button onclick="return GetSelectedRow(this);" type="button" data-color="red" class="btn bg-red waves-effect"><i class="material-icons">delete</i></button>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

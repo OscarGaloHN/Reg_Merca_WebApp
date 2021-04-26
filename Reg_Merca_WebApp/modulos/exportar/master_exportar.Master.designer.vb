@@ -11,95 +11,77 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Config_Usuarios
+Partial Public Class master_exportar
 
     '''<summary>
-    '''Control HiddenLogo.
+    '''Control head.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents HiddenLogo As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
-    '''Control HiddenEmpresa.
+    '''Control encabezado.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents encabezado As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
-    '''Control bttNuevo.
+    '''Control form1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents bttNuevo As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''Control gvCustomers.
+    '''Control lblcerrarSesion.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents gvCustomers As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents lblcerrarSesion As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control PanelEditor.
+    '''Control ContentMenu.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents PanelEditor As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents ContentMenu As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
-    '''Control lblUsuario.
+    '''Control piedepagina.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents piedepagina As Global.Reg_Merca_WebApp.piedepagina
 
     '''<summary>
-    '''Control lblHidden1.
+    '''Control ContentPrincipal.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHidden1 As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents ContentPrincipal As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
     '''<summary>
-    '''Control lblHidden2.
+    '''Control contenJSpie.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblHidden2 As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control lblHidden3.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblHidden3 As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''Control bttEliminar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttEliminar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents contenJSpie As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class

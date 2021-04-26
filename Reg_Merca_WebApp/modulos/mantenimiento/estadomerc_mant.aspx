@@ -79,12 +79,24 @@
                 <span>Almacén</span>
             </a>
         </li>
+         <li>
+            <a href="clasebulto_mant.aspx">
+                <i class="material-icons">inventory_2</i>
+                <span>Clase de Bulto</span>
+            </a>
+        </li>
         <li>
             <a href="cliente_mant.aspx">
                 <i class="material-icons">groups</i>
                 <span>Clientes</span>
             </a>
             </li>
+         <li>
+            <a href="clasebulto_mant.aspx">
+                <i class="material-icons">store</i>
+                <span>Clase de Bulto</span>
+            </a>
+        </li>
         
         <li>
             <a href="condentrega_mant.aspx">
@@ -184,7 +196,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2 style="font-weight: bold;">Estado de la mercancia
+                    <h2 style="font-weight: bold;">Estado De La Mercancia
                                  <small>A Continuación Se Muestra El Listado Del Estado De La Mercancia.</small>
                     </h2>
                 </div>

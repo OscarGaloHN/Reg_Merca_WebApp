@@ -11,16 +11,52 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class configurar
+Partial Public Class clasebulto_mant
 
     '''<summary>
-    '''Control txtEmpresa.
+    '''Control HiddenLogo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtEmpresa As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents HiddenLogo As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control HiddenEmpresa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents HiddenEmpresa As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control gvCustomers.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gvCustomers As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Control Panel3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''Control txtId_Clase_deBulto.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtId_Clase_deBulto As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator1.
@@ -32,49 +68,85 @@ Partial Public Class configurar
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtAlias.
+    '''Control txtDescripcion.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtAlias As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtDescripcion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control RequiredFieldValidator5.
+    '''Control reqnombrevacio.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents reqnombrevacio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control txtRTN.
+    '''Control bttGuardarbulto.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtRTN As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents bttGuardarbulto As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''Control RequiredFieldValidator2.
+    '''Control lblbulto.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents lblbulto As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control txtEmail.
+    '''Control lblHiddenIDbulto.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtEmail As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblHiddenIDbulto As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control lblHiddenNombrebulto.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblHiddenNombrebulto As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''Control bttEliminarbulto.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents bttEliminarbulto As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Control Panel1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''Control txtId_Clase_deBultoEditar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtId_Clase_deBultoEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator3.
@@ -86,22 +158,13 @@ Partial Public Class configurar
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control reEmailRegistro.
+    '''Control txtDescripcionEditar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents reEmailRegistro As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
-    '''Control txttel.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txttel As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtDescripcionEditar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''Control RequiredFieldValidator4.
@@ -113,92 +176,11 @@ Partial Public Class configurar
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control retelefono.
+    '''Control bttModificarbulto.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents retelefono As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
-    '''Control txtDireccion.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtDireccion As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control RequiredFieldValidator6.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Control txtADMIN_URL_WEB.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtADMIN_URL_WEB As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Control RequiredFieldValidator7.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Control FileUpload1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
-    '''Control RegularExpressionValidator1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-
-    '''<summary>
-    '''Control BttGuaradryContinuar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents BttGuaradryContinuar As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control bttLimpiar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttLimpiar As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''Control bttGuardar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents bttGuardar As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents bttModificarbulto As Global.System.Web.UI.WebControls.LinkButton
 End Class

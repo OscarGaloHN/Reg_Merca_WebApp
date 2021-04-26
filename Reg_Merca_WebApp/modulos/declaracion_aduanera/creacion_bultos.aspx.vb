@@ -11,26 +11,27 @@
     End Property
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("user_idUsuario") = Nothing Then
-            Session.Abandon()
-            'REDIRECCIONAR A MENU PRINCIPAL
-            Response.Redirect("~/Inicio/login.aspx")
-        Else
-            'si hay una sesion activa
-            'comprobar que el rol del usuario tenga permisos para editar
-            Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+        Try
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                'REDIRECCIONAR A MENU PRINCIPAL
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para editar
+                Dim Ssql As String = String.Empty
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
                     where id_rol = " & Session("user_rol") & " and id_objeto = 28 and permiso_consulta = 1"
 
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
-                'si tiene los permisos
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
+                    'si tiene los permisos
 
 
-                Try
+
                     lblCatatura.Text = Request.QueryString("idCaratula")
 
                     'cargar logo para imprimir
@@ -90,19 +91,19 @@ case when indicador =1 then 'SI' else 'NO' end indicador, id_poliza_bul FROM DB_
                         End If
 
                     End If
-                Catch ex As Exception
 
-                End Try
 
-            Else
-                'si no tiene permisos 
-                Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
-                End Using
-                Response.Redirect("~/modulos/acceso_denegado.aspx")
+                Else
+                    'si no tiene permisos 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                    End Using
+                    Response.Redirect("~/modulos/acceso_denegado.aspx")
+                End If
             End If
-        End If
+        Catch ex As Exception
 
+        End Try
 
     End Sub
 
@@ -259,6 +260,21 @@ LEFT JOIN DB_Nac_Merca.tbl_24_Unidad_Medida T007 ON T001.Id_UnidadComercial = T0
 LEFT JOIN DB_Nac_Merca.tbl_24_Unidad_Medida T008 ON T001.Unidad_Estadistica = T008.Id_UnidadMed
 
 WHERE T001.Id_poliza = " & Request.QueryString("idCaratula")
+
+
+            Session("nombreDS3") = "DSResumenItems"
+            Session("nombreDT3") = "DtResumenItems"
+            Session("xSsql3") = "SELECT T001.Id_poliza,count(*) canti_items, T002.observaciones,
+sum(pesoneto) pesoneto,sum(pesobruto) pesobruto,sum(bultcant) bultcant,
+sum(importes_factura) importes_factura,sum(importes_otrosgastos)importes_otrosgastos,
+sum(importes_seguro) importes_seguro,sum(importes_flete) importes_flete,
+(sum(importes_factura) +sum(importes_otrosgastos)+sum(importes_seguro)+ sum(importes_flete) ) Total
+FROM DB_Nac_Merca.tbl_34_mercancias T001
+LEFT JOIN ( SELECT *FROM (SELECT Id_poliza, observaciones FROM DB_Nac_Merca.tbl_34_mercancias
+where length(observaciones) > 1 and Id_poliza = " & Request.QueryString("idCaratula") & " limit 1) TBL_TEMP
+) T002 ON T001.Id_poliza = T002.Id_poliza
+where T001.Id_poliza = " & Request.QueryString("idCaratula")
+
             Response.Redirect("/modulos/declaracion_aduanera/Reporte_caratula.aspx?idcaratula=" & Request.QueryString("idCaratula"))
         Catch ex As Exception
 

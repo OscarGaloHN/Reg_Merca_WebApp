@@ -84,7 +84,7 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
-                        <div class="col-sm-3">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
                             <asp:FileUpload ID="FileUpload1" runat="server" />
                             <asp:RequiredFieldValidator ControlToValidate="FileUpload1"
                                 runat="server" ErrorMessage="Debe de seleccionar el archivo de respaldo."

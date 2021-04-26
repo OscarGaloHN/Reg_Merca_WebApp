@@ -1,6 +1,7 @@
 ﻿
 Session("NumReg") = Numero de registros que trae las consultas sql
- 
+Session("xLOGO") =  nombre del logo 
+
 Session("id_usuarioPreguntas") = id de usuario para cargar las preguntas
 Session("usuarioCambioPW") = evalua que respondio bien la pregunta
 
@@ -13,7 +14,6 @@ Session("user_rol") = registro("id_rol")
 Session("user_confirma_correo") = registro("emailconfir")
 Session("user_estado") = registro("estado")
 Session("user_canti_preguntas") = registro("CantiPreguntas")
-
 
 Session("IDfrmQueIngresa") 
 Session("NombrefrmQueIngresa") 

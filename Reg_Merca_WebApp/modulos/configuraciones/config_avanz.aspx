@@ -1,4 +1,4 @@
-﻿<%@ Page Title="configuracion avanzada" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="config_avanz.aspx.vb" Inherits="Reg_Merca_WebApp.config_avanz" %>
+﻿<%@ Page Title="Configuración de Parametros" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/configuraciones/master_config.Master" CodeBehind="config_avanz.aspx.vb" Inherits="Reg_Merca_WebApp.config_avanz" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Bootstrap Spinner Css -->
@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content7" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">configuracion avanzada</a>
+    <a class="navbar-brand" href="#">Configuración de Parametros</a>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -33,14 +33,16 @@
                 <span>Configuracion Avanzada</span>
             </a>
         </li>
+
         <li>
             <a href="config_permisos.aspx">
                 <i class="material-icons">vpn_key</i>
-                 <span>Permisos - Módulos</span>
+                <span>Permisos - Módulos</span>
             </a>
         </li>
-         <li>
-            <a href="config_objetos.aspx">
+
+        <li>
+            <a href="#">
                 <i class="material-icons">vpn_key</i>
                 <span>Permisos - Objetos</span>
             </a>
@@ -51,6 +53,7 @@
                 <span>Copias De Seguridad</span>
             </a>
         </li>
+
         <%ELSE %>
 
         <li class="active">
@@ -69,8 +72,10 @@
             <div class="card">
                 <div class="header">
                     <h2 style="font-weight: bold">Configuraciones Avanzadas 
-                        <small>Configuraciones </small>
+                        <small>Configuraciones de parametros </small>
                     </h2>
+                </div>
+                <div class="body">
                     <h2 style="padding-bottom: 8px; font-weight: bold" class="card-inside-title">Correo electronico para envio de alertas</h2>
                     <div class="row clearfix">
                         <div class="col-sm-4">
@@ -259,6 +264,12 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
+                            <asp:LinkButton ValidationGroup="novalidarconfig" Width="100%" runat="server" ID="bttTerminarConfigurar" type="button" class="btn bg-pink waves-effect">
+                            <i class="material-icons">save</i>
+                            <span>Completar Configuraciones</span>
+                            </asp:LinkButton>
+                        </div>
 
                         <div class="col-sm-3 col-sm-offset-6 col-md-offset-6">
                             <asp:LinkButton ValidationGroup="novalidarconfig" Width="100%" runat="server" ID="bttLimpiar" type="button" class="btn bg-pink waves-effect">
@@ -273,6 +284,7 @@
                              
                             </asp:LinkButton>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -11,27 +11,28 @@
     End Property
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("user_idUsuario") = Nothing Then
-            Session.Abandon()
-            'REDIRECCIONAR A MENU PRINCIPAL
-            Response.Redirect("~/Inicio/login.aspx")
-        Else
-            'si hay una sesion activa
-            'comprobar que el rol del usuario tenga permisos para editar
-            Dim Ssql As String = String.Empty
-            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+        Try
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                'REDIRECCIONAR A MENU PRINCIPAL
+                Response.Redirect("~/Inicio/login.aspx")
+            Else
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para editar
+                Dim Ssql As String = String.Empty
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
                     where id_rol = " & Session("user_rol") & " and id_objeto = 29 and permiso_consulta = 1"
 
-            Using con As New ControlDB
-                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                Session("NumReg") = DataSetX.Tables(0).Rows.Count
-            End Using
-            If Session("NumReg") > 0 Then
-                'si tiene los permisos
+                Using con As New ControlDB
+                    DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                    Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                End Using
+                If Session("NumReg") > 0 Then
+                    'si tiene los permisos
 
 
 
-                Try
+
                     lblCatatura.Text = Request.QueryString("iditems")
 
                     If Session("user_idUsuario") = Nothing Then
@@ -115,21 +116,19 @@
                         End If
                     End If
 
-                Catch ex As Exception
 
-                End Try
-            Else
-                'si no tiene permisos 
-                Using log_bitacora As New ControlBitacora
-                    log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
-                End Using
-                Response.Redirect("~/modulos/acceso_denegado.aspx")
+                Else
+                    'si no tiene permisos 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                    End Using
+                    Response.Redirect("~/modulos/acceso_denegado.aspx")
+                End If
             End If
-        End If
 
+        Catch ex As Exception
 
-
-
+        End Try
     End Sub
 
     Private Sub btt_guardar_Click(sender As Object, e As EventArgs) Handles btt_guardar.Click

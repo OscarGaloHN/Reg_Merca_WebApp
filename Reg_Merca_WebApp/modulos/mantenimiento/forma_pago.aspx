@@ -52,7 +52,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="encabezado" runat="server">
-    <a class="navbar-brand" href="#">Matenimiento de formas de pago</a>
+    <a class="navbar-brand" href="#">Matenimiento De Forma De Pago</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentMenu" runat="server">
     <ul class="list">
@@ -73,6 +73,12 @@
             <a href="almacenes_mant.aspx">
                 <i class="material-icons">store</i>
                 <span>Almacén</span>
+            </a>
+        </li>
+         <li>
+            <a href="clasebulto_mant.aspx">
+                <i class="material-icons">inventory_2</i>
+                <span>Clase de Bulto</span>
             </a>
         </li>
         <li>
@@ -251,7 +257,7 @@
                                         <asp:TextBox placeholder="NOMBRE DE PAGO" AutoComplete="off" ValidationGroup="Validapago" runat="server" class="form-control" ID="txtnombre_pago" onkeypress="txNombres(event);" onkeydown="mayus(this);borrarespacios(this);" onkeyup="mayus(this); borrarespacios(this);" onfocusout="mayus(this);quitarEspacios(this);"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqnombrevacio" ControlToValidate="txtnombre_pago"
-                                        ErrorMessage="Ingrese el nombre del pago."
+                                        ErrorMessage="Ingrese el Nombre Del Pago."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="Validapago" />
                                 </div>
