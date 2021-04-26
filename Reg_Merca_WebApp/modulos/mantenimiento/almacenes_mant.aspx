@@ -287,10 +287,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                       <asp:TextBox MaxLength="8" placeholder="Contacto" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txtcontacto" runat="server" class="form-control"></asp:TextBox>
+                                       <asp:TextBox MaxLength="50" placeholder="Contacto" onkeypress="return txtcontacto(event)" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txtcontacto" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtcontacto"
-                                        ErrorMessage="Verifique el Contacto deL Almacen."
+                                        ErrorMessage="Ingrese el Contacto deL Almacen."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
                                 </div>
@@ -301,7 +301,7 @@
                                         <asp:TextBox MaxLength="8" placeholder="Teléfono" onkeypress="SoloNumeros()" onkeydown="borrarespacios(this)"  onkeyup="borrarespacios(this);" ID="txttel" runat="server" class="form-control"></asp:TextBox>
                                     </div>
                                     <asp:RequiredFieldValidator runat="server" ID="reqtelvacio" ControlToValidate="txttel"
-                                        ErrorMessage="verifique el teléfono del Almacén."
+                                        ErrorMessage="Ingrese el teléfono del Almacén."
                                         Display="Dynamic"
                                         ForeColor="White" Font-Size="Small" ValidationGroup="ValidaAlmacen" />
                                 </div>
