@@ -152,7 +152,7 @@
         </li>
         <li class="active">
             <a href="#">
-                <i class="material-icons">groups</i>
+                <i class="material-icons">groups</i> 
                 <span>Clientes</span>
             </a>
         </li>
