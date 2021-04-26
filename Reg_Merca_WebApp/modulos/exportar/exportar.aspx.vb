@@ -83,7 +83,79 @@ Public Class exportar
             xArchivo = xArchivo & Chr(34) & "aduana" & Chr(34) & ":" & Chr(34) & registro("cod_aduana_ent") & Chr(34) & ","
             'modalidad_especial
             xArchivo = xArchivo & Chr(34) & "indModalidadEspecial" & Chr(34) & ":" & Chr(34) & registro("modalidad_especial") & Chr(34) & ","
-
+            'rtn importador exportador
+            xArchivo = xArchivo & Chr(34) & "rucImpoExpo" & Chr(34) & ":" & Chr(34) & registro("rtn_importador") & Chr(34) & ","
+            'nombre_importador
+            xArchivo = xArchivo & Chr(34) & "descripcionImpoExpo" & Chr(34) & ":" & Chr(34) & registro("nombre_importador") & Chr(34) & ","
+            'manifiestoCourrier
+            xArchivo = xArchivo & Chr(34) & "manifiestoCourrier" & Chr(34) & ":" & Chr(34) & registro("manifiesto_entregarap") & Chr(34) & ","
+            'id proveedor
+            xArchivo = xArchivo & Chr(34) & "docDestProv" & Chr(34) & ":" & Chr(34) & registro("Id_proveedor") & Chr(34) & ","
+            'nombre proveedor               *************************
+            xArchivo = xArchivo & Chr(34) & "nomDestProv" & Chr(34) & ":" & Chr(34) & registro("") & Chr(34) & ","
+            'nombre proveedor
+            xArchivo = xArchivo & Chr(34) & "domDestProv" & Chr(34) & ":" & Chr(34) & registro("domicilio_proveed") & Chr(34) & ","
+            'nroPreimpreso
+            xArchivo = xArchivo & Chr(34) & "nroPreimpreso" & Chr(34) & ":" & Chr(34) & registro("Numero_Preimpreso") & Chr(34) & ","
+            'fauca
+            xArchivo = xArchivo & Chr(34) & "isFauca" & Chr(34) & ":" & Chr(34) & registro("") & Chr(34) & ","
+            'idFauca                *************************
+            xArchivo = xArchivo & Chr(34) & "isFauca" & Chr(34) & ":" & Chr(34) & registro("") & Chr(34) & ","
+            'aduanaIngSal
+            xArchivo = xArchivo & Chr(34) & "aduanaIngSal" & Chr(34) & ":" & Chr(34) & registro("cod_aduana_sal") & Chr(34) & ","
+            ' paisOrigen
+            xArchivo = xArchivo & Chr(34) & "paisOrigen" & Chr(34) & ":" & Chr(34) & registro("Cod_pais_org") & Chr(34) & ","
+            ' paisProcDestino
+            xArchivo = xArchivo & Chr(34) & "paisProcDestino" & Chr(34) & ":" & Chr(34) & registro("Cod_pais_pro") & Chr(34) & ","
+            ' pesoBruto
+            xArchivo = xArchivo & Chr(34) & "pesoBruto" & Chr(34) & ":" & Chr(34) & registro("pesobruto_bultos") & Chr(34) & ","
+            ' cantidadBultos
+            xArchivo = xArchivo & Chr(34) & "cantidadBultos" & Chr(34) & ":" & Chr(34) & registro("cant_bultos") & Chr(34) & ","
+            ' claseBultos
+            xArchivo = xArchivo & Chr(34) & "claseBultos" & Chr(34) & ":" & Chr(34) & registro("Id_Clase_deBulto") & Chr(34) & ","
+            ' canItems
+            xArchivo = xArchivo & Chr(34) & "canItems" & Chr(34) & ":" & Chr(34) & registro("canti_items") & Chr(34) & ","
+            ' comentario
+            xArchivo = xArchivo & Chr(34) & "comentario" & Chr(34) & ":" & Chr(34) & registro("Observaciones") & Chr(34) & ","
+            ' entFinancieraMed
+            xArchivo = xArchivo & Chr(34) & "entFinancieraMed" & Chr(34) & ":" & Chr(34) & registro("entidad_mediacion") & Chr(34) & ","
+            ' condicionEntrega
+            xArchivo = xArchivo & Chr(34) & "condicionEntrega" & Chr(34) & ":" & Chr(34) & registro("id_condicion") & Chr(34) & ","
+            ' divisaFactura
+            xArchivo = xArchivo & Chr(34) & "divisaFactura" & Chr(34) & ":" & Chr(34) & registro("divisa_factura") & Chr(34) & ","
+            ' totalFactura
+            xArchivo = xArchivo & Chr(34) & "totalFactura" & Chr(34) & ":" & Chr(34) & registro("Total_Factura") & Chr(34) & ","
+            ' cotDivFactura
+            xArchivo = xArchivo & Chr(34) & "cotDivFactura" & Chr(34) & ":" & Chr(34) & registro("divisa_factura") & Chr(34) & ","
+            'divisaFlete
+            xArchivo = xArchivo & Chr(34) & "divisaFlete" & Chr(34) & ":" & Chr(34) & registro("divisa_flete") & Chr(34) & ","
+            'totalFlete
+            xArchivo = xArchivo & Chr(34) & "totalFlete" & Chr(34) & ":" & Chr(34) & registro("Total_Flete") & Chr(34) & ","
+            'divisaSeguro
+            xArchivo = xArchivo & Chr(34) & "divisaSeguro" & Chr(34) & ":" & Chr(34) & registro("divisa_seguro") & Chr(34) & ","
+            'totalSeguro
+            xArchivo = xArchivo & Chr(34) & "totalSeguro" & Chr(34) & ":" & Chr(34) & registro("Total_Seguro") & Chr(34) & ","
+            'totalOGastos
+            xArchivo = xArchivo & Chr(34) & "totalOGastos" & Chr(34) & ":" & Chr(34) & registro("Total_Otros_gastos") & Chr(34) & ","
+            'totalAlmacenaje
+            xArchivo = xArchivo & Chr(34) & "totalAlmacenaje" & Chr(34) & ":" & Chr(34) & registro("") & Chr(34) & ","
+            'formaPagoFac
+            xArchivo = xArchivo & Chr(34) & "formaPagoFac" & Chr(34) & ":" & Chr(34) & registro("id_pago") & Chr(34) & ","
+            'porcInteresFac
+            xArchivo = xArchivo & Chr(34) & "porcInteresFac" & Chr(34) & ":" & Chr(34) & registro("") & Chr(34) & ","
+            'motivoSusp
+            xArchivo = xArchivo & Chr(34) & "motivoSusp" & Chr(34) & ":" & Chr(34) & registro("motivo_operacion") & Chr(34) & ","
+            'plazo
+            xArchivo = xArchivo & Chr(34) & "plazo" & Chr(34) & ":" & Chr(34) & registro("plazo") & Chr(34) & ","
+            'depAlmacenamiento
+            xArchivo = xArchivo & Chr(34) & "depAlmacenamiento" & Chr(34) & ":" & Chr(34) & registro("deposito_aduanas") & Chr(34) & ","
+            'aduanaTransitoDest
+            xArchivo = xArchivo & Chr(34) & "aduanaTransitoDest" & Chr(34) & ":" & Chr(34) & registro("aduana_transdes") & Chr(34) & ","
+            'depositoTransitoDest
+            xArchivo = xArchivo & Chr(34) & "depositoTransitoDest" & Chr(34) & ":" & Chr(34) & registro("deposito_aduanas") & Chr(34) & ","
+            'rutaTransito
+            xArchivo = xArchivo & Chr(34) & "rutaTransito" & Chr(34) & ":" & Chr(34) & registro("ruta_transito") & Chr(34)
+            'rutaTransito
             'FIN  lleanr caratula
             xArchivo = xArchivo & "}," & Chr(34) & "documentos" & Chr(34) & ":["
 

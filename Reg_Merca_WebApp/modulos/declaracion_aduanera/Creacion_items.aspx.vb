@@ -65,15 +65,6 @@ and a.Id_poliza=" & Request.QueryString("idCaratula")
                         End Select
                     End If
 
-                    'If Not IsPostBack Then
-                    '    Using cusuario_bitacora As New ControlBitacora
-                    '        cusuario_bitacora.acciones_Comunes(3, Session("user_idUsuario"), 7, "El usuario ingresa a la pantalla de configuracion de usuarios")
-                    '    End Using
-                    'End If
-
-
-
-
                 Else
                     'si no tiene permisos 
                     Using log_bitacora As New ControlBitacora

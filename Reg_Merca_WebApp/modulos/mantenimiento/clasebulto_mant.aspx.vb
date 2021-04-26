@@ -32,58 +32,59 @@
 
                     'cargar logo para imprimir
                     HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-                    HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+                        HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
-                    'llenar grid
+                        'llenar grid
 
-                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_18_Clase_deBulto"
-                    Using con As New ControlDB
-                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
-                    End Using
-                    If Session("NumReg") > 0 Then
-                        gvCustomers.DataSource = DataSetX
-                        gvCustomers.DataBind()
-                    End If
+                        Ssql = "SELECT * FROM DB_Nac_Merca.tbl_18_Clase_deBulto"
+                        Using con As New ControlDB
+                            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                            Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                        End Using
+                        If Session("NumReg") > 0 Then
+                            gvCustomers.DataSource = DataSetX
+                            gvCustomers.DataBind()
+                        End If
 
-                    If Not IsPostBack Then
-                        Select Case Request.QueryString("acction")
-                            Case "newbulto"
-                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se almaceno con exito.', 'success');</script>")
-                            Case "deltebulto"
-                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se elimino con exito.', 'success');</script>")
-                            Case "editbulto"
-                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se modifico con exito.', 'success');</script>")
-                            Case Else
-                                'bitacora de que salio de un form
-                                If Not IsPostBack Then
-                                    Using log_bitacora As New ControlBitacora
-                                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                                    End Using
-                                End If
+                        If Not IsPostBack Then
+                            Select Case Request.QueryString("acction")
+                                Case "newbulto"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se almaceno con exito.', 'success');</script>")
+                                Case "deltebulto"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se elimino con exito.', 'success');</script>")
+                                Case "editbulto"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('bulto','La clase de bulto se modifico con exito.', 'success');</script>")
+                                Case Else
+                                    'bitacora de que salio de un form
+                                    If Not IsPostBack Then
+                                        Using log_bitacora As New ControlBitacora
+                                            log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                        End Using
+                                    End If
 
-                                'bitacora de que ingreso al form
-                                Session("IDfrmQueIngresa") = 44
-                                Session("NombrefrmQueIngresa") = "Mantenimiento Clase de Bulto"
-                                If Not IsPostBack Then
-                                    Using log_bitacora As New ControlBitacora
-                                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                                    End Using
-                                End If
-                        End Select
-                    End If
+                                    'bitacora de que ingreso al form
+                                    Session("IDfrmQueIngresa") = 44
+                                    Session("NombrefrmQueIngresa") = "Mantenimiento Clase de Bulto"
+                                    If Not IsPostBack Then
+                                        Using log_bitacora As New ControlBitacora
+                                            log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                        End Using
+                                    End If
+                            End Select
+                        End If
 
-                Else
-                    'si no tiene permisos 
-                    Using log_bitacora As New ControlBitacora
-                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
-                    End Using
-                    Response.Redirect("~/modulos/acceso_denegado.aspx")
+                        Else
+                        'si no tiene permisos 
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                        End Using
+                        Response.Redirect("~/modulos/acceso_denegado.aspx")
                 End If
             End If
         Catch ex As Exception
 
         End Try
+
     End Sub
 
     Private Sub bttGuardarbulto_Click(sender As Object, e As EventArgs) Handles bttGuardarbulto.Click

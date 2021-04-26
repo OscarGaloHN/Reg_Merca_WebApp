@@ -10,6 +10,7 @@
     End Property
     'OBJETO #38
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         Try
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
@@ -28,7 +29,6 @@
                 End Using
                 If Session("NumReg") > 0 Then
                     'si tiene los permisos
-
                     'cargar logo para imprimir
                     HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
                     HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
@@ -70,7 +70,6 @@
                                 End If
                         End Select
                     End If
-
                 Else
                     'si no tiene permisos 
                     Using log_bitacora As New ControlBitacora
@@ -82,6 +81,8 @@
         Catch ex As Exception
 
         End Try
+
+
     End Sub
 
     Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click

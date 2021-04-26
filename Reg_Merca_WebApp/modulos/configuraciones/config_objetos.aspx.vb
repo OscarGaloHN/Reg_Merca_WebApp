@@ -72,10 +72,32 @@
                     Response.Redirect("~/modulos/acceso_denegado.aspx")
                 End If
             End If
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            Select Case ex.Number
+                Case 0
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','La autenticación de usuario para el host falló.', 'error');</script>")
+                Case 1042
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','No fue posible conectarse al el servidor.', 'error');</script>")
+                Case Else
+                    Dim Ssql As String = String.Empty
+                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_44_errores  where codigo = " & ex.Number & ""
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    Dim registro As DataRow
+                    If Session("NumReg") > 0 Then
+                        registro = DataSetX.Tables(0).Rows(0)
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','" & registro("mensaje_usuario") & "', 'error');</script>")
+                    Else
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
+                    End If
+            End Select
+        Catch ex As NullReferenceException
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
         Catch ex As Exception
-
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
         End Try
-
     End Sub
     Private Sub LlenarGrid(ByVal xidrol As Integer, ByVal xidModulo As Integer)
         Dim Ssql As String = String.Empty
@@ -116,15 +138,16 @@
     End Sub
 
     Private Sub bttModificar_Click(sender As Object, e As EventArgs) Handles bttModificar.Click
-        Dim Ssql As String = String.Empty
-        Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+        Try
+            Dim Ssql As String = String.Empty
+            Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
                     where id_rol = " & Session("user_rol") & " and id_objeto = 41 and permiso_actualizacion = 1"
-        Using con As New ControlDB
-            DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
-            Session("NumReg") = DataSetX.Tables(0).Rows.Count
-        End Using
-        If Session("NumReg") > 0 Then
-            Try
+            Using con As New ControlDB
+                DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                Session("NumReg") = DataSetX.Tables(0).Rows.Count
+            End Using
+            If Session("NumReg") > 0 Then
+
                 'editando el permiso del objeto
                 Ssql = "UPDATE `DB_Nac_Merca`.`tbl_03_permisos` SET `permiso_consulta` = " & chkConsultar.Checked & " ,`permiso_insercion` = " & chkInsetar.Checked & " ,`permiso_eliminacion` = " & chkEliminar.Checked & " ,`permiso_actualizacion` = " & chkActualizar.Checked & "  WHERE `Id_Permisos` = " & HiddenLblEditarIDPermiso.Value & ";"
                 Using con As New ControlDB
@@ -137,12 +160,35 @@
 
                 Response.Redirect("~/modulos/configuraciones/config_objetos.aspx?acction=editpermiso&rol=" & ddlRoles.SelectedValue & "&modulo=" & ddlModulos.SelectedValue)
 
-            Catch ex As Exception
 
-
-            End Try
-        Else
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','Su usuario no tiene permisos para realizar esta acción.', 'error');</script>")
-        End If
+            Else
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Permisos','Su usuario no tiene permisos para realizar esta acción.', 'error');</script>")
+            End If
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            Select Case ex.Number
+                Case 0
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','La autenticación de usuario para el host falló.', 'error');</script>")
+                Case 1042
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','No fue posible conectarse al el servidor.', 'error');</script>")
+                Case Else
+                    Dim Ssql As String = String.Empty
+                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_44_errores  where codigo = " & ex.Number & ""
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    Dim registro As DataRow
+                    If Session("NumReg") > 0 Then
+                        registro = DataSetX.Tables(0).Rows(0)
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','" & registro("mensaje_usuario") & "', 'error');</script>")
+                    Else
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
+                    End If
+            End Select
+        Catch ex As NullReferenceException
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
+        Catch ex As Exception
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
+        End Try
     End Sub
 End Class
