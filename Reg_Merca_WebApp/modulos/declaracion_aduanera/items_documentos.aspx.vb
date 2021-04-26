@@ -13,57 +13,80 @@
         Try
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
+                'REDIRECCIONAR A MENU PRINCIPAL
                 Response.Redirect("~/Inicio/login.aspx")
             Else
-                'cargar logo para imprimir
-                HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-                HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
-
-                lblitems.Text = Request.QueryString("iditems")
-
-
-                'llenar grid
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para editar
                 Dim Ssql As String = String.Empty
-                Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia,
-                    case when a.presencia =1 then 'SI' else 'NO' end presencia, a.Id_Merca, b.Descripcion
-                    From tbl_41_documentos_items a, tbl_32_Cod_Documentos b
-                    Where a.Id_Documento = b.Id_Documento  
-                    and a.Id_merca =" & Request.QueryString("iditems") & ""
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 45 and permiso_consulta = 1"
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
                 If Session("NumReg") > 0 Then
-                    gvCustomers.DataSource = DataSetX
-                    gvCustomers.DataBind()
-                End If
+                    'si tiene los permisos
 
-                If Not IsPostBack Then
-                    Select Case Request.QueryString("acction")
-                        Case "newdocumento"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se almaceno con éxito.', 'success');</script>")
-                        Case "deldocumento"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se elimino con éxito.', 'success');</script>")
-                        Case "editdocumento"
-                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se modifico con éxito.', 'success');</script>")
-                        Case Else
-                            'bitacora de que salio de un form
-                            If Not IsPostBack Then
-                                Using log_bitacora As New ControlBitacora
-                                    log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
-                                End Using
-                            End If
 
-                            'bitacora de que ingreso al form
-                            Session("IDfrmQueIngresa") = 33
-                            Session("NombrefrmQueIngresa") = "Documentos para un Item"
-                            If Not IsPostBack Then
-                                Using log_bitacora As New ControlBitacora
-                                    log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
-                                End Using
-                            End If
-                    End Select
+
+
+                    'cargar logo para imprimir
+                    HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+                    HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
+
+                    lblitems.Text = Request.QueryString("iditems")
+
+
+                    'llenar grid
+                    Ssql = "Select a.id_doc, a.Id_Documento, a.Referencia,
+                    case when a.presencia =1 then 'SI' else 'NO' end presencia, a.Id_Merca, b.Descripcion
+                    From tbl_41_documentos_items a, tbl_32_Cod_Documentos b
+                    Where a.Id_Documento = b.Id_Documento  
+                    and a.Id_merca =" & Request.QueryString("iditems") & ""
+
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    If Session("NumReg") > 0 Then
+                        gvCustomers.DataSource = DataSetX
+                        gvCustomers.DataBind()
+                    End If
+
+                    If Not IsPostBack Then
+                        Select Case Request.QueryString("acction")
+                            Case "newdocumento"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se almaceno con éxito.', 'success');</script>")
+                            Case "deldocumento"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se elimino con éxito.', 'success');</script>")
+                            Case "editdocumento"
+                                Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Documento','El documento se modifico con éxito.', 'success');</script>")
+                            Case Else
+                                'bitacora de que salio de un form
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+
+                                'bitacora de que ingreso al form
+                                Session("IDfrmQueIngresa") = 33
+                                Session("NombrefrmQueIngresa") = "Documentos para un Item"
+                                If Not IsPostBack Then
+                                    Using log_bitacora As New ControlBitacora
+                                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                                    End Using
+                                End If
+                        End Select
+                    End If
+                Else
+                    'si no tiene permisos 
+                    Using log_bitacora As New ControlBitacora
+                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 12, "El usuario intenta ingresa a una pantalla sin permisos")
+                    End Using
+                    Response.Redirect("~/modulos/acceso_denegado.aspx")
                 End If
             End If
 
