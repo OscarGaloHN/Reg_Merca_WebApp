@@ -2,11 +2,16 @@
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Session("user_idUsuario") = Nothing Then
-            Session.Abandon()
-            Response.Redirect("~/Inicio/login.aspx")
+        Try
+            If Session("user_idUsuario") = Nothing Then
+                Session.Abandon()
+                Response.Redirect("~/Inicio/login.aspx")
 
-        End If
+            End If
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
 End Class
