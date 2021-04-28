@@ -36,6 +36,10 @@
     <OutputPath>bin\</OutputPath>
     <DocumentationFile>WebForms_Basic.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -198,6 +202,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="00_Pruebas\WebForm2.aspx" />
+    <Content Include="default.aspx" />
+    <Content Include="images\logodos.png" />
     <Content Include="Inicio\activacion.aspx" />
     <Content Include="Inicio\cambio_contra.aspx" />
     <Content Include="Content\Site.css" />
@@ -1035,6 +1041,13 @@
       <DependentUpon>WebForm2.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="default.aspx.designer.vb">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.vb">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Inicio\activacion.aspx.designer.vb">
       <DependentUpon>activacion.aspx</DependentUpon>
     </Compile>
@@ -1503,27 +1516,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Site.Master.designer.vb">
-      <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Site.Master.vb">
-      <DependentUpon>Site.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.vb">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewSwitcher.ascx.designer.vb">
-      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.vb">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.vb">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
     <Compile Include="00_Pruebas\WebForm1.aspx.designer.vb">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
@@ -1553,9 +1545,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <Content Include="Site.Master" />
-    <Content Include="Site.Mobile.Master" />
-    <Content Include="ViewSwitcher.ascx" />
     <None Include="packages.config" />
     <Content Include="scss\browser-support\_ie10.scss" />
     <Content Include="scss\browser-support\_ie11.scss" />
