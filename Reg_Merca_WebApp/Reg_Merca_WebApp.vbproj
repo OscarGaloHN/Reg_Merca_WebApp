@@ -201,7 +201,6 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="00_Pruebas\WebForm2.aspx" />
     <Content Include="default.aspx" />
     <Content Include="images\logodos.png" />
     <Content Include="Inicio\activacion.aspx" />
@@ -398,7 +397,6 @@
     <Content Include="modulos\gestion_usuario\master_gestion_usuarios.Master" />
     <Content Include="modulos\bitacora\master_bitacora.Master" />
     <Content Include="modulos\perfil_usuario\master_perfil.Master" />
-    <Content Include="00_Pruebas\WebForm1.aspx" />
     <Content Include="modulos\mantenimiento\master_mantenimiento.Master" />
     <Content Include="modulos\reportes\fuentes\DSClientes.xsc">
       <DependentUpon>DSClientes.xsd</DependentUpon>
@@ -1034,13 +1032,6 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="00_Pruebas\WebForm2.aspx.designer.vb">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="00_Pruebas\WebForm2.aspx.vb">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="default.aspx.designer.vb">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
@@ -1516,17 +1507,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="00_Pruebas\WebForm1.aspx.designer.vb">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="00_Pruebas\WebForm1.aspx.vb">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="00_Pruebas\reportes\rptClientes.rdlc" />
-    <EmbeddedResource Include="modulos\reportes\rptCaratula.rdlc" />
+    <EmbeddedResource Include="modulos\reportes\rptCaratula.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="modulos\reportes\rptClientesDOS.rdlc" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
