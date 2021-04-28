@@ -57,11 +57,36 @@ Public Class exportar
                     Response.Redirect("~/modulos/acceso_denegado.aspx")
                 End If
             End If
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            Select Case ex.Number
+                Case 0
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','La autenticación de usuario para el host falló.', 'error');</script>")
+                Case 1042
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','No fue posible conectarse al el servidor.', 'error');</script>")
+                Case Else
+                    Dim Ssql As String = String.Empty
+                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_44_errores  where codigo = " & ex.Number & ""
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    Dim registro As DataRow
+                    If Session("NumReg") > 0 Then
+                        registro = DataSetX.Tables(0).Rows(0)
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','" & registro("mensaje_usuario") & "', 'error');</script>")
+                    Else
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
+                    End If
+            End Select
+        Catch ex As NullReferenceException
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
         Catch ex As Exception
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
 
         End Try
     End Sub
     Private Sub exportarArchivo(ByVal xIdCaratual As String)
+
         Dim Ssql As String = "SELECT * FROM DB_Nac_Merca.tbl_01_polizas where Id_poliza =" & xIdCaratual & ";"
 
         Using con As New ControlDB
@@ -195,9 +220,17 @@ Public Class exportar
             xArchivo = xArchivo & Chr(34) & "items" & Chr(34) & ":["
 
 
-            Ssql = "SELECT T001.*,  T002.Descripcion ,CASE WHEN T001.presencia = 1 THEN 'S' ELSE 'N' END AS presencia_SARAWEB FROM DB_Nac_Merca.tbl_28_Documentos T001
-                    LEFT JOIN  DB_Nac_Merca.tbl_32_Cod_Documentos T002 ON T001.Id_Documento = T002.Id_Documento 
-                    Where id_poliza_doc =" & xIdCaratual & ";"
+
+
+
+            Ssql = "SELECT T001.Id_Tipo_items AS TipoItems , T001.num_partida , T001.titulo_currier,
+ T001.pesoneto,  T001.pesobruto,  T001.bultcant, T001.cod_pais_fab  , T001.cod_pais_adq , T001.cod_pais_pro ,  T001.Estado_Merc,
+ T001.Id_UnidadComercial, T001.Cantidad_Comercial ,   CONCAT(T001.Unidad_Estadistica, ' - ',  T002.Descripcion)  AS UNIDAD_ESTA,T001.Unidad_Estadistica,
+ T001.cantidad_estadistica ,T001.importes_factura,  T001.importes_flete,T001.importes_seguro,T001.importes_otrosgastos, T001.observaciones
+ , ROW_NUMBER() OVER (ORDER BY ID_Merca) as num_Item FROM DB_Nac_Merca.tbl_34_mercancias T001  LEFT JOIN DB_Nac_Merca.tbl_24_Unidad_Medida T002 ON T001.Unidad_Estadistica = T002.Id_UnidadMed
+ WHERE T001.Id_poliza =" & xIdCaratual & ";"
+
+
             Using con As New ControlDB
                 DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                 Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -206,33 +239,33 @@ Public Class exportar
             If Session("NumReg") > 0 Then
                 For i = 0 To Session("NumReg") - 1
                     registro = DataSetX.Tables(0).Rows(i)
-                    xArchivo = xArchivo & "{" & Chr(34) & "nroItem" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "tipoItem" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "posArancelaria" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
+                    xArchivo = xArchivo & "{" & Chr(34) & "nroItem" & Chr(34) & ":" & Chr(34) & registro("num_Item") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "tipoItem" & Chr(34) & ":" & Chr(34) & registro("TipoItems") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "posArancelaria" & Chr(34) & ":" & Chr(34) & registro("num_partida") & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "tituloCourrier" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "idMatrizInsumos" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "nroItemAsoc" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "nroItemACancelar" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "pesoNeto" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "pesoBruto" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "cantBultos" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "paisOrigen" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "paisProcDestino" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "paisAdquisicion" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "estadoMercancia" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "uniComercial" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "cantComercial" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "uniEstadistica" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "uniEstadisticaCod" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "cantEstadistica" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "importeFOB" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "importeFlete" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "importeSeguro" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "importeOGastos" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "pesoNeto" & Chr(34) & ":" & Chr(34) & registro("pesoneto") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "pesoBruto" & Chr(34) & ":" & Chr(34) & registro("pesobruto") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "cantBultos" & Chr(34) & ":" & Chr(34) & registro("bultcant") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "paisOrigen" & Chr(34) & ":" & Chr(34) & registro("cod_pais_fab") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "paisProcDestino" & Chr(34) & ":" & Chr(34) & registro("cod_pais_pro") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "paisAdquisicion" & Chr(34) & ":" & Chr(34) & registro("cod_pais_adq") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "estadoMercancia" & Chr(34) & ":" & Chr(34) & registro("Estado_Merc") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "uniComercial" & Chr(34) & ":" & Chr(34) & registro("Id_UnidadComercial") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "cantComercial" & Chr(34) & ":" & Chr(34) & registro("Cantidad_Comercial") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "uniEstadistica" & Chr(34) & ":" & Chr(34) & registro("UNIDAD_ESTA") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "uniEstadisticaCod" & Chr(34) & ":" & Chr(34) & registro("Unidad_Estadistica") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "cantEstadistica" & Chr(34) & ":" & Chr(34) & registro("cantidad_estadistica") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "importeFOB" & Chr(34) & ":" & Chr(34) & registro("importes_factura") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "importeFlete" & Chr(34) & ":" & Chr(34) & registro("importes_flete") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "importeSeguro" & Chr(34) & ":" & Chr(34) & registro("importes_seguro") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "importeOGastos" & Chr(34) & ":" & Chr(34) & registro("importes_otrosgastos") & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "importeAlmacenaje" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "ajusteAIncluir" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "ajusteADeducir" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
-                    xArchivo = xArchivo & Chr(34) & "descripcion" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
+                    xArchivo = xArchivo & Chr(34) & "descripcion" & Chr(34) & ":" & Chr(34) & registro("observaciones") & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "comentario" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "cuotaArancelaria" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
                     xArchivo = xArchivo & Chr(34) & "nroResolucion" & Chr(34) & ":" & Chr(34) & Chr(34) & ","
@@ -241,9 +274,12 @@ Public Class exportar
 
 
                     ''''''## DOC ITEMS
-                    Ssql = "SELECT T001.*,  T002.Descripcion ,CASE WHEN T001.presencia = 1 THEN 'S' ELSE 'N' END AS presencia_SARAWEB FROM DB_Nac_Merca.tbl_28_Documentos T001
-                    LEFT JOIN  DB_Nac_Merca.tbl_32_Cod_Documentos T002 ON T001.Id_Documento = T002.Id_Documento 
-                    Where id_poliza_doc =" & xIdCaratual & ";"
+                    Ssql = " SELECT T002.Id_Documento ,  CONCAT(T002.Id_Documento, ' - ',  T003.Descripcion)  AS descripcion,
+ T002.Referencia,CASE WHEN T002.presencia = 1 THEN 'S' ELSE 'N' END AS presencia_SARAWEB 
+ FROM DB_Nac_Merca.tbl_34_mercancias T001
+ LEFT JOIN DB_Nac_Merca.tbl_41_documentos_items T002 ON T001.ID_Merca = T002.id_merca
+ LEFT JOIN DB_Nac_Merca.tbl_32_Cod_Documentos T003 ON T002.Id_Documento = T003.Id_Documento 
+ WHERE T001.Id_poliza  =" & xIdCaratual & ";"
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                         Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -255,7 +291,7 @@ Public Class exportar
                         For i2 = 0 To Session("NumReg") - 1
                             registro = DataSetX.Tables(0).Rows(i2)
                             xArchivo = xArchivo & "{" & Chr(34) & "codDocumento" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                            xArchivo = xArchivo & Chr(34) & "descripcion" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & " - " & registro("Descripcion") & Chr(34) & ","
+                            xArchivo = xArchivo & Chr(34) & "descripcion" & Chr(34) & ":" & Chr(34) & registro("descripcion") & Chr(34) & ","
                             xArchivo = xArchivo & Chr(34) & "referencia" & Chr(34) & ":" & Chr(34) & registro("Referencia") & Chr(34) & ","
                             xArchivo = xArchivo & Chr(34) & "presencia" & Chr(34) & ":" & Chr(34) & registro("presencia_SARAWEB") & Chr(34) & "}"
                             If Session("NumReg") - 1 = i2 Then
@@ -271,9 +307,11 @@ Public Class exportar
                     ''''''## FIN DOC ITEMS
 
                     ''''''##  DATOS COMPLEMENTARIOS ITEMS
-                    Ssql = "SELECT T001.*,  T002.Descripcion ,CASE WHEN T001.presencia = 1 THEN 'S' ELSE 'N' END AS presencia_SARAWEB FROM DB_Nac_Merca.tbl_28_Documentos T001
-                    LEFT JOIN  DB_Nac_Merca.tbl_32_Cod_Documentos T002 ON T001.Id_Documento = T002.Id_Documento 
-                    Where id_poliza_doc =" & xIdCaratual & ";"
+                    Ssql = "SELECT  T002.Id_DatoComple, CONCAT(T002.Id_DatoComple, ' - ',  T003.Descripcion) AS descripcion, T002.Valor
+ FROM DB_Nac_Merca.tbl_34_mercancias T001
+LEFT JOIN DB_Nac_Merca.tbl_10_Datos_Complementarios T002 ON T001.ID_Merca = T002.id_merca
+LEFT JOIN DB_Nac_Merca.tbl_31_Cod_Datos_Complementarios T003 ON T002.Id_DatoComple = T003.Id_DatoComple
+   WHERE T001.Id_poliza =  " & xIdCaratual & ";"
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                         Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -284,9 +322,9 @@ Public Class exportar
                     If Session("NumReg") > 0 Then
                         For i2 = 0 To Session("NumReg") - 1
                             registro = DataSetX.Tables(0).Rows(i2)
-                            xArchivo = xArchivo & "{" & Chr(34) & "codDatoComp" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                            xArchivo = xArchivo & Chr(34) & "descripcion" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & " - " & registro("Descripcion") & Chr(34) & ","
-                            xArchivo = xArchivo & Chr(34) & "valor" & Chr(34) & ":" & Chr(34) & registro("presencia_SARAWEB") & Chr(34) & "}"
+                            xArchivo = xArchivo & "{" & Chr(34) & "codDatoComp" & Chr(34) & ":" & Chr(34) & registro("Id_DatoComple") & Chr(34) & ","
+                            xArchivo = xArchivo & Chr(34) & "descripcion" & Chr(34) & ":" & Chr(34) & registro("descripcion") & Chr(34) & ","
+                            xArchivo = xArchivo & Chr(34) & "valor" & Chr(34) & ":" & Chr(34) & registro("Valor") & Chr(34) & "}"
                             If Session("NumReg") - 1 = i2 Then
                             Else
                                 xArchivo = xArchivo & ","
@@ -298,10 +336,13 @@ Public Class exportar
                     End If
                     xArchivo = xArchivo & "],"
                     ''''''##  FIN DATOS COMPLEMENTARIOS ITEMS
+
                     ''''''##   VENTAJAS ITEMS
-                    Ssql = "SELECT T001.*,  T002.Descripcion ,CASE WHEN T001.presencia = 1 THEN 'S' ELSE 'N' END AS presencia_SARAWEB FROM DB_Nac_Merca.tbl_28_Documentos T001
-                    LEFT JOIN  DB_Nac_Merca.tbl_32_Cod_Documentos T002 ON T001.Id_Documento = T002.Id_Documento 
-                    Where id_poliza_doc =" & xIdCaratual & ";"
+                    Ssql = "  SELECT  LPAD(T002.Id_ventaja, 3, '0')    as Id_ventaja, CONCAT(LPAD(T002.Id_ventaja, 3, '0') , ' - ',  T003.Descripcion) AS descripcion 
+ FROM DB_Nac_Merca.tbl_34_mercancias T001
+LEFT JOIN DB_Nac_Merca.tbl_42_Datos_Ventaja T002 ON T001.ID_Merca = T002.id_merca
+LEFT JOIN DB_Nac_Merca.tbl_30_Ventajas T003 ON T002.Id_ventaja = T003.id_Ventaja
+   WHERE T001.Id_poliza =  " & xIdCaratual & ";"
                     Using con As New ControlDB
                         DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                         Session("NumReg") = DataSetX.Tables(0).Rows.Count
@@ -312,8 +353,8 @@ Public Class exportar
                     If Session("NumReg") > 0 Then
                         For i3 = 0 To Session("NumReg") - 1
                             registro = DataSetX.Tables(0).Rows(i3)
-                            xArchivo = xArchivo & "{" & Chr(34) & "codVentaja" & Chr(34) & ":" & Chr(34) & registro("Id_Documento") & Chr(34) & ","
-                            xArchivo = xArchivo & Chr(34) & "descripcion" & Chr(34) & ":" & Chr(34) & registro("presencia_SARAWEB") & Chr(34) & "}"
+                            xArchivo = xArchivo & "{" & Chr(34) & "codVentaja" & Chr(34) & ":" & Chr(34) & registro("Id_ventaja") & Chr(34) & ","
+                            xArchivo = xArchivo & Chr(34) & "descripcion" & Chr(34) & ":" & Chr(34) & registro("descripcion") & Chr(34) & "}"
                             If Session("NumReg") - 1 = i3 Then
                             Else
                                 xArchivo = xArchivo & ","
@@ -357,14 +398,15 @@ Public Class exportar
             'xArchivo = xArchivo & Chr(34) & "usuario_id" & Chr(34) & ":" & Chr(34) & "11623" & Chr(34) & "}"
             'Next
             Dim fs As MemoryStream = New MemoryStream()
-                fs = New System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(xArchivo))
+            fs = New System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(xArchivo))
 
-                Response.ContentType = "text/plain"
-                Response.AppendHeader("Content-Disposition", "attachment; filename=Exportar.decdat")
-                Response.BinaryWrite(fs.ToArray())
-                Response.End()
+            Response.ContentType = "text/plain"
+            Response.AppendHeader("Content-Disposition", "attachment; filename=Exportar.decdat")
+            Response.BinaryWrite(fs.ToArray())
+            Response.End()
+            Response.Redirect("~/modulos/declaracion_aduanera/creacion_proyectos")
 
-            End If
+        End If
     End Sub
 
 End Class

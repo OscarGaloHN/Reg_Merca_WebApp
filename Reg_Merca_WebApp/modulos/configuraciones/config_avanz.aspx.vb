@@ -57,6 +57,7 @@
                         bttGuardar.Visible = True
                         bttLimpiar.Visible = True
                         bttTerminarConfigurar.Visible = False
+                        divBttGuardar.Visible = False
                     Else
                         bttGuardar.Visible = False
                         bttLimpiar.Visible = False

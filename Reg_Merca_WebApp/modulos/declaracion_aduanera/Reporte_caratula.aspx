@@ -1,4 +1,4 @@
-﻿<%@ Page Title="RegMerca | Reporte Declaración Aduanera" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="Reporte_caratula.aspx.vb" Inherits="Reg_Merca_WebApp.Reporte_caratula" %>
+﻿<%@ Page Title="Reporte Declaración Aduanera" Language="vb" AutoEventWireup="false" MasterPageFile="~/modulos/declaracion_aduanera/master_registros.master" CodeBehind="Reporte_caratula.aspx.vb" Inherits="Reg_Merca_WebApp.Reporte_caratula" %>
 
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>

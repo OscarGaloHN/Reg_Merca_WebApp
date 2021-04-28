@@ -11,69 +11,108 @@
     End Property
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            'cargar logo para imprimir
-            HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
-            HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
-
             If Session("user_idUsuario") = Nothing Then
                 Session.Abandon()
                 Response.Redirect("~/Inicio/login.aspx")
             Else
-
+                'si hay una sesion activa
+                'comprobar que el rol del usuario tenga permisos para editar
                 Dim Ssql As String = String.Empty
-                Session("user_rol") = 5
-                Session("user_idUsuario") = 2
-
-                If Session("user_rol") = 5 Then
-                    Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
-                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
-                               where a.id_rol = b.id_rol
-                                and a.estado = c.id_estado and a.id_rol and a.id_usuario <> 1"
-                Else
-                    Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
-                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
-                               where a.id_rol = b.id_rol
-                                and a.estado = c.id_estado and a.id_rol != 5 and a.id_usuario <> 1"
-
-                End If
+                Ssql = "SELECT * FROM DB_Nac_Merca.tbl_03_permisos
+                    where id_rol = " & Session("user_rol") & " and id_objeto = 8 and permiso_consulta = 1"
 
                 Using con As New ControlDB
                     DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
                     Session("NumReg") = DataSetX.Tables(0).Rows.Count
                 End Using
                 If Session("NumReg") > 0 Then
-                    gvCustomers.DataSource = DataSetX
-                    gvCustomers.DataBind()
-                End If
+                    'cargar logo para imprimir
+                    HiddenLogo.Value = "data:image/png;base64," & Application("ParametrosADMIN")(22)
+                    HiddenEmpresa.Value = Application("ParametrosADMIN")(2)
 
-                Select Case Request.QueryString("action")
-                    Case "deleteusuer"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El Usuario se elimino exitosamente.', 'success');</script>")
-                    Case "deleteinactive"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
-                    Case "deletefailed"
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
-                End Select
+                    Session("user_rol") = 5
+                    Session("user_idUsuario") = 2
 
-                'bitacora de que salio de un form
-                If Not IsPostBack Then
-                    Using log_bitacora As New ControlBitacora
-                        log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                    If Session("user_rol") = 5 Then
+                        Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
+                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
+                               where a.id_rol = b.id_rol
+                                and a.estado = c.id_estado and a.id_rol and a.id_usuario <> 1"
+                    Else
+                        Ssql = "select a.id_usuario, a.Nombre, b.rol, c.descripcion
+                            from tbl_02_usuarios a, tbl_15_rol b, tbl_19_estado c
+                               where a.id_rol = b.id_rol
+                                and a.estado = c.id_estado and a.id_rol != 5 and a.id_usuario <> 1"
+
+                    End If
+
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
                     End Using
-                End If
+                    If Session("NumReg") > 0 Then
+                        gvCustomers.DataSource = DataSetX
+                        gvCustomers.DataBind()
+                    End If
 
-                'bitacora de que ingreso al form
-                Session("IDfrmQueIngresa") = 7
-                Session("NombrefrmQueIngresa") = "Gestión de usuarios"
-                If Not IsPostBack Then
+                    Select Case Request.QueryString("action")
+                        Case "deleteusuer"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','El Usuario se elimino exitosamente.', 'success');</script>")
+                        Case "deleteinactive"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Este usuario no puede ser eliminado, su estado paso a inactivo.', 'warning');</script>")
+                        Case "deletefailed"
+                            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Usuario','Error inesperado, este usuario no puedo ser eliminado.', 'error');</script>")
+                    End Select
+
+                    'bitacora de que salio de un form
+                    If Not IsPostBack Then
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.acciones_Comunes(10, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario sale a la pantalla de " & Session("NombrefrmQueIngresa"))
+                        End Using
+                    End If
+
+                    'bitacora de que ingreso al form
+                    Session("IDfrmQueIngresa") = 7
+                    Session("NombrefrmQueIngresa") = "Gestión de usuarios"
+                    If Not IsPostBack Then
+                        Using log_bitacora As New ControlBitacora
+                            log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                        End Using
+                    End If
+                Else
+                    'si no tiene permisos 
                     Using log_bitacora As New ControlBitacora
-                        log_bitacora.acciones_Comunes(9, Session("user_idUsuario"), Session("IDfrmQueIngresa"), "El usuario ingresa a la pantalla de " & Session("NombrefrmQueIngresa"))
+                        log_bitacora.acciones_Comunes(14, Session("user_idUsuario"), 8, "El usuario intenta ingresa a una pantalla sin permisos")
                     End Using
+                    Response.Redirect("~/modulos/acceso_denegado.aspx")
                 End If
             End If
 
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            Select Case ex.Number
+                Case 0
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','La autenticación de usuario para el host falló.', 'error');</script>")
+                Case 1042
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error de conexión','No fue posible conectarse al el servidor.', 'error');</script>")
+                Case Else
+                    Dim Ssql As String = String.Empty
+                    Ssql = "SELECT * FROM DB_Nac_Merca.tbl_44_errores  where codigo = " & ex.Number & ""
+                    Using con As New ControlDB
+                        DataSetX = con.SelectX(Ssql, ControlDB.TipoConexion.Cx_Aduana)
+                        Session("NumReg") = DataSetX.Tables(0).Rows.Count
+                    End Using
+                    Dim registro As DataRow
+                    If Session("NumReg") > 0 Then
+                        registro = DataSetX.Tables(0).Rows(0)
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','" & registro("mensaje_usuario") & "', 'error');</script>")
+                    Else
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
+                    End If
+            End Select
+        Catch ex As NullReferenceException
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
         Catch ex As Exception
-
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "alert", "<script type=""text/javascript"">swal('Error','Error inesperado contacte al administrador.', 'error');</script>")
         End Try
 
     End Sub

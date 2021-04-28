@@ -264,7 +264,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
+                        <div runat="server" id="divBttGuardar" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
                             <asp:LinkButton ValidationGroup="novalidarconfig" Width="100%" runat="server" ID="bttTerminarConfigurar" type="button" class="btn bg-pink waves-effect">
                             <i class="material-icons">save</i>
                             <span>Completar Configuraciones</span>
